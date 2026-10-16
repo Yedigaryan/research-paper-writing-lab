@@ -10,9 +10,23 @@ Run every item before presenting the paper. Fix failures, then re-run.
       stated as an assumption in the paper.
 - [ ] The paper's example matches the photo's example, or the paper says
       why it differs (for example, the drawing and the matrix disagreed).
-- [ ] If the user supplied a textbook, the paper uses the textbook's names
-      for concepts, and says where the textbook convention differs from
-      the board.
+- [ ] The paper uses the course textbook's names for concepts and cites
+      its definition numbers, and says where the textbook convention
+      differs from the board.
+
+## Standard of presentation (modelled on the textbook)
+
+- [ ] Notation is fixed in one place before the first definition.
+- [ ] Every definition, theorem, and remark is numbered and referred to
+      by number afterwards.
+- [ ] Every definition is followed by a remark on what it allows and
+      forbids, an example, and a non-example.
+- [ ] Concepts appear in the textbook's build order; nothing is used
+      before it is defined.
+- [ ] Every theorem is stated in one sentence before its argument, and
+      the argument names its method and covers every case.
+- [ ] A result the textbook does not contain is marked as proved in the
+      paper, not attributed to the book.
 
 ## Mathematics
 

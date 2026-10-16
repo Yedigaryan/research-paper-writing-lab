@@ -65,6 +65,8 @@ in which every two neighbouring vertices in the list are adjacent. That is, $u_{
 
 The textbook writes a walk in full as $u_0, e_1, u_1, e_2, \ldots, e_k, u_k$, listing the edge $e_s = u_{s-1} u_s$ between each pair of vertices, and then agrees to shorten it to the list of vertices alone. The textbook stresses that in a walk both vertices and edges may repeat, and that the length counts every edge as many times as the walk uses it. A walk is called closed if it starts and ends at the same vertex, $u_0 = u_k$ (Definition 1.2.11).
 
+Example and non-example, in the graph of Section 6 with edges $e_{12}$ and $e_{23}$. The list $n_1, n_2, n_1, n_2, n_3$ is a walk of length 4 from $n_1$ to $n_3$: each neighbouring pair is adjacent, and it is allowed to repeat $n_1$, $n_2$, and the edge $e_{12}$. The list $n_1, n_3, n_2$ is not a walk, because $n_1$ and $n_3$ are not adjacent.
+
 ### 3.2 The statement
 
 The $k$-th power of $A$ is the matrix $A^k = A \cdot A \cdots A$, with $k$ copies of $A$ multiplied together. Its entry in row $i$ and column $j$ is written $(A^k)_{ij}$.
@@ -162,6 +164,8 @@ such that
 2. all the vertices in the list are different.
 
 In simple words, a path is a route from $n_i$ to $n_j$ that follows the lines of the graph and never visits the same dot twice. Its length is the number of edges it uses, written $|P|$ in the textbook. If no vertex repeats, then no edge can repeat either, so every path in the course's sense is also a path in the textbook's sense.
+
+Example and non-example, in the graph of Section 6. The list $n_1, n_2, n_3$ is a path of length 2 from $n_1$ to $n_3$: both pairs are adjacent and no vertex repeats. The walk $n_1, n_2, n_1, n_2, n_3$ from Section 3.1 is not a path, because $n_1$ and $n_2$ each appear twice. It is not a path in the textbook's sense either, because the edge $e_{12}$ is used three times.
 
 The textbook adds two related words. A path that starts and ends at the same vertex is a cycle (Definition 1.2.14). The simple path on $n$ vertices is written $P_n$. The distance between two vertices is the length of the shortest path between them, or $+\infty$ when no path exists (Definition 1.2.16).
 

@@ -58,21 +58,19 @@ re-attach it. Keep going with work that does not depend on it.
 When every ambiguity that changes the mathematics is resolved, or the user
 says to proceed, state any remaining assumptions explicitly and move on.
 
-## Phase 2b: Read the course textbook
+## The quality bar: the course textbook
 
-The course textbook lives at the repository root as `Grafneri_tesutyun.pdf`.
-Before teaching, find the sections that define the concepts on the board
-and read them. `references/course-book-terms.md` has the extraction
-commands, the term table with definition numbers and PDF pages, and the
-results worth citing. For a topic not yet in that table, locate it with
-keyword search over the extracted text and render the page as an image to
-read the formulas, then add the new terms to the table.
-
-Use the textbook's names and definition numbers in the paper. When the
-board, the user, or the textbook disagree on a convention, give both and
-say which one the paper uses. Say plainly when the textbook does not cover
-a result the lecture asked about, and prove it in the paper instead of
-attributing it to the book.
+The course textbook, `Grafneri_tesutyun.pdf` at the repository root, is the
+model for how good the paper must be. Its way of presenting a topic is
+described in `references/book-style-standard.md`: notation fixed first,
+numbered definitions one concept each, a remark after every definition on
+what it allows and forbids, an example and a non-example from a labelled
+figure, concepts built in strict order, theorems stated in one sentence and
+then proved with the method named. The paper follows that pattern and cites
+the book's definition numbers where the concept comes from the book. When
+the board, the user, or the book disagree on a convention, the paper gives
+both and says which one it uses. When the book does not contain a result
+the lecture asked about, the paper says so and proves it.
 
 ## Phase 3: Teach step by step
 
@@ -112,10 +110,14 @@ Structure:
 1. Title
 2. Introduction, including a "Conventions and assumptions" list that
    defines every symbol and states every assumption made in Phase 2
-3. Definitions
-4. One section per required question, in the order asked
-5. Worked example, consistent with the photos
+3. Definitions, numbered, in the book's build order, each followed by a
+   remark on what it allows and forbids, an example, and a non-example
+4. One section per required question, in the order asked, each with the
+   precise statement first and the full argument after it
+5. Worked example, consistent with the photos, with every matrix written
+   out, plus a failing example where a test is presented
 6. Conclusion
+7. Appendix: the course terms used, with the book's definition numbers
 
 Formatting:
 
