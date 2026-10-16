@@ -4,6 +4,7 @@ Study papers written from lecture photos, plus the Claude Code skill that produc
 
 ## Layout
 
+- `Grafneri_tesutyun.pdf`: the course textbook (Graph Theory, Armenian). Papers cite its definition numbers.
 - `papers/<topic>/paper.md`: the finished paper, Markdown with LaTeX math.
 - `papers/<topic>/sources/`: the whiteboard or book photos the paper was written from.
 - `.claude/skills/whiteboard-to-paper/`: the skill. Invoke it with photos of new lecture material, or point it at an existing paper to check it against its sources.
