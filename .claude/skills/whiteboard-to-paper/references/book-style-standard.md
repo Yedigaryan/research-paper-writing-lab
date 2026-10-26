@@ -59,7 +59,9 @@ Observed in its chapters on graphs, walks, paths, and connectivity.
 ## Where the paper departs from the book on purpose
 
 The book is written for second year students; the paper is for a beginner
-who may not read the notation yet. So the paper keeps the book's rigor and
-order but adds, for each concept, a plain language sentence before the
-formal definition, and explains each new word where it first appears. The
+who may not read the notation yet, and its plain-words layer must be
+followable by a five-year-old when read aloud. So the paper keeps the
+book's rigor and order but adds, before each definition, theorem, and
+example, an "In plain words" paragraph told in one concrete story fixed in
+the introduction, and explains each new word where it first appears. The
 rigor is never reduced; only the reading difficulty is.

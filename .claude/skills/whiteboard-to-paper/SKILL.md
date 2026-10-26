@@ -128,21 +128,30 @@ Formatting:
 - Every example must agree with its matrix, diagram, or formula. Compute
   every matrix product or numeric claim yourself before writing it.
 
-## Phase 6: Apply the child-friendly writing standard
+## Phase 6: Apply the five-year-old standard
 
-The paper must stay mathematically exact while being as easy to read as
-possible.
+The paper must stay mathematically exact while being clear enough that a
+five-year-old could follow every idea when it is read aloud. A five-year-old
+cannot read a subscript, so the standard is met by the plain-words layer,
+not by removing the mathematics.
 
-- Short sentences. One idea per sentence.
+- Pick one concrete story for the whole paper in the introduction, for
+  example vertices are houses and edges are roads. The story must match
+  the mathematics exactly, with no exceptions to explain away later.
+- Before every definition, theorem, test, and worked example, add a short
+  paragraph marked "In plain words" that tells the idea in the story, with
+  no notation. The only letters allowed are ones the introduction's story
+  has already explained as "some number", such as $k$ hops or house $i$.
+  Then give the formal version.
+- Read each plain-words paragraph aloud in your head. If a sentence needs
+  a symbol, a defined term, or more than about fifteen words, split it or
+  rewrite it.
+- Short sentences. One idea per sentence. One new idea at a time.
 - Explain an unfamiliar word in the sentence where it first appears.
-- One new idea at a time.
-- Familiar pictures first, such as dots joined by lines, then the formal
-  definition.
-- Analogies only when they match the mathematics exactly.
 - No jargon that the paper does not define.
 
-The result is not childish writing. It is accurate writing with no
-unnecessary difficulty.
+The result is not childish writing. It is accurate writing in which the
+hard part is always preceded by an easy telling of the same thing.
 
 ## Final quality check
 

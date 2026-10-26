@@ -6,6 +6,14 @@ A graph is a picture made of dots and lines. The dots are called vertices, or no
 
 A computer cannot look at a picture of dots and lines. It needs numbers. The adjacency matrix is a table of numbers that stores the same information as the picture. This paper explains the adjacency matrix and uses it to answer three questions from the lecture.
 
+**The story used in this paper.** Think of every dot as a house and every line as a road between two houses. A road has no one-way sign, so you can walk it both ways. Walking along one road is one hop. When the story needs "some number of hops", it calls that number $k$. House number $i$ and house number $j$ are any two houses. Every idea in this paper is first told as a story about houses and roads, in words a small child can follow when read aloud. Then the same idea is written in mathematics. The story and the mathematics always say the same thing.
+
+In the story, the three questions are:
+
+1. If I write down how many different trips of exactly $k$ hops go from one house to another, where do I find that number?
+2. Can every house be reached from every other house?
+3. What exactly is a trip that never visits the same house twice?
+
 1. What does the entry $(A^k)_{ij}$ of the $k$-th power of the adjacency matrix represent?
 2. How can we tell whether a graph is connected?
 3. What is a path between two vertices $n_i$ and $n_j$?
@@ -24,6 +32,8 @@ Every symbol used in this paper is defined here or where it first appears.
 - Two vertices joined by an edge are called adjacent (textbook, Definition 1.1.4).
 
 ## 2. Definition of the adjacency matrix
+
+**In plain words.** Give every house a number. Draw a big square table. Write the house numbers across the top and down the side. In each little box, write 1 if there is a road between the house on the side and the house on the top, and write 0 if there is no road. This table is the adjacency matrix. Looking at the table tells you everything the picture tells you.
 
 A matrix is a table of numbers arranged in rows and columns. The adjacency matrix has one row and one column for every vertex. The number in row $i$ and column $j$ is written $A_{ij}$. The textbook writes it in lowercase, $a_{ij}$, and writes the whole matrix as $A(G)$.
 
@@ -55,6 +65,8 @@ Row $i$ of the matrix answers "who is $n_i$ joined to?". Column $j$ answers "who
 
 First we need a word for a trip through the graph. The textbook's word is walk.
 
+**In plain words.** A walk is a trip. You start at a house. Each hop takes you along one road to a house next door. You may go back to a house you already saw. You may use the same road again. The length of the walk is the number of hops.
+
 **Definition 2 (walk; textbook Definition 1.2.10).** A walk of length $k$ from $n_i$ to $n_j$, also called an $(n_i, n_j)$-walk, is a list of $k + 1$ vertices
 
 $$
@@ -69,6 +81,8 @@ Example and non-example, in the graph of Section 6 with edges $e_{12}$ and $e_{2
 
 ### 3.2 The statement
 
+**In plain words.** Multiply the table by itself $k$ times. You get a new table. The number in the box for house $i$ and house $j$ tells you how many different trips of exactly $k$ hops go from house $i$ to house $j$. For $k = 1$ the new table is the old one: there is one trip of one hop exactly when there is a road.
+
 The $k$-th power of $A$ is the matrix $A^k = A \cdot A \cdots A$, with $k$ copies of $A$ multiplied together. Its entry in row $i$ and column $j$ is written $(A^k)_{ij}$.
 
 **Theorem 1.** For every $k \geq 1$, the entry $(A^k)_{ij}$ equals the number of different walks of length $k$ from $n_i$ to $n_j$.
@@ -76,6 +90,8 @@ The $k$-th power of $A$ is the matrix $A^k = A \cdot A \cdots A$, with $k$ copie
 For $k = 1$ this is just Definition 1. A walk of length 1 from $n_i$ to $n_j$ is a single edge, and $A_{ij}$ is 1 when that edge exists and 0 when it does not.
 
 ### 3.3 Why the theorem is true
+
+**In plain words.** A trip of two hops from house $i$ to house $j$ stops at one house in the middle. To count such trips, try every house as the middle one. A house works as the middle if there is a road from $i$ to it and a road from it to $j$. Count how many houses work. That count is the answer, and it is exactly what multiplying the table by itself computes.
 
 Look at $k = 2$ first. A walk of length 2 from $n_i$ to $n_j$ has one middle stop, call it $n_m$. The walk exists exactly when $n_i$ is adjacent to $n_m$ and $n_m$ is adjacent to $n_j$. To count all such walks, go through every possible middle stop $m = 1, 2, \ldots, N$ and count the ones where both edges exist.
 
@@ -97,17 +113,23 @@ which is the rule for computing $A^k = A^{k-1} \cdot A$. If $(A^{k-1})_{im}$ alr
 
 ### 3.4 An important warning
 
+**In plain words.** The table counts trips where going back and forth is allowed. A trip from your house to the neighbour's and straight back home is a trip of two hops, and the table counts it. So the numbers in the table are not the number of ways to get somewhere without ever turning back.
+
 Theorem 1 counts walks, not paths. A walk may go back and forth over the same edge or return to a vertex it has already visited. For example, in any graph with an edge between $n_1$ and $n_2$, the list $n_1, n_2, n_1$ is a closed walk of length 2 from $n_1$ back to $n_1$, so $(A^2)_{11} \geq 1$. It uses the same edge twice and visits $n_1$ twice, so it is not a path in either sense defined in Section 5. In general, $(A^k)_{ii}$ counts the closed walks of length $k$ that start and end at $n_i$.
 
 ## 4. Answer 2: determining whether the graph is connected
 
 The word "connected" is used for three different questions. They must be kept apart.
 
+**In plain words.** The three questions are: "Is there a road straight from my house to yours?", "Can I get from my house to yours at all, maybe through other houses?", and "Can everybody get to everybody?" The lecture asks the third one.
+
 ### 4.1 Are two vertices joined by a direct edge?
 
 Look at the single entry $A_{ij}$. If $A_{ij} = 1$, the vertices are adjacent. If $A_{ij} = 0$, they are not. This is the smallest question.
 
 ### 4.2 Are two vertices joined by a path?
+
+**In plain words.** Maybe there is no road straight from house $i$ to house $j$, but you can still get there by passing other houses. To find out, count trips of one hop, then two hops, then three, and so on. If any of those counts is bigger than zero, you can get there. You never need more hops than the number of houses minus one, because a trip that never repeats a house cannot be longer than that.
 
 Two vertices can be joined by a path even when $A_{ij} = 0$, because the path may pass through other vertices. Theorem 1 gives a test. The word path is defined precisely in Section 5; for now, a path is a walk that never visits the same vertex twice.
 
@@ -122,11 +144,15 @@ Why this is true, in two halves.
 
 This is the question asked in the lecture.
 
+**In plain words.** A graph is connected when you can walk from any house to any other house along the roads. If even one house cannot be reached from some other house, the graph is not connected.
+
 **Definition 3 (connected graph; textbook Definition 2.1.1).** A graph $G$ is connected if for every two vertices $n_i$ and $n_j$ there exists an $(n_i, n_j)$-path in $G$.
 
 This is the definition written at the bottom of the lecture board. The textbook states it with its own word path, which allows repeated vertices but not repeated edges (see Section 5). Lemma 1.2.1 shows that this makes no difference: if there is a path of either kind between two vertices, there is also one with no repeated vertices. So Definition 3 can be read with the course's convention that a path repeats no vertex.
 
 Applying Theorem 2 to every pair at once gives a test that uses only the adjacency matrix.
+
+**In plain words.** Make the one-hop table, the two-hop table, and so on, up to the table for "number of houses minus one" hops. Add all these tables together, box by box. Now look at every box that is not on the diagonal. If every one of them has a number bigger than zero, everybody can reach everybody, and the graph is connected. If any box has a zero, two houses cannot reach each other.
 
 **Theorem 3.** Form the matrix
 
@@ -143,6 +169,8 @@ An equivalent form that is sometimes quicker to compute is to check that the mat
 The textbook's own treatment of connectivity (Section 2.1) uses the relation "there is a path between $u$ and $v$" to split the vertex set into pieces called connectivity components. Remark 2.1.1 there says a graph is connected exactly when it has one component. In practice, for large graphs, this is tested by exploring the graph from one vertex, visiting neighbours of neighbours until no new vertex is found, and checking whether every vertex was visited. The matrix power method is the one that connects directly to Theorem 1.
 
 ## 5. Answer 3: definition of a path
+
+**In plain words.** A path is a special trip: a trip that never visits the same house twice. You start at one house, hop along roads, and every house you reach is new. Because you never come back to a house, you also never use the same road twice.
 
 The textbook defines a path in two steps. Both are given here, because the course uses the stricter one.
 
@@ -178,11 +206,13 @@ Four ideas that are easy to confuse.
 
 ## 6. Worked example
 
-Use the graph from the lecture. It has three vertices $n_1, n_2, n_3$ and two edges, $e_{12}$ and $e_{23}$. Drawn as dots in a row:
+Use the graph from the lecture. The matrix on the board has ones in the boxes for the pairs 1,2 and 2,3, so the graph has three vertices $n_1, n_2, n_3$ and two edges, $e_{12}$ and $e_{23}$. The drawing on the board shows the lines slightly differently, with a line from vertex 1 to vertex 3 instead of from 2 to 3. The matrix is the precise record, so this paper follows the matrix. Drawn as dots in a row:
 
 ```
 n1 ---- n2 ---- n3
 ```
+
+In the story: three houses in a row, a road from house 1 to house 2, and a road from house 2 to house 3. There is no road straight from house 1 to house 3.
 
 Its adjacency matrix is
 
@@ -269,7 +299,11 @@ $$
 
 The entries $S'_{13}$ and $S'_{23}$ are zero. No path reaches $n_3$, so this graph is not connected. It has two connectivity components: one containing $n_1$ and $n_2$, and one containing only $n_3$.
 
+In the story: the road from house 2 to house 3 is gone. House 3 is on its own. Nobody can walk to it, and the zeros in the table show exactly that.
+
 ## 7. Conclusion
+
+**In plain words.** A graph is houses and roads. The adjacency matrix is a table with a 1 where there is a road. Multiply the table by itself $k$ times, and each box counts the trips of exactly $k$ hops between two houses, turning back allowed. A path is a trip that never visits the same house twice. Add up the trip tables for one hop up to "houses minus one" hops. If no box off the diagonal is zero, everybody can reach everybody, and the graph is connected.
 
 The adjacency matrix $A$ stores a graph as a table of zeros and ones, where $A_{ij} = 1$ exactly when vertices $n_i$ and $n_j$ are adjacent. The entry $(A^k)_{ij}$ of the $k$-th power counts the walks of length $k$ from $n_i$ to $n_j$, where a walk may revisit vertices and reuse edges. A path, in the course's sense, is a walk that never revisits a vertex; the textbook calls this a simple path. Two vertices are joined by a path exactly when some power $A^k$ with $k \leq N - 1$ has a positive entry in their cell. The whole graph is connected exactly when every off-diagonal entry of $A + A^2 + \cdots + A^{N-1}$ is positive. Keeping the ideas apart, a direct edge, a walk, a path between two vertices, and connectivity of the whole graph, is the key to this topic.
 

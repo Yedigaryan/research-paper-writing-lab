@@ -39,8 +39,14 @@ Run every item before presenting the paper. Fix failures, then re-run.
 - [ ] No claim is made about what the professor intended beyond what the
       photos and the user said.
 
-## Writing
+## Writing (five-year-old standard)
 
+- [ ] One concrete story is fixed in the introduction and matches the
+      mathematics exactly.
+- [ ] Every definition, theorem, test, and worked example is preceded by
+      an "In plain words" paragraph with no symbols, told in that story.
+- [ ] Each plain-words paragraph passes the read-aloud test: a
+      five-year-old could follow it sentence by sentence.
 - [ ] Short sentences, one idea each.
 - [ ] Unfamiliar words explained where they first appear.
 - [ ] Simple explanation first, formal definition second, example third.
