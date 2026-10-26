@@ -9,7 +9,10 @@ Run every item before presenting the paper. Fix failures, then re-run.
 - [ ] Every uncertain reading was either resolved with the user or is
       stated as an assumption in the paper.
 - [ ] The paper's example matches the photo's example, or the paper says
-      why it differs (for example, the drawing and the matrix disagreed).
+      why it differs and describes the difference correctly, edge by edge
+      (for example, the drawing and the matrix disagreed).
+- [ ] The introduction says where each question came from: the board, the
+      user's text, or the paper itself.
 - [ ] The paper uses the course textbook's names for concepts and cites
       its definition numbers, and says where the textbook convention
       differs from the board.
@@ -44,10 +47,12 @@ Run every item before presenting the paper. Fix failures, then re-run.
 - [ ] One concrete story is fixed in the introduction and matches the
       mathematics exactly.
 - [ ] Every definition, theorem, test, and worked example is preceded by
-      an "In plain words" paragraph with no symbols, told in that story.
+      an "In plain words" paragraph told in that story, with no notation
+      beyond the letters the introduction's story explained.
 - [ ] Each plain-words paragraph passes the read-aloud test: a
       five-year-old could follow it sentence by sentence.
-- [ ] Short sentences, one idea each.
+- [ ] Short sentences, one idea each; about fifteen words or fewer in
+      plain-words paragraphs.
 - [ ] Unfamiliar words explained where they first appear.
 - [ ] Simple explanation first, formal definition second, example third.
 - [ ] No emojis, no decorative symbols, clean copyable text.

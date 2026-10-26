@@ -31,7 +31,10 @@ Rules:
   symbol. A small mark can be a superscript, a prime, or quotation marks, and
   each changes the question.
 - Compare diagrams against matrices and formulas on the same board. Report
-  any mismatch rather than picking a side.
+  any mismatch edge by edge (which lines the drawing has that the matrix
+  lacks, and the reverse) rather than picking a side. Mention stray marks
+  such as arrowheads.
+- When two photos show the same board, say so and read them together.
 - Compare the board's notation with the user's prompt and with textbook
   convention. Flag differences, for example a board that writes the edge
   set as V.
@@ -51,7 +54,11 @@ question:
   assumption you will then use.
 
 Do not ask about anything already clear from the photos. Common questions
-that matter are listed in `references/math-pitfalls.md`. When the user
+that matter are listed in `references/math-pitfalls.md`; that list covers
+graph theory, so for another subject write the same kind of table for that
+subject before asking. When the user's text already settles a point the
+board leaves open, such as naming $A^k$ where the board's mark is unclear,
+take the user's reading and record it as an assumption. When the user
 mentions a file that did not arrive, say so plainly and ask them to
 re-attach it. Keep going with work that does not depend on it.
 
@@ -71,6 +78,9 @@ the book's definition numbers where the concept comes from the book. When
 the board, the user, or the book disagree on a convention, the paper gives
 both and says which one it uses. When the book does not contain a result
 the lecture asked about, the paper says so and proves it.
+
+The PDF's text layer keeps the prose and the definition numbers but drops
+most symbols. To check a notation or a formula, view the page as an image.
 
 ## Phase 3: Teach step by step
 
@@ -102,18 +112,24 @@ textbook statement differs from the course convention, say so.
 ## Phase 5: Write the paper
 
 Save the paper as `papers/<topic-slug>/paper.md`. Copy the source photos
-into `papers/<topic-slug>/sources/` with descriptive names. Do not push
-without the user's explicit confirmation.
+into `papers/<topic-slug>/sources/` with descriptive names. Commit with a
+clear message. Do not push without the user's explicit confirmation.
 
 Structure:
 
 1. Title
-2. Introduction, including a "Conventions and assumptions" list that
-   defines every symbol and states every assumption made in Phase 2
+2. Introduction, stating where each question came from (the board, the
+   user's text, or the paper itself), and a "Conventions and assumptions"
+   list that defines every symbol and states every assumption made in
+   Phase 2, including how each unclear mark on the board was read
 3. Definitions, numbered, in the book's build order, each followed by a
    remark on what it allows and forbids, an example, and a non-example
 4. One section per required question, in the order asked, each with the
-   precise statement first and the full argument after it
+   precise statement first and the full argument after it. When the
+   questions are asked in a different order from the book's build order,
+   the definitions keep the book's order and the answer sections keep the
+   question order. An answer that needs a concept defined later gives its
+   meaning in one sentence and points to the definition by number.
 5. Worked example, consistent with the photos, with every matrix written
    out, plus a failing example where a test is presented
 6. Conclusion
@@ -140,7 +156,8 @@ not by removing the mathematics.
   the mathematics exactly, with no exceptions to explain away later.
 - Before every definition, theorem, test, and worked example, add a short
   paragraph marked "In plain words" that tells the idea in the story, with
-  no notation. The only letters allowed are ones the introduction's story
+  no notation. A test is any procedure the paper tells the reader to carry
+  out, including shortcuts and alternative methods. The only letters allowed are ones the introduction's story
   has already explained as "some number", such as $k$ hops or house $i$.
   Then give the formal version.
 - Read each plain-words paragraph aloud in your head. If a sentence needs
@@ -163,7 +180,18 @@ textbook that did not arrive.
 ## Testing the skill on another paper
 
 To check an existing paper against its sources, run Phase 1 on the photos
-in its `sources/` folder, then compare the paper against the checklist.
+in its `sources/` folder. In this mode there is no user prompt to compare
+against; the paper's "Conventions and assumptions" list stands in for it,
+and no clarifying question is needed. Then:
+
+1. Compare the paper against every item of `references/quality-checklist.md`
+   and mark each pass or fail with a quoted line as evidence.
+2. Recompute every matrix, product, sum, and count with a short script.
+3. Check every cited textbook definition number against the PDF.
+4. List every definition, theorem, test, and worked example and whether a
+   plain-words paragraph precedes it; quote any sentence that fails the
+   read-aloud test.
+
 Report mismatches between the paper and the photos, any definition that is
 not exactly correct, and any sentence a beginner could not follow. Do not
 rewrite the paper unless the user asks.

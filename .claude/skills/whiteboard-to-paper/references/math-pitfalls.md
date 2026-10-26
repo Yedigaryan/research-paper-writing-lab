@@ -11,7 +11,7 @@ the assumption to state if the user does not know.
 | Simple graph or multigraph? | Loops and multiple edges change the entries of A and the degree rule. | Simple. |
 | Does a path allow repeated vertices? | The course textbook's "path" (ճանապարհ) forbids repeated edges only; its "simple path" (պարզ ճանապարհ) forbids repeated vertices. English books call these trail and path. The count given by powers of A is always the walk count. | Path means no repeated vertices, and the paper says this is the book's simple path. |
 | Which letters name the sets? | Boards sometimes write (G, V) with G for nodes and V for edges. Textbooks write G = (V, E). | Use V for nodes and E for edges and note the board's labels. |
-| Is the question about A or about A^k? | A small mark above A can be a superscript k, a prime, or quotation marks. A_ij is 1 or 0. (A^k)_ij counts walks of length k. | Ask. Do not assume. |
+| Is the question about A or about A^k? | A small mark above A can be a superscript k, a prime, or quotation marks. A_ij is 1 or 0. (A^k)_ij counts walks of length k. | If the user's text names one reading, take it and record the board's mark as an assumption. Otherwise ask. |
 | Does "connected" mean two nodes or the whole graph? | Adjacent (direct edge), joined by a path, and the whole graph being connected are three different claims. | Answer all three and label them. |
 
 ## Facts that are easy to state wrongly
