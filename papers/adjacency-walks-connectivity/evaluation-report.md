@@ -125,3 +125,111 @@ least 3, no critical or major finding, mechanical checks pass,
 self-evaluation covers every section, hierarchy met. Release is withheld
 because 33 minor findings are open; each must be resolved or documented
 with a reason, and resolution is confirmed by the round 2 evaluator.
+
+## Round 2, 2026-10-27
+
+Question and scope: as in round 1.
+
+Research summary: no new research. The author added three evidence
+claims (au-1, au-2: textbook Definition 1.2.1 and Theorem 1.2.1 on degree,
+p. 16; au-3: the N-2 test fails exactly on the N!/2 labelled path graphs),
+changed m3-11 from unverified to qualified with the search method stated,
+and corrected C39 to N-2 products. The round 2 evaluator verified all four
+against the textbook page images and by brute force. Evidence file: 80
+claims, 73 supported, 7 qualified, 0 unverified.
+
+Model levels: research 2, modules 2, author 2, reader 2, evaluator 3,
+orchestrator session model. Hierarchy requirement: met.
+
+Mechanical checks: build pass (35 pages, 0 overfull boxes), citations pass
+(0 errors, 0 warnings), claims pass (0 errors, 0 warnings), pdf pass (0
+errors, 0 warnings).
+
+### Scores
+
+| Dimension | Round 1 | Round 2 | Observation |
+|---|---|---|---|
+| 1 Correctness | 4 | 4 | Every matrix, table and count reproduced; every proof valid including the new Remark 4.19. Three factual slips: page list in 1.6 (E12), Bai's setting (E15), "no walk reaches vertex 3" (E17). |
+| 2 Evidence coverage | 4 | 4 | Every claim mapped; au-1 and au-2 verified on the page. m3-11 has no support entry for the search; new claims were hand-edited into the merged file (E18). |
+| 3 Citation integrity | 4 | 4 | 15 spot checks, all support. Two imprecisions: Bai's setting (E15), Figure 2 caption hedges about an edge the textbook figure shows (E14). |
+| 4 Logical validity | 5 | 5 | Unchanged. |
+| 5 Understandability | 3 | 4 | Every round 1 term now explained. Remaining: "loop" with three meanings (E5), "step" and "detour" drift (E19), the assignment sentence reads as a quotation (R5). |
+| 6 Completeness | 4 | 5 | Degree and Euler's theorem now cited with numbers; every line of the board treated. |
+| 7 Methodological rigor | 5 | 5 | Unchanged. |
+| 8 Critical analysis | 4 | 4 | Source weaknesses now quoted. Course convention not disclosed as a paraphrase (R5); page list inaccurate (E12). |
+| 9 Internal consistency | 4 | 4 | "Loop" (E5); "v_i mentioned only here" is false (E13). |
+| 10 Reproducibility | 5 | 5 | Unchanged. |
+| 11 LaTeX and PDF quality | 4 | 4 | No overfull boxes. Inline matrix in Remark 4.11 widens line spacing (E16); v1 label overlaps its dot in Figure 2 (E14). |
+| 12 Answer relevance | 4 | 5 | Cost remark short, one multigraph sentence. |
+
+### Resolution of round 1 findings
+
+Resolved and confirmed by the round 2 evaluator: E1, E2, E3, E4, E6, E7,
+E8, E9, E10, E11 (listed locations), R1, R2, R3, R4, R6, R7, R8, R9, R10,
+R11, R12, R13, R14, R15, R16, R17, R18, R19, R21, R22.
+
+Still open: E5 (loop), R5 (assignment sentence, partly; see below), R20
+(leftover provenance asides, folded into E19).
+
+### New findings
+
+Evaluator findings E12 to E19; technician reader (fresh, round 2) findings
+R23 to R49. Severities for the reader's items assigned by the orchestrator.
+
+| Id | Severity | Location | Defect | Status |
+|---|---|---|---|---|
+| E5 | minor | A.5 plain words; Remark 4.13; Example 4.14 | "Loop" used for a detour and for a procedure step although Remark 2.2 fixes it as a self-edge. | open |
+| R5 | minor | Section 1.1 Q3, 1.3 item 6, Section 5 | The course convention reads as a verbatim quotation; the assignment text is not in the paper folder. Evaluator's judgement: giving the content is acceptable, but the paper must say it is content as reported by the user, not wording. | open |
+| E12 | minor | Section 1.6; claim m3-11 | Page list of the adjacency matrix in the textbook is wrong: it is on printed pp. 7, 11, 12, 34, 61, not 60. m3-11 needs a support entry with these locators. | open |
+| E13 | minor | introduction.tex:160 | "v_i and n are mentioned only here" is false; v_1 to v_5 name the textbook graph throughout Section 2. | open |
+| E14 | minor | Figure 2 caption and figure | Caption hedges about further edges; textbook Fig. 1.2.5 plainly shows v1v5. The v1 label overlaps its dot. | open |
+| E15 | minor | answer1_walks.tex:50 | Bai's Theorem 1 is for simple graphs, not a more general setting; Grinberg and Lehman et al. are the general ones. | open |
+| E16 | minor | Remark 4.11, p. 20 | Inline 2 by 2 matrix widens the line spacing. | open |
+| E17 | minor | Example 6.3, example.tex:103 | "No walk reaches vertex 3 at all" is false; the one-vertex walk at 3 does. Write "no walk from vertex 1 or 2". | open |
+| E18 | minor | evidence/evidence.json | au-1 to au-3, m3-11, C39 were edited in the merged file, not in fragments; a re-merge would drop them. Put them in an author fragment and re-merge. | open |
+| E19 | minor | Sections 4.1, 4.3, A.5, Non-example 2.38, 3.2, 4.2 | "Step" means a multiplication round in 4.1 and 4.3 but a move in 4.4; "detour" used for going by way of a third house; print-order aside and pages-checked asides are leftover provenance (R20). | open |
+| R23 | minor | abstract | "board", "board matrix", "assignment text" used before any context. | open |
+| R24 | minor | Section 1.1 Q3 | Same root as R5; board photographs cited but not reproduced or described for the reader. | open |
+| R25 | minor | Section 1.1 | Forward reference to Proposition 2.59 twelve pages ahead; tags "qualified" and "interpretation" not separated; compound tag unexplained. | open |
+| R26 | minor | Section 1.2, Table 2 | Three vocabularies (story, English, textbook) kept in mind at once; make Table 2 the single dictionary and use story words only in the boxes. | open |
+| R27 | minor | Section 1.3 item 4, Figure 1 | Say in one sentence that the sources disagree on edge 1-3, that B and T are both used, and that no result depends on the choice (currently only in 7.1). | open |
+| R28 | minor | Section 2 | Say which definitions the three answers need and mark the rest as context (cycle, simple cycle, distance are used only in examples or remarks). | open |
+| R29 | minor | Section 2 intro | The textbook graph is reconstructed from its examples; reader cannot check "force". Orchestrator note: the textbook's own examples are required by the study-note standard, so keep G_tb but also give one small graph the paper defines itself for trail, path and cycle examples. | open |
+| R30 | minor | Remarks 2.2, 2.49, 2.32 | Claims lean on forward references to remarks or appendices pages away; add a half-sentence reason at each point. | open |
+| R31 | minor | Proposition 2.59 tag | "Corollary 2.9.7" named before the reader knows it is Grinberg's; tag should name Lemma 2.52 and move sources to the citation sentence. | open |
+| R32 | minor | Remark 2.53 | Show the cut visually with the removed detour in brackets. | open |
+| R33 | minor | Lemma 2.52 proof | Statement named S(k) clashes with the matrix S; add a one-line example before the proof. | open |
+| R34 | minor | Section 3.2 | Case counting dense; state graphs times exponents times pairs; move the paragraph to Appendix A.6. | open |
+| R35 | minor | Proposition 3.10(b) | Point to the A^3 = 2A matrix in Section 6 and state the growth conclusion plainly. | open |
+| R36 | minor | Section 3.4 | "Four sources" not named at that point. | open |
+| R37 | minor | Section 4.2 | "Adding higher powers cannot change which entries are positive" needs its reason (Lemma 2.52); the subtraction and modular arithmetic remark needs an example or removal. | open |
+| R38 | minor | Section 4.4, equation (3) | A^0 = I used although powers were defined for k at least 1; m undefined at that point; commutation of I and A only in the appendix. | open |
+| R39 | minor | Section 4.4, Proposition 4.16 | The positivity argument for (I+A)^m is only gestured at in the body; add the two-sentence reason. | open |
+| R40 | minor | Remark 4.19 | Two unstated steps: connected implies all distances at most N-1; shortest path through all N vertices has no chord so the graph is that path. | open |
+| R41 | minor | Section 4.6 | BFS reachability from s implies connected needs reversal and joining of walks (Definition 2.60); say so. | open |
+| R42 | minor | Section 5, Definition 5.1 | Tag "interpretation, qualified" on a stipulated definition is odd; say it is taken from the assignment, not derived. | open |
+| R43 | minor | Table 7 caption and last column | Split "course and this paper" into "Course (stated)" and "This paper"; "not stated" for cycle. | open |
+| R44 | minor | Section 7.4 | Write the total cost about N^4 against about N + |E| for BFS explicitly. | open |
+| R45 | minor | Section 7.2 | Eigenvalue methods mentioned for the first time at the end; add a half-sentence or delete. | open |
+| R46 | minor | Section 1.6, A.7 | Process vocabulary ("module scripts", "the paper's own script") visible to the reader; state that the reader must run the scripts, and give a few hand-checkable cases. | open |
+| R47 | minor | Section 1.6 and repeated mentions | The source critique is repeated in 3.4, 4.2, 4.4, 7.2; keep one paragraph in the discussion and pointers elsewhere. | open |
+| R48 | minor | Section 4 start | Add a one-paragraph proof map (Theorem 3.5, Lemma 2.52, Corollary 2.54, Theorem 4.6). Orchestrator note: the reader also asked to cut the plain words boxes; they stay, the study-note register requires them. | open, boxes documented |
+| R49 | minor | Table 4, Definitions 2.35, 2.44 | P_n and C_n use n for the vertex count against Table 4's N; relation symbol, binomial notation, A^0 missing from Table 4. | open |
+
+### Citation and claim coverage
+
+Sources 11, all real. Spot checks 15, all support; one partially (Bai's
+setting, E15). Claims 80: supported 73, qualified 7 (C24, C29, C36, m1-9,
+m2-8, m2-15, m3-11), unverified 0.
+
+### Reader summary check
+
+The round 2 reader, who had not seen the paper before, states all three
+answers correctly and notes that it cannot check the board photos, the
+textbook, or the scripts from the PDF alone.
+
+Decision: FAIL for release this round, revise. No critical or major
+finding; every dimension at least 3, with understandability up from 3 to
+4. Release withheld on 39 open minor findings (12 from the evaluator
+including three carried over, 27 from the reader). Round 3 is the last
+round the skill allows before stopping with INCOMPLETE.
