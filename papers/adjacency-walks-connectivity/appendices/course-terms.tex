@@ -5,21 +5,22 @@ This appendix lists every term of the course that the paper uses, with the numbe
 printed page in the course textbook~\cite{petrosyan2015grafneri} and the English word. Page numbers are the
 printed page numbers of the textbook; the PDF page is one higher. The textbook's own word is given in
 Latin letters as ``path'', ``simple path'' and so on; its Armenian words are not reproduced.
-Terms that the pages read give no number for are marked ``none''.
+Terms that the pages checked give no number for are marked ``none''.
 
 \begin{table}[ht]
 \centering
 \caption{Course terms, textbook numbers and pages, English words, and where they are defined in this paper.}
 \label{tab:terms}
 \small
-\begin{tabular}{@{}p{3.4cm}p{3.0cm}p{1.3cm}p{3.4cm}p{2.4cm}@{}}
+\begin{tabular}{@{}p{3.2cm}p{3.0cm}p{1.2cm}p{3.0cm}p{3.0cm}@{}}
 \toprule
 Term in this paper & Textbook number & Printed page & Textbook word if different & Defined in \\
 \midrule
 simple undirected graph & Definition 1.1.1 & 9 & graph & \cref{def:graph} \\
 adjacent & Definition 1.1.4 & 11 & --- & \cref{def:adjacent} \\
-degree & none & --- & --- & \cref{def:degree} \\
 adjacency matrix & none (after Def.\ 1.1.6) & 11 & $A(G)$ & \cref{def:adjmatrix} \\
+degree & Definition 1.2.1 & 16 & $d_G(v)$, $d(v)$ & \cref{def:degree} \\
+sum of degrees & Theorem 1.2.1 (Euler) & 16 & --- & \cref{prop:rowsums} \\
 walk & Definition 1.2.10 & 21 & walk & \cref{def:walk} \\
 closed walk & Definition 1.2.11 & 22 & closed walk & \cref{def:closedwalk} \\
 trail & Definition 1.2.12 & 22 & ``path'' & \cref{def:trail} \\
@@ -39,8 +40,8 @@ path between $n_i$ and $n_j$ & Definition 1.2.13 & 22 & ``simple path'' & \cref{
 \paragraph{Figures of the textbook used.}
 Fig.~1.2.5 (printed p.~22) is the source of the examples for walks, trails, paths and cycles; \cref{fig:textbook} draws the seven edges that those examples force. Fig.~2.1.1 (p.~48) shows three connected graphs and Fig.~2.1.2 (p.~49) a graph with four components~\cite{petrosyan2015grafneri}.
 
-\paragraph{Results that the textbook pages read do not contain.}
-The walk-counting theorem (\cref{thm:walkcount}) and the matrix test for connectivity (\cref{thm:test}) are not in printed pages 9--12, 21--23 and 48--49, which are the pages read. Chapters~3 to~8 were not read, so their absence from the whole book is \kindtag{unverified} (claim m3-11). For the walk-counting theorem the paper cites Quinlan's notes, and for the statement of the test Paramadevan and Sotheeswaran and Weisstein; the proofs are the paper's own.
+\paragraph{Results that the textbook does not contain.}
+The walk-counting theorem (\cref{thm:walkcount}) and the matrix test for connectivity (\cref{thm:test}) are not in the pages checked and were not found by a full-text search of the book (\cref{sec:provenance}), so their absence from the book is \kindtag{qualified}. For the walk-counting theorem the paper cites the University of Galway notes, and for the statement of the test Paramadevan and Sotheeswaran and Weisstein; the proofs are the paper's own.
 
 \paragraph{The board's letters.}
 The board writes $(G,V)$ with $V$ the edge set, $e_{ij}\in V$, $|G|=N$ and $n_i$~\cite{whiteboard1,whiteboard2}; the textbook writes $G=(V,E)$, $e\in E$, $n$ and $v_i$. The paper uses $G=(V,E)$, $N$ and $n_i$ (\cref{tab:notation}).

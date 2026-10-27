@@ -24,7 +24,7 @@ The graph $B$ has vertices $n_1,n_2,n_3$ and edges $n_1n_2$ and $n_2n_3$. Its ad
 A&=\MBoardA, & A^2&=\MBoardAsq, & A^3&=\MBoardAcube,\\
 A^4&=\MBoardAfour, & A^5&=\MBoardAfive . &&
 \end{align*}
-The matrix $A$ is symmetric with zero diagonal, as \cref{prop:Aproperties} requires; its row sums $1,2,1$ are the degrees, and the sum of all its entries is $4=2|E|$. Further, $A^3=2A$ and $A^{k+2}=2A^k$ for $k=1,\dots,5$ (script, claim m1-5), and the diagonal of $A^2$ is $(1,2,1)$, the degrees, with sum $4=2|E|$ (\cref{cor:walkcount}(d)). Each power is symmetric (\cref{cor:walkcount}(c)).
+The matrix $A$ is symmetric with zero diagonal, as \cref{prop:Aproperties} requires; its row sums $1,2,1$ are the degrees, and the sum of all its entries is $4=2|E|$. Further, $A^3=2A$ and $A^{k+2}=2A^k$ for $k=1,\dots,5$ (by script), and the diagonal of $A^2$ is $(1,2,1)$, the degrees, with sum $4=2|E|$ (\cref{cor:walkcount}(d)). Each power is symmetric (\cref{cor:walkcount}(c)).
 \end{example}
 
 The board matrix is the matrix of a graph with two edges. The board drawing also shows an edge $1$--$3$ and an arrowhead; they are not in the matrix (\cref{tab:mismatch}), and this section follows the matrix.
@@ -49,7 +49,7 @@ In the last line the term $r=1$ is the walk $1\text{-}2\text{-}1$ of length $2$ 
 
 \begin{table}[ht]
 \centering
-\caption{All walks, trails, paths and closed walks of length $k$ in the board graph $B$, counted over all start and end vertices (script \texttt{m2\_walks.py}, claim m2-13). Length $0$ counts the three single vertices.}
+\caption{All walks, trails, paths and closed walks of length $k$ in the board graph $B$, counted over all start and end vertices (by script). Length $0$ counts the three single vertices.}
 \label{tab:walkcounts}
 \begin{tabular}{@{}ccccc@{}}
 \toprule
@@ -76,7 +76,7 @@ A&=\MBoardA, & A^2&=\MBoardAsq,\\
 S&=\MBoardS, & (I+A)^2&=\MBoardIAsq .
 \end{align*}
 $S$ has no zero entry off the diagonal (in fact none anywhere), so by \cref{thm:test} the graph is connected. $(I+A)^2$ has no zero entry, so by \cref{prop:iplusa} the graph is connected. The two answers agree, and breadth-first search from vertex $1$ reaches $\{1,2,3\}$ and agrees too.
-The entry $A_{13}$ is $0$, so no road joins $n_1$ and $n_3$, yet $(A^2)_{13}=0\cdot0+1\cdot1+0\cdot0=1$: exactly one walk of length $2$ joins them, namely $1,2,3$. The entry of $(I+A)^2$ at $(1,3)$ is $1=\binom{2}{2}(A^2)_{13}$, since the other terms of the expansion in \cref{app:iplusa} vanish there. As a check, $(I+A)^2=I+2A+A^2$ holds entry by entry (script). \kindtag{derived here, claim m3-6}
+The entry $A_{13}$ is $0$, so no road joins $n_1$ and $n_3$, yet $(A^2)_{13}=0\cdot0+1\cdot1+0\cdot0=1$: exactly one walk of length $2$ joins them, namely $1,2,3$. The entry of $(I+A)^2$ at $(1,3)$ is $1=\binom{2}{2}(A^2)_{13}$, since in formula~\eqref{eq:binomial} both $I$ and $A$ have the entry $0$ at $(1,3)$. As a check, $(I+A)^2=I+2A+A^2$ holds entry by entry (script). \kindtag{derived here}
 \end{example}
 
 By \cref{cor:components}(b), the smallest $k$ with $(A^k)_{ij}>0$ is the distance: $d(1,2)=d(2,3)=1$ from $A$, and $d(1,3)=2$ from $A^2$, in agreement with \cref{ex:distance}.
@@ -96,7 +96,11 @@ The graph $D$ has the single edge $n_1n_2$. From the script,
 A&=\MOneA, & A^2&=\MOneAsq,\\
 S&=\MOneS, & (I+A)^2&=\MOneIAsq .
 \end{align*}
-The off-diagonal zeros of $S$ are at $(1,3)$, $(2,3)$, $(3,1)$ and $(3,2)$, and the zeros of $(I+A)^2$ are at the same four places. So by \cref{thm:test} and \cref{prop:iplusa} the graph is not connected. By \cref{cor:components}(a), vertices $1$ and $2$ lie in one component and vertex $3$ in another: the components are $\{1,2\}$ and $\{3\}$, which agrees with breadth-first search. Higher powers do not help: the entries $(1,3)$ and $(2,3)$ of $A^k$ are $0$ for $k=1,\dots,6$ (script); for instance $A^3=\MOneAcube=A$. In fact no walk reaches vertex $3$ at all. \kindtag{derived here, claim m3-7}
+The off-diagonal zeros of $S$ are at $(1,3)$, $(2,3)$, $(3,1)$ and $(3,2)$, and the zeros of $(I+A)^2$ are at the same four places. So by \cref{thm:test} and \cref{prop:iplusa} the graph is not connected. By \cref{cor:components}(a), vertices $1$ and $2$ lie in one component and vertex $3$ in another: the components are $\{1,2\}$ and $\{3\}$, which agrees with breadth-first search. Higher powers do not help: the entries $(1,3)$ and $(2,3)$ of $A^k$ are $0$ for $k=1,\dots,6$ (script); for instance
+\[
+A^3=\MOneAcube=A .
+\]
+In fact no walk reaches vertex $3$ at all. \kindtag{derived here}
 \end{example}
 
 \begin{table}[ht]
@@ -115,11 +119,11 @@ $D$, edge $12$ & not connected & not connected & $\{1,2\}$, $\{3\}$ \\
 \end{table}
 
 \paragraph{The test on all small graphs.}
-As a check of the statements, not as a proof, the script compared the sum test, the form with $I+A$, the component statement of \cref{cor:components}(a), and a repeated-squaring version with breadth-first search on every labelled simple graph with $N=2,\dots,6$ vertices (\cref{tab:exhaustive}). All agree.
+As a check of the statements, not as a proof, the script compared the sum test, the form with $I+A$ and the component statement of \cref{cor:components}(a) with breadth-first search on every labelled simple graph with $N=2,\dots,6$ vertices (\cref{tab:exhaustive}). All agree.
 
 \begin{table}[ht]
 \centering
-\caption{Exhaustive check over all labelled simple graphs with $N$ vertices (script \texttt{m3\_connectivity.py}, claim m3-8). ``Sum test agrees'' counts the graphs on which the test of \cref{thm:test} gave the same answer as breadth-first search. The last column counts the graphs on which the same test with only $N-2$ powers gives a wrong answer (\cref{prop:sharp}).}
+\caption{Exhaustive check over all labelled simple graphs with $N$ vertices (by script). ``Sum test agrees'' counts the graphs on which the test of \cref{thm:test} gave the same answer as breadth-first search. The last column counts the graphs on which the same test with only $N-2$ powers gives a wrong answer (\cref{prop:sharp}).}
 \label{tab:exhaustive}
 \begin{tabular}{@{}rrrrr@{}}
 \toprule

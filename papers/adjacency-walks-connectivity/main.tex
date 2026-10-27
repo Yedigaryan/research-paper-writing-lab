@@ -8,6 +8,10 @@
 \usepackage[backend=biber,style=numeric,urldate=long]{biblatex}
 \addbibresource{references.bib}
 \graphicspath{{figures/}}
+% Allow line breaks inside long URLs in the bibliography.
+\setcounter{biburlnumpenalty}{100}
+\setcounter{biburlucpenalty}{100}
+\setcounter{biburllcpenalty}{100}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -56,15 +60,16 @@ and what a path between two vertices is}
 \maketitle
 
 \begin{abstract}
-A lecture board gave a graph with $N$ vertices through its adjacency matrix $A$
-and asked two questions; a third was added in the assignment text.
-This paper answers all three for finite simple undirected graphs, in the order of
-the course textbook's definitions and with its numbers~\cite{petrosyan2015grafneri}.
+A university lecture whiteboard gives a graph with $N$ vertices by its adjacency
+matrix $A$ and asks two questions about it; the assignment text adds a third. This
+paper answers all three for finite simple undirected graphs. It follows the
+definitions and the numbering of the course textbook (for example Definition~1.2.10
+for a walk)~\cite{petrosyan2015grafneri}.
 First, the entry $(A^k)_{ij}$ of the $k$-th power of $A$ is the number of
 \emph{walks} of length $k$ from vertex $n_i$ to vertex $n_j$; it does not count
-paths. The paper proves this by induction on $k$ (the statement is in
-Quinlan's notes~\cite{quinlan_matrices_graphs}), and shows by an example on the
-board matrix that the walk--path distinction matters.
+paths. The paper proves this by induction on $k$ (the statement is also in the
+University of Galway lecture notes~\cite{quinlan_matrices_graphs}), and shows on
+the board matrix why the difference between walks and paths matters.
 Second, for $N\ge 2$ the graph is connected if and only if every entry off the
 diagonal of $A + A^2 + \dots + A^{N-1}$ is positive, equivalently if and only if
 $(I+A)^{N-1}$ has no zero entry. The paper proves both forms itself, shows that

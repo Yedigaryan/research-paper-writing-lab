@@ -27,7 +27,7 @@ Formula~\eqref{eq:product} multiplies row $i$ of $X$ with column $j$ of $Y$ entr
 \end{remark}
 
 \begin{example}\label{ex:product}
-For the board matrix, $(A^2)_{22}=A_{21}A_{12}+A_{22}A_{22}+A_{23}A_{32}=1\cdot1+0\cdot0+1\cdot1=2$ (script, \cref{app:scripts}).
+For the board matrix, $(A^2)_{22}=A_{21}A_{12}+A_{22}A_{22}+A_{23}A_{32}=1\cdot1+0\cdot0+1\cdot1=2$ (by script, \cref{app:scripts}).
 \end{example}
 
 \begin{nonexample}\label{nex:product}
@@ -40,14 +40,14 @@ $A^2$ is not the matrix of squared entries. Squaring each entry of the board mat
 Take the table of roads and multiply it by itself. Each number in the new table
 counts trips of two roads. The trips run from the row house to the column house.
 Multiply again and you count trips of three roads. The count includes trips that
-turn back. So the table counts trips, not clean routes.
+turn back. So the table counts trips, not routes.
 \end{plainwords}
 
 \begin{theorem}[Walk counting]\label{thm:walkcount}
 Let $A$ be the adjacency matrix of a simple undirected graph $G$ with vertices $n_1,\dots,n_N$, and let $k\ge1$ be an integer. Then $(A^k)_{ij}$ is the number of walks of length $k$ from $n_i$ to $n_j$, for all $i,j$.
 \end{theorem}
 
-The statement is Theorem~1.1.3 of Quinlan's notes, for exactly this setting~\cite[Theorem~1.1.3]{quinlan_matrices_graphs}. Grinberg states it for multidigraphs~\cite[Theorem~4.5.10, pp.~120--121]{grinberg2025graph}, Lehman, Leighton and Meyer for digraphs~\cite[Corollary~9.3.3]{lehman_mcs_adjacency}, and Bai in his Theorem~1~\cite{bai2025adjacency}. A simple undirected graph is the symmetric case of a digraph. The textbook does not state the theorem in the pages read \kindtag{unverified, claim m3-11}, so the proof below is written out in full. It follows the standard route: induction on $k$, splitting the walks by their second-last vertex~\cite{quinlan_matrices_graphs,grinberg2025graph}. The write-up is \kindtag{derived here, claim m1-3}. Paramadevan and Sotheeswaran's Theorem~1 is not used, because as printed it says ``paths'' (\cref{prop:warning}).
+The statement is Theorem~1.1.3 of the University of Galway notes, for exactly this setting~\cite[Theorem~1.1.3]{quinlan_matrices_graphs}. Grinberg, Lehman, Leighton and Meyer, and Bai state it too, in more general settings~\cite[Theorem~4.5.10, pp.~120--121]{grinberg2025graph}\cite[Corollary~9.3.3]{lehman_mcs_adjacency}\cite{bai2025adjacency}. The textbook does not state the theorem in the pages checked \kindtag{qualified}, so the proof below is written out in full. It follows the standard route: induction on $k$, splitting the walks by their second-last vertex~\cite{quinlan_matrices_graphs,grinberg2025graph}. The write-up is \kindtag{derived here}. One journal paper states a different version, with ``paths'' in place of walks; it is false, and \cref{sec:warning} shows why.
 
 \begin{remark}\label{rem:walkcount}
 The theorem allows $i=j$, which counts closed walks, and it counts every walk once, with repeated vertices and edges allowed. It forbids reading the number as a count of paths (\cref{prop:warning}). It says nothing about walks of other lengths: $(A^2)_{12}=0$ on the board graph does not say that $n_1$ and $n_2$ are unconnected.
@@ -86,7 +86,7 @@ by formula~\eqref{eq:product} and the definition of powers. This proves the stat
 \end{proof}
 
 \paragraph{Why the argument is valid.}
-Two facts carry it: the sum over the second-last vertex covers each walk exactly once, and the matching in the case $A_{rj}=1$ is one to one. Simplicity is used twice: to identify a walk with its vertex list, and so that $A_{rj}$, which is the number of edges between $n_r$ and $n_j$, is $0$ or $1$. Undirectedness is not used inside the induction; it only makes $A$ symmetric. \kindtag{interpretation, claim m1-8; the digraph versions in the sources agree} For a multigraph the same proof counts walks with multiplicity if $A_{rj}$ is the number of edges, but then the properties in \cref{prop:Aproperties} change. The proof is checked, not replaced, by a finite test: for every labelled simple graph on $2,3,4,5$ vertices ($2$, $8$, $64$, $1024$ graphs) a script enumerated all walks and compared with the matrix entries in $40$, $360$, $5120$ and $76800$ cases, all equal (\cref{app:crosschecks}). That test is a check, not a proof.
+Two facts carry it: the sum over the second-last vertex covers each walk exactly once, and the matching in the case $A_{rj}=1$ is one to one. Simplicity is used twice: to identify a walk with its vertex list, and so that $A_{rj}$, which is the number of edges between $n_r$ and $n_j$, is $0$ or $1$. Undirectedness is not used inside the induction; it only makes $A$ symmetric. \kindtag{interpretation} The proof is checked, not replaced, by a finite test. A \emph{case} is one choice of a graph, an exponent $k$ and a pair $i,j$; in each case a script counted the walks by brute force and compared the count with the entry $(A^k)_{ij}$. For every labelled simple graph on $2,3,4,5$ vertices ($2$, $8$, $64$, $1024$ graphs), with $k$ up to $5$ for $N\le4$ and up to $3$ for $N=5$, there are $2\cdot5\cdot4=40$, $8\cdot5\cdot9=360$, $64\cdot5\cdot16=5120$ and $1024\cdot3\cdot25=76800$ cases, and all are equal (\cref{app:crosschecks}). That test is a check, not a proof.
 
 \subsection{Consequences of the theorem}\label{sec:consequences}
 
@@ -105,11 +105,11 @@ For a simple undirected graph and $k\ge1$:
 \item[(c)] $A^k$ is symmetric;
 \item[(d)] $(A^2)_{ii}=\deg(n_i)$, so the sum of the diagonal entries of $A^2$ equals $2|E|$.
 \end{enumerate}
-\kindtag{derived here, claims m1-7 and C9}
+\kindtag{derived here}
 \end{corollary}
 
 \begin{proof}
-Parts (a) and (b) follow because by \cref{thm:walkcount} each entry is a count. For (c), $(A^k)^{T}=(A^{T})^k=A^k$, because $A$ is symmetric (\cref{prop:Aproperties}); alternatively, reversing a walk matches the walks from $n_i$ to $n_j$ with the walks from $n_j$ to $n_i$. For (d), the walks of length $2$ from $n_i$ to $n_i$ are the lists $n_i,n_r,n_i$ with $n_r$ a neighbour of $n_i$, one for each neighbour, and the number of neighbours is $\deg(n_i)$ (\cref{rem:degree}). Summing over $i$ and using item~5 of \cref{prop:Aproperties} gives $2|E|$. Quinlan states (d) in a remark after his theorem~\cite{quinlan_matrices_graphs}.
+Parts (a) and (b) follow because by \cref{thm:walkcount} each entry is a count. For (c), $(A^k)^{T}=(A^{T})^k=A^k$, where the \emph{transpose} $X^{T}$ of a matrix $X$ is the matrix with its rows and columns exchanged, and $A^{T}=A$ because $A$ is symmetric (\cref{prop:Aproperties}); alternatively, reversing a walk matches the walks from $n_i$ to $n_j$ with the walks from $n_j$ to $n_i$. For (d), the walks of length $2$ from $n_i$ to $n_i$ are the lists $n_i,n_r,n_i$ with $n_r$ a neighbour of $n_i$, one for each neighbour, and the number of neighbours is $\deg(n_i)$ (\cref{rem:degree}). Summing over $i$ and using part~(b) of \cref{prop:rowsums} gives $2|E|$. The University of Galway notes state (d) in a remark after their theorem~\cite{quinlan_matrices_graphs}.
 \end{proof}
 
 On the board graph the diagonal of $A^2$ is $(1,2,1)$, the degrees, and its sum is $4=2|E|$ (script).
@@ -117,19 +117,19 @@ On the board graph the diagonal of $A^2$ is $(1,2,1)$, the degrees, and its sum 
 \subsection{The warning: walks are not paths}\label{sec:warning}
 
 \begin{plainwords}
-A trip may turn back and pass the same house twice. A clean route never passes a
+A trip may turn back and pass the same house twice. A route never passes a
 house twice. The table counts trips, so it also counts the trips that turn back.
-A house with one neighbour always has a two-road trip that goes out and comes
-home. That trip is no clean route.
+A house with at least one neighbour always has a two-road trip that goes out and
+comes home. That trip is no route.
 \end{plainwords}
 
 \begin{proposition}[The entry is not a count of paths]\label{prop:warning}
 Let $G$ be a simple undirected graph.
 \begin{enumerate}
 \item[(a)] If $n_i$ has at least one neighbour, then $(A^2)_{ii}=\deg(n_i)>0$, yet there is no path, and no trail, of length $2$ from $n_i$ to $n_i$.
-\item[(b)] On the board graph $B$, $(A^3)_{12}=2$, although the only path from $n_1$ to $n_2$ has length $1$. More generally $A^{k+2}=2A^k$ for $k\ge1$, so the entries grow with $k$ while the number of paths does not.
+\item[(b)] On the board graph $B$, $(A^3)_{12}=2$, although the only path from $n_1$ to $n_2$ has length $1$. More generally, on $B$ (and not for every graph) $A^{k+2}=2A^k$ for $k\ge1$, so the entries grow with $k$ while the number of paths does not.
 \end{enumerate}
-\kindtag{derived here, claims C10 and m1-6; the counts by script}
+\kindtag{derived here}
 \end{proposition}
 
 \begin{proof}
@@ -137,11 +137,11 @@ Let $G$ be a simple undirected graph.
 (b) On $B$ the walks of length $3$ from $n_1$ to $n_2$ are $1,2,1,2$ and $1,2,3,2$. Each repeats a vertex and an edge, so neither is a path or a trail. The only path from $n_1$ to $n_2$ is the single edge $1,2$. For the growth, $A^3=2A$ (script) and multiplying by $A^{k-1}$ gives $A^{k+2}=2A^k$.
 \end{proof}
 
-The sources say the same in words: Bai remarks that the entries count walks and not paths~\cite{bai2025adjacency}, and Grinberg's Example~2.9.2 shows a walk that is not a path~\cite[p.~37]{grinberg2025graph} \kindtag{claim C8}. \Cref{tab:walksvspaths} gives the counts from the script for $k=1,\dots,5$: the walk counts $1,0,2,0,4$ against the path counts $1,0,0,0,0$.
+The sources say the same in words: Bai remarks that the entries count walks and not paths~\cite{bai2025adjacency}, and Grinberg's Example~2.9.2 shows a walk that is not a path~\cite[p.~37]{grinberg2025graph} . \Cref{tab:walksvspaths} gives the counts from the script for $k=1,\dots,5$: the walk counts $1,0,2,0,4$ against the path counts $1,0,0,0,0$.
 
 \begin{table}[ht]
 \centering
-\caption{Walks of length $k$ from $n_1$ to $n_2$ on the board graph $B$, and how many of them are paths and trails (script \texttt{m1\_walks.py}, claim m1-6). The walk counts equal the entries $(A^k)_{12}$ of \cref{sec:example}.}
+\caption{Walks of length $k$ from $n_1$ to $n_2$ on the board graph $B$, and how many of them are paths and trails (by script). The walk counts equal the entries $(A^k)_{12}$ of \cref{sec:example}.}
 \label{tab:walksvspaths}
 \begin{tabular}{@{}cccc@{}}
 \toprule
@@ -152,6 +152,6 @@ $k$ & walks & of which paths & of which trails \\
 \end{tabular}
 \end{table}
 
-Paramadevan and Sotheeswaran state in their Theorem~1 that $(A^l)_{ij}$ equals the number of ``different paths'' of length $l$~\cite{paramadevan2021adjacency}. As written this is false for any definition of path that forbids repeated vertices or repeated edges, by \cref{prop:warning}(a); their own property~7 says walks~\cite{paramadevan2021adjacency}. So the sources disagree, and the paper follows the walk version, which four sources state and which was proved above \kindtag{claim C11, contradiction recorded in the evidence file}.
+Paramadevan and Sotheeswaran's Theorem~1 reads: ``the number of different paths of length $l$ between the $i$-th and $j$-th vertices of $G$ is equal to the $(i,j)$-th entry of $A_G^l$''~\cite{paramadevan2021adjacency}. As written this is false for any definition of path that forbids repeated vertices or repeated edges, by \cref{prop:warning}(a); their own property~7 says walks~\cite{paramadevan2021adjacency}. So the sources disagree, and the paper follows the walk version, which four sources state and which was proved above.
 
 What a positive entry \emph{does} guarantee is a walk of length $k$, and then, by \cref{lem:walkpath}, a path of length at most $k$. This is why the warning does not harm the connectivity test of \cref{sec:answer2}; but the value of the entry is a count of walks, not of paths. \kindtag{derived here}

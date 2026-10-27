@@ -1,15 +1,16 @@
 \section{Introduction}\label{sec:introduction}
-% claims used here: C1 C7 C15 C16 C21 C24 C25 C26 C27 C28 C29 m1-9 m2-15 m3-11
+% claims used here: C1 C7 C15 C16 C21 C24 C25 C26 C27 C28 C29 C11 C36 C34 m1-9 m2-15 m3-11 m3-12
 
 \subsection{The three questions and where each came from}\label{sec:questions}
 
-A lecture whiteboard, photographed twice from slightly different angles, is the
-starting point of this paper~\cite{whiteboard1,whiteboard2}. Read from top to
-bottom, the board shows six things (\Cref{tab:board}). They set up a graph with
-$N$ vertices that is given only by its adjacency matrix $A$, and they ask two
-questions about it. The words of the problem statement are the board's own: ``Given graph
-$(G,V)$ with $N$ nodes i.e.\ $|G|=N$ and the graph is represented through it's adj.\ matrix.
-So you have $A$ matrix''~\cite{whiteboard1,whiteboard2}.
+A university lecture whiteboard, photographed twice from slightly different
+angles, is the starting point of this paper~\cite{whiteboard1,whiteboard2}. Read
+from top to bottom, the board shows six things (\Cref{tab:board}). They set up a
+graph with $N$ vertices that is given only by its adjacency matrix $A$, and they
+ask two questions about it. The words of the problem statement are the board's
+own: ``Given graph $(G,V)$ with $N$ nodes i.e.\ $|G|=N$ and the graph is
+represented through it's adj.\ matrix. So you have $A$
+matrix''~\cite{whiteboard1,whiteboard2}.
 
 \begin{table}[ht]
 \centering
@@ -23,7 +24,7 @@ No. & What the board shows & Where treated \\
 1 & $A_{ij}=1$ if $e_{ij}\in V$, and $0$ if $e_{ij}\notin V$ (the board's $V$ is the edge set) & Definition of the adjacency matrix, \Cref{sec:background}; letters in \Cref{sec:conventions} \\
 2 & A drawing of three circled vertices $1,2,3$ and a grid labelled ``adj.'' with rows $010$, $101$, $010$ & Mismatch reported in \Cref{sec:conventions}; worked example in \Cref{sec:example} \\
 3 & ``Problem. Given graph $(G,V)$ with $N$ nodes \dots{} So you have $A$ matrix'' & Setting, \Cref{sec:conventions} \\
-4 & Question 1: ``What does $A^{\,\cdot}_{ij}$ represent'', with a small mark above $A$ & \Cref{sec:answer1}; the mark is discussed in \Cref{sec:conventions} \\
+4 & Question 1: ``What does $A_{ij}$ represent'', with a small mark above $A$ (a power $k$; see item~2 of \Cref{sec:conventions}) & \Cref{sec:answer1} \\
 5 & Question 2: ``How to know if graph is connected or not'' & \Cref{sec:answer2} \\
 6 & ``Def.\ Graph is called connected if for any $n_i,n_j$ $\exists$ path between nodes'' & Definition of connected, \Cref{sec:background}; the word ``path'' in \Cref{sec:answer3} \\
 \bottomrule
@@ -34,18 +35,25 @@ The paper answers three questions.
 \begin{enumerate}
 \item[\textbf{Q1.}] For a positive integer $k$, what does the entry $(A^k)_{ij}$ of the $k$-th power of $A$ represent? This is the board's first question~\cite{whiteboard1,whiteboard2}.
 \item[\textbf{Q2.}] How can one tell from $A$ alone whether the graph is connected? This is the board's second question~\cite{whiteboard1,whiteboard2}.
-\item[\textbf{Q3.}] What is the definition of a path between two vertices $n_i$ and $n_j$? This question is not on the board. It was added by the assignment text that came with the photographs.
+\item[\textbf{Q3.}] What is the definition of a path between two vertices $n_i$ and $n_j$? This question is not on the board. It was added by the assignment text that came with the photographs. That text states the course convention: in the course, ``path'' means a walk with no repeated vertices. This is the sentence the answer to Question~3 rests on (\Cref{sec:answer3}).
 \end{enumerate}
 Question~3 matters because the board's definition of ``connected'' uses the
 word ``path'' without saying which of several meanings it has
-(\Cref{sec:conventions}), and the answer to Question~2 depends on it.
+(\Cref{sec:conventions}), so the answer to Question~2 could appear to depend on it.
+It does not (\Cref{prop:readings}), but Question~3 still needs a definite answer.
+
+Statements in this paper that are not plain facts from a source carry a label
+in square brackets. \kindtag{derived here} marks a result proved or computed in
+this paper; \kindtag{interpretation} marks a reading of the material;
+\kindtag{estimate} marks an operation count; \kindtag{qualified} marks a
+statement that rests on something the sources do not fully settle.
 
 The course textbook, \emph{Graph Theory} by Petrosyan, Mkrtchyan and
 Kamalyan~\cite{petrosyan2015grafneri}, supplies the definitions and their
-numbers. In the pages read for this paper (printed pages 9--12, 21--23 and 48--49) it contains neither the
-walk-counting theorem nor a matrix test for connectivity.
-That absence is itself \kindtag{unverified}, because Chapters~3 to~8 of the book were not read (claim m3-11).
-So the paper proves both results itself and marks them \kindtag{derived here}.
+numbers. It contains neither the walk-counting theorem nor a matrix test for
+connectivity in the pages that were checked \kindtag{qualified}
+(\Cref{sec:provenance} says which pages). So the paper proves both results
+itself and marks them \kindtag{derived here}.
 
 \paragraph{The answers in brief.}
 The details and the proofs follow; this list is only a map.
@@ -64,8 +72,9 @@ and ends at the same house. No two roads join the same pair of houses. The
 village has only finitely many houses. A trip is a list of houses, one after
 another. Each house on the list shares a road with the house before it. A trip
 may pass the same house twice. It may drive the same road twice. A trip may
-also be just one house, with no driving at all. Every idea in this paper is
-about this village and its trips.
+also be just one house, with no driving at all. A trail is a trip that never
+uses the same road twice. A route is a trip that never passes the same house
+twice. Every idea in this paper is about this village and its trips.
 \end{plainwords}
 
 The village from the board has three houses in a row. The first house and the
@@ -73,7 +82,8 @@ middle house share a road. The middle house and the last house share a road. No
 road joins the first house and the last house. \Cref{fig:village} (left) shows
 this village. The same story is used before every definition, theorem, test and
 example, so that each can be followed without the symbols. \Cref{tab:story} gives the
-dictionary from the story to the textbook's words and numbers.
+dictionary from the story to the textbook's words and numbers. The story words are
+fixed: \emph{trip} for a walk, \emph{trail} for a trail, \emph{route} for a path.
 
 \begin{figure}[ht]
 \centering
@@ -88,24 +98,24 @@ graph; see \Cref{sec:conventions}.}
 
 \begin{table}[ht]
 \centering
-\caption{The story and the technical words. Textbook numbers are from the course textbook~\cite{petrosyan2015grafneri}; ``n.n.'' means that the pages read give no number.}
+\caption{The story and the technical words. Textbook numbers are from the course textbook~\cite{petrosyan2015grafneri}; ``n.n.'' means that the pages checked give no number.}
 \label{tab:story}
 \small
-\begin{tabular}{@{}llll@{}}
+\begin{tabular}{@{}p{5.6cm}p{3.0cm}p{2.7cm}p{3.0cm}@{}}
 \toprule
 Story word & Technical term & Textbook number & Defined in \\
 \midrule
 house & vertex & 1.1.1 & \Cref{def:graph} \\
 road & edge & 1.1.1 & \Cref{def:graph} \\
 two houses share a road & adjacent & 1.1.4 & \Cref{def:adjacent} \\
-number of roads at a house & degree & n.n. & \Cref{def:degree} \\
 table of ones and zeros & adjacency matrix & n.n. (p.~11) & \Cref{def:adjmatrix} \\
+number of roads at a house & degree & 1.2.1 & \Cref{def:degree} \\
 trip & walk & 1.2.10 & \Cref{def:walk} \\
 trip that ends where it began & closed walk & 1.2.11 & \Cref{def:closedwalk} \\
-trip that never repeats a road & trail & 1.2.12 & \Cref{def:trail} \\
-route that never repeats a house & path & 1.2.13 & \Cref{def:path} \\
-round trip that never repeats a road & cycle & 1.2.14 & \Cref{def:cycle} \\
-round trip that repeats no house but the first & simple cycle & 1.2.15 & \Cref{def:simplecycle} \\
+trip that never uses a road twice & trail & 1.2.12 & \Cref{def:trail} \\
+route: a trip that never passes a house twice & path & 1.2.13 & \Cref{def:path} \\
+round trip that never uses a road twice & cycle & 1.2.14 & \Cref{def:cycle} \\
+round trip that passes no house twice but the first & simple cycle & 1.2.15 & \Cref{def:simplecycle} \\
 fewest roads on a trip between two houses & distance & 1.2.16 & \Cref{def:distance} \\
 village in one piece & connected graph & 2.1.1 & \Cref{def:connected} \\
 one piece of a village & component & n.n. (p.~49) & \Cref{def:component} \\
@@ -128,7 +138,7 @@ clearly a $k$~\cite{whiteboard1,whiteboard2}. This paper reads it as a power
 $k$, because the assignment text asks about $A^k$. This reading is
 \kindtag{interpretation, qualified}. The mathematics does not depend on the
 letter: the theorem in \Cref{sec:answer1} holds for every positive integer
-exponent, whether the board meant $k$ or $n$ (claim m1-9).
+exponent, whether the board meant $k$ or $n$.
 \item \textbf{Quotation marks around $A$.} Two lines lower, the board writes ``$A$'' (``So you have ``$A$'' matrix'')~\cite{whiteboard1,whiteboard2}. This paper takes it as the name of the adjacency matrix.
 \item \textbf{The drawing and the matrix disagree.} The drawing shows three lines: $1$--$2$ with an
 arrowhead at $2$, $1$--$3$, and $2$--$3$~\cite{whiteboard1,whiteboard2}. The matrix
@@ -156,18 +166,13 @@ The assignment text says that in the course ``path'' means no repeated vertices.
 The board does not say which meaning it uses. This paper therefore writes
 \emph{trail} for Definition~1.2.12 and \emph{path} for Definition~1.2.13 everywhere,
 and shows the three conventions side by side in \Cref{tab:conventions}. That the
-course uses this meaning is \kindtag{interpretation, qualified} (claim C24).
+course uses this meaning is \kindtag{interpretation, qualified}, because it comes
+from the assignment text and not from the board.
 \item \textbf{Lengths and exponents.} The exponent $k$ is a positive integer. The
 case $k=0$ (the identity matrix, one walk of length $0$ from a vertex to itself) is treated by
 Grinberg~\cite{grinberg2025graph} and is not needed for the board question. A walk of length $0$, a single vertex, is
 allowed, because the textbook's own property $d(u,u)=0$ needs it. The textbook does not
-say so in words, so this is \kindtag{interpretation, qualified} (claim m2-15).
-\item \textbf{What the textbook contains.} Walk counting and the matrix test are
-proved in this paper. The textbook was read only at printed pages 9--12, 21--23
-and 48--49, so ``not in the textbook'' means ``not in those pages'' \kindtag{unverified} (claim m3-11).
-\item \textbf{Computation.} Every matrix, product, sum and count was computed by
-script before it was written. The scripts and the way to run them are in
-\cref{app:scripts}.
+say so in words, so this is \kindtag{interpretation, qualified}.
 \end{enumerate}
 
 \begin{table}[ht]
@@ -206,17 +211,17 @@ $n_1,\dots,n_N$ & the vertices & $n_i$ & $v_i$ \\
 $u,v,w$ & any vertices & --- & $u,v$ \\
 $n_in_j$, $e_{ij}$ & the edge joining $n_i$ and $n_j$ & $e_{ij}$ & $uv$ \\
 $A$, $A_{ij}$ & adjacency matrix and its entry in row $i$, column $j$ & $A$, $A_{ij}$ & $A(G)$, $a_{ij}$ \\
-$A^k$, $I$ & $k$-th power of $A$ and the $N\times N$ identity matrix & $A^{\,\cdot}$ & --- \\
-$k,m$ & positive integers: lengths of walks, exponents & mark above $A$ & --- \\
+$A^k$, $I$ & $k$-th power of $A$ and the $N\times N$ identity matrix & $A$ with a small mark above & --- \\
+$k,m$ & positive integers: lengths of walks, exponents & the mark above $A$ & --- \\
 $i,j,r$ & indices running from $1$ to $N$ & $i,j$ & --- \\
-$\deg(n_i)$ & degree of $n_i$ & --- & --- \\
-$d(u,v)$ & distance & --- & $d(u,v)$ \\
+$\deg(n_i)$ & degree of $n_i$ (Definition~1.2.1) & --- & $d_G(v)$, $d(v)$ \\
+$d(u,v)$ & distance & --- & $d(u,v)$, $d_G(u,v)$ \\
 $S$ & $A+A^2+\dots+A^{N-1}$, defined in \Cref{sec:answer2} & --- & --- \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\subsection{How the paper is organized, and how statements are labelled}\label{sec:organization}
+\subsection{How the paper is organized}\label{sec:organization}
 
 \Cref{sec:background} gives the definitions in the textbook's order. Each
 definition is followed by a remark on what it allows and forbids, an example and
@@ -227,9 +232,18 @@ questions directly. \Cref{app:derivations} holds derivations and the scripts, an
 \Cref{app:terms} lists the course terms with their textbook numbers.
 
 Every definition, theorem, lemma, test, and worked example is preceded by a
-short paragraph marked ``In plain words''. Statements carry a label when they are not simply facts
-from a source: \kindtag{derived here} for results proved or computed in this
-paper, \kindtag{interpretation} for readings of the material, \kindtag{estimate}
-for operation counts, and \kindtag{qualified} or \kindtag{unverified} where the
-sources do not settle the point. A source that is cited states the fact itself;
+short paragraph marked ``In plain words''. A source that is cited states the fact itself;
 where only the statement is cited and the proof is the paper's own, the text says so.
+
+\subsection{Provenance: sources, pages checked, and scripts}\label{sec:provenance}
+
+This subsection collects where the material comes from, so that
+\Cref{sec:background} to \Cref{sec:example} can stay mathematical.
+
+\paragraph{Sources.} The board photographs~\cite{whiteboard1,whiteboard2}; the course textbook~\cite{petrosyan2015grafneri}; Grinberg's lecture-note text on graph theory~\cite{grinberg2025graph}; the University of Galway lecture notes on the adjacency matrix~\cite{quinlan_matrices_graphs}; the open textbook of Lehman, Leighton and Meyer~\cite{lehman_mcs_adjacency}; the journal paper of Paramadevan and Sotheeswaran~\cite{paramadevan2021adjacency}; Bai's lecture notes~\cite{bai2025adjacency}; the MathWorld and Wikipedia entries~\cite{weisstein_connectedgraph,wikipedia_path_graph_theory}; and lecture slides on breadth-first search~\cite{schost2026bfs}. The Galway file carries no author name or date; its URL suggests the name Quinlan, which the file does not confirm, so this paper calls it the University of Galway notes.
+
+\paragraph{Pages of the textbook checked.} The textbook definitions were taken from printed pages 9 to 12 (graphs and the adjacency matrix), 16 (degree), 21 to 23 (walks, trails, paths, cycles, distance, Lemma~1.2.1) and 48 to 49 (connectedness). The remaining pages of Chapters~1 and~2 (13 to 15, 17 to 20, 24 to 47 and 50 to 62) and Chapters~3 to~8 were not read page by page. An independent full-text search of the whole book for the adjacency matrix found it only on pages 11 to 12, 34 and 60, and found no walk-counting theorem and no matrix connectivity test. So the statement ``the textbook contains neither'' is \kindtag{qualified}: it rests on that search and on the pages read, not on a page-by-page reading of the whole book. Page numbers in this paper are printed page numbers; the PDF page is one higher.
+
+\paragraph{Weaknesses of some sources.} Two sources that state the connectivity test prove it loosely. Paramadevan and Sotheeswaran's Theorem~1 reads: ``the number of different paths of length $l$ between the $i$-th and $j$-th vertices of $G$ is equal to the $(i,j)$-th entry of $A_G^l$''. This is false for paths in either sense (\Cref{prop:warning}), although their own property~7 says walks. Their proof of Theorem~2 repeats the word: ``$b_{ij}$ = number of different paths of length less than $n$ from the vertex $i$ to $j$'', and it ends ``Conversely, if $b_{ij}\ne0$, then there exist at least one path from $v_i$ to $v_j$, thus $G$ is connected'', which passes from a non-zero entry to a path without the walk-to-path lemma~\cite{paramadevan2021adjacency}. Bai's proof sketch of the $(I+A)^{n-1}$ form says ``$(I+A)^{n-1}$ aggregates all paths of length $\le n-1$''~\cite{bai2025adjacency}. Both statements of the test are correct and the proofs are incomplete \kindtag{interpretation}. This is why the paper proves the test itself and cites these two sources for the statements only.
+
+\paragraph{Scripts.} Every matrix, product, sum and count in the paper was computed by script before it was written. The scripts, their saved outputs, and the script that turns those outputs into the matrices printed in the text are in \texttt{appendices/scripts/}; \Cref{app:scripts} says how to run them. Exhaustive comparisons over small graphs are checks, not proofs, and the text says so each time.

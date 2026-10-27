@@ -1,5 +1,5 @@
 \section{Discussion: limitations and failure cases}\label{sec:discussion}
-% claims used here: C6 C11 C24 C28 C29 C34 C36 C39 m1-4 m1-8 m1-9 m2-15 m3-4 m3-8 m3-9 m3-10 m3-11 m3-12
+% claims used here: C6 C11 C24 C28 C29 C36 C39 m1-4 m1-8 m1-9 m2-15 m3-4 m3-8 m3-9 m3-10 m3-11 m3-12 C34
 
 \subsection{What the sources and photographs leave open}\label{sec:open}
 
@@ -8,84 +8,46 @@
 mark above $A$ in Question~1 is a $k$, an $n$, or quotation marks
 (\cref{sec:conventions}, item~2). The paper reads it as $k$ because the assignment
 text does. The answer does not change with the letter, since \cref{thm:walkcount} holds for every positive
-integer exponent \kindtag{interpretation, qualified, claims C29 and m1-9}. What stays open is only what the lecturer wrote.
+integer exponent \kindtag{interpretation, qualified}. What stays open is only what the lecturer wrote.
 \item \textbf{The drawing and the matrix.} The paper follows the matrix and reports
 the extra edge $1$--$3$ and the arrowhead (\cref{tab:mismatch}). If the lecturer
 meant the triangle $T$, the example would change but no theorem would: the
 statements hold for every simple undirected graph. The paper does not claim which
-graph was meant. \kindtag{claim C28}
+graph was meant.
 \item \textbf{The meaning of ``path''.} That the course means the textbook's simple path is
 stated by the assignment text and is not on the board. If the course meant the
 textbook's Definition~1.2.12, then ``path'' is a trail, and the answer to Question~3
 changes in words. The answer to Question~2 does not change, by \cref{prop:readings}.
-Counts of paths would change; counts of walks would not. \kindtag{qualified, claim C24}
+Counts of paths would change; counts of walks would not. \kindtag{qualified}
 \item \textbf{What the lecturer expected for Question~2.} The board shows only the
 question, not the answer. The paper gives the sum test, the form with $I+A$, and
-breadth-first search, and does not say which one the lecturer intended. \kindtag{open question}
-\item \textbf{The textbook beyond the pages read.} Chapters~3 to~8 of the textbook were not read. The
-statement that the textbook contains neither the counting theorem nor a matrix test is
-therefore \kindtag{unverified} (claim m3-11). It does not affect the proofs, which do not depend on it.
+breadth-first search, and does not say which one the lecturer intended.
+\item \textbf{The textbook beyond the pages checked.} The statement that the textbook contains neither the counting
+theorem nor a matrix test is \kindtag{qualified}: it rests on the pages checked and on a full-text search
+(\cref{sec:provenance}), not on a page-by-page reading of the whole book. It does not affect the proofs, which do not depend on it.
 \end{itemize}
 
 \subsection{Limits of the results}\label{sec:limits}
 
 \begin{itemize}
-\item \textbf{Simple graphs.} Both proofs are for finite simple undirected graphs. With loops or repeated edges the entry $A_{rj}$ can exceed $1$ and $A_{ii}$ can be non-zero. The same induction then counts walks with multiplicity, but \cref{prop:Aproperties} items 1, 3 and 4 change \kindtag{interpretation, claim m1-8}. The sources state the counting theorem also for digraphs and multidigraphs~\cite{grinberg2025graph,lehman_mcs_adjacency}. The connectivity test was not examined for directed graphs, and the paper should not be applied to them.
-\item \textbf{Only as good as two results.} The test rests on \cref{thm:walkcount} and \cref{lem:walkpath}. The first is stated by four sources and proved here. The second is the textbook's Lemma~1.2.1 for $u\ne v$, which has no length bound, and the bound comes from Grinberg's Corollary~2.9.7. The paper proves the lemma with the bound itself (\cref{sec:bg-lemma}).
+\item \textbf{Simple graphs.} Both proofs are for finite simple undirected graphs. Directed graphs and graphs with loops or repeated edges are outside the paper, and the connectivity test should not be applied to them.
+\item \textbf{Only as good as two results.} The test rests on \cref{thm:walkcount} and \cref{lem:walkpath}. The first is stated by several sources and proved here. The second is the textbook's Lemma~1.2.1 for $u\ne v$, which has no length bound; the bound comes from Grinberg's Corollary~2.9.7, and the paper proves the lemma with the bound itself (\cref{sec:bg-lemma}).
 \item \textbf{The test answers yes or no.} The sum $S$ does not list a path between two vertices. \Cref{cor:components} gives the components and the distances, and nothing more. Eigenvalue methods are outside the scope of this paper and are not discussed.
 \item \textbf{Finite checks are not proofs.} The brute-force comparisons (\cref{app:crosschecks}) cover $N\le5$ for walk counting and $N\le6$ for the test. They support the proofs and do not replace them.
+\item \textbf{Source proofs.} Two sources state the connectivity test with incomplete proofs, and one states the counting theorem with ``paths'' in place of walks (\cref{sec:provenance}, \cref{sec:warning}); that is why the paper proves both itself.
 \end{itemize}
-
-\subsection{Where other sources are weaker}\label{sec:weak}
-
-Two of the web sources that state the connectivity test prove it loosely.
-Paramadevan and Sotheeswaran's Theorem~1 says that $(A^l)_{ij}$ counts ``different
-paths'', and their proof of Theorem~2 applies it to $A+\dots+A^{n-1}$, so it counts paths where walks are
-meant~\cite{paramadevan2021adjacency}. Bai's proof sketch of the $(I+A)^{n-1}$ form says
-that the power ``aggregates all paths'' of length at most $n-1$~\cite{bai2025adjacency}. Both statements of the test
-are correct, and the proofs are not complete \kindtag{interpretation, claims C11, C36, m3-12}. This is
-the reason the paper proves the test itself, and why the warning of \cref{sec:warning}
-matters: the same confusion appears in the sources.
 
 \subsection{Failure cases of the test}\label{sec:failures}
 
 Each of the following gives a wrong answer on a small graph.
 \begin{itemize}
-\item Stopping at $A^{N-2}$. On the row of four houses the $(1,4)$ entry is $0$ (\cref{ex:sharp}). Over all labelled graphs with $N=3,4,5,6$ vertices the $N-2$ version is wrong on $3$, $12$, $60$, $360$ graphs (\cref{tab:exhaustive}).
+\item Stopping at $A^{N-2}$. On the row of four houses the $(1,4)$ entry is $0$ (\cref{ex:sharp}). The graphs on which this fails are exactly the labelled rows of houses (\cref{rem:failcount}).
 \item Using the single power $A^{N-1}$, or $A^2$ alone for $N=3$ (\cref{nex:S}).
 \item Requiring positive diagonal entries of $S$. For $N=2$ and one edge the diagonal is zero although the graph is connected (\cref{rem:diagonal}).
 \item Using subtraction, or arithmetic modulo a number, in place of ordinary integer arithmetic. The step ``a sum is positive exactly when a term is'' needs non-negative integers (\cref{thm:test}, \emph{why the argument is valid}).
 \item Reading $(A^k)_{ij}$ as the number of paths (\cref{prop:warning}).
 \end{itemize}
 
-\subsection{Cost of the matrix test against breadth-first search}\label{sec:cost}
+\subsection{Cost, in brief}\label{sec:cost}
 
-\kindtag{estimate} The numbers below count scalar multiplications with the school
-method, $N^3$ for one product of two $N\times N$ matrices. Faster methods of
-matrix multiplication were not examined (claim m3-10).
-
-The matrix test reaches $A^{N-1}$ from $A$ with $N-2$ products ($A^2,\dots,A^{N-1}$),
-that is, $(N-2)N^3$ multiplications, which is $98{,}000{,}000$ for $N=100$. The evidence file's claim C39 writes the cost of the matrix test as $N-1$ matrix products;
-the count that follows from the procedure of \cref{test:matrix} is $N-2$ (claim m3-10). The cited slides support only the
-running time and the correctness of breadth-first search~\cite{schost2026bfs}; the comparison with the matrix test is this paper's own
-estimate. Because \cref{prop:iplusa} holds with any exponent $m\ge N-1$ in place of $N-1$, one can instead square $I+A$ repeatedly until the
-exponent $2^t$ is at least $N-1$. That takes $t$ squarings, $7$ for $N=100$, costing $7{,}000{,}000$
-multiplications (\cref{tab:cost}). The script checked this version against breadth-first search on every labelled graph with at most $6$ vertices (claim m3-9).
-Breadth-first search takes time $O(n+m)$ when the graph is given by adjacency lists~\cite{schost2026bfs}.
-When the input is the matrix $A$ itself, breadth-first search reads each row once, which is $N^2=10{,}000$
-entries for $N=100$. The entries of the powers also grow fast: the largest entry of $A^{9}$ for the complete graph on $10$ vertices is $38{,}742{,}049$ (script).
-A Boolean version of the product, which replaces every positive entry by $1$, avoids this growth \kindtag{interpretation}.
-So the matrix test is useful because its answer is a clean statement about the powers of $A$, not because it is fast \kindtag{interpretation}.
-
-\begin{table}[ht]
-\centering
-\caption{Operation counts (estimate, school multiplication, script \texttt{m3\_connectivity.py}, claim m3-10). The second column is $(N-2)N^3$ for $(I+A)^{N-1}$ by successive products. The third column is the number $t$ of squarings with $2^t\ge N-1$. The fourth is $tN^3$. The last is $N^2$, the number of entries of $A$ that breadth-first search reads.}
-\label{tab:cost}
-\begin{tabular}{@{}rrrrr@{}}
-\toprule
-$N$ & $(N-2)N^3$ & squarings $t$ & $tN^3$ & $N^2$ \\
-\midrule
-\TabCostBody
-\bottomrule
-\end{tabular}
-\end{table}
+\kindtag{estimate} Reaching $A^{N-1}$ from $A$ takes $N-2$ matrix products, and the school method of multiplication uses about $N^3$ scalar multiplications for each product of two $N\times N$ matrices; faster methods were not examined. Breadth-first search with the graph stored as adjacency lists takes time at most a fixed multiple of $N+|E|$~\cite{schost2026bfs}, a single pass over the graph. The matrix test is therefore useful for its clean statement about the powers of $A$, not for speed \kindtag{interpretation}.
