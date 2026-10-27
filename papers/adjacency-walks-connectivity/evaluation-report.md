@@ -233,3 +233,114 @@ finding; every dimension at least 3, with understandability up from 3 to
 4. Release withheld on 39 open minor findings (12 from the evaluator
 including three carried over, 27 from the reader). Round 3 is the last
 round the skill allows before stopping with INCOMPLETE.
+
+## Round 3, 2026-10-27
+
+Question and scope: as in round 1.
+
+Research summary: no new research. The author added a small example graph
+H of the paper's own, a proof map at the start of Section 4, Appendix C
+describing the photographs, hand-checkable cases in A.7, and made the
+evidence file reproducible from evidence/evidence.base.json plus the
+module and author fragments. The evaluator re-merged it in a scratch copy
+and found it identical, re-ran all four paper scripts with identical
+output, and recomputed every matrix and count with its own script.
+
+Model levels: research 2, modules 2, author 2, reader 2, evaluator 3,
+orchestrator session model. Hierarchy requirement: met.
+
+Mechanical checks: build pass (38 pages, 0 overfull boxes), citations pass
+(0 errors, 0 warnings), claims pass (0 errors, 0 warnings), pdf pass (0
+errors, 0 warnings).
+
+### Scores
+
+| Dimension | R1 | R2 | R3 | Observation |
+|---|---|---|---|---|
+| 1 Correctness | 4 | 4 | 4 | Every number and proof verified. Four wording slips: a figure page, an incomplete definition list, "a positive entry is a walk", a cut described loosely. |
+| 2 Evidence coverage | 4 | 4 | 5 | All 80 claims supported or derived; evidence reproducible from base plus fragments. |
+| 3 Citation integrity | 4 | 4 | 4 | Six web sources fetched, five textbook pages viewed; all support. One wrong page locator (E20), one incomplete list (E21). |
+| 4 Logical validity | 5 | 5 | 5 | Unchanged. |
+| 5 Understandability | 3 | 4 | 4 | No notation in any of 41 plain words boxes; all terms explained. Three wording slips (E22, E24, E25). |
+| 6 Completeness | 4 | 5 | 5 | One board mark missing from the transcription (E28). |
+| 7 Methodological rigor | 5 | 5 | 5 | Unchanged. |
+| 8 Critical analysis | 4 | 4 | 5 | Sources' errors quoted and checked against the sources. |
+| 9 Internal consistency | 4 | 4 | 4 | "force" vs "use"; board quote drops its quotation marks (E26); duplicated critique (R47). |
+| 10 Reproducibility | 5 | 5 | 5 | Scripts re-run identically; evidence re-merges identically. |
+| 11 LaTeX and PDF quality | 4 | 4 | 4 | Arrowhead in Figure 1 hidden under the vertex dot (E27). |
+| 12 Answer relevance | 4 | 5 | 5 | Unchanged. |
+
+### Resolution of round 2 findings
+
+Resolved and confirmed: E5, R5, E12 to E19, R23 to R46, R48, R49.
+Still open: R47 (the source critique is quoted in both 3.4 and 7.2, and
+1.6 and 7.2 open with the same sentence).
+
+### New findings
+
+Evaluator E20 to E28; fresh reader R50 to R70.
+
+| Id | Severity | Location | Defect | Status |
+|---|---|---|---|---|
+| R47 | minor | 3.4, 7.2, 1.6 | Paramadevan's Theorem 1 quoted twice; duplicate opening sentence. | open |
+| E20 | minor | Figure 3 caption; Appendix B | Textbook Fig. 1.2.5 is on printed p. 21, not 22; "force" should be "use". | open |
+| E21 | minor | answer3_path.tex:66 | Three Grinberg definition numbers for four words; walk is 2.9.1(a), path 2.9.1(c). | open |
+| E22 | minor | proof map, Section 4 | "A positive entry of A^k is a walk" treats a number as a walk. | open |
+| E23 | minor | Lemma 2.52 opening example | "Removing the part between them" misdescribes the cut; positions 1 and 2 are removed. | open |
+| E24 | minor | plain words, 6.3 | "Nobody can walk to it" uses the technical word in the story box. | open |
+| E25 | minor | derivations.tex:154 | "that file" and "the tables of Tables" garbled. | open |
+| E26 | minor | introduction.tex:12, Table 1 row 3 | Board quote drops the quotation marks around A. | open |
+| E27 | minor | Figure 1 right | Arrowhead hidden under the dot at vertex 2. | open |
+| E28 | minor | Appendix C item 2, Table 1 row 2, brief.md section 5 | A small scratched-out marker under vertex 1 on both photos is not transcribed. | open |
+| R50 | minor | abstract, 1.1 | "The user" never identified; abstract states the Q3 answer without the qualification the body carries. | open |
+| R51 | minor | abstract | I, walk, path, trail, connected used before definition; add one-clause glosses. | open |
+| R52 | minor | 1.1 tags | Tags applied inconsistently: trivial remarks tagged derived; a provable remark tagged interpretation; whether Bai's statement is trusted unclear. | open |
+| R53 | minor | 1.1, Section 5 | Say Q3 is answered by a definition and a table, not a theorem; Section 5 largely restates 2.35. | open |
+| R54 | minor | 1.3 item 4 | Add a table of the five graphs used (B, T, D, H, Gtb) with edges; "T only where" is incomplete since H also has a cycle. | open |
+| R55 | minor | 1.3 item 7 | d(u,u) = 0 cited before distance is defined. | open |
+| R56 | minor | Table 7 caption, Definition 2.40 | Two senses of cycle in play; one sentence fixing "cycle means closed trail in this paper". | open |
+| R57 | minor | Definition 2.48, Remark 2.49 | Distance defined via trails while the rest uses walks and paths; forward pointer to the equivalence; delete the metric-space aside. | open |
+| R58 | minor | Lemma 2.52, Remark 2.53 | Iterative wording for an inductive proof; bracket notation needs a legend; mark the repeated pair. | open |
+| R59 | minor | Definition 2.60 | Relation stated with path, justified with walk; name equivalence classes once. | open |
+| R60 | minor | Theorem 3.5 proof | Matching sentence hard to parse; split into two. | open |
+| R61 | minor | Proposition 3.10(b) | Mixes a B-only fact with a general proposition; growth chain not shown stepwise; cite Table 5 in the statement. | open |
+| R62 | minor | 3.4, 7.2 | Property 7 not quoted; name the missing proof step. | open |
+| R63 | minor | 4.4 | The (I+A) form rests on a waiting metaphor; state that I and A commute and use the binomial theorem as the single reason. | open |
+| R64 | minor | Example 6.2 | Write the three terms of (I+A)^2 at (1,3) out. | open |
+| R65 | minor | Remark 4.19 | One more sentence: every edge has both ends on the path, a non-consecutive one would be a chord. | open |
+| R66 | minor | 4.6 | "Marked" and "discovered" used as different words; no BFS worked example. | open |
+| R67 | minor | 1.6, Section 6 | Script counts not checkable from the paper; give formulas or known sequences where they exist. | open |
+| R68 | minor | whole paper | Plain words boxes make 38 pages; keep for main answers only. Overruled: the register requires them. | documented |
+| R69 | minor | 7.4 | Cost units differ; say only orders of growth are compared. | open |
+| R70 | minor | Table 4 | m plays three roles. | open |
+
+### Citation and claim coverage
+
+Sources 11, all real. Spot checks 9 this round, all support. Claims 80:
+supported 73, qualified 7, unverified 0.
+
+### Release conditions
+
+1 every dimension at least 3: met (all 4 or 5). 2 no critical defect:
+met. 3 every factual claim supported or qualified: met. 4 conclusions
+justified: met. 5 no essential concept unexplained: met per the
+evaluator. 6 hierarchy: met. 7 build and pdf: met. 8 citation and claim
+checks: met. 9 self-evaluation covers every section: partially met; the
+author's current file is organized per finding and per evidence change,
+with the section named in a location column, not per section as the
+agent instructions require. 10 independent evaluation passed: not met;
+the round 3 evaluator recommends REVISE on ten open minor findings, each
+a few words or one figure tweak.
+
+### Reader summary check
+
+The round 3 reader, fresh, states all three answers correctly, for the
+third reader in a row.
+
+Decision: INCOMPLETE. Three rounds are spent without release. No
+critical or major defect was found in any round; every dimension scores 4
+or 5; every number and proof has been independently verified three times.
+Release is withheld only because 10 minor evaluator findings and 20
+reader items remain open, and the skill stops after three rounds rather
+than force a pass. A fourth round, if the user asks for one, needs one
+author pass over the listed items and one fresh evaluation.
