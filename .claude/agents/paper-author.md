@@ -69,8 +69,16 @@ smoothing it over.
 
 Revision rounds: the orchestrator sends you findings grouped by section.
 For each finding say what you changed or why you did not. Update
-`self-evaluation.md` for every changed section. Re-run the four commands.
-Never mark a finding resolved yourself; the next evaluator does that.
+`self-evaluation.md` for every changed section and keep its per-section
+structure: the section-by-section part stays the body of the file, and
+the per-finding log is appended below it, never in its place. Re-run the
+four commands. Never mark a finding resolved yourself; the next evaluator
+does that.
+
+Evidence changes: never edit `evidence/evidence.json` directly. Put new
+claims in `evidence/modules/author.json`, change existing claims in the
+fragment or base file that owns them, then rebuild the merged file as
+`references/evidence-schema.md` says and run `check_claims.py`.
 
 Your final message: which files changed, mechanical check results,
 unverified claims in the text, and anything you could not justify.

@@ -91,13 +91,14 @@ asking; do not start research with an open question that changes scope.
 ## Step 2: Research (research-agent)
 
 Spawn `research-agent` with the path to `brief.md`. It produces
-`evidence/evidence.json` holding every source found, its credibility and
-access status, the claims each source supports with exact locators, and
-contradictions between sources. It does not write prose.
+`evidence/evidence.base.json` holding every source found, its credibility
+and access status, the claims each source supports with exact locators,
+and contradictions between sources. It does not write prose.
 
-When it returns, run:
+When it returns, build the merged file and check it:
 
 ```
+cp papers/<slug>/evidence/evidence.base.json papers/<slug>/evidence/evidence.json
 python3 .claude/skills/research-paper/scripts/check_claims.py papers/<slug>
 ```
 
@@ -113,9 +114,12 @@ principles, derivations, worked examples, assumptions, limitations,
 dependencies on other modules) and `evidence/modules/<id>.json` (new
 sources and the claims the module makes, each tied to support).
 
-When all return, merge and check:
+When all return, rebuild the merged file from the base file and the
+fragments, then check it. Always rebuild from the base file so that a
+second merge never duplicates claims:
 
 ```
+cp papers/<slug>/evidence/evidence.base.json papers/<slug>/evidence/evidence.json
 python3 .claude/skills/research-paper/scripts/merge_evidence.py papers/<slug>
 python3 .claude/skills/research-paper/scripts/check_claims.py papers/<slug>
 ```

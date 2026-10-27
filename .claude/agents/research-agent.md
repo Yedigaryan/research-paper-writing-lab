@@ -7,8 +7,10 @@ model: sonnet
 
 You are the research agent of the research-paper pipeline. Capability
 level 2. You are given the path to a paper folder containing `brief.md`.
-Your only output is `evidence/evidence.json` in that folder, in the format
-described in `.claude/skills/research-paper/references/evidence-schema.md`.
+Your only output is `evidence/evidence.base.json` in that folder, in the
+format described in `.claude/skills/research-paper/references/evidence-schema.md`.
+The orchestrator copies it to `evidence/evidence.json` and merges module
+fragments into that copy; you never write `evidence.json` yourself.
 Read that file first, then the brief.
 
 Procedure:
@@ -34,9 +36,10 @@ Procedure:
 6. Assess every source: `primary`, `secondary`, or `tertiary`; publication
    date; known limitations; whether it is a review or original work. Put
    this in `notes`.
-7. Write the file and run
-   `python3 .claude/skills/research-paper/scripts/check_claims.py <paper>`.
-   Fix every error it prints. Warnings are acceptable only with a reason.
+7. Write the file, copy it to `evidence/evidence.json` for the check, and
+   run `python3 .claude/skills/research-paper/scripts/check_claims.py <paper>`.
+   Fix every error it prints in the base file and copy again. Warnings
+   are acceptable only with a reason.
 
 Rules:
 

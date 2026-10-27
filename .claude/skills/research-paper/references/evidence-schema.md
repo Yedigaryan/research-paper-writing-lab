@@ -1,10 +1,19 @@
 # Evidence file
 
 One file per paper: `papers/<slug>/evidence/evidence.json`. It is the single
-source of truth for what the paper may claim. Module owners write fragments
-with the same schema to `evidence/modules/<id>.json`; the orchestrator
-merges them with `scripts/merge_evidence.py`. Nobody edits `evidence.json`
-by hand after a merge; fix the fragment and merge again.
+source of truth for what the paper may claim, and it is always generated:
+
+- The research agent writes `evidence/evidence.base.json`.
+- Module owners write `evidence/modules/<id>.json`; the author writes
+  `evidence/modules/author.json` for claims it must add.
+- The orchestrator rebuilds the merged file with
+  `cp evidence/evidence.base.json evidence/evidence.json` followed by
+  `scripts/merge_evidence.py`.
+
+Nobody edits `evidence.json` by hand. A change to an existing claim goes
+into the fragment or base file that owns it, then the file is rebuilt. A
+re-merge must reproduce the committed file exactly; the evaluator checks
+this.
 
 `scripts/check_claims.py` validates the file against this schema.
 
