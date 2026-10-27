@@ -1,3 +1,235 @@
 \section{Introduction}\label{sec:introduction}
+% claims used here: C1 C7 C15 C16 C21 C24 C25 C26 C27 C28 C29 m1-9 m2-15 m3-11
 
-To be written.
+\subsection{The three questions and where each came from}\label{sec:questions}
+
+A lecture whiteboard, photographed twice from slightly different angles, is the
+starting point of this paper~\cite{whiteboard1,whiteboard2}. Read from top to
+bottom, the board shows six things (\Cref{tab:board}). They set up a graph with
+$N$ vertices that is given only by its adjacency matrix $A$, and they ask two
+questions about it. The words of the problem statement are the board's own: ``Given graph
+$(G,V)$ with $N$ nodes i.e.\ $|G|=N$ and the graph is represented through it's adj.\ matrix.
+So you have $A$ matrix''~\cite{whiteboard1,whiteboard2}.
+
+\begin{table}[ht]
+\centering
+\caption{Every line of the board, in reading order, and where this paper treats it.}
+\label{tab:board}
+\small
+\begin{tabular}{@{}cp{6.4cm}p{6.6cm}@{}}
+\toprule
+No. & What the board shows & Where treated \\
+\midrule
+1 & $A_{ij}=1$ if $e_{ij}\in V$, and $0$ if $e_{ij}\notin V$ (the board's $V$ is the edge set) & Definition of the adjacency matrix, \Cref{sec:background}; letters in \Cref{sec:conventions} \\
+2 & A drawing of three circled vertices $1,2,3$ and a grid labelled ``adj.'' with rows $010$, $101$, $010$ & Mismatch reported in \Cref{sec:conventions}; worked example in \Cref{sec:example} \\
+3 & ``Problem. Given graph $(G,V)$ with $N$ nodes \dots{} So you have $A$ matrix'' & Setting, \Cref{sec:conventions} \\
+4 & Question 1: ``What does $A^{\,\cdot}_{ij}$ represent'', with a small mark above $A$ & \Cref{sec:answer1}; the mark is discussed in \Cref{sec:conventions} \\
+5 & Question 2: ``How to know if graph is connected or not'' & \Cref{sec:answer2} \\
+6 & ``Def.\ Graph is called connected if for any $n_i,n_j$ $\exists$ path between nodes'' & Definition of connected, \Cref{sec:background}; the word ``path'' in \Cref{sec:answer3} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The paper answers three questions.
+\begin{enumerate}
+\item[\textbf{Q1.}] For a positive integer $k$, what does the entry $(A^k)_{ij}$ of the $k$-th power of $A$ represent? This is the board's first question~\cite{whiteboard1,whiteboard2}.
+\item[\textbf{Q2.}] How can one tell from $A$ alone whether the graph is connected? This is the board's second question~\cite{whiteboard1,whiteboard2}.
+\item[\textbf{Q3.}] What is the definition of a path between two vertices $n_i$ and $n_j$? This question is not on the board. It was added by the assignment text that came with the photographs.
+\end{enumerate}
+Question~3 matters because the board's definition of ``connected'' uses the
+word ``path'' without saying which of several meanings it has
+(\Cref{sec:conventions}), and the answer to Question~2 depends on it.
+
+The course textbook, \emph{Graph Theory} by Petrosyan, Mkrtchyan and
+Kamalyan~\cite{petrosyan2015grafneri}, supplies the definitions and their
+numbers. In the pages read for this paper (printed pages 9--12, 21--23 and 48--49) it contains neither the
+walk-counting theorem nor a matrix test for connectivity.
+That absence is itself \kindtag{unverified}, because Chapters~3 to~8 of the book were not read (claim m3-11).
+So the paper proves both results itself and marks them \kindtag{derived here}.
+
+\paragraph{The answers in brief.}
+The details and the proofs follow; this list is only a map.
+\begin{enumerate}
+\item[\textbf{A1.}] $(A^k)_{ij}$ is the number of \emph{walks} of length $k$ from $n_i$ to $n_j$ (\Cref{thm:walkcount}). It is not the number of paths: walks may repeat vertices and edges (\Cref{prop:warning}).
+\item[\textbf{A2.}] For $N\ge2$, the graph is connected if and only if every entry off the diagonal of $A+A^2+\dots+A^{N-1}$ is positive (\Cref{thm:test}). Equivalently, $(I+A)^{N-1}$ has no zero entry (\Cref{prop:iplusa}). The exponent $N-1$ cannot be lowered to $N-2$ (\Cref{prop:sharp}).
+\item[\textbf{A3.}] In the course convention, a path between $n_i$ and $n_j$ is a walk from $n_i$ to $n_j$ whose vertices are pairwise distinct (\Cref{def:pathbetween}). It is the textbook's ``simple path'', Definition~1.2.13~\cite{petrosyan2015grafneri}.
+\end{enumerate}
+
+\subsection{The story: houses and roads}\label{sec:story}
+
+\begin{plainwords}
+Picture a small village. Each house is a point. Each road joins exactly two
+different houses. Every road can be driven in both directions. No road starts
+and ends at the same house. No two roads join the same pair of houses. The
+village has only finitely many houses. A trip is a list of houses, one after
+another. Each house on the list shares a road with the house before it. A trip
+may pass the same house twice. It may drive the same road twice. A trip may
+also be just one house, with no driving at all. Every idea in this paper is
+about this village and its trips.
+\end{plainwords}
+
+The village from the board has three houses in a row. The first house and the
+middle house share a road. The middle house and the last house share a road. No
+road joins the first house and the last house. \Cref{fig:village} (left) shows
+this village. The same story is used before every definition, theorem, test and
+example, so that each can be followed without the symbols. \Cref{tab:story} gives the
+dictionary from the story to the textbook's words and numbers.
+
+\begin{figure}[ht]
+\centering
+\input{figures/fig-village}
+\caption{Left: the village of the board matrix, three houses in a row, with roads
+$1$--$2$ and $2$--$3$. Right: the board drawing as it appears in both photographs, a
+line from $1$ to $2$ ending in an arrowhead at $2$, a line from $1$ to $3$, and a
+line from $2$ to $3$~\cite{whiteboard1,whiteboard2}. The two pictures do not describe the same
+graph; see \Cref{sec:conventions}.}
+\label{fig:village}
+\end{figure}
+
+\begin{table}[ht]
+\centering
+\caption{The story and the technical words. Textbook numbers are from the course textbook~\cite{petrosyan2015grafneri}; ``n.n.'' means that the pages read give no number.}
+\label{tab:story}
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+Story word & Technical term & Textbook number & Defined in \\
+\midrule
+house & vertex & 1.1.1 & \Cref{def:graph} \\
+road & edge & 1.1.1 & \Cref{def:graph} \\
+two houses share a road & adjacent & 1.1.4 & \Cref{def:adjacent} \\
+number of roads at a house & degree & n.n. & \Cref{def:degree} \\
+table of ones and zeros & adjacency matrix & n.n. (p.~11) & \Cref{def:adjmatrix} \\
+trip & walk & 1.2.10 & \Cref{def:walk} \\
+trip that ends where it began & closed walk & 1.2.11 & \Cref{def:closedwalk} \\
+trip that never repeats a road & trail & 1.2.12 & \Cref{def:trail} \\
+route that never repeats a house & path & 1.2.13 & \Cref{def:path} \\
+round trip that never repeats a road & cycle & 1.2.14 & \Cref{def:cycle} \\
+round trip that repeats no house but the first & simple cycle & 1.2.15 & \Cref{def:simplecycle} \\
+fewest roads on a trip between two houses & distance & 1.2.16 & \Cref{def:distance} \\
+village in one piece & connected graph & 2.1.1 & \Cref{def:connected} \\
+one piece of a village & component & n.n. (p.~49) & \Cref{def:component} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Conventions and assumptions}\label{sec:conventions}
+
+Every reading below is a choice made where the photographs, the assignment
+text, or the textbook leave room. Each is stated here so that the reader can
+see what the rest of the paper rests on.
+
+\begin{enumerate}
+\item \textbf{Setting.} The graph is finite, simple (no loops, no repeated edges) and
+undirected. This is the assumption of the assignment text. It agrees with the board matrix, which is symmetric and has zeros on the diagonal (item~4 below), and with the textbook's definition of a graph~\cite[Section~1.1, Definition~1.1.1, p.~9]{petrosyan2015grafneri}.
+\item \textbf{The mark above $A$ in Question~1.} In both photographs the mark above
+$A$ is small. It looks like quotation marks or a small $n$, and it is not
+clearly a $k$~\cite{whiteboard1,whiteboard2}. This paper reads it as a power
+$k$, because the assignment text asks about $A^k$. This reading is
+\kindtag{interpretation, qualified}. The mathematics does not depend on the
+letter: the theorem in \Cref{sec:answer1} holds for every positive integer
+exponent, whether the board meant $k$ or $n$ (claim m1-9).
+\item \textbf{Quotation marks around $A$.} Two lines lower, the board writes ``$A$'' (``So you have ``$A$'' matrix'')~\cite{whiteboard1,whiteboard2}. This paper takes it as the name of the adjacency matrix.
+\item \textbf{The drawing and the matrix disagree.} The drawing shows three lines: $1$--$2$ with an
+arrowhead at $2$, $1$--$3$, and $2$--$3$~\cite{whiteboard1,whiteboard2}. The matrix
+next to it has $A_{12}=A_{21}=1$ and $A_{23}=A_{32}=1$, and $A_{13}=A_{31}=0$
+(\Cref{tab:mismatch}). So the drawing has an edge $1$--$3$ that the matrix does
+not have, and an arrowhead (a direction) that the symmetric matrix does not
+have. The problem statement says the graph \emph{is given by its adjacency
+matrix}~\cite{whiteboard1,whiteboard2}, so this paper takes the matrix as the
+example graph and calls it $B$ (\Cref{fig:village}, left). It treats the
+arrowhead as a stray mark, since the matrix is symmetric and the problem is
+about undirected graphs. The paper reports the mismatch and does not guess which one
+the lecturer intended. The three-line drawing is called $T$ (a triangle) and is used only where a graph with a cycle is needed.
+\item \textbf{The board's letters.} The board writes $(G,V)$ for the graph and
+$e_{ij}\in V$ in the definition of $A_{ij}$, so the board's $V$ is the
+\emph{edge} set. The textbook writes $G=(V,E)$, with $V$ for vertices and $E$
+for edges~\cite{petrosyan2015grafneri}. This is a difference of notation only.
+The paper uses the textbook's $V$ and $E$. The board writes $|G|=N$ for the
+number of vertices and $n_i$ for vertices; the paper keeps $N$ and $n_i$. The
+textbook writes $v_i$ and $n$; these are mentioned only here.
+\item \textbf{The word ``path''.} The textbook uses ``path'' for a walk with no
+repeated edge (Definition~1.2.12) and ``simple path'' for a walk with no
+repeated vertex (Definition~1.2.13)~\cite{petrosyan2015grafneri}. English texts
+call the first a trail and the second a path~\cite{grinberg2025graph,wikipedia_path_graph_theory}.
+The assignment text says that in the course ``path'' means no repeated vertices.
+The board does not say which meaning it uses. This paper therefore writes
+\emph{trail} for Definition~1.2.12 and \emph{path} for Definition~1.2.13 everywhere,
+and shows the three conventions side by side in \Cref{tab:conventions}. That the
+course uses this meaning is \kindtag{interpretation, qualified} (claim C24).
+\item \textbf{Lengths and exponents.} The exponent $k$ is a positive integer. The
+case $k=0$ (the identity matrix, one walk of length $0$ from a vertex to itself) is treated by
+Grinberg~\cite{grinberg2025graph} and is not needed for the board question. A walk of length $0$, a single vertex, is
+allowed, because the textbook's own property $d(u,u)=0$ needs it. The textbook does not
+say so in words, so this is \kindtag{interpretation, qualified} (claim m2-15).
+\item \textbf{What the textbook contains.} Walk counting and the matrix test are
+proved in this paper. The textbook was read only at printed pages 9--12, 21--23
+and 48--49, so ``not in the textbook'' means ``not in those pages'' \kindtag{unverified} (claim m3-11).
+\item \textbf{Computation.} Every matrix, product, sum and count was computed by
+script before it was written. The scripts and the way to run them are in
+\cref{app:scripts}.
+\end{enumerate}
+
+\begin{table}[ht]
+\centering
+\caption{The board drawing and the board matrix, edge by edge~\cite{whiteboard1,whiteboard2}.}
+\label{tab:mismatch}
+\small
+\begin{tabular}{@{}lp{3.2cm}p{3.2cm}p{5.0cm}@{}}
+\toprule
+Pair of vertices & In the drawing & In the matrix & Verdict \\
+\midrule
+$1,2$ & line, arrowhead at $2$ & $A_{12}=A_{21}=1$ & edge in both; arrowhead has no counterpart \\
+$2,3$ & line & $A_{23}=A_{32}=1$ & edge in both \\
+$1,3$ & line & $A_{13}=A_{31}=0$ & edge in the drawing only \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Notation}\label{sec:notation}
+
+The letters are fixed here, before the first definition, and used unchanged after
+this point. \Cref{tab:notation} also gives the board's and the textbook's letters.
+
+\begin{table}[ht]
+\centering
+\caption{Notation of this paper, with the board's and the textbook's letters.}
+\label{tab:notation}
+\small
+\begin{tabular}{@{}p{2.9cm}p{6.3cm}p{2.0cm}p{2.0cm}@{}}
+\toprule
+Symbol & Meaning & Board & Textbook \\
+\midrule
+$G=(V,E)$ & a finite simple undirected graph, vertex set $V$, edge set $E$ & $(G,V)$, with $V$ the edge set & $G=(V,E)$ \\
+$N$ & number of vertices & $|G|=N$ & $n$ \\
+$n_1,\dots,n_N$ & the vertices & $n_i$ & $v_i$ \\
+$u,v,w$ & any vertices & --- & $u,v$ \\
+$n_in_j$, $e_{ij}$ & the edge joining $n_i$ and $n_j$ & $e_{ij}$ & $uv$ \\
+$A$, $A_{ij}$ & adjacency matrix and its entry in row $i$, column $j$ & $A$, $A_{ij}$ & $A(G)$, $a_{ij}$ \\
+$A^k$, $I$ & $k$-th power of $A$ and the $N\times N$ identity matrix & $A^{\,\cdot}$ & --- \\
+$k,m$ & positive integers: lengths of walks, exponents & mark above $A$ & --- \\
+$i,j,r$ & indices running from $1$ to $N$ & $i,j$ & --- \\
+$\deg(n_i)$ & degree of $n_i$ & --- & --- \\
+$d(u,v)$ & distance & --- & $d(u,v)$ \\
+$S$ & $A+A^2+\dots+A^{N-1}$, defined in \Cref{sec:answer2} & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{How the paper is organized, and how statements are labelled}\label{sec:organization}
+
+\Cref{sec:background} gives the definitions in the textbook's order. Each
+definition is followed by a remark on what it allows and forbids, an example and
+a non-example. \Cref{sec:answer1,sec:answer2,sec:answer3} answer Questions~1, 2 and 3 in that
+order. \Cref{sec:example} writes out every matrix for the board graph $B$ and for a graph with a single
+edge. \Cref{sec:discussion} states limitations and \Cref{sec:conclusion} answers the three
+questions directly. \Cref{app:derivations} holds derivations and the scripts, and
+\Cref{app:terms} lists the course terms with their textbook numbers.
+
+Every definition, theorem, lemma, test, and worked example is preceded by a
+short paragraph marked ``In plain words''. Statements carry a label when they are not simply facts
+from a source: \kindtag{derived here} for results proved or computed in this
+paper, \kindtag{interpretation} for readings of the material, \kindtag{estimate}
+for operation counts, and \kindtag{qualified} or \kindtag{unverified} where the
+sources do not settle the point. A source that is cited states the fact itself;
+where only the statement is cited and the proof is the paper's own, the text says so.

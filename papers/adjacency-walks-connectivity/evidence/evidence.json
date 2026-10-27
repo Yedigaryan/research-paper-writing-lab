@@ -252,7 +252,9 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/background.tex"
+        "appendices/course-terms.tex",
+        "sections/background.tex",
+        "sections/introduction.tex"
       ],
       "contradicted_by": []
     },
@@ -282,6 +284,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/course-terms.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -307,6 +310,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "sections/answer1_walks.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -387,7 +391,11 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer1_walks.tex",
+        "sections/answer2_connectivity.tex",
+        "sections/conclusion.tex",
+        "sections/discussion.tex"
       ],
       "contradicted_by": [
         "C11"
@@ -410,12 +418,13 @@
           "quote": "The 0-th power of any n × n-matrix is defined to be the n × n identity matrix In ; thus, C0 = In ."
         }
       ],
-      "derivation": null,
+      "derivation": "sections/answer1_walks.tex, proof of Theorem 3.5 (label thm:walkcount); appendices/derivations.tex, Appendix A.1 (label app:walkcount)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex",
-        "appendices/derivations.tex"
+        "appendices/derivations.tex",
+        "sections/answer1_walks.tex",
+        "sections/introduction.tex"
       ],
       "contradicted_by": []
     },
@@ -440,7 +449,8 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/answer1_walks.tex",
+        "sections/conclusion.tex"
       ],
       "contradicted_by": []
     },
@@ -460,7 +470,9 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/answer1_walks.tex",
+        "sections/answer2_connectivity.tex",
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -481,11 +493,12 @@
           "quote": "The number of walks of length 2 from a vertex to itself is just the number of edges at that vertex, or the vertex degree."
         }
       ],
-      "derivation": "appendices/derivations.tex, walk-versus-path counterexample (to be written by m1; the matrix products by script)",
+      "derivation": "appendices/derivations.tex, Appendix A.2 (label app:counterexample); sections/answer1_walks.tex, Proposition 3.10 (label prop:warning); matrix products and counts by appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer1_walks.tex"
       ],
       "contradicted_by": []
     },
@@ -509,7 +522,10 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/answer1_walks.tex",
+        "sections/discussion.tex"
+      ],
       "contradicted_by": [
         "C6",
         "C8"
@@ -536,6 +552,8 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/course-terms.tex",
+        "sections/answer3_path.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -596,7 +614,10 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/background.tex"
+        "sections/answer3_path.tex",
+        "sections/background.tex",
+        "sections/conclusion.tex",
+        "sections/introduction.tex"
       ],
       "contradicted_by": [
         "C21"
@@ -618,7 +639,10 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/background.tex"
+        "sections/answer3_path.tex",
+        "sections/background.tex",
+        "sections/conclusion.tex",
+        "sections/introduction.tex"
       ],
       "contradicted_by": []
     },
@@ -643,6 +667,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "sections/answer3_path.tex",
         "sections/background.tex"
       ],
       "contradicted_by": [
@@ -685,8 +710,9 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/background.tex",
-        "appendices/derivations.tex"
+        "appendices/course-terms.tex",
+        "appendices/derivations.tex",
+        "sections/background.tex"
       ],
       "contradicted_by": []
     },
@@ -711,8 +737,8 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/background.tex",
-        "appendices/derivations.tex"
+        "appendices/derivations.tex",
+        "sections/background.tex"
       ],
       "contradicted_by": []
     },
@@ -747,7 +773,10 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/background.tex"
+        "appendices/course-terms.tex",
+        "sections/answer3_path.tex",
+        "sections/background.tex",
+        "sections/introduction.tex"
       ],
       "contradicted_by": [
         "C15"
@@ -769,6 +798,8 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/course-terms.tex",
+        "sections/answer3_path.tex",
         "sections/background.tex"
       ],
       "contradicted_by": [
@@ -791,6 +822,7 @@
       "confidence": "medium",
       "status": "supported",
       "used_in": [
+        "sections/answer3_path.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -811,7 +843,11 @@
       "confidence": "medium",
       "status": "qualified",
       "used_in": [
-        "sections/background.tex"
+        "sections/answer3_path.tex",
+        "sections/background.tex",
+        "sections/conclusion.tex",
+        "sections/discussion.tex",
+        "sections/introduction.tex"
       ],
       "contradicted_by": []
     },
@@ -836,6 +872,9 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/course-terms.tex",
+        "sections/answer3_path.tex",
+        "sections/background.tex",
         "sections/introduction.tex"
       ],
       "contradicted_by": []
@@ -861,6 +900,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/course-terms.tex",
         "sections/introduction.tex"
       ],
       "contradicted_by": []
@@ -911,8 +951,9 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/introduction.tex",
-        "sections/analysis.tex"
+        "sections/discussion.tex",
+        "sections/example.tex",
+        "sections/introduction.tex"
       ],
       "contradicted_by": []
     },
@@ -937,6 +978,7 @@
       "confidence": "medium",
       "status": "qualified",
       "used_in": [
+        "sections/discussion.tex",
         "sections/introduction.tex"
       ],
       "contradicted_by": []
@@ -957,6 +999,9 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/course-terms.tex",
+        "appendices/derivations.tex",
+        "sections/answer2_connectivity.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -982,6 +1027,8 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/course-terms.tex",
+        "sections/answer2_connectivity.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -1002,6 +1049,8 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/derivations.tex",
+        "sections/answer2_connectivity.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -1022,7 +1071,9 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer2_connectivity.tex",
+        "sections/background.tex"
       ],
       "contradicted_by": []
     },
@@ -1047,7 +1098,8 @@
       "confidence": "medium",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/answer2_connectivity.tex",
+        "sections/discussion.tex"
       ],
       "contradicted_by": []
     },
@@ -1068,12 +1120,13 @@
           "quote": "Then, there is a path from u to v of length ≤ k."
         }
       ],
-      "derivation": "appendices/derivations.tex, proof of the connectivity test (to be written by m3)",
+      "derivation": "sections/answer2_connectivity.tex, Proposition 4.5 (label prop:pair) and Theorem 4.6 (label thm:test); appendices/derivations.tex, Appendix A.3 (label app:testproof) (chain of premises)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex",
-        "appendices/derivations.tex"
+        "appendices/derivations.tex",
+        "sections/answer2_connectivity.tex",
+        "sections/conclusion.tex"
       ],
       "contradicted_by": []
     },
@@ -1093,7 +1146,8 @@
       "confidence": "medium",
       "status": "qualified",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/answer2_connectivity.tex",
+        "sections/discussion.tex"
       ],
       "contradicted_by": []
     },
@@ -1109,12 +1163,13 @@
           "quote": "Define the modified adjacency matrix A′ = I + A, where the identity matrix I adds self-loops (A′i,i = 1)."
         }
       ],
-      "derivation": "appendices/derivations.tex, equivalence of the two matrix tests (to be written by m3; binomial theorem for commuting matrices)",
+      "derivation": "appendices/derivations.tex, Appendix A.4 (label app:iplusa) (binomial expansion, proof of Proposition 4.16 (label prop:iplusa))",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex",
-        "appendices/derivations.tex"
+        "appendices/derivations.tex",
+        "sections/answer2_connectivity.tex",
+        "sections/conclusion.tex"
       ],
       "contradicted_by": []
     },
@@ -1139,7 +1194,7 @@
       "confidence": "medium",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/answer2_connectivity.tex"
       ],
       "contradicted_by": []
     },
@@ -1169,7 +1224,8 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/answer2_connectivity.tex",
+        "sections/discussion.tex"
       ],
       "contradicted_by": []
     },
@@ -1190,7 +1246,7 @@
           "quote": "Սահմանում 1.1.4: u և v գագաթները կանվանենք հարևան, եթե uv ∈ E։"
         }
       ],
-      "derivation": "modules/m1.md, Section 3.3 (Proposition 1, items 4 and 5); numbers by modules/m1_walks.py",
+      "derivation": "sections/background.tex, Proposition 2.17 (label prop:Aproperties), items 4 and 5; numbers by appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -1215,11 +1271,13 @@
           "quote": "A walk (in G) means a finite sequence (v0 , v1 , . . . , vk ) of vertices of G (with k ≥ 0) such that all of v0 v1 , v1 v2 , v2 v3 , . . . , vk−1 vk are edges of G."
         }
       ],
-      "derivation": "modules/m1.md, Section 3.6 (reduction to vertex sequences)",
+      "derivation": "appendices/derivations.tex, Appendix A.1 (label app:walkcount); sections/background.tex, Remark 2.21 (label rem:walk)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "appendices/derivations.tex"
+        "appendices/derivations.tex",
+        "sections/answer1_walks.tex",
+        "sections/background.tex"
       ],
       "contradicted_by": []
     },
@@ -1240,12 +1298,13 @@
           "quote": "Thus the total number of walks of length k from vi to vj is the sum of the expressions (Ak−1 )ir Arj over all vertices vr of G, which is exactly (Ak )ij ."
         }
       ],
-      "derivation": "modules/m1.md, Section 3.7 (Theorem 1 and proof); finite cross-check by modules/m1_walks.py",
+      "derivation": "sections/answer1_walks.tex, proof of Theorem 3.5 (label thm:walkcount); appendices/derivations.tex, Appendix A.1 (label app:walkcount); finite cross-check by appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex",
-        "appendices/derivations.tex"
+        "appendices/derivations.tex",
+        "sections/answer1_walks.tex",
+        "sections/conclusion.tex"
       ],
       "contradicted_by": []
     },
@@ -1255,10 +1314,13 @@
       "kind": "derived",
       "module": "m1",
       "support": [],
-      "derivation": "modules/m1_walks.py, final section; output in modules/m1_walks_output.txt",
+      "derivation": "appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt), last section; appendices/derivations.tex, Appendix A.6 (label app:crosschecks)",
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "appendices/derivations.tex",
+        "sections/discussion.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -1273,11 +1335,13 @@
           "quote": "adj. 0 1 0 / 1 0 1 / 0 1 0"
         }
       ],
-      "derivation": "modules/m1_walks.py; output in modules/m1_walks_output.txt",
+      "derivation": "sections/example.tex, Example 6.1 (label ex:boardpowers); matrices generated by appendices/scripts/generate_paper_numbers.py from appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer1_walks.tex",
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -1303,11 +1367,13 @@
           "quote": "G գրաֆի (u0, u_k)-ճանապարհը կանվանենք պարզ (u0, u_k)-ճանապարհ, եթե նրա մեջ մտնող բոլոր գագաթները զույգ առ զույգ տարբեր են։"
         }
       ],
-      "derivation": "modules/m1.md, Section 5.3; enumeration by modules/m1_walks.py",
+      "derivation": "appendices/derivations.tex, Appendix A.2 (label app:counterexample); sections/answer1_walks.tex, Proposition 3.10 (label prop:warning) and Table 5 (label tab:walksvspaths); enumeration by appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer1_walks.tex",
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -1323,11 +1389,13 @@
           "quote": "Let A be the adjacency matrix of a simple graph G on vertices v1 , v2 , . . . , vn . Let k be a positive integer. Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
         }
       ],
-      "derivation": "modules/m1.md, Section 3.8 (Corollary 1)",
+      "derivation": "sections/answer1_walks.tex, Corollary 3.9 (label cor:walkcount)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer1_walks.tex",
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -1351,7 +1419,10 @@
       "derivation": null,
       "confidence": "medium",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/answer1_walks.tex",
+        "sections/discussion.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -1370,6 +1441,8 @@
       "confidence": "medium",
       "status": "qualified",
       "used_in": [
+        "sections/answer1_walks.tex",
+        "sections/discussion.tex",
         "sections/introduction.tex"
       ],
       "contradicted_by": []
@@ -1395,6 +1468,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/course-terms.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -1425,6 +1499,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/course-terms.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -1520,6 +1595,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "sections/answer3_path.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -1545,6 +1621,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/derivations.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -1595,7 +1672,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/background.tex"
+        "sections/answer3_path.tex"
       ],
       "contradicted_by": []
     },
@@ -1625,8 +1702,8 @@
       "confidence": "medium",
       "status": "qualified",
       "used_in": [
-        "sections/background.tex",
-        "sections/introduction.tex"
+        "sections/answer3_path.tex",
+        "sections/conclusion.tex"
       ],
       "contradicted_by": []
     },
@@ -1647,12 +1724,12 @@
           "quote": "Assume that there is a walk from u to v of length k for some k ∈ N. Then, there is a path from u to v of length ≤ k."
         }
       ],
-      "derivation": "modules/m2.md, Section 3.8, Lemma L1; checked by modules/m2_walks.py, output in modules/m2_walks_output.txt, section 5",
+      "derivation": "sections/background.tex, Lemma 2.49 (label lem:walkpath); checked by appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), section 5",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/background.tex",
-        "appendices/derivations.tex"
+        "appendices/derivations.tex",
+        "sections/background.tex"
       ],
       "contradicted_by": []
     },
@@ -1668,10 +1745,11 @@
           "quote": "Let G be a simple graph. Let w be a path in G. Prove that the edges of w are distinct."
         }
       ],
-      "derivation": "modules/m2.md, Section 3.4, Proposition P1; checked by modules/m2_walks.py, output in modules/m2_walks_output.txt, section 5 (0 failures)",
+      "derivation": "sections/background.tex, Proposition 2.36 (label prop:pathtrail); checked by appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), section 5",
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/derivations.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -1688,10 +1766,11 @@
           "quote": "However, any path from u to v must have length ≤ n − 1, where n is the number of vertices of G (since a path of length k has k + 1 distinct vertices, but G has only n vertices to spare)."
         }
       ],
-      "derivation": "modules/m2.md, Section 3.8, Corollary L2; modules/m2_walks.py, output in modules/m2_walks_output.txt, sections 5 and 7",
+      "derivation": "sections/background.tex, Corollary 2.51 (label cor:bound); appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), sections 5 and 7",
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/derivations.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -1713,10 +1792,11 @@
           "quote": "Indeed, Corollary 2.9.7 shows that a shortest walk from u to v (if it exists) must also be a shortest path from u to v."
         }
       ],
-      "derivation": "modules/m2.md, Section 3.8, Proposition P2; checked by modules/m2_walks.py, output in modules/m2_walks_output.txt, section 5 (300 random graphs, 0 disagreements)",
+      "derivation": "appendices/derivations.tex, Appendix A.5 (label app:distance), Proposition A.1 (label prop:shortest); checked by appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), section 5",
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/derivations.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -1733,11 +1813,13 @@
           "quote": "adj. 0 1 0 / 1 0 1 / 0 1 0"
         }
       ],
-      "derivation": "modules/m2_walks.py, output in modules/m2_walks_output.txt, sections 1 and 6; premise: the matrix of C28 defines B",
+      "derivation": "sections/example.tex, Table 8 (label tab:walkcounts); appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), sections 1 and 6; premise: the matrix of C28 defines B",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/background.tex"
+        "sections/answer3_path.tex",
+        "sections/background.tex",
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -1758,11 +1840,12 @@
           "quote": "G գրաֆի (u0, u_k)-ճանապարհը կանվանենք փակ ճանապարհ կամ ցիկլ, եթե այն փակ շրջանցում է, այսինքն՝ եթե u0 = u_k։"
         }
       ],
-      "derivation": "modules/m2_walks.py, output in modules/m2_walks_output.txt, sections 1, 2 and 3; the textbook's sequences from claim m2-2",
+      "derivation": "sections/background.tex, Remark 2.29 (label rem:trail) and Non-example (label nex:cycle); appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), sections 1, 2 and 3",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/background.tex"
+        "sections/background.tex",
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -1787,7 +1870,10 @@
       "confidence": "medium",
       "status": "qualified",
       "used_in": [
-        "sections/background.tex"
+        "sections/answer3_path.tex",
+        "sections/background.tex",
+        "sections/discussion.tex",
+        "sections/introduction.tex"
       ],
       "contradicted_by": []
     },
@@ -1803,11 +1889,11 @@
           "quote": "G գրաֆի ցանկացած u, v և w գագաթների համար d_G(u, v) ≤ d_G(u, w) + d_G(w, v)։"
         }
       ],
-      "derivation": "modules/m2.md, Section 3.8, Proposition P3 (uses P2)",
+      "derivation": "appendices/derivations.tex, Appendix A.5 (label app:distance), Proposition A.2 (label prop:distprops), uses Proposition A.1",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/background.tex"
+        "appendices/derivations.tex"
       ],
       "contradicted_by": []
     },
@@ -1827,6 +1913,8 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/course-terms.tex",
+        "sections/answer2_connectivity.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -1852,6 +1940,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/course-terms.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -1868,11 +1957,14 @@
           "quote": "The number of walks of length 2 from a vertex to itself is just the number of edges at that vertex, or the vertex degree."
         }
       ],
-      "derivation": "modules/m3.md Remark 3.1 item 2 and Remark 3.5; script section 'N = 2' of modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "derivation": "sections/answer2_connectivity.tex, Remark 4.11 (label rem:diagonal); sections/background.tex, Remark 2.53 (label rem:connected); script section 'N = 2' of appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer2_connectivity.tex",
+        "sections/background.tex",
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -1888,11 +1980,15 @@
           "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
         }
       ],
-      "derivation": "modules/m3.md Proposition 3.5 and Example 3.7; modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "derivation": "sections/answer2_connectivity.tex, Proposition 4.17 (label prop:sharp), Example 4.18 (label ex:sharp) and Table 6 (label tab:sharp); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer2_connectivity.tex",
+        "sections/conclusion.tex",
+        "sections/discussion.tex",
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -1913,11 +2009,12 @@
           "quote": "Then, there is a path from u to v of length ≤ k."
         }
       ],
-      "derivation": "modules/m3.md Proposition 3.1 and Corollary 3.3; modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "derivation": "sections/answer2_connectivity.tex, Proposition 4.5 (label prop:pair) and Corollary 4.10 (label cor:components); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer2_connectivity.tex"
       ],
       "contradicted_by": []
     },
@@ -1938,11 +2035,11 @@
           "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
         }
       ],
-      "derivation": "modules/m3.md Example 3.5; modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "derivation": "sections/example.tex, Example 6.2 (label ex:testB); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -1958,11 +2055,11 @@
           "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
         }
       ],
-      "derivation": "modules/m3.md Example 3.6; modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "derivation": "sections/example.tex, Example 6.3 (label ex:testD); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -1978,11 +2075,14 @@
           "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
         }
       ],
-      "derivation": "modules/m3_connectivity.py, section 'Exhaustive check'; output modules/m3_connectivity.out.txt",
+      "derivation": "appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt), section 'Exhaustive check'; sections/example.tex, Table 10 (label tab:exhaustive); appendices/derivations.tex, Appendix A.6 (label app:crosschecks)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer2_connectivity.tex",
+        "sections/discussion.tex",
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -2003,11 +2103,13 @@
           "quote": "Then, there is a path from u to v of length ≤ k."
         }
       ],
-      "derivation": "modules/m3.md Proposition 3.1 with m in place of N - 1, and Remark 3.7; modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "derivation": "appendices/derivations.tex, Appendix A.4 (label app:iplusa) (any exponent m >= N - 1), Proposition 4.16 (label prop:iplusa); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer2_connectivity.tex",
+        "sections/discussion.tex"
       ],
       "contradicted_by": []
     },
@@ -2033,11 +2135,13 @@
           "quote": "Total: O(n + m)"
         }
       ],
-      "derivation": "modules/m3.md Remark 3.7; script section 'Cost remark' of modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "derivation": "sections/discussion.tex, Section 7.5 (label sec:cost) and Table 11 (label tab:cost); script section 'Cost remark' of appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "medium",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer2_connectivity.tex",
+        "sections/discussion.tex"
       ],
       "contradicted_by": []
     },
@@ -2051,7 +2155,11 @@
       "confidence": "low",
       "status": "unverified",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/course-terms.tex",
+        "sections/answer1_walks.tex",
+        "sections/answer2_connectivity.tex",
+        "sections/discussion.tex",
+        "sections/introduction.tex"
       ],
       "contradicted_by": []
     },
@@ -2081,7 +2189,8 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/answer2_connectivity.tex",
+        "sections/discussion.tex"
       ],
       "contradicted_by": []
     },
@@ -2106,7 +2215,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/answer2_connectivity.tex"
       ],
       "contradicted_by": []
     }

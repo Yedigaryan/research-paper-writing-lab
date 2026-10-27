@@ -1,0 +1,46 @@
+\section{Course terms and textbook numbers}\label{app:terms}
+% claims used here: C1 C2 C12-C19 C21 C22 C25 C26 C30 C31 m2-1 m2-2 m3-1 m3-2
+
+This appendix lists every term of the course that the paper uses, with the number and
+printed page in the course textbook~\cite{petrosyan2015grafneri} and the English word. Page numbers are the
+printed page numbers of the textbook; the PDF page is one higher. The textbook's own word is given in
+Latin letters as ``path'', ``simple path'' and so on; its Armenian words are not reproduced.
+Terms that the pages read give no number for are marked ``none''.
+
+\begin{table}[ht]
+\centering
+\caption{Course terms, textbook numbers and pages, English words, and where they are defined in this paper.}
+\label{tab:terms}
+\small
+\begin{tabular}{@{}p{3.4cm}p{3.0cm}p{1.3cm}p{3.4cm}p{2.4cm}@{}}
+\toprule
+Term in this paper & Textbook number & Printed page & Textbook word if different & Defined in \\
+\midrule
+simple undirected graph & Definition 1.1.1 & 9 & graph & \cref{def:graph} \\
+adjacent & Definition 1.1.4 & 11 & --- & \cref{def:adjacent} \\
+degree & none & --- & --- & \cref{def:degree} \\
+adjacency matrix & none (after Def.\ 1.1.6) & 11 & $A(G)$ & \cref{def:adjmatrix} \\
+walk & Definition 1.2.10 & 21 & walk & \cref{def:walk} \\
+closed walk & Definition 1.2.11 & 22 & closed walk & \cref{def:closedwalk} \\
+trail & Definition 1.2.12 & 22 & ``path'' & \cref{def:trail} \\
+path & Definition 1.2.13 & 22 & ``simple path'' & \cref{def:path} \\
+cycle & Definition 1.2.14 & 22 & ``cycle'' or ``closed path'' & \cref{def:cycle} \\
+simple cycle & Definition 1.2.15 & 22 & ``simple cycle'' & \cref{def:simplecycle} \\
+distance & Definition 1.2.16 & 22--23 & distance & \cref{def:distance} \\
+walk contains a path & Lemma 1.2.1 (for $u\ne v$) & 23 & --- & \cref{lem:walkpath} \\
+connected & Definition 2.1.1 & 48 & connected & \cref{def:connected} \\
+connected component & none (prose) & 49 & connectivity component & \cref{def:component} \\
+connected iff one component & Remark 2.1.1 & 49 & --- & \cref{rem:component} \\
+path between $n_i$ and $n_j$ & Definition 1.2.13 & 22 & ``simple path'' & \cref{def:pathbetween} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Figures of the textbook used.}
+Fig.~1.2.5 (printed p.~22) is the source of the examples for walks, trails, paths and cycles; \cref{fig:textbook} draws the seven edges that those examples force. Fig.~2.1.1 (p.~48) shows three connected graphs and Fig.~2.1.2 (p.~49) a graph with four components~\cite{petrosyan2015grafneri}.
+
+\paragraph{Results that the textbook pages read do not contain.}
+The walk-counting theorem (\cref{thm:walkcount}) and the matrix test for connectivity (\cref{thm:test}) are not in printed pages 9--12, 21--23 and 48--49, which are the pages read. Chapters~3 to~8 were not read, so their absence from the whole book is \kindtag{unverified} (claim m3-11). For the walk-counting theorem the paper cites Quinlan's notes, and for the statement of the test Paramadevan and Sotheeswaran and Weisstein; the proofs are the paper's own.
+
+\paragraph{The board's letters.}
+The board writes $(G,V)$ with $V$ the edge set, $e_{ij}\in V$, $|G|=N$ and $n_i$~\cite{whiteboard1,whiteboard2}; the textbook writes $G=(V,E)$, $e\in E$, $n$ and $v_i$. The paper uses $G=(V,E)$, $N$ and $n_i$ (\cref{tab:notation}).

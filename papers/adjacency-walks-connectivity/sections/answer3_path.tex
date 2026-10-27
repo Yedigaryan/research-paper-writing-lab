@@ -1,0 +1,73 @@
+\section{Answer 3: the definition of a path between \texorpdfstring{$n_i$}{n_i} and \texorpdfstring{$n_j$}{n_j}}\label{sec:answer3}
+% claims used here: C12 C15 C16 C17 C21 C22 C23 C24 C25 m2-5 m2-7 m2-8 m2-13 m2-15
+
+Question~3 asks for the definition of a path between two vertices $n_i$ and
+$n_j$. The board uses the word in its definition of ``connected'' and does not
+say which of several meanings it has~\cite{whiteboard1,whiteboard2}. The
+assignment text says that in the course a path has no repeated vertices. That is
+the textbook's Definition~1.2.13~\cite[Definition~1.2.13, p.~22]{petrosyan2015grafneri}. This section states the definition for a
+pair of vertices and then sets the three conventions side by side.
+
+\begin{plainwords}
+A path between two houses is a route from one to the other. It never passes a
+house twice, so it has no loop. If the two houses are the same, the route has no
+roads at all. It is just the one house.
+\end{plainwords}
+
+\begin{definition}[Path between $n_i$ and $n_j$, course convention]\label{def:pathbetween}
+Let $n_i$ and $n_j$ be vertices of $G$. A \emph{path between $n_i$ and $n_j$} is a walk $w_0,w_1,\dots,w_k$ with $w_0=n_i$ and $w_k=n_j$ in which the vertices $w_0,\dots,w_k$ are pairwise distinct. Its length is $k$. For $i=j$ the only such path is the single vertex $n_i$, of length $0$. \kindtag{interpretation, qualified, claims m2-8 and C24}
+\end{definition}
+
+This is a simple path in the textbook's sense (Definition~1.2.13) and a path in English usage~\cite{petrosyan2015grafneri,grinberg2025graph}. That the \emph{course} uses this meaning comes from the assignment text and not from a file; the board does not say. So the definition is \kindtag{qualified}. The textbook supplies the definition itself. The phrase ``a path from $p$ to $q$ is a path that starts at $p$ and ends at $q$'' is Grinberg's Definition~2.9.1(d)~\cite[p.~36]{grinberg2025graph}. The case $i=j$ and length $0$ follows the reading of \cref{sec:conventions}, item~7 \kindtag{interpretation, qualified, claim m2-15}.
+
+\begin{remark}\label{rem:pathbetween}
+The definition forbids repeated vertices, and so repeated edges (\cref{prop:pathtrail}). It allows length $0$ only when $i=j$; for $i\ne j$ the length is at least $1$ and, by \cref{cor:bound}, at most $N-1$. In the board's sentence ``there exists a path between nodes'', the words mean that at least one such object exists. By \cref{prop:readings} that statement has the same truth value whether ``path'' means walk, trail or path in the sense above. What changes with the convention is how many such objects there are (\cref{rem:howmany}).
+\end{remark}
+
+\begin{example}\label{ex:pathbetween}
+In the board graph $B$ there is exactly one path between $n_1$ and $n_3$, namely $1,2,3$. Every path has at most $N-1=2$ edges (\cref{cor:bound}), and the enumeration of walks up to length $4$ finds no other (script, claim m2-13). Between $n_1$ and $n_1$ the only path is the single vertex $1$, of length $0$.
+\end{example}
+
+\begin{nonexample}\label{nex:pathbetween}
+In $B$ the walk $1,2,1,2,3$ joins $n_1$ and $n_3$ but is not a path between them: it repeats the vertices $1$ and $2$. It is not a trail either. In the graph $D$ there is no path between $n_1$ and $n_3$ at all.
+\end{nonexample}
+
+\subsection{The three conventions in one table}\label{sec:conventionstable}
+
+\begin{plainwords}
+The same two rules get different names in different books. One rule says never
+drive a road twice. The other says never pass a house twice. Our textbook, English
+books and our course do not always use the same word for the same rule. So here
+is one table that puts the words side by side.
+\end{plainwords}
+
+\begin{table}[ht]
+\centering
+\caption{The three naming conventions. ``Course'' is the assignment text's statement for the word path; the course convention for cycle is not stated, so this paper follows the textbook for cycle and writes ``simple cycle'' for the English ``cycle''. Sources: textbook~\cite{petrosyan2015grafneri}, Grinberg~\cite{grinberg2025graph}, Wikipedia~\cite{wikipedia_path_graph_theory}.}
+\label{tab:conventions}
+\small
+\begin{tabular}{@{}p{4.4cm}p{3.4cm}p{3.8cm}p{2.9cm}@{}}
+\toprule
+Property of the walk & Textbook word (number) & English word & Course and this paper \\
+\midrule
+any list of steps along edges & walk (1.2.10) & walk & walk \\
+walk with first vertex equal to last & closed walk (1.2.11) & closed walk & closed walk \\
+no repeated edge; vertices may repeat & ``path'' (1.2.12) & trail & \textbf{trail} \\
+no repeated vertex (so no repeated edge) & ``simple path'' (1.2.13) & path & \textbf{path} \\
+closed, no repeated edge; vertices may repeat & ``cycle'' or ``closed path'' (1.2.14) & closed trail (``circuit'' in some books; use is not uniform) & cycle (textbook meaning) \\
+closed, no repeated vertex except first and last, length at least $3$ & ``simple cycle'' (1.2.15) & cycle & simple cycle \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Sources for the rows: the textbook's definitions are C12 to C17; English usage is from Grinberg's Definitions~2.9.1(c), 3.4.5 and 2.10.1(b)~\cite{grinberg2025graph} and from Wikipedia, which says that a path has distinct vertices ``by most definitions''~\cite{wikipedia_path_graph_theory}. The row for ``circuit'' rests on Grinberg's remark that authors use the word inconsistently~\cite{grinberg2025graph}. Wikipedia also records that some authors use ``path'' for walks with repeated vertices and ``simple path'' for those with distinct vertices~\cite{wikipedia_path_graph_theory}. That is the textbook's pattern, so the course convention is one of at least two in use. \kindtag{claims C15, C16, C17, C21, C22, C23, m2-7}
+
+\begin{plainwords}
+The word changes how many routes we count. It does not change whether a route
+exists. In the board village there is one clean route from the first house to the
+last. But there are three trips of at most four roads, and two of them turn back.
+\end{plainwords}
+
+\begin{remark}[The number of objects depends on the convention]\label{rem:howmany}
+Under the course convention, the number of paths from $n_1$ to $n_3$ in $B$ is $1$. The walks of length at most $4$ from $n_1$ to $n_3$ are $1,2,3$ (length $2$), $1,2,1,2,3$ and $1,2,3,2,3$ (length $4$); only the first is a path or a trail (script, claim m2-13). So the number of walks, the number of trails and the number of paths are different numbers in general, and the entries of $A^k$ give only the first (\cref{prop:warning}). The existence statement used by \cref{def:connected} is the same under every convention (\cref{prop:readings}).
+\end{remark}

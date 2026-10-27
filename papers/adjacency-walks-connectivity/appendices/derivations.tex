@@ -1,3 +1,154 @@
-\section{Derivations}\label{app:derivations}
+\section{Derivations, cross-checks and scripts}\label{app:derivations}
+% claims used here: C6 C7 C10 C19 C20 C30 C32 C33 C35 C37 m1-2 m1-3 m1-4 m1-5 m1-6 m1-7 m2-6 m2-9 m2-10 m2-11 m2-12 m2-16 m3-3 m3-4 m3-5 m3-8 m3-9 m3-10
 
-To be written.
+This appendix holds the derivations that the evidence file points to, and the
+scripts that produced every number. The body of the paper gives the proofs of
+\cref{thm:walkcount,thm:test,lem:walkpath}. The appendix adds the parts that the
+body only states: the reduction of walks to vertex lists, the general
+counterexample behind \cref{prop:warning}, the proof of \cref{prop:iplusa}, the
+distance results used in \cref{rem:distance} and \cref{cor:components}, the chain
+of premises behind \cref{thm:test}, and the finite checks.
+
+\subsection{Walks as vertex lists, and the induction step}\label{app:walkcount}
+
+Evidence claims C7, m1-2 and m1-3. A walk in the textbook's sense is a sequence
+$u_0,e_1,u_1,\dots,u_k$ with $e_i=u_{i-1}u_i$ (\cref{def:walk}). Take a list
+$(w_0,\dots,w_k)$ of vertices in which each consecutive pair is adjacent. For each $t$
+there is an edge $w_{t-1}w_t$, and it is the only edge with these two ends, because $E$ is a
+set of unordered pairs (\cref{def:graph}). So the list determines the walk,
+by $e_t=w_{t-1}w_t$. Conversely, a walk determines its list of vertices. The two
+assignments are inverse to each other, so the walks of length $k$ from $n_i$ to $n_j$ are in
+one to one correspondence with the lists $(w_0,\dots,w_k)$ with $w_0=n_i$, $w_k=n_j$ and
+consecutive vertices adjacent. This is the reduction used in the proof of
+\cref{thm:walkcount}. For a multigraph the correspondence fails, because two edges can
+join the same pair of vertices. \kindtag{derived here}
+
+The route of the proof, induction on $k$ with the sum over the second-last vertex, is the one in
+Quinlan's notes and in Grinberg's proof of his Theorem~4.5.10~\cite{quinlan_matrices_graphs,grinberg2025graph}. Grinberg also treats $k=0$, with $A^0=I$ and one walk of length $0$ from a vertex to itself~\cite{grinberg2025graph}; the board question needs only $k\ge1$.
+
+The induction step, in words and in symbols, is the identity
+\begin{equation}\label{eq:step}
+W_k(i,j)=\sum_{r=1}^{N}W_{k-1}(i,r)\,A_{rj},
+\end{equation}
+where $W_k(i,j)$ is the number of walks of length $k$ from $n_i$ to $n_j$. The term for $r$ counts the walks of length $k-1$ from $n_i$ to $n_r$ that can be extended by the step to $n_j$; the factor $A_{rj}$ is $1$ when that step exists and $0$ otherwise. The three hand checks on the board graph are written out in \cref{sec:exB}.
+
+\subsection{The walk-versus-path counterexample in general}\label{app:counterexample}
+
+Evidence claims C10, m1-6 and m1-5. \Cref{prop:warning}(a) says: if $n_i$ has a neighbour $n_r$, then the walk $n_i,n_r,n_i$ is counted by $(A^2)_{ii}$, and it is neither a path nor a trail. The argument has three parts, each used in the proof in the body. First, the walk repeats $n_i$, so its vertices are not pairwise distinct. Second, it uses the edge $n_in_r$ twice, so its edges are not pairwise distinct. Third, a path from a vertex to itself has pairwise distinct vertices, so it has length $0$, not $2$. Under each of the three conventions of \cref{tab:conventions} there is therefore no path or trail of length $2$ from $n_i$ to $n_i$, while $(A^2)_{ii}=\deg(n_i)\ge1$.
+
+On the board graph $B$ the script also counts the closed walks from $n_1$ to $n_1$. For $k=1,2,3,4$ there are $0,1,0,2$ of them, and none of these is a path or a trail. The $2$ for $k=4$ are $1\text{-}2\text{-}1\text{-}2\text{-}1$ and $1\text{-}2\text{-}3\text{-}2\text{-}1$, in agreement with $(A^4)_{11}=2$ in \cref{ex:boardpowers}. The walks from $n_1$ to $n_2$ are in \cref{tab:walksvspaths}. The identity $A^{k+2}=2A^k$ follows from $A^3=2A$ (checked by script for $k=1,\dots,5$) by multiplying with $A^{k-1}$.
+
+\subsection{The chain of premises behind the connectivity test}\label{app:testproof}
+
+Evidence claim C35. The proof of \cref{thm:test} is written in the body. \Cref{tab:chain} lists each step with the result it uses and the evidence claims behind that result, so that the proof can be audited without reading it twice.
+
+\begin{table}[ht]
+\centering
+\caption{The proof of \cref{thm:test}, step by step.}
+\label{tab:chain}
+\small
+\begin{tabular}{@{}cp{4.8cm}p{4.4cm}p{2.9cm}@{}}
+\toprule
+Step & Statement & Relies on & Evidence claims \\
+\midrule
+1 & $G$ is connected iff every pair of vertices is joined by a path & \cref{def:connected}, \cref{prop:readings} & C30, C32, C19, C20 \\
+2 & A path between different vertices has length between $1$ and $N-1$ & \cref{cor:bound} & C33, m2-11 \\
+3 & A walk of length $k$ from $n_i$ to $n_j$ exists iff $(A^k)_{ij}>0$ & \cref{thm:walkcount}, \cref{cor:walkcount}(b) & C6, m1-3, m1-7 \\
+4 & A sum of non-negative integers is positive iff a term is positive & \cref{cor:walkcount}(a) & m1-7 \\
+5 & A walk from $n_i$ to $n_j$ contains a path from $n_i$ to $n_j$ & \cref{lem:walkpath} & C19, C20, m2-9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{The form with \texorpdfstring{$I+A$}{I+A} and the exponent \texorpdfstring{$m$}{m}}\label{app:iplusa}
+
+Evidence claims C37 and m3-9. We prove \cref{prop:iplusa}. Let $m\ge N-1\ge1$.
+
+\emph{Expansion.} Write $(I+A)^m=(I+A)(I+A)\cdots(I+A)$ with $m$ factors. Expanding the product gives one term for each choice of $I$ or $A$ from each factor, with the chosen matrices multiplied in order. Because $IX=XI=X$ for every matrix $X$, a term with $k$ letters $A$ and $m-k$ letters $I$ equals $A^k$, wherever the letters stand. The number of choices with exactly $k$ letters $A$ is the binomial coefficient $\binom{m}{k}$. Therefore
+\begin{equation}\label{eq:binomial}
+(I+A)^m=\binom{m}{0}I+\binom{m}{1}A+\binom{m}{2}A^2+\dots+\binom{m}{m}A^m ,
+\end{equation}
+with $A^0=I$. (This is the binomial theorem for the commuting matrices $I$ and $A$.) For $m=2$ it reads $(I+A)^2=I+2A+A^2$, which the script confirmed entry by entry on the board graph and on $D$.
+
+\emph{Off-diagonal entries.} Let $i\ne j$. The identity matrix has $0$ at $(i,j)$, so by \eqref{eq:binomial}
+\[
+\bigl((I+A)^m\bigr)_{ij}=\sum_{k=1}^{m}\binom{m}{k}(A^k)_{ij}.
+\]
+Every coefficient $\binom{m}{k}$ with $1\le k\le m$ is a positive integer, and every $(A^k)_{ij}$ is a non-negative integer (\cref{cor:walkcount}(a)). So the sum is positive if and only if at least one $(A^k)_{ij}$ with $1\le k\le m$ is positive, that is, if and only if there is a walk of length $k$ from $n_i$ to $n_j$ for some $k$ with $1\le k\le m$ (\cref{cor:walkcount}(b)).
+
+If $S_{ij}>0$, such a $k\le N-1\le m$ exists by \cref{prop:pair}. Conversely, if a walk from $n_i$ to $n_j$ exists, \cref{lem:walkpath} gives a path from $n_i$ to $n_j$, of length $k'$ with $1\le k'\le N-1$ by \cref{cor:bound}; this path is a walk of length $k'$, so $(A^{k'})_{ij}>0$ and $S_{ij}>0$. So the off-diagonal entry is positive exactly when $S_{ij}>0$, which is item~(a).
+
+\emph{Diagonal entries.} The term $\binom{m}{0}I$ contributes $1$ to every diagonal entry and the other terms are non-negative, so every diagonal entry is at least $1$, whatever the graph is. This is item~(b).
+
+\emph{Conclusion.} By \cref{thm:test}, $G$ is connected if and only if $S_{ij}>0$ for all $i\ne j$. By~(a) and~(b) this holds if and only if $(I+A)^m$ has no zero entry. \kindtag{derived here} Bai gives the idea in item~3 of his proof sketch~\cite{bai2025adjacency}.
+
+\emph{Repeated squaring.} Since any $m\ge N-1$ works, one may take $m=2^t$ with $2^t\ge N-1$ and compute $(I+A)^{2^t}$ by $t$ squarings; the script verified the resulting zero pattern against breadth-first search on all labelled graphs with $N\le6$ (\cref{app:crosschecks}). \kindtag{derived here, claim m3-9}
+
+\subsection{Distance: shortest walk, shortest trail, shortest path}\label{app:distance}
+
+Evidence claims m2-12 and m2-16.
+
+\begin{plainwords}
+Look at the shortest trip between two houses. It never passes a house twice. If
+it did, we could cut out the loop and get a shorter trip. That cannot be. So the
+shortest trip is also a clean route. It also never drives a road twice.
+\end{plainwords}
+
+\begin{proposition}\label{prop:shortest}
+For vertices $u,v$ of a simple graph, the length of a shortest $(u,v)$-walk, of a shortest $(u,v)$-trail and of a shortest $(u,v)$-path are equal. Each is $+\infty$ when the corresponding set is empty, and the three sets are empty together. So the distance of \cref{def:distance} is the same whether ``path'' is read as trail or as path, and it equals the length of a shortest walk.
+\end{proposition}
+
+\begin{proof}
+Every path is a trail (\cref{prop:pathtrail}) and every trail is a walk. So the set of lengths of paths is contained in the set of lengths of trails, which is contained in the set of lengths of walks. Hence the minimum over walks is at most the minimum over trails, which is at most the minimum over paths. By \cref{lem:walkpath}, a shortest walk contains a path of at most the same length, so the minimum over paths is at most the minimum over walks. Therefore the three minima are equal. If there is no walk, there is no trail and no path. If there is a walk, \cref{lem:walkpath} gives a path, and so the three sets are non-empty together. Grinberg makes the same remark~\cite[Section~2.9.4, p.~40]{grinberg2025graph}.
+\end{proof}
+
+\begin{plainwords}
+The distance has three easy features. It is never negative, and it is zero only
+from a house to itself. It is the same in both directions. And a detour through a
+third house is never shorter than the shortest trip.
+\end{plainwords}
+
+\begin{proposition}\label{prop:distprops}
+The three properties of \cref{rem:distance} follow from \cref{def:distance}.
+\end{proposition}
+
+\begin{proof}
+By \cref{prop:shortest} we may compute $d$ by shortest walks. (1)~Lengths are $0,1,2,\dots$ or $+\infty$, so $d\ge0$. The walk consisting of $u$ alone has length $0$, so $d(u,u)=0$. If $d(u,v)=0$ there is a walk of length $0$ from $u$ to $v$; it is the single vertex, so $v=u$. (2)~If $u_0,\dots,u_k$ is a $(u,v)$-walk, then $u_k,\dots,u_0$ is a $(v,u)$-walk of the same length, since each step is an edge and edges are unordered. So the sets of walk lengths from $u$ to $v$ and from $v$ to $u$ are equal, and so are their minima. (3)~If $d(u,w)$ or $d(w,v)$ is $+\infty$, the right side is $+\infty$ and the inequality holds. Otherwise join a shortest $(u,w)$-walk and a shortest $(w,v)$-walk at $w$. The result is a $(u,v)$-walk of length $d(u,w)+d(w,v)$, and the shortest $(u,v)$-walk is no longer than this.
+\end{proof}
+
+\subsection{Cross-checks by script}\label{app:crosschecks}
+
+These are tests of the statements by computer. They support the proofs and do not replace them. All were run by the scripts of \cref{app:scripts}.
+
+\begin{itemize}
+\item \textbf{Walk counting} (claim m1-4). For every labelled simple graph on $N=2,3,4,5$ vertices ($2$, $8$, $64$, $1024$ graphs), the script enumerated all walks by depth-first search and compared their number with the entries of $A^k$ ($k$ up to $5$ for $N\le4$, up to $3$ for $N=5$): $40$, $360$, $5120$ and $76800$ cases, all equal.
+\item \textbf{Walk-to-path lemma and its consequences} (claims m2-9 to m2-12). The construction of \cref{lem:walkpath} produced a path with the same ends, no longer than the walk, with vertices taken from the walk, for all $73$ walks of length $0$ to $6$ in $B$, all $381$ in $T$ and all $4695$ in $G_{\mathrm{tb}}$: no failure. On $300$ random graphs with $N$ from $2$ to $7$ (seed $20261027$) and $192696$ walks of length $0$ to $5$ there was no failure of the lemma, no path with a repeated edge (\cref{prop:pathtrail}), no path longer than $N-1$ (\cref{cor:bound}), and no disagreement between breadth-first distance and the shortest walk, trail and path (\cref{prop:shortest}).
+\item \textbf{The connectivity test} (claims m3-8, m3-9, m3-4). On all labelled simple graphs with $N=2,\dots,6$ vertices (\cref{tab:exhaustive}), the sum test, the form with $I+A$, the component statement of \cref{cor:components}(a) and the repeated-squaring version all agreed with breadth-first search. The same table counts the graphs on which the test with $N-2$ powers fails: $1$, $3$, $12$, $60$, $360$ for $N=2,\dots,6$ (for $N=2$ the sum with $0$ powers is empty).
+\end{itemize}
+
+\subsection{Scripts and how to reproduce}\label{app:scripts}
+
+Every number in the paper came from one of the scripts in \texttt{appendices/scripts/}. They use pure Python integers, so there is no rounding, and no library. They are copies of the module scripts written during the research, with their saved outputs; the paper's own script was added. Run each one from the paper folder with \texttt{python3 -I}, which keeps the interpreter from loading files from the current directory.
+
+\begin{table}[ht]
+\centering
+\caption{The scripts and what each one computes. The saved output of each module script has the same name with \texttt{\_output.txt} or \texttt{.out.txt} in place of \texttt{.py}.}
+\label{tab:scripts}
+\small
+\begin{tabular}{@{}p{4.9cm}p{9.9cm}@{}}
+\toprule
+Script & Computes \\
+\midrule
+\texttt{m1\_walks.py} & matrix powers of the board matrix, explicit walk lists, the sums of the induction step, walks against paths and trails, the brute-force check of walk counting \\
+\texttt{m2\_walks.py} & classification of the example sequences, counts of walks, trails, paths and closed walks, the trace of the walk-to-path lemma, exhaustive and random tests, distances \\
+\texttt{m3\_connectivity.py} & the sum test and the $(I+A)^{N-1}$ test on the board graph, on $D$ and on the row of four houses, the exhaustive check against breadth-first search, the cost counts (about $35$ seconds) \\
+\texttt{generate\_paper\_numbers.py} & reads the three saved outputs, recomputes every matrix and table with independent code, asserts equality, and writes \texttt{appendices/generated\_numbers.tex}, which defines the matrices and table bodies used in the text \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For example, from the paper folder:
+\begin{verbatim}
+python3 -I appendices/scripts/generate_paper_numbers.py
+\end{verbatim}
+The matrices in \cref{sec:example}, \cref{ex:sharp} and the tables of \cref{tab:walksvspaths,tab:walkcounts,tab:sharp,tab:exhaustive,tab:cost} are macros from that file, so none was typed by hand.
