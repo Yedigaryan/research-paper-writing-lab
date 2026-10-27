@@ -206,7 +206,7 @@ force a pass.
 When every release condition passes, write the final round in
 `evaluation-report.md` with decision `PASS`, make sure `README.md` in the
 paper folder states how to compile, and commit the folder with a clear
-message. Do not push without the user's explicit confirmation.
+message. Push according to the repository's `CLAUDE.md` git rules.
 
 Report to the user: the question as interpreted, the modules, the scores,
 unverified claims and source access limits, known limitations, and the
@@ -238,4 +238,5 @@ the findings with `tests/fixtures/defective-paper/expected-findings.md`.
 - A compile success is not a quality result. A high score in one dimension
   never offsets a critical defect in another.
 - Clean text in all deliverables: no emojis, no decorative symbols.
-- Commit, never push, without explicit confirmation from the user.
+- Commit with clear messages. Push only as the repository's `CLAUDE.md`
+  git rules allow; never to a branch outside `claude/*` without the user.
