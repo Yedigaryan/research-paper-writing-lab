@@ -1,85 +1,96 @@
-# Self-evaluation: adjacency-walks-connectivity (revision 1, after round 1)
+# Self-evaluation: adjacency-walks-connectivity (revision 2, after round 2)
 
-Author agent. Register: study-note. Numbers such as "Definition 2.16" or "Theorem 3.5" are the paper's compiled numbers. Claim ids are those of `evidence/evidence.json`: 80 claims, 73 supported, 7 qualified, 0 unverified. "Derived here" means proved or computed in the paper; "script" means a number from `appendices/scripts/`. Nothing below is marked resolved; round 2 does that.
+Author agent. Register: study-note. Numbers such as "Definition 2.16" are the paper's compiled numbers. Claim ids are those of `evidence/evidence.json`: 80 claims, 73 supported, 7 qualified, 0 unverified. Nothing below is marked resolved; round 3 does that.
 
-## 0. Mechanical checks (after the revision)
+## 0. Mechanical checks (after this revision)
 
 | Check | Result |
 |---|---|
-| `build.sh` | exit 0, `main.pdf` 35 pages, 0 overfull boxes |
-| `check_citations.py` | 11 keys cited, 11 bib entries, 11 sources, 0 errors, 0 warnings |
+| `build.sh` | exit 0, `main.pdf` 38 pages, 0 overfull boxes |
+| `check_citations.py` | 11 keys, 11 entries, 11 sources, 0 errors, 0 warnings |
 | `check_claims.py` | 80 claims, 0 errors, 0 warnings |
 | `inspect_pdf.py` | 0 errors, 0 warnings |
-| biber | 6 warnings: `year = {n.d.}` on six entries whose year is unknown; unchanged |
-| Plain words | 41 paragraphs, 215 sentences, mean 9.3 words, longest 18, 8 longer than 15; none contains `$` or a backslash. A script confirmed that every definition, theorem, lemma, proposition, corollary and test environment is directly preceded by one. |
-| Numbers | `generate_paper_numbers.py` re-run, all assertions pass. The cost-table macro is still generated but no longer used in the text. |
+| Plain words | 41 paragraphs, 215 sentences, mean 9.4 words, longest 18, 8 longer than 15, no `$` or backslash. A script confirmed that every definition, theorem, lemma, proposition, corollary and test is directly preceded by one, and that the worked examples, the conventions table and the BFS paragraph have theirs. |
+| Numbers | `generate_paper_numbers.py` re-run; all assertions pass, including new ones for graph H, the triangle T (S = 2J) and the hand-check cases of Appendix A.7. |
+| biber | 6 warnings, `year = {n.d.}` on six entries (unchanged). |
 
-Not done, as before: I did not re-read the textbook for the earlier pages. In this round I viewed printed p. 16 (PDF p. 17) as an image to confirm Definition 1.2.1 and Theorem 1.2.1 before adding them. I did not edit `evidence/modules/*.json`.
+## 1. Evidence file (E18, E12)
 
-## 1. Changes to the evidence file
+`evidence/evidence.json` is now reproducible from fragments.
 
-- **C39** text corrected: the BFS time bound holds for adjacency lists, and the matrix test needs N-2 products (the paper's own count, m3-10); the source does not compare the two. The discussion of the old wording is gone from Section 7.
-- **m3-11** now `qualified` (was `unverified`), confidence medium, with the exact pages checked (9-12, 16, 21-23, 48-49), the evaluator's full-text search of the book (adjacency matrix only on pp. 11-12, 34, 60; no counting theorem or matrix test), and the unread ranges (13-15, 17-20, 24-47, 50-62, Chapters 3-8). The search is cited as the method, as the coordinator allowed. It has no `support` entry because the search is not a source.
-- **au-1** (new, fact, supported): textbook Definition 1.2.1, p. 16, degree, with the Armenian sentence transcribed from the page image.
-- **au-2** (new, fact, supported): textbook Theorem 1.2.1 (Euler), p. 16, sum of degrees is 2|E|.
-- **au-3** (new, derived, supported): the N-2 test fails exactly on the labelled path graphs, N!/2 of them (new Remark 4.19, finding R15).
-- `derivation` pointers and `used_in` regenerated for the final labels (including Remark 4.19, Proposition 2.20, Section 7.4).
-- No other text or status changed.
+- `evidence/evidence.base.json`: the research agent's part (11 sources, claims C1 to C39, 6 contradictions), with C39 corrected to N-2 products and with the pointer and `used_in` updates for the C claims.
+- `evidence/modules/m1.json`, `m2.json`, `m3.json`: now carry the updated `derivation` and `used_in` of their own claims, and `m3.json` carries the revised m3-11.
+- `evidence/modules/author.json` (new): au-1, au-2 (textbook Definition 1.2.1 and Theorem 1.2.1, p. 16), au-3 (the N-2 test fails exactly on the N!/2 labelled row graphs).
+- Reproduce with: `cp evidence/evidence.base.json evidence/evidence.json`, then `python3 .claude/skills/research-paper/scripts/merge_evidence.py papers/adjacency-walks-connectivity`. I ran this; the result equals the merged file claim by claim (80 claims, same sources and contradictions). Claim order differs (author fragment first), content does not.
+- m3-11: qualified, text corrected to printed pp. 7, 11, 12, 34, 61, and a `support` entry added with the search as locator. The quote in that entry is the textbook's definition of the adjacency matrix on p. 11 (the only quote available for the search; it does not quote the absence, which a quote cannot).
 
 ## 2. Findings, one line each
 
+### Carried over from round 1
+
 | Id | Action | Where |
 |---|---|---|
-| E1 | Fixed. Degree is Definition 2.16, cited to textbook Definition 1.2.1, p. 16, with d_G(v), d(v) shown and the clash with distance explained; it now follows the adjacency matrix (Definition 2.9) and Proposition 2.13 (properties of A), as in the book. Row sums and the total are Proposition 2.20, citing Theorem 1.2.1 for the sum of degrees. The order list in Section 2, Tables 2, 4 and 14 are updated. | Sec. 2.1, 1.2, 1.4, App. B |
-| E2 | Fixed. The exact pages checked and unread are in Section 1.6; Section 7.1, Appendix B and the conclusion say "pages checked" and point there. m3-11 is qualified, tagged `qualified`, and the method (the evaluator's full-text search) is stated. | 1.6, 7.1, 8, App. B |
-| E3 | Fixed. "University of Galway notes" in the abstract, Section 3, Appendix A.1, Appendix B; Section 1.6 and the bib note say the URL suggests the name Quinlan and the file does not confirm it. | abstract, 3.2, A.1, B, bib |
-| E4 | Fixed. The "circuit" parenthetical is gone from Table 7 and the sentence below it. Reason: the evidence file carries no quote of Grinberg's remark, so the paper no longer states it. "Closed trail" is labelled as this paper's own name. | 5.1 |
-| E5 | Fixed. "Loop" means a self-edge only (stated in Remark 2.2); the closed sub-trip is now a "detour that comes back to the same house" in Remark 2.32, the plain-words paragraphs for path and for the lemma, and Appendix A. | 2.1, 2.2, 2.3 |
-| E6, R19 | Fixed. Section 1.2 fixes the three story words (trip = walk, trail = trail, route = path) in the story paragraph and in Table 2; "clean route" is gone everywhere; "a house with at least one neighbour" in Section 3.4. | 1.2, 2, 3.4, A.5 |
-| E7 | Fixed. Plain words before Corollary 4.10 now read: count the trips of one road, then of two roads, and so on; the first number of roads that has a trip is the distance. | 4.2 |
-| E8 | Fixed. Glosses added for metric space (Remark 2.49), reflexive, symmetric, transitive and classes (Definition 2.60, with the reason for each by walks and Proposition 2.59), transpose (Corollary 3.9), queue and discovered (Section 4.6). Big-O removed: "at most a fixed multiple of N + |E|". | 2.4, 3.3, 4.6 |
-| E9, R2, R3 | Fixed. No claim id and no mention of the evidence file remains in the reader's text (only LaTeX comments, which are the claim index). The legend of the kind tags moved to Section 1.1 at first use. Section 7.4 states N-2 products and C39 is corrected in `evidence.json` (Section 1 above). The appendix table of premises lost its claim column. | whole paper |
-| E10, R16, R17 | Fixed. Section 7.4 is three sentences; Table 11, the Boolean-product paragraph, the 38,742,049 figure and the repeated-squaring text are removed. One multigraph and digraph sentence stays in Section 7.2; the other three (Section 3.2 "why valid", Appendix A.1, the sources sentence in Section 3.2) are removed. | 7.2, 7.4, 3.2, A.1 |
-| E11 | Fixed. Bibliography URLs may break (biblatex URL penalties); the Appendix A.1 sentence is rephrased; A^3 = A for D is a displayed equation. The two story/terms tables were widened. 0 overfull boxes. | main.tex, A.1, 6.3 |
-| R1 | Fixed. The abstract says "A university lecture whiteboard", names the textbook and gives an example number. | abstract |
-| R4 | Fixed. Section 1.1: the answer to Question 2 "could appear to depend" on the meaning of path; it does not (Proposition 2.59). | 1.1 |
-| R5 | Partly fixed. Section 1.1 (item Q3) and Section 5 state the assignment text's convention once, as content: in the course, "path" means a walk with no repeated vertices. I do not have the verbatim sentence (the brief records only its content), so it is not in quotation marks. If the coordinator can supply the sentence, it goes into Q3 in Section 1.1. | 1.1, 5 |
-| R6 | Fixed. Section 5 opens by saying the answer is Definition 2.35 (path) and that the section adds only the pair form and the comparison table. Definition 5.1 is one line; the example and non-example refer to Example 2.37 (path), Example 2.25 (walk), Non-example 2.38 (path) and Non-example 2.34 (trail) instead of restating. | 5 |
-| R7 | Fixed. Proposition 3.10(b): "More generally, on B (and not for every graph) A^{k+2} = 2A^k". | 3.4 |
-| R8 | Fixed. Non-example 2.43: a cycle is a closed trail; a closed trail of positive length needs at least three distinct edges (Remark 2.28); B has two. No script check cited. | 2.2 |
-| R9 | Fixed together with E8. Transitivity is justified by joining walks, after Proposition 2.59 (the definition already followed it). | 2.4 |
-| R10 | Fixed. The seven edges of the textbook's example graph are listed in the text of Section 2. | 2 |
-| R11 | Fixed. Remark 2.53: "positions 1 and 4 both hold vertex 3"; the removed entries 2, 4, 3 are shown at each cut. | 2.3 |
-| R12 | Fixed. "Case" is defined; the counts are shown as 2*5*4 = 40, 8*5*9 = 360, 64*5*16 = 5120, 1024*3*25 = 76800, with the k range. | 3.2 |
-| R13 | Fixed. Section 4.4 explains that I is "wait", gives the one-sentence expansion as formula (3) in the body (labelled eq:binomial), and Example 6.2 now uses it after it is explained. A second plain-words paragraph precedes Proposition 4.16. | 4.4, 6.2 |
-| R14 | Fixed. BFS is a four-step procedure; N and |E| replace n and m; no big-O. | 4.6 |
-| R15 | Fixed. New Remark 4.19: the N-2 version fails exactly on the labelled rows of houses, N!/2 of them (1, 3, 12, 60, 360), matching the script; the empty sum for N = 2 is explained. This is a new derived claim (au-3). | 4.5 |
-| R18 | Fixed. Table 1 row 4 now reads "What does A_ij represent" with the mark described and a pointer to Section 1.3, item 2; the notation table no longer prints A with a dot. | 1.1, 1.4 |
-| R20 | Fixed. New Section 1.6 holds sources, pages checked, source weaknesses and the script overview. Sections 2 to 6 keep only "by script" and a pointer to Appendix A.7; script file names are in A.7 only. The old Section 7.3 "where other sources are weaker" is removed; one sentence in Section 7.2 points to Section 1.6. | 1.6, 7, A.7 |
-| R21 | Fixed. The offending sentences are quoted: Paramadevan and Sotheeswaran Theorem 1 (also in Section 3.4), the b_ij lines of their proof of Theorem 2, and Bai's "aggregates all paths". | 1.6, 3.4 |
-| R22 | Fixed. Remark 4.11 says an isolated vertex would have no path to the other N-1 vertices. | 4.2 |
+| E5 | Fixed. "Loop" now means only a self-edge (Remark 2.2). Detours: Appendix A.5 plain words say "cut out the detour". Remark 4.13 says "The procedure makes N-2 matrix products"; Example 4.14 says "step 2 runs once". | A.5, 4.3 |
+| R5 | Fixed as the evaluator asked. Sections 1.1 (Q3), 1.3 item 6, 2.2 (Remark 2.36) and 5 say: the assignment text is not reproduced; as reported by the user it states that in the course "path" means a walk with no repeated vertices; the answer to Question 3 rests on this statement. No quotation marks. | 1.1, 1.3, 2.2, 5 |
+| R20 (E19) | Fixed. The print-order aside of Non-example 2.38 is in Appendix B ("A note on print order"); the pages-checked asides in 3.2 and 4.2 are "(Section 1.6)". | 2.2, 3.2, 4.2, App. B |
 
-No finding was left unfixed. R5 is the only one fixed in part, for the reason given.
+### Evaluator, new
 
-## 3. Section by section (what the section claims, and on what)
+| Id | Action | Where |
+|---|---|---|
+| E12 | Fixed. Printed pp. 7, 11, 12, 34, 61 in Section 1.6; m3-11 text and support entry corrected (Section 1 above). | 1.6, evidence |
+| E13 | Fixed. 1.3 item 5 now says the paper keeps n_i and N, except that the textbook example graph keeps v_1 to v_5. | 1.3 |
+| E14 | Fixed. Figure 3 caption says Fig. 1.2.5 also has the edge v1v5, which no example uses and the paper does not use; the sentence in Section 2 says "the ones that the textbook's own examples use". The v_1 label moved off its dot. | 2, Fig. 3 |
+| E15 | Fixed. Section 3.2: Bai states the theorem for simple graphs; Grinberg (multidigraphs) and Lehman et al. (digraphs) are the more general ones. | 3.2 |
+| E16 | Fixed. The 2 by 2 matrix in Remark 4.11 is displayed. | 4.2 |
+| E17 | Fixed. Example 6.3: "no walk from vertex 1 or vertex 2 reaches vertex 3". | 6.3 |
+| E18 | Fixed. See Section 1 above. | evidence |
+| E19 | Fixed. "Step" now means only a move of a walk or a numbered step of a procedure: 4.1 says "the power one less than", 4.3 says "after each multiplication". A.5: "going by way of a third house". The aside items are under R20 above. | 4.1, 4.3, A.5 |
 
-- **Abstract.** Summarises A1 (C6, m1-3), A2 (C34, C35, C36, C37), A3 (C16, C24). Nothing new.
-- **1 Introduction.** 1.1 board lines and questions (C25-C29; Q3 from the assignment text, a premise of the brief, R5 above); 1.2 story and dictionary (textbook numbers C1, C2, C12-C18, C30, C31, au-1); 1.3 conventions (C1, C24, C29, m1-9, m2-15; items 1-7); 1.4 notation; 1.5 organisation; 1.6 provenance (C11, C36, m3-11, m3-12). Conclusion: the matrix is the example graph (premises C27, C28, brief).
-- **2 Background.** Definitions in the textbook order with number and page: C1, C2, C3, C4, C12-C18, C30, C31, au-1, au-2, m2-1 to m2-4, m3-1, m3-2. Derived here: Proposition 2.20(a) (m1-1), Remark 2.24 (m1-2), Proposition 2.39 (path implies trail, m2-10), Lemma 2.52 and Corollary 2.54 (m2-9, m2-11, C19, C20, C33, m2-6), Proposition 2.59 (C32, C19, C20), the equivalence relation justification. Qualified: C24, m2-15.
-- **3 Answer 1.** Theorem 3.5 (C6, C7, m1-3) with proof by induction; Corollary 3.9 (m1-7, C9); Proposition 3.10 (C8, C10, m1-5, m1-6; C11 contradiction stated and quoted). Interpretation: where simplicity is used (m1-8).
-- **4 Answer 2.** Proposition 4.5, Theorem 4.6 (C34 statement, C35 proof, m3-11, m3-12), Corollary 4.10 (m3-5, C38), Remark 4.11 (m3-3), Test 4.12, Proposition 4.16 (C36 qualified, C37, m3-9), Proposition 4.17 and Remark 4.19 (m3-4, au-3), BFS (C39, m3-13).
-- **5 Answer 3.** Definition 5.1 and Table 7 (C24, m2-8, m2-7, C15-C17, C21-C23, m2-5, m2-13).
-- **6 Worked example.** Examples 6.1 to 6.3 (m1-5, m3-6, m3-7, m2-13, m3-8, C28). All matrices are macros from the generator.
-- **7 Discussion.** 7.1 open readings (C29, C28, C24, m3-11); 7.2 limits; 7.3 failure cases (m3-4, au-3); 7.4 cost, three sentences (C39, m3-10; estimate).
-- **8 Conclusion.** Direct answers; open items repeated.
-- **Appendix A.** A.1 walks as vertex lists (m1-2, m1-3, C7); A.2 counterexample in general (C10, m1-6); A.3 chain of premises (C35); A.4 (I+A)^m proof (C37, m3-9); A.5 distance (m2-12, m2-16, m2-6); A.6 cross-checks (m1-4, m2-9 to m2-12, m3-8, m3-4); A.7 scripts.
-- **Appendix B.** Course terms with textbook number and page (C1, C2, C12-C19, C30, C31, au-1, au-2, m3-1, m3-2).
+### Fresh reader
+
+| Id | Action | Where |
+|---|---|---|
+| R23 | Fixed. The abstract names the photographs, "the board", and the assignment text before using them. | abstract |
+| R24 | Fixed. New Appendix C describes the two photographs (content as in Table 1, the reflection, the legible parts) and says they are in `sources/`; they are not embedded. | App. C |
+| R25 | Fixed. The forward reference now reads "(proved in Section 2.4: whether a path exists does not depend on the meaning of the word)". Each tag has a one-line operational meaning in Section 1.1 and the compound tag is explained. | 1.1 |
+| R26 | Partly fixed. Table 2 is the single dictionary. Story words (trip, route, house, road) are removed from all non-box text outside Section 1.2, where the story is introduced; the plain-words boxes keep them. Examples that said "three houses in a row" now say "three vertices in a row"; the row graph is a named graph. | whole paper |
+| R27 | Fixed. 1.3 item 4: the sources disagree on the edge 1-3, both B and T are used, no result depends on the choice. | 1.3 |
+| R28 | Fixed. Section 2 names the definitions the three answers need and marks cycle, simple cycle and distance as context. | 2 |
+| R29 | Fixed as the orchestrator directed. G_tb stays (the study-note standard needs the textbook's examples) and the seven edges are listed in the text; a graph of the paper's own, H (triangle with a pendant vertex, Figure 2), supplies a trail, a path, a non-trail, a non-cycle and a simple cycle. All H sequences are checked by script. | 2.2, Fig. 2 |
+| R30 | Fixed. Half-sentence reasons added at Remark 2.2 (two different edges would need different pairs of ends), Remark 2.49 (a shortest walk contains a path no longer than itself, Lemma 2.52) and Remark 2.32 (a repeated vertex needs a closed trail, which needs three edges). | 2.1, 2.2 |
+| R31 | Fixed. Proposition 2.59 is tagged "derived here from Lemma 2.52"; the source numbers moved into the proof's citation sentence. | 2.4 |
+| R32 | Fixed. Remark 2.53 shows each cut as a displayed line with the removed detour in square brackets. | 2.3 |
+| R33 | Fixed. The induction statement is P(k); a one-line example precedes the proof. | 2.3 |
+| R34 | Fixed. Section 3.2 keeps one sentence; Appendix A.6 defines a case and gives graphs times exponents times pairs for 40, 360, 5120, 76800. | 3.2, A.6 |
+| R35 | Fixed. Proposition 3.10(b) points to the matrix A^3 = 2A in Example 6.1 and states that (A^k)_12 doubles each time k grows by 2 while the path count is 1 then 0. | 3.4 |
+| R36 | Fixed. The four sources are named in Section 3.4. | 3.4 |
+| R37 | Fixed. The reason for stopping at N-1 is given with Lemma 2.52 and Corollary 2.54; the remark on mod-2 arithmetic has an example (for the triangle T, S has every off-diagonal entry 2, which is 0 modulo 2; checked by script). | 4.2 |
+| R38 | Fixed. m is defined before the formula, A^0 = I is explained where formula (3) first appears, I and A commute because IA = AI = A, and Table 4 lists A^0. | 4.4, 1.4 |
+| R39 | Fixed. Section 4.4 has the positivity argument in the body (positive coefficients, non-negative terms, walks of length at most m, Lemma 2.52 and Corollary 2.54, diagonal at least 1). | 4.4 |
+| R40 | Fixed. Remark 4.19 states that in a connected graph every distance is at most N-1, and that a shortest path through all N vertices has no chord, so the graph is that path. | 4.5 |
+| R41 | Fixed. Section 4.6 adds the reversal-and-joining sentence for BFS reachability. | 4.6 |
+| R42 | Fixed. Definition 5.1 has no tag; the sentence under it says it is taken from the assignment text as reported by the user, with the textbook's Definition 1.2.13, and is not derived. | 5 |
+| R43 | Fixed. Table 7 has the columns "Course (stated)" and "This paper"; "not stated" for every row except path. | 5 |
+| R44 | Fixed. Section 7.4: about N^4 multiplications against about N + |E| operations. | 7.4 |
+| R45 | Fixed. The eigenvalue sentence is deleted. | 7.2 |
+| R46 | Fixed. "Module scripts" and "the paper's own script" are gone from Section 1.6 and Appendix A.7. Both say the reader must run the scripts, give the four commands, and give three small cases that can be checked by hand ((A^2)_13 = 1, (A^3)_12 = 2, row 3 of S for D). | 1.6, A.7 |
+| R47 | Partly fixed. The full critique (quotes of Paramadevan and Sotheeswaran Theorem 1, the b_ij lines, Bai's sketch) is one paragraph in Section 7.2; Sections 1.6, 4.2 and 4.4 point to it. Section 3.4 keeps the single Theorem 1 sentence, because the warning is about that sentence and round 1 (R21) asked for it there. | 7.2, 3.4 |
+| R48 | Fixed. A proof map opens Section 4. The reader's request to cut the plain-words boxes is not followed: the study-note register requires them (documented by the orchestrator). | 4 |
+| R49 | Fixed. P_n and C_n carry a local note that n counts the vertices of the path or cycle; Table 4 now lists the relation symbol, the binomial coefficient and A^0. | 2.2, 1.4 |
+
+## 3. Not fixed, with the reason
+
+- Reader request to cut the plain-words paragraphs: not done; the study-note register requires them, as stated in the orchestrator's note to R48.
+- R26 (story words only in boxes): kept in Section 1.2, where the story is told and Table 2 is introduced.
+- R47: Section 3.4 keeps one quoted sentence (above).
+- Nothing else is open that I know of.
 
 ## 4. What I still cannot justify beyond the sources
 
-- Textbook numbers other than those for degree come from the evidence file; I viewed only p. 16 myself.
-- The reading of the first board line's condition word as "if" (brief and C26); I cannot read it myself.
-- The textbook title is printed in Latin letters ("Grafneri tesutyun") because pdfLaTeX cannot print the Armenian title; six bib entries have `year = {n.d.}`.
-- R5: the verbatim assignment sentence.
-- The statement that the textbook contains no counting theorem or matrix test stays `qualified`: it rests on the checked pages and the evaluator's search, not a page-by-page reading.
-- Interpretation tags kept in the text: "the matrix test is useful for its clean statement, not for speed" (Section 7.4), the reading of the mark above A, the course meaning of path, length-0 walks.
+- Textbook numbers other than p. 16 come from the evidence file; I have viewed only p. 16 myself.
+- The reading of the first board line's condition word as "if" (brief and C26).
+- The textbook title in Latin letters (pdfLaTeX cannot print the Armenian), and six `n.d.` years.
+- The verbatim assignment sentence (R5): the paper reports its content only, as the evaluator accepted.
+- The statement that the textbook has no counting theorem or matrix test stays qualified: it rests on the pages checked and the full-text search.
+- The support entry of m3-11 quotes a textbook sentence that is not itself the absence; the locator carries the search.

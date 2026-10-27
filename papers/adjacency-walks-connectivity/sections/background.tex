@@ -11,21 +11,33 @@ simple cycle, distance, and then connectedness. Each definition cites the
 textbook's number and printed page. After each definition come a remark on what it
 allows and forbids, an example, and a non-example.
 
-Three graphs supply the examples. The first is the graph $B$ of the board matrix:
+The three answers need these definitions: graph, adjacent, adjacency matrix and degree (Answer~1 and
+the proof of the test), walk and trail and path (all three answers), closed walk (Answer~1), connected
+and component (Answer~2), and the walk-to-path lemma. \emph{Cycle}, \emph{simple cycle} and \emph{distance}
+are context: the answers use them only in remarks, examples and one by-product (\Cref{cor:components}).
+
+Four graphs supply the examples. The first is the graph $B$ of the board matrix:
 vertices $1,2,3$ (meaning $n_1,n_2,n_3$) and edges $12$ and $23$
 (\Cref{fig:village}, left). The second is the board drawing $T$, a triangle with
-edges $12$, $13$, $23$. The third is the textbook's own example graph, which
-this paper calls $G_{\mathrm{tb}}$ (\Cref{fig:textbook}); the seven edges used from it are $v_1v_2$, $v_1v_3$, $v_2v_3$, $v_2v_4$, $v_3v_4$, $v_3v_5$ and $v_4v_5$, the ones that the textbook's own examples force. It is needed because
-$B$ has no cycle, and in $B$ every trail is a path (\Cref{rem:Bsimple}), so $B$ cannot show
-the differences between the later definitions.
+edges $12$, $13$, $23$. The third is a small graph of this paper's own, $H$: a triangle $1,2,3$ with a
+fourth vertex attached to vertex $3$, so its edges are $12$, $13$, $23$ and $34$ (\Cref{fig:H}). The fourth is the textbook's own example graph, which
+this paper calls $G_{\mathrm{tb}}$ (\Cref{fig:textbook}); the seven edges used from it are $v_1v_2$, $v_1v_3$, $v_2v_3$, $v_2v_4$, $v_3v_4$, $v_3v_5$ and $v_4v_5$, the ones that the textbook's own examples use. $B$ has no cycle, and in $B$ every trail is a path (\Cref{rem:Bsimple}), so $B$ cannot show
+the differences between the later definitions; $H$ and $G_{\mathrm{tb}}$ can.
+
+\begin{figure}[ht]
+\centering
+\input{figures/fig-H}
+\caption{The graph $H$ defined by this paper: a triangle on the vertices $1,2,3$ and a fourth vertex $4$ joined to $3$.}
+\label{fig:H}
+\end{figure}
 
 \begin{figure}[ht]
 \centering
 \input{figures/fig-textbook}
 \caption{The graph $G_{\mathrm{tb}}$ with the seven edges that the textbook's own
-examples force: $v_1v_2$, $v_1v_3$, $v_2v_3$, $v_2v_4$, $v_3v_4$, $v_3v_5$, $v_4v_5$. It is a part
+examples use: $v_1v_2$, $v_1v_3$, $v_2v_3$, $v_2v_4$, $v_3v_4$, $v_3v_5$, $v_4v_5$. It is a part
 of the textbook's Fig.~1.2.5 (printed p.~22)~\cite{petrosyan2015grafneri}. The textbook's
-figure may have further edges; nothing in this paper depends on them.}
+figure also has the edge $v_1v_5$, which none of the textbook's examples uses and which this paper does not use.}
 \label{fig:textbook}
 \end{figure}
 
@@ -49,15 +61,15 @@ vertex to itself). Because $E$ is a set, no pair occurs twice, so there is no re
 Because the pair is unordered, $uv$ and $vu$ are the same edge. Isolated
 vertices (vertices with no edge) are allowed, since $E$ may be any set of such pairs.
 An edge is fixed by its two ends. This is why a walk can later be written by its vertices
-alone (\Cref{rem:walk}). In this paper the word \emph{loop} always means such a self-edge.
+alone (\Cref{rem:walk}): two different edges would need different pairs of ends. In this paper the word \emph{loop} always means such a self-edge.
 \end{remark}
 
 \begin{example}\label{ex:graph}
-$V=\{n_1,n_2,n_3\}$ and $E=\{n_1n_2,\,n_2n_3\}$. This is the graph $B$ of the board matrix, three houses in a row.
+$V=\{n_1,n_2,n_3\}$ and $E=\{n_1n_2,\,n_2n_3\}$. This is the graph $B$ of the board matrix, three vertices in a row.
 \end{example}
 
 \begin{nonexample}\label{nex:graph}
-Two houses joined by two roads, or a road from one house back to itself. The
+Two vertices joined by two edges, or an edge from one vertex back to itself. The
 first repeats an edge, the second is a loop. Neither is a simple graph.
 \end{nonexample}
 
@@ -80,7 +92,7 @@ In $B$, the vertices $n_1$ and $n_2$ are adjacent.
 \end{example}
 
 \begin{nonexample}\label{nex:adjacent}
-In $B$, the vertices $n_1$ and $n_3$ are not adjacent, although a trip of two roads joins them.
+In $B$, the vertices $n_1$ and $n_3$ are not adjacent, although a walk of length $2$ joins them.
 \end{nonexample}
 
 \begin{plainwords}
@@ -112,7 +124,7 @@ is the adjacency matrix of $B$, since $A_{12}=A_{21}=1$, $A_{23}=A_{32}=1$ and a
 \begin{nonexample}\label{nex:adjmatrix}
 The matrix with rows $(0\,1\,0)$, $(0\,0\,1)$, $(0\,1\,0)$ is not the adjacency matrix of any
 simple undirected graph: its entry $A_{12}$ is $1$ but $A_{21}$ is $0$, which would
-need a one-way road. A matrix with a $1$ on the diagonal (a loop) or an entry $2$ (a double road) is not one either.
+need a one-way edge. A matrix with a $1$ on the diagonal (a loop) or an entry $2$ (a double edge) is not one either.
 \end{nonexample}
 
 \begin{plainwords}
@@ -164,7 +176,7 @@ In $B$: $\deg(n_1)=1$, $\deg(n_2)=2$, $\deg(n_3)=1$.
 \end{example}
 
 \begin{nonexample}\label{nex:degree}
-$\deg(n_1)$ is not $2$ in $B$, although two other houses can be reached from $n_1$. Only roads at $n_1$ count, and $n_3$ is reached by passing through $n_2$.
+$\deg(n_1)$ is not $2$ in $B$, although two other vertices can be reached from $n_1$. Only edges at $n_1$ count, and $n_3$ is reached by passing through $n_2$.
 \end{nonexample}
 
 \begin{plainwords}
@@ -214,7 +226,7 @@ Its \emph{length} is $k$, the number of edges, each edge counted as many times a
 \begin{remark}\label{rem:walk}
 Vertices and edges may repeat in a walk, and the length counts every use of an edge~\cite[p.~22]{petrosyan2015grafneri}. The only thing forbidden is a jump:
 two consecutive vertices must be adjacent. In a simple graph the edge $e_i$ is fixed by its two ends (\Cref{rem:graph}), so a walk can be written by its vertices alone, $u_0,u_1,\dots,u_k$, and two walks are different exactly when these lists differ at some position. \kindtag{derived here}
-The textbook does not say in words that $k=0$ is allowed. This paper allows it, because the textbook's own property $d(u,u)=0$ (\Cref{def:distance}) needs a length-$0$ trip. \kindtag{interpretation, qualified}
+The textbook does not say in words that $k=0$ is allowed. This paper allows it, because the textbook's own property $d(u,u)=0$ (\Cref{def:distance}) needs a walk of length $0$. \kindtag{interpretation, qualified}
 \end{remark}
 
 \begin{example}\label{ex:walk}
@@ -258,15 +270,15 @@ A $(u_0,u_k)$-walk is a \emph{trail} if its edges $u_0u_1,\dots,u_{k-1}u_k$ are 
 \end{definition}
 
 \begin{remark}\label{rem:trail}
-A trail allows repeated vertices and forbids repeated edges. A vertex can recur in a trail only if the trip left it by one road and came back by another, so the trail contains a closed trail, a detour that comes back to the same house. In $B$ every trail is also a path in the sense of \cref{def:path} (checked by script for lengths $0$ to $4$), so $B$ cannot show the difference; the textbook's graph can. \kindtag{derived here}\label{rem:Bsimple}
+A trail allows repeated vertices and forbids repeated edges. A vertex can recur in a trail only if the walk left it by one edge and came back by another, so the trail contains a closed trail, a detour that comes back to the same vertex. In $B$ every trail is also a path in the sense of \cref{def:path}: a repeated vertex would need a closed trail, which needs at least three edges (\cref{rem:closedwalk}), and $B$ has two. So $B$ cannot show the difference; $H$ and the textbook's graph can. \kindtag{derived here}\label{rem:Bsimple}
 \end{remark}
 
 \begin{example}\label{ex:trail}
-In $G_{\mathrm{tb}}$ the list $v_1,v_3,v_2,v_4,v_3,v_5$ is a trail: its edges $v_1v_3$, $v_3v_2$, $v_2v_4$, $v_4v_3$, $v_3v_5$ are distinct, although $v_3$ occurs twice~\cite[p.~22]{petrosyan2015grafneri}.
+In $G_{\mathrm{tb}}$ the list $v_1,v_3,v_2,v_4,v_3,v_5$ is a trail: its edges $v_1v_3$, $v_3v_2$, $v_2v_4$, $v_4v_3$, $v_3v_5$ are distinct, although $v_3$ occurs twice~\cite[p.~22]{petrosyan2015grafneri}. In $H$ the list $4,3,1,2,3$ is a trail: its edges $43$, $31$, $12$, $23$ are distinct, although vertex $3$ occurs twice.
 \end{example}
 
 \begin{nonexample}\label{nex:trail}
-The walk $v_1,v_3,v_2,v_4,v_3,v_2,v_4,v_3,v_5$ of length $8$ is not a trail: the edge $v_3v_2$ occurs twice~\cite[p.~22]{petrosyan2015grafneri}. In $B$ the walk $1,2,1,2,3$ is not a trail, since the edge $12$ occurs twice.
+The walk $v_1,v_3,v_2,v_4,v_3,v_2,v_4,v_3,v_5$ of length $8$ is not a trail: the edge $v_3v_2$ occurs twice~\cite[p.~22]{petrosyan2015grafneri}. In $B$ the walk $1,2,1,2,3$ is not a trail, since the edge $12$ occurs twice; in $H$ the walk $1,2,3,2$ is not a trail, since the edge $23$ occurs twice.
 \end{nonexample}
 
 \begin{plainwords}
@@ -276,20 +288,20 @@ no detour in it. Our course calls it a path. The textbook calls it a simple path
 \end{plainwords}
 
 \begin{definition}[Path; textbook Definition~1.2.13, p.~22, where it is called a ``simple path'']\label{def:path}
-A $(u_0,u_k)$-walk is a \emph{path} if its vertices $u_0,\dots,u_k$ are pairwise distinct. The textbook calls this a \emph{simple path} and writes $P_n$ for the simple path on $n$ vertices~\cite[Definition~1.2.13, p.~22]{petrosyan2015grafneri}. Its length is $k$.
+A $(u_0,u_k)$-walk is a \emph{path} if its vertices $u_0,\dots,u_k$ are pairwise distinct. The textbook calls this a \emph{simple path} and writes $P_n$ for the simple path on $n$ vertices (here $n$ counts the vertices of that path, not of the whole graph)~\cite[Definition~1.2.13, p.~22]{petrosyan2015grafneri}. Its length is $k$.
 \end{definition}
 
 \begin{remark}\label{rem:path}
 A path forbids repeated vertices, hence also repeated edges (\Cref{prop:pathtrail}). It allows length $0$ (a single vertex is a path from that vertex to itself) and length $1$ (one edge). It does not allow a closed path of positive length, because the first and last vertex would be equal.
-The textbook defines a simple path as a trail with distinct vertices; by \cref{prop:pathtrail} this is the same as a walk with distinct vertices, so the two ways of saying it agree. That the \emph{course} uses ``path'' in this sense is \kindtag{interpretation, qualified}: it comes from the assignment text, and the board does not say.
+The textbook defines a simple path as a trail with distinct vertices; by \cref{prop:pathtrail} this is the same as a walk with distinct vertices, so the two ways of saying it agree. That the \emph{course} uses ``path'' in this sense is \kindtag{interpretation, qualified}: it rests on the user's report of the assignment text, and the board does not say.
 \end{remark}
 
 \begin{example}\label{ex:path}
-In $B$ the list $1,2,3$ is a path from $n_1$ to $n_3$ of length $2$. The textbook's example is $v_1,v_3,v_4,v_5$ in $G_{\mathrm{tb}}$, a simple path~\cite[p.~22]{petrosyan2015grafneri}.
+In $B$ the list $1,2,3$ is a path from $n_1$ to $n_3$ of length $2$. In $H$ the list $4,3,1,2$ is a path of length $3$. The textbook's example is $v_1,v_3,v_4,v_5$ in $G_{\mathrm{tb}}$, a simple path~\cite[p.~22]{petrosyan2015grafneri}.
 \end{example}
 
 \begin{nonexample}\label{nex:path}
-In $B$ the list $1,2,3,2$ is a walk but not a path: vertex $2$ occurs twice. In $G_{\mathrm{tb}}$ the list $v_1,v_3,v_2,v_4,v_3,v_5$ is a trail but not a simple path, since $v_3$ occurs twice~\cite[p.~22]{petrosyan2015grafneri}. (In the printed text this sentence stands after Definition~1.2.14, not directly after 1.2.13; its content is about 1.2.13.)
+In $B$ the list $1,2,3,2$ is a walk but not a path: vertex $2$ occurs twice. In $G_{\mathrm{tb}}$ the list $v_1,v_3,v_2,v_4,v_3,v_5$ is a trail but not a simple path, since $v_3$ occurs twice~\cite[p.~22]{petrosyan2015grafneri}. In $H$ the trail $4,3,1,2,3$ is not a path for the same reason.
 \end{nonexample}
 
 \begin{plainwords}
@@ -324,7 +336,7 @@ In $G_{\mathrm{tb}}$ the list $v_3,v_2,v_1,v_3,v_5,v_4,v_3$ is closed and has si
 \end{example}
 
 \begin{nonexample}\label{nex:cycle}
-In $B$ the closed walk $1,2,1$ is not a cycle, because the edge $12$ is used twice. In fact $B$ has no cycle at all: a cycle is a closed trail, in a simple graph a closed trail of positive length needs at least three distinct edges (\cref{rem:closedwalk}), and $B$ has only two edges. \kindtag{derived here}
+In $B$ the closed walk $1,2,1$ is not a cycle, because the edge $12$ is used twice; in $H$ the closed walk $4,3,4$ is not a cycle for the same reason. In fact $B$ has no cycle at all: a cycle is a closed trail, in a simple graph a closed trail of positive length needs at least three distinct edges (\cref{rem:closedwalk}), and $B$ has only two edges. \kindtag{derived here}
 \end{nonexample}
 
 \begin{plainwords}
@@ -333,7 +345,7 @@ also the end. It is a ring of houses, each joined by a road to the next.
 \end{plainwords}
 
 \begin{definition}[Simple cycle; textbook Definition~1.2.15, p.~22]\label{def:simplecycle}
-A cycle is \emph{simple} if only its first and last vertices coincide. The simple cycle on $n$ vertices is written $C_n$, with $n\ge3$~\cite[Definition~1.2.15, p.~22]{petrosyan2015grafneri}.
+A cycle is \emph{simple} if only its first and last vertices coincide. The simple cycle on $n$ vertices is written $C_n$, with $n\ge3$ (again $n$ counts the vertices of the cycle)~\cite[Definition~1.2.15, p.~22]{petrosyan2015grafneri}.
 \end{definition}
 
 \begin{remark}\label{rem:simplecycle}
@@ -341,7 +353,7 @@ A simple cycle forbids any repeated vertex other than the closing one. The condi
 \end{remark}
 
 \begin{example}\label{ex:simplecycle}
-In $G_{\mathrm{tb}}$ the list $v_1,v_3,v_4,v_2,v_1$ is a simple cycle~\cite[p.~22]{petrosyan2015grafneri}. In the board drawing $T$ the list $1,2,3,1$ is a simple cycle of length $3$ (by script).
+In $G_{\mathrm{tb}}$ the list $v_1,v_3,v_4,v_2,v_1$ is a simple cycle~\cite[p.~22]{petrosyan2015grafneri}. In the board drawing $T$ and in $H$ the list $1,2,3,1$ is a simple cycle of length $3$ (by script).
 \end{example}
 
 \begin{nonexample}\label{nex:simplecycle}
@@ -367,7 +379,7 @@ The textbook lists three properties~\cite[p.~23]{petrosyan2015grafneri}:
 \item $d(u,v)=d(v,u)$;
 \item $d(u,v)\le d(u,w)+d(w,v)$.
 \end{enumerate}
-So if any two vertices are joined by a trail, $(V,d)$ is a metric space~\cite{petrosyan2015grafneri}; a \emph{metric space} is just a set with a distance that satisfies these three properties, and the word is not used again. The definition allows the value $+\infty$, which is not an integer; this is how a missing trip shows up. It forbids negative values and any value that is not the length of an actual trip. The shortest trail, the shortest path and the shortest walk between two vertices have the same length, so the definition does not depend on whether ``path'' is read as trail or path (\cref{app:distance}). \kindtag{derived here}
+So if any two vertices are joined by a trail, $(V,d)$ is a metric space~\cite{petrosyan2015grafneri}; a \emph{metric space} is just a set with a distance that satisfies these three properties, and the word is not used again. The definition allows the value $+\infty$, which is not an integer; this is how a missing trail shows up. It forbids negative values and any value that is not the length of an actual trail. The shortest trail, the shortest path and the shortest walk between two vertices have the same length, because a shortest walk contains a path that is no longer than itself (\cref{lem:walkpath}); so the definition does not depend on whether ``path'' is read as trail or path (proof in \cref{app:distance}). \kindtag{derived here}
 \end{remark}
 
 \begin{example}\label{ex:distance}
@@ -402,11 +414,13 @@ Let $u$ and $v$ be vertices of a simple graph, equal or different. If there is a
 The textbook states the lemma for $u\ne v$, as ``from any $(u,v)$-walk one can extract a simple $(u,v)$-path'', without a length bound, and proves it by induction on the length of the walk~\cite[Lemma~1.2.1, p.~23]{petrosyan2015grafneri}. Grinberg's Corollary~2.9.7 covers $u=v$ and gives the length bound~\cite[Corollary~2.9.7, p.~39]{grinberg2025graph}. The case $u=v$ is needed here, because a closed walk such as $2,1,2$ in $B$ has $u=v$; the path it contains is the single vertex, of length $0$. The proof below is the paper's own \kindtag{derived here}; it follows the textbook's method.
 
 \begin{proof}
-We prove by strong induction on $k$ the statement $S(k)$: every $(u,v)$-walk of length $k$, for any vertices $u$ and $v$, contains a $(u,v)$-path of length at most $k$.
+First an example of the idea. In $B$ the walk $1,2,1,2,3$ has the vertex $1$ at positions $0$ and $2$; removing the part between them leaves $1,2,3$, a shorter walk with the same ends, and it is a path.
+
+We prove by strong induction on $k$ the statement $P(k)$: every $(u,v)$-walk of length $k$, for any vertices $u$ and $v$, contains a $(u,v)$-path of length at most $k$.
 
 \emph{Base case, $k=0$.} A walk of length $0$ is a single vertex $u$, so $v=u$. A single vertex has no repeated vertex, so the walk is itself a path, of length $0\le0$.
 
-\emph{Induction hypothesis.} Let $k\ge1$ and assume $S(m)$ holds for every $m<k$.
+\emph{Induction hypothesis.} Let $k\ge1$ and assume $P(m)$ holds for every $m<k$.
 
 \emph{Step.} Let $u_0,u_1,\dots,u_k$ be a $(u,v)$-walk, so $u_0=u$ and $u_k=v$.
 Case~1: the vertices $u_0,\dots,u_k$ are pairwise distinct. Then the walk is a path of length $k\le k$.
@@ -416,7 +430,15 @@ Case~2: some vertex occurs twice, so $u_i=u_j$ for some $i<j$. Form the list $W'
 Why the proof is valid: each cut removes at least one step, since $j-i\ge1$, so the length drops by at least $1$ and the process stops. A walk that cannot be cut has no repeated vertex, which is the definition of a path.
 
 \begin{remark}\label{rem:lemmaexample}
-The textbook's walk of length $8$ in $G_{\mathrm{tb}}$ is $1,3,2,4,3,2,4,3,5$, written by the indices of its vertices, with positions counted from $0$. Positions $1$ and $4$ both hold vertex $3$ (so $u_1=u_4=3$). Remove the part after position $1$ up to and including position $4$, that is, the entries $2,4,3$. What is left is $1,3,2,4,3,5$, of length $5$. In it, positions $1$ and $4$ again both hold vertex $3$; removing the entries $2,4,3$ again leaves $1,3,5$, a path of length $2\le8$. In $B$ the walk $1,2,1,2,3$ has $u_0=u_2=1$ and cuts to the path $1,2,3$; the closed walk $2,1,2$ cuts to the single vertex $2$. (Checked by script, \cref{app:scripts}.)
+The textbook's walk of length $8$ in $G_{\mathrm{tb}}$ is $1,3,2,4,3,2,4,3,5$, written by the indices of its vertices, with positions counted from $0$. Positions $1$ and $4$ both hold vertex $3$ (so $u_1=u_4=3$). The cut removes the detour in brackets and keeps the rest:
+\[
+1,\,3,\,[2,\,4,\,3],\,2,\,4,\,3,\,5 \;\longrightarrow\; 1,\,3,\,2,\,4,\,3,\,5 \quad(\text{length }5).
+\]
+In the shorter walk positions $1$ and $4$ again both hold vertex $3$, and the cut leaves a path:
+\[
+1,\,3,\,[2,\,4,\,3],\,5 \;\longrightarrow\; 1,\,3,\,5 \quad(\text{a path of length }2\le8).
+\]
+In $B$ the walk $1,2,1,2,3$ cuts to $1,[2,1],2,3 \to 1,2,3$; the closed walk $2,1,2$ cuts to the single vertex $2$. (Checked by script, \cref{app:scripts}.)
 \end{remark}
 
 \begin{plainwords}
@@ -448,7 +470,7 @@ A graph $G$ is \emph{connected} if for any two vertices $u$ and $v$ of $G$ there
 
 \begin{remark}\label{rem:connected}
 In the textbook the word ``path'' here is Definition~1.2.12, a trail; the board does not say which meaning it uses. The next proposition shows that the choice does not change which graphs are connected. ``Any two vertices'' includes $u=v$; for $u=v$ the one-vertex walk is a $(u,u)$-path, so these pairs are always satisfied, and reading the definition as ``any two different vertices'' changes nothing. \kindtag{interpretation; the textbook does not discuss $u=v$}
-The definition forbids exactly one thing: a pair of vertices with no trip between them.
+The definition forbids exactly one thing: a pair of vertices with no path between them.
 \end{remark}
 
 \begin{example}\label{ex:connected}
@@ -466,11 +488,11 @@ questions have the same answer.
 \end{plainwords}
 
 \begin{proposition}[Three readings of ``connected'' agree]\label{prop:readings}
-For vertices $u,v$ of a simple graph the following are equivalent: (a) there is a $(u,v)$-walk; (b) there is a $(u,v)$-trail; (c) there is a $(u,v)$-path. Hence $G$ is connected in the textbook's sense (trails) if and only if every two vertices are joined by a path, if and only if every two vertices are joined by a walk. \kindtag{derived here from Lemma~1.2.1 and Corollary~2.9.7}
+For vertices $u,v$ of a simple graph the following are equivalent: (a) there is a $(u,v)$-walk; (b) there is a $(u,v)$-trail; (c) there is a $(u,v)$-path. Hence $G$ is connected in the textbook's sense (trails) if and only if every two vertices are joined by a path, if and only if every two vertices are joined by a walk. \kindtag{derived here from \cref{lem:walkpath}}
 \end{proposition}
 
 \begin{proof}
-(c)$\Rightarrow$(b): every path is a trail (\cref{prop:pathtrail}). (b)$\Rightarrow$(a): every trail is a walk, by definition. (a)$\Rightarrow$(c): \cref{lem:walkpath}. Grinberg states the equivalence of (a) and (c) as his Proposition~2.9.10~\cite[p.~42]{grinberg2025graph}.
+(c)$\Rightarrow$(b): every path is a trail (\cref{prop:pathtrail}). (b)$\Rightarrow$(a): every trail is a walk, by definition. (a)$\Rightarrow$(c): \cref{lem:walkpath}. Grinberg states the equivalence of (a) and (c) as his Proposition~2.9.10~\cite[p.~42]{grinberg2025graph}; the lemma behind (a)$\Rightarrow$(c) is the textbook's Lemma~1.2.1 for $u\ne v$ and Grinberg's Corollary~2.9.7 in general.
 \end{proof}
 
 \begin{plainwords}

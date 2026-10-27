@@ -2,17 +2,19 @@
 % claims used here: C9 C30 C31 C32 C33 C34 C35 C36 C37 C38 C39 m3-1 m3-3 m3-4 m3-5 m3-8 m3-9 m3-10 m3-11 m3-12 m3-13 au-3
 
 Question~2 asks how to know from $A$ whether the graph is connected
-(\Cref{def:connected}). The idea is to turn the question about trips into a
+(\Cref{def:connected}). The idea is to turn the question about paths into a
 question about counts. By \cref{thm:walkcount}, the entries of the powers of $A$
 count walks. By \cref{lem:walkpath}, a walk between two vertices contains a path
 between them, and by \cref{cor:bound} that path is short. So it is enough to
 look at walks of length at most $N-1$.
 
+\paragraph{Proof map.} The test (\cref{thm:test}) is proved from three earlier results. \Cref{thm:walkcount} says that a positive entry of $A^k$ is a walk of length $k$. \Cref{lem:walkpath} turns any walk into a path between the same two vertices. \Cref{cor:bound} says that such a path has at most $N-1$ edges, so powers beyond $N-1$ add nothing. \Cref{prop:pair} joins these into a statement about one pair of vertices, and \cref{thm:test} collects the pairs.
+
 \subsection{The running total \texorpdfstring{$S$}{S}}\label{sec:S}
 
 \begin{plainwords}
 We need a name for the running total. It adds the counts of trips with one road,
-with two roads, and so on. We stop one step short of the number of houses. The
+with two roads, and so on. We stop at the power that is one less than the number of houses. The
 whole check uses this one total.
 \end{plainwords}
 
@@ -80,7 +82,7 @@ read this off.
 Let $G$ be a graph with $N\ge2$ vertices and adjacency matrix $A$. Then $G$ is connected if and only if every entry off the diagonal of $S=A+A^2+\dots+A^{N-1}$ is positive.
 \end{theorem}
 
-The statement appears in Paramadevan and Sotheeswaran's Theorem~2~\cite{paramadevan2021adjacency} and in Weisstein's entry on connected graphs~\cite{weisstein_connectedgraph}. The proof in the first is incomplete (\cref{sec:provenance} quotes it), so the paper proves the test itself and cites these sources for the statement only. The textbook does not state it in the pages checked \kindtag{qualified}. The proof is \kindtag{derived here}.
+The statement appears in Paramadevan and Sotheeswaran's Theorem~2~\cite{paramadevan2021adjacency} and in Weisstein's entry on connected graphs~\cite{weisstein_connectedgraph}. The proof in the first is incomplete (\cref{sec:limits}), so the paper proves the test itself and cites these sources for the statement only. The textbook does not state it (\cref{sec:provenance}) \kindtag{qualified}. The proof is \kindtag{derived here}.
 
 \begin{remark}\label{rem:test}
 The test allows any graph with $N\ge2$ vertices, connected or not. It looks only at entries with $i\ne j$. It forbids requiring positive diagonal entries (\cref{rem:diagonal}) and forbids stopping at $A^{N-2}$ (\cref{prop:sharp}).
@@ -99,7 +101,7 @@ By \cref{def:connected} and \cref{prop:readings}, $G$ is connected if and only i
 \end{proof}
 
 \paragraph{Why the argument is valid.}
-It uses three results and nothing else: the walk count (\cref{thm:walkcount}), the walk-to-path lemma (\cref{lem:walkpath}) with its length bound (\cref{cor:bound}), and the fact that a count is a non-negative integer, so a sum is positive exactly when a term is. The last step would fail with subtraction or arithmetic modulo a number, which can cancel positive terms. The exponent $N-1$ is the largest one needed because a path has at most $N-1$ edges; adding higher powers cannot change which off-diagonal entries are positive.
+It uses three results and nothing else: the walk count (\cref{thm:walkcount}), the walk-to-path lemma (\cref{lem:walkpath}) with its length bound (\cref{cor:bound}), and the fact that a count is a non-negative integer, so a sum is positive exactly when a term is. The last step would fail with subtraction or with arithmetic modulo a number, which can cancel positive terms: for the triangle $T$, the matrix $S=A+A^2$ has every off-diagonal entry equal to $2$ (by script), and modulo $2$ these entries are $0$, so the test would wrongly say ``not connected''. The exponent $N-1$ is the largest one needed because a walk of any length contains a path (\cref{lem:walkpath}) of at most $N-1$ edges (\cref{cor:bound}), and that path is again a walk, counted by one of the powers up to $N-1$; adding higher powers cannot change which off-diagonal entries are positive.
 
 \begin{plainwords}
 The same counts also tell us the pieces of a village. Two different houses are in
@@ -120,15 +122,18 @@ For any graph with $N\ge2$ vertices, connected or not, and $i\ne j$: (a)~$S_{ij}
 The distance statement is also made by Lehman, Leighton and Meyer, and by Paramadevan and Sotheeswaran in their Theorem~3~\cite{lehman_mcs_adjacency,paramadevan2021adjacency}. The entry $S_{ij}$ tells whether $n_i$ and $n_j$ are connected, not which path joins them.
 
 \begin{remark}[The diagonal, and the cases $N=1$ and $N=2$]\label{rem:diagonal}
-For $N=2$ and one edge, $S=A$ has zeros on the diagonal although the graph is connected (by script: $A=\MTwoVertexA$). So the diagonal of $S$ cannot be required to be positive. For $N\ge3$ and $G$ connected the diagonal of $S$ is positive anyway, because every vertex has a neighbour (an isolated vertex would have no path to the other $N-1$ vertices) and $(A^2)_{ii}=\deg(n_i)$ (\cref{cor:walkcount}(d)); the test does not need this. For $N=1$ there are no pairs of different vertices and the graph is connected; the sum $S$ is empty, so the test is stated for $N\ge2$. \kindtag{derived here}
+For $N=2$ and one edge, $S=A$ has zeros on the diagonal although the graph is connected:
+\[
+A=\MTwoVertexA .
+\] So the diagonal of $S$ cannot be required to be positive. For $N\ge3$ and $G$ connected the diagonal of $S$ is positive anyway, because every vertex has a neighbour (an isolated vertex would have no path to the other $N-1$ vertices) and $(A^2)_{ii}=\deg(n_i)$ (\cref{cor:walkcount}(d)); the test does not need this. For $N=1$ there are no pairs of different vertices and the graph is connected; the sum $S$ is empty, so the test is stated for $N\ge2$. \kindtag{derived here}
 \end{remark}
 
 \subsection{The test as a procedure}\label{sec:procedure}
 
 \begin{plainwords}
-Here is the check, step by step. First write the table of the village. Then
-multiply the table by itself again and again. After each step, add the new counts
-to a running total. Stop after one step fewer than the number of houses. Look at
+Here is the check, in order. First write the table of the village. Then
+multiply the table by itself again and again. After each multiplication, add the new counts
+to a running total. Stop at the power that is one less than the number of houses. Look at
 every pair of different houses. If any total is zero, those two houses cannot
 reach each other. If no total is zero, everyone can reach everyone.
 \end{plainwords}
@@ -143,11 +148,11 @@ reach each other. If no total is zero, everyone can reach everyone.
 \end{test}
 
 \begin{remark}\label{rem:procedure}
-Correctness is \cref{thm:test}. The loop makes $N-2$ matrix products, the last one producing $A^{N-1}$. A zero at position $(i,j)$ means by \cref{cor:components} that $n_i$ and $n_j$ are in different components, so the procedure also lists the pieces. The test forbids stopping early: it needs every power up to $N-1$ (\cref{prop:sharp}).
+Correctness is \cref{thm:test}. The procedure makes $N-2$ matrix products, the last one producing $A^{N-1}$. A zero at position $(i,j)$ means by \cref{cor:components} that $n_i$ and $n_j$ are in different components, so the procedure also lists the pieces. The test forbids stopping early: it needs every power up to $N-1$ (\cref{prop:sharp}).
 \end{remark}
 
 \begin{example}\label{ex:procedure}
-On $B$ ($N=3$) the loop runs once ($k=2$): $P=A^2$, $S=A+A^2$, no off-diagonal zero, so ``connected''. The matrices are in \cref{sec:example}.
+On $B$ ($N=3$) step~2 runs once ($k=2$): $P=A^2$, $S=A+A^2$, no off-diagonal zero, so ``connected''. The matrices are in \cref{sec:example}.
 \end{example}
 
 \begin{nonexample}\label{nex:procedure}
@@ -163,11 +168,13 @@ trips count too. The village is connected exactly when no pair of houses has a
 count of zero.
 \end{plainwords}
 
-The table that makes a trip wait is the identity matrix $I$, which has ones on the diagonal and zeros elsewhere: ``stay at the same house'' is one allowed step, just as ``drive one road'' is the step given by $A$. When $(I+A)$ is multiplied by itself $m$ times, each of the $m$ factors offers a choice between waiting ($I$) and driving one road ($A$). A choice with $k$ drives and $m-k$ waits gives the product $A^k$ (because $IX=X$ for every matrix $X$), and there are $\binom{m}{k}$ such choices. So
+The matrix that makes a walk wait is the identity matrix $I$, which has ones on the diagonal and zeros elsewhere: ``stay at the same vertex'' is one allowed move, just as ``follow one edge'' is the move given by $A$. Let $m$ be a positive integer. When $(I+A)$ is multiplied by itself $m$ times, each of the $m$ factors offers a choice between waiting ($I$) and following one edge ($A$). A choice with $k$ edges followed and $m-k$ waits gives the product $A^k$ (because $IX=X$ for every matrix $X$), and there are $\binom{m}{k}$ such choices. So
 \begin{equation}\label{eq:binomial}
 (I+A)^m=\binom{m}{0}I+\binom{m}{1}A+\binom{m}{2}A^2+\dots+\binom{m}{m}A^m ,
 \end{equation}
-with $A^0=I$. Every coefficient is a positive integer. \Cref{app:iplusa} gives the argument in detail.
+where $A^0=I$ stands for ``no edge followed''. Because $IA=AI=A$, the matrices $I$ and $A$ commute, which is what lets the expansion follow the ordinary binomial theorem. Every coefficient is a positive integer.
+
+Why this decides connectedness. For $i\ne j$ the identity matrix has the entry $0$ at $(i,j)$, so $\bigl((I+A)^m\bigr)_{ij}=\sum_{k=1}^{m}\binom{m}{k}(A^k)_{ij}$, a sum of non-negative terms with positive coefficients. It is positive exactly when some $(A^k)_{ij}$ with $1\le k\le m$ is positive, that is, when a walk of length at most $m$ joins $n_i$ and $n_j$. For $m\ge N-1$ this is the same as $S_{ij}>0$, by \cref{lem:walkpath} and \cref{cor:bound}. On the diagonal the term $I$ contributes $1$, so no diagonal entry is zero. \Cref{app:iplusa} gives the argument in detail.
 
 \begin{plainwords}
 So one table is enough. Take the table that allows waiting and raise it to a high
@@ -179,7 +186,7 @@ Otherwise every house can reach every other house.
 Let $G$ have $N\ge2$ vertices, let $I$ be the $N\times N$ identity matrix, and let $m\ge N-1$ be an integer. Then (a)~for $i\ne j$, $\bigl((I+A)^m\bigr)_{ij}>0$ if and only if $S_{ij}>0$; (b)~every diagonal entry of $(I+A)^m$ is at least $1$. Hence $G$ is connected if and only if $(I+A)^{N-1}$ has no zero entry. \kindtag{derived here; proof in \cref{app:iplusa}}
 \end{proposition}
 
-Bai states the case $m=N-1$ as his Theorem~2, with a proof sketch that counts ``paths'' where walks are meant~\cite{bai2025adjacency}. That statement is therefore \kindtag{qualified}; the proof in the appendix replaces the sketch. For the board graph and for $D$ the matrices $(I+A)^2$ are in \cref{sec:example}, and the zeros fall in the same places as the zeros of $S$.
+Bai states the case $m=N-1$ as his Theorem~2, with a proof sketch that is incomplete (\cref{sec:limits})~\cite{bai2025adjacency}. That statement is therefore \kindtag{qualified}; the proof in the appendix replaces the sketch. For the board graph and for $D$ the matrices $(I+A)^2$ are in \cref{sec:example}, and the zeros fall in the same places as the zeros of $S$.
 
 \subsection{Why \texorpdfstring{$N-1$}{N-1} and not less}\label{sec:sharp}
 
@@ -195,7 +202,7 @@ For every $N\ge3$ there is a connected graph with $N$ vertices for which the sum
 \end{proposition}
 
 \begin{proof}
-Take the graph with edges $1\text{--}2,\ 2\text{--}3,\ \dots,\ (N-1)\text{--}N$, a row of $N$ houses; it is connected. Each step of a walk changes the vertex number by exactly $1$. To go from vertex $1$ to vertex $N$ the number must increase by $N-1$, so at least $N-1$ steps are needed. A walk of length $k<N-1$ from $1$ to $N$ does not exist, so by \cref{thm:walkcount} $(A^k)_{1N}=0$ for $1\le k\le N-2$. Hence the $(1,N)$ entry of $A+\dots+A^{N-2}$ is $0$, although the graph is connected.
+Take the graph with edges $1\text{--}2,\ 2\text{--}3,\ \dots,\ (N-1)\text{--}N$, the \emph{row graph} on $N$ vertices; it is connected. Each step of a walk changes the vertex number by exactly $1$. To go from vertex $1$ to vertex $N$ the number must increase by $N-1$, so at least $N-1$ steps are needed. A walk of length $k<N-1$ from $1$ to $N$ does not exist, so by \cref{thm:walkcount} $(A^k)_{1N}=0$ for $1\le k\le N-2$. Hence the $(1,N)$ entry of $A+\dots+A^{N-2}$ is $0$, although the graph is connected.
 \end{proof}
 
 For $N=3$ the graph is the board graph and the sum $A+\dots+A^{N-2}$ is $A$ itself, with $A_{13}=0$. For $N=4$ (\cref{fig:path4}) every matrix is written out below; the sum of the first $N-2=2$ powers has zeros at $(1,4)$ and $(4,1)$, and the sum of the first $N-1=3$ powers has none.
@@ -203,11 +210,11 @@ For $N=3$ the graph is the board graph and the sum $A+\dots+A^{N-2}$ is $A$ itse
 \begin{figure}[ht]
 \centering
 \input{figures/fig-path4}
-\caption{Four houses in a row, the graph used in \cref{ex:sharp}.}
+\caption{The row graph on four vertices, used in \cref{ex:sharp}.}
 \label{fig:path4}
 \end{figure}
 
-\begin{example}[The bound $N-1$ is needed; four houses in a row]\label{ex:sharp}
+\begin{example}[The bound $N-1$ is needed; the row graph on four vertices]\label{ex:sharp}
 With $N=4$, the matrices from the script are
 {\small\begin{align*}
 A&=\MPathA, & A^2&=\MPathAsq,\\
@@ -219,7 +226,7 @@ With $N-2=2$ powers the $(1,4)$ entry is $0$, so the test would wrongly say ``no
 
 \begin{table}[ht]
 \centering
-\caption{The row of $N$ houses, $N=3,\dots,8$ (by script). The first power with a non-zero $(1,N)$ entry is always $N-1$.}
+\caption{The row graph on $N$ vertices, $N=3,\dots,8$ (by script). The first power with a non-zero $(1,N)$ entry is always $N-1$.}
 \label{tab:sharp}
 \small
 \begin{tabular}{@{}cp{3.4cm}p{3.8cm}p{3.8cm}@{}}
@@ -234,7 +241,7 @@ $N$ & smallest $k$ with $(A^k)_{1N}>0$ & $(1,N)$ entry of $A+\dots+A^{N-2}$ & $(
 Using only the single power $A^{N-1}$ is also wrong: on the board graph $A^2$ has the zero entry $(1,2)$.
 
 \begin{remark}[Which graphs the $N-2$ version gets wrong]\label{rem:failcount}
-The test with only $N-2$ powers is wrong on exactly the labelled rows of $N$ houses, that is, the path graphs with the vertices numbered in any order. There are $N!/2$ of them for $N\ge2$ ($N!$ orders along the row, each row counted twice because it can be read from either end): $1,3,12,60,360$ for $N=2,\dots,6$. These are the numbers in the last column of \cref{tab:exhaustive}, which the script counted by brute force. \kindtag{derived here} Reason: the $N-2$ version can only err by saying ``not connected'' for a connected graph, because a positive entry always comes from a real walk. By \cref{cor:components}(b) it says so exactly when some pair of vertices has distance $N-1$. A shortest path between two such vertices passes through all $N$ vertices, and a shortest path has no edge between vertices that are not neighbours on it, since that edge would give a shorter trip. So the graph is that row of houses. Conversely, \cref{prop:sharp} shows that a row fails. For $N=2$ the sum of $N-2=0$ powers is empty, and an empty sum is the zero matrix, so the test says ``not connected'' on the one connected graph.
+The test with only $N-2$ powers is wrong on exactly the labelled row graphs, that is, the row graph on $N$ vertices with the vertices numbered in any order. There are $N!/2$ of them for $N\ge2$ ($N!$ orders along the row, each row counted twice because it can be read from either end): $1,3,12,60,360$ for $N=2,\dots,6$. These are the numbers in the last column of \cref{tab:exhaustive}, which the script counted by brute force. \kindtag{derived here} Reason: the $N-2$ version can only err by saying ``not connected'' for a connected graph, because a positive entry always comes from a real walk. In a connected graph every distance is at most $N-1$ (\cref{cor:bound}), and by \cref{cor:components}(b) the $N-2$ version misses a pair exactly when its distance is $N-1$. A shortest path between such a pair has $N$ vertices, so it passes through every vertex of the graph. It has no chord, that is, no edge between two of its vertices that are not neighbours on it, because such an edge would give a shorter path between the same two vertices. So every edge of the graph lies on that path, and the graph is the row graph. Conversely, \cref{prop:sharp} shows that a row graph fails. For $N=2$ the sum of $N-2=0$ powers is empty, and an empty sum is the zero matrix, so the test says ``not connected'' on the one connected graph.
 \end{remark}
 
 \subsection{Breadth-first search, the alternative}\label{sec:bfs}
@@ -253,4 +260,4 @@ connected.
 \item Repeat step~2 until the list is empty.
 \item Report ``connected'' if every vertex is marked, and ``not connected'' otherwise.
 \end{enumerate}
-The correctness statement in the source is that for every vertex $v$ there is a walk from $s$ to $v$ if and only if $v$ is discovered when the search ends, so $G$ is connected if and only if every vertex is discovered when BFS starts from any single vertex $s$~\cite{schost2026bfs}. When the graph is stored as adjacency lists (for each vertex, the list of its neighbours), the source gives a running time at most a fixed multiple of $N+|E|$~\cite{schost2026bfs}. BFS and the matrix test agree on all labelled graphs with $2,3,4,5,6$ vertices ($2$, $8$, $64$, $1024$, $32768$ graphs; a check, not a proof, \cref{app:crosschecks}), and BFS also lists the components directly. The two methods are compared for cost in \cref{sec:discussion}.
+The correctness statement in the source is that for every vertex $v$ there is a walk from $s$ to $v$ if and only if $v$ is discovered when the search ends, so $G$ is connected if and only if every vertex is discovered when BFS starts from any single vertex $s$~\cite{schost2026bfs}. (If every vertex is discovered, two vertices $u,v$ are joined by the reversal of a walk from $s$ to $u$ followed by a walk from $s$ to $v$, as in the justification of symmetry and transitivity in \cref{def:component}; if some vertex is not discovered, no walk from $s$ reaches it, and $G$ is not connected.) When the graph is stored as adjacency lists (for each vertex, the list of its neighbours), the source gives a running time at most a fixed multiple of $N+|E|$~\cite{schost2026bfs}. BFS and the matrix test agree on all labelled graphs with $2,3,4,5,6$ vertices ($2$, $8$, $64$, $1024$, $32768$ graphs; a check, not a proof, \cref{app:crosschecks}), and BFS also lists the components directly. The two methods are compared for cost in \cref{sec:discussion}.

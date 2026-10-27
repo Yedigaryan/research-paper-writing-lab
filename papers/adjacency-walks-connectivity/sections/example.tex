@@ -76,7 +76,7 @@ A&=\MBoardA, & A^2&=\MBoardAsq,\\
 S&=\MBoardS, & (I+A)^2&=\MBoardIAsq .
 \end{align*}
 $S$ has no zero entry off the diagonal (in fact none anywhere), so by \cref{thm:test} the graph is connected. $(I+A)^2$ has no zero entry, so by \cref{prop:iplusa} the graph is connected. The two answers agree, and breadth-first search from vertex $1$ reaches $\{1,2,3\}$ and agrees too.
-The entry $A_{13}$ is $0$, so no road joins $n_1$ and $n_3$, yet $(A^2)_{13}=0\cdot0+1\cdot1+0\cdot0=1$: exactly one walk of length $2$ joins them, namely $1,2,3$. The entry of $(I+A)^2$ at $(1,3)$ is $1=\binom{2}{2}(A^2)_{13}$, since in formula~\eqref{eq:binomial} both $I$ and $A$ have the entry $0$ at $(1,3)$. As a check, $(I+A)^2=I+2A+A^2$ holds entry by entry (script). \kindtag{derived here}
+The entry $A_{13}$ is $0$, so no edge joins $n_1$ and $n_3$, yet $(A^2)_{13}=0\cdot0+1\cdot1+0\cdot0=1$: exactly one walk of length $2$ joins them, namely $1,2,3$. The entry of $(I+A)^2$ at $(1,3)$ is $1=\binom{2}{2}(A^2)_{13}$, since in formula~\eqref{eq:binomial} both $I$ and $A$ have the entry $0$ at $(1,3)$. As a check, $(I+A)^2=I+2A+A^2$ holds entry by entry (script). \kindtag{derived here}
 \end{example}
 
 By \cref{cor:components}(b), the smallest $k$ with $(A^k)_{ij}>0$ is the distance: $d(1,2)=d(2,3)=1$ from $A$, and $d(1,3)=2$ from $A^2$, in agreement with \cref{ex:distance}.
@@ -100,7 +100,7 @@ The off-diagonal zeros of $S$ are at $(1,3)$, $(2,3)$, $(3,1)$ and $(3,2)$, and 
 \[
 A^3=\MOneAcube=A .
 \]
-In fact no walk reaches vertex $3$ at all. \kindtag{derived here}
+In fact no walk from vertex $1$ or vertex $2$ reaches vertex $3$. \kindtag{derived here}
 \end{example}
 
 \begin{table}[ht]

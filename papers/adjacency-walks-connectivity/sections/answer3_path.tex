@@ -7,9 +7,7 @@ $n_j$. The answer is \cref{def:path}, restated for a pair of vertices in
 which is the textbook's Definition~1.2.13~\cite[Definition~1.2.13, p.~22]{petrosyan2015grafneri}.
 This section adds only the form for a pair of vertices and the comparison of the three
 naming conventions. The board uses the word in its definition of ``connected'' and does not
-say which meaning it has~\cite{whiteboard1,whiteboard2}; the assignment text says that in the course
-a path has no repeated vertices. That the course uses this meaning is
-\kindtag{interpretation, qualified}, because it comes from the assignment text and not from the board.
+say which meaning it has~\cite{whiteboard1,whiteboard2}. The assignment text is not reproduced in this paper. As reported by the user, it states that in the course ``path'' means a walk with no repeated vertices; the answer to Question~3 rests on this statement, so it is \kindtag{interpretation, qualified}: it is the user's report, and the board does not confirm it.
 
 \begin{plainwords}
 A path between two houses is a route from one to the other. It never passes a
@@ -18,8 +16,10 @@ roads at all. It is just the one house.
 \end{plainwords}
 
 \begin{definition}[Path between $n_i$ and $n_j$, course convention]\label{def:pathbetween}
-Let $n_i$ and $n_j$ be vertices of $G$. A \emph{path between $n_i$ and $n_j$} is a path in the sense of \cref{def:path} whose first vertex is $n_i$ and whose last vertex is $n_j$: a walk $w_0,w_1,\dots,w_k$ with $w_0=n_i$, $w_k=n_j$ and pairwise distinct vertices. Its length is $k$. \kindtag{interpretation, qualified}
+Let $n_i$ and $n_j$ be vertices of $G$. A \emph{path between $n_i$ and $n_j$} is a path in the sense of \cref{def:path} whose first vertex is $n_i$ and whose last vertex is $n_j$: a walk $w_0,w_1,\dots,w_k$ with $w_0=n_i$, $w_k=n_j$ and pairwise distinct vertices. Its length is $k$.
 \end{definition}
+
+This definition is taken from the assignment text, as reported by the user, together with the textbook's Definition~1.2.13; it is not derived.
 
 This is a simple path in the textbook's sense and a path in English usage~\cite{petrosyan2015grafneri,grinberg2025graph}; Grinberg phrases the pair form as ``a path from $p$ to $q$ is a path that starts at $p$ and ends at $q$''~\cite[Definition~2.9.1(d), p.~36]{grinberg2025graph}.
 
@@ -46,19 +46,19 @@ is one table that puts the words side by side.
 
 \begin{table}[ht]
 \centering
-\caption{The three naming conventions. ``Course'' is the assignment text's statement for the word path; the course convention for cycle is not stated, so this paper follows the textbook for cycle and writes ``simple cycle'' for the English ``cycle''. Sources: textbook~\cite{petrosyan2015grafneri}, Grinberg~\cite{grinberg2025graph}, Wikipedia~\cite{wikipedia_path_graph_theory}.}
+\caption{The three naming conventions. ``Course (stated)'' is what the assignment text states, as reported by the user: only the word path. For every other row the course convention is not stated, so this paper follows the textbook and writes ``simple cycle'' for the English ``cycle''. Sources: textbook~\cite{petrosyan2015grafneri}, Grinberg~\cite{grinberg2025graph}, Wikipedia~\cite{wikipedia_path_graph_theory}.}
 \label{tab:conventions}
 \small
-\begin{tabular}{@{}p{4.4cm}p{3.4cm}p{3.8cm}p{2.9cm}@{}}
+\begin{tabular}{@{}p{3.6cm}p{2.8cm}p{2.4cm}p{2.2cm}p{2.6cm}@{}}
 \toprule
-Property of the walk & Textbook word (number) & English word & Course and this paper \\
+Property of the walk & Textbook word (number) & English word & Course (stated) & This paper \\
 \midrule
-any list of steps along edges & walk (1.2.10) & walk & walk \\
-walk with first vertex equal to last & closed walk (1.2.11) & closed walk & closed walk \\
-no repeated edge; vertices may repeat & ``path'' (1.2.12) & trail & \textbf{trail} \\
-no repeated vertex (so no repeated edge) & ``simple path'' (1.2.13) & path & \textbf{path} \\
-closed, no repeated edge; vertices may repeat & ``cycle'' or ``closed path'' (1.2.14) & closed trail & cycle (textbook meaning) \\
-closed, no repeated vertex except first and last, length at least $3$ & ``simple cycle'' (1.2.15) & cycle & simple cycle \\
+any list of steps along edges & walk (1.2.10) & walk & not stated & walk \\
+walk with first vertex equal to last & closed walk (1.2.11) & closed walk & not stated & closed walk \\
+no repeated edge; vertices may repeat & ``path'' (1.2.12) & trail & not stated & \textbf{trail} \\
+no repeated vertex (so no repeated edge) & ``simple path'' (1.2.13) & path & path & \textbf{path} \\
+closed, no repeated edge; vertices may repeat & ``cycle'' or ``closed path'' (1.2.14) & closed trail & not stated & cycle (textbook meaning) \\
+closed, no repeated vertex except first and last, length at least $3$ & ``simple cycle'' (1.2.15) & cycle & not stated & simple cycle \\
 \bottomrule
 \end{tabular}
 \end{table}

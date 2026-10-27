@@ -35,24 +35,27 @@ The paper answers three questions.
 \begin{enumerate}
 \item[\textbf{Q1.}] For a positive integer $k$, what does the entry $(A^k)_{ij}$ of the $k$-th power of $A$ represent? This is the board's first question~\cite{whiteboard1,whiteboard2}.
 \item[\textbf{Q2.}] How can one tell from $A$ alone whether the graph is connected? This is the board's second question~\cite{whiteboard1,whiteboard2}.
-\item[\textbf{Q3.}] What is the definition of a path between two vertices $n_i$ and $n_j$? This question is not on the board. It was added by the assignment text that came with the photographs. That text states the course convention: in the course, ``path'' means a walk with no repeated vertices. This is the sentence the answer to Question~3 rests on (\Cref{sec:answer3}).
+\item[\textbf{Q3.}] What is the definition of a path between two vertices $n_i$ and $n_j$? This question is not on the board. It was added by the assignment text that came with the photographs. The assignment text is not reproduced in this paper. As reported by the user, it states that in the course ``path'' means a walk with no repeated vertices; the answer to Question~3 rests on this statement (\Cref{sec:answer3}).
 \end{enumerate}
 Question~3 matters because the board's definition of ``connected'' uses the
 word ``path'' without saying which of several meanings it has
 (\Cref{sec:conventions}), so the answer to Question~2 could appear to depend on it.
-It does not (\Cref{prop:readings}), but Question~3 still needs a definite answer.
+It does not (proved in \Cref{sec:bg-connected}: whether a path exists does not depend on the meaning of the word), but Question~3 still needs a definite answer.
 
 Statements in this paper that are not plain facts from a source carry a label
-in square brackets. \kindtag{derived here} marks a result proved or computed in
-this paper; \kindtag{interpretation} marks a reading of the material;
-\kindtag{estimate} marks an operation count; \kindtag{qualified} marks a
-statement that rests on something the sources do not fully settle.
+in square brackets. \kindtag{derived here} marks a result that the paper proves or
+computes itself, so the reader can check the proof or run the script.
+\kindtag{interpretation} marks a reading of the photographs, the assignment or a source
+that cannot be proved. \kindtag{estimate} marks an operation count, not a measurement.
+\kindtag{qualified} marks a statement that rests on a point that was not fully checked; the
+text next to it names the point. A compound label such as \kindtag{interpretation, qualified}
+marks a reading that also rests on such a point.
 
 The course textbook, \emph{Graph Theory} by Petrosyan, Mkrtchyan and
 Kamalyan~\cite{petrosyan2015grafneri}, supplies the definitions and their
 numbers. It contains neither the walk-counting theorem nor a matrix test for
 connectivity in the pages that were checked \kindtag{qualified}
-(\Cref{sec:provenance} says which pages). So the paper proves both results
+(\Cref{sec:provenance} says which pages and how the rest was checked). So the paper proves both results
 itself and marks them \kindtag{derived here}.
 
 \paragraph{The answers in brief.}
@@ -150,24 +153,27 @@ matrix}~\cite{whiteboard1,whiteboard2}, so this paper takes the matrix as the
 example graph and calls it $B$ (\Cref{fig:village}, left). It treats the
 arrowhead as a stray mark, since the matrix is symmetric and the problem is
 about undirected graphs. The paper reports the mismatch and does not guess which one
-the lecturer intended. The three-line drawing is called $T$ (a triangle) and is used only where a graph with a cycle is needed.
+the lecturer intended. The sources therefore disagree on the edge $1$--$3$. Both graphs are used: $B$ for the
+worked example, and $T$ (the three-line drawing, a triangle) only where a graph with a cycle is needed. No result in
+this paper depends on the choice, since every statement holds for every finite simple undirected graph.
 \item \textbf{The board's letters.} The board writes $(G,V)$ for the graph and
 $e_{ij}\in V$ in the definition of $A_{ij}$, so the board's $V$ is the
 \emph{edge} set. The textbook writes $G=(V,E)$, with $V$ for vertices and $E$
 for edges~\cite{petrosyan2015grafneri}. This is a difference of notation only.
 The paper uses the textbook's $V$ and $E$. The board writes $|G|=N$ for the
 number of vertices and $n_i$ for vertices; the paper keeps $N$ and $n_i$. The
-textbook writes $v_i$ and $n$; these are mentioned only here.
+textbook writes $v_i$ and $n$; the paper keeps $n_i$ and $N$, except that the vertices of the
+textbook's own example graph keep the textbook's names $v_1,\dots,v_5$.
 \item \textbf{The word ``path''.} The textbook uses ``path'' for a walk with no
 repeated edge (Definition~1.2.12) and ``simple path'' for a walk with no
 repeated vertex (Definition~1.2.13)~\cite{petrosyan2015grafneri}. English texts
 call the first a trail and the second a path~\cite{grinberg2025graph,wikipedia_path_graph_theory}.
-The assignment text says that in the course ``path'' means no repeated vertices.
-The board does not say which meaning it uses. This paper therefore writes
+The assignment text is not reproduced here; as reported by the user, it says that in the course ``path'' means a walk with no
+repeated vertices. The board does not say which meaning it uses. This paper therefore writes
 \emph{trail} for Definition~1.2.12 and \emph{path} for Definition~1.2.13 everywhere,
 and shows the three conventions side by side in \Cref{tab:conventions}. That the
-course uses this meaning is \kindtag{interpretation, qualified}, because it comes
-from the assignment text and not from the board.
+course uses this meaning is \kindtag{interpretation, qualified}, because it rests on the user's report of the assignment
+text and not on the board.
 \item \textbf{Lengths and exponents.} The exponent $k$ is a positive integer. The
 case $k=0$ (the identity matrix, one walk of length $0$ from a vertex to itself) is treated by
 Grinberg~\cite{grinberg2025graph} and is not needed for the board question. A walk of length $0$, a single vertex, is
@@ -217,6 +223,9 @@ $i,j,r$ & indices running from $1$ to $N$ & $i,j$ & --- \\
 $\deg(n_i)$ & degree of $n_i$ (Definition~1.2.1) & --- & $d_G(v)$, $d(v)$ \\
 $d(u,v)$ & distance & --- & $d(u,v)$, $d_G(u,v)$ \\
 $S$ & $A+A^2+\dots+A^{N-1}$, defined in \Cref{sec:answer2} & --- & --- \\
+$A^0$ & the identity matrix $I$, by convention, used only in formula~\eqref{eq:binomial} & --- & --- \\
+$\binom{m}{k}$ & binomial coefficient: the number of ways to choose $k$ of $m$ items & --- & --- \\
+$u\sim v$ & there is a path from $u$ to $v$ (\Cref{def:component}) & --- & --- \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -242,8 +251,8 @@ This subsection collects where the material comes from, so that
 
 \paragraph{Sources.} The board photographs~\cite{whiteboard1,whiteboard2}; the course textbook~\cite{petrosyan2015grafneri}; Grinberg's lecture-note text on graph theory~\cite{grinberg2025graph}; the University of Galway lecture notes on the adjacency matrix~\cite{quinlan_matrices_graphs}; the open textbook of Lehman, Leighton and Meyer~\cite{lehman_mcs_adjacency}; the journal paper of Paramadevan and Sotheeswaran~\cite{paramadevan2021adjacency}; Bai's lecture notes~\cite{bai2025adjacency}; the MathWorld and Wikipedia entries~\cite{weisstein_connectedgraph,wikipedia_path_graph_theory}; and lecture slides on breadth-first search~\cite{schost2026bfs}. The Galway file carries no author name or date; its URL suggests the name Quinlan, which the file does not confirm, so this paper calls it the University of Galway notes.
 
-\paragraph{Pages of the textbook checked.} The textbook definitions were taken from printed pages 9 to 12 (graphs and the adjacency matrix), 16 (degree), 21 to 23 (walks, trails, paths, cycles, distance, Lemma~1.2.1) and 48 to 49 (connectedness). The remaining pages of Chapters~1 and~2 (13 to 15, 17 to 20, 24 to 47 and 50 to 62) and Chapters~3 to~8 were not read page by page. An independent full-text search of the whole book for the adjacency matrix found it only on pages 11 to 12, 34 and 60, and found no walk-counting theorem and no matrix connectivity test. So the statement ``the textbook contains neither'' is \kindtag{qualified}: it rests on that search and on the pages read, not on a page-by-page reading of the whole book. Page numbers in this paper are printed page numbers; the PDF page is one higher.
+\paragraph{Pages of the textbook checked.} The textbook definitions were taken from printed pages 9 to 12 (graphs and the adjacency matrix), 16 (degree), 21 to 23 (walks, trails, paths, cycles, distance, Lemma~1.2.1) and 48 to 49 (connectedness). The remaining pages of Chapters~1 and~2 (13 to 15, 17 to 20, 24 to 47 and 50 to 62) and Chapters~3 to~8 were not read page by page. An independent full-text search of the whole book for the adjacency matrix found it only on printed pages 7, 11, 12, 34 and 61, and found no walk-counting theorem and no matrix connectivity test. So the statement ``the textbook contains neither'' is \kindtag{qualified}: it rests on that search and on the pages read, not on a page-by-page reading of the whole book. Page numbers in this paper are printed page numbers; the PDF page is one higher.
 
-\paragraph{Weaknesses of some sources.} Two sources that state the connectivity test prove it loosely. Paramadevan and Sotheeswaran's Theorem~1 reads: ``the number of different paths of length $l$ between the $i$-th and $j$-th vertices of $G$ is equal to the $(i,j)$-th entry of $A_G^l$''. This is false for paths in either sense (\Cref{prop:warning}), although their own property~7 says walks. Their proof of Theorem~2 repeats the word: ``$b_{ij}$ = number of different paths of length less than $n$ from the vertex $i$ to $j$'', and it ends ``Conversely, if $b_{ij}\ne0$, then there exist at least one path from $v_i$ to $v_j$, thus $G$ is connected'', which passes from a non-zero entry to a path without the walk-to-path lemma~\cite{paramadevan2021adjacency}. Bai's proof sketch of the $(I+A)^{n-1}$ form says ``$(I+A)^{n-1}$ aggregates all paths of length $\le n-1$''~\cite{bai2025adjacency}. Both statements of the test are correct and the proofs are incomplete \kindtag{interpretation}. This is why the paper proves the test itself and cites these two sources for the statements only.
+\paragraph{Weaknesses of some sources.} Two sources that state the connectivity test prove it incompletely, and one states the counting theorem with ``paths'' in place of walks. The offending sentences are quoted in \Cref{sec:limits}.
 
-\paragraph{Scripts.} Every matrix, product, sum and count in the paper was computed by script before it was written. The scripts, their saved outputs, and the script that turns those outputs into the matrices printed in the text are in \texttt{appendices/scripts/}; \Cref{app:scripts} says how to run them. Exhaustive comparisons over small graphs are checks, not proofs, and the text says so each time.
+\paragraph{Scripts.} Every matrix, product, sum and count in the paper was computed by script before it was written. The scripts and their saved outputs are in the folder \texttt{appendices/scripts/} of the paper. The PDF alone cannot confirm those numbers: a reader who wants to check them must run the scripts. \Cref{app:scripts} gives the commands and three small cases that can be checked by hand. Exhaustive comparisons over small graphs are checks, not proofs, and the text says so each time.

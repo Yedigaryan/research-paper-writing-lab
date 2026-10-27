@@ -1,0 +1,61 @@
+{
+  "question": "For a simple undirected graph with N vertices given by its adjacency matrix A: (1) what does the entry (A^k)_{ij} represent, (2) how can one determine from A whether the graph is connected, and (3) what is the definition of a path between vertices n_i and n_j?",
+  "sources": [],
+  "claims": [
+    {
+      "id": "au-1",
+      "text": "Textbook Definition 1.2.1 (printed p. 16): the degree of a vertex v of G, written d_G(v) or d(v), is the number of edges incident to v; in the textbook d_G(v) = |boundary edge set of v|. The textbook places it in Section 1.2, after the adjacency matrix (Section 1.1) and before walks (Definition 1.2.10).",
+      "kind": "fact",
+      "module": "author",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "printed p. 16 (PDF p. 17), Definition 1.2.1",
+          "quote": "Սահմանում 1.2.1: G գրաֆում v գագաթի աստիճան, որը կնշանակենք d_G(v)-ով կամ d(v)-ով, կանվանենք այդ գագաթին կից կողերի քանակը։"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/background.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "au-2",
+      "text": "Textbook Theorem 1.2.1 (L. Euler, printed p. 16): in every graph G = (V, E) the sum over all vertices v of d_G(v) equals 2|E(G)|; the proof counts each edge twice, once at each end.",
+      "kind": "fact",
+      "module": "author",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "printed p. 16 (PDF p. 17), Theorem 1.2.1 and its proof",
+          "quote": "Թեորեմ 1.2.1 (Լ. Էյլեր): Կամայական G = (V, E) գրաֆում տեղի ունի Σ d_G(v) = 2|E(G)| հավասարությունը։"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/background.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "au-3",
+      "text": "The test with only N-2 powers (A + ... + A^(N-2)) is wrong exactly on the labelled path graphs (rows of N houses with the vertices numbered in any order); there are N!/2 of them for N >= 2, namely 1, 3, 12, 60, 360 for N = 2..6, equal to the brute-force counts of the script (m3-4, m3-8). A positive entry always comes from a real walk, so the test can only err by calling a connected graph not connected; that happens exactly when some pair has distance N-1, and a shortest path through all N vertices has no chord, so the graph is that path.",
+      "kind": "derived",
+      "module": "author",
+      "support": [],
+      "derivation": "sections/answer2_connectivity.tex, Remark 4.19 (label rem:failcount); counts from appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt), last column of the exhaustive table",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/answer2_connectivity.tex"
+      ],
+      "contradicted_by": []
+    }
+  ],
+  "contradictions": []
+}

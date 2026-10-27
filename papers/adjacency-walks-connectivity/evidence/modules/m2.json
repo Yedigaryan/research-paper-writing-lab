@@ -23,6 +23,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/course-terms.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -53,6 +54,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/course-terms.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -148,6 +150,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "sections/answer3_path.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -173,6 +176,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/derivations.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -223,7 +227,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/background.tex"
+        "sections/answer3_path.tex"
       ],
       "contradicted_by": []
     },
@@ -253,8 +257,8 @@
       "confidence": "medium",
       "status": "qualified",
       "used_in": [
-        "sections/background.tex",
-        "sections/introduction.tex"
+        "sections/answer3_path.tex",
+        "sections/conclusion.tex"
       ],
       "contradicted_by": []
     },
@@ -275,12 +279,12 @@
           "quote": "Assume that there is a walk from u to v of length k for some k ∈ N. Then, there is a path from u to v of length ≤ k."
         }
       ],
-      "derivation": "modules/m2.md, Section 3.8, Lemma L1; checked by modules/m2_walks.py, output in modules/m2_walks_output.txt, section 5",
+      "derivation": "sections/background.tex, Lemma 2.52 (label lem:walkpath); checked by appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), section 5",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/background.tex",
-        "appendices/derivations.tex"
+        "appendices/derivations.tex",
+        "sections/background.tex"
       ],
       "contradicted_by": []
     },
@@ -296,10 +300,11 @@
           "quote": "Let G be a simple graph. Let w be a path in G. Prove that the edges of w are distinct."
         }
       ],
-      "derivation": "modules/m2.md, Section 3.4, Proposition P1; checked by modules/m2_walks.py, output in modules/m2_walks_output.txt, section 5 (0 failures)",
+      "derivation": "sections/background.tex, Proposition 2.39 (label prop:pathtrail); checked by appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), section 5",
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/derivations.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -316,10 +321,11 @@
           "quote": "However, any path from u to v must have length ≤ n − 1, where n is the number of vertices of G (since a path of length k has k + 1 distinct vertices, but G has only n vertices to spare)."
         }
       ],
-      "derivation": "modules/m2.md, Section 3.8, Corollary L2; modules/m2_walks.py, output in modules/m2_walks_output.txt, sections 5 and 7",
+      "derivation": "sections/background.tex, Corollary 2.54 (label cor:bound); appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), sections 5 and 7",
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/derivations.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -341,10 +347,11 @@
           "quote": "Indeed, Corollary 2.9.7 shows that a shortest walk from u to v (if it exists) must also be a shortest path from u to v."
         }
       ],
-      "derivation": "modules/m2.md, Section 3.8, Proposition P2; checked by modules/m2_walks.py, output in modules/m2_walks_output.txt, section 5 (300 random graphs, 0 disagreements)",
+      "derivation": "appendices/derivations.tex, Appendix A.5 (label app:distance), Proposition A.1 (label prop:shortest); checked by appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), section 5",
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/derivations.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -361,11 +368,13 @@
           "quote": "adj. 0 1 0 / 1 0 1 / 0 1 0"
         }
       ],
-      "derivation": "modules/m2_walks.py, output in modules/m2_walks_output.txt, sections 1 and 6; premise: the matrix of C28 defines B",
+      "derivation": "sections/example.tex, Table 8 (label tab:walkcounts); appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), sections 1 and 6; premise: the matrix of C28 defines B",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/background.tex"
+        "sections/answer3_path.tex",
+        "sections/background.tex",
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -386,11 +395,12 @@
           "quote": "G գրաֆի (u0, u_k)-ճանապարհը կանվանենք փակ ճանապարհ կամ ցիկլ, եթե այն փակ շրջանցում է, այսինքն՝ եթե u0 = u_k։"
         }
       ],
-      "derivation": "modules/m2_walks.py, output in modules/m2_walks_output.txt, sections 1, 2 and 3; the textbook's sequences from claim m2-2",
+      "derivation": "sections/background.tex, Remark 2.32 (label rem:trail) and Non-example (label nex:cycle); appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), sections 1, 2 and 3",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/background.tex"
+        "sections/background.tex",
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -415,7 +425,10 @@
       "confidence": "medium",
       "status": "qualified",
       "used_in": [
-        "sections/background.tex"
+        "sections/answer3_path.tex",
+        "sections/background.tex",
+        "sections/discussion.tex",
+        "sections/introduction.tex"
       ],
       "contradicted_by": []
     },
@@ -431,11 +444,11 @@
           "quote": "G գրաֆի ցանկացած u, v և w գագաթների համար d_G(u, v) ≤ d_G(u, w) + d_G(w, v)։"
         }
       ],
-      "derivation": "modules/m2.md, Section 3.8, Proposition P3 (uses P2)",
+      "derivation": "appendices/derivations.tex, Appendix A.5 (label app:distance), Proposition A.2 (label prop:distprops), uses Proposition A.1",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/background.tex"
+        "appendices/derivations.tex"
       ],
       "contradicted_by": []
     }

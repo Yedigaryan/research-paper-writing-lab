@@ -238,6 +238,25 @@ for k, exp in zip(range(1, 5), (0, 1, 0, 2)):
     assert len(W) == exp == power(B, k)[0][0]
 assert sorted(s for s in all_walks(4) if s[0] == 1 and s[-1] == 1) == [(1, 2, 1, 2, 1), (1, 2, 3, 2, 1)]
 
+# graph H (triangle 1,2,3 with vertex 4 joined to 3) and the triangle T: the examples in Section 2
+def is_walk_in(edges, seq):
+    es = {frozenset(e) for e in edges}
+    return all(frozenset(p) in es for p in zip(seq, seq[1:]))
+
+H_edges = [(1, 2), (1, 3), (2, 3), (3, 4)]
+assert is_walk_in(H_edges, (4, 3, 1, 2, 3)) and is_trail((4, 3, 1, 2, 3)) and not is_path((4, 3, 1, 2, 3))
+assert is_walk_in(H_edges, (4, 3, 1, 2)) and is_path((4, 3, 1, 2))
+assert is_walk_in(H_edges, (1, 2, 3, 2)) and not is_trail((1, 2, 3, 2))
+assert is_walk_in(H_edges, (4, 3, 4)) and not is_trail((4, 3, 4))
+assert is_walk_in(H_edges, (1, 2, 3, 1)) and is_trail((1, 2, 3, 1)) and len(set((1, 2, 3, 1)[:-1])) == 3
+# in H, a closed trail of positive length must avoid edge 34 (it would be used twice) and so is the triangle
+# the triangle T: S = A + A^2 has every entry equal to 2 (so modulo 2 it is zero)
+T = adjacency(3, [(1, 2), (1, 3), (2, 3)])
+assert power_sum(T, 2) == [[2, 2, 2], [2, 2, 2], [2, 2, 2]]
+# hand-check cases quoted in Appendix A.7
+assert power(B, 2)[0][2] == 1 and power(B, 3)[0][1] == 2
+assert [a + b for a, b in zip(D[0], power(D, 2)[0])] == [1, 1, 0] and power_sum(D, 2)[2] == [0, 0, 0]
+
 # ---- table: path graph 1-2-...-N, first power with a nonzero (1,N) entry
 text3 = (HERE / "m3_connectivity.out.txt").read_text()
 rows_m3 = {}

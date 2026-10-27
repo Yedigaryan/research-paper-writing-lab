@@ -18,6 +18,8 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/course-terms.tex",
+        "sections/answer2_connectivity.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -43,6 +45,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
+        "appendices/course-terms.tex",
         "sections/background.tex"
       ],
       "contradicted_by": []
@@ -59,11 +62,14 @@
           "quote": "The number of walks of length 2 from a vertex to itself is just the number of edges at that vertex, or the vertex degree."
         }
       ],
-      "derivation": "modules/m3.md Remark 3.1 item 2 and Remark 3.5; script section 'N = 2' of modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "derivation": "sections/answer2_connectivity.tex, Remark 4.11 (label rem:diagonal); sections/background.tex, Remark 2.56 (label rem:connected); script section 'N = 2' of appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer2_connectivity.tex",
+        "sections/background.tex",
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -79,11 +85,15 @@
           "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
         }
       ],
-      "derivation": "modules/m3.md Proposition 3.5 and Example 3.7; modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "derivation": "sections/answer2_connectivity.tex, Proposition 4.17 (label prop:sharp), Example 4.18 (label ex:sharp), Table 6 (label tab:sharp) and Remark 4.19 (label rem:failcount) (the failing graphs are the labelled paths, N!/2); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer2_connectivity.tex",
+        "sections/conclusion.tex",
+        "sections/discussion.tex",
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -104,11 +114,12 @@
           "quote": "Then, there is a path from u to v of length ≤ k."
         }
       ],
-      "derivation": "modules/m3.md Proposition 3.1 and Corollary 3.3; modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "derivation": "sections/answer2_connectivity.tex, Proposition 4.5 (label prop:pair) and Corollary 4.10 (label cor:components); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer2_connectivity.tex"
       ],
       "contradicted_by": []
     },
@@ -129,11 +140,11 @@
           "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
         }
       ],
-      "derivation": "modules/m3.md Example 3.5; modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "derivation": "sections/example.tex, Example 6.2 (label ex:testB); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -149,11 +160,11 @@
           "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
         }
       ],
-      "derivation": "modules/m3.md Example 3.6; modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "derivation": "sections/example.tex, Example 6.3 (label ex:testD); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -169,11 +180,14 @@
           "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
         }
       ],
-      "derivation": "modules/m3_connectivity.py, section 'Exhaustive check'; output modules/m3_connectivity.out.txt",
+      "derivation": "appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt), section 'Exhaustive check'; sections/example.tex, Table 10 (label tab:exhaustive); appendices/derivations.tex, Appendix A.6 (label app:crosschecks)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer2_connectivity.tex",
+        "sections/discussion.tex",
+        "sections/example.tex"
       ],
       "contradicted_by": []
     },
@@ -194,11 +208,13 @@
           "quote": "Then, there is a path from u to v of length ≤ k."
         }
       ],
-      "derivation": "modules/m3.md Proposition 3.1 with m in place of N - 1, and Remark 3.7; modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "derivation": "appendices/derivations.tex, Appendix A.4 (label app:iplusa) (any exponent m >= N - 1), Proposition 4.16 (label prop:iplusa); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer2_connectivity.tex",
+        "sections/discussion.tex"
       ],
       "contradicted_by": []
     },
@@ -224,25 +240,36 @@
           "quote": "Total: O(n + m)"
         }
       ],
-      "derivation": "modules/m3.md Remark 3.7; script section 'Cost remark' of modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "derivation": "sections/discussion.tex, Section 7.4 (label sec:cost); script section 'Cost remark' of appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "medium",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "appendices/derivations.tex",
+        "sections/answer2_connectivity.tex",
+        "sections/discussion.tex"
       ],
       "contradicted_by": []
     },
     {
       "id": "m3-11",
-      "text": "The course textbook states no matrix connectivity test and no walk-counting theorem in the pages read (printed pp. 9-12, 21-23, 48-49); Chapters 3 to 8 were not read, so the absence is not established for the whole book.",
+      "text": "The course textbook states no matrix connectivity test and no walk-counting theorem in the pages checked (printed pp. 9-12, 16, 21-23, 48-49). An independent full-text search of the whole book for the adjacency matrix found it only on printed pp. 7, 11, 12, 34 and 61, and found no such theorem or test. The remaining pages (13-15, 17-20, 24-47, 50-62 and Chapters 3-8) were not read page by page, so the absence is qualified, not established.",
       "kind": "fact",
       "module": "m3",
-      "support": [],
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "full-text search of the whole book for the adjacency matrix: found on printed pp. 7, 11, 12, 34 and 61 only; no walk-counting theorem and no matrix connectivity test found (the quoted sentence is the definition of the adjacency matrix on p. 11)",
+          "quote": "a_ij = 1, եթե v_i և v_j հարևան են, 0, հակառակ դեպքում։"
+        }
+      ],
       "derivation": null,
-      "confidence": "low",
-      "status": "unverified",
+      "confidence": "medium",
+      "status": "qualified",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/answer1_walks.tex",
+        "sections/answer2_connectivity.tex",
+        "sections/discussion.tex",
+        "sections/introduction.tex"
       ],
       "contradicted_by": []
     },
@@ -272,7 +299,9 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/answer2_connectivity.tex",
+        "sections/discussion.tex",
+        "sections/introduction.tex"
       ],
       "contradicted_by": []
     },
@@ -297,7 +326,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/answer2_connectivity.tex"
       ],
       "contradicted_by": []
     }
