@@ -1,0 +1,306 @@
+{
+  "question": "For a simple undirected graph with N vertices given by its adjacency matrix A: (1) what does the entry (A^k)_{ij} represent, (2) how can one determine from A whether the graph is connected, and (3) what is the definition of a path between vertices n_i and n_j?",
+  "sources": [],
+  "claims": [
+    {
+      "id": "m3-1",
+      "text": "Textbook, printed p. 49 (PDF p. 50), the paragraph after the equivalence relation 'there is a (u,v)-path': the induced subgraphs G_j = G[V_j] on the equivalence classes V_1, ..., V_p are called the connectivity (connected) components of G. The textbook gives this in prose with no definition number; Remark 2.1.1 (claim C31) follows. The paper cites it as 'printed p. 49, after Definition 2.1.1'.",
+      "kind": "fact",
+      "module": "m3",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "printed p. 49 (PDF p. 50), paragraph after the three properties of the relation, before Remark 2.1.1",
+          "quote": "G գրաֆի G1, …, Gp ենթագրաֆներն ընդունված է անվանել G գրաֆի կապակցվածության կամ կապակցված բաղադրիչներ։"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/background.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-2",
+      "text": "Textbook examples for Definition 2.1.1: complete graphs and complete bipartite graphs are connected, as are the three graphs of Fig. 2.1.1 (printed p. 48); the graph of Fig. 2.1.2 (printed p. 49) is not connected and has four connectivity components. Used as the textbook's example and non-example after the definition.",
+      "kind": "fact",
+      "module": "m3",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "printed p. 48 (PDF p. 49), sentence after Definition 2.1.1",
+          "quote": "Նշենք, որ կապակցված գրաֆի օրինակներ են հանդիսանում լրիվ և լրիվ երկկողմանի գրաֆները։"
+        },
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "printed p. 49 (PDF p. 50), sentence after Remark 2.1.1",
+          "quote": "Նկ. 2.1.2-ում պատկերված գրաֆը կապակցված չէ և այն ունի կապակցվածության չորս բաղադրիչ։"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/background.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-3",
+      "text": "Edge cases of the test. (a) For N = 2 and one edge, S = A has a zero diagonal although the graph is connected, so the diagonal of S cannot be required positive and the test looks only at off-diagonal entries. (b) For N >= 3 and G connected the diagonal of S is positive, because every vertex has a neighbour and (A^2)_ii equals the degree of v_i. (c) For N = 1 there are no pairs of different vertices, G is connected, and (I + A)^0 = I = [1] has no zero entry; the sum S is empty, so the test is stated for N >= 2. (d) The pair u = v is always joined by the one-vertex walk of length 0, so 'any two vertices' in Definition 2.1.1 can be read as 'any two different vertices'; the textbook does not discuss u = v (interpretation).",
+      "kind": "derived",
+      "module": "m3",
+      "support": [
+        {
+          "source": "quinlan_matrices_graphs",
+          "locator": "Section 1.1, remark after Theorem 1.1.3",
+          "quote": "The number of walks of length 2 from a vertex to itself is just the number of edges at that vertex, or the vertex degree."
+        }
+      ],
+      "derivation": "modules/m3.md Remark 3.1 item 2 and Remark 3.5; script section 'N = 2' of modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-4",
+      "text": "Sharpness of the bound N - 1: for the path graph 1-2-...-N with N >= 3, each step of a walk changes the vertex number by exactly 1, so every walk from 1 to N has length at least N - 1; by the walk-counting theorem (A^k)_{1N} = 0 for 1 <= k <= N - 2, so the (1,N) entry of A + ... + A^(N-2) is 0 although the graph is connected. The script confirms the first nonzero power is N - 1 for N = 3, ..., 8, and writes out A, A^2, A^3, A + A^2 and A + A^2 + A^3 for N = 4. Over all labelled graphs with N = 3, 4, 5, 6 the test with N - 2 powers gives a wrong answer on 3, 12, 60, 360 graphs respectively.",
+      "kind": "derived",
+      "module": "m3",
+      "support": [
+        {
+          "source": "quinlan_matrices_graphs",
+          "locator": "Section 1.1, Theorem 1.1.3",
+          "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
+        }
+      ],
+      "derivation": "modules/m3.md Proposition 3.5 and Example 3.7; modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-5",
+      "text": "Components from S: for any graph (connected or not) with N >= 2 vertices and i != j, S_ij > 0 if and only if v_i and v_j lie in the same connected component. Proof: the pairwise Proposition 3.1 of the module report does not use connectivity of G. Checked by script on all labelled graphs with N <= 6.",
+      "kind": "derived",
+      "module": "m3",
+      "support": [
+        {
+          "source": "grinberg2025graph",
+          "locator": "Proposition 2.9.10, document p. 42",
+          "quote": "Then, u ≃G v if and only if there exists a path from u to v."
+        },
+        {
+          "source": "grinberg2025graph",
+          "locator": "Corollary 2.9.7, document p. 39",
+          "quote": "Then, there is a path from u to v of length ≤ k."
+        }
+      ],
+      "derivation": "modules/m3.md Proposition 3.1 and Corollary 3.3; modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-6",
+      "text": "Worked example, connected: for the board matrix A = [[0,1,0],[1,0,1],[0,1,0]] (edges 1-2 and 2-3, N = 3), A^2 = [[1,0,1],[0,2,0],[1,0,1]], S = A + A^2 = [[1,1,1],[1,2,1],[1,1,1]], (I + A)^2 = [[2,2,1],[2,3,2],[1,2,2]]. S has no zero entry, (I + A)^2 has no zero entry, both tests say connected, as does breadth-first search (component {1,2,3}). (I + A)^2 = I + 2A + A^2 holds entry by entry.",
+      "kind": "derived",
+      "module": "m3",
+      "support": [
+        {
+          "source": "whiteboard1",
+          "locator": "whiteboard-1.jpg, upper centre (grid labelled 'adj.')",
+          "quote": "adj. 0 1 0 / 1 0 1 / 0 1 0"
+        },
+        {
+          "source": "quinlan_matrices_graphs",
+          "locator": "Section 1.1, Theorem 1.1.3",
+          "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
+        }
+      ],
+      "derivation": "modules/m3.md Example 3.5; modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-7",
+      "text": "Worked example, disconnected: for A = [[0,1,0],[1,0,0],[0,0,0]] (edge 1-2 only, N = 3), A^2 = [[1,0,0],[0,1,0],[0,0,0]], S = [[1,1,0],[1,1,0],[0,0,0]], (I + A)^2 = [[2,2,0],[2,2,0],[0,0,1]]. The off-diagonal zeros of S and the zeros of (I + A)^2 are at (1,3), (2,3), (3,1), (3,2); both tests say not connected, as does breadth-first search; the components are {1,2} and {3}. Entries (1,3) and (2,3) of A^k are 0 for k = 1, ..., 6.",
+      "kind": "derived",
+      "module": "m3",
+      "support": [
+        {
+          "source": "quinlan_matrices_graphs",
+          "locator": "Section 1.1, Theorem 1.1.3",
+          "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
+        }
+      ],
+      "derivation": "modules/m3.md Example 3.6; modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-8",
+      "text": "Computational cross-check (not a proof): on all labelled simple graphs with N = 2, 3, 4, 5, 6 vertices (2, 8, 64, 1024, 32768 graphs; 1, 4, 38, 728, 26704 of them connected) the sum test, the (I + A)^(N-1) test, the component statement of m3-5, and the repeated-squaring version of m3-9 all agree with an independent breadth-first search.",
+      "kind": "derived",
+      "module": "m3",
+      "support": [
+        {
+          "source": "quinlan_matrices_graphs",
+          "locator": "Section 1.1, Theorem 1.1.3",
+          "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
+        }
+      ],
+      "derivation": "modules/m3_connectivity.py, section 'Exhaustive check'; output modules/m3_connectivity.out.txt",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-9",
+      "text": "For every integer m >= N - 1 (N >= 2), the zero pattern of (I + A)^m equals that of (I + A)^(N-1): an off-diagonal entry is positive iff some (A^k)_ij with 1 <= k <= m is positive iff a walk, hence a path of length <= N - 1 <= m, exists; diagonal entries are always positive. Hence G is connected iff (I + A)^m has no zero entry for any one such m, and m = 2^t with 2^t >= N - 1 can be reached by t repeated squarings. Verified by script on all labelled graphs with N <= 6.",
+      "kind": "derived",
+      "module": "m3",
+      "support": [
+        {
+          "source": "quinlan_matrices_graphs",
+          "locator": "Section 1.1, Theorem 1.1.3",
+          "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
+        },
+        {
+          "source": "grinberg2025graph",
+          "locator": "Corollary 2.9.7, document p. 39",
+          "quote": "Then, there is a path from u to v of length ≤ k."
+        }
+      ],
+      "derivation": "modules/m3.md Proposition 3.1 with m in place of N - 1, and Remark 3.7; modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-10",
+      "text": "Cost remark (estimate). With schoolbook multiplication (N^3 scalar multiplications per product of two N x N matrices), reaching A^(N-1) takes N - 2 products: 98,000,000 scalar multiplications for N = 100; repeated squaring of I + A needs ceil(log2(N - 1)) squarings: 7 squarings and 7,000,000 multiplications for N = 100. Breadth-first search with adjacency lists is O(n + m) in the source; when the input is the matrix A it reads each row once, N^2 = 10,000 entries for N = 100. Entries of powers grow fast (largest entry of A^9 for the complete graph on 10 vertices: 38,742,049). Faster matrix multiplication was not examined. Note: claim C39 says 'N - 1 matrix products'; the count is N - 2.",
+      "kind": "estimate",
+      "module": "m3",
+      "support": [
+        {
+          "source": "schost2026bfs",
+          "locator": "slide 3 of 20, data structures",
+          "quote": "adjacency matrix: (0, 1) matrix M of size n × n, with M [v, w] = 1 iff {v, w} is an edge."
+        },
+        {
+          "source": "schost2026bfs",
+          "locator": "slide 6 of 20, BFS(G, s) pseudocode header",
+          "quote": "G: a graph with n vertices, given by adjacency lists"
+        },
+        {
+          "source": "schost2026bfs",
+          "locator": "slide 9 of 20",
+          "quote": "Total: O(n + m)"
+        }
+      ],
+      "derivation": "modules/m3.md Remark 3.7; script section 'Cost remark' of modules/m3_connectivity.py (output modules/m3_connectivity.out.txt)",
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-11",
+      "text": "The course textbook states no matrix connectivity test and no walk-counting theorem in the pages read (printed pp. 9-12, 21-23, 48-49); Chapters 3 to 8 were not read, so the absence is not established for the whole book.",
+      "kind": "fact",
+      "module": "m3",
+      "support": [],
+      "derivation": null,
+      "confidence": "low",
+      "status": "unverified",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-12",
+      "text": "The two web sources that state the connectivity test prove it loosely. Paramadevan and Sotheeswaran's proof of Theorem 2 applies their Theorem 1 ('different paths') to B = A + ... + A^(n-1), so it counts paths where walks are meant, and its converse passes from a nonzero b_ij to the existence of a path without the walk-to-path lemma. Bai's proof sketch of Theorem 2 likewise says '(I + A)^(n-1) aggregates all paths of length <= n - 1'. Both statements of the test are correct; the proofs are not complete, so the paper proves the test itself (modules/m3.md Section 3.4) and cites the two sources for the statement only.",
+      "kind": "interpretation",
+      "module": "m3",
+      "support": [
+        {
+          "source": "paramadevan2021adjacency",
+          "locator": "p. 17, Section 3.1, proof of Theorem 2",
+          "quote": "bij = number of different paths of length less than n from the vertex i to j."
+        },
+        {
+          "source": "paramadevan2021adjacency",
+          "locator": "p. 17, Section 3.1, proof of Theorem 2, last sentence",
+          "quote": "Conversely, if bij ≠ 0, then there exist at least one path from vi to vj , thus G is connected."
+        },
+        {
+          "source": "bai2025adjacency",
+          "locator": "Section 1, Theorem 2 proof sketch, item 4 (p. 1-2)",
+          "quote": "(I + A)n−1 aggregates all paths of length ≤ n − 1."
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-13",
+      "text": "Breadth-first search (BFS) from a start vertex s uses a queue and, in the source, takes the graph as adjacency lists. Its correctness statement: for every vertex v there is a walk from s to v if and only if v is discovered when BFS ends; hence G is connected iff every vertex is discovered from any one start vertex s. (The source's PDF text layer renders the walk arrow as ';'.)",
+      "kind": "fact",
+      "module": "m3",
+      "support": [
+        {
+          "source": "schost2026bfs",
+          "locator": "slide 10 of 20, Correctness Summary",
+          "quote": "For all vertices v, there is a walk s ; v in G if and only if discovered[v] is true at the end"
+        },
+        {
+          "source": "schost2026bfs",
+          "locator": "slide 6 of 20, BFS(G, s) pseudocode",
+          "quote": "1. let Q be an empty queue"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    }
+  ],
+  "contradictions": []
+}
