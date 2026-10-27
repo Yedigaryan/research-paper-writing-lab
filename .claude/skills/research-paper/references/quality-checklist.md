@@ -56,13 +56,15 @@ Run every item before presenting the paper. Fix failures, then re-run.
 - [ ] Unfamiliar words explained where they first appear.
 - [ ] Simple explanation first, formal definition second, example third.
 - [ ] No emojis, no decorative symbols, clean copyable text.
-- [ ] Markdown math renders on GitHub (`$...$`, `$$...$$`, `pmatrix`).
+- [ ] Mathematics renders: LaTeX compiles without errors, or for a legacy
+      Markdown paper the math renders on GitHub (`$...$`, `$$...$$`, `pmatrix`).
 - [ ] Structure: title, introduction with conventions, definitions, one
       section per question, worked example, conclusion.
 
 ## Repository
 
-- [ ] Paper saved at `papers/<topic-slug>/paper.md`.
+- [ ] Paper saved under `papers/<topic-slug>/` in the layout of
+      `latex-structure.md` (legacy photo papers: `paper.md`).
 - [ ] Source photos copied to `papers/<topic-slug>/sources/`.
 - [ ] Changes committed with a clear message.
 - [ ] Nothing pushed without the user's explicit confirmation.

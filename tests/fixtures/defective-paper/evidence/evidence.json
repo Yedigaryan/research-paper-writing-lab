@@ -1,0 +1,76 @@
+{
+  "question": "What does (A^k)_ij represent, and how can connectivity be tested with adjacency matrix powers?",
+  "sources": [
+    {
+      "id": "diestel2017graph",
+      "type": "book",
+      "title": "Graph Theory",
+      "authors": ["Reinhard Diestel"],
+      "year": 2017,
+      "venue": "Springer, 5th edition",
+      "identifier": {"doi": "10.1007/978-3-662-53622-3", "url": null, "isbn": null, "path": null},
+      "accessed": "2026-10-27",
+      "access_status": "full",
+      "credibility": "primary",
+      "found_by": "research-agent",
+      "notes": "Standard textbook."
+    },
+    {
+      "id": "smith2021walks",
+      "type": "peer-reviewed",
+      "title": "Walk counting beats breadth-first search",
+      "authors": ["J. Smith", "A. Doe"],
+      "year": 2021,
+      "venue": "Journal of Graph Computation 12",
+      "identifier": {"doi": "10.9999/jgc.2021.0001", "url": null, "isbn": null, "path": null},
+      "accessed": "2026-10-27",
+      "access_status": "unavailable",
+      "credibility": "primary",
+      "found_by": "research-agent",
+      "notes": "Could not be opened; DOI did not resolve."
+    }
+  ],
+  "claims": [
+    {
+      "id": "C1",
+      "text": "(A^k)_ij counts walks of length k from v_i to v_j.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {"source": "diestel2017graph", "locator": "Section 1.9", "quote": "the (i,j)-entry of A^k is the number of walks of length k from v_i to v_j"}
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": ["main.tex"],
+      "contradicted_by": []
+    },
+    {
+      "id": "C2",
+      "text": "BFS is slower than matrix powering by a factor of 3.7.",
+      "kind": "experimental",
+      "module": "m1",
+      "support": [
+        {"source": "smith2021walks", "locator": "Table 2", "quote": null}
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": ["main.tex"],
+      "contradicted_by": []
+    },
+    {
+      "id": "C3",
+      "text": "A graph is connected iff A + ... + A^{N-1} has no zero off-diagonal entry.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": ["main.tex"],
+      "contradicted_by": []
+    }
+  ],
+  "contradictions": []
+}
