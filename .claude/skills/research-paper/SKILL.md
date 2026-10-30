@@ -39,6 +39,9 @@ configured level.
 Agent definitions live in `.claude/agents/`. Each agent is given file paths,
 not pasted content, and reads what it needs itself. Agents return a short
 report; everything that must survive goes to disk in the paper folder.
+Save every agent's final message verbatim to
+`papers/<slug>/reports/<agent-name>-round<n>.md` (round 0 for research and
+modules) so that a later refinement step can read the run as it happened.
 
 ## Paper folder
 
@@ -64,6 +67,11 @@ For photos of whiteboards, handwritten notes, or book pages, follow
 `references/photo-input.md` before anything else: transcribe, separate the
 clearly visible from the inferred from the unreadable, and report mismatches
 between diagrams and formulas instead of picking a side.
+
+If `.claude/skills/harness-refine/library/<domain>/INDEX.md` exists for
+the paper's domain, read it and the `EXPERIENCE.md` of any entry whose cue
+matches this task before writing the brief. A stored lesson may shape the
+module plan or an assumption; it is never evidence for a claim.
 
 Then write `brief.md` with these sections:
 
@@ -185,7 +193,8 @@ resolved, switch to messaging the same evaluator and record the change in
 Write or append to `evaluation-report.md` using the template in
 `references/rubric.md`: round number, configured model levels, scores,
 findings with severity and status, mechanical check results, and the
-decision for this round. Never overwrite a previous round.
+decision for this round. Never overwrite a previous round. Append the
+technician reader's findings for the round to `reader-findings.md`.
 
 Apply the release conditions from `references/rubric.md`. If any fails:
 

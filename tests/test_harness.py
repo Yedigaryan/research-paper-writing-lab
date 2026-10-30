@@ -16,6 +16,7 @@ SCRIPTS = ROOT / ".claude" / "skills" / "harness-refine" / "scripts"
 sys.path.insert(0, str(SCRIPTS))
 import anonymize_pool  # noqa: E402
 import harness_tree as ht  # noqa: E402
+import library_add  # noqa: E402
 
 PAPER = ROOT / "papers" / "adjacency-walks-connectivity"
 AUTHOR = ".claude/agents/paper-author.md"
@@ -214,6 +215,63 @@ class EvidenceTests(unittest.TestCase):
                 anonymize_pool.anonymize(ctx, items, ctx / "map.json", seed=7)
             with self.assertRaises(ValueError):
                 anonymize_pool.anonymize(ctx, {"base": items["base"]}, tmp / "m2.json", seed=7)
+
+
+REFLECTION = """\
+<edits>
+component: .claude/agents/paper-author.md
+candidates: inv, composed
+change: added a rule to state the term convention before the first theorem
+observed: rollout inv had no terminology finding in round 1; base had R12
+verdict: confounded
+</edits>
+
+<experience>
+cue: two sources define the same word differently
+lesson: make paper-author state the convention before the first theorem
+evidence: edit row 1; base R12 versus inv round 1
+confidence: low, one rollout
+</experience>
+"""
+
+
+class LibraryTests(unittest.TestCase):
+    def test_parse_reflection(self):
+        edits, exp = library_add.parse_reflection(REFLECTION)
+        self.assertIn("component: .claude/agents/paper-author.md", edits)
+        self.assertEqual(exp["cue"], "two sources define the same word differently")
+        edits, exp = library_add.parse_reflection(REFLECTION.split("<experience>")[0] + "NO_ENTRY\n")
+        self.assertTrue(edits)
+        self.assertIsNone(exp)
+        _, exp = library_add.parse_reflection("<experience>\ncue: x\nlesson: y\n</experience>")
+        self.assertIsNone(exp)
+
+    def test_add_and_index(self):
+        manifest = ht.load_manifest()
+        base = ht.live_tree(manifest)
+        with tempfile.TemporaryDirectory() as tmp:
+            lib = Path(tmp) / "library"
+            edits, exp = library_add.parse_reflection(REFLECTION)
+            d = library_add.add("Graph Theory", "adjacency", base, label="inv", why="<why>\nclearer\n</why>",
+                                edits=edits, experience=exp, run="harness-runs/adjacency", library=lib)
+            self.assertTrue((d / "harness" / AUTHOR).is_file())
+            text = (d / "EXPERIENCE.md").read_text()
+            self.assertIn("- **cue**: two sources", text)
+            index = (lib / "graph-theory" / "INDEX.md").read_text()
+            self.assertIn("harnesses/adjacency/", index)
+            self.assertIn("cue: two sources", index)
+            with self.assertRaises(ValueError):
+                library_add.add("graph-theory", "t2", base, label="x", why="what the evaluator expects",
+                                edits="", experience=exp, library=lib)
+            (Path(tmp) / "r.md").write_text("<edits>\n</edits>\nNO_ENTRY\n")
+            r = subprocess.run(
+                [sys.executable, str(SCRIPTS / "library_add.py"), "graph-theory", "t3", "--tree", str(d / "harness"),
+                 "--reflection", str(Path(tmp) / "r.md"), "--library", str(lib)],
+                text=True, capture_output=True,
+            )
+            self.assertEqual(r.returncode, 1)
+            self.assertIn("NO_ENTRY", r.stdout)
+            self.assertFalse((lib / "graph-theory" / "harnesses" / "t3").exists())
 
 
 if __name__ == "__main__":

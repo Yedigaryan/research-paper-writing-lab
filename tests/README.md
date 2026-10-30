@@ -24,6 +24,18 @@ scripts". Run it after any change to the scripts or the evidence schema.
 `build.sh` is also run when a LaTeX toolchain is installed; without one it
 exits 2 and the test reports the build step as skipped.
 
+## Refinement scripts
+
+`test_harness.py` covers the `harness-refine` scripts without model calls:
+the live tree exports and validates; a tree that touches a reserved file,
+changes a frozen frontmatter line, exceeds the skill line cap, names an
+unshipped script, fails to compile, or carries a forbidden phrase or emoji
+is rejected; install writes only editable files and refuses an invalid
+tree; the evidence builder is deterministic on the adjacency paper and its
+leak check fires on an answer-key path; the anonymiser blinds labels and
+keeps the map outside the context; the library script refuses NO_ENTRY and
+rebuilds the index. `run-checks.sh` runs it.
+
 ## Evaluator check
 
 After any change to `.claude/agents/paper-evaluator.md`,

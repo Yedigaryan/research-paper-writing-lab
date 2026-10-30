@@ -1,5 +1,15 @@
 # Adopting Harness2 recursion for the research-paper pipeline
 
+Status, 2026-10-30: Stages 0 to 2 are implemented. The manifest, scripts,
+and tests live under `.claude/skills/harness-refine/` rather than inside
+the research-paper skill, so that the loop's own machinery is reserved by
+construction; the library lives at `.claude/skills/harness-refine/library/`
+for the same reason. Probe branches are named `claude/harness/<task>/<label>`
+to stay inside the namespace the repository's `CLAUDE.md` allows. The
+research-paper skill now saves agent reports under `reports/` and reader
+findings in `reader-findings.md` so that future trajectories carry them.
+Stage 2 has not yet been run on a task; Stages 3 and 4 are unchanged below.
+
 Source reviewed: github.com/google-research/harness2 at commit 1cfe254
 (Apache 2.0, "Harness2: Recursive Agent Harnessing for an Open World",
 arXiv 2610.14224). About 6,800 lines of Python in the core, plus adapters
