@@ -1,0 +1,57 @@
+# The editable surface of the research-paper harness, in the manifest form
+# Harness2 uses (google-research/harness2, Apache 2.0). Read by
+# scripts/harness_tree.py. Paths are relative to the repository root.
+#
+# A candidate tree may contain only files that match an entry under
+# `editable`. Anything under `reserved` is the yardstick: the evaluator, the
+# reader, the rubric, the model ladder, the hooks, this manifest, the refine
+# skill itself, and its library of adopted harnesses. The validator rejects a
+# tree that adds, removes, or changes a reserved file, and the install step
+# never writes outside the editable set.
+
+name: research-paper
+version: 1
+
+editable:
+  - .claude/skills/research-paper/SKILL.md
+  - .claude/skills/research-paper/references/*.md
+  - .claude/skills/research-paper/scripts/*.py
+  - .claude/skills/research-paper/scripts/*.sh
+  - .claude/agents/research-agent.md
+  - .claude/agents/module-owner.md
+  - .claude/agents/paper-author.md
+
+reserved:
+  - .claude/agents/paper-evaluator.md
+  - .claude/agents/technician-reader.md
+  - .claude/skills/research-paper/references/rubric.md
+  - .claude/skills/research-paper/references/model-levels.md
+  - .claude/skills/harness-refine/**
+  - .claude/settings.json
+  - CLAUDE.md
+  - tests/**
+
+# Lines in an agent's frontmatter that a candidate may not change. The model
+# ladder is a release condition, and a proposer that widened a tool list
+# would be widening the agent's reach, not improving its procedure.
+frozen_frontmatter:
+  - tools
+  - model
+
+# Files whose body (after the frontmatter) must stay under this many lines.
+skill_body_max_lines: 500
+
+# Phrases that mark a tree as optimising the judge instead of the work.
+# Case-insensitive substring match over every text file in the tree.
+forbidden_phrases:
+  - the evaluator expects
+  - the grader expects
+  - to pass release
+  - to satisfy the evaluator
+  - the rubric wants
+
+# Paths that must never enter an improver's context directory. The fixture's
+# answer key is the only one today.
+leak_globs:
+  - "*/expected-findings.md"
+  - expected-findings.md

@@ -13,3 +13,6 @@ tests/fixtures/*/build/
 *.synctex.gz
 *.toc
 __pycache__/
+harness-runs/*/context/
+harness-runs/*/propose/
+harness-runs/*/probe/

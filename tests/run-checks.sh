@@ -51,6 +51,20 @@ else
   echo "skipped: build.sh (no latexmk installed)"
 fi
 
+if python3 "$root/tests/test_harness.py" 2>&1 | tail -3; then
+  echo "ok: harness-refine script tests"
+else
+  echo "FAIL: harness-refine script tests"
+  status=1
+fi
+
+if python3 "$root/.claude/skills/harness-refine/scripts/harness_tree.py" validate repo >/dev/null; then
+  echo "ok: live harness tree is valid"
+else
+  echo "FAIL: live harness tree is invalid"
+  status=1
+fi
+
 if [ $status -eq 0 ]; then
   echo "all expectations hold"
 fi
