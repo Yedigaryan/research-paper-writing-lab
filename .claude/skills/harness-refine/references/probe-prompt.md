@@ -68,15 +68,20 @@ could not be completed.
 ```
 git fetch origin <branch>
 git worktree add harness-runs/<task>/probe/<label> <branch>
-python3 .claude/skills/harness-refine/scripts/build_evidence.py rollout \
+python3 .claude/skills/harness-refine/scripts/build_evidence.py \
+    --repo harness-runs/<task>/probe/<label> rollout \
     harness-runs/<task>/probe/<label>/papers/<slug> \
-    --repo harness-runs/<task>/probe/<label> \
     --label <label> --out harness-runs/<task>/context \
-    --since <base commit> --no-harness
+    --since <reset commit> --no-harness
 python3 .claude/skills/harness-refine/scripts/build_evidence.py pool \
     harness-runs/<task>/context --label <label> \
     --tree harness-runs/<task>/propose/<label>/harness
 ```
+
+The reset commit is the first commit on the probe branch after the base
+(`git rev-list --reverse <base>..<branch> | head -1`); starting the
+history after it keeps the deletion of the old paper out of the
+trajectory.
 
 A probe that produced no paper is still a rollout: its trajectory is
 built and its deliverable file says so. It counts against the budget.

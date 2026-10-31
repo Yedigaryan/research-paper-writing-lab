@@ -170,7 +170,7 @@ the probe, and end the turn. Never run a probe inside this session.
 Run the INV and DOM probes in parallel. When a probe reports back, collect
 it as `references/probe-prompt.md` says: fetch the branch, add a worktree
 under `$T/probe/<label>`, build its rollout into `$T/context` with
-`--since $BASE --no-harness`, and add its tree to the pool. A probe that
+`--since <reset commit> --no-harness`, and add its tree to the pool. A probe that
 produced no paper is collected the same way and counts as a rollout.
 
 ## Step 4: Compose
