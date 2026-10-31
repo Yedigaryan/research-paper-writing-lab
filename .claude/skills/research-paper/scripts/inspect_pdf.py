@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """Inspect papers/<slug>/main.pdf for layout and resolution problems.
 
-Usage: inspect_pdf.py <paper_dir>
+Usage: inspect_pdf.py <paper_dir> [--text-out <file>]
 
 Errors (exit 1): PDF missing or unreadable, unresolved references (??),
 unresolved citations ([?] or [0]), empty pages, "To be written"
 placeholders left in the text. Warnings: overfull boxes in the build log,
 pages with very little text, missing figure files referenced in the log.
+
+--text-out <file>: also write the extracted text, each page headed by a
+line "=== page N ===", so the compiled wording can be read and searched.
 """
 import re
 import subprocess
@@ -25,10 +28,19 @@ def page_texts(pdf: Path) -> list:
 
 
 def main() -> int:
-    if len(sys.argv) != 2:
+    args = sys.argv[1:]
+    text_out = None
+    if "--text-out" in args:
+        i = args.index("--text-out")
+        if i + 1 >= len(args):
+            print(__doc__, file=sys.stderr)
+            return 1
+        text_out = Path(args[i + 1])
+        del args[i:i + 2]
+    if len(args) != 1:
         print(__doc__, file=sys.stderr)
         return 1
-    paper = Path(sys.argv[1])
+    paper = Path(args[0])
     pdf = paper / "main.pdf"
     errors, warnings = [], []
     if not pdf.exists():
@@ -39,6 +51,11 @@ def main() -> int:
     except Exception as exc:
         print(f"error: cannot read {pdf}: {exc}")
         return 1
+    if text_out is not None:
+        text_out.parent.mkdir(parents=True, exist_ok=True)
+        text_out.write_text("".join(f"=== page {n} ===\n{t}\n"
+                                    for n, t in enumerate(pages, 1)))
+        print(f"text written to {text_out}")
 
     for n, text in enumerate(pages, 1):
         stripped = text.strip()

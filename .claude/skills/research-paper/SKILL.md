@@ -112,6 +112,8 @@ python3 .claude/skills/research-paper/scripts/check_claims.py papers/<slug>
 
 Fix schema errors by sending the agent back with the error output. Read the
 contradictions list and decide whether any of them changes the module plan.
+Commit `evidence.base.json` with `evidence.json`; every later rebuild
+starts from it.
 
 ## Step 3: Modules (module-owner, parallel)
 
@@ -157,7 +159,9 @@ After it returns, run the mechanical gate yourself:
 bash   .claude/skills/research-paper/scripts/build.sh papers/<slug>
 python3 .claude/skills/research-paper/scripts/check_citations.py papers/<slug>
 python3 .claude/skills/research-paper/scripts/check_claims.py papers/<slug>
+python3 .claude/skills/research-paper/scripts/check_evidence_rebuild.py papers/<slug>
 python3 .claude/skills/research-paper/scripts/inspect_pdf.py papers/<slug>
+python3 .claude/skills/research-paper/scripts/check_self_evaluation.py papers/<slug>
 ```
 
 Any failure goes back to the author before evaluation. The evaluator's time
@@ -194,7 +198,17 @@ Write or append to `evaluation-report.md` using the template in
 `references/rubric.md`: round number, configured model levels, scores,
 findings with severity and status, mechanical check results, and the
 decision for this round. Never overwrite a previous round. Append the
-technician reader's findings for the round to `reader-findings.md`.
+technician reader's findings for the round to `reader-findings.md` under a
+`## Round <n>` heading, and save the round's author, evaluator, and reader
+messages under `reports/` as the Roles section says (the author file for
+round n holds the message that delivered the version evaluated in round
+n). Before deciding, confirm the record:
+
+```
+python3 .claude/skills/research-paper/scripts/check_round_record.py papers/<slug> <n>
+```
+
+Write whatever it lists as missing, then decide.
 
 Apply the release conditions from `references/rubric.md`. If any fails:
 

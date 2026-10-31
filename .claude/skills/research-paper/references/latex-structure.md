@@ -7,6 +7,7 @@ papers/<slug>/
   brief.md                 orchestrator: research brief
   sources/                 user-supplied files, descriptive names
   evidence/
+    evidence.base.json     research agent's part; every rebuild starts here
     evidence.json          single source of truth (merged)
     modules/<id>.json      module fragments, merged by script
   modules/<id>.md          module reports

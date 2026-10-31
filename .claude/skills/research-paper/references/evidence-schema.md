@@ -13,7 +13,9 @@ source of truth for what the paper may claim, and it is always generated:
 Nobody edits `evidence.json` by hand. A change to an existing claim goes
 into the fragment or base file that owns it, then the file is rebuilt. A
 re-merge must reproduce the committed file exactly; the evaluator checks
-this.
+this. `scripts/check_evidence_rebuild.py` runs that comparison and names
+the owning file of every record that differs; with `--init-base` it
+derives a missing base file once from the merged file and the fragments.
 
 `scripts/check_claims.py` validates the file against this schema.
 
