@@ -7,6 +7,7 @@ papers/<slug>/
   brief.md                 orchestrator: research brief
   sources/                 user-supplied files, descriptive names
   evidence/
+    evidence.base.json     research agent's part; every rebuild starts here
     evidence.json          single source of truth (merged)
     modules/<id>.json      module fragments, merged by script
   modules/<id>.md          module reports
@@ -64,8 +65,9 @@ and worked example is preceded by a plain words paragraph; see
   publisher, volume, pages, doi, url, urldate. Never fill a field with a
   guess; leave it out.
 - Web sources carry `urldate`. Local files are cited as `@misc` with
-  `howpublished` naming the file and `note` saying it was supplied by the
-  user.
+  `howpublished` naming the file and `note` saying who supplied it in
+  words the reader can place (for example "photograph of the lecture
+  board, supplied with the assignment"), never an unintroduced "the user".
 - No entry without a `\cite`; `check_citations.py` reports unused entries.
 
 ## Build

@@ -55,6 +55,14 @@ Observed in its chapters on graphs, walks, paths, and connectivity.
 - Write out every matrix for the worked example and check it against the
   picture.
 - Refer back by number instead of repeating.
+- Show what kind of statement each one is the way the book does, by its
+  environment and its attribution: a definition carries the source's
+  number; a theorem, lemma, or proposition with a proof printed in the
+  paper is the paper's own, and a citation in its first sentence says
+  which source also states it; a reading of the photos or of the user's
+  report is an item of the conventions list and is cited by item number.
+  Do not invent a system of bracketed status labels; it needs a legend,
+  gets applied unevenly, and the reader has to keep it in mind.
 
 ## Where the paper departs from the book on purpose
 

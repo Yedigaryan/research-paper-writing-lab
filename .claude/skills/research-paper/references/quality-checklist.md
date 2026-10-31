@@ -58,8 +58,17 @@ Run every item before presenting the paper. Fix failures, then re-run.
 - [ ] No emojis, no decorative symbols, clean copyable text.
 - [ ] Mathematics renders: LaTeX compiles without errors, or for a legacy
       Markdown paper the math renders on GitHub (`$...$`, `$$...$$`, `pmatrix`).
+- [ ] The reader's text contains nothing from the pipeline: no claim ids,
+      no "evidence file", no module names or script-internal names, no
+      unintroduced "the user". Sources, pages checked, and how to rerun
+      the scripts sit together in one short provenance section or
+      appendix; the mathematical sections only cite.
 - [ ] Structure: title, introduction with conventions, definitions, one
-      section per question, worked example, conclusion.
+      section per question, worked example, conclusion. A question whose
+      answer is a definition is answered by that numbered definition in
+      its build-order place; its section points to it and adds only what
+      is new there (the convention comparison), never a restated
+      definition or restated examples.
 
 ## Repository
 
