@@ -1,0 +1,78 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[backend=biber,style=numeric,sorting=nyt,urldate=long]{biblatex}
+\addbibresource{references.bib}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\usepackage[capitalise,nameinlink]{cleveref}
+
+% Theorem-like environments, one shared counter inside each section.
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{example}[definition]{Example}
+\newtheorem{nonexample}[definition]{Non-example}
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{test}[definition]{Test}
+\crefname{nonexample}{Non-example}{Non-examples}
+\crefname{test}{Test}{Tests}
+\crefname{appendix}{Appendix}{Appendices}
+\crefname{subappendix}{Appendix}{Appendices}
+
+% The plain-words paragraph that precedes every definition, theorem, test and example.
+\newenvironment{plainwords}{\par\medskip\noindent\textbf{In plain words.}\ \itshape}{\par\medskip}
+
+\newcommand{\n}[1]{n_{#1}}
+\newcommand{\NN}{\mathbb{N}}
+\setlength{\emergencystretch}{2em}
+
+% Matrices computed by appendices/scripts/author_numbers.py
+\input{figures/generated_numbers}
+
+\title{Walks, Paths and Connectivity from the Adjacency Matrix:\\
+A Study Note on $(A^k)_{ij}$ and the Connectivity Test}
+\author{Study note prepared from a lecture whiteboard and the course textbook}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A graph with $N$ vertices can be stored as an $N\times N$ table of zeros and ones, its adjacency matrix $A$.
+This note answers three questions about that table.
+First, the entry in row $i$ and column $j$ of the matrix power $A^k$ is the number of walks of length $k$ from vertex $n_i$ to vertex $n_j$; it counts walks, not paths \cite{quinlan_matrices_graphs,bai2025adjacency}.
+Second, a graph with $N\ge 2$ vertices is connected if and only if every entry off the diagonal of $A+A^2+\dots+A^{N-1}$ is positive, or equivalently if and only if $(I+A)^{N-1}$ has no zero entry.
+Third, a path between $n_i$ and $n_j$ is a walk from $n_i$ to $n_j$ with no repeated vertex, which is the course textbook's simple path.
+Both theorems are proved in full, because the course textbook does not state them in the pages checked \cite{petrosyan2015grafneri}.
+Every matrix in the examples was computed by script.
+\end{abstract}
+
+\tableofcontents
+
+\input{sections/introduction}
+\input{sections/background}
+\input{sections/answer1_walks}
+\input{sections/answer2_connectivity}
+\input{sections/answer3_path}
+\input{sections/example}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\appendix
+\input{appendices/derivations}
+\input{appendices/course-terms}
+\input{appendices/photographs}
+\input{appendices/reproducibility}
+
+\printbibliography
+
+\end{document}

@@ -1,0 +1,166 @@
+\section{Worked examples}\label{sec:examples}
+
+Every matrix, sum, and count in this section was computed by script (\cref{app:repro}); the matrices are written out entry by entry so that they can be checked against the graphs.
+
+\subsection{The board graph and its powers}
+
+\begin{plainwords}
+We take the village from the board.
+It has three houses in a row.
+The first and last houses each have one road.
+The middle house has two roads.
+We count trips of two roads, then of three roads.
+We list every trip, so the reader can see that each count is right.
+\end{plainwords}
+
+The graph has the vertices $n_1,n_2,n_3$ and the edges $n_1n_2$ and $n_2n_3$; this is the graph of the board matrix (\cref{sec:conventions}).
+Its adjacency matrix and the powers up to $A^5$ are
+\[
+A=\matA,\quad A^2=\matAtwo,\quad A^3=\matAthree,
+\]
+\[
+A^4=\matAfour,\quad A^5=\matAfive .
+\]
+Also $A^3=2A$ and $A^{k+2}=2A^k$ for $k=1,\dots,5$ (script).
+The matrix $A$ is symmetric with zero diagonal, and the row sums $1,2,1$ are the degrees (\cref{prop:rowsums}).
+
+\emph{Explicit walks} (derived by enumeration, labels $1,2,3$ for $n_1,n_2,n_3$).
+\begin{itemize}
+\item Length $1$: $1,2$ and $2,3$ and their reverses.
+\item Length $2$: from $1$ to $1$: $1,2,1$ (one walk). From $1$ to $3$: $1,2,3$ (one). From $2$ to $2$: $2,1,2$ and $2,3,2$ (two). From $3$ to $3$: $3,2,3$ (one).
+\item Length $3$: from $1$ to $2$: $1,2,1,2$ and $1,2,3,2$ (two). From $2$ to $3$: $2,1,2,3$ and $2,3,2,3$ (two).
+\end{itemize}
+Each count equals the corresponding matrix entry, as \cref{thm:walks} says; the script asserts this for every entry of $A$, $A^2$ and $A^3$.
+
+\emph{The sums from the inductive step.}
+The step of the proof of \cref{thm:walks} adds up one term for each choice of the second-last vertex $n_r$.
+For $(A^3)_{12}$ the terms are $(A^2)_{1r}A_{r2}$ for $r=1,2,3$, namely $1\cdot1+0\cdot0+1\cdot1=2$.
+The term for $r=1$ is the walk $1,2,1$ followed by the step to $n_2$, giving $1,2,1,2$; the term for $r=3$ is the walk $1,2,3$ followed by the step to $n_2$, giving $1,2,3,2$.
+Likewise $(A^2)_{22}=1\cdot1+0\cdot0+1\cdot1=2$ and $(A^2)_{11}=0\cdot0+1\cdot1+0\cdot0=1$.
+
+\emph{Counts by walk length.}
+\Cref{tab:walkcounts} counts, over all start and end vertices, the walks, trails, paths and closed walks of each length $k$ by enumeration.
+The entries of $A^k$ for $k=1,\dots,5$ agree with the enumeration (script).
+
+\begin{table}[ht]
+\centering
+\caption{Walks, trails, paths and closed walks of length $k$ in the board graph, over all start and end vertices (script \texttt{m2\_walks.py}).}\label{tab:walkcounts}
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+$k$ & walks & trails & paths & closed walks\\
+\midrule
+0 & 3 & 3 & 3 & 3\\
+1 & 4 & 4 & 4 & 0\\
+2 & 6 & 2 & 2 & 4\\
+3 & 8 & 0 & 0 & 0\\
+4 & 12 & 0 & 0 & 8\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+From $n_1$ to $n_3$ there are three walks of length at most $4$: $1,2,3$ (length $2$), and $1,2,1,2,3$ and $1,2,3,2,3$ (length $4$); only the first is a path (script).
+The numbers of walks from $n_1$ to $n_2$ for $k=1,\dots,5$ are $1,0,2,0,4$, and the numbers of paths among them are $1,0,0,0,0$ (script), as used in \cref{prop:warning}.
+
+\emph{The drawing.}
+The drawing on the board also has the line $1$--$3$ and an arrowhead on the line $1$--$2$.
+If the line $1$--$3$ were an edge, the triangle $1,2,3,1$ would be a simple cycle (\cref{ex:cycle}), and the matrix would have $A_{13}=A_{31}=1$.
+It does not, and this paper follows the matrix.
+
+\subsection{A connected example}
+
+\begin{plainwords}
+Take three houses in a row.
+A road joins the first and the second house.
+Another road joins the second and the third house.
+The first and the third house share no road.
+Can you still go from one to the other?
+Yes, through the middle house.
+We expect the check to say connected.
+\end{plainwords}
+
+\begin{example}[Connected; the board graph, $N=3$, $N-1=2$]\label{ex:conn}
+\[
+A=\matA,\quad A^2=\matAtwo,\quad S=A+A^2=\matSB,\quad (I+A)^2=\matIB .
+\]
+$S$ has no zero entry off the diagonal (it has none anywhere), so by \cref{thm:test}(b) the graph is connected.
+$(I+A)^2$ has no zero entry, so by \cref{thm:test}(c) the graph is connected.
+The two answers agree.
+The entry $A_{13}$ is $0$, so no road joins $n_1$ and $n_3$, yet $(A^2)_{13}=1$: there is exactly one walk of length $2$ from $n_1$ to $n_3$, namely $1,2,3$.
+The $(1,3)$ entry of $(I+A)^2$ is $1=\binom{2}{2}(A^2)_{13}$, since the other two terms vanish there, and $(I+A)^2=I+2A+A^2$ holds entry by entry (script).
+BFS from vertex $1$ reaches $\{1,2,3\}$ (script).
+\end{example}
+
+\subsection{A disconnected example}
+
+\begin{plainwords}
+Now take three houses again.
+Only one road exists, between the first and second house.
+The third house stands alone.
+Nobody can walk to it.
+We expect the check to say not connected.
+The check should also show that the third house is a piece by itself.
+\end{plainwords}
+
+\begin{example}[Disconnected; edge $n_1n_2$ only, $N=3$, $N-1=2$]\label{ex:disc}
+\[
+A=\matD,\quad A^2=\matDtwo,\quad S=\matSD,\quad (I+A)^2=\matID .
+\]
+The off-diagonal zeros of $S$ are at $(1,3)$, $(2,3)$, $(3,1)$ and $(3,2)$, and the zeros of $(I+A)^2$ are at the same four places.
+So by \cref{thm:test} the graph is not connected, and by \cref{cor:components} the vertices $n_1$ and $n_2$ lie in one component and $n_3$ in another: the components are $\{n_1,n_2\}$ and $\{n_3\}$, which agrees with BFS (script).
+Higher powers do not help: the entries $(1,3)$ and $(2,3)$ of $A^k$ are $0$ for $k=1,\dots,6$, and in fact no walk reaches $n_3$ at all.
+\end{example}
+
+\subsection{The bound $N-1$ is needed}
+
+\begin{plainwords}
+Now take four houses in a row.
+The first and the last house are three roads apart.
+So a check that stops at trips of two roads cannot see that they are connected.
+We write out the tables and watch what happens.
+\end{plainwords}
+
+\begin{example}[The path on four vertices, $N=4$]\label{ex:four}
+The edges are $n_1n_2$, $n_2n_3$, $n_3n_4$.
+\[
+A=\matP,\quad A^2=\matPtwo,\quad A^3=\matPthree .
+\]
+\[
+A+A^2=\matPsmall \quad(N-2\text{ powers}),\qquad A+A^2+A^3=\matPfull\quad(N-1\text{ powers}).
+\]
+With $N-2=2$ powers the $(1,4)$ entry is $0$, and the test would wrongly say ``not connected''.
+With $N-1=3$ powers every entry is positive.
+This is the case $N=4$ of \cref{prop:sharp}.
+\end{example}
+
+\subsection{Exhaustive agreement with breadth-first search}
+
+\begin{plainwords}
+Examples on a few villages are not proof.
+So we also ran the check on every possible village with up to six houses.
+Each time we compared it with the marking method.
+The two methods always gave the same answer.
+\end{plainwords}
+
+\Cref{tab:exhaustive} reports a script that built every labelled simple graph with $N=2,\dots,6$ vertices, ran the sum test and the $(I+A)^{N-1}$ test, and compared them with an independent BFS.
+The last column shows what goes wrong with only $N-2$ powers.
+This is a test of the statements and not a replacement for the proofs in \cref{sec:conn}, and it covers $N\le6$ only.
+
+\begin{table}[ht]
+\centering
+\caption{Exhaustive check over all labelled simple graphs with $N$ vertices (script \texttt{m3\_connectivity.py}). Columns ``sum test'' and ``$(I+A)^{N-1}$ test'' give the number of graphs on which the test agrees with BFS.}\label{tab:exhaustive}
+\begin{tabular}{@{}rrrrrr@{}}
+\toprule
+$N$ & graphs & connected & sum test agrees & $(I+A)^{N-1}$ test agrees & wrong with $N-2$ powers\\
+\midrule
+2 & 2 & 1 & 2 & 2 & 1\\
+3 & 8 & 4 & 8 & 8 & 3\\
+4 & 64 & 38 & 64 & 64 & 12\\
+5 & 1024 & 728 & 1024 & 1024 & 60\\
+6 & 32768 & 26704 & 32768 & 32768 & 360\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For $N=3$ the $N-2$ test is wrong on $3$ of the $8$ graphs, the three labelled paths, and for $N=4$ on $12$ of $64$.
+For $N=2$ the sum with $N-2=0$ powers is empty and is wrong on the one connected graph.
+The same script also confirmed that the statement of \cref{cor:components} and the repeated-squaring version of the test (\cref{sec:cost}) agree with BFS on all these graphs.

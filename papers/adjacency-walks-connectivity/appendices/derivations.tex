@@ -1,0 +1,116 @@
+\section{Derivations and checks}\label{app:derivations}
+
+This appendix holds the proofs and computations that the main text only states.
+Every statement here is derived in this paper, except where a citation is given.
+
+\subsection{The distance properties}\label{app:distance}
+
+\begin{proposition}[Shortest walk, trail, and path agree]\label{prop:shortest}
+For vertices $u,v$ of a simple graph, the length of a shortest $(u,v)$-walk, of a shortest $(u,v)$-trail, and of a shortest $(u,v)$-path are equal.
+Each is $+\infty$ when the corresponding set is empty, and the three sets are empty together.
+So $d(u,v)$ of \cref{def:distance} is the same whether ``path'' in that definition is read as trail or as path.
+\end{proposition}
+
+\begin{proof}
+Every path is a trail (\cref{prop:pathtrail}) and every trail is a walk.
+So the lengths of paths are among the lengths of trails, which are among the lengths of walks.
+Hence the minimum over walks is at most the minimum over trails, which is at most the minimum over paths.
+By \cref{lem:walkpath} a shortest walk contains a path of at most the same length, so the minimum over paths is at most the minimum over walks.
+Therefore the three minima are equal.
+If there is no walk, there is no trail and no path.
+If there is a walk, \cref{lem:walkpath} gives a path, so the three sets are empty together.
+\end{proof}
+
+Another text makes the same remark in prose: a shortest walk from $u$ to $v$, if it exists, is also a shortest path \cite[Section 2.9.4]{grinberg2025graph}.
+
+\begin{proposition}[The distance properties]\label{prop:distprops}
+The three properties of \cref{def:distance} follow from the definition.
+\end{proposition}
+
+\begin{proof}
+Use \cref{prop:shortest} to compute $d$ by shortest walks.
+(1) Lengths are $0,1,2,\dots$ or $+\infty$, so $d\ge0$.
+The walk consisting of $u$ alone has length $0$, so $d(u,u)=0$.
+If $d(u,v)=0$ there is a walk of length $0$ from $u$ to $v$; it is the single vertex, so $v=u$.
+(2) If $u_0,\dots,u_k$ is a $(u,v)$-walk, then $u_k,\dots,u_0$ is a $(v,u)$-walk of the same length, since each step is an edge and edges are unordered.
+So the sets of walk lengths from $u$ to $v$ and from $v$ to $u$ are equal, and so are their minima.
+(3) If $d(u,w)$ or $d(w,v)$ is $+\infty$, the right side is $+\infty$ and the inequality holds.
+Otherwise take a shortest $(u,w)$-walk and a shortest $(w,v)$-walk and join them at $w$.
+The result is a $(u,v)$-walk of length $d(u,w)+d(w,v)$, and the shortest $(u,v)$-walk is no longer than this.
+\end{proof}
+
+\subsection{The counterexample to ``entries count paths''}\label{app:counterexample}
+
+For the board graph the script \texttt{m1\_walks.py} lists, for each $k$ from $1$ to $5$, all walks from $n_1$ to $n_2$ and tests each for distinct vertices (path) and distinct edges (trail).
+Its output is saved in \texttt{appendices/scripts/m1\_walks\_output.txt}.
+\Cref{tab:counterex} repeats the numbers; the author script \texttt{author\_numbers.py} recomputes them independently and agrees.
+
+\begin{table}[ht]
+\centering
+\caption{Walks from $n_1$ to $n_2$ in the board graph, and how many of them are paths (they are also the trails).}\label{tab:counterex}
+\begin{tabular}{@{}cccccc@{}}
+\toprule
+$k$ & 1 & 2 & 3 & 4 & 5\\
+\midrule
+$(A^k)_{12}$ = walks & 1 & 0 & 2 & 0 & 4\\
+paths among them & 1 & 0 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For closed walks at $n_1$ the numbers of walks of length $1,\dots,4$ are $0,1,0,2$, and none of them is a path or a trail (script \texttt{m1\_walks.py}).
+The general fact is \cref{prop:warning}.
+
+\subsection{The chain of premises for the connectivity test}\label{app:testproof}
+
+The proof of \cref{thm:test} rests on the premises below, each marked with where it comes from.
+\begin{enumerate}
+\item \emph{Walk counting} (\cref{thm:walks}): the entry $(A^k)_{ij}$ counts walks of length $k$ \cite{quinlan_matrices_graphs,grinberg2025graph}; proved in \cref{sec:walks}.
+\item \emph{Non-negativity} (\cref{cor:counts}): every entry of every power is a non-negative whole number; derived from item 1.
+\item \emph{Walk to path} (\cref{lem:walkpath}): a walk contains a path of at most its length \cite[Corollary 2.9.7]{grinberg2025graph}; the textbook states it for $u\ne v$ \cite[p.~23]{petrosyan2015grafneri}; proved in \cref{sec:background}.
+\item \emph{Length bound} (\cref{cor:bound}): a path has at most $N-1$ edges \cite[Section 2.9.4]{grinberg2025graph}; proved in \cref{sec:background}.
+\item \emph{Path implies trail} (\cref{prop:pathtrail}): proved in \cref{sec:background}.
+\item \emph{Definition of connected} (\cref{def:connected}) \cite[p.~48]{petrosyan2015grafneri}.
+\end{enumerate}
+Forward direction: if $G$ is connected and $i\ne j$, items 6, 3 and 4 give a path of length $k$ with $1\le k\le N-1$, and items 1 and 2 give $(A^k)_{ij}\ge1$ and hence $S_{ij}\ge1$.
+Backward direction: if $S_{ij}>0$, items 1 and 2 give a walk, and items 3 and 5 give a path in either reading, so $G$ is connected.
+These are the steps of \cref{prop:pair}.
+
+\subsection{Proof of the $I+A$ form}\label{app:iplusa}
+
+\begin{proof}[Proof of \cref{prop:iplusa}]
+Put $m\ge N-1$ and expand $(I+A)^m=(I+A)(I+A)\cdots(I+A)$, with $m$ factors.
+Each term of the expansion chooses $I$ or $A$ from each factor and multiplies the choices in order.
+Because $IX=XI=X$ for every matrix $X$, a product with $k$ letters $A$ and $m-k$ letters $I$ equals $A^k$.
+The number of ways to choose which $k$ of the $m$ factors give $A$ is the binomial coefficient $\binom{m}{k}$.
+Therefore
+\[
+(I+A)^m=\binom{m}{0}I+\binom{m}{1}A+\binom{m}{2}A^2+\dots+\binom{m}{m}A^m .
+\]
+Take an entry $(i,j)$ with $i\ne j$.
+The identity has $0$ there, so
+\[
+\big((I+A)^m\big)_{ij}=\binom{m}{1}(A)_{ij}+\binom{m}{2}(A^2)_{ij}+\dots+\binom{m}{m}(A^m)_{ij}.
+\]
+Every coefficient $\binom{m}{k}$ with $1\le k\le m$ is a positive whole number, and every $(A^k)_{ij}$ is a non-negative whole number.
+So the sum is positive if and only if at least one $(A^k)_{ij}$ with $1\le k\le m$ is positive.
+For $m=N-1$ this is exactly $S_{ij}>0$.
+For $m>N-1$, if some $(A^k)_{ij}$ with $k\le m$ is positive, there is a walk from $n_i$ to $n_j$, hence by \cref{cor:bound} a walk of length at most $N-1$, so some $(A^{k'})_{ij}$ with $1\le k'\le N-1$ is positive, that is, $S_{ij}>0$; the converse is immediate because $N-1\le m$.
+On the diagonal the term $\binom{m}{0}I$ contributes $1$ and all other terms are non-negative, so every diagonal entry of $(I+A)^m$ is at least $1$ whatever the graph is.
+\end{proof}
+
+The idea of the $(I+A)^{N-1}$ form appears in lecture notes in a proof sketch \cite{bai2025adjacency}; the expansion above is derived here.
+
+\subsection{Cross-checks by script}\label{app:crosschecks}
+
+All checks are finite tests of statements that are proved in the text.
+\begin{itemize}
+\item \emph{Walk counting.}
+For every labelled simple graph on $N=2,3,4,5$ vertices ($2$, $8$, $64$, $1024$ graphs) the script \texttt{m1\_walks.py} enumerated all walks by depth-first search and compared with $A^k$ for $k=1,\dots,5$ when $N\le4$ and $k=1,\dots,3$ when $N=5$.
+All $40$, $360$, $5120$ and $76800$ tested cases of $(k,i,j)$ agree.
+\item \emph{Lemma and propositions of \cref{sec:background}.}
+The script \texttt{m2\_walks.py} applied the cutting construction of \cref{lem:walkpath} to all $73$ walks of length $0$ to $6$ in the board graph, all $381$ in the triangle and all $4695$ in the textbook graph, with $0$ failures.
+On $300$ random graphs with $N$ from $2$ to $7$ (seed $20261027$) and $192696$ walks of length $0$ to $5$ it found $0$ failures of the lemma, $0$ failures of \cref{prop:pathtrail}, $0$ paths longer than $N-1$ (\cref{cor:bound}), and $0$ disagreements between BFS distance and the shortest walk, trail and path (\cref{prop:shortest}).
+\item \emph{Connectivity test.}
+The script \texttt{m3\_connectivity.py} reports in \cref{tab:exhaustive} the exhaustive agreement with BFS for $N=2,\dots,6$, and for the path graph on $N=3,\dots,8$ vertices that the smallest $k$ with $(A^k)_{1N}>0$ is $N-1$, so that the $(1,N)$ entry of $A+\dots+A^{N-2}$ is $0$ and that of $A+\dots+A^{N-1}$ is $1$ each time.
+\end{itemize}

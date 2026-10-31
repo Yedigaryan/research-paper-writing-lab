@@ -1,0 +1,142 @@
+\section{Introduction}\label{sec:intro}
+
+\subsection{The question and where it came from}
+
+A lecture whiteboard shows a small graph, its table of zeros and ones, and two questions about that table \cite{whiteboard1,whiteboard2}.
+The board states the problem as follows: a graph with $N$ nodes is given through its adjacency matrix $A$; (1) what does the entry in row $i$ and column $j$ of a power of $A$ represent, and (2) how does one know whether the graph is connected \cite{whiteboard1,whiteboard2}.
+The board also gives a definition of a connected graph, which uses the word ``path'' \cite{whiteboard1,whiteboard2}.
+The assignment text added a third question: what is the definition of a path between two vertices $n_i$ and $n_j$.
+That third question comes from the assignment, not from the board.
+The paper therefore answers three questions.
+
+\begin{enumerate}
+\item[Q1.] What does the entry $(A^k)_{ij}$ of the $k$-th power of the adjacency matrix represent?
+\item[Q2.] How can one decide from $A$ alone whether the graph is connected?
+\item[Q3.] What is the definition of a path between the vertices $n_i$ and $n_j$?
+\end{enumerate}
+
+\emph{Reading of the board.}
+In question 1 the board puts a small mark above the letter $A$.
+In both photographs the mark looks like a small $n$ or a pair of quotation marks, not clearly a $k$ \cite{whiteboard1,whiteboard2}.
+This paper reads the mark as an exponent $k$, because the assignment text asks about $A^k$.
+This is an interpretation, and it is qualified: the board does not settle it.
+It does not change the mathematics, because \cref{thm:walks} holds for every positive whole exponent, whatever letter is used.
+
+\subsection{The story used throughout}\label{sec:story}
+
+Every explanation marked ``In plain words'' uses one story.
+A village has a number of houses.
+Each house is a point.
+Each road joins exactly two different houses.
+Every road can be driven in both directions.
+No road leads from a house back to itself.
+No two roads join the same pair of houses.
+A trip is a list of houses, one after another, where each house is at the other end of a road from the house before.
+A trip may pass the same house twice and may drive the same road twice.
+A clean route is a trip that never visits the same house twice.
+The village of the board has three houses in a row: a road from the first house to the second, and a road from the second house to the third.
+The first and third houses have no road between them.
+The mathematics below uses the same village; the terms are matched in \cref{tab:story}.
+
+\begin{table}[ht]
+\centering
+\caption{The story and the mathematics. The right column names the definitions that are introduced in \cref{sec:background}.}\label{tab:story}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Story & Mathematics\\
+\midrule
+house & vertex\\
+road & edge\\
+village & simple undirected graph (\cref{def:graph})\\
+trip & walk (\cref{def:walk})\\
+clean route & path (\cref{def:path})\\
+table of roads & adjacency matrix (\cref{def:adjmat})\\
+village in one piece & connected graph (\cref{def:connected})\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{What the paper shows}
+
+The answers, stated briefly and proved later, are these.
+
+\begin{itemize}
+\item \emph{Q1} (\cref{sec:walks}). For $k\ge1$, the entry $(A^k)_{ij}$ is the number of walks of length $k$ from $n_i$ to $n_j$.
+The statement appears in standard lecture notes \cite{quinlan_matrices_graphs,bai2025adjacency}; the proof in this paper is written out in full.
+The entry counts walks, not paths, and \cref{prop:warning} gives a counterexample.
+One web source states the theorem with the word ``paths'', which is wrong for the usual meanings of that word \cite{paramadevan2021adjacency}; this is discussed in \cref{sec:disagree}.
+\item \emph{Q2} (\cref{sec:conn}). For $N\ge2$ vertices the graph is connected if and only if every entry off the diagonal of $A+A^2+\dots+A^{N-1}$ is positive.
+A published note states this test and lecture notes state its second form, and both prove it loosely \cite{paramadevan2021adjacency,bai2025adjacency}.
+The proof in this paper is complete (derived here).
+\item \emph{Q3} (\cref{sec:pathdef}). A path between $n_i$ and $n_j$ is a walk from $n_i$ to $n_j$ with no repeated vertex.
+This is the course textbook's simple path, Definition 1.2.13 \cite[p.~22]{petrosyan2015grafneri}.
+\end{itemize}
+
+The course textbook states neither the walk-counting theorem nor the matrix test in the pages that were checked, and a search of the whole book found no such theorem or test; the absence is qualified because the rest of the book was not read page by page \cite{petrosyan2015grafneri}.
+Both results are therefore proved here, and the text says so each time.
+
+\subsection{Conventions, assumptions, and kinds of statement}\label{sec:conventions}
+
+\paragraph{Assumptions.}
+The graph is finite, simple, and undirected.
+This is the setting of the assignment, and it agrees with the symmetric matrix with zero diagonal on the board \cite{whiteboard1,whiteboard2}.
+The textbook's graphs are of this kind too \cite[p.~9]{petrosyan2015grafneri}.
+Directed graphs and graphs with repeated edges are not treated (\cref{sec:limits}).
+
+\paragraph{The example graph.}
+The board shows a drawing of three vertices and, beside it, a matrix with rows $(0\ 1\ 0)$, $(1\ 0\ 1)$, $(0\ 1\ 0)$.
+The matrix encodes the two edges $n_1n_2$ and $n_2n_3$ only.
+The drawing shows three lines: one from $1$ to $2$ with an arrowhead at $2$, one from $1$ to $3$, and one from $2$ to $3$ \cite{whiteboard1,whiteboard2}.
+So the drawing has an edge $1$--$3$ that the matrix lacks, and an arrowhead that a symmetric matrix does not support.
+The problem statement says that the graph is given through its adjacency matrix \cite{whiteboard1,whiteboard2}.
+This paper therefore takes the matrix as the example graph, calls it the \emph{board graph}, and treats the extra line and the arrowhead as a mismatch that it reports and does not resolve.
+When a graph with a cycle is needed, the drawing's triangle is used and is labelled as the triangle.
+
+\paragraph{Notation.}
+\Cref{tab:notation} fixes the letters.
+The board writes $(G,V)$ for the graph and $e_{ij}\in V$ in its matrix definition, where its $V$ is the edge set; the textbook writes $G=(V,E)$ with $E$ the edge set \cite{whiteboard1,whiteboard2,petrosyan2015grafneri}.
+This is a difference of notation only.
+The board names the vertices $n_i$; the textbook names them $v_i$ \cite{whiteboard1,whiteboard2,petrosyan2015grafneri}.
+This paper uses the board's $n_i$.
+
+\begin{table}[ht]
+\centering
+\caption{Notation used in this paper.}\label{tab:notation}
+\begin{tabular}{@{}p{0.2\textwidth}p{0.72\textwidth}@{}}
+\toprule
+Symbol & Meaning\\
+\midrule
+$G=(V,E)$ & a finite simple undirected graph with vertex set $V$ and edge set $E$ (textbook letters)\\
+$N$ & the number of vertices, $N=|V|$ (the board writes $|G|=N$)\\
+$n_1,\dots,n_N$ & the vertices (the board's names; the textbook's $v_i$)\\
+$uv$, $e_{ij}$ & the edge between $u$ and $v$; the edge between $n_i$ and $n_j$\\
+$A$, $A_{ij}$ & the adjacency matrix and its entry in row $i$, column $j$\\
+$A^k$, $(A^k)_{ij}$ & the $k$-th power of $A$ and its entry in row $i$, column $j$\\
+$I$ & the $N\times N$ identity matrix (ones on the diagonal, zeros elsewhere)\\
+$k$ & the length of a walk, or an exponent; a positive whole number unless stated\\
+$S$ & the sum $A+A^2+\dots+A^{N-1}$ (\cref{def:S})\\
+$\deg(n_i)$ & the degree of $n_i$ (\cref{def:degree})\\
+$d(u,v)$ & the distance between $u$ and $v$ (\cref{def:distance})\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{The word ``path''.}
+The word has more than one meaning in the sources.
+The textbook's own ``path'' (Definition 1.2.12) allows a repeated vertex, and it calls a path without a repeated vertex a ``simple path'' (Definition 1.2.13) \cite[p.~22]{petrosyan2015grafneri}.
+Two English texts call the second kind a path and the first kind a trail \cite{grinberg2025graph,wikipedia_path_graph_theory}.
+The assignment states that in the course a path has no repeated vertex; that statement comes from the assignment text and not from a file, so it is recorded as an interpretation.
+This paper uses \emph{path} for a walk without repeated vertices and \emph{trail} for the textbook's Definition 1.2.12, and \cref{tab:naming} gives the three conventions side by side.
+
+\paragraph{Kinds of statement.}
+A statement with a citation is taken from the cited source.
+A statement marked \emph{derived} is proved or computed in this paper; every number in such a statement was computed by script (\cref{app:repro}).
+Statements marked \emph{interpretation}, \emph{estimate}, or \emph{open} are labelled in the same way, and the textbook's definition numbers are always written ``textbook Definition~1.2.10'' and so on, so that they cannot be mistaken for the numbers of this paper.
+
+\subsection{Organization}
+
+\Cref{sec:background} builds the prerequisites in the textbook's order: graph, adjacency, the adjacency matrix, walk, trail, path, cycle, and distance, with the lemma that every walk contains a path.
+\Cref{sec:walks} answers Q1, \cref{sec:conn} answers Q2, and \cref{sec:pathdef} answers Q3.
+\Cref{sec:examples} works the board graph and three further graphs through in full.
+\Cref{sec:discussion} states the limits, and \cref{sec:conclusion} gives the direct answers.
+The appendices hold longer derivations, the textbook's terms, the transcription of the photographs, and the scripts.

@@ -62,7 +62,7 @@
           "quote": "The number of walks of length 2 from a vertex to itself is just the number of edges at that vertex, or the vertex degree."
         }
       ],
-      "derivation": "sections/answer2_connectivity.tex, Remark 4.11 (label rem:diagonal); sections/background.tex, Remark 2.56 (label rem:connected); script section 'N = 2' of appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
+      "derivation": "sections/answer2_connectivity.tex, Remark 4.21 (label rem:edge); sections/answer2_connectivity.tex, Remark 4.2 (label rem:connected); script section 'N = 2' of appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -85,7 +85,7 @@
           "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
         }
       ],
-      "derivation": "sections/answer2_connectivity.tex, Proposition 4.17 (label prop:sharp), Example 4.18 (label ex:sharp), Table 6 (label tab:sharp) and Remark 4.19 (label rem:failcount) (the failing graphs are the labelled paths, N!/2); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
+      "derivation": "sections/answer2_connectivity.tex, Proposition 4.23 (label prop:sharp); sections/example.tex, Example 6.3 (label ex:four) and Table 5 (label tab:exhaustive), last column (the failing graphs are the labelled paths, N!/2); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -114,7 +114,7 @@
           "quote": "Then, there is a path from u to v of length ≤ k."
         }
       ],
-      "derivation": "sections/answer2_connectivity.tex, Proposition 4.5 (label prop:pair) and Corollary 4.10 (label cor:components); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
+      "derivation": "sections/answer2_connectivity.tex, Proposition 4.13 (label prop:pair) and Corollary 4.19 (label cor:components); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -180,7 +180,7 @@
           "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
         }
       ],
-      "derivation": "appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt), section 'Exhaustive check'; sections/example.tex, Table 10 (label tab:exhaustive); appendices/derivations.tex, Appendix A.6 (label app:crosschecks)",
+      "derivation": "appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt), section 'Exhaustive check'; sections/example.tex, Table 5 (label tab:exhaustive); appendices/derivations.tex, Appendix A.5 (label app:crosschecks)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -208,7 +208,7 @@
           "quote": "Then, there is a path from u to v of length ≤ k."
         }
       ],
-      "derivation": "appendices/derivations.tex, Appendix A.4 (label app:iplusa) (any exponent m >= N - 1), Proposition 4.16 (label prop:iplusa); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
+      "derivation": "appendices/derivations.tex, Appendix A.4 (label app:iplusa) (any exponent m >= N - 1), Proposition 4.14 (label prop:iplusa); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [

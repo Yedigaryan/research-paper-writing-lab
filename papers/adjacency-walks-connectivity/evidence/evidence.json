@@ -417,7 +417,7 @@
           "quote": "The 0-th power of any n × n-matrix is defined to be the n × n identity matrix In ; thus, C0 = In ."
         }
       ],
-      "derivation": "sections/answer1_walks.tex, proof of Theorem 3.5 (label thm:walkcount); appendices/derivations.tex, Appendix A.1 (label app:walkcount)",
+      "derivation": "sections/answer1_walks.tex, proof of Theorem 3.5 (label thm:walks)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -492,7 +492,7 @@
           "quote": "The number of walks of length 2 from a vertex to itself is just the number of edges at that vertex, or the vertex degree."
         }
       ],
-      "derivation": "appendices/derivations.tex, Appendix A.2 (label app:counterexample); sections/answer1_walks.tex, Proposition 3.10 (label prop:warning); matrix products and counts by appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt)",
+      "derivation": "appendices/derivations.tex, Appendix A.2 (label app:counterexample); sections/answer1_walks.tex, Proposition 3.11 (label prop:warning); matrix products and counts by appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -1126,7 +1126,7 @@
           "quote": "Then, there is a path from u to v of length ≤ k."
         }
       ],
-      "derivation": "sections/answer2_connectivity.tex, Proposition 4.5 (label prop:pair) and Theorem 4.6 (label thm:test); appendices/derivations.tex, Appendix A.3 (label app:testproof) (chain of premises)",
+      "derivation": "sections/answer2_connectivity.tex, Proposition 4.13 (label prop:pair) and Theorem 4.15 (label thm:test); appendices/derivations.tex, Appendix A.3 (label app:testproof) (chain of premises)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -1170,7 +1170,7 @@
           "quote": "Define the modified adjacency matrix A′ = I + A, where the identity matrix I adds self-loops (A′i,i = 1)."
         }
       ],
-      "derivation": "appendices/derivations.tex, Appendix A.4 (label app:iplusa) (binomial expansion, proof of Proposition 4.16 (label prop:iplusa))",
+      "derivation": "appendices/derivations.tex, Appendix A.4 (label app:iplusa) (binomial expansion, proof of Proposition 4.14 (label prop:iplusa))",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -1253,7 +1253,7 @@
           "quote": "Սահմանում 1.1.4: u և v գագաթները կանվանենք հարևան, եթե uv ∈ E։"
         }
       ],
-      "derivation": "sections/background.tex, Proposition 2.20 (label prop:rowsums); numbers by appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt)",
+      "derivation": "sections/background.tex, Proposition 2.17 (label prop:rowsums); numbers by appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -1278,7 +1278,7 @@
           "quote": "A walk (in G) means a finite sequence (v0 , v1 , . . . , vk ) of vertices of G (with k ≥ 0) such that all of v0 v1 , v1 v2 , v2 v3 , . . . , vk−1 vk are edges of G."
         }
       ],
-      "derivation": "appendices/derivations.tex, Appendix A.1 (label app:walkcount); sections/background.tex, Remark 2.24 (label rem:walk)",
+      "derivation": "sections/background.tex, Remark 2.20 (label rem:vertexlist)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -1305,7 +1305,7 @@
           "quote": "Thus the total number of walks of length k from vi to vj is the sum of the expressions (Ak−1 )ir Arj over all vertices vr of G, which is exactly (Ak )ij ."
         }
       ],
-      "derivation": "sections/answer1_walks.tex, proof of Theorem 3.5 (label thm:walkcount); appendices/derivations.tex, Appendix A.1 (label app:walkcount); finite cross-check by appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt)",
+      "derivation": "sections/answer1_walks.tex, proof of Theorem 3.5 (label thm:walks); finite cross-check by appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -1321,7 +1321,7 @@
       "kind": "derived",
       "module": "m1",
       "support": [],
-      "derivation": "appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt), last section; appendices/derivations.tex, Appendix A.6 (label app:crosschecks)",
+      "derivation": "appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt), last section; appendices/derivations.tex, Appendix A.5 (label app:crosschecks)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -1374,7 +1374,7 @@
           "quote": "G գրաֆի (u0, u_k)-ճանապարհը կանվանենք պարզ (u0, u_k)-ճանապարհ, եթե նրա մեջ մտնող բոլոր գագաթները զույգ առ զույգ տարբեր են։"
         }
       ],
-      "derivation": "appendices/derivations.tex, Appendix A.2 (label app:counterexample); sections/answer1_walks.tex, Proposition 3.10 (label prop:warning) and Table 5 (label tab:walksvspaths); enumeration by appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt)",
+      "derivation": "appendices/derivations.tex, Appendix A.2 (label app:counterexample); sections/answer1_walks.tex, Proposition 3.11 (label prop:warning) and Table 6 (label tab:counterex); enumeration by appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -1752,7 +1752,7 @@
           "quote": "Let G be a simple graph. Let w be a path in G. Prove that the edges of w are distinct."
         }
       ],
-      "derivation": "sections/background.tex, Proposition 2.39 (label prop:pathtrail); checked by appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), section 5",
+      "derivation": "sections/background.tex, Proposition 2.35 (label prop:pathtrail); checked by appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), section 5",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -1799,7 +1799,7 @@
           "quote": "Indeed, Corollary 2.9.7 shows that a shortest walk from u to v (if it exists) must also be a shortest path from u to v."
         }
       ],
-      "derivation": "appendices/derivations.tex, Appendix A.5 (label app:distance), Proposition A.1 (label prop:shortest); checked by appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), section 5",
+      "derivation": "appendices/derivations.tex, Appendix A.1 (label app:distance), Proposition A.1 (label prop:shortest); checked by appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), section 5",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -1820,7 +1820,7 @@
           "quote": "adj. 0 1 0 / 1 0 1 / 0 1 0"
         }
       ],
-      "derivation": "sections/example.tex, Table 8 (label tab:walkcounts); appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), sections 1 and 6; premise: the matrix of C28 defines B",
+      "derivation": "sections/example.tex, Table 4 (label tab:walkcounts); appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), sections 1 and 6; premise: the matrix of C28 defines B",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -1847,7 +1847,7 @@
           "quote": "G գրաֆի (u0, u_k)-ճանապարհը կանվանենք փակ ճանապարհ կամ ցիկլ, եթե այն փակ շրջանցում է, այսինքն՝ եթե u0 = u_k։"
         }
       ],
-      "derivation": "sections/background.tex, Remark 2.32 (label rem:trail) and Non-example (label nex:cycle); appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), sections 1, 2 and 3",
+      "derivation": "sections/background.tex, Remark 2.28 (label rem:trail) and Non-example 2.40 (label nex:cycle); appendices/scripts/m2_walks.py (output appendices/scripts/m2_walks_output.txt), sections 1, 2 and 3",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -1896,7 +1896,7 @@
           "quote": "G գրաֆի ցանկացած u, v և w գագաթների համար d_G(u, v) ≤ d_G(u, w) + d_G(w, v)։"
         }
       ],
-      "derivation": "appendices/derivations.tex, Appendix A.5 (label app:distance), Proposition A.2 (label prop:distprops), uses Proposition A.1",
+      "derivation": "appendices/derivations.tex, Appendix A.1 (label app:distance), Proposition A.2 (label prop:distprops), uses Proposition A.1",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -1964,7 +1964,7 @@
           "quote": "The number of walks of length 2 from a vertex to itself is just the number of edges at that vertex, or the vertex degree."
         }
       ],
-      "derivation": "sections/answer2_connectivity.tex, Remark 4.11 (label rem:diagonal); sections/background.tex, Remark 2.56 (label rem:connected); script section 'N = 2' of appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
+      "derivation": "sections/answer2_connectivity.tex, Remark 4.21 (label rem:edge); sections/answer2_connectivity.tex, Remark 4.2 (label rem:connected); script section 'N = 2' of appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -1987,7 +1987,7 @@
           "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
         }
       ],
-      "derivation": "sections/answer2_connectivity.tex, Proposition 4.17 (label prop:sharp), Example 4.18 (label ex:sharp), Table 6 (label tab:sharp) and Remark 4.19 (label rem:failcount) (the failing graphs are the labelled paths, N!/2); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
+      "derivation": "sections/answer2_connectivity.tex, Proposition 4.23 (label prop:sharp); sections/example.tex, Example 6.3 (label ex:four) and Table 5 (label tab:exhaustive), last column (the failing graphs are the labelled paths, N!/2); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -2016,7 +2016,7 @@
           "quote": "Then, there is a path from u to v of length ≤ k."
         }
       ],
-      "derivation": "sections/answer2_connectivity.tex, Proposition 4.5 (label prop:pair) and Corollary 4.10 (label cor:components); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
+      "derivation": "sections/answer2_connectivity.tex, Proposition 4.13 (label prop:pair) and Corollary 4.19 (label cor:components); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -2082,7 +2082,7 @@
           "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
         }
       ],
-      "derivation": "appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt), section 'Exhaustive check'; sections/example.tex, Table 10 (label tab:exhaustive); appendices/derivations.tex, Appendix A.6 (label app:crosschecks)",
+      "derivation": "appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt), section 'Exhaustive check'; sections/example.tex, Table 5 (label tab:exhaustive); appendices/derivations.tex, Appendix A.5 (label app:crosschecks)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -2110,7 +2110,7 @@
           "quote": "Then, there is a path from u to v of length ≤ k."
         }
       ],
-      "derivation": "appendices/derivations.tex, Appendix A.4 (label app:iplusa) (any exponent m >= N - 1), Proposition 4.16 (label prop:iplusa); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
+      "derivation": "appendices/derivations.tex, Appendix A.4 (label app:iplusa) (any exponent m >= N - 1), Proposition 4.14 (label prop:iplusa); appendices/scripts/m3_connectivity.py (output appendices/scripts/m3_connectivity.out.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [

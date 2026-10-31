@@ -1,0 +1,69 @@
+\section{Discussion: limits, disagreements, and cost}\label{sec:discussion}
+
+\subsection{What is proved and what is only checked}
+
+The two main results, \cref{thm:walks} and \cref{thm:test}, are proved in full from the definitions, using \cref{lem:walkpath} for the second.
+The computer checks are tests of the statements and not proofs: the walk count was compared with brute-force enumeration for all labelled simple graphs on $2$ to $5$ vertices, and the test was compared with BFS for all labelled simple graphs on $2$ to $6$ vertices (\cref{app:crosschecks}).
+The proof of \cref{thm:test} is only as good as \cref{thm:walks} and \cref{lem:walkpath}.
+The first is stated by four sources \cite{quinlan_matrices_graphs,grinberg2025graph,lehman_mcs_adjacency,bai2025adjacency}.
+The second combines the textbook's lemma, which needs $u\ne v$ and states no length bound, with a version from another text that allows $u=v$ and gives the bound \cite{petrosyan2015grafneri,grinberg2025graph}; the paper proves the combined form itself.
+The arithmetic is ordinary integer arithmetic.
+Entries are counts and hence non-negative, which is what makes ``a sum is positive if and only if some term is positive'' valid; with subtraction or modular arithmetic that step would fail (derived).
+
+\subsection{Conventions that change the words but not the mathematics}\label{sec:conventions2}
+
+\begin{itemize}
+\item \emph{Path.}
+Under the textbook's own word, ``path'' allows repeated vertices (Definition 1.2.12), and a reader who uses it will count trails \cite{petrosyan2015grafneri}.
+The paper states which meaning it uses and keeps it (\cref{tab:naming}).
+The board does not say which meaning it uses, and the course reading comes from the assignment text.
+This does not change the connectivity result (\cref{rem:connected}), and it changes only counts (\cref{prop:warning}).
+\item \emph{Cycle.}
+The textbook's cycle is a closed trail and the English cycle is the textbook's simple cycle \cite{petrosyan2015grafneri,grinberg2025graph}.
+Cycles are not needed for the main results.
+\item \emph{Length $0$.}
+Whether a walk of length $0$ is allowed, and whether a closed trail of length $0$ is a cycle, is not stated in the textbook pages read (\cref{rem:walk}, \cref{rem:cycle}).
+For $i\ne j$ the connectivity result needs only paths of length at least $1$.
+\item \emph{The mark above $A$.}
+If the mark is an $n$ and not a $k$, \cref{thm:walks} still describes $(A^n)_{ij}$, so the mathematics is unchanged; the reading of the board remains open \cite{whiteboard1,whiteboard2}.
+\item \emph{The drawing.}
+The drawing and the matrix on the board disagree on the line $1$--$3$ and on an arrowhead (\cref{sec:conventions}).
+The paper follows the matrix and does not guess which one the lecturer intended.
+\end{itemize}
+
+\subsection{Where the sources disagree}\label{sec:disagree}
+
+One published note states its Theorem 1 as ``the entry counts different paths of length $l$'', while its own property 7 speaks of walks \cite{paramadevan2021adjacency}.
+As written, Theorem 1 is false for any definition of path that forbids repeated vertices or repeated edges, by \cref{prop:warning}.
+This paper does not cite that theorem as support for \cref{thm:walks}; it cites the notes that say walks \cite{quinlan_matrices_graphs,grinberg2025graph,lehman_mcs_adjacency,bai2025adjacency}.
+The note and the lecture notes that state the connectivity test explain it by ``paths'' where walks are meant, so their explanation is wrong although their statements of the test are correct (\cref{sec:conn}) \cite{paramadevan2021adjacency,bai2025adjacency}.
+Eigenvalue-based tests are outside the scope of this note, and nothing is claimed about them.
+
+\subsection{Cost of the matrix test and of breadth-first search}\label{sec:cost}
+
+This subsection is an estimate that counts operations and does not time programs.
+Take the school method, in which one product of two $N\times N$ matrices takes $N^3$ scalar multiplications.
+Reaching $A^{N-1}$ from $A$ takes $N-2$ products, so the matrix test costs about $(N-2)N^3$ multiplications: $98{,}000{,}000$ for $N=100$ (script).
+By \cref{prop:iplusa} the exponent $N-1$ may be replaced by any larger exponent, so one can square $I+A$ repeatedly until the exponent $2^t$ is at least $N-1$.
+That takes $t$ squarings, $7$ for $N=100$, costing $7{,}000{,}000$ multiplications (script); the script checked this version against BFS on every labelled graph with at most $6$ vertices.
+BFS takes time proportional to $n+m$, the numbers of vertices and edges, when the graph is given by adjacency lists \cite{schost2026bfs}.
+When the input is the matrix $A$ itself, BFS reads each row once, which is $N^2=10{,}000$ entries for $N=100$ (derived).
+The entries of the powers also grow fast: for the complete graph on $10$ vertices the largest entry of $A^9$ is $38{,}742{,}049$ (script).
+The matrix test is useful because its answer is a clean statement about powers of $A$, not because it is fast.
+Faster matrix multiplication methods were not examined.
+The cited slides compare BFS with no matrix test, and the count of $N-2$ products is this paper's own \cite{schost2026bfs}.
+
+\subsection{Limits and open questions}\label{sec:limits}
+
+\begin{itemize}
+\item The theorems are for simple graphs.
+With loops or repeated edges the entry $A_{rj}$ may exceed $1$ and $A_{ii}$ may be nonzero; the same proof then counts walks with multiplicity (interpretation), but \cref{prop:rowsums} changes.
+The test is not claimed for directed graphs: no source was checked for them, and the symmetry of $A$ is used.
+\item The textbook states no walk-counting theorem and no matrix connectivity test in the pages read, and a search of the book found none; the rest of the book was not read page by page, so this absence is qualified \cite{petrosyan2015grafneri}.
+\item The brute-force checks cover small graphs only.
+\item The test says connected or not.
+The sum $S$ does not list a path; \cref{cor:components} gives the components and \cref{rem:distmatrix} the distances.
+\item Open: whether the lecturer's intended answer to the board's question 2 was the sum test, the $(I+A)^{N-1}$ test, or BFS; the board shows only the question.
+\item Open: the reading of the mark above $A$, and the mismatch between the drawing and the matrix.
+Only the user can settle these.
+\end{itemize}

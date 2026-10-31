@@ -1,0 +1,21 @@
+\section{Conclusion}\label{sec:conclusion}
+
+The three questions have direct answers.
+
+\paragraph{Q1.}
+For a simple undirected graph with adjacency matrix $A$ and a whole number $k\ge1$, the entry $(A^k)_{ij}$ is the number of walks of length $k$ from $n_i$ to $n_j$ (\cref{thm:walks}, proved by induction on $k$ from the definition of the matrix product; the statement is standard \cite{quinlan_matrices_graphs,grinberg2025graph}).
+It counts walks and not paths: in the board graph $(A^2)_{11}=1$, the walk $1,2,1$, which is neither a path nor a trail (\cref{prop:warning}).
+
+\paragraph{Q2.}
+A graph with $N\ge2$ vertices is connected if and only if every off-diagonal entry of $A+A^2+\dots+A^{N-1}$ is positive, and equivalently if and only if $(I+A)^{N-1}$ has no zero entry (\cref{thm:test}, derived here).
+The proof uses the walk-counting theorem and the fact that every walk contains a path of no greater length, so powers beyond $N-1$ add nothing; the bound cannot be lowered to $N-2$ (\cref{prop:sharp}).
+The board graph, with $S=\matSB$, is connected; the graph with the edge $n_1n_2$ only, with $S=\matSD$, is not.
+Breadth-first search is an alternative that needs no matrix powers \cite{schost2026bfs}.
+
+\paragraph{Q3.}
+A path between $n_i$ and $n_j$ is a walk from $n_i$ to $n_j$ in which all vertices are pairwise distinct, that is, the textbook's simple path (Definition 1.2.13) \cite[p.~22]{petrosyan2015grafneri}.
+The textbook's own word ``path'' (Definition 1.2.12) allows repeated vertices and is called a trail here.
+The statement that the course uses the first meaning comes from the assignment text and is an interpretation; the existence of a path between two vertices is the same under both readings (\cref{sec:pathdef}).
+
+\paragraph{What remains open.}
+The reading of the mark above $A$ on the board, the mismatch between the board's drawing and its matrix, and the question which test the lecturer intended are not settled by the sources (\cref{sec:limits}).

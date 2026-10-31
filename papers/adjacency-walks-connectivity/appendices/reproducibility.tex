@@ -1,0 +1,14 @@
+\section{Reproducibility}\label{app:repro}
+
+Every number in the paper that is a matrix entry, a sum, or a count was computed by one of the scripts below.
+All are pure Python with integer arithmetic, so no rounding occurs.
+Run each one from the paper folder with \texttt{python3 -I}; the saved outputs sit beside the scripts.
+
+\begin{description}
+\item[\texttt{appendices/scripts/author\_numbers.py}] computes the matrices of \cref{sec:examples} and writes them to \texttt{figures/generated\_numbers.tex}, which the paper inputs; it also checks each power against a direct walk enumeration, and computes the walk and path counts of \cref{tab:counterex} and the cost counts of \cref{sec:cost}. Output: \texttt{author\_numbers\_output.txt}.
+\item[\texttt{appendices/scripts/m1\_walks.py}] board graph powers, explicit walks, walks against paths, brute-force check of \cref{thm:walks}. Output: \texttt{m1\_walks\_output.txt}.
+\item[\texttt{appendices/scripts/m2\_walks.py}] classification of sequences as walk, trail, path, cycle; the cutting construction of \cref{lem:walkpath}; \cref{tab:walkcounts}. Output: \texttt{m2\_walks\_output.txt}.
+\item[\texttt{appendices/scripts/m3\_connectivity.py}] the tests of \cref{sec:conn}, the examples, the sharpness table, the exhaustive check of \cref{tab:exhaustive}, and the cost counts. It takes about thirty seconds. Output: \texttt{m3\_connectivity.out.txt}.
+\end{description}
+
+The scripts are copies of the ones in the folder \texttt{modules/}, which are kept as the module records.

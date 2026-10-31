@@ -1,0 +1,48 @@
+\section{Q3: the definition of a path between $n_i$ and $n_j$}\label{sec:pathdef}
+
+\begin{plainwords}
+Pick two houses of the village.
+A path between them is a clean route.
+It starts at the first house and ends at the second.
+It never visits any house twice.
+If the two houses are the same house, the route is just staying home.
+\end{plainwords}
+
+\begin{definition}[Path between $n_i$ and $n_j$; course convention]\label{def:pathbetween}
+Let $n_i$ and $n_j$ be vertices of $G$.
+A \emph{path between $n_i$ and $n_j$} is a walk $w_0,w_1,\dots,w_k$ with $w_0=n_i$ and $w_k=n_j$ in which the vertices $w_0,\dots,w_k$ are pairwise distinct.
+Its length is $k$.
+For $i=j$ the only such path is the single vertex $n_i$, of length $0$.
+\end{definition}
+
+This is a simple path in the sense of textbook Definition 1.2.13 and a path in English usage \cite[p.~22]{petrosyan2015grafneri}.
+It is the specialization of \cref{def:path} to the endpoints $n_i$ and $n_j$.
+The statement that the course uses ``path'' in this sense comes from the assignment text; the board does not say which meaning it uses \cite{whiteboard1,whiteboard2}.
+The definition is therefore an interpretation, and it is qualified.
+
+\begin{remark}
+The definition allows length $0$ (when $i=j$), length $1$ (an edge), and at most $N-1$ edges (\cref{cor:bound}).
+It forbids any repeated vertex, and therefore any repeated edge (\cref{prop:pathtrail}).
+It does not forbid several different paths between the same two vertices; it says only what a path is.
+\end{remark}
+
+\begin{example}
+In the board graph there is exactly one path between $n_1$ and $n_3$, namely $1,2,3$.
+Every path has at most $N-1=2$ edges, so the enumeration of walks up to length $4$ finds all of them (script).
+Between $n_1$ and $n_1$ the only path is the one of length $0$.
+\end{example}
+
+\begin{nonexample}
+In the board graph $1,2,1,2,3$ is a walk between $n_1$ and $n_3$ but not a path between them: it repeats the vertices $1$ and $2$.
+It is not a trail either, because it repeats the edge $n_1n_2$.
+\end{nonexample}
+
+\paragraph{The two textbook readings give the same answers.}
+If ``path'' is read as the textbook's Definition 1.2.12 (a trail), then ``there is a path between $n_i$ and $n_j$'' has the same truth value as in \cref{def:pathbetween}.
+A path is a trail (\cref{prop:pathtrail}), so a path gives a trail.
+A trail is a walk, and a walk contains a path (\cref{lem:walkpath}), so a trail gives a path.
+Hence every sentence of the form ``there is a path between $n_i$ and $n_j$'', in particular the definition of connected, has the same meaning in both readings (derived).
+What changes with the reading is a \emph{count}: the number of trails between two vertices is not the number of paths, and neither is the number of walks (\cref{prop:warning}).
+
+\paragraph{The answer to Q3.}
+A path between $n_i$ and $n_j$ is a walk from $n_i$ to $n_j$ in which all vertices are pairwise distinct.

@@ -1,0 +1,503 @@
+\section{Background: graphs, walks, and paths}\label{sec:background}
+
+Throughout, let $G=(V,E)$ be a finite simple undirected graph with $V=\{n_1,\dots,n_N\}$, let $u,v$ be vertices and let $e,e'$ be edges, as fixed in \cref{tab:notation}.
+The definitions follow the textbook's build order \cite{petrosyan2015grafneri}.
+Where the textbook has a number for a definition, the number is quoted as ``textbook Definition~$x.y.z$''.
+After each definition come a remark on what it allows and forbids, an example, and a non-example.
+
+\subsection{Graphs, adjacency, and degree}
+
+\begin{plainwords}
+A village has a list of houses and a list of roads.
+A road always joins two different houses.
+No two roads join the same pair of houses.
+Roads have no direction.
+The village is small enough that we can count its houses.
+\end{plainwords}
+
+\begin{definition}[Simple undirected graph; textbook Definition 1.1.1]\label{def:graph}
+A \emph{simple undirected graph} is a pair $G=(V,E)$ where $V$ is a finite nonempty set, whose elements are the \emph{vertices}, and $E$ is a set of unordered pairs of distinct elements of $V$, the \emph{edges} \cite[p.~9]{petrosyan2015grafneri}.
+\end{definition}
+
+\begin{remark}\label{rem:graph}
+The definition forbids a loop, because an edge is a pair of distinct vertices.
+It forbids a repeated edge, because $E$ is a set, so a pair occurs at most once.
+It forbids direction, because the pair is unordered, so $n_in_j$ and $n_jn_i$ are the same edge.
+It allows a vertex that lies on no edge, and any finite number of vertices.
+\end{remark}
+
+\begin{example}\label{ex:boardgraph}
+$V=\{n_1,n_2,n_3\}$ and $E=\{n_1n_2,\,n_2n_3\}$.
+This is the board graph: three houses in a row.
+\end{example}
+
+\begin{nonexample}\label{nex:graph}
+Two vertices $n_1,n_2$ joined by two roads, or a road from $n_1$ to $n_1$.
+The first repeats an edge and the second is a loop, so neither is a simple graph.
+\end{nonexample}
+
+\begin{plainwords}
+Two houses are neighbours when one road joins them directly.
+Being neighbours says nothing about longer trips.
+\end{plainwords}
+
+\begin{definition}[Adjacent vertices; textbook Definition 1.1.4]\label{def:adjacent}
+Vertices $u$ and $v$ are \emph{adjacent} if $uv\in E$; then $u$ is a \emph{neighbour} of $v$ \cite[p.~11]{petrosyan2015grafneri}.
+\end{definition}
+
+\begin{remark}
+Adjacency is symmetric, and no vertex is adjacent to itself, because there are no loops.
+It describes direct roads only, not longer connections.
+\end{remark}
+
+\begin{example}
+$n_1$ and $n_2$ are adjacent in the board graph.
+\end{example}
+
+\begin{nonexample}
+$n_1$ and $n_3$ are not adjacent in the board graph, although the trip $n_1,n_2,n_3$ joins them.
+\end{nonexample}
+
+\begin{plainwords}
+The degree of a house is the number of roads that touch it.
+A busy house has a large degree.
+\end{plainwords}
+
+\begin{definition}[Degree]\label{def:degree}
+The \emph{degree} $\deg(n_i)$ of a vertex $n_i$ is the number of edges that contain $n_i$.
+\end{definition}
+
+This is the usual meaning of the word, stated for example as ``the number of edges at that vertex, or the vertex degree'' \cite{quinlan_matrices_graphs}.
+The textbook's own definition of degree was not read, so no textbook number is given.
+
+\begin{remark}
+In a simple graph the degree is also the number of neighbours, because each neighbour is joined by exactly one edge.
+\end{remark}
+
+\begin{example}
+In the board graph $\deg(n_1)=1$, $\deg(n_2)=2$, and $\deg(n_3)=1$.
+\end{example}
+
+\begin{nonexample}
+$\deg(n_1)$ is not $2$ in the board graph, although two other vertices can be reached from $n_1$.
+Only roads at $n_1$ count, and $n_3$ is reached by passing through $n_2$.
+\end{nonexample}
+
+\subsection{The adjacency matrix}
+
+\begin{plainwords}
+Make a square table with one row and one column for every house.
+Write a one where the row house and the column house share a road.
+Write a zero everywhere else.
+This table describes the whole village.
+\end{plainwords}
+
+A \emph{matrix} is a rectangular table of numbers; $A_{ij}$ is the number in row $i$ and column $j$.
+The \emph{transpose} of a matrix swaps its rows and columns, and a matrix is \emph{symmetric} if it equals its transpose, that is, if $A_{ij}=A_{ji}$ for all $i,j$.
+
+\begin{definition}[Adjacency matrix; textbook, printed p.~11, after Definition 1.1.6]\label{def:adjmat}
+The \emph{adjacency matrix} of $G$ is the $N\times N$ matrix $A$ with $A_{ij}=1$ if $n_i$ and $n_j$ are adjacent, and $A_{ij}=0$ otherwise \cite[p.~11]{petrosyan2015grafneri}.
+\end{definition}
+
+The textbook's definition number for this matrix was not recorded, so only its page is given.
+The board writes the same rule as $A_{ij}=1$ if $e_{ij}\in V$ and $A_{ij}=0$ if $e_{ij}\notin V$, with its $V$ standing for the edge set \cite{whiteboard1,whiteboard2}.
+
+\begin{remark}
+The definition allows only the entries $0$ and $1$.
+It depends on how the vertices are numbered: renumbering permutes rows and columns together.
+\end{remark}
+
+\begin{example}\label{ex:boardmatrix}
+The board matrix $\matA$ is the adjacency matrix of the board graph of \cref{ex:boardgraph}: $A_{12}=A_{21}=1$, $A_{23}=A_{32}=1$, and every other entry is $0$.
+\end{example}
+
+\begin{nonexample}
+The matrix with rows $(0\ 1\ 0)$, $(0\ 0\ 1)$, $(0\ 1\ 0)$ is not the adjacency matrix of a simple undirected graph, because $A_{12}=1$ but $A_{21}=0$.
+A matrix with a $1$ on the diagonal (a loop) or an entry $2$ (a double road) is not one either.
+\end{nonexample}
+
+\begin{plainwords}
+The table has some easy features.
+It looks the same when flipped over its diagonal.
+The diagonal holds only zeros.
+Adding up one row tells how many roads touch that house.
+\end{plainwords}
+
+\begin{proposition}[Properties of $A$]\label{prop:rowsums}
+For the adjacency matrix $A$ of a simple undirected graph:
+\begin{enumerate}
+\item every entry is $0$ or $1$;
+\item $A$ is symmetric: $A_{ij}=A_{ji}$;
+\item the diagonal is zero: $A_{ii}=0$;
+\item the sum of row $i$, and of column $i$, equals $\deg(n_i)$;
+\item the sum of all entries equals $2|E|$;
+\item conversely, every $N\times N$ matrix of zeros and ones that is symmetric with zero diagonal is the adjacency matrix of some simple graph with numbered vertices.
+\end{enumerate}
+\end{proposition}
+
+Items 1--3 and 6 are stated in the textbook \cite[pp.~11--12]{petrosyan2015grafneri}, and items 2, 3 and 6 also appear in other notes \cite{quinlan_matrices_graphs,paramadevan2021adjacency}.
+Items 4 and 5 are derived here; a published note states item 4 in a form that allows loops \cite{paramadevan2021adjacency}.
+
+\begin{proof}
+Items 1--3 follow from \cref{def:adjmat}, because adjacency is symmetric and no vertex is adjacent to itself.
+For item 4, the sum of row $i$ is the number of $j$ with $A_{ij}=1$, which is the number of neighbours of $n_i$.
+Each neighbour is joined to $n_i$ by exactly one edge, since there are no repeated edges, and no edge at $n_i$ joins it to itself, since there are no loops.
+So the number of neighbours equals the number of edges at $n_i$, which is $\deg(n_i)$.
+Column $i$ gives the same number by symmetry.
+For item 5, add item 4 over all $i$.
+Each edge $n_in_j$ adds one to $\deg(n_i)$ and one to $\deg(n_j)$, so it is counted twice.
+For item 6, join $n_i$ and $n_j$ exactly when the entry is $1$.
+Symmetry makes this a set of unordered pairs, and the zero diagonal excludes loops.
+\end{proof}
+
+For the board matrix the row sums are $1,2,1$, the column sums are $1,2,1$, and the total is $4=2|E|$ with $|E|=2$ (script, \cref{app:repro}).
+
+\subsection{Walks}
+
+\begin{plainwords}
+A walk is a trip along the roads.
+Start at a house and move to a neighbour, again and again.
+You may pass the same house twice.
+You may drive the same road twice.
+The length of a trip is the number of roads you drove.
+If you drive a road twice, you count it twice.
+Staying at home is also a trip, and its length is zero.
+\end{plainwords}
+
+\begin{definition}[Walk; textbook Definition 1.2.10]\label{def:walk}
+A \emph{walk of length $k$ from $u_0$ to $u_k$}, also called a \emph{$(u_0,u_k)$-walk}, is a sequence $u_0,e_1,u_1,\dots,u_{k-1},e_k,u_k$ of vertices and edges with $e_i=u_{i-1}u_i$ for $1\le i\le k$ \cite[p.~21]{petrosyan2015grafneri}.
+The \emph{length} of the walk is $k$, the number of edges, each edge counted as many times as it occurs \cite[p.~22]{petrosyan2015grafneri}.
+\end{definition}
+
+\begin{remark}\label{rem:walk}
+A walk allows repeated vertices and repeated edges \cite[p.~22]{petrosyan2015grafneri}.
+It forbids one thing only: two consecutive vertices that are not joined by an edge.
+A walk with $k$ edges lists $k+1$ vertices.
+The textbook does not say in so many words that $k=0$ is allowed.
+This paper reads $k=0$ as allowed, because the textbook's property $d(u,u)=0$ of distance needs a path of length $0$ from $u$ to $u$ \cite[p.~23]{petrosyan2015grafneri}, and another text has a length-0 walk as an example \cite[Example 2.9.2]{grinberg2025graph}.
+This is an interpretation and is qualified.
+\end{remark}
+
+\begin{remark}[A walk is its list of vertices]\label{rem:vertexlist}
+In a simple graph there is at most one edge between two vertices, so the edge $e_i=u_{i-1}u_i$ is forced by its two ends.
+Hence a walk of length $k$ from $n_i$ to $n_j$ is the same thing as a sequence $w_0,w_1,\dots,w_k$ of vertices with $w_0=n_i$, $w_k=n_j$ and $w_{t-1},w_t$ adjacent for each $t$ from $1$ to $k$ (derived).
+Two walks are different exactly when these sequences differ at some position.
+From here on a walk is written by its vertices.
+For a graph with repeated edges this step would fail, which is one reason why ``simple'' matters.
+\end{remark}
+
+\begin{example}
+In the board graph the sequence $n_1,n_2,n_3,n_2$, written $1,2,3,2$, is a walk of length $3$ from $n_1$ to $n_2$.
+So is $1,2,1,2,3$, of length $4$, from $n_1$ to $n_3$; it repeats the vertices $1$ and $2$ and the edge $n_1n_2$.
+The textbook's example is $v_1,v_3,v_2,v_4,v_3,v_2,v_4,v_3,v_5$ in its graph of Fig.~1.2.5, a walk of length $8$ \cite[p.~22]{petrosyan2015grafneri}.
+\end{example}
+
+\begin{nonexample}
+$1,3$ is not a walk of the board graph, because $n_1$ and $n_3$ are not adjacent.
+(It would be a walk of the drawing's triangle.)
+The textbook's non-example is $v_3,v_1,v_4,v_2,v_3,v_5$ \cite[p.~22]{petrosyan2015grafneri}.
+\end{nonexample}
+
+\paragraph{The textbook graph.}
+For the textbook's examples the paper needs a graph with a cycle, and the board graph has none.
+The textbook's Fig.~1.2.5 shows a graph on five vertices $v_1,\dots,v_5$.
+The textbook's own examples force the seven edges $v_1v_2$, $v_1v_3$, $v_2v_3$, $v_2v_4$, $v_3v_4$, $v_3v_5$, $v_4v_5$ \cite[p.~22]{petrosyan2015grafneri}.
+Only these seven edges are used below, and the graph they form is called the \emph{textbook graph}; nothing depends on reading other lines of the figure.
+Its vertices are written $1,\dots,5$ in the sequences below.
+
+\begin{plainwords}
+A trip is closed when it ends at the house where it began.
+That is the only new rule.
+The trip may still pass houses and roads many times.
+\end{plainwords}
+
+\begin{definition}[Closed walk; textbook Definition 1.2.11]\label{def:closed}
+A $(u_0,u_k)$-walk is \emph{closed} if $u_0=u_k$ \cite[p.~22]{petrosyan2015grafneri}.
+\end{definition}
+
+\begin{remark}
+A closed walk allows everything that a walk allows and forbids only a different start and end.
+A walk of length $0$ is closed.
+In a simple graph no closed walk has length $1$, since that would be a loop, and a closed walk of length $2$ has the form $u,w,u$ and uses one edge twice (derived).
+\end{remark}
+
+\begin{example}
+In the board graph $2,1,2$ is a closed walk of length $2$, and so is $2,3,2,1,2$ of length $4$.
+\end{example}
+
+\begin{nonexample}
+$1,2,3$ is not closed in the board graph: it starts at $1$ and ends at $3$.
+\end{nonexample}
+
+\begin{plainwords}
+Now add one rule.
+Never drive the same road twice.
+You may still pass the same house twice, if you come back by a different road.
+English books call such a trip a trail.
+Our textbook calls it a path.
+This paper says trail, so that the word path can keep one meaning.
+\end{plainwords}
+
+\begin{definition}[Trail; textbook Definition 1.2.12, which names it ``path'']\label{def:trail}
+A $(u_0,u_k)$-walk is a \emph{trail} if its edges $u_0u_1,\dots,u_{k-1}u_k$ are pairwise distinct \cite[p.~22]{petrosyan2015grafneri}.
+\end{definition}
+
+The textbook calls this object a path and writes $|P|$ for its length \cite[p.~22]{petrosyan2015grafneri}; English usage calls it a trail \cite{grinberg2025graph,wikipedia_path_graph_theory}.
+When the paper needs to point at the textbook's word it writes ``textbook path''.
+
+\begin{remark}\label{rem:trail}
+A trail allows repeated vertices and forbids repeated edges.
+A vertex can recur in a trail only if the trip left it by one road and came back by another, so the trip has gone round a loop of the graph.
+In the board graph every trail is also a path in the sense of \cref{def:path} for every length from $0$ to $4$, and the board graph has no closed trail of positive length (script, \cref{app:repro}).
+So the board graph cannot show the difference between a trail and a path, and the textbook graph is used for that (derived, checked by script for lengths up to $4$).
+\end{remark}
+
+\begin{example}
+In the textbook graph, $1,3,2,4,3,5$ is a trail: its edges $v_1v_3,v_3v_2,v_2v_4,v_4v_3,v_3v_5$ are distinct, although the vertex $v_3$ occurs twice \cite[p.~22]{petrosyan2015grafneri}.
+\end{example}
+
+\begin{nonexample}
+In the textbook graph, $1,3,2,4,3,2,4,3,5$ is a walk but not a trail, because the edge $v_3v_2$ occurs twice \cite[p.~22]{petrosyan2015grafneri}.
+In the board graph $1,2,1,2,3$ is not a trail, because the edge $n_1n_2$ occurs twice.
+\end{nonexample}
+
+\begin{plainwords}
+Now add a stronger rule.
+Never visit the same house twice.
+Then you also never drive the same road twice.
+A trip like this goes straight from start to end without any loop.
+Our course calls it a path.
+\end{plainwords}
+
+\begin{definition}[Path; textbook Definition 1.2.13, which names it ``simple path'']\label{def:path}
+A $(u_0,u_k)$-walk is a \emph{path} if all its vertices $u_0,\dots,u_k$ are pairwise distinct \cite[p.~22]{petrosyan2015grafneri}.
+\end{definition}
+
+The textbook calls this a simple path and writes $P_n$ for the simple path on $n$ vertices \cite[p.~22]{petrosyan2015grafneri}.
+English texts call it a path \cite{grinberg2025graph,wikipedia_path_graph_theory}.
+The textbook defines it as a trail with distinct vertices; \cref{prop:pathtrail} shows that distinct vertices already give distinct edges, so the two ways of saying it agree.
+That the \emph{course} uses the word ``path'' in this sense comes from the assignment text; the board does not say which meaning it uses.
+So this reading is an interpretation, and it is qualified \cite[p.~22]{petrosyan2015grafneri}.
+
+\begin{remark}
+A path forbids repeated vertices, and therefore repeated edges.
+It allows length $0$ (a single vertex) and length $1$ (a single edge).
+It does not allow a closed path of positive length, because the first and last vertices would be equal.
+\end{remark}
+
+\begin{example}
+In the board graph $1,2,3$ is a path of length $2$ from $n_1$ to $n_3$.
+The textbook's example is $v_1,v_3,v_4,v_5$ in its graph \cite[p.~22]{petrosyan2015grafneri}.
+\end{example}
+
+\begin{nonexample}
+In the board graph $1,2,3,2$ is a walk but not a path, because the vertex $2$ occurs twice.
+In the textbook graph $1,3,2,4,3,5$ is a trail but not a path, because $v_3$ occurs twice \cite[p.~22]{petrosyan2015grafneri}.
+\end{nonexample}
+
+\begin{plainwords}
+There is a quick reason why a clean route never uses a road twice.
+Look at any two roads on the route.
+The later road ends at a house that comes after both houses of the earlier road.
+That house is new, so the two roads differ.
+\end{plainwords}
+
+\begin{proposition}\label{prop:pathtrail}
+In a simple graph a walk with pairwise distinct vertices has pairwise distinct edges.
+Hence every path is a trail.
+\end{proposition}
+
+This is stated as an exercise in one text \cite[Exercise 2.9]{grinberg2025graph}; the proof here is derived.
+
+\begin{proof}
+Let $u_0,\dots,u_k$ have distinct vertices and take two steps with indices $a<b$, that is, the edges $u_{a-1}u_a$ and $u_{b-1}u_b$.
+The vertex $u_b$ has an index larger than $a$, so it differs from both $u_a$ and $u_{a-1}$.
+But $u_b$ is an end of the second edge and is not an end of the first.
+So the two edges are different.
+\end{proof}
+
+\subsection{Cycles}
+
+\begin{plainwords}
+A cycle is a closed trip that never drives the same road twice.
+Our textbook lets such a trip pass a house twice on the way.
+A simple cycle is stricter.
+It passes no house twice, except the start, which is also the end.
+A simple cycle is a ring of houses with a road between each pair of neighbours.
+\end{plainwords}
+
+\begin{definition}[Cycle; textbook Definition 1.2.14]\label{def:cycle}
+A \emph{cycle} (the textbook also says \emph{closed path}) is a closed trail: a $(u_0,u_k)$-walk with $u_0=u_k$ and pairwise distinct edges \cite[p.~22]{petrosyan2015grafneri}.
+\end{definition}
+
+\begin{definition}[Simple cycle; textbook Definition 1.2.15]\label{def:simplecycle}
+A cycle is \emph{simple} if only its first and last vertices repeat \cite[p.~22]{petrosyan2015grafneri}.
+The textbook writes $C_n$ for the simple cycle on $n\ge3$ vertices \cite[p.~22]{petrosyan2015grafneri}.
+\end{definition}
+
+\begin{remark}\label{rem:cycle}
+A cycle allows repeated vertices (a figure eight is a cycle, by the definition; derived) and forbids repeated edges and open walks.
+A simple cycle forbids any repeated vertex other than the closing one.
+In a simple graph a closed trail cannot have length $1$ or $2$, and this paper does not count a closed walk of length $0$ as a cycle; the textbook is silent on that case (interpretation, qualified).
+English usage differs: one text defines a cycle as a closed walk with $k\ge3$ and distinct vertices $w_0,\dots,w_{k-1}$, which is the textbook's simple cycle \cite[Definition 2.10.1(b)]{grinberg2025graph}.
+This paper follows the textbook for ``cycle'' and writes ``simple cycle'' where English texts write ``cycle''.
+Cycles are not needed for the main results; they are given because the textbook's list of definitions includes them.
+\end{remark}
+
+\begin{example}\label{ex:cycle}
+The drawing's triangle has the edges $12$, $13$, $23$, and $1,2,3,1$ is a simple cycle of length $3$ in it.
+The textbook's example of a simple cycle is $v_1,v_3,v_4,v_2,v_1$ \cite[p.~22]{petrosyan2015grafneri}.
+The textbook's walk $v_3,v_2,v_1,v_3,v_5,v_4,v_3$ is a cycle in the sense of \cref{def:cycle} (closed, six distinct edges) but not a simple one, since $v_3$ occurs three times \cite[p.~22]{petrosyan2015grafneri}.
+\end{example}
+
+\begin{nonexample}\label{nex:cycle}
+In the board graph $1,2,1$ is a closed walk but not a cycle, because the edge $n_1n_2$ is used twice.
+In fact the board graph has no cycle at all: among its closed walks of lengths $1$ to $6$, none has distinct edges (script, \cref{app:repro}).
+\end{nonexample}
+
+\subsection{Three naming conventions}
+
+\begin{plainwords}
+Different books use different names for the same kinds of trips.
+Here is one table that puts the names side by side.
+Our paper follows the last column.
+\end{plainwords}
+
+\Cref{tab:naming} lists the same properties under the course, textbook, and English names.
+The course column is the assignment's statement for ``path'' only; for ``cycle'' the course convention is not stated, so the paper follows the textbook.
+
+\begin{table}[ht]
+\centering
+\caption{Naming conventions. ``Textbook'' gives the textbook's word and definition number \cite{petrosyan2015grafneri}; ``English'' gives the usage of \cite{grinberg2025graph,wikipedia_path_graph_theory}.}\label{tab:naming}
+\small
+\begin{tabular}{@{}p{0.29\textwidth}p{0.25\textwidth}p{0.2\textwidth}p{0.17\textwidth}@{}}
+\toprule
+Property of the walk & Textbook & English & This paper\\
+\midrule
+any steps along edges & walk (1.2.10) & walk & walk\\
+first vertex equals last & closed walk (1.2.11) & closed walk & closed walk\\
+no repeated edge; vertices may repeat & ``path'' (1.2.12) & trail & trail\\
+no repeated vertex (so no repeated edge) & ``simple path'' (1.2.13) & path & \textbf{path}\\
+closed, no repeated edge; vertices may repeat & ``cycle'' (1.2.14) & closed trail & cycle\\
+closed, only first and last vertex equal, $k\ge3$ & ``simple cycle'' (1.2.15) & cycle & simple cycle\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+So the word ``path'' has three meanings across the sources: the textbook's Definition 1.2.12, the textbook's Definition 1.2.13 under the name ``simple path'', and the English usage.
+Another text records that some authors use ``path'' for repeated vertices and ``simple path'' for distinct vertices, which is the textbook's pattern \cite{wikipedia_path_graph_theory}.
+So the course convention is one of at least two in use.
+
+\subsection{Distance}
+
+\begin{plainwords}
+The distance between two houses is the number of roads on the shortest trip between them.
+If no trip exists, we say the distance is infinite.
+A house is at distance zero from itself.
+The distance there equals the distance back, because any trip can be driven backwards.
+Going by a third house is never shorter than the shortest trip.
+\end{plainwords}
+
+\begin{definition}[Distance; textbook Definition 1.2.16]\label{def:distance}
+The \emph{distance} $d(u,v)$ between vertices $u$ and $v$ is the length of a shortest $(u,v)$-path if at least one exists, and $+\infty$ otherwise \cite[pp.~22--23]{petrosyan2015grafneri}.
+\end{definition}
+
+The textbook's ``path'' here is its Definition 1.2.12, a trail.
+The definition does not depend on whether one reads trail or path, because the shortest walk, the shortest trail, and the shortest path between two vertices have the same length (\cref{prop:shortest}, derived).
+The textbook lists three properties, for all vertices $u,v,w$ \cite[p.~23]{petrosyan2015grafneri}.
+\begin{enumerate}
+\item $d(u,v)\ge0$, and $d(u,v)=0$ if and only if $u=v$;
+\item $d(u,v)=d(v,u)$;
+\item $d(u,v)\le d(u,w)+d(w,v)$.
+\end{enumerate}
+So when every two vertices are joined by a path, the pair $(V,d)$ is a metric space \cite[p.~23]{petrosyan2015grafneri}.
+The textbook states these properties without proof; they are derived from the definition in \cref{app:distance}.
+
+\begin{remark}
+The value $+\infty$ is not a whole number; it is how a missing path shows up.
+The definition forbids negative values and any value that is not the length of an actual trip.
+\end{remark}
+
+\begin{example}
+In the board graph $d(n_1,n_2)=1$, $d(n_2,n_3)=1$, $d(n_1,n_3)=2$ and $d(n_i,n_i)=0$ for each $i$ (script).
+The walk $1,2,1,2,3$ has length $4$, but the distance is the shortest length, which is $2$.
+\end{example}
+
+\begin{nonexample}
+$4$ is not the distance from $n_1$ to $n_3$ in the board graph, even though a walk of length $4$ exists.
+Also, in the graph with vertices $n_1,n_2,n_3$ and the single edge $n_1n_2$, the distance $d(n_1,n_3)$ is not a number: it is $+\infty$ (script).
+\end{nonexample}
+
+\subsection{Every walk contains a path}
+
+\begin{plainwords}
+Suppose you can drive from one house to another.
+Then you can do it without visiting any house twice.
+Look at your trip.
+If it passes some house twice, you went round a loop.
+Cut the loop out.
+What is left is still a trip from the same start to the same end.
+It is shorter.
+Keep cutting until no house is repeated.
+The trip that remains is never longer than the first one.
+\end{plainwords}
+
+\begin{lemma}[Walk contains path; textbook Lemma 1.2.1 for $u\ne v$]\label{lem:walkpath}
+Let $u$ and $v$ be vertices of a simple graph, equal or not.
+If there is a $(u,v)$-walk of length $k$, then there is a $(u,v)$-path of length at most $k$, and all its vertices and edges are vertices and edges of the walk.
+\end{lemma}
+
+The textbook states the lemma only for $u\ne v$ and says that from any $(u,v)$-walk one can extract a simple $(u,v)$-path, without a bound on the length \cite[p.~23]{petrosyan2015grafneri}.
+Its proof is by induction on the length of the walk \cite[p.~23]{petrosyan2015grafneri}, and the length bound follows from that proof.
+Another text states the version with $u=v$ allowed and with the bound \cite[Corollary 2.9.7]{grinberg2025graph}.
+The case $u=v$ is needed here because a closed walk such as $2,1,2$ has $u=v$; the path it contains is the single vertex, of length $0$.
+The proof below is the paper's own (derived).
+
+\begin{proof}
+We prove by strong induction on $k$ the statement $S(k)$: every $(u,v)$-walk of length $k$, for any vertices $u,v$, contains a $(u,v)$-path of length at most $k$.
+
+\emph{Base case, $k=0$.}
+A walk of length $0$ is a single vertex $u$, so $v=u$.
+A single vertex has no repeated vertex, so the walk is itself a path, of length $0\le0$.
+
+\emph{Induction hypothesis.}
+Let $k\ge1$ and assume $S(m)$ for every $m<k$.
+
+\emph{Step.}
+Let $u_0,u_1,\dots,u_k$ be a $(u,v)$-walk, so $u_0=u$ and $u_k=v$.
+If its vertices are pairwise distinct, it is a path of length $k\le k$ and we are done.
+Otherwise some vertex occurs twice, so there are indices $i<j$ with $u_i=u_j$.
+Form the sequence $W'=u_0,\dots,u_i,u_{j+1},\dots,u_k$; if $j=k$ nothing follows $u_i$.
+We check that $W'$ is a $(u,v)$-walk.
+(a) It starts at $u_0=u$.
+(b) It ends at $v$: if $j<k$ its last vertex is $u_k=v$, and if $j=k$ its last vertex is $u_i=u_j=u_k=v$.
+(c) Consecutive vertices are adjacent: before the cut and after the join they are consecutive vertices of the old walk, and the join pair $(u_i,u_{j+1})=(u_j,u_{j+1})$ is a step of the old walk.
+The length of $W'$ is $i+(k-j)$, which is less than $k$ because $i<j$.
+By the induction hypothesis $W'$ contains a $(u,v)$-path of length at most $|W'|<k$, hence at most $k$.
+Every vertex and edge of that path is one of $W'$, hence one of the old walk.
+\end{proof}
+
+\emph{Why the proof is valid.}
+Each cut removes at least one step, so the length drops by at least one, and a walk that cannot be cut has no repeated vertex, which is the definition of a path.
+As a trace, the textbook's walk $1,3,2,4,3,2,4,3,5$ of length $8$ has $u_1=u_4=3$; cutting gives $1,3,2,4,3,5$ of length $5$; cutting again gives $1,3,5$ of length $2$, which is a path (script).
+In the board graph $1,2,1,2,3$ cuts to $1,2,3$, and the closed walk $2,1,2$ cuts to the single vertex $2$.
+
+\begin{plainwords}
+A clean route can have at most one road fewer than the number of houses.
+It visits each house at most once.
+So a clean route cannot be very long.
+If any trip exists, a short trip exists too.
+\end{plainwords}
+
+\begin{corollary}[Length bound]\label{cor:bound}
+In a graph with $N$ vertices every path has at most $N-1$ edges.
+Hence if some walk joins $u$ and $v$, then some walk of length at most $N-1$ joins them.
+\end{corollary}
+
+\begin{proof}
+A path of length $k$ lists $k+1$ pairwise distinct vertices, and there are only $N$ vertices, so $k+1\le N$.
+For the second part, apply \cref{lem:walkpath}: the path inside the walk has length at most that of the walk and, by the first part, at most $N-1$.
+\end{proof}
+
+The same argument is given in another text \cite[Section 2.9.4]{grinberg2025graph}.
+In the board graph $N=3$, so a path has at most $2$ edges, and the longest path has $2$ edges (script).
