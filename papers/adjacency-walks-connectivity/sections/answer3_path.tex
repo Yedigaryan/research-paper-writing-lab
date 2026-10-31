@@ -1,0 +1,79 @@
+\section{Question 3: a path between two vertices, and the three usages of the word}\label{sec:path}
+
+The answer to question Q3 is \Cref{def:path}, which sits in its place in the textbook's
+build order: a path between $n_i$ and $n_j$ is a walk from $n_i$ to $n_j$ whose vertices
+are pairwise distinct.
+This section adds only what is new there: how that word compares with the other usages,
+and what depends on the choice.
+The course meaning of ``path'' (no repeated vertex) comes from the assignment text as
+reported to us (\Cref{conv:path}); the textbook supplies the definition under another
+name, and the board does not say which meaning it uses \cite{whiteboard1,whiteboard2}.
+
+\subsection{Three usages}\label{sec:usages}
+
+The same two properties of a walk, ``no repeated edge'' and ``no repeated vertex'', get
+different names in different places.
+In the textbook, ``path'' means no repeated edge
+\cite[Definition~1.2.12, p.~22]{petrosyan2015grafneri} and ``simple path'' means no
+repeated vertex \cite[Definition~1.2.13, p.~22]{petrosyan2015grafneri}.
+In the English text used here, a path has distinct vertices and a trail has distinct edges
+\cite[Definitions~2.9.1(c) and 3.4.5]{grinberg2025graph}; an encyclopedia article gives
+the same two definitions and adds that a path has distinct vertices ``by most
+definitions'' \cite{wikipedia_path_graph_theory}.
+The same article records that some authors do not require distinct vertices in a path
+and say ``simple path'' for a path with distinct vertices
+\cite{wikipedia_path_graph_theory}, which is the textbook's pattern; so the course
+convention is one of at least two in use.
+For ``cycle'' the textbook's word (\Cref{def:cycle}) allows repeated vertices, while the
+English text defines a cycle as a closed walk with at least three steps whose vertices
+$w_0,\dots,w_{k-1}$ are distinct \cite[Definition~2.10.1(b)]{grinberg2025graph}, which is
+the textbook's simple cycle.
+\Cref{tab:naming} puts the usages side by side.
+
+\begin{table}[ht]
+\centering
+\caption{The naming of walks in the textbook, in English usage, and in this note. The
+textbook words are given in English translation.}\label{tab:naming}
+\begin{tabular}{@{}p{4.1cm}p{3.7cm}p{2.7cm}p{2.9cm}@{}}
+\toprule
+Property of the walk & Textbook (definition number) & English usage & This note\\
+\midrule
+any sequence of steps along edges & walk (1.2.10) & walk & walk\\
+first vertex equals last vertex & closed walk (1.2.11) & closed walk & closed walk\\
+no repeated edge, vertices may repeat & ``path'' (1.2.12) & trail & trail\\
+no repeated vertex (hence no repeated edge) & ``simple path'' (1.2.13) & path & \textbf{path}\\
+closed, no repeated edge, vertices may repeat & ``cycle'' or ``closed path'' (1.2.14) & closed trail & cycle (textbook sense)\\
+closed, only first and last vertex repeat, at least three steps & ``simple cycle'' (1.2.15) & cycle & simple cycle\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+The word ``path'' therefore has three meanings across the sources: no repeated edge
+(textbook), no repeated vertex (English text and course), and, in some authors, either.
+The last column of \Cref{tab:naming} gives each meaning one name in this note and is used
+without exception.
+
+\subsection{What depends on the choice and what does not}\label{sec:depends}
+
+\emph{Existence does not depend on it.}
+For two different vertices, a walk, a trail, and a path between them exist together or not
+at all: a walk contains a path (\Cref{lem:walkpath}), and a path is a trail
+(\Cref{prop:pathtrail}) and a walk.
+So every statement of the form ``there is a path between $n_i$ and $n_j$'' has the same
+truth value under the textbook's reading and under the course reading, and so do
+connectivity (\Cref{rem:connected}) and distance (\Cref{prop:shortest}).
+The board's definition of connected is therefore the textbook's Definition~2.1.1 under
+either reading.
+
+\emph{Counts do depend on it.}
+The number of walks, of trails, and of paths from $n_i$ to $n_j$ are different numbers in
+general, and only the first is given by a power of $A$ (\Cref{prop:warning}).
+In the board graph every trail is a path (\Cref{tab:walkcounts}), so that graph cannot show the
+difference between the two readings; it needs a graph with a cycle, such as the textbook's own
+example graph (\Cref{def:trail}).
+
+\emph{Length zero.}
+By \Cref{conv:zero} a single vertex is a path of length $0$; this matches the English text,
+which calls $(5)$ a walk of length $0$ and a path \cite[Example~2.9.2]{grinberg2025graph}.
+It matters only for $i=j$, since for $i\ne j$ a path has length at least $1$.

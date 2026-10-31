@@ -1,0 +1,139 @@
+\section{Derivations}\label{app:derivations}
+
+This appendix holds the arguments that the main text only states, in the order in which the
+main text needs them.
+
+\subsection{Walk counting: walks and vertex sequences}\label{app:walkcount}
+
+The proof of \Cref{thm:walkcount} counts vertex sequences instead of walks.
+This is allowed by the following fact, which is stated before the theorem in \Cref{rem:walk}.
+
+\begin{proposition}\label{prop:sequences}
+In a simple graph, the map that sends a walk $u_0,e_1,u_1,\dots,e_k,u_k$ to its vertex sequence
+$u_0,u_1,\dots,u_k$ is a one-to-one correspondence between the walks of length $k$ and the
+sequences of $k+1$ vertices in which every two consecutive vertices are adjacent.
+\end{proposition}
+
+\begin{proof}
+This is proved here.
+The vertex sequence of a walk has consecutive vertices $u_{i-1},u_i$ joined by the edge $e_i$, so they
+are adjacent.
+The map is one to one: in a simple graph at most one edge joins two vertices, so $e_i=u_{i-1}u_i$ is
+determined by the vertices, and two walks with the same vertex sequence are equal.
+The map is onto: given such a sequence, put $e_i=u_{i-1}u_i$; this is an edge because the two vertices
+are adjacent, and the result is a walk.
+\end{proof}
+
+For $k=0$ the same reasoning gives one walk from each vertex to itself, which is why the identity matrix
+$A^0=I$ fits the pattern \cite[Section~4.5.5]{grinberg2025graph}; this note uses it only in
+\Cref{prop:iplusa}.
+Where simplicity enters the proof of \Cref{thm:walkcount} is stated after that proof.
+
+\subsection{The counterexample, in full}\label{app:counterexample}
+
+\Cref{prop:warning} uses the board graph.
+Its entries for the walks from $n_1$ to $n_2$ can be found in closed form.
+In $B$, the vertex $n_2$ is adjacent to $n_1$ and $n_3$, and these two are adjacent only to $n_2$.
+So a walk alternates between $n_2$ and the set $\{n_1,n_3\}$.
+A walk from $n_1$ to $n_2$ therefore has odd length $k$, and its vertices in even positions
+$w_2,w_4,\dots,w_{k-1}$, which number $(k-1)/2$, are each $n_1$ or $n_3$, freely.
+Hence there are $2^{(k-1)/2}$ walks of odd length $k$ and none of even length, which gives
+$1,0,2,0,4$ for $k=1,\dots,5$, as in \Cref{tab:walksvspaths} and in the entries of $A$, $A^3$, $A^5$.
+Among them only the walk $n_1,n_2$ is a path or a trail, because any longer walk repeats the vertex
+$n_2$ (a walk of length $3$ or more from $n_1$ to $n_2$ meets $n_2$ at an earlier odd position).
+
+\subsection{The chain of premises for the connectivity test}\label{app:testproof}
+
+\Cref{thm:test}(a)$\Leftrightarrow$(b) follows from \Cref{prop:pair} and the definition of connected.
+The premises, in order, are the following.
+\begin{enumerate}
+\item \Cref{thm:walkcount}: $(A^k)_{ij}$ is the number of walks of length $k$.
+\item \Cref{cor:walkcount}(a): all entries are nonnegative integers, so a sum is positive if and only
+  if a summand is.
+\item \Cref{lem:walkpath}: a walk of length $k$ from $u$ to $v$ contains a path of length at most $k$.
+\item \Cref{cor:bound}: a path in a graph with $N$ vertices has at most $N-1$ edges.
+\item \Cref{prop:pathtrail} and \Cref{rem:connected}: ``path'' may be read as trail or path.
+\end{enumerate}
+Premises 1 and 2 give (ii)$\Leftrightarrow$(iii) and the passage from a positive entry to a walk;
+premise 3 gives the passage from a walk to a path; premise 4 gives the bound $k\le N-1$ in
+(i)$\Rightarrow$(ii); premise 5 makes the equivalence independent of the reading of ``path''.
+No other fact is used.
+
+\subsection{Powers of \texorpdfstring{$I+A$}{I+A}}\label{app:iplusa}
+
+\begin{proof}[Proof of \Cref{prop:iplusa}]
+This is proved here; \cite[Section~1, Theorem~2, proof sketch]{bai2025adjacency} gives the idea of
+adding a loop to every vertex.
+Put $m\ge N-1$.
+Expand $(I+A)^m=(I+A)(I+A)\cdots(I+A)$ with $m$ factors.
+Each term chooses $I$ or $A$ in each factor and multiplies the choices in order.
+Since $I$ times a matrix $X$ is $X$, a term with $k$ letters $A$ equals $A^k$, and there are
+$\binom{m}{k}$ ways to choose which $k$ factors give $A$.
+Therefore
+\begin{equation}\label{eq:binomial}
+(I+A)^m=\sum_{k=0}^{m}\binom{m}{k}A^k,\qquad A^0=I.
+\end{equation}
+\emph{Diagonal.}
+The term $k=0$ contributes $1$ to every diagonal entry and all other terms are nonnegative, so
+every diagonal entry is at least $1$.
+\emph{Off the diagonal.}
+For $i\ne j$ the identity contributes $0$, so
+$((I+A)^m)_{ij}=\sum_{k=1}^{m}\binom{m}{k}(A^k)_{ij}$.
+Every coefficient $\binom{m}{k}$ with $1\le k\le m$ is a positive integer and every $(A^k)_{ij}$ is a
+nonnegative integer (\Cref{cor:walkcount}(a)), so the sum is positive if and only if some
+$(A^k)_{ij}$ with $1\le k\le m$ is positive.
+If a path between $n_i$ and $n_j$ exists, it has length $k$ with $1\le k\le N-1\le m$
+(\Cref{cor:bound}) and $(A^k)_{ij}\ge 1$.
+Conversely, if $(A^k)_{ij}>0$ for some $k$ with $1\le k\le m$, a walk exists (\Cref{thm:walkcount}) and
+hence a path (\Cref{lem:walkpath}).
+This proves the statement about the entries.
+$G$ is connected if and only if every pair $i\ne j$ has a path, that is, if and only if no
+off-diagonal entry is $0$; since the diagonal entries are positive, that is if and only if
+$(I+A)^m$ has no zero entry.
+Squaring $I+A$ repeatedly gives the exponents $2,4,8,\dots$, so $t$ squarings give $m=2^t$, and $t$ is
+chosen with $2^t\ge N-1$.
+\end{proof}
+
+For $N=3$ and the board graph, $(I+A)^2=I+2A+A^2$ is verified entry by entry in \Cref{ex:testB}.
+
+\subsection{Distance}\label{app:distance}
+
+\begin{proof}[Proof of \Cref{prop:shortest}]
+This is proved here.
+Every path is a trail (\Cref{prop:pathtrail}) and every trail is a walk, so the lengths of paths are
+among the lengths of trails, which are among the lengths of walks; hence
+$\min_{\text{walks}}\le\min_{\text{trails}}\le\min_{\text{paths}}$.
+By \Cref{lem:walkpath} a shortest walk contains a path of at most the same length, so
+$\min_{\text{paths}}\le\min_{\text{walks}}$.
+The three minima are therefore equal.
+If there is no walk there is no trail and no path, and if there is a walk, \Cref{lem:walkpath} gives a
+path; so the three sets are empty together.
+\end{proof}
+
+\begin{proposition}[the distance properties]\label{prop:distprops}
+The three properties listed in \Cref{def:distance} follow from the definition.
+\end{proposition}
+
+\begin{proof}
+The textbook lists the properties without proof \cite[p.~23]{petrosyan2015grafneri}; this proof is written
+here.
+By \Cref{prop:shortest} we may compute $d$ by shortest walks.
+(1) Lengths are $0,1,2,\dots$ or $+\infty$, so $d\ge 0$.
+The walk consisting of $u$ alone has length $0$, so $d(u,u)=0$.
+If $d(u,v)=0$ there is a walk of length $0$ from $u$ to $v$, which is the single vertex, so $v=u$.
+(2) If $u_0,\dots,u_k$ is a walk from $u$ to $v$ then $u_k,\dots,u_0$ is a walk from $v$ to $u$ of the same
+length, since edges are unordered; so the sets of lengths agree, and so do their minima.
+(3) If $d(u,w)$ or $d(w,v)$ is $+\infty$ the right side is $+\infty$ and the inequality holds.
+Otherwise join a shortest $(u,w)$-walk and a shortest $(w,v)$-walk at $w$: this is a $(u,v)$-walk of length
+$d(u,w)+d(w,v)$, and a shortest $(u,v)$-walk is no longer.
+\end{proof}
+
+\subsection{Cross-checks by computer}\label{app:crosschecks}
+
+Two finite checks accompany the proofs; neither replaces them.
+First, for every labelled simple graph on $N=2,3,4,5$ vertices, the number of walks of length $k$
+enumerated by brute force equals the corresponding entry of $A^k$, for $k=1,\dots,5$ when $N\le 4$ and
+$k=1,2,3$ when $N=5$ (\Cref{app:provenance}).
+Second, for all labelled simple graphs on $2,\dots,6$ vertices, the sum test, the $(I+A)^{N-1}$ test, the
+component statement of \Cref{cor:components}, and the repeated-squaring form of \Cref{prop:iplusa} agree with
+breadth-first search (\Cref{tab:exhaustive}).

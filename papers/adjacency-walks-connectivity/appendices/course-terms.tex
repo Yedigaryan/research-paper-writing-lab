@@ -1,0 +1,55 @@
+\section{Textbook numbers and board symbols}\label{app:courseterms}
+
+\Cref{tab:textbooknumbers} lists, in the textbook's build order, each concept used in this note
+with the textbook's number and printed page, and the word the textbook uses where it differs
+from English usage \cite{petrosyan2015grafneri}.
+The textbook's words are in Armenian script, which this note does not typeset; its words
+are given in English translation.
+Printed page numbers are one lower than PDF page numbers (\Cref{conv:pages}).
+
+\begin{table}[ht]
+\centering
+\caption{Concepts in the textbook's build order, with the textbook's numbers.}\label{tab:textbooknumbers}
+\begin{tabular}{@{}p{6.0cm}p{3.2cm}p{1.6cm}p{3.0cm}@{}}
+\toprule
+Concept & Textbook number & Printed page & Textbook word (translated)\\
+\midrule
+graph $G=(V,E)$ & Definition 1.1.1 & 9 & \\
+adjacent & Definition 1.1.4 & 11 & \\
+adjacency matrix $A(G)$ & no number of its own, after Definition 1.1.6 & 11 & \\
+degree & Definition 1.2.1 & 16 & \\
+sum of all degrees equals $2|E|$ & Theorem 1.2.1 (Euler) & 16 & \\
+walk & Definition 1.2.10 & 21 & \\
+closed walk & Definition 1.2.11 & 22 & \\
+walk with no repeated edge (trail) & Definition 1.2.12 & 22 & ``path''\\
+walk with no repeated vertex (path) & Definition 1.2.13 & 22 & ``simple path''\\
+cycle & Definition 1.2.14 & 22 & ``cycle'', ``closed path''\\
+simple cycle & Definition 1.2.15 & 22 & ``simple cycle''\\
+distance & Definition 1.2.16 & 22--23 & \\
+every $(u,v)$-walk contains a simple $(u,v)$-path, $u\ne v$ & Lemma 1.2.1 & 23 & \\
+connected & Definition 2.1.1 & 48 & \\
+connected components & in prose, no number & 49 & \\
+connected if and only if one component & Remark 2.1.1 & 49 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\Cref{tab:boardsymbols} compares the board's symbols with the textbook's and with this note's.
+The first row records that the board's $V$ in the line defining $A_{ij}$ is the set of edges
+\cite{whiteboard1,whiteboard2}.
+
+\begin{table}[ht]
+\centering
+\caption{Board symbols, textbook symbols, and the symbols of this note.}\label{tab:boardsymbols}
+\begin{tabular}{@{}p{4.2cm}p{3.6cm}p{3.6cm}@{}}
+\toprule
+Board & Textbook & This note\\
+\midrule
+$(G,V)$, with $V$ the edge set & $G=(V,E)$ & $G=(V,E)$\\
+$e_{ij}\in V$ & $uv\in E$ & $n_in_j\in E$ or $e_{ij}\in E$\\
+nodes $n_i$ & vertices $v_i$ & vertices $n_i$\\
+$|G|=N$ nodes & $n$ vertices & $N$ vertices\\
+$A_{ij}$ & $a_{ij}$ in $A(G)$ & $A_{ij}$ in $A$\\
+\bottomrule
+\end{tabular}
+\end{table}

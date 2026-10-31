@@ -1,0 +1,45 @@
+\section{Sources read and how to reproduce the numbers}\label{app:provenance}
+
+\paragraph{Sources and what was read.}
+\emph{Textbook} \cite{petrosyan2015grafneri}: printed pages 9 to 12, 16, 21 to 23, and 48 to 49,
+viewed as page images, and a full-text search of the whole book for the adjacency matrix; the
+other chapters were not read.
+\emph{Board photographs} \cite{whiteboard1,whiteboard2}: both viewed as images.
+\emph{Grinberg} \cite{grinberg2025graph}: Sections 2.9, 2.10, 3.4, and 4.5.5 of the 454-page text.
+\emph{Galway notes} \cite{quinlan_matrices_graphs}: the whole eight-page file.
+\emph{Lehman, Leighton, and Meyer} \cite{lehman_mcs_adjacency}: the one page cited.
+\emph{Paramadevan and Sotheeswaran} \cite{paramadevan2021adjacency}: the whole nine-page paper;
+it is an expository paper whose Theorem~1 and proofs are loose (\Cref{sec:competing}), so it is
+cited for statements and as a second witness only.
+\emph{Bai} \cite{bai2025adjacency}: Section~1; the rest concerns eigenvalues.
+\emph{MathWorld} \cite{weisstein_connectedgraph} and \emph{Wikipedia} \cite{wikipedia_path_graph_theory}:
+the entries cited; the Wikipedia article is open to later edits.
+\emph{Schost} \cite{schost2026bfs}: the slides on breadth-first search and its running time.
+The assignment text is known only as it was reported to us and is not a source of the
+mathematics.
+
+\paragraph{Scripts.}
+All scripts are in the folder \texttt{appendices/scripts/}, are written in plain Python with
+integer arithmetic, and are run from the paper folder.
+\begin{itemize}
+\item \texttt{generate\_paper\_numbers.py} computes every matrix and table printed in the
+  examples, asserts the facts the text states about them, and writes
+  \texttt{numbers.tex}, which this note inputs.
+\item \texttt{m1\_walks.py}: powers of the board matrix, explicit walk lists, the hand-checkable
+  sums, walks against paths and trails, and a brute-force check of \Cref{thm:walkcount} on all
+  labelled simple graphs with $N=2,3,4,5$ vertices ($2$, $8$, $64$, $1024$ graphs; $40$, $360$,
+  $5120$, $76800$ entries, all equal to the walk counts).
+\item \texttt{m2\_walks.py}: classification of the example walks, the absence of a cycle in the
+  board graph among closed walks of length up to $6$, traces of \Cref{lem:walkpath}, and checks
+  of the lemma, \Cref{prop:pathtrail}, \Cref{cor:bound}, and \Cref{prop:shortest} on all walks of
+  length up to $6$ in three small graphs and on $300$ random graphs (seed $20261027$, $192696$
+  walks, no failures).
+  Its textbook example graph uses only seven edges that the textbook's examples use; the
+  textbook's figure has at least one more, which no example uses.
+\item \texttt{m3\_connectivity.py}: the examples of \Cref{sec:examples}, the path graphs of
+  \Cref{tab:sharp}, the cost counts, and the exhaustive comparison over all labelled graphs on
+  up to $6$ vertices, including the component statement of \Cref{cor:components}.
+\end{itemize}
+To reproduce, run \texttt{python3 -I appendices/scripts/generate\_paper\_numbers.py} and the
+three other scripts the same way; their saved outputs are in the same folder.
+The last script takes about twenty seconds.

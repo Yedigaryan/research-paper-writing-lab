@@ -1,0 +1,46 @@
+{
+  "sources": [],
+  "claims": [
+    {
+      "id": "A1",
+      "text": "Textbook Definition 1.2.1: the degree of a vertex v in G, written d_G(v) or d(v), is the number of edges incident to v. Gloss: 'the degree of the vertex v in G, which we denote d_G(v) or d(v), is the number of edges incident to that vertex'. Read from the page image of printed p. 16 (PDF p. 17). The book puts degree after the adjacency matrix (printed p. 11).",
+      "kind": "fact",
+      "module": "author",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "printed p. 16 (PDF p. 17), Definition 1.2.1",
+          "quote": "Սահմանում 1.2.1: G գրաֆում v գագաթի աստիճան, որը կնշանակենք d_G(v)-ով կամ d(v)-ով, կանվանենք այդ գագաթին կից կողերի քանակը։"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/background.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "A2",
+      "text": "Textbook Theorem 1.2.1 (L. Euler): in any graph G = (V, E) the sum over all vertices of d_G(v) equals 2|E(G)|. Gloss of the proof: every edge is incident to two vertices, so it is counted twice in the sum. Read from the page image of printed p. 16 (PDF p. 17).",
+      "kind": "fact",
+      "module": "author",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "printed p. 16 (PDF p. 17), Theorem 1.2.1",
+          "quote": "Թեորեմ 1.2.1 (Լ. Էյլեր): Կամայական G = (V, E) գրաֆում տեղի ունի Σ d_G(v) = 2|E(G)| հավասարությունը։"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/background.tex"
+      ],
+      "contradicted_by": []
+    }
+  ],
+  "contradictions": []
+}

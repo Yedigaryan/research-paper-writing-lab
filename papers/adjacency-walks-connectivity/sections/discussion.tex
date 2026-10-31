@@ -1,0 +1,97 @@
+\section{Discussion: readings of the board, limits, and competing explanations}\label{sec:discussion}
+
+\subsection{Where the board and the matrix disagree}\label{sec:board-mismatch}
+
+The drawing on the board has three lines and the matrix records two edges
+\cite{whiteboard1,whiteboard2}.
+Edge by edge: the pair $n_1,n_2$ is drawn (with an arrowhead at $n_2$) and has
+$A_{12}=A_{21}=1$; the pair $n_2,n_3$ is drawn and has $A_{23}=A_{32}=1$; the pair
+$n_1,n_3$ is drawn but has $A_{13}=A_{31}=0$ (\Cref{fig:graphs}).
+The matrix is symmetric, so it gives no support to a direction on the line from $n_1$ to
+$n_2$.
+Following \Cref{conv:example}, this note takes the matrix as the example, because the board
+says that the graph is given through its adjacency matrix \cite{whiteboard1}.
+If the drawing had been meant, the adjacency matrix would be $\MDrawT$, which differs from the
+board matrix exactly at the entries $(1,3)$ and $(3,1)$.
+This note does not decide which of the two the lecturer intended.
+The choice does not affect the answers to Q1 to Q3, which are theorems for every simple
+undirected graph; it changes only the numbers in the examples.
+Both graphs are connected, so the test of \Cref{thm:test} answers ``connected'' for both.
+
+\subsection{The mark above \texorpdfstring{$A$}{A}}\label{sec:board-mark}
+
+In both photographs the mark above $A$ in question Q1 resembles a small $n$ or a pair of
+quotation marks, not clearly a $k$ \cite{whiteboard1,whiteboard2}.
+The board's own letter for the number of vertices is the capital $N$, so a lower-case $n$ as an
+exponent would be unusual, but it cannot be ruled out.
+\Cref{conv:exponent} reads the mark as $k$ because the assignment text asks about $A^k$.
+Since \Cref{thm:walkcount} holds for every positive integer exponent, it answers the board
+question whichever letter was written, including an exponent equal to $N$.
+
+\subsection{Limits of the results}\label{sec:limits}
+
+\begin{itemize}
+\item \emph{Scope.} The theorems are proved for finite simple undirected graphs.
+  For directed graphs and multigraphs, the walk-counting statement is made in other sources
+  \cite[Theorem~4.5.10]{grinberg2025graph}\cite[Corollary~9.3.3]{lehman_mcs_adjacency}, and
+  this note makes no claim about the connectivity test there.
+\item \emph{What the entries do not say.} The entries count walks; they say nothing about the
+  number of paths, which needs other methods and is not treated here (\Cref{prop:warning}).
+\item \emph{What the test does not say.} It answers ``connected'' or ``not connected''; it
+  does not list a path between two vertices.
+  \Cref{cor:components} gives the components and \Cref{rem:distance} the distances.
+\item \emph{Finite checks.} The computer checks of \Cref{tab:exhaustive} cover graphs with at
+  most six vertices; they support the statements but the proofs are the arguments of
+  \Cref{sec:test} and Appendix~\ref{app:derivations}.
+\item \emph{Sources.} The textbook was searched in full text for the adjacency matrix and read
+  page by page only where listed in Appendix~\ref{app:provenance}, so the statement that it
+  contains neither result is a statement about the search.
+  Several sources were read only in part, as Appendix~\ref{app:provenance} records.
+\end{itemize}
+
+\subsection{Competing explanations}\label{sec:competing}
+
+\emph{Reading the entry as a count of paths.}
+Theorem~1 of one source says that $(A^l)_{ij}$ is the number of ``different paths'' of length
+$l$ \cite[Theorem~1]{paramadevan2021adjacency}.
+As written it is wrong for any definition of path that forbids repeated vertices or repeated
+edges, by \Cref{prop:warning}: $(A^2)_{ii}$ is positive although no such path exists.
+The same paper states, in its property~7, that the entry equals the number of walks
+\cite[property~7]{paramadevan2021adjacency}.
+This note therefore does not use that Theorem~1 as support for \Cref{thm:walkcount}; the four
+sources cited there state walks.
+
+\emph{Explaining the test by paths.}
+The proof of the test in the same paper applies its Theorem~1 to $A+\dots+A^{N-1}$ and so
+counts ``paths'' where walks are meant, and it passes from a nonzero entry to the existence
+of a path without the walk-to-path step \cite[proof of Theorem~2]{paramadevan2021adjacency}.
+The proof sketch of the $(I+A)^{N-1}$ form likewise says that the power ``aggregates all
+paths'' \cite[Section~1, Theorem~2, proof sketch]{bai2025adjacency}.
+Both \emph{statements} of the test are correct, as \Cref{thm:test} shows; the explanations are
+incomplete, which is why the proof is written out in \Cref{sec:test}.
+
+\emph{A different method.}
+Breadth-first search gives the same answer (\Cref{rem:bfs}); eigenvalue methods are outside the
+scope of this note and no claim is made about them.
+
+\subsection{Cost}\label{sec:cost}
+
+This remark is an estimate that counts scalar multiplications with the school method, which
+uses $N^3$ of them for one product of two $N\times N$ matrices; faster methods were not examined.
+Reaching $A^{N-1}$ takes $N-2$ products, which is $98{,}000{,}000$ multiplications for $N=100$.
+Because \Cref{prop:iplusa} allows any exponent $m\ge N-1$, squaring $I+A$ repeatedly until the
+exponent is at least $N-1$ takes $7$ squarings, or $7{,}000{,}000$ multiplications, for
+$N=100$.
+Breadth-first search with adjacency lists takes time proportional to the number of vertices
+plus the number of edges \cite[slides~9 and 10]{schost2026bfs}; when the input is the matrix
+$A$ itself it reads each of the $N^2=10{,}000$ entries once \cite[slides~3 and 6]{schost2026bfs}.
+The entries of the powers also grow quickly: for the complete graph on $10$ vertices the
+largest entry of $A^9$ is $38{,}742{,}049$.
+The matrix test is useful because it is a clean statement about powers of $A$, not because it
+is fast.
+
+\subsection{What this note does not settle}\label{sec:open}
+
+The board shows the question ``How to know if graph is connected or not'' but not its answer
+\cite{whiteboard1,whiteboard2}, so this note makes no claim about whether the lecturer's
+intended answer was the sum test, the $(I+A)^{N-1}$ form, or a search.

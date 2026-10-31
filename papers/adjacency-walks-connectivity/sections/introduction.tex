@@ -1,0 +1,188 @@
+\section{Introduction}\label{sec:introduction}
+
+\subsection{The three questions and where they came from}\label{sec:questions}
+
+A graph is a set of points, called vertices, together with some lines, called
+edges, each joining two vertices.
+When a graph has $N$ vertices, one way to describe it completely is a square
+table of $N$ rows and $N$ columns, the \emph{adjacency matrix} $A$, which has a
+one in row $i$ and column $j$ when vertices number $i$ and number $j$ are joined
+by an edge and a zero otherwise.
+This note asks what such a table can tell us, and answers three questions.
+
+\begin{enumerate}
+\item[\textbf{Q1}] What does the entry $(A^k)_{ij}$ of the $k$-th power of $A$
+  represent?
+\item[\textbf{Q2}] How can one determine from $A$ alone whether the graph is
+  connected?
+\item[\textbf{Q3}] What is the definition of a path between vertices $n_i$ and
+  $n_j$?
+\end{enumerate}
+
+Questions Q1 and Q2 are written on a lecture whiteboard that was photographed
+twice \cite{whiteboard1,whiteboard2}.
+On the board, Q1 reads ``What does $A^{\cdot}_{ij}$ represent'' with a small
+mark in the place of the exponent, and Q2 reads ``How to know if graph is
+connected or not''.
+The board also gives the definition ``Graph is called connected if for any
+$n_i, n_j$ there exists a path between nodes'', a drawing of a graph on three
+vertices, and a three by three matrix labelled ``adj.''
+\cite{whiteboard1,whiteboard2}.
+Question Q3 was added by the assignment text, which we know only as it was
+reported to us and do not reproduce here.
+Appendix~\ref{app:photographs} transcribes the board line by line.
+
+\subsection{One story for the whole note}\label{sec:story}
+
+Every definition, theorem, test, and worked example in this note is preceded by
+a paragraph headed ``In plain words''.
+Those paragraphs are told in one story and use no symbols.
+The story is a small village.
+The village has houses.
+Roads join the houses in pairs.
+Each road joins two different houses.
+Two houses have at most one road between them.
+Each road can be driven in both directions.
+\Cref{tab:dictionary} fixes the story words once; each story word stands for
+exactly one technical term, and the technical term is defined at the place
+named in the last column.
+
+\begin{table}[ht]
+\centering
+\caption{The story dictionary. A story word is used only in the plain words
+paragraphs, and a technical word is never used there.}\label{tab:dictionary}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Story word & Technical term & Defined in\\
+\midrule
+village & graph & \Cref{def:graph}\\
+house & vertex & \Cref{def:graph}\\
+road & edge & \Cref{def:graph}\\
+neighbours & adjacent vertices & \Cref{def:adjacent}\\
+table of roads & adjacency matrix & \Cref{def:adjmatrix}\\
+number of roads at a house & degree & \Cref{def:degree}\\
+table of totals & the sum $S$ & \Cref{def:S}\\
+trip & walk & \Cref{def:walk}\\
+number of roads driven & length of a walk & \Cref{def:walk}\\
+round trip & closed walk & \Cref{def:closed}\\
+trip with no road twice & trail & \Cref{def:trail}\\
+route & path & \Cref{def:path}\\
+round trip with no road twice & cycle & \Cref{def:cycle}\\
+ring & simple cycle & \Cref{def:simplecycle}\\
+shortest trip between two houses & distance & \Cref{def:distance}\\
+village in one piece & connected graph & \Cref{def:connected}\\
+piece of a village & component & \Cref{def:component}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A trip may pass the same house twice and may drive the same road twice.
+A route never passes a house twice.
+This difference is the main source of mistakes about the matrix, and the whole
+note keeps the two words apart.
+
+\subsection{Conventions and assumptions}\label{sec:conventions}
+
+The photographs and the assignment text leave some points open.
+We settle each point as follows and refer to these items by number.
+
+\begin{enumerate}
+\item\label{conv:graph} \emph{The graphs.} The graph is finite, simple (no edge
+  from a vertex to itself and no two edges with the same two ends), and
+  undirected.
+  The assignment text says so as reported to us, and it agrees with the
+  matrix on the board, which is symmetric with zeros on the diagonal
+  \cite{whiteboard1}.
+\item\label{conv:exponent} \emph{The exponent.} The mark above $A$ in question Q1
+  is read as a positive integer exponent $k$, because the assignment text asks
+  about $A^k$.
+  In both photographs the mark looks like a small $n$ or a pair of quotation
+  marks, not clearly a $k$ \cite{whiteboard1,whiteboard2}.
+  The answer given below holds for every positive integer exponent, so it does
+  not depend on which letter was written (\Cref{sec:board-mark}).
+\item\label{conv:example} \emph{The example graph.} On the board the drawing and
+  the matrix disagree.
+  The drawing shows three lines: between vertices 1 and 2 (with an arrowhead
+  at 2), between 1 and 3, and between 2 and 3.
+  The matrix has rows $0\,1\,0$, $1\,0\,1$, $0\,1\,0$, which records only the
+  edges between 1 and 2 and between 2 and 3 \cite{whiteboard1,whiteboard2}.
+  The board states that the graph is given through its adjacency matrix
+  \cite{whiteboard1}, so the matrix defines the example graph, and the
+  arrowhead is treated as a stray mark because the matrix is symmetric.
+  We report the mismatch and make no claim about which of the two the lecturer
+  intended (\Cref{sec:board-mismatch}).
+\item\label{conv:path} \emph{The word ``path''.} In the course, a path has no
+  repeated vertex, as reported to us.
+  The textbook calls such a walk a \emph{simple path}
+  \cite[Definition~1.2.13, p.~22]{petrosyan2015grafneri}, and this note uses
+  ``path'' for it throughout.
+  The board does not say which meaning of ``path'' it uses.
+  The textbook's own word ``path'' means something weaker, which this note calls
+  a \emph{trail}; \Cref{sec:path} compares the three usages.
+\item\label{conv:notation} \emph{Notation.} The vertices are $n_1,\dots,n_N$
+  as on the board, where $N$ is the number of vertices; the textbook writes
+  $v_i$ and $n$.
+  The board writes $(G,V)$ for the graph and $e_{ij}\in V$ in the line that
+  defines $A_{ij}$; its $V$ there stands for the set of edges, which the
+  textbook writes $E$ in $G=(V,E)$ \cite{whiteboard1}.
+  This note writes $G=(V,E)$, calls an edge $n_in_j$ (or $e_{ij}$), and writes
+  $|E|$ for the number of edges.
+  The letters $i,j,r$ are vertex numbers, $k$ is an exponent or the length of a
+  walk, $I$ is the identity matrix, and $S$ is the sum defined in
+  \Cref{def:S}.
+\item\label{conv:zero} \emph{Length zero.} A single vertex counts as a walk of
+  length $0$.
+  The textbook does not say whether this is allowed; we allow it because the
+  textbook's own distance property $d(u,u)=0$ needs it
+  \cite[printed p.~23]{petrosyan2015grafneri}.
+  A walk of length $0$ is not counted as a cycle.
+\item\label{conv:pages} \emph{Page numbers.} Pages of the textbook are
+  printed page numbers; the PDF page is one higher.
+\end{enumerate}
+
+\subsection{What the textbook contains and what it does not}
+
+The course textbook supplies the definitions and their numbers
+\cite{petrosyan2015grafneri}.
+A full-text search of the whole book for the adjacency matrix finds it only on
+printed pages 7, 11, 12, 34, and 61, and finds neither a theorem that powers of
+the adjacency matrix count walks nor a matrix test for connectivity
+\cite{petrosyan2015grafneri}.
+We did not read every page, so this is a statement about the search and not a
+proof that the book has no such result.
+Both results are therefore taken from other sources and proved in full here:
+the walk-counting theorem from \cite{quinlan_matrices_graphs} and the
+connectivity test, whose statement is in \cite{paramadevan2021adjacency} and
+\cite{bai2025adjacency}.
+Where this note proves a statement itself, it says so in the first sentence of
+the result and names a source that also states it.
+
+\subsection{The answers in brief}
+
+\begin{description}
+\item[Q1] For $k\ge 1$, the entry $(A^k)_{ij}$ is the number of walks of length
+  $k$ from $n_i$ to $n_j$.
+  It counts walks, not paths (\Cref{thm:walkcount,prop:warning}).
+\item[Q2] For $N\ge 2$, the graph is connected if and only if every entry off the
+  diagonal of $A+A^2+\dots+A^{N-1}$ is positive; equivalently, if and only if
+  $(I+A)^{N-1}$ has no zero entry (\Cref{thm:test}).
+\item[Q3] A path between $n_i$ and $n_j$ is a walk from $n_i$ to $n_j$ whose
+  vertices are pairwise distinct (\Cref{def:path}); \Cref{sec:path} compares
+  this with the other usages.
+\end{description}
+
+\subsection{Organisation}
+
+\Cref{sec:background} builds the definitions in the textbook's order, with its
+numbers.
+\Cref{sec:walks} answers Q1 and \Cref{sec:connectivity} answers Q2, including a
+breadth-first search alternative.
+\Cref{sec:path} answers Q3 by comparing conventions.
+\Cref{sec:examples} works two examples on three vertices, one connected and one
+not.
+\Cref{sec:discussion} states the limits, and \Cref{sec:conclusion} gives the
+direct answers.
+The appendices hold the board transcription, a table of textbook numbers, the
+longer derivations, and the sources and scripts.
+Directed graphs, weighted graphs, and eigenvalue methods are outside the scope
+of this note.

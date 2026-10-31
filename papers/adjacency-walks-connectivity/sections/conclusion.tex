@@ -1,0 +1,32 @@
+\section{Conclusion}\label{sec:conclusion}
+
+\textbf{Q1.}
+For a finite simple undirected graph with adjacency matrix $A$ and an integer $k\ge 1$, the
+entry $(A^k)_{ij}$ is the number of walks of length $k$ from $n_i$ to $n_j$
+(\Cref{thm:walkcount}, proved by induction on $k$).
+It counts walks, in which vertices and edges may repeat, and not paths: for example
+$(A^2)_{ii}$ equals the degree of $n_i$, which is positive whenever $n_i$ has a neighbour,
+although no path of length $2$ returns to $n_i$ (\Cref{prop:warning}).
+
+\textbf{Q2.}
+For $N\ge 2$ vertices, the graph is connected if and only if every entry off the diagonal of
+$A+A^2+\dots+A^{N-1}$ is positive, and equivalently if and only if $(I+A)^{N-1}$ has no zero
+entry (\Cref{thm:test}).
+The proof uses the walk-counting theorem and the fact that a walk contains a path no longer
+than itself (\Cref{lem:walkpath}); the last power $N-1$ cannot be lowered to $N-2$
+(\Cref{prop:sharp}).
+The board matrix gives ``connected'' and the matrix with the single edge $n_1n_2$ gives ``not
+connected'' (\Cref{ex:testB,ex:testD}).
+Breadth-first search is an alternative (\Cref{rem:bfs}).
+
+\textbf{Q3.}
+Under the course convention, a path between $n_i$ and $n_j$ is a walk from $n_i$ to $n_j$ whose
+vertices are pairwise distinct (\Cref{def:path}); this is the textbook's simple path,
+Definition~1.2.13 \cite[p.~22]{petrosyan2015grafneri}.
+The textbook's own word ``path'' (Definition~1.2.12) means a walk with distinct edges, called
+a trail here; the existence of a connection does not depend on the choice, but the counts do
+(\Cref{sec:path}).
+
+The assumptions on which these answers rest are listed in \Cref{sec:conventions}: the mark
+above $A$ read as an exponent, the matrix rather than the drawing as the example, and the
+course meaning of ``path''.

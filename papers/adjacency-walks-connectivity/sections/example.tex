@@ -1,0 +1,182 @@
+\section{Worked examples}\label{sec:examples}
+
+This section works the board graph through \Cref{sec:walks} and \Cref{sec:connectivity}, and
+adds one graph that is not connected.
+Every matrix, sum, and count in this section and in earlier examples was computed by a
+script (Appendix~\ref{app:provenance}) and then copied into the text by the same script.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[every node/.style={circle,draw,inner sep=2pt,minimum size=14pt},
+  scale=1.0]
+  % (a) the board drawing as read from the photographs
+  \begin{scope}
+    \node (a1) at (0,0) {1};
+    \node (a2) at (1.4,1.0) {2};
+    \node (a3) at (2.8,0) {3};
+    \draw[-{Latex[length=2.2mm]}] (a1) -- (a2);
+    \draw (a1) -- (a3);
+    \draw (a2) -- (a3);
+    \node[draw=none,shape=rectangle] at (1.4,-0.9) {(a) board drawing};
+  \end{scope}
+  % (b) the graph of the board matrix
+  \begin{scope}[xshift=5cm]
+    \node (b1) at (0,0) {1};
+    \node (b2) at (1.4,1.0) {2};
+    \node (b3) at (2.8,0) {3};
+    \draw (b1) -- (b2);
+    \draw (b2) -- (b3);
+    \node[draw=none,shape=rectangle] at (1.4,-0.9) {(b) board graph $B$};
+  \end{scope}
+  % (c) the disconnected example
+  \begin{scope}[xshift=10cm]
+    \node (c1) at (0,0) {1};
+    \node (c2) at (1.4,1.0) {2};
+    \node (c3) at (2.8,0) {3};
+    \draw (c1) -- (c2);
+    \node[draw=none,shape=rectangle] at (1.4,-0.9) {(c) one edge only};
+  \end{scope}
+\end{tikzpicture}
+\caption{(a) The board drawing as read from the photographs: a line from 1 to 2 with an
+arrowhead at 2, a line from 1 to 3, and a line from 2 to 3.
+(b) The graph $B$ whose adjacency matrix is the board matrix: the edges $n_1n_2$ and
+$n_2n_3$ only.
+(c) The graph with the single edge $n_1n_2$, used as the example that is not connected.
+The positions of the vertices are our choice.}\label{fig:graphs}
+\end{figure}
+
+\subsection{The powers of the board matrix}\label{sec:boardpowers}
+
+\begin{plainwords}
+We take the village from the board.
+It has three houses in a row.
+The first and last houses each have one road.
+The middle house has two roads.
+We multiply the table of roads by itself several times.
+Then we list every trip, so that the reader can see that each number is right.
+\end{plainwords}
+
+\begin{example}[powers of the board matrix]\label{ex:boardpowers}
+The graph is $B$ (\Cref{fig:graphs}(b)) with
+\[
+A=\MBoardAOne,\qquad A^2=\MBoardATwo,\qquad A^3=\MBoardAThree,
+\]
+\[
+A^4=\MBoardAFour,\qquad A^5=\MBoardAFive.
+\]
+\emph{Reading of $A^2$ and $A^3$ by walks.}
+The walks of length $2$ are: from $n_1$ to $n_1$, $\WalksTwoOneOne$; from $n_1$ to $n_3$,
+$\WalksTwoOneThree$; from $n_2$ to $n_2$, $\WalksTwoTwoTwo$; from $n_3$ to $n_3$,
+$\WalksTwoThreeThree$.
+The walks of length $3$ are: from $n_1$ to $n_2$, $\WalksThreeOneTwo$; from $n_2$ to $n_3$,
+$\WalksThreeTwoThree$.
+Each count equals the corresponding matrix entry (\Cref{thm:walkcount}).
+
+\emph{The induction step by hand.}
+$(A^2)_{22}=\sum_r A_{2r}A_{r2}=1\cdot 1+0\cdot 0+1\cdot 1=2$.
+$(A^3)_{12}=\sum_r (A^2)_{1r}A_{r2}=1\cdot 1+0\cdot 0+1\cdot 1=2$, where the term $r=1$ is the
+walk $1\text{-}2\text{-}1$ extended by a step to $n_2$, giving $1\text{-}2\text{-}1\text{-}2$,
+and the term $r=3$ is the walk $1\text{-}2\text{-}3$ extended by a step to $n_2$, giving
+$1\text{-}2\text{-}3\text{-}2$.
+
+\emph{Patterns.}
+The diagonal of $A^2$ is $(1,2,1)$, the degrees, and $\operatorname{trace}(A^2)=4=2|E|$
+(\Cref{cor:walkcount}(d)).
+Also $A^3=2A$, and therefore $A^{k+2}=A^{k-1}A^3=2A^{k-1}A=2A^k$ for every $k\ge 1$; the
+matrices above agree with this for $k=1,2,3$.
+\end{example}
+
+\begin{table}[ht]
+\centering
+\caption{Walks, trails, paths, and closed walks of each length in the board graph, counted
+over all pairs of start and end vertices by enumeration. For $k\ge 1$ the number of walks is
+the sum of all entries of $A^k$.}\label{tab:walkcounts}
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+length $k$ & walks & trails & paths & closed walks\\
+\midrule
+\RowsWalkCounts
+\bottomrule
+\end{tabular}
+\end{table}
+
+\Cref{tab:walkcounts} shows the effect of \Cref{prop:warning}: the number of walks grows with
+$k$, while trails and paths stop at length $2$, because $B$ has two edges and $N-1=2$.
+It also shows that in $B$ every trail is a path: $B$ has no cycle (\Cref{def:cycle}), and a trail that repeated a vertex would contain a closed trail between the two visits.
+
+\subsection{A connected graph}\label{sec:conn-example}
+
+\begin{plainwords}
+Take three houses in a row.
+A road joins the first and second house.
+Another road joins the second and third house.
+The first and third house share no road.
+Can you still go from one to the other?
+Yes, through the middle house.
+We expect the check to say that the village is in one piece.
+\end{plainwords}
+
+\begin{example}[connected: the board graph, $N=3$, $N-1=2$]\label{ex:testB}
+\[
+A=\MBoardAOne,\quad A^2=\MBoardATwo,\quad S=A+A^2=\MBoardS,\quad (I+A)^2=\MBoardIA.
+\]
+$S$ has no zero entry (in particular none off the diagonal), so by \Cref{thm:test}(b) the
+graph is connected.
+$(I+A)^2$ has no zero entry, so by \Cref{thm:test}(c) the graph is connected; the two answers
+agree.
+The entry $A_{13}$ is $0$, so no edge joins $n_1$ and $n_3$, yet $(A^2)_{13}=1$: exactly one
+walk of length $2$ joins them, namely $1\text{-}2\text{-}3$.
+The entry $((I+A)^2)_{13}=1=\binom{2}{2}(A^2)_{13}$, since the other two terms of the expansion
+vanish there; and $(I+A)^2=I+2A+A^2$ holds entry by entry, with $I=\MBoardId$ and
+$2A=\MBoardTwoA$.
+Breadth-first search from $n_1$ reaches $n_1,n_2,n_3$, the single component, and agrees.
+\end{example}
+
+\subsection{A graph that is not connected}\label{sec:disc-example}
+
+\begin{plainwords}
+Now take three houses again.
+Only one road exists, between the first and the second house.
+The third house stands alone.
+Nobody can drive to it.
+We expect the check to say that the village is not in one piece.
+We also expect it to show that the third house is a piece by itself.
+\end{plainwords}
+
+\begin{example}[not connected: edge $n_1n_2$ only, $N=3$, $N-1=2$]\label{ex:testD}
+\[
+A=\MDiscA,\quad A^2=\MDiscAtwo,\quad S=A+A^2=\MDiscS,\quad (I+A)^2=\MDiscIA.
+\]
+The entries off the diagonal of $S$ that are $0$ are at $(1,3)$, $(2,3)$, $(3,1)$, and $(3,2)$,
+and the zeros of $(I+A)^2$ are at the same four places.
+By \Cref{thm:test} the graph is not connected, and by \Cref{cor:components} the vertices $n_1$
+and $n_2$ lie in one component and $n_3$ in another: the components are
+$G[\{n_1,n_2\}]$ and $G[\{n_3\}]$.
+Breadth-first search from $n_1$ reaches only $n_1$ and $n_2$, and agrees.
+Higher powers do not help: the entries $(1,3)$ and $(2,3)$ of $A^k$ are $0$ for $k=1,\dots,6$,
+and in fact no walk reaches $n_3$ at all.
+\end{example}
+
+\subsection{A computer check over all small graphs}\label{sec:exhaustive}
+
+\Cref{tab:exhaustive} reports a check, not a proof.
+For every labelled simple graph on $N=2,\dots,6$ vertices, the sum test, the
+$(I+A)^{N-1}$ test, and the repeated-squaring form of \Cref{prop:iplusa} were compared with
+an independent breadth-first search; the table counts the graphs on which each agrees.
+The last column counts the graphs on which the sum with only $N-2$ powers gives the wrong
+answer (for $N=2$ that sum is empty).
+The component statement of \Cref{cor:components} was checked on the same graphs by a second
+script (Appendix~\ref{app:provenance}).
+
+\begin{table}[ht]
+\centering
+\caption{All labelled simple graphs on $N$ vertices. Columns 4 to 6 count the graphs on which
+the named test agrees with breadth-first search.}\label{tab:exhaustive}
+\begin{tabular}{@{}ccccccc@{}}
+\toprule
+$N$ & graphs & connected & sum test & $(I+A)^{N-1}$ & squaring & $N-2$ powers wrong\\
+\midrule
+\RowsExhaustive
+\bottomrule
+\end{tabular}
+\end{table}

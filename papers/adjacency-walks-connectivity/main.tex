@@ -1,0 +1,89 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+\usepackage[backend=biber,style=numeric,urldate=long]{biblatex}
+\addbibresource{references.bib}
+\setcounter{biburlnumpenalty}{100}
+\setcounter{biburlucpenalty}{100}
+\setcounter{biburllcpenalty}{100}
+\emergencystretch=2em
+\graphicspath{{figures/}}
+
+% Theorem-like environments, all sharing one counter inside each section.
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}[definition]{Example}
+\newtheorem{nonexample}[definition]{Non-example}
+\newtheorem{test}[definition]{Test}
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{corollary}[definition]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+\crefname{nonexample}{Non-example}{Non-examples}
+\crefname{test}{Test}{Tests}
+\Crefname{nonexample}{Non-example}{Non-examples}
+\Crefname{test}{Test}{Tests}
+
+% The plain words layer: a short paragraph in the story, before each
+% definition, theorem, test and worked example.
+\newenvironment{plainwords}{\par\medskip\noindent\textbf{In plain words.}\ }{\par\medskip}
+
+% Matrices and tables computed by appendices/scripts/generate_paper_numbers.py
+\input{appendices/scripts/numbers}
+
+\newcommand{\Mat}{\mathbf}
+\DeclareMathOperator{\trace}{trace}
+
+\title{Walks, Paths, and Connectivity Read from an Adjacency Matrix\\
+\large A Study Note}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A finite simple undirected graph with $N$ vertices can be described by its
+adjacency matrix $A$, a square table of zeros and ones.
+This note answers three questions about it.
+First, the entry in row $i$ and column $j$ of the $k$-th power $A^k$ counts the
+walks of length $k$ from vertex $n_i$ to vertex $n_j$.
+It counts walks, not paths, and the note shows by a counterexample why the
+difference matters.
+Second, the graph is connected if and only if every entry off the diagonal of
+$A + A^2 + \dots + A^{N-1}$ is positive.
+Both statements are proved in full.
+Third, a path between $n_i$ and $n_j$ is a walk from $n_i$ to $n_j$ in which no
+vertex occurs twice.
+The note follows the numbering and build order of the course textbook, sets
+every new idea in a single story about a village, and works two small examples
+with every matrix written out and computed by script.
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/background}
+\input{sections/answer1_walks}
+\input{sections/answer2_connectivity}
+\input{sections/answer3_path}
+\input{sections/example}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\printbibliography
+
+\appendix
+\input{appendices/course-terms}
+\input{appendices/photographs}
+\input{appendices/derivations}
+\input{appendices/provenance}
+
+\end{document}
