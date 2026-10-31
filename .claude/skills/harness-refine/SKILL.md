@@ -50,9 +50,9 @@ author and module owners whose files they edit.
 harness-runs/<task>/                              one directory per step
 ```
 
-Under `harness-runs/<task>/`, `context/`, `propose/`, and `probe/` are
-ignored by git; `refinement-report.md`, `pool-map.json`, `selection.md`,
-and `reflection.md` are committed.
+Under `harness-runs/<task>/`, `context/`, `propose/`, `probe/`,
+`compose/`, and `select/` are ignored by git; `refinement-report.md`,
+`pool-map.json`, `selection.md`, and `reflection.md` are committed.
 
 ## Budget identity
 
