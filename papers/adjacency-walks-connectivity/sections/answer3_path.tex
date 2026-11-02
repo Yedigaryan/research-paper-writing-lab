@@ -1,0 +1,74 @@
+\section{Question 3: the definition of a path between $n_i$ and $n_j$}\label{sec:path}
+
+Question 3 asks for the definition of a path between $n_i$ and $n_j$.
+The answer is \cref{def:path} with the two ends named: \emph{a path between $n_i$ and $n_j$ is a walk $w_0,w_1,\dots,w_k$ with $w_0=n_i$ and $w_k=n_j$ in which the vertices $w_0,\dots,w_k$ are pairwise distinct; its length is $k$.}
+This is the textbook's simple path (Definition~1.2.13) \cite[p.~22]{petrosyan2015grafneri}, and it is also what English usage calls a path \cite{grinberg2025graph}.
+For $i=j$ the only such path is the single vertex $n_i$, of length $0$.
+That the course uses this meaning for ``path'' is stated by the assignment text; the textbook supplies the definition under the name ``simple path''.
+So the answer is an interpretation of the course convention, resting on that statement and on the textbook's definition, and it is qualified by the fact that the board itself does not say which meaning of ``path'' it uses \cite{whiteboard1,whiteboard2}.
+The rest of this section adds only what \cref{def:path} does not say: how the course word compares with the textbook's words and with English usage, and why the choice does not change which graphs are connected.
+
+\subsection{Three meanings of the word path}\label{sec:conventions}
+
+\plainwords Books disagree about the word path.
+Some use it for any trip that never drives a road twice.
+Others use it for a trip that never passes a house twice.
+So the same word can name two different kinds of trip.
+This note keeps one meaning for each word and writes the table below to show how the books line up.
+
+\Cref{tab:conventions} sets the three conventions side by side.
+It does not change any definition; it shows which word each source uses for each property of a walk.
+
+\begin{table}[ht]
+\centering
+\caption{The same properties of a walk under the textbook's words, English usage, and the words of this note. The numbers are the textbook's definition numbers.}\label{tab:conventions}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.6cm}>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{3cm}l}
+\toprule
+Property of the walk & Textbook & English usage & This note\\
+\midrule
+any sequence of steps along edges & walk (1.2.10) & walk & walk\\
+first vertex equals last & closed walk (1.2.11) & closed walk & closed walk\\
+no repeated edge; vertices may repeat & ``path'' (1.2.12) & trail & trail\\
+no repeated vertex (so no repeated edge) & ``simple path'' (1.2.13) & path & \textbf{path}\\
+closed, no repeated edge; vertices may repeat & cycle (1.2.14) & closed trail & cycle\\
+closed, no repeated vertex except first $=$ last, length at least $3$ & simple cycle (1.2.15) & cycle & simple cycle\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The rows come from the textbook \cite[pp.~21--22]{petrosyan2015grafneri}, from Grinberg's definitions of walk, path, and cycle \cite{grinberg2025graph}, and from the Wikipedia article on paths, which records that some authors use ``path'' for walks with repeated vertices and ``simple path'' for distinct vertices, which is the textbook's pattern \cite{wikipedia_path_graph_theory}.
+So the word ``path'' is used for two different properties: no repeated edge in the textbook's Definition~1.2.12, and no repeated vertex in English usage, where the textbook says ``simple path''.
+The course convention given by the assignment text is the second: no repeated vertex.
+For cycles the assignment text states no convention, so this note follows the textbook's word ``cycle'' for the closed trail and always writes ``simple cycle'' for the English ``cycle''.
+
+\subsection{The choice does not change connectivity}\label{sec:choice}
+
+\plainwords You may worry that the two meanings give two different answers to the question whether a village is in one piece.
+They do not.
+If you can drive from one house to another at all, you can drive without passing a house twice.
+That trip also never drives a road twice.
+So both meanings accept the same villages.
+
+\begin{proposition}[the readings agree]\label{prop:readings}
+For vertices $u,v$ of a simple graph the following are equivalent: there is a $(u,v)$-walk; there is a $(u,v)$-trail; there is a $(u,v)$-path.
+\end{proposition}
+
+\begin{proof}
+A path is a trail (\cref{prop:pathtrail}) and a trail is a walk, which gives path $\Rightarrow$ trail $\Rightarrow$ walk.
+If there is a walk, \cref{lem:walkpath} gives a path.
+\end{proof}
+
+Grinberg's Proposition~2.9.10 states the equivalence of walks and paths only \cite{grinberg2025graph}; the trail step is the one proved here.
+So every statement of the form ``there is a path between $n_i$ and $n_j$'' has the same truth value under the textbook's word and under the course's word, and \cref{def:connected} and the test of \cref{thm:test} do not depend on the choice.
+What does depend on the choice is a count: the number of trails from $u$ to $v$ is not the number of paths, and neither is the number of walks (\cref{prop:warning}).
+
+\begin{example}
+In $B$ there is exactly one path between $n_1$ and $n_3$, namely $1,2,3$, and between $n_1$ and $n_1$ there is only the path of length $0$.
+In $B$ every path is also a trail and every trail is a path of the same ends (by script, for lengths $0$ to $4$), because $B$ has no cycle.
+To see a trail that is not a path, a graph with a cycle is needed, such as $H$: the trail $v_1,v_3,v_2,v_4,v_3,v_5$ is a trail but not a path \cite[p.~22]{petrosyan2015grafneri}.
+\end{example}
+
+\begin{nonexample}
+In $B$ the walk $1,2,1,2,3$ goes from $n_1$ to $n_3$ but is not a path between them, since $n_1$ and $n_2$ repeat.
+It is not a trail either, since the edge $n_1n_2$ repeats.
+\end{nonexample}

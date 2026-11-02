@@ -1,0 +1,126 @@
+\section{Worked examples}\label{sec:example}
+
+Every matrix in this section was produced by a script and is read into the text from a generated file, so that none was typed by hand (\cref{app:repro}).
+The example graph is $B$, the graph of the board matrix.
+The board drawing differs from the board matrix by one edge $n_1n_3$ and an arrowhead (\cref{sec:question}); the matrix is followed.
+
+\subsection{The powers of the board matrix}\label{sec:powers}
+
+\plainwords We take the village from the board.
+It has three houses in a row.
+The first and last houses each have one road.
+The middle house has two roads.
+We count trips of two roads, then trips of three roads.
+We also list every trip, so the reader can see that each count is right.
+
+\begin{example}[powers of the board matrix]\label{ex:boardpowers}
+For $B$ the matrix and its first powers are
+\[
+A=\MBA,\qquad A^2=\MBAtwo,\qquad A^3=\MBAthree .
+\]
+Also $A^4=\MBAfour$ and $A^5=\MBAfive$, and $A^3=2A$.
+The diagonal of $A^2$ is $(1,2,1)$, the degrees of $n_1,n_2,n_3$, and its sum is $4=2|E|$.
+\end{example}
+
+The walks behind these entries, with vertices written by index, are the following.
+\begin{itemize}
+\item Length $1$: $1\text{-}2$ and $2\text{-}3$, and their reverses.
+\item Length $2$: from $n_1$ to $n_1$ only $1\text{-}2\text{-}1$ (one walk); from $n_1$ to $n_3$ only $1\text{-}2\text{-}3$ (one); from $n_2$ to $n_2$ the walks $2\text{-}1\text{-}2$ and $2\text{-}3\text{-}2$ (two); from $n_3$ to $n_3$ only $3\text{-}2\text{-}3$ (one).
+\item Length $3$: from $n_1$ to $n_2$ the walks $1\text{-}2\text{-}1\text{-}2$ and $1\text{-}2\text{-}3\text{-}2$ (two); from $n_2$ to $n_3$ the walks $2\text{-}1\text{-}2\text{-}3$ and $2\text{-}3\text{-}2\text{-}3$ (two).
+\end{itemize}
+Each count equals the matrix entry in that position, and the script asserts this for every entry of $A$, $A^2$, and $A^3$.
+The sums of the induction step of \cref{thm:walkcount} can be checked by hand:
+\begin{align*}
+(A^2)_{22}&=A_{21}A_{12}+A_{22}A_{22}+A_{23}A_{32}=1\cdot1+0\cdot0+1\cdot1=2,\\
+(A^3)_{12}&=(A^2)_{11}A_{12}+(A^2)_{12}A_{22}+(A^2)_{13}A_{32}=1\cdot1+0\cdot0+1\cdot1=2.
+\end{align*}
+In the second line the term for $r=1$ is the length-$2$ walk $1\text{-}2\text{-}1$ extended by the step to $n_2$, which gives $1\text{-}2\text{-}1\text{-}2$, and the term for $r=3$ is the walk $1\text{-}2\text{-}3$ extended by the step to $n_2$, which gives $1\text{-}2\text{-}3\text{-}2$.
+
+\plainwords Now we sort the trips by kind.
+Some trips turn back and pass a house twice.
+Some trips drive a road twice.
+Only a few are clean routes.
+The table counts all trips of each length in the village of three houses.
+
+\begin{table}[ht]
+\centering
+\caption{Walks, trails, paths, and closed walks of each length $k$ in $B$, counted over all start and end vertices by enumeration.}\label{tab:walkcounts}
+\begin{tabular}{rrrrr}
+\toprule
+$k$ & walks & trails & paths & closed walks\\
+\midrule
+\TabWalkCounts
+\bottomrule
+\end{tabular}
+\end{table}
+
+\Cref{tab:walkcounts} agrees with the matrices: the number of walks of length $k\ge 1$ is the sum of all entries of $A^k$ ($4,6,8,12$ for $k=1,\dots,4$), and, for $k\ge 1$, the number of closed walks is the sum of the diagonal entries of $A^k$.
+It shows the gap between walks and paths: from length $3$ on there are walks but no trails and no paths, because $B$ has only $2$ edges and a path has at most $N-1=2$ edges (\cref{cor:bound}).
+
+\subsection{A connected example}\label{sec:testB}
+
+\plainwords Take three houses in a row.
+A road joins the first and the second house.
+Another road joins the second and the third.
+The first and the third share no road.
+Can you still go from one to the other?
+Yes, through the middle house.
+We expect the check to say connected.
+
+\begin{example}[connected: the board matrix]\label{ex:testB}
+$B$ has edges $n_1n_2$ and $n_2n_3$, $N=3$, and $N-1=2$.
+\[
+A=\MBA,\quad A^2=\MBAtwo,\quad S=A+A^2=\MBS,\quad (I+A)^2=\MBI .
+\]
+$S$ has no zero entry, so by \cref{thm:test}(b) $G$ is connected, and $(I+A)^2$ has no zero entry, so by \cref{thm:test}(c) it is connected: the two answers agree.
+The $(1,3)$ entry of $A$ is $0$, so no road joins $n_1$ and $n_3$, yet $(A^2)_{13}=1$: there is exactly one walk of length $2$ from $n_1$ to $n_3$, namely $1\text{-}2\text{-}3$.
+The $(1,3)$ entry of $(I+A)^2$ is $1=\binom22(A^2)_{13}$, since the other terms of the expansion vanish there.
+The identity $(I+A)^2=I+2A+A^2$ holds entry by entry, by script.
+Breadth-first search from $n_1$ reaches $\{1,2,3\}$, which agrees.
+\end{example}
+
+\subsection{A disconnected example}\label{sec:testD}
+
+\plainwords Now take three houses again.
+Only one road exists, between the first and the second house.
+The third house stands alone.
+Nobody can walk to it.
+We expect the check to say not connected.
+It should also show that the third house is a piece by itself.
+
+\begin{example}[disconnected: one edge only]\label{ex:testD}
+$D$ has the single edge $n_1n_2$, $N=3$, and $N-1=2$.
+\[
+A=\MDA,\quad A^2=\MDAtwo,\quad S=A+A^2=\MDS,\quad (I+A)^2=\MDI .
+\]
+The off-diagonal zeros of $S$ are at $(1,3)$, $(2,3)$, $(3,1)$, and $(3,2)$, and the zeros of $(I+A)^2$ are at the same four places.
+So by \cref{thm:test} the graph is not connected, and by \cref{cor:components} the vertices $n_1$ and $n_2$ lie in one component and $n_3$ in another: the components are $\{n_1,n_2\}$ and $\{n_3\}$, which agrees with breadth-first search.
+Higher powers do not help: the script checked that the entries $(1,3)$ and $(2,3)$ of $A^k$ are $0$ for $k=1,\dots,6$, and in fact no walk reaches $n_3$ at all.
+\end{example}
+
+The example with $N-1$ replaced by $N-2$ is \cref{ex:sharp}.
+
+\subsection{Agreement with breadth-first search on all small graphs}\label{sec:exhaustive}
+
+\plainwords We can also try the check on every possible small village.
+We compare its answer with the marking method.
+They agree every time.
+This does not replace the proof, but it would reveal a slip.
+
+By computer, the test of \cref{thm:test}(b), the form (c), the statement of \cref{cor:components}, and the version of (c) with repeated squaring (\cref{sec:cost}) were compared with an independent breadth-first search on every labelled simple graph with $N=2,\dots,6$ vertices.
+\Cref{tab:exhaustive} gives the counts.
+In all $2+8+64+1024+32768$ graphs the four methods agreed with breadth-first search.
+The last column shows what goes wrong with $N-2$ powers: it gives the wrong answer on exactly the connected graphs that are labelled paths, which number $N!/2$ for the sizes shown; for $N=2$ the sum with zero powers is empty and is wrong on the one connected graph.
+This check covers $N\le 6$ only.
+
+\begin{table}[ht]
+\centering
+\caption{All labelled simple graphs with $N$ vertices: how many there are, how many are connected, on how many the sum test gives the same answer as breadth-first search (all of them), and on how many the sum with only $N-2$ powers gives the wrong answer.}\label{tab:exhaustive}
+\begin{tabular}{rrrrr}
+\toprule
+$N$ & graphs & connected & sum test agrees with search & wrong with $N-2$ powers\\
+\midrule
+\TabExhaustive
+\bottomrule
+\end{tabular}
+\end{table}

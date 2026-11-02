@@ -1,0 +1,154 @@
+\section{Question 1: what the entries of $A^k$ count}\label{sec:walks}
+
+This section answers question 1.
+The answer is one sentence: the entry $(A^k)_{ij}$ is the number of walks of length exactly $k$ from $n_i$ to $n_j$ (\cref{thm:walkcount}).
+The rest of the section proves it, draws the consequences that \cref{sec:connectivity} needs, and shows that it counts walks and not paths.
+
+\subsection{The walk-counting theorem}\label{sec:walkcounting}
+
+\plainwords Take the table of roads and multiply it by itself.
+Each number in the new table counts trips of two roads.
+The trips run from the row house to the column house.
+Multiply again, and you count trips of three roads.
+The count includes trips that turn back.
+So the table counts trips, not clean routes.
+
+\begin{theorem}[walk counting]\label{thm:walkcount}
+Let $A$ be the adjacency matrix of a simple undirected graph $G$ with vertices $n_1,\dots,n_N$, and let $k\ge 1$ be an integer.
+Then $(A^k)_{ij}$ is the number of walks of length $k$ from $n_i$ to $n_j$, for all $i,j$.
+\end{theorem}
+
+Quinlan's course notes state and prove this theorem for simple graphs \cite[Theorem~1.1.3]{quinlan_matrices_graphs}; Grinberg states it for multidigraphs \cite[Theorem~4.5.10]{grinberg2025graph}, Lehman, Leighton, and Meyer for digraphs \cite[Corollary~9.3.3]{lehman_mcs_adjacency}, and Bai for simple graphs \cite[Theorem~1]{bai2025adjacency}.
+The textbook does not state it \cite{petrosyan2015grafneri}, so it is proved here, along the route of Quinlan's proof.
+
+\begin{remark}\label{rem:walkcount}
+The theorem allows $i=j$, which counts closed walks, and it counts every walk once, with repeats of vertices and edges permitted.
+It forbids reading the number as a count of paths (\cref{prop:warning}).
+\end{remark}
+
+\begin{example}
+For $B$, $(A^2)_{13}=1$: the only walk of length $2$ from $n_1$ to $n_3$ is $1,2,3$.
+\end{example}
+
+\begin{nonexample}
+$(A^2)_{12}=0$ in $B$ does not say that $n_1$ and $n_2$ are unconnected.
+It says only that no walk of length exactly $2$ joins them; the walk $1,2$ of length $1$ and the walks $1,2,1,2$ and $1,2,3,2$ of length $3$ do exist.
+\end{nonexample}
+
+\begin{proof}[Proof of \cref{thm:walkcount}, by induction on $k$]
+Write $W_k(i,j)$ for the number of walks of length $k$ from $n_i$ to $n_j$.
+We prove $W_k(i,j)=(A^k)_{ij}$ for all $i,j$, for each $k\ge 1$.
+By \cref{rem:walk} we count vertex sequences $w_0,w_1,\dots,w_k$ with $w_0=n_i$, $w_k=n_j$, and $w_{t-1},w_t$ adjacent for each $t$.
+
+\emph{Base case $k=1$.}
+A walk of length $1$ from $n_i$ to $n_j$ is a sequence $(n_i,n_j)$ with $n_i,n_j$ adjacent.
+There is exactly one such sequence if $n_i$ and $n_j$ are adjacent and none otherwise.
+So $W_1(i,j)=A_{ij}=(A^1)_{ij}$.
+
+\emph{Induction hypothesis.}
+Let $k\ge 2$ and suppose $W_{k-1}(i,j)=(A^{k-1})_{ij}$ for all $i,j$.
+
+\emph{Inductive step.}
+Fix $i$ and $j$.
+Every walk $w_0,\dots,w_k$ of length $k$ from $n_i$ to $n_j$ has a vertex $w_{k-1}$ just before the end.
+Because $k\ge 2$, deleting the last vertex leaves a walk of length $k-1\ge 1$, to which the hypothesis applies.
+Let $w_{k-1}=n_r$ with $r\in\{1,\dots,N\}$ and sort the walks into $N$ classes by the value of $r$.
+The classes are disjoint, since each walk has exactly one second-last vertex, and together they contain every walk, so
+\[
+W_k(i,j)=\sum_{r=1}^{N}\bigl(\text{number of walks of length }k\text{ from }n_i\text{ to }n_j\text{ with second-last vertex }n_r\bigr).
+\]
+Fix $r$.
+We claim that the number in class $r$ is $W_{k-1}(i,r)\,A_{rj}$.
+\begin{itemize}
+\item If $n_r$ and $n_j$ are not adjacent, so $A_{rj}=0$, no walk can have $n_r$ followed by $n_j$, so class $r$ is empty and its count is $0=W_{k-1}(i,r)\cdot 0$.
+\item If $n_r$ and $n_j$ are adjacent, so $A_{rj}=1$, delete the last vertex of a walk in class $r$.
+What remains is a sequence from $n_i$ to $n_r$ with consecutive vertices adjacent, that is, a walk of length $k-1$ from $n_i$ to $n_r$.
+Conversely, a walk of length $k-1$ from $n_i$ to $n_r$ followed by $n_j$ has all consecutive pairs adjacent (the new pair $n_r,n_j$ is adjacent), so it is a walk of length $k$ from $n_i$ to $n_j$ with second-last vertex $n_r$.
+Deleting and appending undo each other, so they match the two sets one to one, and the count is $W_{k-1}(i,r)=W_{k-1}(i,r)\cdot 1$.
+\end{itemize}
+Therefore $W_k(i,j)=\sum_{r}W_{k-1}(i,r)A_{rj}$.
+By the induction hypothesis $W_{k-1}(i,r)=(A^{k-1})_{ir}$, so
+\[
+W_k(i,j)=\sum_{r=1}^{N}(A^{k-1})_{ir}A_{rj}=(A^{k-1}A)_{ij}=(A^k)_{ij}
+\]
+by \cref{def:product}.
+This proves the statement for $k$, and by induction for all $k\ge 1$.
+\end{proof}
+
+\paragraph{Why the argument is valid.}
+The sum over the second-last vertex covers each walk exactly once, and the matching in the case $A_{rj}=1$ is a one-to-one correspondence; these two facts are the only places where the counting could go wrong.
+Simplicity is used twice, as an interpretation of how the proof works: to identify a walk with its vertex sequence (\cref{rem:walk}), and so that $A_{rj}$, which counts the edges between $n_r$ and $n_j$, is $0$ or $1$.
+Undirectedness is not used in the induction; it only makes $A$ symmetric, and the digraph versions of the theorem in the sources agree \cite{grinberg2025graph,lehman_mcs_adjacency}.
+
+\subsection{Consequences}\label{sec:consequences}
+
+\plainwords A count is never negative, and it is always a whole number.
+The table of trips looks the same when flipped over its diagonal.
+A positive number means that at least one such trip exists.
+
+\begin{corollary}\label{cor:walkcount}
+Let $k\ge 1$.
+\begin{enumerate}
+\item Every entry of $A^k$ is a non-negative integer, and a sum of powers of $A$ has a positive $(i,j)$ entry if and only if at least one summand has.
+\item $(A^k)_{ij}>0$ if and only if there is a walk of length exactly $k$ from $n_i$ to $n_j$.
+\item $A^k$ is symmetric.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Parts 1 and 2: by \cref{thm:walkcount} each entry is a count, and a sum of non-negative integers is positive exactly when some summand is.
+Part 3: $(A^k)^{T}=(A^{T})^k=A^k$, because $A$ is symmetric (\cref{prop:rowsums}).
+Alternatively, reversing a walk matches the walks from $n_i$ to $n_j$ with the walks from $n_j$ to $n_i$.
+\end{proof}
+
+The diagonal of $A^2$ has a simple meaning, stated in Quinlan's notes after the theorem \cite{quinlan_matrices_graphs}.
+The walks of length $2$ from $n_i$ to itself are $n_i,n_r,n_i$ with $n_r$ a neighbour, one for each neighbour, so $(A^2)_{ii}=\deg(n_i)$.
+Hence the sum of the diagonal entries of $A^2$ is the sum of the degrees, which is $2|E|$ (\cref{prop:rowsums}).
+For $B$ the diagonal of $A^2$ is $(1,2,1)$, the degrees, and its sum is $4=2|E|$ (\cref{sec:example}).
+
+\subsection{Walks are not paths}\label{sec:notpaths}
+
+\plainwords A trip may turn back and pass the same house twice.
+A route never passes a house twice.
+The table counts trips, so it counts the turn-back trips too.
+A house with one neighbour always has a two-road trip that goes out and returns.
+That trip is not a route.
+
+\begin{proposition}[the entry is not a count of paths or trails]\label{prop:warning}
+In general $(A^k)_{ij}$ is not the number of paths, nor the number of trails, of length $k$ from $n_i$ to $n_j$.
+\end{proposition}
+
+\begin{proof}
+We use $B$.
+First, $(A^2)_{11}=1>0$, the walk $1,2,1$.
+It repeats the vertex $n_1$, so it is not a path, and it repeats the edge $n_1n_2$, so it is not a trail.
+No path and no trail of length $2$ from $n_1$ to $n_1$ exists, so the entry $1$ is not a count of either.
+More generally, whenever $n_i$ has a neighbour, $(A^2)_{ii}=\deg(n_i)>0$ although a path of positive length cannot start and end at the same vertex.
+Second, $(A^3)_{12}=2$, the walks $1,2,1,2$ and $1,2,3,2$; neither is a path or a trail, since each repeats a vertex and an edge.
+\end{proof}
+
+\Cref{tab:walksvspaths} shows the same thing for longer lengths.
+The number of walks from $n_1$ to $n_2$ grows with $k$ (the matrices satisfy $A^{k+2}=2A^k$ for $k=1,\dots,5$, by script), while the only path from $n_1$ to $n_2$ is the single edge, of length $1$.
+
+\begin{table}[ht]
+\centering
+\caption{Walks and paths of length $k$ from $n_1$ to $n_2$ in the board graph $B$, by enumeration.}\label{tab:walksvspaths}
+\begin{tabular}{rrr}
+\toprule
+$k$ & walks from $n_1$ to $n_2$ & of which paths\\
+\midrule
+\TabWalksTwelve
+\bottomrule
+\end{tabular}
+\end{table}
+
+What a positive entry does guarantee is that a walk of length $k$ exists, and then, by \cref{lem:walkpath}, that a path of length at most $k$ exists.
+That is all that \cref{sec:connectivity} uses.
+So the warning does not harm the connectivity test, but the value of an entry is not a path count.
+
+\paragraph{A published statement that says paths.}
+Paramadevan and Sotheeswaran state in their Theorem~1 that the entry of $A^l$ counts the ``different paths'' of length $l$ \cite{paramadevan2021adjacency}.
+As written this is false for any meaning of ``path'' that forbids repeated vertices or repeated edges, by \cref{prop:warning}.
+The correct reading is walks, and their own property 7 says walks \cite{paramadevan2021adjacency}.
+This note does not rely on that Theorem~1.
+\Cref{thm:walkcount} is a statement about a finite object and has also been checked by computer on all labelled simple graphs with $2,3,4,5$ vertices (\cref{app:checks}); this check supports the proof and does not replace it.

@@ -1,0 +1,62 @@
+\section{Discussion: limits, competing readings, and cost}\label{sec:discussion}
+
+\subsection{What the results cover}\label{sec:scope}
+
+The theorem and the test are proved for finite, simple, undirected graphs, the setting of the assignment and of the textbook's Definition~1.1.1 \cite{petrosyan2015grafneri}.
+Where a loop or a repeated edge is allowed, an entry $A_{rj}$ may exceed $1$ or $A_{ii}$ may be non-zero; the same induction then counts walks with multiplicity, but the items of \cref{prop:rowsums} about entries $0$ and $1$, the zero diagonal, and the row sums change.
+This reading of the proof is an interpretation, in line with the versions of the theorem for directed graphs and multigraphs in the sources \cite{grinberg2025graph,lehman_mcs_adjacency}.
+Walk counting is also stated for those cases in the sources; the connectivity test was not examined for them, and the argument given here uses that $A$ is symmetric and that a walk contains a path, so it should not be applied to directed graphs without further work.
+Weighted graphs and eigenvalue methods are outside this note.
+
+The test says ``connected'' or ``not connected''.
+The sum $S$ does not list a path, but \cref{cor:components} gives the components and \cref{rem:distancepowers} the distances.
+
+\subsection{Conventions the note had to choose}\label{sec:assumptions}
+
+\begin{itemize}
+\item \textbf{The mark above $A$.} The board's mark in question 1 is not clearly a $k$ (\cref{sec:question}).
+The note reads it as a positive whole number $k$ because the assignment text asks about $A^k$; if the mark is $n$ or quotation marks, the statement of \cref{thm:walkcount} still describes the entries for every positive exponent, including $N$ \cite{whiteboard1,whiteboard2}.
+\item \textbf{Drawing versus matrix.} The board drawing has an edge $n_1n_3$ and an arrowhead that the matrix does not have \cite{whiteboard1,whiteboard2}.
+The note follows the matrix because the problem says the graph is given through its adjacency matrix, and it does not guess which one the lecturer intended.
+\item \textbf{The word path.} The course meaning is stated by the assignment text and is the textbook's simple path; the board does not say which meaning it uses.
+Because of \cref{prop:readings} the connectivity result is the same under the textbook's word.
+\item \textbf{Length zero.} The textbook does not say whether a walk of length $0$ is allowed.
+The note allows it and does not count a closed trail of length $0$ as a cycle (\cref{rem:walk}); neither choice affects the main results, since a pair of different vertices needs a path of length at least $1$.
+\end{itemize}
+
+No claim is made here about which answer to question 2 the lecturer intended: the board shows the question and not the answer.
+The note gives the sum test, the equivalent test with $I+A$, and breadth-first search, and proves the first two.
+
+\subsection{Competing explanations}\label{sec:competing}
+
+Two sources that state the test explain it by counting ``paths'' \cite{paramadevan2021adjacency,bai2025adjacency}.
+That explanation is wrong, because the powers of $A$ count walks (\cref{prop:warning}); their statements of the test are correct and are cited as such.
+The second competing method is breadth-first search, which gives the same answer (\cref{rem:bfs}).
+
+\subsection{Cost of the two methods}\label{sec:cost}
+
+\plainwords Which check is faster?
+The marking method looks at each house and road about once.
+The table method multiplies big tables many times.
+So the marking method is faster.
+The table method is still useful.
+Its answer is a clean statement about the table itself.
+
+\begin{remark}[cost; an estimate]\label{rem:cost}
+Count scalar multiplications with the school method, which uses $N^3$ of them for one product of two $N$ by $N$ matrices.
+Reaching $A^{N-1}$ from $A$ takes $N-2$ products, that is $(N-2)N^3$ multiplications, which is $98{,}000{,}000$ for $N=100$.
+Because \cref{prop:iplusa} holds with any exponent $m\ge N-1$ in place of $N-1$, one can instead square $I+A$ repeatedly until the exponent $2^t$ is at least $N-1$: this needs $t$ squarings, $t=7$ for $N=100$, costing $7{,}000{,}000$ multiplications.
+A script verified this squaring version against breadth-first search on every labelled graph with at most $6$ vertices (\cref{sec:exhaustive}).
+Breadth-first search takes time $O(n+m)$ for $n$ vertices and $m$ edges when the graph is given by adjacency lists \cite{schost2026bfs}; when the input is the matrix $A$ itself, it reads each row once, which is $N^2=10{,}000$ entries for $N=100$.
+The entries of the powers also grow fast: for the complete graph on $10$ vertices the largest entry of $A^9$ is $38{,}742{,}049$ (script).
+Only the positions of the positive entries matter for the test, and because all entries are non-negative these positions depend only on which entries of the factors are positive, so a version that keeps just that information gives the same answer.
+Faster matrix multiplication exists and was not examined.
+\end{remark}
+
+These numbers are operation counts under stated assumptions, not measurements; the comparison between the two methods is the note's own estimate, and the source of the breadth-first-search bound gives no comparison with the matrix test \cite{schost2026bfs}.
+The matrix test is useful because its answer is a clean statement about powers of $A$, not because it is fast.
+
+\subsection{Checks that are not proofs}\label{sec:checks}
+
+The walk-counting theorem was compared with a direct enumeration of walks on every labelled simple graph with $2,3,4,5$ vertices, and the connectivity test with breadth-first search on every graph with up to $6$ vertices (\cref{app:checks}).
+These finite checks support the proofs; they do not replace them.

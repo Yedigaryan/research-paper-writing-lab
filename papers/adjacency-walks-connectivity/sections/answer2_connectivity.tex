@@ -1,0 +1,264 @@
+\section{Question 2: deciding connectivity from $A$}\label{sec:connectivity}
+
+This section answers question 2.
+The answer is a test that uses only the matrix $A$: for $N\ge 2$, the graph is connected if and only if every off-diagonal entry of $A+A^2+\dots+A^{N-1}$ is positive (\cref{thm:test}).
+The proof rests on two earlier results: walk counting (\cref{thm:walkcount}) and the lemma that every walk contains a path (\cref{lem:walkpath}).
+
+\subsection{The running total}\label{sec:sums}
+
+\plainwords We need a name for a running total.
+It adds the counts of trips with one road, with two roads, and so on.
+We stop one step short of the number of houses.
+The whole check uses this one total.
+
+\begin{definition}[the sum $S$]\label{def:S}
+For a graph with $N\ge 2$ vertices let $S=A+A^2+\dots+A^{N-1}$, the sum of the first $N-1$ powers of $A$, added entry by entry.
+This is notation introduced in this note and is not from the textbook.
+\end{definition}
+
+\begin{remark}\label{rem:S}
+By \cref{thm:walkcount}, $S_{ij}$ is the number of walks from $n_i$ to $n_j$ whose length is between $1$ and $N-1$.
+Hence every entry of $S$ is a non-negative integer.
+The diagonal of $S$ counts closed walks and plays no role in the test (\cref{rem:diagonal}).
+\end{remark}
+
+\begin{example}
+For $B$ ($N=3$), $S=A+A^2=\MBS$, written out with the matrices in \cref{sec:example}.
+\end{example}
+
+\begin{nonexample}
+For $N=3$ the matrix $A^2$ alone is not $S$.
+In $B$, $A^2$ has the zero entry $(1,2)$ although $n_1$ and $n_2$ are joined by an edge, and $A$ alone has the zero entry $(1,3)$ although $n_1$ and $n_3$ are connected.
+Either matrix alone would wrongly report ``not connected''.
+\end{nonexample}
+
+\subsection{The test and its proof}\label{sec:testproof}
+
+\plainwords We want a quick check for a village.
+We only have the table that says which houses share a road.
+From the table we can count trips.
+We count trips with one road, with two roads, and so on.
+We add the counts for each pair of houses.
+We never need trips longer than one road fewer than the number of houses.
+A wasteful trip can always be shortened.
+So longer trips tell us nothing new.
+
+\begin{proposition}[one pair at a time]\label{prop:pair}
+Let $G$ have $N\ge 2$ vertices and let $i\ne j$.
+The following are equivalent.
+\begin{enumerate}
+\item[(i)] There is a path from $n_i$ to $n_j$ in $G$.
+\item[(ii)] There is an integer $k$ with $1\le k\le N-1$ and $(A^k)_{ij}>0$.
+\item[(iii)] $S_{ij}>0$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\emph{(i)$\Rightarrow$(ii).}
+A path, in either reading of the word (\cref{rem:connected}), is a walk, so there is a walk from $n_i$ to $n_j$.
+By \cref{lem:walkpath} there is a path $P$ from $n_i$ to $n_j$ whose length $k$ is at most that walk's length, and by \cref{cor:bound} $k\le N-1$.
+If $k$ were $0$, then $P$ would be a single vertex and $n_i=n_j$; so $k\ge 1$.
+$P$ is a walk of length $k$, so $(A^k)_{ij}\ge 1$ by \cref{thm:walkcount}.
+
+\emph{(ii)$\Rightarrow$(iii).}
+$S_{ij}=A_{ij}+(A^2)_{ij}+\dots+(A^{N-1})_{ij}$ is a sum of non-negative integers (\cref{cor:walkcount}), so it is at least as large as the positive term from (ii).
+
+\emph{(iii)$\Rightarrow$(ii).}
+A sum of non-negative terms that is positive has a positive term $(A^k)_{ij}$ with $1\le k\le N-1$.
+
+\emph{(ii)$\Rightarrow$(i).}
+If $(A^k)_{ij}>0$ with $k\ge 1$, then by \cref{cor:walkcount} there is a walk of length $k$ from $n_i$ to $n_j$.
+By \cref{lem:walkpath} it contains a path from $n_i$ to $n_j$ with distinct vertices.
+A walk with distinct vertices has distinct edges (\cref{prop:pathtrail}), so it is a path in either reading of the word.
+\end{proof}
+
+\plainwords There is a second form of the check.
+Let every house also stay where it is for one step.
+Then count again.
+It gives the same answer.
+
+\begin{proposition}[the form with $I+A$]\label{prop:iplusa}
+Let $G$ have $N\ge 2$ vertices, let $m\ge N-1$ be an integer, and let $i\ne j$.
+Then $\bigl((I+A)^m\bigr)_{ij}>0$ if and only if $S_{ij}>0$.
+Every diagonal entry of $(I+A)^m$ is at least $1$.
+\end{proposition}
+
+\begin{proof}
+Since $I$ commutes with $A$, expanding the product of $m$ factors $I+A$ gives, by choosing $I$ or $A$ from each factor, the sum of $\binom{m}{k}A^k$ over $k=0,\dots,m$, because the product with $k$ letters $A$ is $A^k$ and there are $\binom mk$ ways to choose which factors give $A$.
+Thus
+\[
+(I+A)^m=\sum_{k=0}^{m}\binom{m}{k}A^k .
+\]
+For $i\ne j$ the identity contributes $0$ at position $(i,j)$, so $\bigl((I+A)^m\bigr)_{ij}=\sum_{k=1}^{m}\binom mk (A^k)_{ij}$.
+Each coefficient $\binom mk$ with $1\le k\le m$ is a positive integer and each $(A^k)_{ij}$ is a non-negative integer, so the sum is positive if and only if some $(A^k)_{ij}$ with $1\le k\le m$ is positive.
+If such a $k\le m$ exists, there is a walk, hence a path from $n_i$ to $n_j$ (\cref{prop:pair}), hence a positive $(A^{k'})_{ij}$ with $k'\le N-1$ (same proposition), so $S_{ij}>0$.
+Conversely $S_{ij}>0$ gives a positive $(A^k)_{ij}$ with $k\le N-1\le m$.
+On the diagonal the term $k=0$ contributes $\binom m0 I_{ii}=1$ and all other terms are non-negative.
+\end{proof}
+
+\plainwords Here is the check in one sentence.
+Count trips of every length up to one fewer than the number of houses.
+Add the counts for each pair of different houses.
+If no pair has a total of zero, everyone can reach everyone.
+
+\begin{theorem}[the connectivity test]\label{thm:test}
+Let $G$ be a graph with $N\ge 2$ vertices and adjacency matrix $A$.
+The following are equivalent.
+\begin{enumerate}
+\item[(a)] $G$ is connected.
+\item[(b)] Every off-diagonal entry of $S=A+A^2+\dots+A^{N-1}$ is positive.
+\item[(c)] Every entry of $(I+A)^{N-1}$ is positive.
+\end{enumerate}
+\end{theorem}
+
+Paramadevan and Sotheeswaran state (a)$\Leftrightarrow$(b) as their Theorem~2 \cite{paramadevan2021adjacency}, and MathWorld also states a matrix test for connectedness \cite{weisstein_connectedgraph}; Bai states (a)$\Leftrightarrow$(c) as his Theorem~2 \cite{bai2025adjacency}.
+Their proofs say ``paths'' where walks are meant, and Paramadevan and Sotheeswaran pass from a non-zero entry to a path without the walk-to-path lemma, so these sources are cited for the statements only.
+The proof printed here is this note's own and follows the premises of \cref{thm:walkcount} and \cref{lem:walkpath}.
+
+\begin{remark}
+The test allows any connected or disconnected simple undirected graph with at least two vertices.
+It forbids using only one power, or stopping before $A^{N-1}$ (\cref{sec:sharp}).
+\end{remark}
+
+\begin{proof}
+By \cref{def:connected} and \cref{rem:connected}, (a) says that for every pair of vertices there is a path between them, and for a pair with $u=v$ this is always true.
+So (a) holds if and only if statement (i) of \cref{prop:pair} holds for every pair $i\ne j$.
+By \cref{prop:pair} this is equivalent to (iii) for every $i\ne j$, which is (b).
+By \cref{prop:iplusa} with $m=N-1$, (iii) for every $i\ne j$ is equivalent to positivity of every off-diagonal entry of $(I+A)^{N-1}$, and the diagonal entries are positive anyway; together this is (c).
+\end{proof}
+
+\plainwords Here is the check step by step.
+First write the table of the village.
+Then multiply the table by itself again and again.
+After each step, add the new counts to the running total.
+Stop after one step fewer than the number of houses.
+Look at every pair of different houses.
+If any total is zero, those two houses cannot reach each other.
+If no total is zero, everyone can reach everyone.
+
+\begin{definition}[matrix test for connectivity]\label{def:testprocedure}
+\emph{Input:} the adjacency matrix $A$ of a graph with $N\ge 2$ vertices.
+\begin{enumerate}
+\item Set $P=A$ and $S=A$.
+\item For $k=2,3,\dots,N-1$: replace $P$ by $PA$ (now $P=A^k$) and add $P$ to $S$.
+\item Look at the entries $S_{ij}$ with $i\ne j$. If one of them is $0$, report ``not connected''. If none is $0$, report ``connected''.
+\end{enumerate}
+The equivalent form computes $(I+A)^{N-1}$ and reports ``connected'' if no entry is $0$.
+\end{definition}
+
+Correctness is \cref{thm:test}.
+A zero at $(i,j)$ in step 3 says more than ``not connected'': by \cref{cor:components} below, $n_i$ and $n_j$ lie in different components.
+
+\begin{remark}
+The procedure allows any $N\ge 2$; for $N=2$ the loop in step 2 is empty and $S=A$.
+It forbids reading the diagonal of $S$ (\cref{rem:diagonal}).
+\end{remark}
+
+\begin{example}
+For $B$ and for $D$ the procedure is carried out with every matrix written out in \cref{ex:testB} and \cref{ex:testD}.
+\end{example}
+
+\begin{nonexample}
+Applying only step 1, that is, looking at $A$ alone, is not the procedure: $B$ is connected, but $A_{13}=0$.
+\end{nonexample}
+
+\plainwords The check can say more than yes or no.
+A zero in the total tells which two houses lie in different pieces.
+A nonzero total tells that two houses lie in the same piece.
+
+\begin{corollary}[components from $S$]\label{cor:components}
+For any graph, connected or not, with $N\ge 2$ vertices and $i\ne j$: $S_{ij}>0$ if and only if $n_i$ and $n_j$ lie in the same component.
+\end{corollary}
+
+\begin{proof}
+\Cref{prop:pair} does not use connectivity of $G$: it says $S_{ij}>0$ if and only if there is a path from $n_i$ to $n_j$, and by \cref{def:component} this says that $n_i$ and $n_j$ are in the same class.
+\end{proof}
+
+\begin{remark}[distance from powers]\label{rem:distancepowers}
+For $i\ne j$ in a connected graph, the smallest $k$ with $(A^k)_{ij}>0$ is the distance $d(n_i,n_j)$.
+Two sources state this \cite{lehman_mcs_adjacency,paramadevan2021adjacency}.
+Here it follows from \cref{cor:walkcount}, which says that this smallest $k$ is the length of a shortest walk, and from \cref{prop:shortest}, which says that the shortest walk has the length $d(n_i,n_j)$.
+\end{remark}
+
+\begin{remark}[why the diagonal is skipped, and the cases $N=1$ and $N=2$]\label{rem:diagonal}
+For $N=2$ and one edge, $S=A=\begin{pmatrix}0&1\\1&0\end{pmatrix}$ has zeros on the diagonal although the graph is connected, so the diagonal of $S$ cannot be required to be positive.
+For $N\ge 3$ and connected $G$ the diagonal of $S$ is positive anyway, because every vertex has a neighbour and $(A^2)_{ii}=\deg(n_i)$, but the test does not need this.
+For $N=1$ there are no pairs of different vertices and the graph is connected; $S$ is an empty sum and $(I+A)^0=I=(1)$ has no zero entry, so the second form of the test gives the right answer, but the first form is not defined by the formula.
+Therefore the test is stated for $N\ge 2$.
+\end{remark}
+
+\subsection{Why $N-1$ is the right last power}\label{sec:sharp}
+
+\plainwords Why stop at one road fewer than the number of houses?
+Because a route cannot be longer than that.
+Why not stop sooner?
+Take four houses in a row.
+To go from the first to the last, you must pass every house between.
+That takes three roads.
+If we counted only trips of up to two roads, we would miss this pair.
+We would say the village is cut in two, and we would be wrong.
+
+\Cref{cor:bound} and the proof of \cref{prop:pair} show that $N-1$ is enough: if some walk joins two different vertices, then a path of length at most $N-1$ does, so powers beyond $A^{N-1}$ cannot change which off-diagonal entries of $S$ are positive.
+The next proposition shows that $N-1$ cannot be lowered.
+
+\begin{proposition}[$N-1$ cannot be lowered to $N-2$]\label{prop:sharp}
+For every $N\ge 3$ there is a connected graph with $N$ vertices for which $A+\dots+A^{N-2}$ has a zero off-diagonal entry.
+\end{proposition}
+
+\begin{proof}
+Take the path graph with edges $n_1n_2,n_2n_3,\dots,n_{N-1}n_N$.
+Each step of a walk changes the vertex number by exactly $1$.
+To go from vertex $1$ to vertex $N$ the number must increase by $N-1$, so at least $N-1$ steps are needed.
+A walk of length $k<N-1$ from $n_1$ to $n_N$ does not exist, so $(A^k)_{1N}=0$ for $1\le k\le N-2$ by \cref{thm:walkcount}.
+Hence the $(1,N)$ entry of $A+\dots+A^{N-2}$ is $0$, although the graph is connected.
+\end{proof}
+
+\plainwords Here is the four-house village, with every table written out.
+The first table counts trips of up to two roads.
+It has a zero for the first and last house.
+The second table counts trips of up to three roads.
+It has no zero.
+
+\begin{example}[the bound is needed: the path on four vertices]\label{ex:sharp}
+Let $P_4$ have vertices $n_1,\dots,n_4$ and edges $n_1n_2,n_2n_3,n_3n_4$ ($N=4$).
+Every product below was computed by script (\cref{app:repro}).
+\[
+A=\MPA,\quad A^2=\MPAtwo,\quad A^3=\MPAthree .
+\]
+\[
+A+A^2=\MPSshort\ (N-2\text{ powers}),\qquad A+A^2+A^3=\MPSfull\ (N-1\text{ powers}).
+\]
+With $N-2=2$ powers the $(1,4)$ entry is $0$ and the test would wrongly say ``not connected''; with $N-1=3$ powers every entry is positive.
+\end{example}
+
+\begin{table}[ht]
+\centering
+\caption{The path graph $n_1n_2\cdots n_N$: the first power with a non-zero $(1,N)$ entry, and the $(1,N)$ entry of the sums with $N-2$ and $N-1$ powers, by script.}\label{tab:sharp}
+\begin{tabular}{rccc}
+\toprule
+$N$ & smallest $k$ with $(A^k)_{1N}>0$ & $(1,N)$ of $A+\dots+A^{N-2}$ & $(1,N)$ of $A+\dots+A^{N-1}$\\
+\midrule
+\TabSharp
+\bottomrule
+\end{tabular}
+\end{table}
+
+\Cref{tab:sharp} confirms \cref{prop:sharp} for $N=3,\dots,8$: the first power with a non-zero $(1,N)$ entry is $N-1$ every time.
+For $N=3$ the graph is $B$ and the sum $A+\dots+A^{N-2}$ is $A$ itself, with $A_{13}=0$.
+
+\subsection{Breadth-first search, the alternative}\label{sec:bfs}
+
+\plainwords There is another way, and it needs no table of counts.
+Stand at one house and mark it.
+Then mark every house next to it.
+Then mark every house next to those.
+Keep going until no new house appears.
+If every house is marked, the village is in one piece.
+
+\begin{remark}[breadth-first search]\label{rem:bfs}
+Breadth-first search (BFS) from a start vertex $s$ keeps a queue of discovered vertices, and repeatedly takes the vertex at the front and discovers its undiscovered neighbours.
+The correctness statement in the lecture slides of Schost is that for every vertex $v$ there is a walk from $s$ to $v$ if and only if $v$ is discovered when BFS ends \cite{schost2026bfs}.
+Hence $G$ is connected if and only if every vertex is discovered when BFS starts from any one vertex $s$ \cite{schost2026bfs}, and BFS also yields the components directly.
+The matrix test and BFS agree on every labelled graph with at most $6$ vertices (\cref{sec:example}); this is a computer check and not a proof.
+The cost of the two methods is compared in \cref{sec:cost}.
+\end{remark}

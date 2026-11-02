@@ -1,0 +1,53 @@
+\section{Textbook locators and the board's notation}\label{app:courseterms}
+
+\Cref{tab:locators} lists, in the textbook's build order, where each concept used in this note is defined in the course textbook \cite{petrosyan2015grafneri}.
+Page numbers are the printed ones; the PDF page is one higher.
+Only the pages named in the table, and the pages that carry the examples cited in the text, were read page by page; the formulas were checked on the page images.
+
+\begin{table}[ht]
+\centering
+\caption{Where the course textbook defines each concept.}\label{tab:locators}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}p{3.8cm}r>{\raggedright\arraybackslash}p{3.2cm}}
+\toprule
+Concept & Textbook number & Page & Used in this note as\\
+\midrule
+graph $G=(V,E)$ & Definition 1.1.1 & 9 & \cref{def:graph}\\
+adjacent vertices & Definition 1.1.4 & 11 & \cref{def:adjacent}\\
+adjacency matrix $A(G)$ & no number, after Definition 1.1.6 & 11 & \cref{def:adjmatrix}\\
+degree & Definition 1.2.1 & 16 & \cref{def:degree}\\
+sum of degrees is $2|E|$ & Theorem 1.2.1 (Euler) & 16 & \cref{prop:rowsums}, item 5\\
+walk, length & Definition 1.2.10 & 21--22 & \cref{def:walk}\\
+closed walk & Definition 1.2.11 & 22 & \cref{def:closed}\\
+walk with no repeated edge (``path'') & Definition 1.2.12 & 22 & \cref{def:trail} (trail)\\
+walk with no repeated vertex (``simple path'') & Definition 1.2.13 & 22 & \cref{def:path} (path)\\
+cycle, simple cycle & Definitions 1.2.14, 1.2.15 & 22 & \cref{def:cycle}\\
+distance & Definition 1.2.16 & 22--23 & \cref{def:distance}\\
+every walk contains a simple path & Lemma 1.2.1 & 23 & \cref{lem:walkpath}\\
+connected graph & Definition 2.1.1 & 48 & \cref{def:connected}\\
+connected components & prose, no number & 49 & \cref{def:component}\\
+connected if and only if one component & Remark 2.1.1 & 49 & \cref{rem:onecomponent}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The textbook's Lemma~1.2.1 is stated for two different vertices and without a length bound; \cref{lem:walkpath} adds the case of equal ends and the bound, which Grinberg's Corollary~2.9.7 states \cite{grinberg2025graph}.
+
+\Cref{tab:notation} compares the notation of the board, of the textbook, and of this note.
+
+\begin{table}[ht]
+\centering
+\caption{Notation of the board, of the textbook, and of this note.}\label{tab:notation}
+\begin{tabular}{llll}
+\toprule
+Object & Board & Textbook & This note\\
+\midrule
+graph & $(G,V)$ & $G=(V,E)$ & $G=(V,E)$\\
+edge set & $V$ (in ``$e_{ij}\in V$'') & $E$ & $E$\\
+vertex & $n_i$ & $v_i$ & $n_i$\\
+number of vertices & $N$, written $|G|=N$ & $n$ & $N$\\
+edge between $n_i,n_j$ & $e_{ij}$ & $uv$ & $n_in_j$ or $e_{ij}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The board's notation is read from the photographs \cite{whiteboard1,whiteboard2}; the difference is one of notation only.

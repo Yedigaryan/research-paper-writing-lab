@@ -1,0 +1,25 @@
+{
+  "question": "For a simple undirected graph with N vertices given by its adjacency matrix A: (1) what does the entry (A^k)_{ij} represent, (2) how can one determine from A whether the graph is connected, and (3) what is the definition of a path between vertices n_i and n_j?",
+  "sources": [],
+  "claims": [
+    {
+      "id": "author-1",
+      "text": "Textbook Definition 1.2.1 (printed p. 16): the degree of a vertex v in a graph G, written d_G(v) or d(v), is the number of edges incident to v, so d_G(v) = |∂_G(v)|. Textbook Theorem 1.2.1 (L. Euler, printed p. 16): in every graph G = (V, E) the sum of d_G(v) over all vertices v equals 2|E(G)|. Both read from the page image of printed p. 16 (PDF p. 17). The book places the degree after the adjacency matrix (printed p. 11).",
+      "kind": "fact",
+      "module": "author",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "printed p. 16 (PDF p. 17), Definition 1.2.1 and Theorem 1.2.1",
+          "quote": "Սահմանում 1.2.1: ... կանվանենք այդ գագաթին կից կողերի քանակը: պարզ է, որ d_G(v) = |∂_G(v)|:"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": ["sections/background.tex"],
+      "contradicted_by": []
+    }
+  ],
+  "contradictions": []
+}

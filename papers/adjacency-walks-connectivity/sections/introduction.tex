@@ -1,0 +1,113 @@
+\section{Introduction}\label{sec:introduction}
+
+\subsection{The question and where it came from}\label{sec:question}
+
+A graph is a set of points, called vertices, together with a set of lines, called edges, each joining two of the points.
+A graph with $N$ vertices can be recorded as an $N$ by $N$ table of zeros and ones called the adjacency matrix $A$, which has a one in row $i$ and column $j$ when the vertices numbered $i$ and $j$ are joined by an edge.
+This note studies what such a table can tell us beyond the obvious.
+The study has three questions.
+
+The first two questions are written on a lecture whiteboard, photographed twice from slightly different angles \cite{whiteboard1,whiteboard2}.
+The board states a problem: a graph with $N$ nodes is given through its adjacency matrix $A$.
+Question 1 asks what an entry of a power of $A$ represents.
+Question 2 asks how to know from $A$ whether the graph is connected.
+Below the questions the board defines a graph to be connected when for any two nodes $n_i,n_j$ there exists a path between the nodes \cite{whiteboard1,whiteboard2}.
+The third question is added by the assignment text that accompanied the photographs; it asks for the definition of a path between $n_i$ and $n_j$.
+The assignment text also fixes the setting: the graph is finite, simple, and undirected, and ``path'' means a walk in which no vertex is repeated.
+The assignment text is the source of these two assumptions, and nothing on the board contradicts them.
+Appendix~\ref{app:photographs} transcribes the board line by line.
+
+\begin{enumerate}
+\item[\textbf{Q1.}] What does the entry $(A^k)_{ij}$ represent?
+\item[\textbf{Q2.}] How can one determine from $A$ whether the graph is connected?
+\item[\textbf{Q3.}] What is the definition of a path between the vertices $n_i$ and $n_j$?
+\end{enumerate}
+
+\paragraph{The mark above $A$.}
+In question 1 the board has a small mark above the letter $A$.
+In both photographs it looks like a small $n$ or a pair of quotation marks, not clearly a $k$.
+The assignment text asks about $A^k$, so this note reads the mark as a positive whole number $k$ (the power).
+This is an interpretation, not something the photographs settle.
+The answer below does not depend on it, because the theorem of \cref{sec:walks} holds for every positive whole number used as the exponent.
+
+\paragraph{The example on the board.}
+The board shows a drawing of three vertices labelled 1, 2, 3 beside a matrix with rows $0\,1\,0$, $1\,0\,1$, $0\,1\,0$ \cite{whiteboard1,whiteboard2}.
+The matrix says that vertex~1 is joined to vertex~2 and vertex~2 to vertex~3, and that vertex~1 is not joined to vertex~3.
+The drawing shows three lines: from 1 to 2 (with an arrowhead at 2), from 1 to 3, and from 2 to 3.
+So the drawing has an edge from 1 to 3 that the matrix does not have.
+The problem statement says the graph is given through its adjacency matrix, so this note takes the matrix to define the example graph, called $B$ below, and reports the mismatch rather than guessing which the lecturer meant.
+The matrix is symmetric, so it does not support the arrowhead, which would mean a one-way edge; the arrowhead is treated as a stray mark.
+
+\subsection{The story used throughout}\label{sec:story}
+
+Every definition, theorem, test, and worked example in this note is introduced first by a short paragraph headed ``In plain words''.
+Those paragraphs tell one story.
+A village has houses.
+Each road joins exactly two different houses.
+No two roads join the same pair of houses.
+Every road can be driven in both directions.
+A trip is a list of houses, one after another, where each next house is at the far end of a road from the house before.
+A trip may pass a house twice, and it may drive a road twice.
+A route is a trip that never passes the same house twice.
+\Cref{tab:story} shows how the story words match the mathematical words that are defined in \cref{sec:background}.
+
+\begin{table}[ht]
+\centering
+\caption{The story words and the mathematical words they stand for.}\label{tab:story}
+\begin{tabular}{ll}
+\toprule
+Story word & Mathematical word\\
+\midrule
+house & vertex\\
+road & edge\\
+trip & walk\\
+trip that never drives a road twice & trail\\
+route (trip that never passes a house twice) & path\\
+village in one piece & connected graph\\
+piece of a village & component\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The running example is the village of three houses in a row: house 1, house 2, house 3, a road from 1 to 2 and a road from 2 to 3, and no road from 1 to 3.
+This is the graph $B$ of the board matrix.
+
+\subsection{Conventions and notation}\label{sec:notation}
+
+The course textbook is Petrosyan, Mkrtchyan, and Kamalyan, \emph{Graph Theory} \cite{petrosyan2015grafneri}.
+Its definitions are cited by their own numbers, written ``textbook Definition~1.2.10'' to keep them apart from the numbers of this note.
+Page numbers of the textbook are printed page numbers.
+Letters are fixed once, here.
+
+\begin{itemize}
+\item A graph is $G=(V,E)$ with a finite nonempty vertex set $V$ and an edge set $E$ of unordered pairs of distinct vertices \cite[Section~1.1, Definition~1.1.1]{petrosyan2015grafneri}.
+The textbook names the vertices $v_1,\dots,v_n$.
+The board names them $n_1,\dots,n_N$ and writes $(G,V)$ and ``$e_{ij}\in V$'' where the textbook writes $G=(V,E)$ and $e\in E$ \cite{whiteboard1,whiteboard2}.
+This is a difference of notation only.
+This note uses the board's vertex names $n_1,\dots,n_N$, the textbook's $V$ and $E$, and $N$ for the number of vertices.
+\item An edge joining $n_i$ and $n_j$ is written $n_in_j$, or $e_{ij}$ as on the board.
+In walk lists the vertex $n_i$ is written by its index, so $1\text{-}2\text{-}3$ means $n_1,n_2,n_3$.
+\item $A$ is the adjacency matrix and $A_{ij}$ its entry in row $i$ and column $j$; $A^k$ is the $k$-th power of $A$ and $(A^k)_{ij}$ its $(i,j)$ entry; $I$ is the $N$ by $N$ identity matrix, with ones on the diagonal and zeros elsewhere.
+\item $\deg(n_i)$ is the degree of $n_i$ and $d(u,v)$ the distance between $u$ and $v$ (\cref{sec:background}).
+\item The word \emph{path} is used in the course sense: no repeated vertex.
+The textbook uses the word ``path'' for something weaker, which this note calls a \emph{trail}; \cref{sec:path} compares the conventions in one table.
+\end{itemize}
+
+\subsection{What this note shows}\label{sec:results}
+
+The textbook defines graphs, walks, paths, and connectivity, but, according to a full-text search of the whole book for the adjacency matrix, it contains no theorem on the powers of $A$ and no matrix test for connectivity; the book was not read page by page outside the chapters used here, so this absence is reported with that qualification \cite{petrosyan2015grafneri}.
+Both results are therefore taken from other sources and proved in full in this note.
+The results are these.
+\begin{itemize}
+\item \textbf{Answer to Q1} (\cref{thm:walkcount}). $(A^k)_{ij}$ is the number of walks of length $k$ from $n_i$ to $n_j$ \cite{quinlan_matrices_graphs,grinberg2025graph,lehman_mcs_adjacency,bai2025adjacency}. It is a count of walks and not of paths (\cref{prop:warning}); one published statement that says ``paths'' is wrong as written \cite{paramadevan2021adjacency}.
+\item \textbf{Answer to Q2} (\cref{thm:test}). For $N\ge 2$, $G$ is connected if and only if every off-diagonal entry of $A+A^2+\dots+A^{N-1}$ is positive, and also if and only if every entry of $(I+A)^{N-1}$ is positive \cite{paramadevan2021adjacency,bai2025adjacency}. These sources state the test; the proof here is the note's own.
+\item \textbf{Answer to Q3} (\cref{def:path} and \cref{sec:path}). A path between $n_i$ and $n_j$ is a walk from $n_i$ to $n_j$ with no repeated vertex, the textbook's simple path (Definition~1.2.13) \cite{petrosyan2015grafneri}.
+\end{itemize}
+
+\subsection{Organization}\label{sec:organization}
+
+\Cref{sec:background} builds the vocabulary in the textbook's order: graph, adjacency matrix, walk, path, cycle, distance, connectivity.
+\Cref{sec:walks} answers Q1, \cref{sec:connectivity} answers Q2, and \cref{sec:path} answers Q3 and compares the naming conventions.
+\Cref{sec:example} works the three-vertex examples through with every matrix written out.
+\Cref{sec:discussion} states the limits of the results, and \cref{sec:conclusion} gives the direct answers.
+The appendices hold secondary proofs, the textbook locators, the transcription of the board, and the way to rerun the computations.

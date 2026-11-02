@@ -1,0 +1,21 @@
+\section{Conclusion}\label{sec:conclusion}
+
+\textbf{Question 1.}
+For a finite simple undirected graph with adjacency matrix $A$ and an integer $k\ge 1$, the entry $(A^k)_{ij}$ is the number of walks of length exactly $k$ from $n_i$ to $n_j$ (\cref{thm:walkcount}).
+It counts walks, in which vertices and edges may repeat, and not paths: in the board graph $(A^2)_{11}=1$ although no path of positive length starts and ends at $n_1$ (\cref{prop:warning}).
+The textbook does not state this theorem in the pages used, so it is proved in this note.
+
+\textbf{Question 2.}
+A graph with $N\ge 2$ vertices is connected if and only if every off-diagonal entry of $A+A^2+\dots+A^{N-1}$ is positive, which holds if and only if $(I+A)^{N-1}$ has no zero entry (\cref{thm:test}).
+The proof rests on walk counting and on the fact that a walk contains a path, which bounds the powers needed by $N-1$ (\cref{cor:bound}); the bound cannot be lowered (\cref{prop:sharp}).
+The test was shown on a connected and on a disconnected graph with three vertices, with every matrix written out (\cref{ex:testB}, \cref{ex:testD}).
+Breadth-first search is the alternative, and by the operation counts of the estimate in \cref{rem:cost} it needs far fewer operations (\cref{rem:bfs}).
+
+\textbf{Question 3.}
+A path between $n_i$ and $n_j$, in the course convention, is a walk from $n_i$ to $n_j$ in which no vertex occurs twice; this is the textbook's simple path, Definition~1.2.13 (\cref{def:path}, \cref{sec:path}).
+The textbook's own word ``path'' (Definition~1.2.12) means a walk with no repeated edge, which this note calls a trail.
+Whether the walk, trail, or path reading is used, a graph is connected under exactly the same conditions (\cref{prop:readings}).
+
+\textbf{What stays open.}
+The board's mark above $A$ is read as the exponent $k$ on the strength of the assignment text; the board drawing and the board matrix differ by one edge, and the matrix is followed; and the textbook was read page by page only in the chapters used, so the absence of a matrix test in the rest of the book is reported with that qualification.
+None of these changes the mathematics proved above.

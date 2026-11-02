@@ -417,7 +417,7 @@
           "quote": "The 0-th power of any n × n-matrix is defined to be the n × n identity matrix In ; thus, C0 = In ."
         }
       ],
-      "derivation": "sections/answer1_walks.tex, proof of Theorem 3.5 (label thm:walkcount); appendices/derivations.tex, Appendix A.1 (label app:walkcount)",
+      "derivation": "sections/answer1_walks.tex, proof of Theorem 3.1 (label thm:walkcount)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -492,7 +492,7 @@
           "quote": "The number of walks of length 2 from a vertex to itself is just the number of edges at that vertex, or the vertex degree."
         }
       ],
-      "derivation": "appendices/derivations.tex, Appendix A.2 (label app:counterexample); sections/answer1_walks.tex, Proposition 3.10 (label prop:warning); matrix products and counts by appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt)",
+      "derivation": "sections/answer1_walks.tex, Proposition 3.6 (label prop:warning); matrix products and counts by appendices/scripts/m1_walks.py (output appendices/scripts/m1_walks_output.txt)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -1126,7 +1126,7 @@
           "quote": "Then, there is a path from u to v of length ≤ k."
         }
       ],
-      "derivation": "sections/answer2_connectivity.tex, Proposition 4.5 (label prop:pair) and Theorem 4.6 (label thm:test); appendices/derivations.tex, Appendix A.3 (label app:testproof) (chain of premises)",
+      "derivation": "sections/answer2_connectivity.tex, Proposition 4.5 (label prop:pair) and Theorem 4.7 (label thm:test) (chain of premises)",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -1170,7 +1170,7 @@
           "quote": "Define the modified adjacency matrix A′ = I + A, where the identity matrix I adds self-loops (A′i,i = 1)."
         }
       ],
-      "derivation": "appendices/derivations.tex, Appendix A.4 (label app:iplusa) (binomial expansion, proof of Proposition 4.16 (label prop:iplusa))",
+      "derivation": "sections/answer2_connectivity.tex, Proposition 4.6 (label prop:iplusa) (binomial expansion)",
       "confidence": "high",
       "status": "supported",
       "used_in": [

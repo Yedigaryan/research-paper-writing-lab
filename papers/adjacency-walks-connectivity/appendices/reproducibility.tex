@@ -1,0 +1,20 @@
+\section{Sources read and how to rerun the computations}\label{app:repro}
+
+\subsection{Sources}\label{sec:sourcesread}
+
+The course textbook was read page by page at printed pages 9--12, 16, 21--23, and 48--49, with formulas checked on the page images; its text layer drops most symbols \cite{petrosyan2015grafneri}.
+A full-text search of the whole book for the adjacency matrix found it on a few pages, and found no walk-counting theorem and no matrix test for connectivity; the pages outside those named were not read.
+Quinlan's notes were read in full \cite{quinlan_matrices_graphs}, the other web and article sources in the parts that carry the statements cited \cite{grinberg2025graph,lehman_mcs_adjacency,paramadevan2021adjacency,bai2025adjacency,weisstein_connectedgraph,wikipedia_path_graph_theory,schost2026bfs}, and both board photographs as images \cite{whiteboard1,whiteboard2}.
+All web sources were accessed on 2026-10-27.
+
+\subsection{Scripts}\label{sec:scripts}
+
+All scripts are in \texttt{appendices/scripts/}, use only the Python standard library and exact integer arithmetic, and are run from the paper folder.
+\begin{itemize}
+\item \texttt{m1\_walks.py} (output \texttt{m1\_walks\_output.txt}): powers of the board matrix, enumeration of walks, trails, and paths, the hand-checkable sums, and the brute-force check of the walk-counting theorem.
+\item \texttt{m2\_walks.py} (output \texttt{m2\_walks\_output.txt}): classification of the examples of \cref{sec:walkdefs} by the literal definitions, the walk-to-path construction and its checks, and distances.
+\item \texttt{m3\_connectivity.py} (output \texttt{m3\_connectivity.out.txt}): the connected and disconnected examples, the path graphs, the exhaustive comparison with breadth-first search, and the cost counts; the run takes about thirty seconds.
+\item \texttt{generate\_paper\_numbers.py} (output \texttt{generate\_paper\_numbers\_output.txt}): writes the matrices and the table bodies that the text reads in from \texttt{figures/matrices.tex}; the tables of exhaustive and sharpness checks are read from the saved output of the previous script.
+\end{itemize}
+Each is run as \texttt{python3 -I appendices/scripts/<name>.py}.
+LaTeX is compiled with \texttt{latexmk -pdf} and \texttt{biber}.

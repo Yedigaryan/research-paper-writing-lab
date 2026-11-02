@@ -1,0 +1,48 @@
+\section{The board photographs}\label{app:photographs}
+
+The two photographs show one board from slightly different angles, and they are read together \cite{whiteboard1,whiteboard2}.
+This appendix transcribes the board in reading order, reports what is clear and what is not, and compares the drawing with the matrix edge by edge.
+
+\subsection{Transcription}\label{sec:transcription}
+
+\begin{enumerate}
+\item $A_{ij}=1$ if $e_{ij}\in V$, and $A_{ij}=0$ if $e_{ij}\notin V$.
+The word ``if'' in both lines is written on the board in Armenian and is transcribed here as ``if''.
+The board's $V$ is the edge set.
+\item A drawing of three circled vertices labelled $1$, $2$, $3$, beside a $3$ by $3$ table with rows $0\,1\,0$, $1\,0\,1$, $0\,1\,0$ and the label ``adj.''.
+\item ``Problem. Given graph $(G,V)$ with $N$ nodes i.e. $|G|=N$ and the graph is represented through it's adj. matrix. So you have $A$ matrix.''
+The letter $A$ here is written with a small mark on each side, which looks like quotation marks.
+\item ``1) What does $A_{ij}$ represent'', with a small mark above the $A$.
+\item ``2) How to know if graph is connected or not.''
+\item ``Def. Graph is called connected if for any $n_i,n_j$ $\exists$ path between nodes.''
+\end{enumerate}
+
+\subsection{What is clear and what is not}\label{sec:clarity}
+
+\emph{Clearly legible:} all the prose above, the matrix entries, and the vertex labels.
+\emph{Likely reading:} the mark above $A$ in question 1 is a power; the assignment text asks about $A^k$, so $k$ is used.
+In both photographs the mark looks like a small $n$ or a pair of quotation marks, and the board's own letter for the number of vertices is the capital $N$.
+\emph{Unreadable:} a small scratched-out mark under vertex $1$ in the drawing, which appears on both photographs and is not read.
+
+\subsection{Drawing against matrix}\label{sec:drawingmatrix}
+
+\Cref{tab:drawing} compares the three possible edges of three vertices.
+
+\begin{table}[ht]
+\centering
+\caption{The board drawing against the board matrix, edge by edge.}\label{tab:drawing}
+\begin{tabular}{lll}
+\toprule
+Pair & Matrix & Drawing\\
+\midrule
+$1,2$ & $A_{12}=A_{21}=1$, an edge & a line, with an arrowhead at $2$\\
+$1,3$ & $A_{13}=A_{31}=0$, no edge & a line\\
+$2,3$ & $A_{23}=A_{32}=1$, an edge & a line\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The matrix is symmetric with zero diagonal, so it is a valid adjacency matrix of a simple undirected graph (\cref{prop:rowsums}), and it does not support the arrowhead, which would mean a one-way edge.
+The matrix has two edges and the drawing has three; the line from $1$ to $3$ is in the drawing only.
+Following the problem statement, which says the graph is given through its adjacency matrix, this note uses the matrix, giving the graph $B$; the drawing read as drawn is the triangle $T$ (\cref{fig:graphs}).
+The mismatch is reported and not resolved.

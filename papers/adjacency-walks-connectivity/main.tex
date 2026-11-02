@@ -1,0 +1,82 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{tikz}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+\usepackage[backend=biber,style=numeric,urldate=long]{biblatex}
+\addbibresource{references.bib}
+\graphicspath{{figures/}}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}[definition]{Example}
+\newtheorem{nonexample}[definition]{Non-example}
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+
+\crefname{nonexample}{Non-example}{Non-examples}
+\Crefname{nonexample}{Non-example}{Non-examples}
+\crefname{definition}{Definition}{Definitions}
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{proposition}{Proposition}{Propositions}
+\crefname{lemma}{Lemma}{Lemmas}
+\crefname{corollary}{Corollary}{Corollaries}
+\crefname{remark}{Remark}{Remarks}
+\crefname{example}{Example}{Examples}
+\crefname{section}{Section}{Sections}
+\crefname{subsection}{Section}{Sections}
+\crefname{appendix}{Appendix}{Appendices}
+\crefname{table}{Table}{Tables}
+\crefname{figure}{Figure}{Figures}
+
+% the plain-words paragraph that precedes every definition, theorem, test and worked example
+\newcommand{\plainwords}{\par\smallskip\noindent\textbf{In plain words.}\ }
+
+\input{figures/matrices}
+
+\title{Adjacency matrices, walks, and connectivity:\\ a study note}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A graph with $N$ vertices can be described by an $N$ by $N$ table of zeros and ones, its adjacency matrix $A$.
+This note answers three questions about that table.
+First, the entry in row $i$ and column $j$ of the $k$-th power of $A$ is the number of walks of length exactly $k$ from vertex $n_i$ to vertex $n_j$; it counts walks, not paths, and the note shows by example why the difference matters.
+Second, a graph with $N\ge 2$ vertices is connected exactly when every off-diagonal entry of $A+A^2+\dots+A^{N-1}$ is positive, which is the same as saying that $(I+A)^{N-1}$ has no zero entry; the note proves this and shows that the last power cannot be lowered.
+Third, a path between $n_i$ and $n_j$, in the convention of the course, is a walk from $n_i$ to $n_j$ in which no vertex occurs twice; the note compares this with the textbook's two words for related ideas.
+Definitions taken from the course textbook carry the textbook's numbers, every statement is proved or attributed, and every matrix in the worked examples was computed by a script.
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/background}
+\input{sections/answer1_walks}
+\input{sections/answer2_connectivity}
+\input{sections/answer3_path}
+\input{sections/example}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\printbibliography
+
+\appendix
+\input{appendices/derivations}
+\input{appendices/course-terms}
+\input{appendices/photographs}
+\input{appendices/reproducibility}
+
+\end{document}
