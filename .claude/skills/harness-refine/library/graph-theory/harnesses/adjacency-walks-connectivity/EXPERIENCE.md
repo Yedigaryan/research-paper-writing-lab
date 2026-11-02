@@ -103,3 +103,9 @@ verdict: confounded
 - **lesson**: Record those verified facts in a triggered reference file (references/<domain>-sources.md), and point paper-author.md and module-owner.md to it as something to read when the paper cites that source. Copy each entry from the verifier's finding with its exact scope, stating what it covers and what it does not, never as a paraphrase. Authors copy these entries into the paper, so before adopting the file, check every entry against the finding it came from.
 - **evidence**: graph-sources.md row. The degree definition was cited in dom and composed, which had the file (the dom author names the file as the reason), and missing in base round 1 (E1) and inv (F1), which did not. Dom's overstated entry "walk, trail, path equivalence" went into the paper verbatim and was caught as F9. Composed's corrected entry did not recur. Counter-case: composed still misattributed the Galway notes (F4) despite the file, so the file does not guarantee compliance.
 - **confidence**: low. There is one rollout per candidate, and the composed orchestrator ran on a different session model. The base comparison point is a first draft from an earlier harness. The degree contrast is only 2 runs against 2, though one trajectory states the mechanism directly, and propagation of a wrong entry is shown once.
+
+## Correction after adoption
+The Proposition 2.9.10 entry in graph-sources.md was replaced with the
+composed candidate's wording (walks and paths only, not trails), which the
+dom evaluator's finding F9 and the composed rollout support. The tree above
+carries the corrected entry.

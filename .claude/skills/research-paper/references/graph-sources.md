@@ -60,9 +60,10 @@ Consequences the paper must respect:
   multidigraphs, so his statements are more general than simple graphs.
   Walk is Definition 2.9.1(a), path is Definition 2.9.1(c). Corollary 2.9.7
   (p. 39) covers u = v and gives the length bound that the textbook's
-  Lemma 1.2.1 lacks; Proposition 2.9.10 (p. 42) is the walk, trail, path
-  equivalence. His remark on circuits is about closed walks, not closed
-  trails.
+  Lemma 1.2.1 lacks. Proposition 2.9.10 (p. 42) is the equivalence of
+  walks and paths only; it says nothing about trails, so cite it for the
+  walk and path readings and prove the trail reading in the paper. His
+  remark on circuits is about closed walks, not closed trails.
 - Bai, BIMSA lecture notes (2025-03-10): Theorem 1 (walk counting) is
   stated for simple graphs. Theorem 2 states the (I + A)^(n-1) form of the
   test; its proof sketch says the power "aggregates all paths", which is

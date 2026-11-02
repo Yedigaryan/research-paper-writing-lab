@@ -117,6 +117,9 @@ it is. It needs a one-line fix before the next graph theory paper. The
 corrected wording is in the composed tree on branch
 `claude/harness/adjacency-walks-connectivity/composed`.
 
+Fixed after adoption: the entry now carries the composed wording, in
+the live tree and in the library copy, at the user's request.
+
 ### Confounds and process notes
 
 - One rollout per candidate; selection compares four single drafts.
