@@ -160,3 +160,76 @@ As in Round 1.
 Release conditions: 1 holds (all scores >= 4); 2 holds; 3 holds except E2-6 (minor); 4 holds; 5 fails (E2-1 and five reader majors); 6 holds; 7 holds; 8 holds; 9 holds (headings for every input file; per-finding log for Round 1 present); 10 fails (evaluator recommends REVISE).
 
 Decision: FAIL -- one major evaluator finding (E2-1) and five major reader findings are open; revision round 3, the last allowed, follows.
+
+## Round 3, 2026-11-02
+
+Question: as in Round 1.
+Scope: as in Round 1.
+Research summary: no new research. The author revised all sections in response to Round 2 findings and added source m2paths (the m2 check script). Merged evidence: 16 sources, 88 claims (64 supported, 24 qualified, 0 unverified, 0 removed); the rebuild from evidence.base.json plus fragments reproduces evidence.json byte for byte.
+
+Model levels: research 2, modules 2, author 2, reader 2, evaluator 3 (fresh agent, given the Round 1 and Round 2 record), orchestrator session model (configured claude-opus-5-5; served model not observable from inside the session). Hierarchy requirement: met (configured levels; no fallback reported by the harness).
+
+Mechanical checks: build pass, citations pass (0 errors, 2 warnings: uncited lehman2017mcs, ntnugraphsearch), claims pass (0 errors, 0 warnings), pdf pass (23 pages, 0 errors, 0 warnings).
+
+### Scores
+
+| Dimension | Score | Observation |
+|---|---|---|
+| 1 Correctness | 4 | Every matrix, count and proof verified independently; Section 7 counterexample does not refute the restated sum claim; "one multiplication" in the 6.2 plain-words paragraph is false for N > 3. |
+| 2 Evidence coverage | 4 | All attributed sentences match evidence quotes; "grow quickly" (discussion.tex:44) unsupported. |
+| 3 Citation integrity | 5 | Every locator checked against textbook page images and fetched sources; all correct. |
+| 4 Logical validity | 3 | Main chain complete; one invalid inference in Section 7 (discussion.tex:36-38). |
+| 5 Understandability | 4 | Round 2 reader majors fixed; "on its own island" misstates reflexivity; five plain-words sentences of 23-32 words. |
+| 6 Completeness | 5 | Every brief objective met. |
+| 7 Methodological rigor | 5 | Script-generated matrices; enumeration and exhaustive checks labelled as checks. |
+| 8 Critical analysis | 4 | Thorough; the literature critique in Section 7 is flawed (E3-1). |
+| 9 Internal consistency | 4 | Notation consistent; "grow quickly" vs "no claim about growth rates"; Section 7 restatement vs Remark 3.36. |
+| 10 Reproducibility | 5 | All scripts keyed and reproducible; independent recomputation agrees. |
+| 11 LaTeX and PDF quality | 4 | Clean build; 10 n.d. biber warnings; two hyperref warnings; blank space on pp. 19-20. |
+| 12 Answer relevance | 5 | Q1-Q3 answered directly within the brief's limits. |
+
+### Findings
+
+Round 2 findings, as verified by the Round 3 evaluator: E2-1, E2-2, E2-4, E2-5, E2-7, E2-10, E2-11 resolved; E2-3, E2-6, E2-8 partially resolved (carried as E3-5, E3-4, E3-6); E2-9 not resolved (carried as E3-7). R2-1, R2-7, R2-10, R2-12 (majors) resolved; R2-18 (major) partially resolved (carried as E3-1); R2-2 to R2-6, R2-8, R2-9, R2-11, R2-13 to R2-16, R2-19 to R2-22 resolved; R2-17 partially resolved (counts confirmed correct, attributed to script output; documented). Round 1 carry-overs: E1-4, E1-5, E1-7 resolved; E1-14 partially resolved (E3-6); E1-15 not resolved (E3-7); R1-12, R1-15 documented.
+
+Round 3 evaluator findings:
+
+| Id | Severity | Location | Defect | Status |
+|---|---|---|---|---|
+| E3-1 | major | discussion.tex:31-38 | One counterexample claimed to refute three statements; does not refute the restated sum claim under Remark 3.36's length-0 path | open |
+| E3-2 | minor | connectivity.tex:85-86 | "one multiplication" false for N > 3 | open |
+| E3-3 | minor | connectivity.tex:44 | "on its own island" misstates reflexivity | open |
+| E3-4 | minor | discussion.tex:44-46 | "grow quickly" unsupported, contradicts next sentence | open |
+| E3-5 | minor | several plain-words paragraphs | Sentences of 23-32 words | open |
+| E3-6 | minor | references.bib; PDF pp. 19-20 | n.d. year warnings; blank space | open |
+| E3-7 | minor | evidence.json | Two uncited evidence sources (lehman2017mcs, ntnugraphsearch) | documented: neither supports any sentence of the paper; kept in the evidence file as uncited background found during research, recorded in self-evaluation.md |
+| E3-8 | minor | provenance.tex:12-14 | Cites "a later independent review" (the evaluator) as provenance; awkward wording | open |
+
+Technician-reader findings Round 3 (R3-n; full text in reader-findings.md, Round 3). Major:
+
+| Id | Severity | Location | Defect | Status |
+|---|---|---|---|---|
+| R3-1 | major | Section 1.1, Convention 2.5 | Course meaning of "path" rests on an assignment text that is not quoted | open |
+| R3-15 | major | Remark 6.12(1) | Parity (two-group) argument for why one power is not enough is hard to follow | open |
+
+Minor reader findings R3-2 to R3-14 and R3-16 to R3-22: open. The reader's summary matches the paper's conclusion.
+
+### Citation and claim coverage
+
+Sources 16 (14 cited). Claims: 64 supported, 24 qualified, 0 unverified, 0 removed. Spot checks: textbook page images (printed pp. 9, 11, 12, 16, 21-23, 34, 48, 49, 61), both board photos, Bai, Paramadevan and Sotheeswaran, Gotti, Galway, Grinberg, Waterloo; all support the paper as cited.
+
+### Unverified claims and access limits
+
+- No unverified claims in the evidence file. One unqualified statement in the text without support (E3-4).
+- The course meaning of "path" comes from the user's assignment text, which is not in the paper folder as a file (R3-1); it is recorded as a qualified claim (C36).
+- Textbook read in part; C15 is a search result (printed pp. 7, 11, 12, 34, 61 and the pages cited were viewed as images). Wikipedia read through a fetch summary only. Lehman, Leighton and Meyer: metadata only.
+
+### Known limitations
+
+- Board readings (mark above A, arrowhead, extra 1-3 line) are interpretations of photos.
+- BFS rests on one lecture deck; its connectivity step is proved in the paper.
+- Undated sources print "n.d." in the bibliography because check_citations.py requires a year or date field.
+
+Release conditions: 1 holds (all scores >= 3); 2 holds (no critical findings); 3 holds except E3-4 (minor, unqualified); 4 fails in one place (E3-1: a conclusion about published statements is not justified by the example given); 5 fails (reader majors R3-1, R3-15); 6 holds; 7 holds; 8 holds; 9 holds (self-evaluation.md has a heading for every input file and per-finding logs for Rounds 1 and 2); 10 fails (evaluator recommends REVISE).
+
+Decision: INCOMPLETE -- the three-round limit is reached without release. Conditions 4, 5 and 10 still fail: one major evaluator finding (E3-1, Section 7 critique of the literature) and two major reader findings (R3-1, R3-15) are open. The answers to Q1, Q2 and Q3 are correct and fully proved, every citation checks out, and no critical defect was found in any round. The paper is not released; the pipeline was stopped, not forced to pass.
