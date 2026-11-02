@@ -24,3 +24,19 @@ Files are in `/home/user/research-paper-writing-lab/papers/adjacency-walks-conne
 - `evidence/modules/m3.json`
 - `modules/scripts/m3_examples.py`
 - `modules/scripts/m3_exhaustive_check.py`
+
+## Follow-up message after orchestrator reconciliation (round 0)
+
+I made the three changes in `modules/m3.md` and `evidence/modules/m3.json`. I did not re-run any scripts, since no numbers changed.
+
+1. **Duplicate proofs removed.**
+   - **Lemma 3.1:** my proof is gone. In its place is Lemma E, a restatement that cites m2 Proposition 3 (with Lemma 2: a simple path is a trail), so the paper holds one proof.
+   - **Lemma P:** it now cites m2 Lemma 1 (C-m2-01; Grinberg Cor. 2.9.7). The textbook's Lemma 1.2.1 is mentioned only as the weaker form for u ≠ v with no length bound.
+   - **Lemma B:** it cites m2 Proposition 4(i).
+   - **Corollary 3.5:** it now rests on theorem W plus m2 Proposition 5, and its own distance proof is gone.
+   - **Evidence table and section 8:** both now say the trail lemma is proved in m2 (C-m2-03, C-m2-02). The orchestrator's earlier "reconcile which module holds the trail lemma" request is closed; m2 holds it.
+   - **`m3-C5`:** it is now a restatement of C-m2-03, and its derivation points to m2 Proposition 3 with Lemmas 1 and 2. The `m3-C4` and `m3-C7` derivations now name the m2 pieces they use.
+2. **Length-0 walks.** The sentence "the book's reflexivity shows the book also counts the trivial walk of length 0" is removed. It is replaced by an interpretation consistent with m2's convention (C-m2-06): the book is silent on k = 0, and reflexivity of alpha concerns its path relation only. `m3-C9` is now kind `interpretation` and status `qualified`. Open question 5 and the assumptions list match.
+3. **Story.** The three "In plain words" paragraphs now speak of towns and roads. The first one introduces "islands of towns" as the word for components, as part of that story.
+
+**Check against m2:** I confirmed the claim ids and proposition numbers against m2's files. The text of C-m2-06 covers closed trails plus the statement that the book does not say whether k = 0 is allowed, so I cited it for the k = 0 convention as you instructed.

@@ -22,3 +22,19 @@ Files are in `/home/user/research-paper-writing-lab/papers/adjacency-walks-conne
 - `evidence/modules/m1.json`
 - `modules/scripts/m1_walks.py`
 - `modules/scripts/m1_walks_output.txt`
+
+## Follow-up message after orchestrator reconciliation (round 0)
+
+All three conflicts are fixed in `modules/m1.md` and `evidence/modules/m1.json`. A merged check in a scratch copy gives 0 errors and 0 warnings. That copy re-merged all fragments into an already-merged `evidence.json`, so the duplicate ids it shows are an artefact and the real `evidence.json` is unchanged.
+
+1. **Story:** every use of houses, lanes and strolls is now towns, roads and journeys. That covers the plain-words paragraphs and the placeholder note in section 6, which now says the story follows m2 (Grinberg p. 36) and m3. A search of the file for the old words finds none.
+2. **Length-0 walks:** Remark 1 and the section 9 open question now say the book is silent on printed pp. 21-23. They say the paper adopts k = 0 as a convention, following Grinberg Definition 2.9.1(a), and cite C-m2-06. I added the qualified claim M1-11 for this.
+3. **Adjacency-matrix pages:** I viewed PDF page 8 (printed p. 7), the list of basic notations. It lists A(G) as the adjacency matrix (հարևանության մատրից) and B(G) as the incidence matrix (կցության մատրից).
+   - The "կցության" search term therefore means the incidence matrix, so its hits are not adjacency-matrix pages.
+   - Printed p. 7 does mention the adjacency matrix, as a notation entry only, with no theorem.
+   - The other hit pages were not viewed.
+   - Section 7 and section 9 now say this, worded as the result of a search plus the pages viewed. I added the qualified claim M1-10, quoting "A(G) - G գրաֆի հարևանության մատրից". C15 stays qualified, and both new claims are in the evidence table.
+
+Files are in `/home/user/research-paper-writing-lab/papers/adjacency-walks-connectivity/`:
+- `modules/m1.md`
+- `evidence/modules/m1.json`

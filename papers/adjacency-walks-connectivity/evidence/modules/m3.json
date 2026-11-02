@@ -152,7 +152,7 @@
           "quote": "any path from u to v must have length ≤ n − 1, where n is the number of vertices of G"
         }
       ],
-      "derivation": "modules/m3.md, sections 3.3 (Lemma 3.2) and 3.4 (Theorem 3.3); finite check in modules/scripts/m3_exhaustive_check.py",
+      "derivation": "modules/m3.md, sections 3.3 (Lemma 3.2) and 3.4 (Theorem 3.3), using m2 Lemma 1 (C-m2-01), m2 Proposition 4 (C-m2-04) and Lemma E (C-m2-03); finite check in modules/scripts/m3_exhaustive_check.py",
       "confidence": "high",
       "status": "supported",
       "used_in": [],
@@ -160,7 +160,7 @@
     },
     {
       "id": "m3-C5",
-      "text": "For vertices u, v of a simple graph the existence of a (u, v)-trail (the book's path, Def. 1.2.12), of a (u, v)-walk, and of a (u, v)-path with no repeated vertex (Def. 1.2.13) are equivalent, so textbook Definition 2.1.1 and the course convention define the same connected graphs. A path has distinct vertices hence distinct edges (so it is a trail); a trail is a walk; a walk contains a path.",
+      "text": "Restatement of m2 Proposition 3 (claim C-m2-03, proved in m2; no second proof here): for vertices u, v of a simple graph the existence of a (u, v)-trail (the book's path, Def. 1.2.12), of a (u, v)-walk, and of a (u, v)-path with no repeated vertex (Def. 1.2.13) are equivalent, so textbook Definition 2.1.1 and the course convention define the same connected graphs. Used by m3 as Lemma E.",
       "kind": "derived",
       "module": "m3",
       "support": [
@@ -180,7 +180,7 @@
           "quote": "G գրաֆը կանվանենք կապակցված, եթե նրա ցանկացած երկու u և v գագաթների համար G գրաֆում գոյություն ունի (u,v)-ճանապարհ։"
         }
       ],
-      "derivation": "modules/m3.md, section 3.2, Lemma 3.1; this is the proof that claim C37 assigned to m2",
+      "derivation": "Proof lives in modules/m2.md, Proposition 3 with Lemma 1 and Lemma 2 (claims C-m2-03, C-m2-01, C-m2-02); this claim only restates it for m3",
       "confidence": "high",
       "status": "supported",
       "used_in": [],
@@ -216,7 +216,7 @@
           "quote": "G գրաֆում u և v գագաթների միջև հեռավորությունը կսահմանենք որպես կարճագույն (u,v)-ճանապարհի երկարություն, եթե G գրաֆում գոյություն ունի առնվազն մեկ (u,v)-ճանապարհ, և +∞՝ հակառակ դեպքում։"
         }
       ],
-      "derivation": "modules/m3.md, section 3.6, Corollary 3.5; finite check in modules/scripts/m3_exhaustive_check.py",
+      "derivation": "modules/m3.md, section 3.6, Corollary 3.5: theorem W (entries count walks) together with m2 Proposition 5 (distance equals least walk length, claim C-m2-04); finite check in modules/scripts/m3_exhaustive_check.py",
       "confidence": "high",
       "status": "supported",
       "used_in": [],
@@ -247,8 +247,8 @@
     },
     {
       "id": "m3-C9",
-      "text": "The textbook defines the relation alpha on V by u alpha v if and only if a (u, v)-path exists in G, and states that it is reflexive (v alpha v for every v), symmetric and transitive; the reflexivity shows the book accepts the trivial walk of length 0 as a (v, v)-path.",
-      "kind": "fact",
+      "text": "The textbook defines the relation alpha on V by u alpha v if and only if a (u, v)-path exists in G, and states that it is reflexive (v alpha v for every v), symmetric and transitive. Interpretation, consistent with m2's convention that a walk of length 0 is allowed (C-m2-06): the reflexivity is about the book's path relation and does not itself define walk length; the book is silent on k = 0 in Definition 1.2.10.",
+      "kind": "interpretation",
       "module": "m3",
       "support": [
         {

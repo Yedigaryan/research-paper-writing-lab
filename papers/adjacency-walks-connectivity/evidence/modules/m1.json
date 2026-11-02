@@ -207,6 +207,42 @@
       "status": "qualified",
       "used_in": [],
       "contradicted_by": []
+    },
+    {
+      "id": "M1-10",
+      "text": "Printed p. 7 of the textbook (list of basic notations, PDF page 8, viewed as an image) lists A(G) as the adjacency matrix of G and B(G) as the incidence matrix. A pdftotext search for the incidence-matrix term finds hits on PDF pages 4, 8, 13, 39, 42, 45, 46, 53, 54, 112, 113, so those hits concern incidence and not adjacency matrices unless viewed otherwise; only PDF page 8 was viewed. Result of a search plus one page viewed, not a full read.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan2015graph",
+          "locator": "printed p. 7, list of basic notations, PDF page 8 viewed as image",
+          "quote": "A(G) - G գրաֆի հարևանության մատրից"
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M1-11",
+      "text": "With A^0 = I the entry (A^0)_ij matches the walks of length 0 (the single vertex sequence (n_i) when i = j, none otherwise); the textbook is silent on k = 0 on printed pp. 21 to 23 and the paper adopts k = 0 as a convention.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "grinberg2025graph",
+          "locator": "p. 36, Definition 2.9.1(a)",
+          "quote": "(with k ≥ 0)"
+        }
+      ],
+      "derivation": "modules/m1.md, Section 3.3, Remark 1; convention recorded in C-m2-06",
+      "confidence": "high",
+      "status": "qualified",
+      "used_in": [],
+      "contradicted_by": []
     }
   ],
   "contradictions": []
