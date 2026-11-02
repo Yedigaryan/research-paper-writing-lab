@@ -1,0 +1,18 @@
+{
+  "cand-a": {
+    "label": "dom",
+    "source": "harness-runs/adjacency-walks-connectivity/context/deliverables/dom.md"
+  },
+  "cand-b": {
+    "label": "composed",
+    "source": "harness-runs/adjacency-walks-connectivity/context/deliverables/composed.md"
+  },
+  "cand-c": {
+    "label": "base",
+    "source": "/tmp/claude-0/-home-user-research-paper-writing-lab/664655a7-ec62-53b6-9e88-73c633096aab/scratchpad/base-draft-ctx/deliverables/base.md"
+  },
+  "cand-d": {
+    "label": "inv",
+    "source": "harness-runs/adjacency-walks-connectivity/context/deliverables/inv.md"
+  }
+}
