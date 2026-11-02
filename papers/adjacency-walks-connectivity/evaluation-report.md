@@ -84,3 +84,79 @@ Sources 15 (13 cited). Claims: 63 supported, 23 qualified, 0 unverified, 0 remov
 Release conditions: 1 holds (all scores >= 3); 2 holds (no critical findings); 3 fails (E1-1, E1-2 not supported); 4 holds; 5 fails (reader major findings R1-14, R1-21, R1-29 and E1-4); 6 holds; 7 holds; 8 holds; 9 holds (self-evaluation.md has a heading for every input file); 10 fails (evaluator recommends REVISE).
 
 Decision: FAIL -- four major evaluator findings and six major reader findings are open; revision round 2 follows.
+
+## Round 2, 2026-11-02
+
+Question: as in Round 1.
+Scope: as in Round 1.
+Research summary: no new research. The author revised all sections in response to Round 1 findings and added claims A-4 (textbook notation, p. 9 and p. 11) and A-5 (verbatim Paramadevan and Bai statements). Merged evidence: 15 sources, 88 claims (64 supported, 24 qualified, 0 unverified, 0 removed); the rebuild from evidence.base.json plus fragments reproduces evidence.json byte for byte.
+
+Model levels: research 2, modules 2, author 2, reader 2, evaluator 3 (fresh agent, given the Round 1 record), orchestrator session model (configured claude-opus-5-5; served model not observable from inside the session). Hierarchy requirement: met (configured levels; no fallback reported by the harness).
+
+Mechanical checks: build pass, citations pass (0 errors, 2 warnings: uncited lehman2017mcs, ntnugraphsearch), claims pass (0 errors, 0 warnings), pdf pass (22 pages, 0 errors, 0 warnings).
+
+### Scores
+
+| Dimension | Score | Observation |
+|---|---|---|
+| 1 Correctness | 4 | All matrices, counts and proofs check out; false plain-words sentence (walkcount.tex:222-223), wrong pointer in Prop 4.9 proof, unsupported "grow quickly" remark. |
+| 2 Evidence coverage | 4 | Every attributed sentence has a matching evidence quote; Remark 6.12(4) unsupported. |
+| 3 Citation integrity | 5 | Eight sources checked including textbook page images; every locator and attribution correct. |
+| 4 Logical validity | 4 | Full chain to Thm 6.10 complete; one pointer slip in Prop 4.9 proof. |
+| 5 Understandability | 4 | Round 1 reader majors fixed; plain-words layer still has technical words, "loops", and unglossed equivalence-relation terms. |
+| 6 Completeness | 5 | Every brief objective met; Figures 1-4 support the examples. |
+| 7 Methodological rigor | 5 | Script-generated matrices, enumeration cross-checks, exhaustive N <= 6 check labelled as a check. |
+| 8 Critical analysis | 5 | Board ambiguities, two meanings of path, length zero, source quality, misleading literature statements with exact quotes. |
+| 9 Internal consistency | 4 | Body "loop" fixed; leftovers: "loops" in one plain-words paragraph, "size" vs "number of drives", d for degree and distance, "grow quickly" vs Discussion. |
+| 10 Reproducibility | 5 | Scripts regenerate outputs byte-identically; independent recomputation agrees. |
+| 11 LaTeX and PDF quality | 4 | Clean build; n.d. year warnings, lower-case "armenian", blank band at bottom of p. 3. |
+| 12 Answer relevance | 5 | Q1-Q3 answered directly; scope limits now respected. |
+
+### Findings
+
+Round 1 findings, as verified by the Round 2 evaluator: E1-1, E1-2, E1-3, E1-6, E1-8 to E1-13 resolved; E1-4, E1-7, E1-14 partially resolved (carried as E2-2, E2-3, E2-8); E1-5, E1-15 not resolved (carried as E2-3, E2-9). R1-1 to R1-11, R1-13, R1-14, R1-16 to R1-42 resolved; R1-15 partially resolved (dash cells remain, explained; documented); R1-12 not resolved, documented: the textbook standard puts the definition first and a plain-words paragraph precedes it, which the evaluator accepts as defensible. All Round 1 majors resolved.
+
+Round 2 evaluator findings (E2-n is the evaluator's F-n):
+
+| Id | Severity | Location | Defect | Status |
+|---|---|---|---|---|
+| E2-1 | major | walkcount.tex:222-223 | Plain-words sentence says a positive entry can occur when no tidy route exists (false) | open |
+| E2-2 | minor | connectivity.tex:81 | "cutting out loops" in the everyday sense | open |
+| E2-3 | minor | several plain-words paragraphs | "size" for length; technical words in the story layer; 22-word sentence | open |
+| E2-4 | minor | paths.tex:187-188 | Prop 4.9 proof points to Def 3.43 for b instead of a | open |
+| E2-5 | minor | notation list, Def 3.43, Remark 4.10 | d for both degree and distance | open |
+| E2-6 | minor | connectivity.tex:185 | "grow quickly with N" unsupported and contradicts Discussion | open |
+| E2-7 | minor | Non-example 3.42 | "H has only one cycle" loose; reason not given | open |
+| E2-8 | minor | references.bib; PDF p. 3 | n.d. years, lower-case "armenian", blank band | open |
+| E2-9 | minor | evidence.json | Two uncited evidence sources | open |
+| E2-10 | minor | provenance.tex | Pages 12, 34, 61 not listed as viewed | open |
+| E2-11 | minor | Def 6.5 | Equivalence-relation terms and "subgraph" unglossed | open |
+
+Technician-reader findings Round 2 (R2-n; full text in reader-findings.md, Round 2). Major:
+
+| Id | Severity | Location | Defect | Status |
+|---|---|---|---|---|
+| R2-1 | major | Figure 1, Section 1.1 | V-for-E and the "?" mark not explained where the figure first appears | open |
+| R2-7 | major | Def 3.39, Non-example 3.42 | Cycle definition wording circular; "only one cycle" unclear without saying cycles are counted up to rotation | open |
+| R2-10 | major | Lemma 4.4 proof | Case split for the equal-edge step not spelled out | open |
+| R2-12 | major | Section 6.2 | Reason for adding I and replacing B by one power stated loosely | open |
+| R2-18 | major | Section 7, misleading statements | Symbols l, n, b_ij from other papers not translated; counterexample not restated | open |
+
+Minor reader findings R2-2 to R2-6, R2-8, R2-9, R2-11, R2-13 to R2-17, R2-19 to R2-22: open. The reader's summary matches the paper's conclusion.
+
+### Citation and claim coverage
+
+Sources 15 (13 cited). Claims: 64 supported, 24 qualified, 0 unverified, 0 removed. Spot checks: textbook page images (printed pp. 9, 11, 12, 16, 21, 22, 23, 34, 48, 49, 61), both board photos, Bai, Paramadevan and Sotheeswaran, Gotti, Galway, Grinberg, Waterloo; all support the paper as cited.
+
+### Unverified claims and access limits
+
+- No unverified claims in the evidence file; one unqualified statement in the text without support (E2-6).
+- Textbook read in part; C15 is a search result. Wikipedia read through a fetch summary only. Lehman, Leighton and Meyer: metadata only.
+
+### Known limitations
+
+As in Round 1.
+
+Release conditions: 1 holds (all scores >= 4); 2 holds; 3 holds except E2-6 (minor); 4 holds; 5 fails (E2-1 and five reader majors); 6 holds; 7 holds; 8 holds; 9 holds (headings for every input file; per-finding log for Round 1 present); 10 fails (evaluator recommends REVISE).
+
+Decision: FAIL -- one major evaluator finding (E2-1) and five major reader findings are open; revision round 3, the last allowed, follows.
