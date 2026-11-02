@@ -78,6 +78,15 @@ rollout is one author run, the mechanical gate, one evaluator round, and
 one reader pass. The whole-pipeline stage reruns every step up to the
 three-round limit. The user names the stage; default `author`.
 
+The base rollout must come from the current harness. When the live tree
+has changed since the paper was produced (an earlier step adopted a
+candidate), run the base as a probe first: branch
+`claude/harness/<task>/base` from the base commit with no tree install,
+reset the paper folder for the stage, start the matching prompt from
+`references/probe-prompt.md`, and build Step 1's evidence from that
+branch with `--repo <worktree> --since <reset commit>`. It is one of the
+four rollouts. Pin every probe session of one step to the same model.
+
 ## Preconditions
 
 - A finished base rollout: a paper folder under `papers/<slug>/` with
