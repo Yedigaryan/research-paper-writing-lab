@@ -28,7 +28,7 @@ level with no prior knowledge of the topic.
 | `module-owner` | agent, one per module, parallel | 2 | brief, evidence, web | `modules/<id>.md`, `evidence/modules/<id>.json` |
 | `paper-author` | agent, kept alive across revisions | 2 | brief, evidence, modules | `main.tex`, `sections/`, `references.bib`, `self-evaluation.md` |
 | `paper-evaluator` | agent, fresh each round | 3 | paper, brief, evidence, rubric | nothing; returns findings |
-| `technician-reader` | agent | 2 | compiled paper text | nothing; returns unclear passages |
+| `technician-reader` | agent | 1 | compiled paper text | nothing; returns unclear passages |
 
 Model levels are defined in `references/model-levels.md`. The evaluator
 must sit at least one level above the author and every module owner. The

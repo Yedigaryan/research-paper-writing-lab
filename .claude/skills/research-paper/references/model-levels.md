@@ -20,7 +20,7 @@ capability ladder, not names, prices, or parameter counts.
 | `research-agent` | 2 | Long web-search context; breadth over depth. |
 | `module-owner` | 2 | One per subtopic, run in parallel. |
 | `paper-author` | 2 | Writes from module reports and evidence, not from memory. |
-| `technician-reader` | 2 | Diagnostic reader; its findings are advisory. |
+| `technician-reader` | 1 | Diagnostic reader; its findings are advisory. Haiku since 2026-11-02 to save usage; it reads the compiled text only. |
 | `paper-evaluator` | 3 | Must exceed level 2. |
 | Orchestrator | session model | Not pinned. Recorded in the report. |
 
@@ -54,3 +54,9 @@ findings in `expected-findings.md`.
   round's report for verifying resolution. Alternative: message the same
   evaluator across rounds. Switch if rounds regularly exceed three or the
   fresh evaluator re-raises findings marked resolved. Not yet measured.
+- 2026-11-02: `technician-reader` moved from level 2 (Sonnet) to level 1
+  (Haiku) to reduce usage. The hierarchy rule is unaffected: it constrains
+  the evaluator against the author and module owners, and the reader's
+  findings are advisory. Orchestrator sessions for refinement probes run
+  on Opus 5.5, not Fable 5.1. Watch the reader's findings in the next runs;
+  if they become shallow or wrong, move it back to Sonnet.

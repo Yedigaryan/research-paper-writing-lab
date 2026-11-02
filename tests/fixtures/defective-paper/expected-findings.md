@@ -38,3 +38,4 @@ FAIL. Dimensions 1, 2, 3, 4 and 5 must each score at most 2.
 | Date | Evaluator level | Caught | Missed | Recommendation | Notes |
 |---|---|---|---|---|---|
 | 2026-10-27 | 3 (opus) | E1 to E9, plus E10 and E11 which were added from this run | none | FAIL, scores 1,1,0,1,1,1,1,0,2,1,0,1 | Also found that the fixture preamble lacked `\newtheorem`, fixed the same day so the build fails only on the planted undefined citation. Judged `smith2021walks` fabricated by checking the DOI prefix with doi.org and Crossref. |
+| 2026-11-02 | reader only, level 1 (haiku) | comprehension side of E1, E2, E3, E4, E6, E7, E8, E9, and E5's unsupported sum | E5's N versus N-1 mismatch; E10 and E11 are evaluator checks | not applicable | Check after moving technician-reader to Haiku. Ten findings, each with a quoted passage and a correction; about 12.5k tokens. |
