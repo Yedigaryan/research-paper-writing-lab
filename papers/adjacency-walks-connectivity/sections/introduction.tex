@@ -5,7 +5,9 @@
 This note starts from a lecture whiteboard, photographed twice from slightly
 different angles \cite{whiteboard1,whiteboard2}. The board shows a graph with
 $\N$ vertices that is given through its adjacency matrix $A$, and it asks two
-questions about $A$ \cite{whiteboard1}. The matrix $A$ is a table of zeros and
+questions about $A$ \cite{whiteboard1}. In the first sentences a vertex is a point (a town in the story below) and an
+edge is a line joining two points (a road); \cref{tab:dictionary} translates every
+term. The matrix $A$ is a table of zeros and
 ones that records which vertices are joined by an edge (\cref{def:adjmatrix}).
 The first question is what the entry in row $i$ and column $j$ of the $k$-th
 power of $A$ represents; the $k$-th power is $A$ multiplied by itself $k$ times.
@@ -24,7 +26,9 @@ three questions Q1, Q2 and Q3:
 \end{description}
 
 \noindent The board also holds a small drawing of three vertices and a
-$3\times 3$ matrix (\cref{fig:boardredraw}). We use that matrix as the main
+$3\times 3$ matrix (\cref{fig:boardredraw}). In that figure the board's $V$ stands for the edge set
+$E$, and the small mark above $A$ (drawn as $?$) is read as the exponent $k$
+(\cref{conv:edgeset,conv:power}). We use that matrix as the main
 example, and \cref{sec:board-mismatch} reports where the drawing and the matrix
 differ.
 
@@ -83,7 +87,9 @@ proofs.
   difference matters.
   \item \textbf{Q2.} The graph on $\N\ge 2$ vertices is connected if and only
   if every off-diagonal entry of $A+A^2+\dots+A^{\N-1}$ is positive, and this
-  holds if and only if $(I+A)^{\N-1}$ has no zero entry (\cref{thm:test}).
+  holds if and only if $(I+A)^{\N-1}$ has no zero entry (\cref{thm:test}). The
+  exponent $\N-1$ is the longest a path can be, and adding $I$ lets one power stand
+  in for the sum (\cref{sec:test}).
   Here $I$ is the identity matrix (ones on the diagonal, zeros elsewhere), and an
   off-diagonal entry is an entry whose row number differs from its column
   number.
@@ -95,7 +101,8 @@ proofs.
 
 The course textbook defines the graph, the adjacency matrix, walks, paths,
 cycles, distance and connectivity \cite{petrosyan2015graph}. As far as a search
-of the book shows, it does not state the walk-counting theorem or the matrix test
+of the book shows (the claim covers only the pages found by that search and the
+pages viewed), it does not state the walk-counting theorem or the matrix test
 for connectivity; \cref{app:provenance} says what was searched and which pages
 were viewed \cite{petrosyan2015graph}. Both results are therefore
 proved here in full. Lecture notes state them as well

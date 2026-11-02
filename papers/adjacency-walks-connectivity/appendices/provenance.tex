@@ -9,7 +9,9 @@
   adjacency matrix. That search finds the term on the table of contents and on
   printed pages 7, 11, 12, 34 and 61; page 7 is a list of notations, and the other
   pages we viewed contain neither a theorem that counts walks with matrix powers
-  nor a matrix test for connectivity. We did not read the whole book, so
+  nor a matrix test for connectivity. Pages 12, 34 and 61 were not among the pages
+  we viewed while drafting; a later independent review of those page images found
+  neither either. We did not read the whole book, so
   ``the textbook has neither'' in this note means the result of this search and
   of the pages viewed. Printed page numbers are the PDF page minus one. The text
   layer drops most mathematical symbols, so formulas were taken from the page
@@ -45,7 +47,8 @@ explicit enumeration of walks. The script
 three-vertex examples independently, and
 \texttt{appendices/scripts/m3\_exhaustive\_check.py} \cite{m3exhaustive}
 performs the finite check of the test on all graphs with up to six vertices.
-The script \texttt{appendices/scripts/m2\_paths.py} cuts every walk of length at
-most $6$ in all $1099$ labelled simple graphs on at most five vertices and found
+The script \texttt{appendices/scripts/m2\_paths.py} \cite{m2paths} cuts every walk of length at
+most $6$ in all $1099$ labelled simple graphs on at most five vertices
+($1+2+8+64+1024=1099$, the numbers of labelled graphs on $1,\dots,5$ vertices) and found
 no violation of \cref{lem:walkpath}; its output is saved beside it. Run each
 with \texttt{python3 -I}.

@@ -16,7 +16,8 @@ Let $G=(V,E)$ be a graph, with vertex set $V$ and edge set $E$. We use the follo
   $1$ on the diagonal and $0$ elsewhere.
   \item $k$ is a nonnegative integer used for the length of a walk and for
   the exponent of $A$.
-  \item $d(n_i)$ is the degree of $n_i$ (\cref{def:degree}).
+    \item $d(n_i)$ is the degree of $n_i$ (\cref{def:degree}), and $\dist(u,v)$ is the
+  distance from $u$ to $v$ (\cref{def:distance}); these are different things.
   \item $u,v,w$ are arbitrary vertices.
   \item For $N\times N$ matrices $X$ and $Y$ the entry $(XY)_{ij}$ equals
   $\sum_{r=1}^{N}X_{ir}Y_{rj}$.
@@ -29,11 +30,13 @@ The board is the starting point, and the reader cannot see the photos.
 \cite{whiteboard1,whiteboard2}: the two-case rule for $A_{ij}$, the drawing of
 three vertices, the matrix, and the small mark above $A$ in question Q1. It is a
 redraw by us and not a copy of the photo. The marks that are hard to read are
-drawn as we read them, and the conventions below say how.
+drawn as we read them, and the conventions below say how. The board's $V$ in its
+rule stands for the edge set $E$ (\cref{conv:edgeset}), and the mark $?$ is read as
+the exponent $k$ (\cref{conv:power}).
 
 \begin{figure}[ht]
 \centering
-\begin{tikzpicture}[every node/.style={circle,draw,minimum size=7mm,inner sep=1pt}]
+\begin{tikzpicture}[scale=0.8,transform shape,every node/.style={circle,draw,minimum size=7mm,inner sep=1pt}]
   \node[draw=none,rectangle] at (3.2,2.0) {$A_{ij}=1$ if $e_{ij}\in V$, \quad $A_{ij}=0$ if $e_{ij}\notin V$};
   \node (b1) at (0,0.2) {$1$};
   \node (b2) at (3,0.2) {$2$};
@@ -68,11 +71,10 @@ scope of this note.
 
 \begin{convention}[the mark above $A$]\label{conv:power}
 The board writes a small mark above $A$ in Q1 (marked $?$ in
-\cref{fig:boardredraw}). In the two photos it looks like
-the letter $n$ or $k$ set between quotation-like marks, so the board alone does
-not settle the reading \cite{whiteboard1,whiteboard2}. The assignment text asks
-about $A^k$, so we read the mark as an exponent $k$. A prime or quotation marks
-would ask about another matrix or only name $A$.
+\cref{fig:boardredraw}). In the two photos
+it looks like the letter $n$ or $k$ between quotation-like marks
+\cite{whiteboard1,whiteboard2}. The mark may be an exponent or a prime. The
+assignment text asks about $A^k$, so we read it as the exponent $k$.
 \end{convention}
 
 \begin{convention}[the board's letters]\label{conv:edgeset}
@@ -111,9 +113,8 @@ textbook does not say whether length $0$ is allowed in its walk definition on
 the pages we viewed (printed pp.~21 to 23) \cite{petrosyan2015graph}. Grinberg
 allows it \cite[p.~36, Definition~2.9.1(a)]{grinberg2025graph}. We adopt it as a
 convention: a single vertex counts as a walk with no drives. Then $A^0=I$ counts
-walks of length $0$, and the lemma that every walk contains a path
-(\cref{lem:walkpath}) also holds when the walk starts and ends at the same
-vertex.
+walks of length $0$. The matrix $A^0$ is used only in \cref{rem:zero} and in $R$;
+\cref{thm:walkcount} needs $k\ge1$.
 \end{convention}
 
 \begin{convention}[page numbers]\label{conv:pages}

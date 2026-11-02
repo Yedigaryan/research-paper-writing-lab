@@ -69,27 +69,28 @@ The textbook proves this for $u\ne v$ by induction on the length of the walk
 and gives no bound on the length (Lemma~1.2.1, \cite[p.~23]{petrosyan2015graph}).
 Grinberg states the bound and covers $u=v$
 \cite[p.~39, Corollary~2.9.7]{grinberg2025graph}. We prove the strong form,
-so that no step depends on those sources.
+so that no step depends on those sources. By \cref{conv:zero} the lemma also holds
+when $u=v$.
 
 \begin{proof}
 We use strong induction on $k$.
 
-\emph{Base case, $k=0$.} The walk is the single vertex $u$, and $u=v$. One
-vertex has pairwise different vertices, so it is a path of length $0\le 0$.
+\emph{Base case, $k=0$.} The walk is the single vertex $u$, and $u=v$. A single vertex repeats nothing, so
+it is a path of length $0\le 0$.
 
 \emph{Induction hypothesis.} Let $k\ge 1$ and suppose the statement holds for
 all walks of length less than $k$, between any two vertices.
 
-\emph{Induction step.} (For instance, from the walk $w_0,w_1,w_2,w_1,w_3$ we delete
-$w_2,w_1$ and keep $w_0,w_1,w_3$.) Let $w_0,\dots,w_k$ be a $(u,v)$-walk. If its vertices
+\emph{Induction step.} Let $w_0,\dots,w_k$ be a $(u,v)$-walk. If its vertices
 are pairwise different, it is already a path of length $k$. Otherwise choose
 indices $i<j$ with $w_i=w_j$. Delete $w_{i+1},\dots,w_j$ to obtain
 $w_0,\dots,w_i,w_{j+1},\dots,w_k$. Consecutive vertices are still adjacent:
 inside the first part and inside the last part nothing changed, and at the join
 $w_i=w_j$ is adjacent to $w_{j+1}$. If $j=k$ there is no join, and the sequence
 ends at $w_i=w_k=v$. The new sequence starts at $u$, ends at $v$, and has length
-$k-(j-i)<k$, because $j-i\ge1$. By the induction hypothesis it contains a
-$(u,v)$-path of length at most $k-(j-i)$, hence at most $k$.
+$k-(j-i)<k$, because $j-i\ge1$. By the induction hypothesis there is a
+$(u,v)$-path of length at most $k-(j-i)$, hence at most $k$. (For instance, from the
+walk $w_0,w_1,w_2,w_1,w_3$ we delete $w_2,w_1$ and keep $w_0,w_1,w_3$.)
 \end{proof}
 
 \begin{example}
@@ -110,9 +111,11 @@ different.
 \begin{proof}
 Let $w_0,\dots,w_k$ have pairwise different vertices and suppose that two of its
 edges are equal: $\{w_{i-1},w_i\}=\{w_{j-1},w_j\}$ with $1\le i<j\le k$. Two equal unordered pairs have the same two ends, so
-$w_{i-1}$ equals $w_{j-1}$ or $w_j$. The indices $j-1$ and $j$ are both
-different from $i-1$, since $j-1\ge i$. So two different positions hold the
-same vertex, which contradicts the assumption.
+$w_{i-1}$ equals $w_{j-1}$ or $w_j$. Case~1: $w_{i-1}=w_{j-1}$. Since $j-1\ge i$,
+the positions $i-1$ and $j-1$ differ, so the vertex $w_{i-1}$ occurs at two
+positions. Case~2: $w_{i-1}=w_j$. Since $j\ge i+1$, the positions $i-1$ and $j$
+differ, so again a vertex occurs at two positions. In both cases the vertices are
+not pairwise different, which contradicts the assumption.
 \end{proof}
 
 \plain
@@ -174,28 +177,28 @@ other. It does not matter whether we also forbid repeats, because forbidding
 repeats never lets a trip get shorter.
 
 \begin{proposition}[distance is the least walk length]\label{prop:distance}
-If a $(u,v)$-walk exists, then $d_G(u,v)$ of \cref{def:distance} equals the
+If a $(u,v)$-walk exists, then $\dist(u,v)$ of \cref{def:distance} equals the
 least length of a $(u,v)$-walk, the least length of a $(u,v)$-trail and the
 least length of a $(u,v)$-path, and it is at most $N-1$. If no walk exists, all
-three sets are empty and $d_G(u,v)=+\infty$.
+three sets are empty and $\dist(u,v)=+\infty$.
 \end{proposition}
 
 \begin{proof}
 Let $a$, $b$ and $c$ be the least lengths of a walk, a trail and a path from
 $u$ to $v$. Every path is a trail (\cref{lem:pathtrail}) and every trail is a
 walk, so $a\le b\le c$. By \cref{lem:walkpath} a shortest walk contains a path
-that is no longer, so $c\le a$. Hence $a=b=c$, and $d_G(u,v)=b$ by
-\cref{def:distance}. The bound $N-1$ comes from \cref{prop:bound}(i), applied to
+that is no longer, so $c\le a$. Hence $a=b=c$, and $\dist(u,v)=a$ by
+\cref{def:distance}; $b$ is the textbook's distance, so the two definitions agree. The bound $N-1$ comes from \cref{prop:bound}(i), applied to
 a shortest path. If a walk exists, a trail and a path exist by \cref{prop:readings}, so the three
 sets are nonempty together; if no walk exists, all three are empty.
 \end{proof}
 
 \begin{remark}[the textbook's three properties of distance]\label{rem:distprops}
 The textbook lists three properties of the distance: it is $\ge 0$ and equals
-$0$ exactly when $u=v$; $d(u,v)=d(v,u)$; and $d(u,w)\le d(u,v)+d(v,w)$
+$0$ exactly when $u=v$; $\dist(u,v)=\dist(v,u)$; and $\dist(u,w)\le \dist(u,v)+\dist(v,w)$
 \cite[pp.~22--23]{petrosyan2015graph}. \Cref{prop:distance} implies each of them. A walk of length $0$ exists from $u$ only to $u$. Reversing
 a walk gives a walk of the same length in the other direction, because
 adjacency is symmetric. A shortest $(u,v)$-walk followed by a shortest
-$(v,w)$-walk is a $(u,w)$-walk of length $d(u,v)+d(v,w)$; if either term is
+$(v,w)$-walk is a $(u,w)$-walk of length $\dist(u,v)+\dist(v,w)$; if either term is
 $+\infty$ the inequality holds trivially.
 \end{remark}

@@ -25,15 +25,18 @@
   on a tertiary web page (\cref{tab:conventions}).
   \item \textbf{Two misleading statements in the literature.} Theorem~1 of
   Paramadevan and Sotheeswaran says that the entry of $A^l$ is the number of
-  ``different paths'' of length $l$ \cite[p.~16]{paramadevan2021adjacency}. As
-  worded this is incorrect under any convention in which a path cannot revisit a
-  vertex, by the first counterexample of \cref{sec:notpaths}. In the proof of their
-  Theorem~2 they write that $b_{ij}$ is the ``number of different paths of length
-  less than $n$ from the vertex $i$ to $j$''
-  \cite[p.~17]{paramadevan2021adjacency}. Bai writes that
+  ``different paths'' of length $l$ \cite[p.~16]{paramadevan2021adjacency}; in
+  our notation, that $(A^k)_{ij}$ is the number of paths of length $k$ from $n_i$
+  to $n_j$. In the proof of their Theorem~2 they write that $b_{ij}$ is the
+  ``number of different paths of length less than $n$ from the vertex $i$ to $j$''
+  \cite[p.~17]{paramadevan2021adjacency}; in our notation, that $B_{ij}$ is the
+  number of paths of length less than $N$ from $n_i$ to $n_j$. Bai writes that
   ``$(I + A)^{n-1}$ aggregates all paths of length $\le n-1$''
-  \cite[p.~2]{bai2025adjacency}. As statements about counts both are wrong: the
-  entries count walks, weighted by binomial coefficients in $R$. As statements
+  \cite[p.~2]{bai2025adjacency}; in our notation, that $R=(I+A)^{N-1}$ collects
+  the paths of length at most $N-1$. All three are wrong as statements about
+  counts, by one example: in the board graph $(A^2)_{11}=1>0$, but no path of length
+  $2$ from $n_1$ to $n_1$ exists, because a path repeats no vertex. The entries
+  count walks, weighted by binomial coefficients in $R$. As statements
   about positivity they are right, and only through the walk-to-path lemma
   (\cref{lem:walkpath}). For this reason we cite the first paper only for the
   statement of the test, and we prove the test in full instead of relying on those

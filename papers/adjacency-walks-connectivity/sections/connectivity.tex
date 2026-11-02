@@ -8,8 +8,8 @@ and work two examples.
 \subsection{Connected graphs and components}
 
 \plain
-A group of towns is connected when you can get from any town to any other. If
-some town cannot be reached from another, the roads split the towns into
+Sometimes every town can be reached from every other town. Then you can get
+anywhere from anywhere. If some town cannot be reached from another, the roads split the towns into
 separate groups. Call each such group an island. Towns on the same island can
 reach one another. Towns on different islands cannot.
 
@@ -48,9 +48,10 @@ So the towns split into islands with no overlap.
 
 \begin{definition}[connectivity component; textbook, p.~49]\label{def:component}
 Write $u\sim v$ when a $(u,v)$-trail (the textbook's path) exists in $G$. The
-textbook notes that this relation is reflexive, symmetric and transitive, hence
-an equivalence relation, so it splits $V$ into classes $V_1,\dots,V_p$. The
-subgraph induced by a class $V_j$ keeps the vertices of $V_j$ and every edge of
+textbook notes that this relation is reflexive, symmetric and transitive (every
+vertex is related to itself; the relation can be reversed; it can be chained),
+hence an equivalence relation, so $V$ splits into classes $V_1,\dots,V_p$ with no
+overlap. A subgraph is a part of the graph; the subgraph induced by a class $V_j$ keeps the vertices of $V_j$ and every edge of
 $G$ between them. These subgraphs $G_1,\dots,G_p$ are the \emph{connectivity
 components} of $G$ \cite[p.~49]{petrosyan2015graph}. By \cref{prop:readings} the
 same classes arise if ``trail'' is replaced by ``path'' in the course sense.
@@ -76,11 +77,15 @@ graph is connected, so its only component contains all three vertices.
 \subsection{The test}\label{sec:test}
 
 \plain
-The road table remembers how many trips of each size lead from one town to
-another. If that number is above zero for some size, a trip exists. A trip can
-always be trimmed to a tidy route by cutting out loops. A tidy route cannot use
-more drives than there are towns, less one. So we never need to look at trips
-bigger than that. Adding up the tables for all those sizes gives one table. A
+The road table remembers how many trips with each number of drives lead from one town to
+another. If that number is above zero for some number of drives, a trip exists. A
+trip can always be trimmed to a tidy route by cutting out round trips. A tidy
+route cannot use more drives than there are towns, less one. So we never need to
+look at trips with more drives than that. Adding up the tables for all those
+numbers of drives gives one table. A second table does the same job with one
+multiplication. It counts every number of drives from none up to that limit, each
+with a positive weight, so it is positive for two different towns exactly where the
+sum is. A
 zero in it between two different towns means that no trip joins them.
 
 For $\N\ge2$ define the matrices
@@ -88,7 +93,7 @@ For $\N\ge2$ define the matrices
 B=A+A^2+\dots+A^{\N-1},\qquad R=(I+A)^{\N-1}.
 \]
 Here $I$ is the identity matrix. $B$ adds the walk counts of all lengths from
-$1$ to $N-1$. $R$ is the power of ``one plus the road table''. It is the same
+$1$ to $N-1$. $R$ is the power of ``one plus the road table''. Adding $I$ makes the diagonal positive. It is the same
 test with one power instead of a sum: expanding $(I+A)^{N-1}$ gives a positive
 multiple of each power $A^k$ with $k$ from $0$ to $N-1$, so the entries of $R$ are
 positive combinations of the entries of the powers of $A$ and of the identity.
@@ -142,8 +147,9 @@ nonnegative integer. A sum of nonnegative numbers is positive if and only if at
 least one term is positive. So $B_{ij}>0$ if and only if $(A^k)_{ij}>0$ for some
 $k$ from $1$ to $\N-1$.
 
-(c)$\Rightarrow$(d). The matrices $I$ and $A$ commute, since $IA=AI$, so the usual binomial formula
-holds for $(I+A)^{\N-1}$. It gives
+(c)$\Rightarrow$(d). Matrix multiplication usually depends on the order of the factors, but the
+binomial formula for $(X+Y)^n$ needs only $XY=YX$. The matrices $I$ and $A$ satisfy
+$IA=AI$, so the usual binomial formula holds for $(I+A)^{\N-1}$. It gives
 \[
 R=(I+A)^{\N-1}=\sum_{k=0}^{\N-1}\binom{\N-1}{k}A^k,\qquad A^0=I.
 \]
@@ -172,18 +178,21 @@ The test uses only $A$. It answers yes or no for the whole graph. It does not
 say which route to take. We note four limits.
 \begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
   \item The single power $A^{\N-1}$ is not a valid test. In the board graph $\N=3$, so
-  $A^{\N-1}=A^2$, and $(A^2)_{12}=0$ although the graph is connected, because the only walks from
-  $n_1$ to $n_2$ have odd length: every road goes between $\{n_1,n_3\}$ and
-  $\{n_2\}$. The single power $A$ misses the pair $n_1,n_3$ for the same
-  reason \cite{paperscript}. The test must combine powers.
+  $A^{\N-1}=A^2$, and $(A^2)_{12}=0$ although the graph is connected, because every road goes between
+  the group $\{n_1,n_3\}$ and the group $\{n_2\}$. A walk alternates between the
+  two groups, so a walk from $n_1$ to $n_2$ always has an odd number of drives, and
+  $A^2$ shows $0$ there. The single power $A$ misses the pair $n_1,n_3$ for a
+  simpler reason: they are not adjacent \cite{paperscript}. The test must combine
+  powers.
   \item The exponent $\N-1$ cannot be lowered. For the path graph on $\N$
   vertices (towns in a row) the only route between the two end towns uses $\N-1$
-  roads, so the least $k$ with $(A^k)_{1\N}>0$ is $\N-1$; the
+  roads, so the end towns are $\N-1$ roads apart and no smaller $k$ can work; the
+  least $k$ with $(A^k)_{1\N}>0$ is $\N-1$, and the
   script gives $1,2,3,4,5,6$ for $\N=2,\dots,7$ \cite{paperscript,m3exhaustive}.
   \item Adding the powers $A^k$ with $k>\N-1$ to $B$ is allowed and
   unnecessary. All terms are nonnegative, so no positive entry can become zero.
-  \item Only positivity matters. The entries of $B$ and $R$ grow quickly with $\N$
-  and are not themselves measures of connectedness.
+  \item Only positivity matters. The entries of $B$ and $R$ can be much larger than $1$ ($A^4$ of the board graph
+  has an entry $4$) and are not measures of connectedness.
 \end{enumerate}
 \end{remark}
 
@@ -192,7 +201,7 @@ say which route to take. We note four limits.
 \plain
 The same table also says which towns share an island. Two towns are on one
 island exactly when the table has a positive number for that pair. The first
-size at which the pair turns positive is the fewest drives between the two
+number of drives at which the pair turns positive is the fewest drives between the two
 towns.
 
 \begin{corollary}[components from $R$]\label{cor:components}
@@ -213,7 +222,7 @@ joins them, by \cref{prop:readings}.
 
 \begin{corollary}[distance from the powers]\label{cor:distance}
 Let $i\ne j$ and suppose a path joins $n_i$ to $n_j$. The least $k\ge1$ with
-$(A^k)_{ij}>0$ equals the distance $d_G(n_i,n_j)$.
+$(A^k)_{ij}>0$ equals the distance $\dist(n_i,n_j)$.
 \end{corollary}
 
 \begin{proof}
@@ -225,7 +234,7 @@ $n_i$ to $n_j$, and by \cref{prop:distance} that is the distance.
 \subsection{Two worked examples}\label{sec:examples}
 
 \plain
-Take the three towns in a row. We add the road table to its own square. Every
+Take the three towns in a row. We add the road table to the road table multiplied by itself. Every
 pair of different towns gets a positive number. So the towns are connected. Then
 we take three towns where only the first two have a road. The third town gets
 zeros, and the test says no.
@@ -285,16 +294,17 @@ $\{1,2\}$ makes $(A^k)_{13}$ or $(A^k)_{23}$ positive.
 
 \subsection{Breadth-first search as an alternative}\label{sec:bfs}
 
-This subsection is optional: Q2 is answered by \cref{thm:test}.
+This subsection is optional: Q2 is answered by \cref{thm:test}. The search is a
+second method that uses no matrix powers, and it gives a comparison for the test.
 
 \plain
 There is another way to find out. Stand in one town. Visit its neighbours. Then
 visit their neighbours, and keep going, never visiting a town twice. When you
-run out of new towns, count the towns you saw. If you saw all of them, the
-towns are connected. If some town never turned up, they are not.
+run out of new towns, count the towns you saw. If you saw all of them, every town can be reached from every other town. If some
+town never turned up, they cannot.
 
-Breadth-first search from a start vertex $s$ keeps a to-do list of vertices in
-first-in, first-out order and a list of discovered vertices. It takes the first
+Breadth-first search from a start vertex $s$ keeps a to-do list of vertices (a queue: the oldest entry is handled first) and a
+list of discovered vertices. It takes the first
 vertex $v$ from the to-do list, scans the neighbours of $v$ (on the adjacency
 matrix: the positions with a $1$ in row $v$) and adds each undiscovered neighbour
 to the list. A lecture at the University of Waterloo proves that $v$ is discovered
@@ -313,7 +323,8 @@ the search from any one vertex discovers every vertex.
 The test and its proof were also checked by computer on every labelled simple
 graph with $N=2,\dots,6$ vertices (labelled means that the vertices are numbered,
 so renumbering gives a new graph) (2, 8, 64, 1024 and 32768 graphs, of which 1,
-4, 38, 728 and 26704 are connected). For each graph the sum test and the
+4, 38, 728 and 26704 are connected; these counts are the output of the check
+script \cite{m3exhaustive}). For each graph the sum test and the
 $(I+A)^{N-1}$ test were compared with a union-find connectivity check from the
 edge list that uses no matrices (union-find merges groups of vertices edge by
 edge and ends with the groups that are the components). For $N\le5$ the walk counts were also compared

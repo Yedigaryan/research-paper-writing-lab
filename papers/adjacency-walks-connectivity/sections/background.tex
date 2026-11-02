@@ -12,7 +12,9 @@ checked by a script that enumerates the sequences (\cref{app:provenance},
 \emph{Roadmap.} Only the adjacency matrix, the walk and the path are needed in
 the later sections. The degree, the closed walk, the trail, the cycle and the
 distance are included because the textbook defines them in this order and because
-the textbook's word ``path'' means a trail.
+the textbook's word ``path'' means a trail. The definitions used throughout are
+\cref{def:adjmatrix}, \cref{def:walk}, \cref{def:path} and \cref{def:pathij}; the
+others are also in the textbook.
 
 \begin{figure}[ht]
 \centering
@@ -35,7 +37,7 @@ $n_4$ hangs off $n_3$ by a single road.}
 \subsection{Graph, adjacent vertices, adjacency matrix, degree}
 
 \plain
-A graph is a map of towns and roads. It is a list of the towns and a list of
+A map of towns and roads is a list of the towns and a list of
 which pairs of towns have a road. A road joins two different towns. Between
 two towns there is at most one road.
 
@@ -160,8 +162,8 @@ next proposition and the matching facts about $A^2$ in \cref{prop:powerprops} ar
 side facts that give a check on the examples; Q1 and Q2 do not need them.
 
 \plain
-The road table has the same roads above and below its diagonal, and it has
-zeros on its diagonal. Read along one row and you count the roads at that town.
+The road table has the same roads above and below the line of boxes from top
+left to bottom right, and it has zeros on that line. Read along one row and you count the roads at that town.
 Read down the whole table and you count every road twice.
 
 \begin{proposition}[properties of the adjacency matrix]\label{prop:adjprops}
@@ -197,9 +199,8 @@ of all entries is $8=2\cdot 4$ \cite{paperscript}.
 \subsection{Walks, trails, paths, cycles, distance}
 
 \plain
-A trip follows roads from town to town. You may pass the same town twice. You
-may drive the same road twice. The number of drives is the length of the trip,
-and a road counts every time you drive it. Trips with fewer repeats get their
+A trip follows roads from town to town. You may pass the same town twice. You may drive the same road twice. You count the number of drives, and a road
+counts every time you drive it. Trips with fewer repeats get their
 own names.
 
 \begin{definition}[walk; textbook Definition~1.2.10]\label{def:walk}
@@ -297,7 +298,8 @@ its vertices $u_0,\dots,u_k$ are pairwise different
 \begin{remark}
 A path with $k$ edges has $k+1$ different vertices. A path is a trail with an added
 restriction. By \cref{lem:pathtrail} the trail condition is automatic once the
-vertices are pairwise different, so \cref{def:pathij} below may drop it. This is
+vertices are pairwise different, so \cref{def:pathij} below may drop it (proved in \cref{sec:paths}; for now, a
+tidy route never repeats a road). This is
 the course meaning of path (\cref{conv:path}).
 \end{remark}
 
@@ -312,8 +314,7 @@ twice.
 
 \plain
 Often we care about two particular towns. We ask for a tidy route that starts
-in the first and ends in the second. This is the answer to question Q3, and
-\cref{sec:paths} comes back to it.
+in the first and ends in the second. This is the tidy route we need.
 
 \begin{definition}[path between $n_i$ and $n_j$; the course convention, Q3]\label{def:pathij}
 A \emph{path between $n_i$ and $n_j$} is a sequence
@@ -346,8 +347,9 @@ A ring trip leaves a town and comes back to it. It never drives a road
 twice.
 
 \begin{definition}[cycle, simple cycle; textbook Definitions~1.2.14 and 1.2.15]\label{def:cycle}
-A $(u_0,u_k)$-trail is a \emph{closed trail} or \emph{cycle} if it is a closed
-walk, that is, $u_0=u_k$ \cite[p.~22]{petrosyan2015graph}. A cycle is
+A $(u_0,u_k)$-trail with $u_0=u_k$ (a trail that is a closed walk) is called a
+\emph{closed trail}; the textbook also calls it a \emph{cycle}
+\cite[p.~22]{petrosyan2015graph}. A cycle is
 \emph{simple} if only its first and last vertices repeat
 \cite[p.~22]{petrosyan2015graph}.
 \end{definition}
@@ -368,9 +370,9 @@ In $H$ the sequence $n_1,n_2,n_3,n_1$ is a simple cycle of length $3$.
 
 \begin{nonexample}
 The closed walk $n_1,n_2,n_1$ is not a cycle: it is not a trail. A cycle that
-is not simple needs two cycles with no common edge that share a vertex (for
-example two triangles). $H$ has only one cycle, so every cycle of positive length
-in $H$ is simple \cite{paperscript}.
+is not simple splits at its repeated vertex into two cycles of positive length with
+no common edge, so it has at least $6$ edges. $H$ has only $4$ edges, so every cycle
+of positive length in $H$ is simple \cite{paperscript}.
 \end{nonexample}
 
 \plain
@@ -379,10 +381,11 @@ the drives of the shortest trip, whatever kind of trip it is. If no trip joins
 them, they are infinitely far apart.
 
 \begin{definition}[distance; textbook Definition~1.2.16]\label{def:distance}
-The \emph{distance} $d_G(u,v)$ is the least length of a walk from $u$ to $v$ if
+The \emph{distance} $\dist(u,v)$ is the least length of a walk from $u$ to $v$ if
 at least one walk exists, and $+\infty$ otherwise. The textbook defines it as the
 length of a shortest $(u,v)$-path of the textbook, that is, a shortest trail
-\cite[pp.~22--23]{petrosyan2015graph}. \Cref{prop:distance} shows that the two
+\cite[pp.~22--23]{petrosyan2015graph}. The symbol $\dist$ is used for the distance and $d$ for the degree
+(\cref{def:degree}). \Cref{prop:distance} shows that the two
 definitions give the same number, and that the same number is the least length of
 a path in the course sense.
 \end{definition}
@@ -394,7 +397,7 @@ forbidding repeats never makes the shortest trip longer.
 \end{remark}
 
 \begin{example}
-In $H$ the distance $d_H(n_4,n_1)$ is $2$, along $n_4,n_3,n_1$
+In $H$ the distance $\dist(n_4,n_1)$ is $2$, along $n_4,n_3,n_1$
 \cite{paperscript}.
 \end{example}
 

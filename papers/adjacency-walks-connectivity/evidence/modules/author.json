@@ -18,6 +18,25 @@
       "credibility": "primary",
       "found_by": "author",
       "notes": "Run with python3 -I from the paper folder. Computes matrix powers by the definition of the product, checks each entry against explicit walk enumeration for k = 1 to 4, classifies the example sequences of graph H as walk, trail and path, and writes appendices/generated-matrices.tex, which the paper inputs."
+    },
+    {
+      "id": "m2paths",
+      "type": "code",
+      "title": "m2_paths.py: walk-to-path lemma checked on all labelled simple graphs with at most 5 vertices",
+      "authors": [],
+      "year": null,
+      "venue": "papers/adjacency-walks-connectivity/appendices/scripts, pure Python",
+      "identifier": {
+        "doi": null,
+        "url": null,
+        "isbn": null,
+        "path": "appendices/scripts/m2_paths.py"
+      },
+      "accessed": "2026-11-02",
+      "access_status": "full",
+      "credibility": "primary",
+      "found_by": "author",
+      "notes": "Copy of the script written for module m2; output saved beside it. Cuts all walks of length at most 6 in 1099 labelled graphs; 0 violations. A test of the lemma, not a proof."
     }
   ],
   "claims": [
