@@ -1,0 +1,217 @@
+============================================================
+Board N = 3 edges [(1, 2), (2, 3)]
+A
+     0  1  0
+     1  0  1
+     0  1  0
+symmetric: True zero diagonal: True row sums: [1, 2, 1] sum of entries: 4 2|E| = 4
+A^1
+     0  1  0
+     1  0  1
+     0  1  0
+A^2
+     1  0  1
+     0  2  0
+     1  0  1
+A^3
+     0  2  0
+     2  0  2
+     0  2  0
+A^4
+     2  0  2
+     0  4  0
+     2  0  2
+entry == brute-force walk count for all i, j, k = 1..4: True
+diag of A^2: [1, 2, 1]
+B = A + ... + A^2
+     1  1  1
+     1  2  1
+     1  1  1
+R = (I + A)^2
+     2  2  1
+     2  3  2
+     1  2  2
+off-diagonal of B all positive: True | R all positive: True
+BFS from n_1 visits: [1, 2, 3]
+least k in 1..N-1 with (A^k)_ij > 0 per pair:
+   (n_1, n_2): 1
+   (n_1, n_3): 2
+   (n_2, n_3): 1
+============================================================
+Tri N = 3 edges [(1, 2), (1, 3), (2, 3)]
+A
+     0  1  1
+     1  0  1
+     1  1  0
+symmetric: True zero diagonal: True row sums: [2, 2, 2] sum of entries: 6 2|E| = 6
+A^1
+     0  1  1
+     1  0  1
+     1  1  0
+A^2
+     2  1  1
+     1  2  1
+     1  1  2
+A^3
+     2  3  3
+     3  2  3
+     3  3  2
+A^4
+     6  5  5
+     5  6  5
+     5  5  6
+entry == brute-force walk count for all i, j, k = 1..4: True
+diag of A^2: [2, 2, 2]
+B = A + ... + A^2
+     2  2  2
+     2  2  2
+     2  2  2
+R = (I + A)^2
+     3  3  3
+     3  3  3
+     3  3  3
+off-diagonal of B all positive: True | R all positive: True
+BFS from n_1 visits: [1, 2, 3]
+least k in 1..N-1 with (A^k)_ij > 0 per pair:
+   (n_1, n_2): 1
+   (n_1, n_3): 1
+   (n_2, n_3): 1
+============================================================
+Disc N = 3 edges [(1, 2)]
+A
+     0  1  0
+     1  0  0
+     0  0  0
+symmetric: True zero diagonal: True row sums: [1, 1, 0] sum of entries: 2 2|E| = 2
+A^1
+     0  1  0
+     1  0  0
+     0  0  0
+A^2
+     1  0  0
+     0  1  0
+     0  0  0
+A^3
+     0  1  0
+     1  0  0
+     0  0  0
+A^4
+     1  0  0
+     0  1  0
+     0  0  0
+entry == brute-force walk count for all i, j, k = 1..4: True
+diag of A^2: [1, 1, 0]
+B = A + ... + A^2
+     1  1  0
+     1  1  0
+     0  0  0
+R = (I + A)^2
+     2  2  0
+     2  2  0
+     0  0  1
+off-diagonal of B all positive: False | R all positive: False
+BFS from n_1 visits: [1, 2]
+least k in 1..N-1 with (A^k)_ij > 0 per pair:
+   (n_1, n_2): 1
+   (n_1, n_3): none
+   (n_2, n_3): none
+============================================================
+H N = 4 edges [(1, 2), (1, 3), (2, 3), (3, 4)]
+A
+     0  1  1  0
+     1  0  1  0
+     1  1  0  1
+     0  0  1  0
+symmetric: True zero diagonal: True row sums: [2, 2, 3, 1] sum of entries: 8 2|E| = 8
+A^1
+     0  1  1  0
+     1  0  1  0
+     1  1  0  1
+     0  0  1  0
+A^2
+     2  1  1  1
+     1  2  1  1
+     1  1  3  0
+     1  1  0  1
+A^3
+     2  3  4  1
+     3  2  4  1
+     4  4  2  3
+     1  1  3  0
+A^4
+     7  6  6  4
+     6  7  6  4
+     6  6 11  2
+     4  4  2  3
+entry == brute-force walk count for all i, j, k = 1..4: True
+diag of A^2: [2, 2, 3, 1]
+B = A + ... + A^3
+     4  5  6  2
+     5  4  6  2
+     6  6  5  4
+     2  2  4  1
+R = (I + A)^3
+     9  9 10  4
+     9  9 10  4
+    10 10 12  6
+     4  4  6  4
+off-diagonal of B all positive: True | R all positive: True
+BFS from n_1 visits: [1, 2, 3, 4]
+least k in 1..N-1 with (A^k)_ij > 0 per pair:
+   (n_1, n_2): 1
+   (n_1, n_3): 1
+   (n_1, n_4): 2
+   (n_2, n_3): 1
+   (n_2, n_4): 2
+   (n_3, n_4): 1
+============================================================
+Walks behind the entries of the board graph
+k=2 (n_1, n_1): count 1 walks [(1, 2, 1)] paths among them []
+k=2 (n_1, n_3): count 1 walks [(1, 2, 3)] paths among them [(1, 2, 3)]
+k=2 (n_2, n_2): count 2 walks [(2, 1, 2), (2, 3, 2)] paths among them []
+k=2 (n_1, n_2): count 0 walks [] paths among them []
+k=3 (n_1, n_2): count 2 walks [(1, 2, 1, 2), (1, 2, 3, 2)] paths among them []
+k=3 (n_2, n_3): count 2 walks [(2, 1, 2, 3), (2, 3, 2, 3)] paths among them []
+k=1 (n_1, n_2): count 1 walks [(1, 2)] paths among them [(1, 2)]
+A^4 is the zero matrix: False N - 1 = 2
+paths from n_1 to n_2 of any length: [(1, 2)]
+============================================================
+Triangle: walks behind (A^3)_11 and (A^3)_12
+[(1, 2, 3, 1), (1, 3, 2, 1)]
+[(1, 2, 1, 2), (1, 2, 3, 2), (1, 3, 1, 2)]
+============================================================
+Classification of the examples used in the definitions (graph H)
+walk         (1, 2, 3, 1, 3, 4)  walk=True closed=False trail=False path=False
+walk         (4, 3, 4)  walk=True closed=True trail=False path=False
+walk         (2,)  walk=True closed=True trail=True path=True
+not a walk   (1, 4)  walk=False closed=False trail=False path=False
+not a walk   (1, 2, 4)  walk=False closed=False trail=False path=False
+closed walk  (1, 2, 1)  walk=True closed=True trail=False path=False
+closed walk  (3, 4, 3)  walk=True closed=True trail=False path=False
+not closed   (1, 2, 3)  walk=True closed=False trail=True path=True
+trail        (4, 3, 1, 2, 3)  walk=True closed=False trail=True path=False
+trail        (1, 2, 3, 1)  walk=True closed=True trail=True path=False
+not a trail  (1, 2, 1)  walk=True closed=True trail=False path=False
+not a trail  (1, 2, 3, 1, 3, 4)  walk=True closed=False trail=False path=False
+path         (1, 3, 4)  walk=True closed=False trail=True path=True
+path         (4, 3, 2, 1)  walk=True closed=False trail=True path=True
+not a path   (4, 3, 1, 2, 3)  walk=True closed=False trail=True path=False
+not a path   (1, 2, 3, 1)  walk=True closed=True trail=True path=False
+cut of (1,2,3,1,3,4): (1, 3, 4)
+cut of (4,3,1,2,3,4): (4,)
+board graph: walk (1,2,1,2,3) -> cut (1, 2, 3)  is_walk True
+board graph: (1,3) is a walk: False ; (1,2,3) path: True ; (1,2,1,2,3) path: False
+H: simple cycles found as closed trails of length 3: [(1, 2, 3, 1), (1, 3, 2, 1), (2, 1, 3, 2), (2, 3, 1, 2), (3, 1, 2, 3), (3, 2, 1, 3)]
+distances in H from n_4: {1: 2, 2: 2, 3: 1, 4: 0}
+degrees in H: [2, 2, 3, 1]
+============================================================
+Path graph on N vertices: least k with (A^k)_(1,N) > 0
+2 1
+3 2
+4 3
+5 4
+6 5
+7 6
+============================================================
+Boundary: two-vertex-road example, B of connected board graph uses A + A^2; A^2 alone, (A^2)_12 = 0
+wrote appendices/generated-matrices.tex with 26 matrices

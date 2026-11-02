@@ -1,0 +1,30 @@
+\section{Conclusion}\label{sec:conclusion}
+
+The three questions have direct answers.
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Q1.} For a simple undirected graph with adjacency matrix $A$ and
+  $k\ge1$, the entry $(A^k)_{ij}$ is the number of walks of length $k$ from $n_i$
+  to $n_j$ (\cref{thm:walkcount}). It is not the number of paths. In the board
+  graph $(A^2)_{11}=1$, although no path leads from $n_1$ to itself with two
+  edges, and $A^4$ is not zero although a path has at most $2$ edges
+  (\cref{sec:notpaths}).
+  \item \textbf{Q2.} A graph with $N\ge2$ vertices is connected if and only if
+  every off-diagonal entry of $A+A^2+\dots+A^{N-1}$ is positive, equivalently if
+  and only if $(I+A)^{N-1}$ has no zero entry (\cref{thm:test}). The proof uses
+  the walk-counting theorem, the fact that a walk contains a path
+  (\cref{lem:walkpath}) and the bound $N-1$ on the length of a path
+  (\cref{prop:bound}). The board matrix passes the test and is connected; the
+  graph with the single edge $n_1n_2$ fails it and has components $\{n_1,n_2\}$
+  and $\{n_3\}$ (\cref{sec:examples}).
+  \item \textbf{Q3.} A path between $n_i$ and $n_j$ is a sequence of pairwise
+  different vertices from $n_i$ to $n_j$ in which consecutive vertices are
+  adjacent (\cref{def:pathij}). It is the textbook's simple path, Definition~1.2.13
+  \cite[p.~22]{petrosyan2015graph}. The textbook's own word ``path'' means a trail,
+  and \cref{prop:readings} shows that this difference does not change which graphs
+  are connected.
+\end{itemize}
+
+The board's drawing and matrix disagree on one edge, and we followed the matrix,
+as the problem statement on the board says the graph is given through its
+adjacency matrix (\cref{conv:matrix}).

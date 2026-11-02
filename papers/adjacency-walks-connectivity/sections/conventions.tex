@@ -1,0 +1,92 @@
+\section{Notation and conventions}\label{sec:conventions}
+
+\subsection{Notation}
+
+Let $G=(V,E)$ be a graph, with vertex set $V$ and edge set $E$ (the exact
+definition is \cref{def:graph}). We use the following letters throughout.
+
+\begin{itemize}[leftmargin=1.5em]
+  \item $V=\{n_1,\dots,n_N\}$ is the set of vertices and $N=|V|$ is their
+  number. The board names the vertices $n_1,\dots,n_N$ and writes $N$
+  \cite{whiteboard1}. The textbook writes $v_1,\dots,v_n$ \cite[p.~11]{petrosyan2015graph}; we do not use
+  that form again.
+  \item $e_{ij}$ is the edge between $n_i$ and $n_j$. In a simple graph
+  $e_{ij}$ and $e_{ji}$ are the same edge.
+  \item $A=(A_{ij})$ is the adjacency matrix, an $N\times N$ matrix of zeros
+  and ones (\cref{def:adjmatrix}). Its power $A^k$ is the product of $k$
+  copies of $A$, with $A^1=A$, and $A^0=I$ is the identity matrix, which has
+  $1$ on the diagonal and $0$ elsewhere.
+  \item $k$ is a nonnegative integer used for the length of a walk and for
+  the exponent of $A$.
+  \item $d(n_i)$ is the degree of $n_i$ (\cref{def:degree}).
+  \item $u,v,w$ are arbitrary vertices.
+  \item For $N\times N$ matrices $X$ and $Y$ the entry $(XY)_{ij}$ equals
+  $\sum_{r=1}^{N}X_{ir}Y_{rj}$.
+\end{itemize}
+
+\subsection{Conventions}
+
+The photos, the assignment text and the textbook leave several points open.
+Each choice we make is listed here and cited by number afterwards.
+
+\begin{convention}[kind of graph]\label{conv:graph}
+All graphs are finite, simple and undirected. Simple means no loops and no
+repeated edges. The assignment text states this, and the symmetric matrix with
+zero diagonal on the board is consistent with it \cite{whiteboard1}. Directed
+graphs and graphs with repeated edges are outside the scope of this note; the
+adjacency matrix of a directed graph is not symmetric in general, so the
+statements below that use symmetry do not carry over unchanged.
+\end{convention}
+
+\begin{convention}[the mark above $A$]\label{conv:power}
+The board writes a small mark above $A$ in Q1. In the two photos it looks like
+the letter $n$ or $k$ set between quotation-like marks, so the board alone does
+not settle the reading \cite{whiteboard1,whiteboard2}. The assignment text asks
+about $A^k$, so we read the mark as an exponent $k$. A prime or quotation marks
+would ask about another matrix or only name $A$.
+\end{convention}
+
+\begin{convention}[the board's letters]\label{conv:edgeset}
+The board writes $(G,V)$ for the graph and ``$e_{ij}\in V$'' in the rule
+that defines $A_{ij}$ \cite{whiteboard1,whiteboard2}. The textbook writes
+$G=(V,E)$ and the same rule with $e_{ij}\in E$ \cite[p.~9]{petrosyan2015graph}.
+We read the board's $V$ in that rule as the edge set $E$. This is a difference
+of notation, and we write $E$.
+\end{convention}
+
+\begin{convention}[matrix against drawing]\label{conv:matrix}
+The board's drawing and the board's matrix disagree, edge by edge
+(\cref{sec:board-mismatch}). The problem statement on the board says the graph
+is represented through its adjacency matrix \cite{whiteboard1}, so the matrix is
+the example graph. We read the arrowhead on one line of the drawing as a stray
+mark, because the matrix is symmetric and the graph is undirected.
+\end{convention}
+
+\begin{convention}[the word ``path'']\label{conv:path}
+The board does not define path \cite{whiteboard1}. The assignment text says
+that in the course a path is a walk with no repeated vertex. The textbook has
+the same object under the name \emph{simple path} (Definition~1.2.13), and
+it uses the word \emph{path} for a walk with no repeated edge
+(Definition~1.2.12) \cite[p.~22]{petrosyan2015graph}. Because the two meanings
+of ``path'' differ, we write \emph{trail} for the textbook's Definition~1.2.12
+and say ``the textbook's path'' when we quote it. Plain ``path'' always means
+no repeated vertex. \Cref{tab:conventions} compares the names.
+\end{convention}
+
+\begin{convention}[walks of length zero]\label{conv:zero}
+A single vertex is a walk of length $0$ from that vertex to itself. The
+textbook does not say whether length $0$ is allowed in its walk definition on
+the pages we viewed (printed pp.~21 to 23) \cite{petrosyan2015graph}. Grinberg
+allows it \cite[p.~36, Definition~2.9.1(a)]{grinberg2025graph}. We adopt it as a
+convention. It makes $A^0=I$ count walks of length $0$, and it makes the
+walk-to-path lemma (\cref{lem:walkpath}) true for $u=v$.
+\end{convention}
+
+\begin{convention}[page numbers]\label{conv:pages}
+Textbook page numbers are the printed numbers; the page of the PDF file is one
+higher. The textbook is in Armenian; we give its terms in English translation, and
+every definition is cited by the book's number.
+\end{convention}
+
+This note makes no claim about what the lecturer intended beyond what the
+photos and the assignment text show.

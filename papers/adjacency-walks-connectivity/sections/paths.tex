@@ -1,0 +1,206 @@
+\section{Question Q3: paths between two vertices}\label{sec:paths}
+
+\Cref{def:pathij} answers Q3: a path between $n_i$ and $n_j$ is a sequence
+of pairwise different vertices from $n_i$ to $n_j$ in which consecutive
+vertices are adjacent. This section adds what the definition alone does not
+give. It compares the names that the course, the textbook and English texts use
+for the same objects. It then proves the four short results about walks, trails
+and paths on which Q1 and Q2 rest.
+
+\subsection{Three naming conventions side by side}
+
+\plain
+The word path is used for two different kinds of trip. One kind never drives a
+road twice. The other never visits a town twice. Books disagree on which kind
+gets the word. So a reader must always check which kind is meant.
+
+\Cref{tab:conventions} lists the objects of Definitions~\ref{def:walk} to
+\ref{def:cycle}. The first column states the property, the second the name this note
+uses, the third the textbook's name with its number, and the fourth what English-language texts use where
+we checked.
+
+\begin{table}[ht]
+\centering
+\caption{The same objects under three conventions. The textbook's terms are
+given in English translation.}
+\label{tab:conventions}
+\small
+\begin{tabular}{p{3.6cm}p{2.3cm}p{3.6cm}p{3.9cm}}
+\toprule
+The sequence must satisfy & This note & Textbook (number) & English-language texts \\
+\midrule
+consecutive vertices adjacent & walk & walk (1.2.10) & walk \cite[Def.~2.9.1(a)]{grinberg2025graph} \\
+a walk with $u_0=u_k$ & closed walk & closed walk (1.2.11) & not compared \\
+no repeated edge & trail & ``path'' (1.2.12) & trail \cite{wikipedia2026path} \\
+no repeated vertex & \textbf{path} & ``simple path'' (1.2.13) & path \cite[Def.~2.9.1(c)]{grinberg2025graph} \\
+a closed trail & cycle & ``closed path'' or ``cycle'' (1.2.14) & not compared \\
+a cycle whose only repeated vertices are first and last & simple cycle & ``simple cycle'' (1.2.15) & not compared \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The textbook's numbers come from \cite[p.~22]{petrosyan2015graph}. Two things
+limit the table. The word \emph{trail} for Definition~1.2.12 is taken from a
+tertiary web page that we read only in part \cite{wikipedia2026path}; Grinberg
+defines walk and path but not trail \cite{grinberg2025graph}. And we did not
+check English usage of ``closed trail'' and ``cycle'', so those cells say so.
+A fourth reading exists: Bai's notes call a walk a path if it has no repeated
+vertex except possibly that the first and last vertices are equal
+\cite[p.~1]{bai2025adjacency}. Under that reading a cycle counts as a path. We
+do not use it.
+
+\begin{remark}[a danger for the reader]\label{rem:danger}
+The textbook's definition of a connected graph (\cref{def:connected} below)
+uses the textbook's ``path'', which is our trail. The course convention uses
+our path. \Cref{prop:readings} shows that the two readings describe the same
+connected graphs, so the choice does not change the answer to Q2. The choice
+would change other statements, for example a bound on the length.
+\end{remark}
+
+\subsection{Cutting loops out of a walk}
+
+\plain
+Suppose a trip visits some town twice. Between the two visits you drove around a
+loop. Cut the loop out. You still get from the start to the end, and the trip
+got shorter. Keep cutting until no town is visited twice. What is left is a
+tidy route.
+
+\begin{lemma}[every walk contains a path]\label{lem:walkpath}
+Let $u$ and $v$ be vertices, equal or not. If there is a $(u,v)$-walk of
+length $k$, then there is a $(u,v)$-path of length at most $k$.
+\end{lemma}
+
+The textbook proves this for $u\ne v$ by induction on the length of the walk
+and gives no bound on the length (Lemma~1.2.1, \cite[p.~23]{petrosyan2015graph}).
+Grinberg states the bound and covers $u=v$
+\cite[p.~39, Corollary~2.9.7]{grinberg2025graph}. We prove the strong form,
+so that no step depends on those sources.
+
+\begin{proof}
+We use strong induction on $k$.
+
+\emph{Base case, $k=0$.} The walk is the single vertex $u$, and $u=v$. One
+vertex has pairwise different vertices, so it is a path of length $0\le 0$.
+
+\emph{Induction hypothesis.} Let $k\ge 1$ and suppose the statement holds for
+all walks of length less than $k$, between any two vertices.
+
+\emph{Induction step.} Let $w_0,\dots,w_k$ be a $(u,v)$-walk. If its vertices
+are pairwise different, it is already a path of length $k$. Otherwise choose
+indices $i<j$ with $w_i=w_j$. Delete $w_{i+1},\dots,w_j$ to obtain
+$w_0,\dots,w_i,w_{j+1},\dots,w_k$. Consecutive vertices are still adjacent:
+inside the first part and inside the last part nothing changed, and at the join
+$w_i=w_j$ is adjacent to $w_{j+1}$. If $j=k$ there is no join, and the sequence
+ends at $w_i=w_k=v$. The new sequence starts at $u$, ends at $v$, and has length
+$k-(j-i)<k$, because $j-i\ge1$. By the induction hypothesis it contains a
+$(u,v)$-path of length at most $k-(j-i)$, hence at most $k$.
+\end{proof}
+
+\begin{example}
+In $H$ the walk $n_1,n_2,n_3,n_1,n_3,n_4$ has $n_1$ at positions $0$ and $3$.
+Deleting the vertices at positions $1$ to $3$ leaves $n_1,n_3,n_4$, a path of
+length $2$. The walk $n_4,n_3,n_1,n_2,n_3,n_4$ has $n_4$ at both ends; cutting
+leaves the single vertex $n_4$, a path of length $0$ \cite{paperscript}.
+\end{example}
+
+\begin{lemma}[a path is a trail]\label{lem:pathtrail}
+If the vertices of a walk are pairwise different, then its edges are pairwise
+different.
+\end{lemma}
+
+\plain
+If you never visit a town twice, you cannot drive the same road twice.
+
+\begin{proof}
+Let $w_0,\dots,w_k$ have pairwise different vertices and suppose that two of its
+edges are equal: $\{w_{i-1},w_i\}=\{w_{j-1},w_j\}$ with $1\le i<j\le k$. Then
+$w_{i-1}$ equals $w_{j-1}$ or $w_j$. The indices $j-1$ and $j$ are both
+different from $i-1$, since $j-1\ge i$. So two different positions hold the
+same vertex, which contradicts the assumption.
+\end{proof}
+
+\plain
+Three questions sound alike. Can you get from one town to another by any trip?
+By a trip that never drives a road twice? By a tidy route? The answers are
+always the same.
+
+\begin{proposition}[three readings of ``joined'']\label{prop:readings}
+For vertices $u$ and $v$ of a simple graph the following are equivalent:
+(a) there is a $(u,v)$-walk; (b) there is a $(u,v)$-trail, that is, a
+$(u,v)$-path in the textbook's sense of Definition~1.2.12; (c) there is a
+$(u,v)$-path with pairwise different vertices.
+\end{proposition}
+
+\begin{proof}
+(c) implies (b) by \cref{lem:pathtrail}. (b) implies (a), because a trail is a
+walk by \cref{def:trail}. (a) implies (c) by \cref{lem:walkpath}.
+\end{proof}
+
+\begin{remark}
+By \cref{prop:readings}, the textbook's definition of a connected graph, which
+asks for a $(u,v)$-trail for every two vertices, holds exactly when every two
+vertices are joined by a path in the course sense. The board's definition
+read with \cref{conv:path} and the textbook's definition therefore describe the
+same graphs. Grinberg proves only the equivalence of (a) and (c)
+\cite[p.~42, Proposition~2.9.10]{grinberg2025graph}; the trail reading is
+proved here.
+\end{remark}
+
+\begin{example}
+On the board graph the walk $n_1,n_2,n_1,n_2,n_3$ shows that $n_1$ and $n_3$ are
+joined by a walk. Cutting the loop $n_1,n_2,n_1$ leaves the path
+$n_1,n_2,n_3$, which is also a trail \cite{paperscript}.
+\end{example}
+
+\plain
+A tidy route visits each town at most once. So it cannot be longer than the
+number of towns minus one drives.
+
+\begin{proposition}[length bound]\label{prop:bound}
+Let $G$ have $N$ vertices. (i) Every path in $G$ has length at most $N-1$.
+(ii) If $u\ne v$ and some walk joins them, then a walk of length $k$ with
+$1\le k\le N-1$ joins them, and it can be chosen to be a path.
+\end{proposition}
+
+The bound in (i) is also stated by Grinberg and by Gotti
+\cite[p.~40]{grinberg2025graph}, \cite[p.~2]{gotti18211lecture27}.
+
+\begin{proof}
+(i) A path of length $k$ has $k+1$ pairwise different vertices, all in $V$, so
+$k+1\le N$. (ii) Apply \cref{lem:walkpath} to the given walk. It yields a path
+of length at most that of the walk. The length is at least $1$ because $u\ne v$,
+and at most $N-1$ by (i). A path is a walk.
+\end{proof}
+
+\plain
+How far apart are two towns? It is the fewest drives of any trip from one to the
+other. It does not matter whether we also forbid repeats, because forbidding
+repeats never lets a trip get shorter.
+
+\begin{proposition}[distance is the least walk length]\label{prop:distance}
+If a $(u,v)$-walk exists, then $d_G(u,v)$ of \cref{def:distance} equals the
+least length of a $(u,v)$-walk, the least length of a $(u,v)$-trail and the
+least length of a $(u,v)$-path, and it is at most $N-1$. If no walk exists, all
+three sets are empty and $d_G(u,v)=+\infty$.
+\end{proposition}
+
+\begin{proof}
+Let $a$, $b$ and $c$ be the least lengths of a walk, a trail and a path from
+$u$ to $v$. Every path is a trail (\cref{lem:pathtrail}) and every trail is a
+walk, so $a\le b\le c$. By \cref{lem:walkpath} a shortest walk contains a path
+that is no longer, so $c\le a$. Hence $a=b=c$, and $d_G(u,v)=b$ by
+\cref{def:distance}. The bound $N-1$ comes from \cref{prop:bound}(i), applied to
+a shortest path. If a walk exists, a trail exists by \cref{prop:readings}, so the
+three sets are empty together.
+\end{proof}
+
+\begin{remark}[the textbook's three properties of distance]\label{rem:distprops}
+The textbook lists three properties of the distance: it is $\ge 0$ and equals
+$0$ exactly when $u=v$; $d(u,v)=d(v,u)$; and $d(u,w)\le d(u,v)+d(v,w)$
+\cite[pp.~22--23]{petrosyan2015graph}. The reading of \cref{prop:distance}
+gives each of them. A walk of length $0$ exists from $u$ only to $u$. Reversing
+a walk gives a walk of the same length in the other direction, because
+adjacency is symmetric. A shortest $(u,v)$-walk followed by a shortest
+$(v,w)$-walk is a $(u,w)$-walk of length $d(u,v)+d(v,w)$; if either term is
+$+\infty$ the inequality holds trivially.
+\end{remark}

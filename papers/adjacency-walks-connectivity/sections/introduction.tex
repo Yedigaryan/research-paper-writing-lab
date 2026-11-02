@@ -1,0 +1,113 @@
+\section{Introduction}\label{sec:intro}
+
+\subsection{The questions and where they come from}
+
+This note starts from a lecture whiteboard, photographed twice from slightly
+different angles \cite{whiteboard1,whiteboard2}. The board shows a graph with
+$\N$ vertices that is given through its adjacency matrix $A$, and it asks two
+questions about $A$ \cite{whiteboard1}. The first question is what the entry
+$(i,j)$ of a power of $A$ represents. The second question is how to know
+from $A$ whether the graph is connected. The board then defines a connected
+graph as one in which, for any two vertices, there exists a path between them
+\cite{whiteboard1}. It does not say what a path is. The assignment text that
+came with the photos adds a third question: what is the definition of a path
+between two vertices $n_i$ and $n_j$? The assignment text also states which
+meaning of the word path the course uses; \cref{conv:path} records it. We call the
+three questions Q1, Q2 and Q3:
+
+\begin{description}[leftmargin=2.2em,labelwidth=2em]
+  \item[Q1] What does the entry $(A^k)_{ij}$ represent?
+  \item[Q2] How can one determine from $A$ whether the graph is connected?
+  \item[Q3] What is the definition of a path between $n_i$ and $n_j$?
+\end{description}
+
+\noindent The board also holds a small drawing of three vertices and a
+$3\times 3$ matrix. We use that matrix as the main example, and
+\cref{sec:board-mismatch} reports where the drawing and the matrix differ.
+
+\subsection{The story used throughout}
+
+\plain
+Think of a group of towns. Some pairs of towns have a road between them.
+Every road can be driven in both directions. A trip follows roads, one after
+another. You may drive past the same town again, or the same road again.
+Two questions come up. How many different trips of a given size lead from one
+town to another? And can you get from every town to every other town?
+
+\Cref{tab:dictionary} fixes the story words once. The plain words paragraphs
+in this note use only the story words in the right column. The technical
+terms in the left column are defined where they first appear.
+
+\begin{table}[ht]
+\centering
+\caption{The story dictionary. One story word for each technical term.}
+\label{tab:dictionary}
+\begin{tabular}{ll}
+\toprule
+Technical term & Story word \\
+\midrule
+vertex & town \\
+edge & road (it can be driven both ways) \\
+adjacent vertices & neighbouring towns (a road joins them) \\
+degree of a vertex & number of roads at a town \\
+adjacency matrix & the road table \\
+walk & trip \\
+length of a walk & number of drives (a road counts every time it is driven) \\
+closed walk & round trip \\
+trail & trip that never drives a road twice \\
+path (course meaning) & tidy route (never visits a town twice) \\
+cycle & loop trip (a round trip that uses no road twice) \\
+distance & fewest drives between two towns \\
+connected graph & every town can be reached from every other town \\
+connectivity component & island (a group of towns that reach one another) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{What the note shows}
+
+The short answers are as follows. The sections named give the definitions and
+proofs.
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Q1.} For $k\ge 1$, the entry $(A^k)_{ij}$ is the number of
+  \emph{walks} of length $k$ from $n_i$ to $n_j$ (\cref{thm:walkcount}). It
+  counts walks, not paths; \cref{sec:notpaths} shows by example why the
+  difference matters.
+  \item \textbf{Q2.} The graph on $\N\ge 2$ vertices is connected if and only
+  if every off-diagonal entry of $A+A^2+\dots+A^{\N-1}$ is positive, and this
+  holds if and only if $(I+A)^{\N-1}$ has no zero entry (\cref{thm:test}).
+  \item \textbf{Q3.} Under the course convention, a path between $n_i$ and
+  $n_j$ is a sequence of pairwise distinct vertices that starts at $n_i$, ends
+  at $n_j$, and has adjacent vertices in each consecutive pair
+  (\cref{def:pathij}).
+\end{itemize}
+
+The course textbook defines the graph, the adjacency matrix, walks, paths,
+cycles, distance and connectivity \cite{petrosyan2015graph}. As far as a text
+search of the book for the adjacency matrix shows, it mentions that matrix on
+the table of contents and on printed pages 7, 11, 12, 34 and 61, and the pages
+we viewed contain neither a theorem that counts walks with matrix powers nor a
+matrix test for connectivity \cite{petrosyan2015graph}. We did not read the
+whole book, so we state this only as the result of that search. Both results
+are therefore proved here in full. Lecture notes state them as well
+\cite{galwaynotes,bai2025adjacency,gotti18211lecture27}, and we name the
+source beside each statement.
+
+\subsection{How the note is organized}
+
+\Cref{sec:conventions} fixes notation and the conventions we adopt where the
+board, the assignment text and the textbook leave a choice. \Cref{sec:background}
+gives the definitions in the textbook's order, each followed by a remark, an
+example and a non-example. \Cref{sec:paths} answers Q3 and proves the lemmas
+about walks and paths that the other answers need. \Cref{sec:walkcount}
+answers Q1. \Cref{sec:connectivity} answers Q2 and works two examples.
+\Cref{sec:discussion} states limits, and \cref{sec:conclusion} gives the direct
+answers. \Cref{app:provenance} lists the sources, the pages viewed and how to
+rerun every computation.
+
+Statements are marked by their form, not by labels. A definition carries the
+textbook's number where it has one. A theorem, lemma or proposition that has a
+proof printed here is our own proof; a citation in its first sentence says which
+source also states the result. A reading of the photos or of the assignment
+text is a numbered convention in \cref{sec:conventions}.

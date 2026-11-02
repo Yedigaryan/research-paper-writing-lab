@@ -1,0 +1,63 @@
+{
+  "sources": [
+    {
+      "id": "paperscript",
+      "type": "code",
+      "title": "paper_computations.py: every matrix, count and classification printed in the paper",
+      "authors": [],
+      "year": null,
+      "venue": "papers/adjacency-walks-connectivity/appendices/scripts, written by the paper author, pure Python integer arithmetic",
+      "identifier": {"doi": null, "url": null, "isbn": null, "path": "appendices/scripts/paper_computations.py"},
+      "accessed": "2026-11-02",
+      "access_status": "full",
+      "credibility": "primary",
+      "found_by": "author",
+      "notes": "Run with python3 -I from the paper folder. Computes matrix powers by the definition of the product, checks each entry against explicit walk enumeration for k = 1 to 4, classifies the example sequences of graph H as walk, trail and path, and writes appendices/generated-matrices.tex, which the paper inputs."
+    }
+  ],
+  "claims": [
+    {
+      "id": "A-1",
+      "text": "For the four-vertex example graph H of the paper (edges n1n2, n1n3, n2n3, n3n4) the adjacency matrix has rows 0 1 1 0 / 1 0 1 0 / 1 1 0 1 / 0 0 1 0, row sums 2, 2, 3, 1 (sum 8 = 2|E|), and every entry of A^k for k = 1 to 4 equals the explicit walk count. The sequences used as examples and non-examples of walk, closed walk, trail, path and cycle in H are classified as the paper says, and the walk n1, n2, n3, n1, n3, n4 reduces to the path n1, n3, n4 by deleting the part between the two occurrences of n1.",
+      "kind": "experimental",
+      "module": "author",
+      "support": [
+        {"source": "paperscript", "locator": "output section 'H N = 4' and 'Classification of the examples used in the definitions (graph H)'", "quote": "cut of (1,2,3,1,3,4): (1, 3, 4)"}
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": ["sections/background.tex", "sections/paths.tex"],
+      "contradicted_by": []
+    },
+    {
+      "id": "A-2",
+      "text": "For N = 1 the connectivity test is trivially true: a graph with one vertex is connected, it has no off-diagonal entries, and (I + A)^0 = I = (1) has no zero entry; the equivalence of the connectivity test theorem therefore holds for N = 1 as well. A graph with one vertex is connected because the single vertex is joined to itself by the path of length 0.",
+      "kind": "derived",
+      "module": "author",
+      "support": [
+        {"source": "petrosyan2015graph", "locator": "printed p. 48, Definition 2.1.1", "quote": "G գրաֆը կանվանենք կապակցված, եթե նրա ցանկացած երկու u և v գագաթների համար G գրաֆում գոյություն ունի (u,v)-ճանապարհ։"}
+      ],
+      "derivation": "sections/connectivity.tex, remark after the test (case N = 1); uses the convention that a single vertex is a walk of length 0 (C-m2-06)",
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": ["sections/connectivity.tex"],
+      "contradicted_by": []
+    },
+    {
+      "id": "A-3",
+      "text": "Because every entry of every power A^k is a nonnegative integer, adding the powers A^k for k > N - 1 to the sum B = A + ... + A^(N-1) cannot turn a positive entry into zero, so the test remains correct with more terms; it is unnecessary because a path has at most N - 1 edges.",
+      "kind": "derived",
+      "module": "author",
+      "support": [
+        {"source": "galwaynotes", "locator": "p. 4, Theorem 1.1.3", "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."}
+      ],
+      "derivation": "sections/connectivity.tex, remark after the connectivity test theorem (the list of limits); follows from M1-3 (nonnegativity) and m3-C4",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": ["sections/connectivity.tex"],
+      "contradicted_by": []
+    }
+  ],
+  "contradictions": []
+}

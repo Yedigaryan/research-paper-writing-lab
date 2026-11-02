@@ -1,0 +1,46 @@
+\section{Sources, pages checked and how to rerun the computations}\label{app:provenance}
+
+\subsection*{Sources and how much of each was read}
+
+\begin{itemize}[leftmargin=1.5em]
+  \item The course textbook \cite{petrosyan2015graph}: read in part. We viewed
+  printed pages 7, 11 and 16, pages 21 to 23, and pages 48 and 49 as images,
+  and page 9 through its text layer, and we searched the text for the
+  adjacency matrix. Printed page numbers are the PDF page minus one. The text
+  layer drops most mathematical symbols, so formulas were taken from the page
+  images.
+  \item The two whiteboard photos \cite{whiteboard1,whiteboard2}: read
+  together as one board.
+  \item The Galway notes \cite{galwaynotes}, Gotti's notes
+  \cite{gotti18211lecture27} and the journal article of Paramadevan and
+  Sotheeswaran \cite{paramadevan2021adjacency}: read in full. Bai's notes
+  \cite{bai2025adjacency}, Grinberg's book \cite{grinberg2025graph} and the
+  Waterloo slides \cite{waterloocs341lecture10}: read in part, at the places
+  cited. The Wikipedia page \cite{wikipedia2026path}: read in part, through a
+  summarising tool, so its wording is as returned and not checked against the raw
+  page.
+\end{itemize}
+
+All web sources were accessed on 2 November 2026 (see the bibliography).
+
+\subsection*{The computations}
+
+Every matrix in the text, every walk count and every classification of an
+example sequence comes from one script, \texttt{appendices/scripts/paper\_computations.py}
+\cite{paperscript}, run from the paper folder with
+\begin{verbatim}
+python3 -I appendices/scripts/paper_computations.py \
+    > appendices/scripts/paper_computations_output.txt
+\end{verbatim}
+It writes \texttt{appendices/generated-matrices.tex}, which this document
+inputs, so no matrix is typed by hand. It computes powers by the definition of
+the matrix product and checks every entry of $A^k$ for $k=1,\dots,4$ against an
+explicit enumeration of walks. The script
+\texttt{appendices/scripts/m3\_examples.py} \cite{m3examples} computes the two
+three-vertex examples independently, and
+\texttt{appendices/scripts/m3\_exhaustive\_check.py} \cite{m3exhaustive}
+performs the finite check of the test on all graphs with up to six vertices.
+The script \texttt{appendices/scripts/m2\_paths.py} cuts every walk of length at
+most $6$ in all $1099$ labelled simple graphs on at most five vertices and found
+no violation of \cref{lem:walkpath}; its output is saved beside it. Run each
+with \texttt{python3 -I}.

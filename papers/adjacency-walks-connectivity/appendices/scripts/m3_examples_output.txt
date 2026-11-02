@@ -1,0 +1,92 @@
+============================================================
+Example 1: connected (board matrix)
+A
+     0  1  0
+     1  0  1
+     0  1  0
+A^1
+     0  1  0
+     1  0  1
+     0  1  0
+A^2
+     1  0  1
+     0  2  0
+     1  0  1
+B = A + ... + A^2
+     1  1  1
+     1  2  1
+     1  1  1
+(I + A)^2
+     2  2  1
+     2  3  2
+     1  2  2
+every off-diagonal entry of B positive: True
+every entry of (I+A)^(N-1) positive:   True
+BFS from n_1 visits (1-based): [1, 2, 3] -> all visited: True
+smallest k in 1..N-1 with (A^k)_ij > 0, per pair i<j:
+   (n_1, n_2): 1
+   (n_1, n_3): 2
+   (n_2, n_3): 1
+============================================================
+Example 2: disconnected (n3 isolated)
+A
+     0  1  0
+     1  0  0
+     0  0  0
+A^1
+     0  1  0
+     1  0  0
+     0  0  0
+A^2
+     1  0  0
+     0  1  0
+     0  0  0
+B = A + ... + A^2
+     1  1  0
+     1  1  0
+     0  0  0
+(I + A)^2
+     2  2  0
+     2  2  0
+     0  0  1
+every off-diagonal entry of B positive: False
+every entry of (I+A)^(N-1) positive:   False
+BFS from n_1 visits (1-based): [1, 2] -> all visited: False
+smallest k in 1..N-1 with (A^k)_ij > 0, per pair i<j:
+   (n_1, n_2): 1
+   (n_1, n_3): none
+   (n_2, n_3): none
+============================================================
+Extra: triangle (board drawing with the edge n1n3)
+A
+     0  1  1
+     1  0  1
+     1  1  0
+A^1
+     0  1  1
+     1  0  1
+     1  1  0
+A^2
+     2  1  1
+     1  2  1
+     1  1  2
+B = A + ... + A^2
+     2  2  2
+     2  2  2
+     2  2  2
+(I + A)^2
+     3  3  3
+     3  3  3
+     3  3  3
+every off-diagonal entry of B positive: True
+every entry of (I+A)^(N-1) positive:   True
+BFS from n_1 visits (1-based): [1, 2, 3] -> all visited: True
+smallest k in 1..N-1 with (A^k)_ij > 0, per pair i<j:
+   (n_1, n_2): 1
+   (n_1, n_3): 1
+   (n_2, n_3): 1
+============================================================
+Why the exponent N-1 is needed and the sum (or I+A) is needed
+connected example, A alone: (A)_13 = 0 so exponent 1 misses the pair n1,n3
+A^2 alone: (A^2)_12 = 0 so A^(N-1) alone misses the pair n1,n2 (parity)
+diagonal of A^2 = [1, 2, 1] = degrees [1, 2, 1]

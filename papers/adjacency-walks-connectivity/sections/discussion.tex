@@ -1,0 +1,44 @@
+\section{Discussion: limits and competing readings}\label{sec:discussion}
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Scope.} Every result is for finite simple undirected graphs
+  (\cref{conv:graph}). With loops the diagonal entries of $A$ would need a
+  convention and the row-sum property would change. With repeated edges the
+  entries would be edge multiplicities, a vertex sequence would no longer
+  determine a walk, and the counting theorem would count walks with a choice of
+  edge. We did not work these cases out.
+  \item \textbf{What the board leaves open.} The mark above $A$, the
+  arrowhead and the extra line in the drawing are readings, not facts
+  (\cref{conv:power}, \cref{sec:board-mismatch}). The photos cannot say what the
+  lecturer meant by them. If the mark were a prime or quotation marks, Q1 would
+  ask about another matrix; the assignment text rules that out, but the board
+  alone does not.
+  \item \textbf{The meaning of ``path''.} The board does not define it. The
+  result of Q2 does not depend on the choice between the textbook's trail
+  reading and the course's no-repeated-vertex reading (\cref{prop:readings}), but
+  other statements do, for example the bound $N-1$ on the length
+  (\cref{prop:bound}), which holds for paths and not for trails.
+  \item \textbf{Length zero.} Whether the textbook admits walks of length $0$ is
+  not settled by the pages we viewed. We adopted it as a convention
+  (\cref{conv:zero}). The test itself uses only pairs of different vertices.
+  \item \textbf{Sources.} The three sources that state the counting theorem and
+  the three that state the test are lecture notes or a small journal article; the
+  Galway notes carry no author and no date, and we did not read Bai's notes in
+  full. None is a research source. The theorem and the test are standard, and
+  the proofs here do not depend on the proofs in those sources. The textbook was
+  read in part, so the statement that it lacks the theorem and the test is the
+  result of a search and of the pages viewed (\cref{sec:intro}), not of a full
+  read. The word \emph{trail} rests on a tertiary web page (\cref{tab:conventions}).
+  \item \textbf{Competing explanation of the sum.} Two sources explain the sum
+  test as ``the sum counts all paths of length at most $N-1$''
+  \cite{bai2025adjacency,paramadevan2021adjacency}. As a statement about counts
+  this is wrong: the entries count walks, weighted by binomial coefficients in
+  $R$. As a statement about positivity it is right, and only through the
+  walk-to-path lemma.
+  \item \textbf{Size of the numbers.} Entries of $A^k$ and $R$ grow quickly: $A^4$
+  of the board graph already has an entry $4$. Only positivity matters for the
+  test. We make no claim about growth rates, which would need eigenvalue methods
+  and lie outside the scope.
+  \item \textbf{Checks.} The computations in this note are checks of examples and
+  of small cases; the proofs carry the results.
+\end{itemize}

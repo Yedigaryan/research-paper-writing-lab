@@ -1,0 +1,383 @@
+\section{Background: graphs, matrices, walks and paths}\label{sec:background}
+
+Let $G=(V,E)$ be a graph, $u,v\in V$ and $e\in E$. The definitions below follow
+the textbook's order \cite{petrosyan2015graph}. Each definition that has a
+textbook number carries it. Each one is followed by a remark that says what it
+allows and forbids, an example, and a non-example. Most examples use the
+four-vertex graph $H$ of \cref{fig:H}, which has the edges $n_1n_2$, $n_1n_3$,
+$n_2n_3$ and $n_3n_4$. Every classification of a sequence in these examples was
+checked by script \cite{paperscript}.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[every node/.style={circle,draw,minimum size=7mm,inner sep=1pt}]
+  \node (n1) at (0,1) {$n_1$};
+  \node (n2) at (0,-1) {$n_2$};
+  \node (n3) at (2.2,0) {$n_3$};
+  \node (n4) at (4.4,0) {$n_4$};
+  \draw (n1) -- (n2);
+  \draw (n1) -- (n3);
+  \draw (n2) -- (n3);
+  \draw (n3) -- (n4);
+\end{tikzpicture}
+\caption{The example graph $H$: four towns, with roads $n_1n_2$, $n_1n_3$,
+$n_2n_3$ and $n_3n_4$. Its triangle $n_1,n_2,n_3$ gives it a loop trip, and
+$n_4$ hangs off $n_3$ by a single road.}
+\label{fig:H}
+\end{figure}
+
+\subsection{Graph, adjacent vertices, adjacency matrix, degree}
+
+\plain
+A graph is a map of towns and roads. It is a list of the towns and a list of
+which pairs of towns have a road. A road joins two different towns. Between
+two towns there is at most one road.
+
+\begin{definition}[graph; textbook Definition~1.1.1]\label{def:graph}
+A \emph{graph} $G=(V,E)$ consists of a finite nonempty set $V$ of
+\emph{vertices} and a set $E$ of \emph{edges}, each edge being an unordered
+pair of different vertices; the edge with ends $u$ and $v$ is written $uv$
+\cite[p.~9]{petrosyan2015graph}.
+\end{definition}
+
+\begin{remark}
+The textbook notes that a graph may be viewed as an antireflexive symmetric
+relation on $V$ \cite[p.~9]{petrosyan2015graph}. Antireflexive means no edge
+joins a vertex to itself (no loops). Symmetric means $uv$ and $vu$ are the same
+edge. Because $E$ is a set, two vertices have at most one edge between them.
+So the definition forbids loops, repeated edges and directions.
+\end{remark}
+
+\begin{example}
+$H$ in \cref{fig:H} has $V=\{n_1,n_2,n_3,n_4\}$ and four edges.
+\end{example}
+
+\begin{nonexample}
+A road map with a road from one town back to itself, or with two separate
+roads between the same two towns, is not a graph in this sense.
+\end{nonexample}
+
+\plain
+Two towns are neighbours when a road joins them. That is all the next
+definition says.
+
+\begin{definition}[adjacent vertices; textbook Definition~1.1.4]\label{def:adjacent}
+Vertices $u$ and $v$ are \emph{adjacent} if $uv\in E$
+\cite[p.~11]{petrosyan2015graph}.
+\end{definition}
+
+\begin{remark}
+Adjacency is symmetric, and a vertex is never adjacent to itself, because
+there are no loops.
+\end{remark}
+
+\begin{example}
+In $H$ the vertices $n_3$ and $n_4$ are adjacent.
+\end{example}
+
+\begin{nonexample}
+In $H$ the vertices $n_1$ and $n_4$ are not adjacent: the edge $n_1n_4$ is not
+in $E$.
+\end{nonexample}
+
+\plain
+The road table has one row and one column for each town. Put a one where the
+row town and the column town share a road. Put a zero everywhere else. The
+table tells you every road at a glance.
+
+\begin{definition}[adjacency matrix; textbook, after Definition~1.1.6]\label{def:adjmatrix}
+Let $V=\{n_1,\dots,n_N\}$. The \emph{adjacency matrix} of $G$ is the
+$N\times N$ matrix $A=(A_{ij})$ with $A_{ij}=1$ if $e_{ij}\in E$ and
+$A_{ij}=0$ otherwise \cite[p.~11]{petrosyan2015graph}. The board writes the
+same rule \cite{whiteboard1,whiteboard2}; see \cref{conv:edgeset} for its letters.
+\end{definition}
+
+\begin{remark}
+The only allowed entries are $0$ and $1$, so a repeated edge cannot be
+recorded. A $1$ on the diagonal is forbidden because there are no loops. The
+textbook states the next two facts after the definition: $A_{ii}=0$ for all
+$i$ and $A_{ij}=A_{ji}$ for all $i,j$ \cite[p.~11]{petrosyan2015graph}. The matrix depends on how the vertices
+are numbered: renumbering permutes the rows and the columns together.
+\end{remark}
+
+\begin{example}
+The graph $H$ has the adjacency matrix
+\[
+A_H=\matHA .
+\]
+The board's matrix $\matBoardA$ is the adjacency matrix of the graph on
+$n_1,n_2,n_3$ with the two edges $n_1n_2$ and $n_2n_3$
+\cite{whiteboard1,whiteboard2}. We call that graph the \emph{board graph}.
+\end{example}
+
+\begin{nonexample}
+The matrix $\begin{pmatrix}0&1&0\\0&0&1\\0&0&0\end{pmatrix}$ is not the
+adjacency matrix of a simple undirected graph: it is not symmetric.
+\end{nonexample}
+
+\plain
+The degree of a town is the number of roads at that town. If you add up the
+roads at every town, you count each road twice, once from each end.
+
+\begin{definition}[degree; textbook Definition~1.2.1]\label{def:degree}
+The \emph{degree} $d(n_i)$ of a vertex $n_i$ is the number of edges incident
+to $n_i$ \cite[p.~16]{petrosyan2015graph}.
+\end{definition}
+
+\begin{remark}
+The textbook introduces the degree after the adjacency matrix, so the
+row-sum property below is stated after this definition and not before it. The
+degree counts edges at the vertex, not vertices that can be reached from it.
+\end{remark}
+
+\begin{example}
+In $H$ the degrees are $d(n_1)=2$, $d(n_2)=2$, $d(n_3)=3$ and $d(n_4)=1$
+\cite{paperscript}.
+\end{example}
+
+\begin{nonexample}
+In $H$ the vertex $n_4$ can reach three other towns, but $d(n_4)=1$, because
+only one road ends at $n_4$.
+\end{nonexample}
+
+\begin{theorem}[Euler; textbook Theorem~1.2.1]\label{thm:euler}
+In every graph $G=(V,E)$ the degrees add up to twice the number of edges:
+$\sum_{v\in V}d(v)=2|E|$ \cite[p.~16]{petrosyan2015graph}.
+\end{theorem}
+
+We use this theorem as the textbook states it, without proving it again.
+
+\begin{proposition}[properties of the adjacency matrix]\label{prop:adjprops}
+Let $A$ be the adjacency matrix of a simple undirected graph with $N$
+vertices.
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item $A$ is symmetric: $A_{ij}=A_{ji}$.
+  \item The diagonal is zero: $A_{ii}=0$.
+  \item The $i$-th row sum is the degree: $\sum_{j=1}^{N}A_{ij}=d(n_i)$. The
+  column sums are the same, by symmetry.
+  \item The sum of all entries of $A$ is $2|E|$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Properties (1) and (2) are the textbook's remark after the definition
+\cite[p.~11]{petrosyan2015graph}. For (1) the reason is that $e_{ij}$ and
+$e_{ji}$ name the same unordered pair. For (2) the reason is that an edge joins
+two different vertices.
+
+(3) The row sum counts the indices $j$ with $e_{ij}\in E$, that is, the
+neighbours of $n_i$. Every edge at $n_i$ has the form $e_{ij}$ with $j\ne i$,
+and two different edges at $n_i$ have different other ends, because a simple
+graph has no repeated edge. So edges at $n_i$ and neighbours of $n_i$ match one
+to one, and the row sum equals the number of edges at $n_i$, which is $d(n_i)$.
+
+(4) Add (3) over all $i$ and use \cref{thm:euler}.
+\end{proof}
+
+For $H$ the row sums of $A_H$ are $2,2,3,1$, which are the degrees, and the sum
+of all entries is $8=2\cdot 4$ \cite{paperscript}.
+
+\subsection{Walks, trails, paths, cycles, distance}
+
+\plain
+A trip follows roads from town to town. You may pass the same town twice. You
+may drive the same road twice. The number of drives is the size of the trip,
+and a road counts every time you drive it. Trips with fewer repeats get their
+own names.
+
+\begin{definition}[walk; textbook Definition~1.2.10]\label{def:walk}
+A \emph{walk of length $k$} from $u_0$ to $u_k$, also called a
+\emph{$(u_0,u_k)$-walk}, is a sequence $u_0,e_1,u_1,\dots,u_{k-1},e_k,u_k$ of
+vertices and edges of $G$ with $e_i=u_{i-1}u_i$ for $1\le i\le k$
+\cite[p.~21]{petrosyan2015graph}.
+\end{definition}
+
+\begin{remark}
+In a walk, vertices and edges may repeat, and the length counts each edge as
+often as it occurs \cite[p.~22]{petrosyan2015graph}. The textbook abbreviates a
+walk by its vertex sequence $u_0,u_1,\dots,u_k$. In a simple graph this loses
+nothing. The only possible edge $e_i$ between $u_{i-1}$ and $u_i$ is the one
+edge $u_{i-1}u_i$. So a sequence of vertices is a walk exactly when every two
+consecutive vertices are adjacent, and the walk is determined by its vertex
+sequence. We write walks this way from now on. A walk of length $0$ is a single
+vertex (\cref{conv:zero}).
+\end{remark}
+
+\begin{example}
+In $H$ the sequence $n_1,n_2,n_3,n_1,n_3,n_4$ is a walk of length $5$: it
+drives $n_1n_2$, $n_2n_3$, $n_3n_1$, then $n_1n_3$ again, then $n_3n_4$. The
+sequence $n_4,n_3,n_4$ is a walk of length $2$, and $n_2$ alone is a walk of
+length $0$ \cite{paperscript}. The textbook gives its own example, a walk of
+length eight in its Fig.~1.2.5 that repeats vertices and edges
+\cite[p.~22]{petrosyan2015graph}.
+\end{example}
+
+\begin{nonexample}
+In $H$ the sequence $n_1,n_4$ is not a walk, because $n_1$ and $n_4$ are not
+adjacent. Neither is $n_1,n_2,n_4$.
+\end{nonexample}
+
+\plain
+A round trip ends in the town where it started. It may repeat anything on the
+way.
+
+\begin{definition}[closed walk; textbook Definition~1.2.11]\label{def:closed}
+A $(u_0,u_k)$-walk is \emph{closed} if $u_0=u_k$
+\cite[p.~22]{petrosyan2015graph}.
+\end{definition}
+
+\begin{remark}
+The definition forbids nothing else: a closed walk may repeat vertices and
+edges. A walk of length $0$ is closed.
+\end{remark}
+
+\begin{example}
+In $H$ the sequence $n_1,n_2,n_1$ is a closed walk of length $2$.
+\end{example}
+
+\begin{nonexample}
+The walk $n_1,n_2,n_3$ is not closed, because it ends at $n_3$.
+\end{nonexample}
+
+\plain
+Some trips never drive a road twice. They may still visit a town twice. The
+textbook calls such a trip a path. We avoid that word here, because it will
+mean something stricter. We say only that the trip never drives a road twice.
+
+\begin{definition}[trail; the textbook's ``path'', Definition~1.2.12]\label{def:trail}
+A $(u_0,u_k)$-walk is a \emph{trail} if its edges
+$u_0u_1,\dots,u_{k-1}u_k$ are pairwise different
+\cite[p.~22]{petrosyan2015graph}. The textbook calls it a $(u_0,u_k)$-path
+and measures its length by the number of its edges. By \cref{conv:path} we call
+it a trail.
+\end{definition}
+
+\begin{remark}
+Vertices may repeat in a trail; edges may not. Every trail is a walk.
+\end{remark}
+
+\begin{example}
+In $H$ the walk $n_4,n_3,n_1,n_2,n_3$ of length $4$ is a trail. It visits $n_3$
+twice, and it uses the four different edges $n_4n_3$, $n_3n_1$, $n_1n_2$ and
+$n_2n_3$ \cite{paperscript}.
+\end{example}
+
+\begin{nonexample}
+The walk $n_1,n_2,n_1$ is not a trail, because it drives the road $n_1n_2$
+twice. The length-$5$ walk of the example after \cref{def:walk} is not a trail
+either: it uses $n_1n_3$ twice.
+\end{nonexample}
+
+\plain
+The strictest trip never visits a town twice. In our course this is what the
+word path means. If you never visit a town twice, you also never drive a road
+twice.
+
+\begin{definition}[path; textbook Definition~1.2.13, ``simple path'']\label{def:path}
+A $(u_0,u_k)$-trail is a \emph{path} (the textbook's \emph{simple path}) if
+its vertices $u_0,\dots,u_k$ are pairwise different
+\cite[p.~22]{petrosyan2015graph}.
+\end{definition}
+
+\begin{remark}
+A path with $k$ edges has $k+1$ different vertices. Every path is a trail, as
+\cref{lem:pathtrail} proves, so the definition only adds a restriction to
+\cref{def:trail}. This is the course meaning of path (\cref{conv:path}).
+\end{remark}
+
+\begin{example}
+In $H$ the sequence $n_1,n_3,n_4$ is a path of length $2$.
+\end{example}
+
+\begin{nonexample}
+In $H$ the trail $n_4,n_3,n_1,n_2,n_3$ is not a path, because $n_3$ occurs
+twice.
+\end{nonexample}
+
+\plain
+Often we care about two particular towns. We ask for a tidy route that starts
+in the first and ends in the second. This is the answer to question Q3, and
+\cref{sec:paths} comes back to it.
+
+\begin{definition}[path between $n_i$ and $n_j$; the course convention, Q3]\label{def:pathij}
+A \emph{path between $n_i$ and $n_j$} is a sequence
+$n_i=w_0,w_1,\dots,w_k=n_j$ of pairwise different vertices with $w_{t-1}$
+adjacent to $w_t$ for $1\le t\le k$. It is a path in the sense of
+\cref{def:path}, namely a simple $(n_i,n_j)$-path of the textbook
+\cite[p.~22]{petrosyan2015graph}. This reading is the course convention
+(\cref{conv:path}); it is not found on the board \cite{whiteboard1}.
+\end{definition}
+
+\begin{remark}
+For $i\ne j$ the length $k$ is at least $1$. For $i=j$ the only path is the
+single vertex $n_i$, of length $0$, because a sequence of length at least $1$
+from $n_i$ to $n_i$ repeats $n_i$. This is the reason the walk $n_1,n_2,n_1$
+that the entry $(A^2)_{11}$ counts is not a path (\cref{sec:notpaths}).
+\end{remark}
+
+\begin{example}
+On the board graph, $n_1,n_2,n_3$ is a path between $n_1$ and $n_3$, of
+length $2$.
+\end{example}
+
+\begin{nonexample}
+On the board graph, $n_1,n_2,n_1,n_2,n_3$ is a walk from $n_1$ to $n_3$ but
+not a path between them: it repeats $n_1$ and $n_2$ \cite{paperscript}.
+\end{nonexample}
+
+\plain
+A loop trip leaves a town and comes back to it. It never drives a road
+twice.
+
+\begin{definition}[cycle, simple cycle; textbook Definitions~1.2.14 and 1.2.15]\label{def:cycle}
+A $(u_0,u_k)$-trail is a \emph{closed trail} or \emph{cycle} if it is a closed
+walk, that is, $u_0=u_k$ \cite[p.~22]{petrosyan2015graph}. A cycle is
+\emph{simple} if only its first and last vertices repeat
+\cite[p.~22]{petrosyan2015graph}.
+\end{definition}
+
+\begin{remark}
+The textbook's cycle is a closed trail, so it may pass through a vertex twice;
+the simple cycle is the stricter one. In a simple graph a closed trail of
+positive length has length at least $3$. A closed trail of length $1$ would be
+a loop, and one of length $2$ would be $u,w,u$, which uses the edge $uw$ twice.
+We prove nothing further about cycles. The board graph has no cycle of
+positive length: a trail in it has at most $2$ edges, because it has only two
+edges, and a closed trail of positive length needs at least $3$.
+\end{remark}
+
+\begin{example}
+In $H$ the sequence $n_1,n_2,n_3,n_1$ is a simple cycle of length $3$.
+\end{example}
+
+\begin{nonexample}
+The closed walk $n_1,n_2,n_1$ is not a cycle: it is not a trail. A cycle that
+is not simple needs two triangles that share a vertex, and $H$ has only one
+triangle.
+\end{nonexample}
+
+\plain
+The fewest-drives number between two towns is how far apart they are. If no
+trip joins them, they are infinitely far apart.
+
+\begin{definition}[distance; textbook Definition~1.2.16]\label{def:distance}
+The \emph{distance} $d_G(u,v)$ is the length of a shortest $(u,v)$-path of the
+textbook (a shortest trail in our words) if at least one exists, and $+\infty$
+otherwise \cite[pp.~22--23]{petrosyan2015graph}.
+\end{definition}
+
+\begin{remark}
+The distance is $0$ exactly when $u=v$. \Cref{prop:distance} shows that it equals
+the least length of any walk, of any trail and of any path from $u$ to $v$, so
+the choice of word does not change the number.
+\end{remark}
+
+\begin{example}
+In $H$ the distance $d_H(n_4,n_1)$ is $2$, along $n_4,n_3,n_1$
+\cite{paperscript}.
+\end{example}
+
+\begin{nonexample}
+In $H$ the path $n_4,n_3,n_2,n_1$ joins $n_4$ to $n_1$ and has length $3$, but
+$3$ is not the distance, because a shorter path of length $2$ exists.
+\end{nonexample}
