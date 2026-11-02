@@ -19,7 +19,8 @@ audience register (`technician` or `study-note`) sets how you explain. For
 `.claude/skills/research-paper/references/photo-input.md` and
 `book-style-standard.md` in the same folder. When the module cites the
 course textbook or a graph-theory source, read `graph-sources.md` in the
-same folder for the verified locators and attributions.
+same folder for the verified locators and attributions, and the "Facts
+that are easy to state wrongly" in `math-pitfalls.md` there.
 
 Module report structure:
 

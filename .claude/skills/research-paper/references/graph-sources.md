@@ -2,8 +2,8 @@
 
 Read when the paper cites the course textbook `Grafneri_tesutyun.pdf` or
 one of the sources listed below. Every fact here was checked against the
-page image or the source text during the adjacency-walks-connectivity
-paper (2026-10-27). They are locators and
+page image or the source text by the evaluators of the
+adjacency-walks-connectivity paper (2026-10-27 and 2026-11-02). They are locators and
 attributions, not evidence: a claim still needs its own quote in the
 evidence file, copied from the page you viewed.
 
@@ -48,29 +48,92 @@ Consequences the paper must respect:
   printed pp. 7, 11, 12, 34, 61, and finds no walk-counting theorem and no
   matrix test for connectivity. State that absence as the result of a
   full-text search, take both results from other sources, and prove them
-  in the paper.
+  in the paper. Printed p. 7 is the list of notations: A(G) is the
+  adjacency matrix (հարևանության մատրից), B(G) the incidence matrix
+  (կցության մատրից), so hits for կցության are incidence-matrix pages. Pages
+  12 (incidence matrix), 34 (isomorphism) and 61 (Laplacian, Kirchhoff)
+  were viewed and contain neither result.
+- Notation: p. 9 writes G = (V, E) and an edge as e = uv. The matrix rule
+  on p. 11 reads "a_ij = 1 if v_i and v_j are adjacent, 0 otherwise", with
+  a_ii = 0 and a_ij = a_ji. The book never writes e_ij; a rule with e_ij is
+  the board's, and saying the book writes it is a misattribution.
+- Length 0: Definitions 1.2.10 to 1.2.16 (pp. 21 to 23) do not say whether
+  a walk of length 0 is allowed. The reflexivity of the relation alpha
+  (p. 49) is about the book's path relation and is not evidence either
+  way. A paper that allows length 0 states it as its own convention
+  (Grinberg Definition 2.9.1(a) has k >= 0).
+- Definition 1.2.14 names a closed path of the book, that is a closed
+  trail, "closed path or cycle" (փակ ճանապարհ or ցիկլ); the English cycle
+  is the book's simple cycle, Definition 1.2.15.
+- Definition 1.2.16 measures distance by a shortest path of the book, that
+  is a shortest trail. A paper whose "path" is the course path either keeps
+  the trail wording or defines distance as the least walk length and
+  proves once that the two agree; it never writes "shortest path" with the
+  word's meaning silently changed.
+- Definition 2.1.1 (connected) uses the book's path, a trail. On p. 49 the
+  book notes that alpha is reflexive, symmetric and transitive and gives no
+  proof: write "notes", not "shows" or "proves".
 
 ## Other sources used for walk counting and connectivity
 
 - Galway linear algebra notes, "1.1 The Adjacency Matrix"
   (maths.nuigalway.ie, file section1-1.pdf): the file carries no author
   name and no date. A name in the URL or the source id is not an
-  authorship; call them the University of Galway notes.
+  authorship; call them the University of Galway notes. Theorem 1.1.3
+  (printed p. 4) is walk counting, proved by induction on the last-but-one
+  vertex; the same page relates walks of length 2 from a vertex to itself
+  to its degree.
+- Gotti, MIT 18.211 Lecture 27 notes (no usable date): Proposition 2
+  (p. 1) is walk counting, by induction; Proposition 3 (p. 2) is the
+  (I_n + A)^(n-1) form of the test, proved with the binomial identity and
+  the path bound n - 1.
 - Grinberg, An introduction to graph theory (arXiv:2308.04512): works with
   multidigraphs, so his statements are more general than simple graphs.
-  Walk is Definition 2.9.1(a), path is Definition 2.9.1(c). Corollary 2.9.7
+  Walk is Definition 2.9.1(a), with k >= 0, and path is Definition
+  2.9.1(c), both p. 36. Corollary 2.9.7
   (p. 39) covers u = v and gives the length bound that the textbook's
-  Lemma 1.2.1 lacks. Proposition 2.9.10 (p. 42) is the equivalence of
+  Lemma 1.2.1 lacks; the bound n - 1 on a path's length is on p. 40.
+  Proposition 2.9.10 (p. 42) is the equivalence of
   walks and paths only; it says nothing about trails, so cite it for the
   walk and path readings and prove the trail reading in the paper. His
   remark on circuits is about closed walks, not closed trails.
-- Bai, BIMSA lecture notes (2025-03-10): Theorem 1 (walk counting) is
-  stated for simple graphs. Theorem 2 states the (I + A)^(n-1) form of the
-  test; its proof sketch says the power "aggregates all paths", which is
-  incomplete.
-- Lehman, Leighton, Meyer: states walk counting for digraphs.
-- Paramadevan and Sotheeswaran (2021): Theorem 1 says the entry of A^l
-  counts "different paths of length l", which is false as stated (it counts
-  walks). Theorem 2 states the connectivity test; its proof passes from a
-  non-zero entry to a path without the walk-to-path lemma. Cite it for the
-  statement of the test only.
+- Bai (Shuliang Bai), BIMSA lecture notes (2025-03-10): Theorem 1 (walk
+  counting, p. 1) is stated for simple graphs, next to a passage saying it
+  counts walks and not paths. Theorem 2 (p. 1) states the (I + A)^(n-1)
+  form of the test; the proof sketch (p. 2) says "(I + A)^(n-1) aggregates
+  all paths of length <= n - 1", which is incomplete. Bai has no sum form
+  A + ... + A^(n-1): never attribute the sum test, or a sentence about it,
+  to Bai.
+- Lehman, Leighton, Meyer: states walk counting for digraphs. Reached only
+  as metadata in the 2026-11-02 run; it supports nothing unless opened.
+- Paramadevan and Sotheeswaran (2021), JSc EUSL 12(1), pp. 13-21: Theorem 1
+  (p. 16) says the entry of A^l counts "different paths of length l", which
+  is false as stated (it counts walks). Theorem 2 (p. 17) is the sum form of
+  the test; its proof says "bij = number of different paths of length less
+  than n from the vertex i to j" and sums the lengths 1 to n - 1, and it
+  passes from a non-zero entry to a path without the walk-to-path lemma.
+  Cite it for the statement of the test only.
+- Waterloo CS 341 Lecture 10 slides (Éric Schost, year not shown): slides
+  8 and 9 prove both directions of "a vertex is discovered by breadth-first
+  search from s if and only if there is a walk from s"; slide 10 lists
+  "testing if G is connected" as an application without proof. Lecture
+  slides, not a textbook; prove the connectivity step in the paper.
+
+## When the paper says one of these sources is wrong
+
+The brief's warning that A^k counts walks, not paths, is made by the
+paper's own counterexample; a critique of the sources is extra and sits in
+one discussion item, never beside a theorem statement. Paramadevan's
+Theorem 1, Paramadevan's sum statement and Bai's proof-sketch sentence are
+three statements: quote each verbatim with its page, restate it in the
+paper's notation, and refute the restatement with its own counterexample,
+checked against the paper's length-0 convention. For the board graph
+(edges n1n2 and n2n3), verified on 2026-11-02:
+
+- Theorem 1: (A^2)_11 = 1, but no path of length 2 joins n1 to itself.
+- Sum statement: B = A + A^2 has B_22 = 2, but at most one path of length
+  less than 3 joins n2 to itself (the path of length 0, if length 0 is
+  allowed), so it fails under either reading. B_11 = 1 does not refute the
+  "less than N" reading when length 0 is allowed.
+- Bai: R = (I + A)^2 has R_11 = 2, but only one path of length at most 2
+  joins n1 to itself, the path of length 0.

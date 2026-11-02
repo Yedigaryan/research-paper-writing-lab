@@ -24,7 +24,10 @@ Read first, in this order:
    `.claude/skills/research-paper/references/graph-sources.md`, the
    verified locators and attributions. Every textbook number, page, author
    name, and source setting you write must agree with it or with a page you
-   viewed yourself.
+   viewed yourself. For a graph-theory paper also read "Facts that are easy
+   to state wrongly" in `math-pitfalls.md` in the same folder, and hold
+   every sentence about walks, paths, cycles, and the test to it,
+   plain-words paragraphs included.
 
 Drafting:
 
@@ -51,7 +54,6 @@ Drafting:
 - Use concrete examples, tables, and figures where they materially help.
   Compute every number by script before writing it; keep the script in
   `appendices/` or `figures/`.
-- Clean text: no emojis, no decorative symbols, no unexplained jargon.
 
 After drafting, run from the repository root:
 
