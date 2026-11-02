@@ -16,6 +16,15 @@ Run every item before presenting the paper. Fix failures, then re-run.
 - [ ] The paper uses the course textbook's names for concepts and cites
       its definition numbers, and says where the textbook convention
       differs from the board.
+- [ ] Every attribution matches the quote in the evidence file: the same
+      object (a closed walk is not a closed trail), the same setting
+      (simple graphs, digraphs, multigraphs), the source's own number and
+      page, and an author named only if the source record lists one.
+- [ ] Every sentence that says a source lacks something ("the textbook
+      does not define ...") was checked by a search of that source, and
+      the paper says what was searched.
+- [ ] Text the user reported but did not supply (an assignment sheet) is
+      given as reported content, never inside quotation marks.
 
 ## Standard of presentation (modelled on the textbook)
 
@@ -39,6 +48,15 @@ Run every item before presenting the paper. Fix failures, then re-run.
       conventions.
 - [ ] Every matrix, product, sum, and count was computed and checked.
 - [ ] Concepts that beginners confuse are separated explicitly and named.
+- [ ] One meaning per word and per letter in the whole paper, plain-words
+      paragraphs included. List every defined word (walk, trail, path,
+      cycle, loop, step, component) and every letter (N, n, m, k, S) and
+      grep each: a defined word is never used in an everyday sense, and a
+      letter never names two things. Where a source uses a word in another
+      sense (cycle as closed trail or as simple cycle), one sentence fixes
+      the sense this paper uses.
+- [ ] A matrix entry is a count, never the object it counts: write "counts
+      the walks", not "is a walk".
 - [ ] No claim is made about what the professor intended beyond what the
       photos and the user said.
 
@@ -58,8 +76,24 @@ Run every item before presenting the paper. Fix failures, then re-run.
 - [ ] No emojis, no decorative symbols, clean copyable text.
 - [ ] Mathematics renders: LaTeX compiles without errors, or for a legacy
       Markdown paper the math renders on GitHub (`$...$`, `$$...$$`, `pmatrix`).
+- [ ] The story has a fixed dictionary, one story word per technical
+      term, given once in a table. Plain-words paragraphs use only those
+      story words; a technical word inside a story paragraph, or two story
+      words for one term, fails.
+- [ ] The reader's text contains nothing from the pipeline: no claim ids,
+      no "evidence file", no module names or script-internal names, no
+      unintroduced "the user". Sources, pages checked, and how to rerun
+      the scripts sit together in one short provenance section or
+      appendix; the mathematical sections only cite.
+- [ ] Every scope limit in the brief is met literally: a "one-sentence
+      remark" is one sentence in one place, a "short remark" is a
+      paragraph, not a section.
 - [ ] Structure: title, introduction with conventions, definitions, one
-      section per question, worked example, conclusion.
+      section per question, worked example, conclusion. A question whose
+      answer is a definition is answered by that numbered definition in
+      its build-order place; its section points to it and adds only what
+      is new there (the convention comparison), never a restated
+      definition or restated examples.
 
 ## Repository
 

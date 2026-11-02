@@ -17,7 +17,9 @@ Read first: the schema, `brief.md`, `evidence/evidence.json`. The brief's
 audience register (`technician` or `study-note`) sets how you explain. For
 `study-note`, also read
 `.claude/skills/research-paper/references/photo-input.md` and
-`book-style-standard.md` in the same folder.
+`book-style-standard.md` in the same folder. When the module cites the
+course textbook or a graph-theory source, read `graph-sources.md` in the
+same folder for the verified locators and attributions.
 
 Module report structure:
 

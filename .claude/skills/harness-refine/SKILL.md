@@ -221,8 +221,12 @@ with `pool-map.json`.
 ## Step 6: Reflect
 
 Tell the reflector the selected label. Spawn `harness-reflector` with
-`$T/compose` (which has the base tree, the pool including `composed`, and
-every rollout) and the label. Save its reply to `$T/reflection.md`.
+`$T/context` and the label. Use `context/`, not `compose/`: the composer
+edits `compose/harness/` in place, so only `context/harness/` is still the
+base tree. Before spawning, make sure `context/` holds every rollout and
+every candidate including `composed` (`build_evidence.py pool ... --label
+composed --tree $T/compose/harness`). Save its reply to
+`$T/reflection.md`.
 
 ## Step 7: Record and decide
 

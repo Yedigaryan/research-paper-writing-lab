@@ -20,6 +20,11 @@ Read first, in this order:
 5. for the `study-note` register:
    `.claude/skills/research-paper/references/photo-input.md`,
    `book-style-standard.md`, and `quality-checklist.md` in the same folder.
+6. when the paper cites the course textbook or a graph-theory source:
+   `.claude/skills/research-paper/references/graph-sources.md`, the
+   verified locators and attributions. Every textbook number, page, author
+   name, and source setting you write must agree with it or with a page you
+   viewed yourself.
 
 Drafting:
 
