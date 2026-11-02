@@ -6,7 +6,9 @@ Usage: inspect_pdf.py <paper_dir>
 Errors (exit 1): PDF missing or unreadable, unresolved references (??),
 unresolved citations ([?] or [0]), empty pages, "To be written"
 placeholders left in the text. Warnings: overfull boxes in the build log,
-pages with very little text, missing figure files referenced in the log.
+pages with very little text, missing figure files referenced in the log,
+and pages before the last with under 65 percent of the median number of
+text lines (a blank band, or a page of floats); view those as images.
 """
 import re
 import subprocess
@@ -52,6 +54,16 @@ def main() -> int:
             errors.append(f"page {n}: unresolved citation")
         if "To be written" in text:
             errors.append(f"page {n}: placeholder text 'To be written'")
+
+    lines = [sum(1 for ln in t.splitlines() if ln.strip()) for t in pages]
+    body = sorted(lines[:-1])
+    if len(body) >= 2:
+        median = body[len(body) // 2]
+        for n, count in enumerate(lines[:-1], 1):
+            if 0 < count < 0.65 * median and len(pages[n - 1].strip()) >= 80:
+                warnings.append(f"page {n} has {count} text lines against a median of "
+                                f"{median}; view it as an image for a blank band or a float "
+                                f"far from its text")
 
     log = paper / "build" / "main.log"
     if log.exists():

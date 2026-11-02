@@ -45,7 +45,8 @@ Drafting:
   (or `derived` with a derivation you write in an appendix), qualify it in
   the text, and list it in the self evaluation. Never cite a source that is
   not in the evidence file. Never invent bibliographic data; copy fields
-  from the evidence source record and leave unknown fields out.
+  from the evidence source record and leave unknown fields out (an
+  undated source gets no `year` field, never `n.d.`).
 - `references.bib` keys equal evidence source ids. Web sources carry
   `urldate`. Local files use `@misc` with `howpublished`.
 - Use concrete examples, tables, and figures where they materially help.
@@ -66,6 +67,20 @@ Fix every error. If `build.sh` exits 2 (no LaTeX installed), say so in
 your report and in `self-evaluation.md`; the orchestrator decides how to
 proceed.
 
+In the `study-note` register also run
+`python3 .claude/skills/research-paper/scripts/check_plain_words.py <paper> --terms <words>`,
+where `<words>` is the comma-separated list of technical terms your story
+dictionary replaces. Fix every error. For each warning, split the
+sentence or use the story word, or keep it and say why in
+`self-evaluation.md`.
+
+A clean `inspect_pdf.py` run does not show layout. For each page it warns
+has few text lines, render that page once (`pdftoppm -f <n> -l <n> -r 60
+-png <paper>/main.pdf <scratch>/page`, with a scratch folder outside the
+paper) and look at it. Fix a blank band or a float far from its text by
+float placement or source order, or say in your report why the page is
+right. If `pdftoppm` is missing, say so and go on.
+
 Then write `self-evaluation.md`. For every section: its purpose, each
 substantive claim with the evidence claim id that supports it, each
 conclusion and the premises it follows from, and anything you could not
@@ -73,17 +88,26 @@ justify. A section you cannot explain is not ready; say so instead of
 smoothing it over.
 
 Revision rounds: the orchestrator sends you findings grouped by section.
-For each finding say what you changed or why you did not. Update
+For each finding say what you changed or why you did not. A finding names
+one location, but the same word, sentence, or claim often recurs
+elsewhere, sometimes copied from a module report. Before closing a finding,
+grep the paper for it (`grep -rn -i '<phrase>' <paper>/sections
+<paper>/appendices <paper>/main.tex`) and fix every occurrence; name the
+other locations you changed in the per-finding log. Update
 `self-evaluation.md` for every changed section and keep its per-section
 structure: the section-by-section part stays the body of the file, and
 the per-finding log is appended below it, never in its place. Re-run the
-four commands. Never mark a finding resolved yourself; the next evaluator
+checks above. Never mark a finding resolved yourself; the next evaluator
 does that.
 
 Evidence changes: never edit `evidence/evidence.json` directly. Put new
 claims in `evidence/modules/author.json`, change existing claims in the
 fragment or base file that owns them, then rebuild the merged file as
-`references/evidence-schema.md` says and run `check_claims.py`.
+`references/evidence-schema.md` says and run `check_claims.py`. When
+`check_citations.py` warns that an uncited source still carries claims,
+either cite it where those claims are used or, if the paper does not use
+them, set those claims to `removed` with the reason in the file that owns
+them, `evidence.base.json` included, and rebuild.
 
 Your final message: which files changed, mechanical check results,
 unverified claims in the text, and anything you could not justify.

@@ -5,8 +5,14 @@ Usage: check_citations.py <paper_dir>
 
 Errors (exit 1): a cited key missing from references.bib; a cited key with
 no source in evidence.json; a bib entry whose key is not an evidence
-source; a bib entry without title or year; a web entry without url. Unused
-bib entries and evidence sources never cited are warnings.
+source; a bib entry without title; a bib entry without year or date,
+unless it is an evidence source whose own year is null (an undated source
+correctly has no year or date field); a year or date that is not a year
+(such as "n.d."); a web entry without url.
+
+Warnings: unused bib entries; evidence sources never cited while a claim
+that is not removed still rests on them. A source never cited whose claims
+are all removed, or that supports no claim, is printed as a note only.
 """
 import re
 import sys
@@ -61,12 +67,22 @@ def main() -> int:
         errors.append("references.bib missing")
 
     ev_path = paper / "evidence" / "evidence.json"
-    ev_sources = set()
+    ev, claims = {}, []
     if ev_path.exists():
         with ev_path.open() as fh:
-            ev_sources = {s.get("id") for s in json.load(fh).get("sources", [])}
+            data = json.load(fh)
+        ev = {s.get("id"): s for s in data.get("sources", [])}
+        claims = data.get("claims", [])
     else:
         errors.append("evidence/evidence.json missing")
+    ev_sources = set(ev)
+
+    live = {}
+    for c in claims:
+        if c.get("status") == "removed":
+            continue
+        for s in c.get("support") or []:
+            live.setdefault(s.get("source"), []).append(str(c.get("id", "?")))
 
     for key, files in sorted(cited.items()):
         where = ", ".join(sorted(files))
@@ -82,17 +98,34 @@ def main() -> int:
             errors.append(f"bib entry {key} is not an evidence source")
         if not fields.get("title"):
             errors.append(f"bib entry {key} has no title")
-        if not (fields.get("year") or fields.get("date")):
-            errors.append(f"bib entry {key} has no year or date")
+        year, date = fields.get("year", ""), fields.get("date", "")
+        for name, value in (("year", year), ("date", date)):
+            if value and not re.match(r"\d{4}", value):
+                errors.append(f"bib entry {key} has {name} {value!r}, which is not a year; "
+                              f"for an undated source leave year and date out")
+        undated_source = key in ev and not ev[key].get("year")
+        if not (year or date) and not undated_source:
+            errors.append(f"bib entry {key} has no year")
         if etype in {"online", "misc"} and not (fields.get("url") or fields.get("howpublished")
                                                 or fields.get("doi")):
             errors.append(f"bib entry {key} ({etype}) has no url, doi, or howpublished")
         if fields.get("url") and not (fields.get("urldate") or fields.get("note")):
             warnings.append(f"bib entry {key} has url but no urldate")
 
-    for sid in sorted(ev_sources - set(cited)):
-        warnings.append(f"evidence source {sid} is never cited in the paper")
+    notes = []
+    for sid in sorted(ev_sources - set(cited), key=str):
+        if live.get(sid):
+            warnings.append(
+                f"evidence source {sid} is never cited, but claims rest on it: "
+                f"{', '.join(live[sid])}. Cite it where those claims are used, drop its "
+                f"support entry where another source carries the claim, or set the claim "
+                f"to status removed with the reason, in the evidence file that owns it, "
+                f"then rebuild")
+        else:
+            notes.append(f"evidence source {sid} is not cited and supports no live claim")
 
+    for n in notes:
+        print(f"note: {n}")
     for w in warnings:
         print(f"warning: {w}")
     for e in errors:
