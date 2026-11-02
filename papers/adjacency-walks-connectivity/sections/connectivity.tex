@@ -47,11 +47,13 @@ reaches the second and the second reaches a third, the first reaches the third.
 So the towns split into islands with no overlap.
 
 \begin{definition}[connectivity component; textbook, p.~49]\label{def:component}
-Write $u\sim v$ when a $(u,v)$-path exists in $G$. The textbook shows that this
-relation is reflexive, symmetric and transitive, hence an equivalence relation,
-so it splits $V$ into classes $V_1,\dots,V_p$. The subgraphs $G_1,\dots,G_p$
-induced by these classes are the \emph{connectivity components} of $G$
-\cite[p.~49]{petrosyan2015graph}.
+Write $u\sim v$ when a $(u,v)$-trail (the textbook's path) exists in $G$. The
+textbook notes that this relation is reflexive, symmetric and transitive, hence
+an equivalence relation, so it splits $V$ into classes $V_1,\dots,V_p$. The
+subgraph induced by a class $V_j$ keeps the vertices of $V_j$ and every edge of
+$G$ between them. These subgraphs $G_1,\dots,G_p$ are the \emph{connectivity
+components} of $G$ \cite[p.~49]{petrosyan2015graph}. By \cref{prop:readings} the
+same classes arise if ``trail'' is replaced by ``path'' in the course sense.
 \end{definition}
 
 \begin{remark}[textbook Remark~2.1.1]\label{rem:onecomp}
@@ -86,8 +88,10 @@ For $\N\ge2$ define the matrices
 B=A+A^2+\dots+A^{\N-1},\qquad R=(I+A)^{\N-1}.
 \]
 Here $I$ is the identity matrix. $B$ adds the walk counts of all lengths from
-$1$ to $N-1$. $R$ is the power of ``one plus the road table''; we show that its
-entries are positive combinations of the entries of $B$ and of the identity.
+$1$ to $N-1$. $R$ is the power of ``one plus the road table''. It is the same
+test with one power instead of a sum: expanding $(I+A)^{N-1}$ gives a positive
+multiple of each power $A^k$ with $k$ from $0$ to $N-1$, so the entries of $R$ are
+positive combinations of the entries of the powers of $A$ and of the identity.
 
 \begin{lemma}[pair criterion]\label{lem:pair}
 Let $i\ne j$. There is a path from $n_i$ to $n_j$ if and only if
@@ -124,12 +128,9 @@ matrix $A$. The following are equivalent.
 The form (d) is stated by Gotti (Proposition~3, \cite[p.~2]{gotti18211lecture27})
 and by Bai (Theorem~2, \cite[p.~1]{bai2025adjacency}), and the form (c) by
 Paramadevan and Sotheeswaran (Theorem~2, \cite[p.~17]{paramadevan2021adjacency}).
-The textbook has neither (\cref{sec:intro}). Gotti's proof relies on the binomial
-expansion and the path bound. The proof in Bai's notes says the power
-``aggregates all paths'', which is imprecise: the entries count weighted walks.
-Paramadevan and Sotheeswaran count ``different paths'' and pass from a nonzero
-entry to a path without the walk-to-path lemma. We therefore give a complete
-proof here; the equivalence of the forms (c) and (d) is our own.
+The textbook has neither (\cref{sec:intro}). We give a complete proof here, and
+\cref{sec:discussion} says why we did not rely on the proofs in those sources;
+the equivalence of the forms (c) and (d) is our own.
 
 \begin{proof}
 (a)$\iff$(b). By \cref{def:connected} and \cref{prop:readings}, (a) says that
@@ -141,14 +142,15 @@ nonnegative integer. A sum of nonnegative numbers is positive if and only if at
 least one term is positive. So $B_{ij}>0$ if and only if $(A^k)_{ij}>0$ for some
 $k$ from $1$ to $\N-1$.
 
-(c)$\Rightarrow$(d). The matrix $I$ commutes with every matrix, so the binomial
-theorem gives
+(c)$\Rightarrow$(d). The matrices $I$ and $A$ commute, since $IA=AI$, so the usual binomial formula
+holds for $(I+A)^{\N-1}$. It gives
 \[
 R=(I+A)^{\N-1}=\sum_{k=0}^{\N-1}\binom{\N-1}{k}A^k,\qquad A^0=I.
 \]
-Take a position $(i,j)$ with $i\ne j$. The term $k=0$ contributes $I_{ij}=0$.
+Fix a pair $(i,j)$ with $i\ne j$. Here $\binom{\N-1}{k}$ is the number of ways to
+choose $k$ items from $\N-1$, which is at least $1$. The term $k=0$ contributes $I_{ij}=0$.
 Every other term is $\binom{\N-1}{k}(A^k)_{ij}$ with $\binom{\N-1}{k}\ge1$ and
-$(A^k)_{ij}\ge0$. By (c) and (b) some $k\in\{1,\dots,\N-1\}$ has
+$(A^k)_{ij}\ge0$. By (b) some $k\in\{1,\dots,\N-1\}$ has
 $(A^k)_{ij}\ge1$, so $R_{ij}\ge1$. On the diagonal the term $k=0$ contributes
 $1$ and the other terms are at least $0$, so $R_{ii}\ge1$.
 
@@ -169,13 +171,14 @@ equivalence is true for $\N=1$ as well.
 The test uses only $A$. It answers yes or no for the whole graph. It does not
 say which route to take. We note four limits.
 \begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
-  \item The single power $A^{\N-1}$ is not a valid test. In the board graph
-  $(A^2)_{12}=0$ although the graph is connected, because the only walks from
+  \item The single power $A^{\N-1}$ is not a valid test. In the board graph $\N=3$, so
+  $A^{\N-1}=A^2$, and $(A^2)_{12}=0$ although the graph is connected, because the only walks from
   $n_1$ to $n_2$ have odd length: every road goes between $\{n_1,n_3\}$ and
   $\{n_2\}$. The single power $A$ misses the pair $n_1,n_3$ for the same
   reason \cite{paperscript}. The test must combine powers.
   \item The exponent $\N-1$ cannot be lowered. For the path graph on $\N$
-  vertices (towns in a row) the least $k$ with $(A^k)_{1\N}>0$ is $\N-1$; the
+  vertices (towns in a row) the only route between the two end towns uses $\N-1$
+  roads, so the least $k$ with $(A^k)_{1\N}>0$ is $\N-1$; the
   script gives $1,2,3,4,5,6$ for $\N=2,\dots,7$ \cite{paperscript,m3exhaustive}.
   \item Adding the powers $A^k$ with $k>\N-1$ to $B$ is allowed and
   unnecessary. All terms are nonnegative, so no positive entry can become zero.
@@ -203,8 +206,7 @@ For $i=j$ the vertices trivially lie in the same component, and $R_{ii}\ge1$ as
 shown in (c)$\Rightarrow$(d) of \cref{thm:test}. For $i\ne j$, the formula
 $R_{ij}=\sum_{k=1}^{\N-1}\binom{\N-1}{k}(A^k)_{ij}$ shows that $R_{ij}>0$ if and
 only if $(A^k)_{ij}>0$ for some $k\in\{1,\dots,\N-1\}$, which by \cref{lem:pair}
-holds if and only if a path joins $n_i$ and $n_j$. This uses only the pair
-$(i,j)$ and not the connectedness of the whole graph. Two vertices lie in the
+holds if and only if a path joins $n_i$ and $n_j$. \Cref{lem:pair} is about one pair, so it does not need $G$ to be connected. Two vertices lie in the
 same class of the relation $\sim$ of \cref{def:component} exactly when a path
 joins them, by \cref{prop:readings}.
 \end{proof}
@@ -242,15 +244,27 @@ $n_1,n_2,n_3$; $(A^2)_{22}=2$ counts $n_2,n_1,n_2$ and $n_2,n_3,n_2$; and
 $(A^2)_{12}=0$, because a walk of length $2$ from $n_1$ to $n_2$ would need a
 middle vertex adjacent to both, and none exists. Every off-diagonal entry of $B$
 is at least $1$, and every entry of $R$ is positive. By \cref{thm:test} the graph
-is connected, as the picture shows. As a check of the binomial formula, the entry
-$R_{13}=\binom{2}{1}A_{13}+\binom{2}{2}(A^2)_{13}=2\cdot0+1\cdot1=1$ agrees with
-the printed matrix. The least $k$ with $(A^k)_{ij}>0$ is $1$ for $(n_1,n_2)$,
+is connected, as \cref{fig:board} shows. As a check of the binomial formula, $R=I+2A+A^2$ for $\N-1=2$, so the entry
+$R_{13}=I_{13}+2A_{13}+(A^2)_{13}=0+2\cdot0+1=1$ agrees with the printed matrix. The least $k$ with $(A^k)_{ij}>0$ is $1$ for $(n_1,n_2)$,
 $2$ for $(n_1,n_3)$ and $1$ for $(n_2,n_3)$, which are the distances
 (\cref{cor:distance}). For the triangle of \cref{sec:board-mismatch} the same
 computation gives a matrix $B$ with every entry $2$ and a matrix $R$ with every
 entry $3$, so the test gives the same answer for both readings of the drawing
 \cite{paperscript}.
 \end{example}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[every node/.style={circle,draw,minimum size=7mm,inner sep=1pt}]
+  \node (d1) at (0,0) {$n_1$};
+  \node (d2) at (2,0) {$n_2$};
+  \node (d3) at (4,0) {$n_3$};
+  \draw (d1) -- (d2);
+\end{tikzpicture}
+\caption{The graph $G'$ of \cref{ex:disconnected}: one road, $n_1n_2$, and the
+isolated town $n_3$.}
+\label{fig:disc}
+\end{figure}
 
 \begin{example}[not connected: one road only]\label{ex:disconnected}
 Let $G'$ be the graph on $n_1,n_2,n_3$ with the single edge $n_1n_2$, so $n_3$
@@ -265,13 +279,13 @@ The off-diagonal entries $B_{13},B_{23},B_{31},B_{32}$ are $0$, and so are the
 same positions of $R$. By \cref{thm:test} the graph is not connected. By
 \cref{cor:components} the components are $\{n_1,n_2\}$, because row $1$ of $R$
 is positive at positions $1$ and $2$, and $\{n_3\}$, because row $3$ is positive
-only at position $3$. That is two components, as the picture shows. No $k$ in
-$\{1,2\}$ makes $(A^k)_{13}$ or $(A^k)_{23}$ positive. The diagonal of $A^2$ is
-$(1,1,0)$, the degrees; a positive diagonal entry does not mean the graph is
-connected.
+only at position $3$. That is two components, as \cref{fig:disc} shows. No $k$ in
+$\{1,2\}$ makes $(A^k)_{13}$ or $(A^k)_{23}$ positive.
 \end{example}
 
 \subsection{Breadth-first search as an alternative}\label{sec:bfs}
+
+This subsection is optional: Q2 is answered by \cref{thm:test}.
 
 \plain
 There is another way to find out. Stand in one town. Visit its neighbours. Then
@@ -279,50 +293,30 @@ visit their neighbours, and keep going, never visiting a town twice. When you
 run out of new towns, count the towns you saw. If you saw all of them, the
 towns are connected. If some town never turned up, they are not.
 
-Breadth-first search from a start vertex $s$ keeps a queue and a list of
-discovered vertices. It takes a vertex $v$ from the queue, scans the neighbours
-of $v$ (on the adjacency matrix: the positions with a $1$ in row $v$ of $A$) and
-puts each undiscovered neighbour into the queue. A lecture at the University of
-Waterloo proves that every discovered vertex has a walk from $s$, and that every
-vertex with a walk from $s$ is discovered; together, there is a walk from $s$ to
-$v$ if and only if $v$ is discovered \cite[slides~8 to 10]{waterloocs341lecture10}.
-The same lecture lists testing connectivity as an application, with the
-condition that all vertices are connected to $s$, but it gives no proof of that
-step \cite[slide~10]{waterloocs341lecture10}. We supply it.
-
-\begin{proposition}[connectivity by search]\label{prop:bfs}
-A simple undirected graph $G$ is connected if and only if breadth-first search
-from any one vertex $s$ discovers every vertex.
-\end{proposition}
-
-\begin{proof}
-Suppose $G$ is connected. Each vertex $v$ has a path, hence a walk, from $s$, so
-$v$ is discovered. Conversely suppose all vertices are discovered, and take any
-$u$ and $v$. There are walks from $s$ to $u$ and from $s$ to $v$. Reading the
-first backwards gives a walk from $u$ to $s$, because adjacency is symmetric in
-an undirected graph. Attaching the second gives a $(u,v)$-walk, which contains a
-path by \cref{lem:walkpath}. So $G$ is connected.
-\end{proof}
-
-\begin{remark}[cost; an estimate]
-Counting the work from the algorithm as described, each vertex is dequeued at most
-once and each dequeue scans one row of $N$ entries, so the search reads at most
-about $N^2$ matrix entries. Computing the $N-2$ products of the sum form by the
-definition of matrix multiplication costs about $N^3$ each, so about $N^4$ in
-total. This is our own estimate and not a result of a source; the lecture's bound
-of order $n+m$ is for adjacency lists, not for a matrix
-\cite[slide~7]{waterloocs341lecture10}. Complexity is outside the scope of this
-note beyond this remark. The search also gives components and distances, which
-the matrix test gives only through $R$ (\cref{cor:components,cor:distance}).
-\end{remark}
+Breadth-first search from a start vertex $s$ keeps a to-do list of vertices in
+first-in, first-out order and a list of discovered vertices. It takes the first
+vertex $v$ from the to-do list, scans the neighbours of $v$ (on the adjacency
+matrix: the positions with a $1$ in row $v$) and adds each undiscovered neighbour
+to the list. A lecture at the University of Waterloo proves that $v$ is discovered
+if and only if there is a walk from $s$ to $v$
+\cite[slides~8 to 10]{waterloocs341lecture10}. It lists testing connectivity as an
+application, without proving that step \cite[slide~10]{waterloocs341lecture10}.
+The step holds: if $G$ is connected, every vertex has a walk from $s$ and is
+discovered; if every vertex is discovered, then for any $u$ and $v$ the walk from
+$u$ to $s$ (a walk from $s$ to $u$ read backwards, which is a walk because
+adjacency is symmetric) followed by the walk from $s$ to $v$ is a $(u,v)$-walk,
+which contains a path by \cref{lem:walkpath}. So $G$ is connected if and only if
+the search from any one vertex discovers every vertex.
 
 \subsection{A finite check of the test}
 
 The test and its proof were also checked by computer on every labelled simple
-graph with $N=2,\dots,6$ vertices (2, 8, 64, 1024 and 32768 graphs, of which 1,
+graph with $N=2,\dots,6$ vertices (labelled means that the vertices are numbered,
+so renumbering gives a new graph) (2, 8, 64, 1024 and 32768 graphs, of which 1,
 4, 38, 728 and 26704 are connected). For each graph the sum test and the
 $(I+A)^{N-1}$ test were compared with a union-find connectivity check from the
-edge list that uses no matrices. For $N\le5$ the walk counts were also compared
+edge list that uses no matrices (union-find merges groups of vertices edge by
+edge and ends with the groups that are the components). For $N\le5$ the walk counts were also compared
 with an explicit enumeration, and the least $k$ with a positive entry was
 compared with the breadth-first distance. All of them agreed, with no
 disagreement found \cite{m3exhaustive}. This is an experimental check on small

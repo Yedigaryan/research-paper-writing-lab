@@ -7,10 +7,9 @@ We read the mark on the board as an exponent $k$ (\cref{conv:power}).
 
 \plain
 Start in one town and make a fixed number of drives. Each drive follows one
-road. You may turn round and go back along the road you just used. The table of
-roads, multiplied by itself that many times, tells you for every pair of towns
-how many different trips of that size lead from the first town to the second.
-It counts trips, not tidy routes. A trip may pass the same town twice.
+road. You may turn round and go back along the road you just used. Multiply the road table by itself that many times. Look at the row of the first
+town and the column of the second town. The number there counts the trips. It
+counts trips, not tidy routes. A trip may pass the same town twice.
 
 \begin{theorem}[walk counting]\label{thm:walkcount}
 Let $G$ be a finite simple undirected graph with vertices $n_1,\dots,n_N$ and
@@ -40,7 +39,9 @@ $e_{ij}\in E$ and none otherwise. So $|W_1(i,j)|=A_{ij}=(A^1)_{ij}$.
 \emph{Induction hypothesis.} Let $k\ge1$ and suppose $(A^k)_{ir}=|W_k(i,r)|$ for
 all $i$ and $r$.
 
-\emph{Induction step.} Take a walk $(u_0,\dots,u_k,u_{k+1})$ in $W_{k+1}(i,j)$
+\emph{Induction step.} By the definition of the matrix product,
+$(A^{k+1})_{ij}=\sum_{r=1}^{N}(A^k)_{ir}A_{rj}$; each term will count the walks that
+end with the drive from $n_r$ to $n_j$. Now take a walk $(u_0,\dots,u_k,u_{k+1})$ in $W_{k+1}(i,j)$
 and let $n_r=u_k$ be its last-but-one vertex; $n_r$ is one of $n_1,\dots,n_N$.
 Then $(u_0,\dots,u_k)$ lies in $W_k(i,r)$, and $n_r$ is adjacent to $n_j$.
 Conversely, any walk in $W_k(i,r)$ followed by $n_j$, where $n_r$ and $n_j$ are
@@ -59,10 +60,13 @@ The second equality is the induction hypothesis and the third is the definition
 of the matrix product. This completes the induction.
 \end{proof}
 
-\emph{Why the proof is valid.} It uses three facts. A walk of length $k+1$ is a
-walk of length $k$ plus one more edge. That edge exists exactly when the matrix
-entry is $1$. The matrix product sums over the possible last-but-one vertex.
-Simplicity is used to write a walk as its vertex sequence. Nothing forbids a
+\emph{Why the proof is valid.} It uses three facts.
+\begin{itemize}[leftmargin=1.5em]
+  \item A walk of length $k+1$ is a walk of length $k$ plus one more edge.
+  \item That edge exists exactly when the matrix entry is $1$.
+  \item The matrix product sums over the possible last-but-one vertex.
+\end{itemize}
+Simplicity is used only to write a walk as its vertex sequence. Nothing forbids a
 repeated vertex or a repeated edge, so the count is a count of walks. The
 product $(A^k)_{ir}A_{rj}$ multiplies a count by $0$ or $1$ and never checks
 which vertices the first part visited; this is why the proof cannot count paths.
@@ -73,6 +77,13 @@ matches the walks of length $0$, which are the single vertices
 (\cref{conv:zero}). The theorem is proved for $k\ge1$, and the case $k=0$ is that
 convention.
 \end{remark}
+
+\plain
+Every count of trips is a whole number, never below zero. A trip can be driven
+backwards, so the count from the first town to the second equals the count from
+the second to the first. A trip of two drives that starts and ends in the same
+town goes out to a neighbour and straight back, so the count is the number of
+roads at that town.
 
 \begin{proposition}[more properties of $A^k$]\label{prop:powerprops}
 Let $A$ be as in \cref{thm:walkcount}.
@@ -86,8 +97,9 @@ Let $A$ be as in \cref{thm:walkcount}.
 
 \begin{proof}
 (1) $A$ has entries $0$ and $1$, and sums and products of nonnegative integers
-are nonnegative integers. (2) The transpose of a product reverses the order of
-the factors, so $(A^k)^{T}=(A^{T})^k=A^k$. In walk terms, reversing a walk from
+are nonnegative integers. (2) The transpose $X^{T}$ of a matrix $X$ swaps its rows and columns; the transpose
+of a product reverses the order of the factors, and $A^{T}=A$ by symmetry, so
+$(A^k)^{T}=(A^{T})^k=A^k$. In walk terms, reversing a walk from
 $n_i$ to $n_j$ gives a walk of the same length from $n_j$ to $n_i$, and this is
 a one-to-one correspondence. (3) $(A^2)_{ii}=\sum_r A_{ir}A_{ri}=\sum_r A_{ir}^2=\sum_r A_{ir}$,
 because the entries are $0$ or $1$, and this equals $d(n_i)$ by
@@ -105,7 +117,7 @@ has a road to the third. We write the road table and multiply it by itself. Then
 we list the trips behind a few of the numbers, to check that the table counts
 them.
 
-The board graph has the edges $n_1n_2$ and $n_2n_3$ (\cref{fig:board}, left). Its
+The board graph has the edges $n_1n_2$ and $n_2n_3$ (\cref{fig:board}). Its
 powers, computed by script \cite{paperscript} and checked against an explicit
 enumeration of all walks for $k=1,\dots,4$, are
 \[
@@ -127,21 +139,9 @@ degrees; their sum is $4=2|E|$.
   \node (a3) at (4,0) {$n_3$};
   \draw (a1) -- (a2);
   \draw (a2) -- (a3);
-  \node[draw=none,minimum size=0pt] at (2,-1.2) {graph of the matrix};
-  \begin{scope}[xshift=7.5cm]
-    \node (b1) at (0,0) {$n_1$};
-    \node (b2) at (3,0) {$n_2$};
-    \node (b3) at (1.5,-1.8) {$n_3$};
-    \draw[-{Stealth}] (b1) -- (b2);
-    \draw (b1) -- (b3);
-    \draw (b3) -- (b2);
-    \node[draw=none,minimum size=0pt] at (1.5,-3.0) {drawing as we read it};
-  \end{scope}
 \end{tikzpicture}
-\caption{Left: the graph encoded by the board's matrix. Right: the board's
-drawing as we read it, with the arrowhead on the line from $n_1$ to $n_2$ and
-the extra line between $n_1$ and $n_3$. The reading of the drawing has medium
-confidence.}
+\caption{The board graph, the graph encoded by the board's matrix: two roads,
+$n_1n_2$ and $n_2n_3$.}
 \label{fig:board}
 \end{figure}
 
@@ -152,11 +152,12 @@ with the matrix.
 \centering
 \caption{Walks behind selected entries of the powers of the board matrix. All
 walks are written as vertex sequences. The last column lists those walks that
-are paths in the course sense.}
+are paths in the course sense. Each value can be read off the printed matrices:
+$(A^2)_{11}$ is the first entry of $A^2$, and so on.}
 \label{tab:boardwalks}
 \begin{tabular}{llp{5.6cm}p{3cm}}
 \toprule
-Entry & Value & Walks counted & Paths among them \\
+Entry & Value & Walks counted & Paths \\
 \midrule
 $(A^2)_{11}$ & 1 & $(n_1,n_2,n_1)$ & none \\
 $(A^2)_{13}$ & 1 & $(n_1,n_2,n_3)$ & $(n_1,n_2,n_3)$ \\
@@ -171,10 +172,11 @@ $(A^3)_{23}$ & 2 & $(n_2,n_1,n_2,n_3)$, $(n_2,n_3,n_2,n_3)$ & none \\
 \subsection{The board's drawing against the board's matrix}\label{sec:board-mismatch}
 
 The board shows a drawing of three vertices beside its matrix
-\cite{whiteboard1,whiteboard2}. We read the drawing as a line from $1$ to $2$
+\cite{whiteboard1,whiteboard2}. \Cref{fig:boardredraw} redraws it. In plain terms, the board's drawing has three
+roads and its matrix has two. We read the drawing as a line from $1$ to $2$
 with an arrowhead at $2$, a line from $1$ to $3$, and a line between $3$ and
-$2$; this reading has medium confidence. The matrix encodes only the edges $n_1n_2$ and
-$n_2n_3$. \Cref{tab:mismatch} compares them pair by pair.
+$2$; this reading has medium confidence. The matrix encodes only the edges
+$n_1n_2$ and $n_2n_3$. \Cref{tab:mismatch} compares them pair by pair.
 
 \begin{table}[ht]
 \centering
@@ -206,7 +208,7 @@ A_{\triangle}^4=\matTriAfour .
 \]
 Both graphs are connected, but the counts differ. For example $(A^2)_{13}=1$ in
 both graphs, while $(A^2)_{11}$ is $1$ for the board matrix and $2$ for the
-triangle, which is the degree of $n_1$ in each. In the triangle $(A^3)_{11}=2$
+triangle, which are the degrees of $n_1$ in the two graphs. In the triangle $(A^3)_{11}=2$
 counts the closed walks $(n_1,n_2,n_3,n_1)$ and $(n_1,n_3,n_2,n_1)$, and
 $(A^3)_{12}=3$ counts $(n_1,n_2,n_1,n_2)$, $(n_1,n_2,n_3,n_2)$ and
 $(n_1,n_3,n_1,n_2)$, none of which is a path \cite{paperscript}. Which of the
@@ -235,7 +237,8 @@ counterexamples to reading the entry as a number of paths; all three are in
   edge, of length $1$, and no path has length $3$. The two counted walks are
   $(n_1,n_2,n_1,n_2)$ and $(n_1,n_2,n_3,n_2)$.
   \item $A^4$ is not the zero matrix although $N-1=2$ and a path has at most
-  $N-1$ edges (\cref{prop:bound}). So the entries of high powers cannot be
+  $N-1$ edges (\cref{prop:bound}). $A^4$ counts walks of length $4$, and a path with $4$ edges would need $5$
+  different towns, but there are only $3$. So the entries of high powers cannot be
   counts of paths.
 \end{enumerate}
 
@@ -246,13 +249,4 @@ walk $(n_i,n_r,n_j)$ has distinct vertices exactly when $r\ne i$ and $r\ne j$,
 and this holds automatically, because $n_r$ is adjacent to both and there are no
 loops. For $k\ge3$ repeated vertices can occur even when $i\ne j$, as in the
 second counterexample.
-\end{remark}
-
-\begin{remark}[a misstatement in the literature]
-Theorem~1 of Paramadevan and Sotheeswaran says that the entry of $A^l$ is the
-number of ``different paths'' of length $l$ \cite[p.~16]{paramadevan2021adjacency}.
-As worded this is incorrect under any convention in which a path cannot revisit
-a vertex, by the first counterexample above. We cite that paper only for the
-statement of the connectivity test (\cref{sec:connectivity}), not for walk
-counting.
 \end{remark}

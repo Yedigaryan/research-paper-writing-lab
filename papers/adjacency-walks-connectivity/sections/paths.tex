@@ -10,9 +10,9 @@ and paths on which Q1 and Q2 rest.
 \subsection{Three naming conventions side by side}
 
 \plain
-The word path is used for two different kinds of trip. One kind never drives a
-road twice. The other never visits a town twice. Books disagree on which kind
-gets the word. So a reader must always check which kind is meant.
+Some trips never drive a road twice. Other trips never visit a town twice.
+Books do not agree on the names for these two kinds. So a reader must always check
+which kind a name means.
 
 \Cref{tab:conventions} lists the objects of Definitions~\ref{def:walk} to
 \ref{def:cycle}. The first column states the property, the second the name this note
@@ -30,11 +30,11 @@ given in English translation.}
 The sequence must satisfy & This note & Textbook (number) & English-language texts \\
 \midrule
 consecutive vertices adjacent & walk & walk (1.2.10) & walk \cite[Def.~2.9.1(a)]{grinberg2025graph} \\
-a walk with $u_0=u_k$ & closed walk & closed walk (1.2.11) & not compared \\
+a walk with $u_0=u_k$ & closed walk & closed walk (1.2.11) & -- \\
 no repeated edge & trail & ``path'' (1.2.12) & trail \cite{wikipedia2026path} \\
 no repeated vertex & \textbf{path} & ``simple path'' (1.2.13) & path \cite[Def.~2.9.1(c)]{grinberg2025graph} \\
-a closed trail & cycle & ``closed path'' or ``cycle'' (1.2.14) & not compared \\
-a cycle whose only repeated vertices are first and last & simple cycle & ``simple cycle'' (1.2.15) & not compared \\
+a closed trail & cycle & ``closed path'' or ``cycle'' (1.2.14) & -- \\
+a cycle whose only repeated vertices are first and last & simple cycle & ``simple cycle'' (1.2.15) & -- \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -42,28 +42,23 @@ a cycle whose only repeated vertices are first and last & simple cycle & ``simpl
 The textbook's numbers come from \cite[p.~22]{petrosyan2015graph}. Two things
 limit the table. The word \emph{trail} for Definition~1.2.12 is taken from a
 tertiary web page that we read only in part \cite{wikipedia2026path}; Grinberg
-defines walk and path but not trail \cite{grinberg2025graph}. And we did not
-check English usage of ``closed trail'' and ``cycle'', so those cells say so.
-A fourth reading exists: Bai's notes call a walk a path if it has no repeated
-vertex except possibly that the first and last vertices are equal
-\cite[p.~1]{bai2025adjacency}. Under that reading a cycle counts as a path. We
-do not use it.
+defines walk and path but not trail \cite{grinberg2025graph}. A dash means that we did not check English usage.
 
 \begin{remark}[a danger for the reader]\label{rem:danger}
-The textbook's definition of a connected graph (\cref{def:connected} below)
-uses the textbook's ``path'', which is our trail. The course convention uses
-our path. \Cref{prop:readings} shows that the two readings describe the same
+The textbook's definition of a connected graph (\cref{def:connected}) asks for
+a $(u,v)$-path of the textbook, which is our trail, for every two vertices $u$
+and $v$. The course convention asks for our path. \Cref{prop:readings} shows that the two readings describe the same
 connected graphs, so the choice does not change the answer to Q2. The choice
 would change other statements, for example a bound on the length.
 \end{remark}
 
-\subsection{Cutting loops out of a walk}
+\subsection{Cutting closed walks out of a walk}
 
 \plain
-Suppose a trip visits some town twice. Between the two visits you drove around a
-loop. Cut the loop out. You still get from the start to the end, and the trip
-got shorter. Keep cutting until no town is visited twice. What is left is a
-tidy route.
+Suppose a trip visits some town twice. Between the two visits you made a round
+trip that came back to that town. Cut the round trip out. You still get from
+the start to the end, and the trip got shorter. Keep cutting until no town is
+visited twice. What is left is a tidy route.
 
 \begin{lemma}[every walk contains a path]\label{lem:walkpath}
 Let $u$ and $v$ be vertices, equal or not. If there is a $(u,v)$-walk of
@@ -85,7 +80,8 @@ vertex has pairwise different vertices, so it is a path of length $0\le 0$.
 \emph{Induction hypothesis.} Let $k\ge 1$ and suppose the statement holds for
 all walks of length less than $k$, between any two vertices.
 
-\emph{Induction step.} Let $w_0,\dots,w_k$ be a $(u,v)$-walk. If its vertices
+\emph{Induction step.} (For instance, from the walk $w_0,w_1,w_2,w_1,w_3$ we delete
+$w_2,w_1$ and keep $w_0,w_1,w_3$.) Let $w_0,\dots,w_k$ be a $(u,v)$-walk. If its vertices
 are pairwise different, it is already a path of length $k$. Otherwise choose
 indices $i<j$ with $w_i=w_j$. Delete $w_{i+1},\dots,w_j$ to obtain
 $w_0,\dots,w_i,w_{j+1},\dots,w_k$. Consecutive vertices are still adjacent:
@@ -103,17 +99,17 @@ length $2$. The walk $n_4,n_3,n_1,n_2,n_3,n_4$ has $n_4$ at both ends; cutting
 leaves the single vertex $n_4$, a path of length $0$ \cite{paperscript}.
 \end{example}
 
+\plain
+If you never visit a town twice, you cannot drive the same road twice.
+
 \begin{lemma}[a path is a trail]\label{lem:pathtrail}
 If the vertices of a walk are pairwise different, then its edges are pairwise
 different.
 \end{lemma}
 
-\plain
-If you never visit a town twice, you cannot drive the same road twice.
-
 \begin{proof}
 Let $w_0,\dots,w_k$ have pairwise different vertices and suppose that two of its
-edges are equal: $\{w_{i-1},w_i\}=\{w_{j-1},w_j\}$ with $1\le i<j\le k$. Then
+edges are equal: $\{w_{i-1},w_i\}=\{w_{j-1},w_j\}$ with $1\le i<j\le k$. Two equal unordered pairs have the same two ends, so
 $w_{i-1}$ equals $w_{j-1}$ or $w_j$. The indices $j-1$ and $j$ are both
 different from $i-1$, since $j-1\ge i$. So two different positions hold the
 same vertex, which contradicts the assumption.
@@ -148,7 +144,7 @@ proved here.
 
 \begin{example}
 On the board graph the walk $n_1,n_2,n_1,n_2,n_3$ shows that $n_1$ and $n_3$ are
-joined by a walk. Cutting the loop $n_1,n_2,n_1$ leaves the path
+joined by a walk. Cutting the closed walk $n_1,n_2,n_1$ leaves the path
 $n_1,n_2,n_3$, which is also a trail \cite{paperscript}.
 \end{example}
 
@@ -190,15 +186,14 @@ $u$ to $v$. Every path is a trail (\cref{lem:pathtrail}) and every trail is a
 walk, so $a\le b\le c$. By \cref{lem:walkpath} a shortest walk contains a path
 that is no longer, so $c\le a$. Hence $a=b=c$, and $d_G(u,v)=b$ by
 \cref{def:distance}. The bound $N-1$ comes from \cref{prop:bound}(i), applied to
-a shortest path. If a walk exists, a trail exists by \cref{prop:readings}, so the
-three sets are empty together.
+a shortest path. If a walk exists, a trail and a path exist by \cref{prop:readings}, so the three
+sets are nonempty together; if no walk exists, all three are empty.
 \end{proof}
 
 \begin{remark}[the textbook's three properties of distance]\label{rem:distprops}
 The textbook lists three properties of the distance: it is $\ge 0$ and equals
 $0$ exactly when $u=v$; $d(u,v)=d(v,u)$; and $d(u,w)\le d(u,v)+d(v,w)$
-\cite[pp.~22--23]{petrosyan2015graph}. The reading of \cref{prop:distance}
-gives each of them. A walk of length $0$ exists from $u$ only to $u$. Reversing
+\cite[pp.~22--23]{petrosyan2015graph}. \Cref{prop:distance} implies each of them. A walk of length $0$ exists from $u$ only to $u$. Reversing
 a walk gives a walk of the same length in the other direction, because
 adjacency is symmetric. A shortest $(u,v)$-walk followed by a shortest
 $(v,w)$-walk is a $(u,w)$-walk of length $d(u,v)+d(v,w)$; if either term is

@@ -7,7 +7,12 @@
       "authors": [],
       "year": null,
       "venue": "papers/adjacency-walks-connectivity/appendices/scripts, written by the paper author, pure Python integer arithmetic",
-      "identifier": {"doi": null, "url": null, "isbn": null, "path": "appendices/scripts/paper_computations.py"},
+      "identifier": {
+        "doi": null,
+        "url": null,
+        "isbn": null,
+        "path": "appendices/scripts/paper_computations.py"
+      },
       "accessed": "2026-11-02",
       "access_status": "full",
       "credibility": "primary",
@@ -22,12 +27,19 @@
       "kind": "experimental",
       "module": "author",
       "support": [
-        {"source": "paperscript", "locator": "output section 'H N = 4' and 'Classification of the examples used in the definitions (graph H)'", "quote": "cut of (1,2,3,1,3,4): (1, 3, 4)"}
+        {
+          "source": "paperscript",
+          "locator": "output section 'H N = 4' and 'Classification of the examples used in the definitions (graph H)'",
+          "quote": "cut of (1,2,3,1,3,4): (1, 3, 4)"
+        }
       ],
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": ["sections/background.tex", "sections/paths.tex"],
+      "used_in": [
+        "sections/background.tex",
+        "sections/paths.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -36,12 +48,18 @@
       "kind": "derived",
       "module": "author",
       "support": [
-        {"source": "petrosyan2015graph", "locator": "printed p. 48, Definition 2.1.1", "quote": "G գրաֆը կանվանենք կապակցված, եթե նրա ցանկացած երկու u և v գագաթների համար G գրաֆում գոյություն ունի (u,v)-ճանապարհ։"}
+        {
+          "source": "petrosyan2015graph",
+          "locator": "printed p. 48, Definition 2.1.1",
+          "quote": "G գրաֆը կանվանենք կապակցված, եթե նրա ցանկացած երկու u և v գագաթների համար G գրաֆում գոյություն ունի (u,v)-ճանապարհ։"
+        }
       ],
       "derivation": "sections/connectivity.tex, remark after the test (case N = 1); uses the convention that a single vertex is a walk of length 0 (C-m2-06)",
       "confidence": "medium",
       "status": "qualified",
-      "used_in": ["sections/connectivity.tex"],
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -50,12 +68,69 @@
       "kind": "derived",
       "module": "author",
       "support": [
-        {"source": "galwaynotes", "locator": "p. 4, Theorem 1.1.3", "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."}
+        {
+          "source": "galwaynotes",
+          "locator": "p. 4, Theorem 1.1.3",
+          "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
+        }
       ],
       "derivation": "sections/connectivity.tex, remark after the connectivity test theorem (the list of limits); follows from M1-3 (nonnegativity) and m3-C4",
       "confidence": "high",
       "status": "supported",
-      "used_in": ["sections/connectivity.tex"],
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "A-4",
+      "text": "The textbook writes a graph as G = (V, E) (printed p. 9) and, on printed p. 11, defines the adjacency matrix through adjacency: a_ij = 1 if v_i and v_j are adjacent and 0 otherwise, where adjacent is Definition 1.1.4 (uv in E). The board's rule is the same rule written with e_ij in the set it calls V; the e_ij form is the board's, and the textbook's rule is phrased through adjacency.",
+      "kind": "fact",
+      "module": "author",
+      "support": [
+        {
+          "source": "petrosyan2015graph",
+          "locator": "printed p. 11, matrix definition after Definition 1.1.6 (page image viewed)",
+          "quote": "Եթե G = (V,E) գրաֆում V = {v1,…,vn} և E = {e1,…,em}, ապա այդ գրաֆին համապատասխանեցնենք n × n կարգի A(G) = (a_ij) մատրիցը հետևյալ կերպ. a_ij = { 1, եթե v_i և v_j հարևան են, 0, հակառակ դեպքում։"
+        },
+        {
+          "source": "petrosyan2015graph",
+          "locator": "printed p. 11, Definition 1.1.4",
+          "quote": "u և v գագաթները կանվանենք հարևան, եթե uv ∈ E։"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/conventions.tex",
+        "sections/background.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "A-5",
+      "text": "Paramadevan and Sotheeswaran, in the proof of Theorem 2 (printed p. 17), say that b_ij is the number of different paths of length less than n; Bai, in the proof sketch (p. 2), says that (I + A)^(n-1) aggregates all paths of length at most n - 1. These are two separate statements, about the sum B and about the power (I + A)^(n-1); both are imprecise because the entries count walks.",
+      "kind": "interpretation",
+      "module": "author",
+      "support": [
+        {
+          "source": "bai2025adjacency",
+          "locator": "p. 2, proof sketch item 4",
+          "quote": "(I + A)n−1 aggregates all paths of length ≤ n − 1."
+        },
+        {
+          "source": "paramadevan2021adjacency",
+          "locator": "p. 17, proof of Theorem 2",
+          "quote": "bij = number of different paths of length less than n from the vertex i to j."
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [
+        "sections/discussion.tex"
+      ],
       "contradicted_by": []
     }
   ],

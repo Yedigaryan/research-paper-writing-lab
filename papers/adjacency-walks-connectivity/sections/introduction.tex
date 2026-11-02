@@ -5,14 +5,16 @@
 This note starts from a lecture whiteboard, photographed twice from slightly
 different angles \cite{whiteboard1,whiteboard2}. The board shows a graph with
 $\N$ vertices that is given through its adjacency matrix $A$, and it asks two
-questions about $A$ \cite{whiteboard1}. The first question is what the entry
-$(i,j)$ of a power of $A$ represents. The second question is how to know
-from $A$ whether the graph is connected. The board then defines a connected
+questions about $A$ \cite{whiteboard1}. The matrix $A$ is a table of zeros and
+ones that records which vertices are joined by an edge (\cref{def:adjmatrix}).
+The first question is what the entry in row $i$ and column $j$ of the $k$-th
+power of $A$ represents; the $k$-th power is $A$ multiplied by itself $k$ times.
+The second question is how to know from $A$ whether the graph is connected. The board then defines a connected
 graph as one in which, for any two vertices, there exists a path between them
 \cite{whiteboard1}. It does not say what a path is. The assignment text that
 came with the photos adds a third question: what is the definition of a path
-between two vertices $n_i$ and $n_j$? The assignment text also states which
-meaning of the word path the course uses; \cref{conv:path} records it. We call the
+between two vertices $n_i$ and $n_j$? The assignment text also states that in the course a path is a walk with no
+repeated vertex; \cref{conv:path} records this. We call the
 three questions Q1, Q2 and Q3:
 
 \begin{description}[leftmargin=2.2em,labelwidth=2em]
@@ -22,8 +24,9 @@ three questions Q1, Q2 and Q3:
 \end{description}
 
 \noindent The board also holds a small drawing of three vertices and a
-$3\times 3$ matrix. We use that matrix as the main example, and
-\cref{sec:board-mismatch} reports where the drawing and the matrix differ.
+$3\times 3$ matrix (\cref{fig:boardredraw}). We use that matrix as the main
+example, and \cref{sec:board-mismatch} reports where the drawing and the matrix
+differ.
 
 \subsection{The story used throughout}
 
@@ -31,10 +34,14 @@ $3\times 3$ matrix. We use that matrix as the main example, and
 Think of a group of towns. Some pairs of towns have a road between them.
 Every road can be driven in both directions. A trip follows roads, one after
 another. You may drive past the same town again, or the same road again.
-Two questions come up. How many different trips of a given size lead from one
-town to another? And can you get from every town to every other town?
+Two questions come up. How many different trips with a given number of drives
+lead from one town to another? And can you get from every town to every other town?
 
-\Cref{tab:dictionary} fixes the story words once. The plain words paragraphs
+The road table has one row and one column for each town. It has a one where the
+row town and the column town share a road, and a zero otherwise. For three
+towns in a row, where the first town has a road to the second and the second has
+a road to the third, the road table is the board's matrix
+$\matBoardA$. \Cref{tab:dictionary} fixes the story words once. The plain words paragraphs
 in this note use only the story words in the right column. The technical
 terms in the left column are defined where they first appear.
 
@@ -56,7 +63,7 @@ length of a walk & number of drives (a road counts every time it is driven) \\
 closed walk & round trip \\
 trail & trip that never drives a road twice \\
 path (course meaning) & tidy route (never visits a town twice) \\
-cycle & loop trip (a round trip that uses no road twice) \\
+cycle & ring trip (a round trip that uses no road twice) \\
 distance & fewest drives between two towns \\
 connected graph & every town can be reached from every other town \\
 connectivity component & island (a group of towns that reach one another) \\
@@ -77,6 +84,9 @@ proofs.
   \item \textbf{Q2.} The graph on $\N\ge 2$ vertices is connected if and only
   if every off-diagonal entry of $A+A^2+\dots+A^{\N-1}$ is positive, and this
   holds if and only if $(I+A)^{\N-1}$ has no zero entry (\cref{thm:test}).
+  Here $I$ is the identity matrix (ones on the diagonal, zeros elsewhere), and an
+  off-diagonal entry is an entry whose row number differs from its column
+  number.
   \item \textbf{Q3.} Under the course convention, a path between $n_i$ and
   $n_j$ is a sequence of pairwise distinct vertices that starts at $n_i$, ends
   at $n_j$, and has adjacent vertices in each consecutive pair
@@ -84,15 +94,13 @@ proofs.
 \end{itemize}
 
 The course textbook defines the graph, the adjacency matrix, walks, paths,
-cycles, distance and connectivity \cite{petrosyan2015graph}. As far as a text
-search of the book for the adjacency matrix shows, it mentions that matrix on
-the table of contents and on printed pages 7, 11, 12, 34 and 61, and the pages
-we viewed contain neither a theorem that counts walks with matrix powers nor a
-matrix test for connectivity \cite{petrosyan2015graph}. We did not read the
-whole book, so we state this only as the result of that search. Both results
-are therefore proved here in full. Lecture notes state them as well
-\cite{galwaynotes,bai2025adjacency,gotti18211lecture27}, and we name the
-source beside each statement.
+cycles, distance and connectivity \cite{petrosyan2015graph}. As far as a search
+of the book shows, it does not state the walk-counting theorem or the matrix test
+for connectivity; \cref{app:provenance} says what was searched and which pages
+were viewed \cite{petrosyan2015graph}. Both results are therefore
+proved here in full. Lecture notes state them as well
+\cite{galwaynotes,bai2025adjacency,gotti18211lecture27}, and we name the source
+beside each statement.
 
 \subsection{How the note is organized}
 
@@ -106,8 +114,6 @@ answers Q1. \Cref{sec:connectivity} answers Q2 and works two examples.
 answers. \Cref{app:provenance} lists the sources, the pages viewed and how to
 rerun every computation.
 
-Statements are marked by their form, not by labels. A definition carries the
-textbook's number where it has one. A theorem, lemma or proposition that has a
-proof printed here is our own proof; a citation in its first sentence says which
-source also states the result. A reading of the photos or of the assignment
-text is a numbered convention in \cref{sec:conventions}.
+Definitions cite the textbook's number where it has one. Theorems, lemmas and
+propositions are proved here unless a source is named. A reading of the photos or
+of the assignment text is a numbered convention in \cref{sec:conventions}.

@@ -6,7 +6,13 @@ textbook number carries it. Each one is followed by a remark that says what it
 allows and forbids, an example, and a non-example. Most examples use the
 four-vertex graph $H$ of \cref{fig:H}, which has the edges $n_1n_2$, $n_1n_3$,
 $n_2n_3$ and $n_3n_4$. Every classification of a sequence in these examples was
-checked by script \cite{paperscript}.
+checked by a script that enumerates the sequences (\cref{app:provenance},
+\cite{paperscript}).
+
+\emph{Roadmap.} Only the adjacency matrix, the walk and the path are needed in
+the later sections. The degree, the closed walk, the trail, the cycle and the
+distance are included because the textbook defines them in this order and because
+the textbook's word ``path'' means a trail.
 
 \begin{figure}[ht]
 \centering
@@ -21,7 +27,7 @@ checked by script \cite{paperscript}.
   \draw (n3) -- (n4);
 \end{tikzpicture}
 \caption{The example graph $H$: four towns, with roads $n_1n_2$, $n_1n_3$,
-$n_2n_3$ and $n_3n_4$. Its triangle $n_1,n_2,n_3$ gives it a loop trip, and
+$n_2n_3$ and $n_3n_4$. Its triangle $n_1,n_2,n_3$ gives it a ring trip, and
 $n_4$ hangs off $n_3$ by a single road.}
 \label{fig:H}
 \end{figure}
@@ -41,11 +47,9 @@ pair of different vertices; the edge with ends $u$ and $v$ is written $uv$
 \end{definition}
 
 \begin{remark}
-The textbook notes that a graph may be viewed as an antireflexive symmetric
-relation on $V$ \cite[p.~9]{petrosyan2015graph}. Antireflexive means no edge
-joins a vertex to itself (no loops). Symmetric means $uv$ and $vu$ are the same
-edge. Because $E$ is a set, two vertices have at most one edge between them.
-So the definition forbids loops, repeated edges and directions.
+Because each edge is an unordered pair of different vertices, there is no loop (an
+edge from a vertex to itself) and no direction: $uv$ and $vu$ are the same edge.
+Because $E$ is a set, two vertices have at most one edge between them.
 \end{remark}
 
 \begin{example}
@@ -88,8 +92,10 @@ table tells you every road at a glance.
 \begin{definition}[adjacency matrix; textbook, after Definition~1.1.6]\label{def:adjmatrix}
 Let $V=\{n_1,\dots,n_N\}$. The \emph{adjacency matrix} of $G$ is the
 $N\times N$ matrix $A=(A_{ij})$ with $A_{ij}=1$ if $e_{ij}\in E$ and
-$A_{ij}=0$ otherwise \cite[p.~11]{petrosyan2015graph}. The board writes the
-same rule \cite{whiteboard1,whiteboard2}; see \cref{conv:edgeset} for its letters.
+$A_{ij}=0$ otherwise. The textbook phrases this rule through adjacency: its entry
+$a_{ij}$ is $1$ when $v_i$ and $v_j$ are adjacent
+\cite[p.~11]{petrosyan2015graph}. The form with $e_{ij}\in E$ is the board's
+\cite{whiteboard1,whiteboard2}; see \cref{conv:edgeset} for its letters.
 \end{definition}
 
 \begin{remark}
@@ -140,12 +146,23 @@ In $H$ the vertex $n_4$ can reach three other towns, but $d(n_4)=1$, because
 only one road ends at $n_4$.
 \end{nonexample}
 
+\plain
+Add up the number of roads at every town. Each road has two ends, so each road is
+counted twice. The total is twice the number of roads.
+
 \begin{theorem}[Euler; textbook Theorem~1.2.1]\label{thm:euler}
 In every graph $G=(V,E)$ the degrees add up to twice the number of edges:
 $\sum_{v\in V}d(v)=2|E|$ \cite[p.~16]{petrosyan2015graph}.
 \end{theorem}
 
-We use this theorem as the textbook states it, without proving it again.
+We use this theorem as the textbook states it, without proving it again. The
+next proposition and the matching facts about $A^2$ in \cref{prop:powerprops} are
+side facts that give a check on the examples; Q1 and Q2 do not need them.
+
+\plain
+The road table has the same roads above and below its diagonal, and it has
+zeros on its diagonal. Read along one row and you count the roads at that town.
+Read down the whole table and you count every road twice.
 
 \begin{proposition}[properties of the adjacency matrix]\label{prop:adjprops}
 Let $A$ be the adjacency matrix of a simple undirected graph with $N$
@@ -181,7 +198,7 @@ of all entries is $8=2\cdot 4$ \cite{paperscript}.
 
 \plain
 A trip follows roads from town to town. You may pass the same town twice. You
-may drive the same road twice. The number of drives is the size of the trip,
+may drive the same road twice. The number of drives is the length of the trip,
 and a road counts every time you drive it. Trips with fewer repeats get their
 own names.
 
@@ -240,9 +257,8 @@ The walk $n_1,n_2,n_3$ is not closed, because it ends at $n_3$.
 \end{nonexample}
 
 \plain
-Some trips never drive a road twice. They may still visit a town twice. The
-textbook calls such a trip a path. We avoid that word here, because it will
-mean something stricter. We say only that the trip never drives a road twice.
+Some trips never drive a road twice. They may still visit a town twice. 
+Trips of this kind get a name below.
 
 \begin{definition}[trail; the textbook's ``path'', Definition~1.2.12]\label{def:trail}
 A $(u_0,u_k)$-walk is a \emph{trail} if its edges
@@ -269,9 +285,8 @@ either: it uses $n_1n_3$ twice.
 \end{nonexample}
 
 \plain
-The strictest trip never visits a town twice. In our course this is what the
-word path means. If you never visit a town twice, you also never drive a road
-twice.
+The strictest trip never visits a town twice. We call it a tidy route. If you
+never visit a town twice, you also never drive a road twice.
 
 \begin{definition}[path; textbook Definition~1.2.13, ``simple path'']\label{def:path}
 A $(u_0,u_k)$-trail is a \emph{path} (the textbook's \emph{simple path}) if
@@ -280,9 +295,10 @@ its vertices $u_0,\dots,u_k$ are pairwise different
 \end{definition}
 
 \begin{remark}
-A path with $k$ edges has $k+1$ different vertices. Every path is a trail, as
-\cref{lem:pathtrail} proves, so the definition only adds a restriction to
-\cref{def:trail}. This is the course meaning of path (\cref{conv:path}).
+A path with $k$ edges has $k+1$ different vertices. A path is a trail with an added
+restriction. By \cref{lem:pathtrail} the trail condition is automatic once the
+vertices are pairwise different, so \cref{def:pathij} below may drop it. This is
+the course meaning of path (\cref{conv:path}).
 \end{remark}
 
 \begin{example}
@@ -326,7 +342,7 @@ not a path between them: it repeats $n_1$ and $n_2$ \cite{paperscript}.
 \end{nonexample}
 
 \plain
-A loop trip leaves a town and comes back to it. It never drives a road
+A ring trip leaves a town and comes back to it. It never drives a road
 twice.
 
 \begin{definition}[cycle, simple cycle; textbook Definitions~1.2.14 and 1.2.15]\label{def:cycle}
@@ -352,24 +368,29 @@ In $H$ the sequence $n_1,n_2,n_3,n_1$ is a simple cycle of length $3$.
 
 \begin{nonexample}
 The closed walk $n_1,n_2,n_1$ is not a cycle: it is not a trail. A cycle that
-is not simple needs two triangles that share a vertex, and $H$ has only one
-triangle.
+is not simple needs two cycles with no common edge that share a vertex (for
+example two triangles). $H$ has only one cycle, so every cycle of positive length
+in $H$ is simple \cite{paperscript}.
 \end{nonexample}
 
 \plain
-The fewest-drives number between two towns is how far apart they are. If no
-trip joins them, they are infinitely far apart.
+The fewest-drives number between two towns is how far apart they are. It counts
+the drives of the shortest trip, whatever kind of trip it is. If no trip joins
+them, they are infinitely far apart.
 
 \begin{definition}[distance; textbook Definition~1.2.16]\label{def:distance}
-The \emph{distance} $d_G(u,v)$ is the length of a shortest $(u,v)$-path of the
-textbook (a shortest trail in our words) if at least one exists, and $+\infty$
-otherwise \cite[pp.~22--23]{petrosyan2015graph}.
+The \emph{distance} $d_G(u,v)$ is the least length of a walk from $u$ to $v$ if
+at least one walk exists, and $+\infty$ otherwise. The textbook defines it as the
+length of a shortest $(u,v)$-path of the textbook, that is, a shortest trail
+\cite[pp.~22--23]{petrosyan2015graph}. \Cref{prop:distance} shows that the two
+definitions give the same number, and that the same number is the least length of
+a path in the course sense.
 \end{definition}
 
 \begin{remark}
-The distance is $0$ exactly when $u=v$. \Cref{prop:distance} shows that it equals
-the least length of any walk, of any trail and of any path from $u$ to $v$, so
-the choice of word does not change the number.
+The distance is $0$ exactly when $u=v$. It does not matter whether the shortest
+trip is allowed to repeat roads or towns, because \cref{prop:distance} shows that
+forbidding repeats never makes the shortest trip longer.
 \end{remark}
 
 \begin{example}

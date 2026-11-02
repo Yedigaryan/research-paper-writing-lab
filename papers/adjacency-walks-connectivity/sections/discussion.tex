@@ -1,12 +1,6 @@
 \section{Discussion: limits and competing readings}\label{sec:discussion}
 
 \begin{itemize}[leftmargin=1.5em]
-  \item \textbf{Scope.} Every result is for finite simple undirected graphs
-  (\cref{conv:graph}). With loops the diagonal entries of $A$ would need a
-  convention and the row-sum property would change. With repeated edges the
-  entries would be edge multiplicities, a vertex sequence would no longer
-  determine a walk, and the counting theorem would count walks with a choice of
-  edge. We did not work these cases out.
   \item \textbf{What the board leaves open.} The mark above $A$, the
   arrowhead and the extra line in the drawing are readings, not facts
   (\cref{conv:power}, \cref{sec:board-mismatch}). The photos cannot say what the
@@ -21,24 +15,32 @@
   \item \textbf{Length zero.} Whether the textbook admits walks of length $0$ is
   not settled by the pages we viewed. We adopted it as a convention
   (\cref{conv:zero}). The test itself uses only pairs of different vertices.
-  \item \textbf{Sources.} The three sources that state the counting theorem and
-  the three that state the test are lecture notes or a small journal article; the
-  Galway notes carry no author and no date, and we did not read Bai's notes in
-  full. None is a research source. The theorem and the test are standard, and
-  the proofs here do not depend on the proofs in those sources. The textbook was
-  read in part, so the statement that it lacks the theorem and the test is the
-  result of a search and of the pages viewed (\cref{sec:intro}), not of a full
-  read. The word \emph{trail} rests on a tertiary web page (\cref{tab:conventions}).
-  \item \textbf{Competing explanation of the sum.} Two sources explain the sum
-  test as ``the sum counts all paths of length at most $N-1$''
-  \cite{bai2025adjacency,paramadevan2021adjacency}. As a statement about counts
-  this is wrong: the entries count walks, weighted by binomial coefficients in
-  $R$. As a statement about positivity it is right, and only through the
-  walk-to-path lemma.
+  \item \textbf{Sources.} The sources that state the counting theorem and the
+  test are lecture notes and a small journal article; the Galway notes carry no
+  author and no date, and we did not read Bai's notes in full. None is a research
+  source. The theorem and the test are standard, and the proofs here do not depend
+  on the proofs in those sources. The textbook was read in part, so the statement
+  that it lacks the theorem and the test is the result of a search and of the pages
+  viewed (\cref{app:provenance}), not of a full read. The word \emph{trail} rests
+  on a tertiary web page (\cref{tab:conventions}).
+  \item \textbf{Two misleading statements in the literature.} Theorem~1 of
+  Paramadevan and Sotheeswaran says that the entry of $A^l$ is the number of
+  ``different paths'' of length $l$ \cite[p.~16]{paramadevan2021adjacency}. As
+  worded this is incorrect under any convention in which a path cannot revisit a
+  vertex, by the first counterexample of \cref{sec:notpaths}. In the proof of their
+  Theorem~2 they write that $b_{ij}$ is the ``number of different paths of length
+  less than $n$ from the vertex $i$ to $j$''
+  \cite[p.~17]{paramadevan2021adjacency}. Bai writes that
+  ``$(I + A)^{n-1}$ aggregates all paths of length $\le n-1$''
+  \cite[p.~2]{bai2025adjacency}. As statements about counts both are wrong: the
+  entries count walks, weighted by binomial coefficients in $R$. As statements
+  about positivity they are right, and only through the walk-to-path lemma
+  (\cref{lem:walkpath}). For this reason we cite the first paper only for the
+  statement of the test, and we prove the test in full instead of relying on those
+  sketches.
   \item \textbf{Size of the numbers.} Entries of $A^k$ and $R$ grow quickly: $A^4$
   of the board graph already has an entry $4$. Only positivity matters for the
-  test. We make no claim about growth rates, which would need eigenvalue methods
-  and lie outside the scope.
+  test. We make no claim about growth rates.
   \item \textbf{Checks.} The computations in this note are checks of examples and
   of small cases; the proofs carry the results.
 \end{itemize}

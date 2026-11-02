@@ -2,14 +2,12 @@
 
 \subsection{Notation}
 
-Let $G=(V,E)$ be a graph, with vertex set $V$ and edge set $E$ (the exact
-definition is \cref{def:graph}). We use the following letters throughout.
+Let $G=(V,E)$ be a graph, with vertex set $V$ and edge set $E$. We use the following letters throughout.
 
 \begin{itemize}[leftmargin=1.5em]
   \item $V=\{n_1,\dots,n_N\}$ is the set of vertices and $N=|V|$ is their
   number. The board names the vertices $n_1,\dots,n_N$ and writes $N$
-  \cite{whiteboard1}. The textbook writes $v_1,\dots,v_n$ \cite[p.~11]{petrosyan2015graph}; we do not use
-  that form again.
+  \cite{whiteboard1}.
   \item $e_{ij}$ is the edge between $n_i$ and $n_j$. In a simple graph
   $e_{ij}$ and $e_{ji}$ are the same edge.
   \item $A=(A_{ij})$ is the adjacency matrix, an $N\times N$ matrix of zeros
@@ -24,22 +22,53 @@ definition is \cref{def:graph}). We use the following letters throughout.
   $\sum_{r=1}^{N}X_{ir}Y_{rj}$.
 \end{itemize}
 
+\subsection{The board, redrawn}
+
+The board is the starting point, and the reader cannot see the photos.
+\Cref{fig:boardredraw} is a redraw of what the board shows
+\cite{whiteboard1,whiteboard2}: the two-case rule for $A_{ij}$, the drawing of
+three vertices, the matrix, and the small mark above $A$ in question Q1. It is a
+redraw by us and not a copy of the photo. The marks that are hard to read are
+drawn as we read them, and the conventions below say how.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[every node/.style={circle,draw,minimum size=7mm,inner sep=1pt}]
+  \node[draw=none,rectangle] at (3.2,2.0) {$A_{ij}=1$ if $e_{ij}\in V$, \quad $A_{ij}=0$ if $e_{ij}\notin V$};
+  \node (b1) at (0,0.2) {$1$};
+  \node (b2) at (3,0.2) {$2$};
+  \node (b3) at (1.5,-1.8) {$3$};
+  \draw[-{Stealth}] (b1) -- (b2);
+  \draw (b1) -- (b3);
+  \draw (b3) -- (b2);
+  \node[draw=none,rectangle] at (5.6,0.2) {\small adj.};
+  \node[draw=none,rectangle] at (7.3,-0.6) {$\begin{pmatrix}0&1&0\\1&0&1\\0&1&0\end{pmatrix}$};
+  \node[draw=none,rectangle] at (3.2,-3.2) {\small Q1: ``What does $A^{\,?}_{ij}$ represent''; the mark $?$ is a small
+  superscript, hard to read};
+\end{tikzpicture}
+\caption{A redraw of the board (not the photo). The drawing has three lines, with
+an arrowhead on the line from $1$ to $2$. The matrix beside it has only the
+ones for the pairs $1$--$2$ and $2$--$3$. The board's rule writes $V$ where
+the textbook's rule would use the edge set.}
+\label{fig:boardredraw}
+\end{figure}
+
 \subsection{Conventions}
 
 The photos, the assignment text and the textbook leave several points open.
 Each choice we make is listed here and cited by number afterwards.
 
 \begin{convention}[kind of graph]\label{conv:graph}
-All graphs are finite, simple and undirected. Simple means no loops and no
-repeated edges. The assignment text states this, and the symmetric matrix with
-zero diagonal on the board is consistent with it \cite{whiteboard1}. Directed
-graphs and graphs with repeated edges are outside the scope of this note; the
-adjacency matrix of a directed graph is not symmetric in general, so the
-statements below that use symmetry do not carry over unchanged.
+All graphs are finite, simple and undirected. Simple means no loop (an edge from a
+vertex to itself) and no repeated edge. The assignment text states this, and the
+symmetric matrix with zero diagonal on the board is consistent with it
+\cite{whiteboard1}. Directed graphs, loops and repeated edges are outside the
+scope of this note.
 \end{convention}
 
 \begin{convention}[the mark above $A$]\label{conv:power}
-The board writes a small mark above $A$ in Q1. In the two photos it looks like
+The board writes a small mark above $A$ in Q1 (marked $?$ in
+\cref{fig:boardredraw}). In the two photos it looks like
 the letter $n$ or $k$ set between quotation-like marks, so the board alone does
 not settle the reading \cite{whiteboard1,whiteboard2}. The assignment text asks
 about $A^k$, so we read the mark as an exponent $k$. A prime or quotation marks
@@ -48,15 +77,18 @@ would ask about another matrix or only name $A$.
 
 \begin{convention}[the board's letters]\label{conv:edgeset}
 The board writes $(G,V)$ for the graph and ``$e_{ij}\in V$'' in the rule
-that defines $A_{ij}$ \cite{whiteboard1,whiteboard2}. The textbook writes
-$G=(V,E)$ and the same rule with $e_{ij}\in E$ \cite[p.~9]{petrosyan2015graph}.
-We read the board's $V$ in that rule as the edge set $E$. This is a difference
-of notation, and we write $E$.
+that defines $A_{ij}$ (\cref{fig:boardredraw}) \cite{whiteboard1,whiteboard2}. The
+textbook writes $G=(V,E)$ \cite[p.~9]{petrosyan2015graph} and defines its matrix
+entry $a_{ij}$ as $1$ when $v_i$ and $v_j$ are adjacent and $0$ otherwise
+\cite[p.~11]{petrosyan2015graph}; by its Definition~1.1.4, $v_i$ and $v_j$ are
+adjacent when $v_iv_j\in E$. We read the board's $V$ in that rule as the edge set
+$E$. This is a difference of notation, and we write $E$ and use the board's
+$e_{ij}$.
 \end{convention}
 
 \begin{convention}[matrix against drawing]\label{conv:matrix}
-The board's drawing and the board's matrix disagree, edge by edge
-(\cref{sec:board-mismatch}). The problem statement on the board says the graph
+The board's drawing has three lines and its matrix encodes two edges
+(\cref{fig:boardredraw}); \cref{sec:board-mismatch} compares them edge by edge. The problem statement on the board says the graph
 is represented through its adjacency matrix \cite{whiteboard1}, so the matrix is
 the example graph. We read the arrowhead on one line of the drawing as a stray
 mark, because the matrix is symmetric and the graph is undirected.
@@ -78,8 +110,10 @@ A single vertex is a walk of length $0$ from that vertex to itself. The
 textbook does not say whether length $0$ is allowed in its walk definition on
 the pages we viewed (printed pp.~21 to 23) \cite{petrosyan2015graph}. Grinberg
 allows it \cite[p.~36, Definition~2.9.1(a)]{grinberg2025graph}. We adopt it as a
-convention. It makes $A^0=I$ count walks of length $0$, and it makes the
-walk-to-path lemma (\cref{lem:walkpath}) true for $u=v$.
+convention: a single vertex counts as a walk with no drives. Then $A^0=I$ counts
+walks of length $0$, and the lemma that every walk contains a path
+(\cref{lem:walkpath}) also holds when the walk starts and ends at the same
+vertex.
 \end{convention}
 
 \begin{convention}[page numbers]\label{conv:pages}
