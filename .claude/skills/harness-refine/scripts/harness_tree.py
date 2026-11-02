@@ -123,7 +123,7 @@ def live_tree(manifest: dict, repo: Path = REPO) -> Tree:
     """Every file in the repository that the manifest marks editable."""
     tree: Tree = {}
     for p in sorted(repo.rglob("*")):
-        if not p.is_file() or ".git" in p.parts:
+        if not p.is_file() or ".git" in p.parts or "__pycache__" in p.parts:
             continue
         rel = p.relative_to(repo).as_posix()
         if matches_any(rel, manifest["editable"]) and not matches_any(rel, manifest["reserved"]):
@@ -135,7 +135,7 @@ def read_tree(d: Path) -> tuple[Tree, list[str]]:
     """Read a tree directory. Returns (files, every relative path found)."""
     files: Tree = {}
     for p in sorted(d.rglob("*")):
-        if p.is_file() and ".git" not in p.parts:
+        if p.is_file() and ".git" not in p.parts and "__pycache__" not in p.parts:
             files[p.relative_to(d).as_posix()] = _read(p)
     return files, sorted(files)
 
