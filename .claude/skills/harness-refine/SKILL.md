@@ -195,12 +195,21 @@ Build the pool from every distinct rollout, then anonymise:
 ```
 python3 .claude/skills/harness-refine/scripts/anonymize_pool.py \
     $T/select --map $T/pool-map.json \
-    base=$T/context/deliverables/base.md inv=... dom=... composed=...
+    base=<base deliverable> inv=... dom=... composed=...
 cp $T/context/task.md $T/select/ && cp -r $T/context/source $T/select/
-cp $T/context/LAYOUT.md $T/select/
 ```
 
-`$T/select` holds `task.md`, `source/`, `candidates/`, and nothing else.
+Compare like with like. In the author stage a probe is one author pass
+with no revision, so the base deliverable in the pool is the base run's
+first draft, not its final paper: build it with `build_evidence.py
+--repo <worktree at the first-draft commit> rollout ... --no-harness`
+into a scratch directory and use that deliverable. In the whole-pipeline
+stage every rollout ran its revision rounds and the final papers compare.
+
+Copy into `$T/select/source/` every source the brief names as primary
+that is not already there (for example a textbook kept at the repository
+root), so the selector can check fidelity. `$T/select` holds `task.md`,
+`source/`, `candidates/`, and nothing else.
 Spawn a fresh `paper-evaluator` with that path and the "Selector" section
 of `references/missions.md` as its mission, stated in the prompt: it is
 not evaluating against the rubric this time, it is choosing one of the
