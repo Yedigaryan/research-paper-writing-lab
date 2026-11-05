@@ -1,0 +1,172 @@
+\section{Question 3: the path between two vertices}\label{sec:paths}
+
+The answer to Q3 is \cref{def:path}, in its place in the textbook's order:
+a path between $n_i$ and $n_j$ is a walk from $n_i$ to $n_j$ with no repeated
+vertex. This section adds only what is new: the comparison with the other
+meanings of the word, and three facts that the later sections use. The facts
+are that every path is a trail and every trail is a walk (\cref{prop:hierarchy}),
+that every walk contains a path with the same ends and no greater length
+(\cref{lem:shorten}), and that a path has at most $N-1$ edges
+(\cref{prop:distance}).
+
+\subsection{Three meanings of one word}
+
+The textbook uses the word ``path'' for a walk with no repeated edge, and
+needs the extra word ``simple'' for a walk with no repeated vertex
+\cite[Definitions 1.2.12 and 1.2.13, p.~22]{petrosyan2015grafneri}. English
+texts call the first a trail and the second a path
+\cite{wikipediapathgraphtheory,grinberg2025introduction}. The course meaning
+of ``path'' is the second one (\cref{conv:path}), which is also the English
+one. A statement quoted from any source must be translated through
+\cref{tab:conventions} before it is used.
+
+\begin{table}[ht]
+\centering
+\caption{The three conventions. The last column is the word used in this note.}
+\label{tab:conventions}
+\begin{tabular}{lllll}
+\toprule
+What the trip may not do & Textbook word & Textbook number & English word & This note \\
+\midrule
+nothing is forbidden & walk & 1.2.10 & walk & walk \\
+repeat an edge & ``path'' & 1.2.12 & trail & trail \\
+repeat a vertex & ``simple path'' & 1.2.13 & path & path \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Path, trail, walk}
+
+\plain Every trip that visits no town twice also uses no road twice. A trip
+that uses no road twice is still a trip. The reverse does not hold. A trip can
+visit a town twice and use each road once.
+
+\begin{proposition}\label{prop:hierarchy}
+Every path is a trail and every trail is a walk. Neither statement can be
+reversed.
+\end{proposition}
+
+\begin{proof}
+A trail is a walk by \cref{def:trail}. Let $u_0,\dots,u_k$ be a path, so
+its vertices are pairwise distinct, and suppose two of its edges are equal:
+$e_a=e_b$ with $a<b$. Then $\{u_{a-1},u_a\}=\{u_{b-1},u_b\}$, so $u_{a-1}$ is
+equal to $u_{b-1}$ or to $u_b$. Both of these have an index larger than
+$a-1$, because $b-1\ge a$. That contradicts the distinctness of the vertices.
+So the edges are distinct and the path is a trail. For the reverse, on the
+five-town map (\cref{fig:five}), $n_1,n_3,n_2,n_4,n_3,n_5$ is a trail that
+is not a path, and $n_1,n_3,n_2,n_4,n_3,n_2,n_4,n_3,n_5$ is a walk that is not
+a trail (the examples of \cref{def:trail} and \cref{def:path}). The textbook
+gives the same two examples \cite[p.~22]{petrosyan2015grafneri}.
+\end{proof}
+
+\subsection{A walk contains a path}
+
+\plain Take any trip from one town to another. If it passes a town twice,
+cut out the loop between the two visits. The trip is now shorter. It still
+starts and ends where it did. Keep cutting. In the end no town is visited
+twice. So a trip between two towns can always be cut down. The cut trip visits
+no town twice. It is never longer than the first.
+
+\begin{lemma}[a walk contains a path]\label{lem:shorten}
+Let $u_0,\dots,u_k$ be a walk from $u$ to $v$, with $u=v$ allowed and
+$k\ge 0$. Then there is a path from $u$ to $v$ of length at most $k$, whose
+vertices are some of $u_0,\dots,u_k$ in the same order.
+\end{lemma}
+
+The textbook proves this for $u\ne v$ without a bound on the length
+(Lemma 1.2.1, \cite[p.~23]{petrosyan2015grafneri}); Grinberg proves the form
+with the bound, for $u=v$ as well \cite[Corollary 2.9.7,
+p.~39]{grinberg2025introduction}. The proof below is ours.
+
+\begin{proof}
+By strong induction on $k$.
+
+\emph{Base case,} $k=0$. The walk is the single vertex $u=v$, which is a path
+of length $0$.
+
+\emph{Induction hypothesis.} For some $k\ge1$, the claim holds for every walk
+of length less than $k$.
+
+\emph{Step.} Let $u_0,\dots,u_k$ be a walk. If its vertices are pairwise
+distinct, it is a path of length $k$, and we are done. Otherwise
+$u_a=u_b$ for some $a<b$. Delete $u_{a+1},\dots,u_b$. The result is
+$u_0,\dots,u_a,u_{b+1},\dots,u_k$ (if $b=k$ it ends at $u_a=u_k=v$). It is
+still a walk: the only new pair of neighbours is $u_a,u_{b+1}$, and since
+$u_a=u_b$ and $u_b$ is adjacent to $u_{b+1}$, they are adjacent. It has the
+same ends, it uses vertices of the original walk in the same order, and its
+length is $k-(b-a)<k$. By the induction hypothesis it contains a path from
+$u$ to $v$ of length at most $k-(b-a)\le k$. \qedhere
+\end{proof}
+
+Example: on the five-town map the walk $n_1,n_3,n_2,n_4,n_3,n_2,n_4,n_3,n_5$
+of length $8$ contains the path $n_1,n_3,n_5$ of length $2$. On the board
+map the closed walk $n_1,n_2,n_1$ contains the path $n_1$ of length $0$.
+
+\plain Suppose you can reach a town by some trip. Then you can reach it by a
+trip that visits no town twice. The same holds for a trip that uses no road
+twice. So the kind of trip does not matter. We only ask whether the town can
+be reached.
+
+\begin{corollary}[the three readings agree]\label{cor:readings}
+For vertices $u$ and $v$ the following are equivalent: (a) there is a walk
+from $u$ to $v$; (b) there is a trail from $u$ to $v$; (c) there is a path
+from $u$ to $v$.
+\end{corollary}
+
+\begin{proof}
+(c) implies (b) and (b) implies (a) by \cref{prop:hierarchy}. (a) implies (c)
+by \cref{lem:shorten}.
+\end{proof}
+
+Grinberg states the equivalence of (a) and (c)
+\cite[Proposition 2.9.10, p.~42]{grinberg2025introduction}; the step through
+trails, which the textbook's definition of connected needs, is ours. The
+consequence is that the textbook's definition of connected, which uses its
+``path'', the board's definition, and the reading with paths without repeated
+vertices describe the same graphs (\cref{sec:connectivity}). Only the
+vocabulary changes.
+
+\subsection{Distance and the longest path}
+
+\plain The fewest roads between two towns is the same whichever kind of trip
+we use. A trip that visits no town twice can use at most one road less than
+there are towns.
+
+\begin{proposition}\label{prop:distance}
+Let $u,v$ be vertices of a graph with $N$ vertices.
+\begin{enumerate}
+\item[(a)] If there is a walk from $u$ to $v$, then the shortest walk, the
+  shortest trail and the shortest path from $u$ to $v$ have the same length.
+\item[(b)] Hence $d(u,v)=\inftysym$ exactly when there is no walk from $u$ to
+  $v$.
+\item[(c)] Every path has length at most $N-1$. Hence a finite $d(u,v)$ is at
+  most $N-1$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Let $k$ be the length of a shortest walk. By \cref{lem:shorten} there is
+a path of length at most $k$, so of length exactly $k$ by minimality. A path
+is a trail and a trail is a walk (\cref{prop:hierarchy}), so the shortest
+path, trail and walk lengths are all squeezed to $k$. (b) follows from (a) and
+\cref{cor:readings}. (c) A path of length $k$ has $k+1$ pairwise distinct
+vertices, and $G$ has only $N$ vertices, so $k+1\le N$
+\cite[Section 2.9.4, p.~40]{grinberg2025introduction}.
+\end{proof}
+
+\begin{remark}
+By (a), the textbook's distance, defined with its ``path'' (a trail), has the
+same value as \cref{def:distance}.
+\end{remark}
+
+\plain Here is the board country, with three towns in a row.
+
+\begin{example}[paths on the board map]\label{ex:boardpaths}
+On the board map (\cref{fig:three}(a)) the only path from $n_1$ to $n_3$ is
+$n_1,n_2,n_3$, of length $2$, and the only path from $n_1$ to itself is $n_1$,
+of length $0$. The sequence $n_1,n_2,n_1$ is a walk of length $2$ from $n_1$
+to $n_1$ but not a path. The distances are $d(n_1,n_2)=1$, $d(n_1,n_3)=2$ and
+$d(n_2,n_3)=1$. On the map of \cref{fig:three}(c) there is no walk from $n_3$
+to $n_1$ or to $n_2$, so $d(n_1,n_3)=d(n_2,n_3)=\inftysym$ by
+\cref{prop:distance}(b).
+\end{example}

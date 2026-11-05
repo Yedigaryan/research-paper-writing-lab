@@ -1,3 +1,285 @@
-\section{Background}\label{sec:background}
+\section{Background: graphs, walks and paths}\label{sec:background}
 
-To be written.
+Throughout this section $G=(V,E)$ is a graph as in \cref{conv:graph},
+$V=\{n_1,\dots,n_N\}$, and $u,v,w$ denote vertices. The definitions follow
+the textbook's order \cite{petrosyan2015grafneri}: graph, adjacent, adjacency
+matrix, degree, walk, closed walk, trail, path, cycle, simple cycle, distance.
+After each definition come a remark on what it allows and forbids, an example
+and a non-example. \Cref{fig:five} is the map for the examples of walks,
+trails, paths and cycles.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[every node/.style={circle,draw,inner sep=2pt,minimum size=14pt},
+    road/.style={thick}]
+  \node (n1) at (0,2.2) {1};
+  \node (n2) at (-2.2,0) {2};
+  \node (n5) at (2.2,0) {5};
+  \node (n3) at (0,0.7) {3};
+  \node (n4) at (0,-1.8) {4};
+  \draw[road] (n1)--(n2); \draw[road] (n1)--(n3); \draw[road] (n1)--(n5);
+  \draw[road] (n2)--(n3); \draw[road] (n2)--(n4); \draw[road] (n3)--(n4);
+  \draw[road] (n3)--(n5); \draw[road] (n4)--(n5);
+\end{tikzpicture}
+\caption{The five-town map used for the examples of this section, drawn after
+the textbook's Fig.\ 1.2.5 (\cref{conv:fig}). The label $i$ stands for the
+vertex $n_i$; these are the textbook's $v_1,\dots,v_5$. The roads are
+$n_1n_2$, $n_1n_3$, $n_1n_5$, $n_2n_3$, $n_2n_4$, $n_3n_4$, $n_3n_5$ and
+$n_4n_5$.}
+\label{fig:five}
+\end{figure}
+
+\subsection{Graphs, adjacency, the adjacency matrix, degree}
+
+\plain A map is a set of towns and a set of roads. Each road joins two
+different towns. No two roads join the same pair of towns. A road can be
+driven in both directions.
+
+\begin{definition}[simple graph]\label{def:graph}
+A \emph{simple undirected graph} $G=(V,E)$ consists of a finite set $V$ of
+\emph{vertices} and a set $E$ of \emph{edges}, each edge being a set
+$\{n_i,n_j\}$ of two different vertices, written $n_in_j$ or $e_{ij}$. Hence
+$n_in_j=n_jn_i$. The number of vertices is $N=|V|$. The textbook uses the
+notation $G=(V,E)$ \cite{petrosyan2015grafneri}.
+\end{definition}
+
+\begin{remark}
+Because an edge is a set of two different vertices, no edge joins a vertex to
+itself (no \emph{loop}), and because $E$ is a set, no two edges have the same
+two ends (no \emph{multiple edges}). Edges have no direction.
+\end{remark}
+
+\ex The board map of \cref{fig:three}(a): $V=\{n_1,n_2,n_3\}$ and
+$E=\{n_1n_2,\,n_2n_3\}$, so $N=3$.
+\nonex A road from $n_1$ to $n_1$, or two roads between $n_1$ and $n_2$,
+would not be allowed.
+
+\medskip
+\plain Two towns are neighbours when one road joins them directly.
+
+\begin{definition}[adjacent; textbook Definition 1.1.4]\label{def:adjacent}
+The vertices $n_i$ and $n_j$ are \emph{adjacent} if $n_in_j\in E$
+\cite[Definition 1.1.4, p.~11]{petrosyan2015grafneri}.
+\end{definition}
+
+\begin{remark}
+Adjacency is a statement about one edge only. It is symmetric, and in a
+simple graph no vertex is adjacent to itself.
+\end{remark}
+
+\ex In \cref{fig:three}(a), $n_1$ and $n_2$ are adjacent.
+\nonex In \cref{fig:three}(a), $n_1$ and $n_3$ are not adjacent: the road
+between them exists only in the drawing of \cref{fig:three}(b)
+(\cref{conv:matrix}).
+
+\medskip
+\plain The road table has one row and one column for each town. A one
+says the two towns are neighbours. A zero says they are not.
+
+\begin{definition}[adjacency matrix]\label{def:matrix}
+The \emph{adjacency matrix} of $G$ is the $N\times N$ matrix $A=(A_{ij})$ with
+$A_{ij}=1$ if $n_i$ and $n_j$ are adjacent and $A_{ij}=0$ otherwise. The
+textbook defines $A(G)$ in the same way, without a number of its own, after its
+Definition 1.1.6 \cite[p.~11]{petrosyan2015grafneri}, and the board writes it as
+$A_{ij}$ \cite{whiteboard1lecture}.
+\end{definition}
+
+\begin{remark}
+The matrix records only whether a road exists, never how many; for a simple
+graph nothing is lost. The textbook notes that $A_{ii}=0$ for every $i$ and
+$A_{ij}=A_{ji}$ for all $i,j$ \cite[p.~11]{petrosyan2015grafneri}: the diagonal
+is zero because there are no loops, and the matrix is symmetric because
+edges have no direction.
+\end{remark}
+
+\ex The board matrix
+\[
+A=\begin{pmatrix}0&1&0\\1&0&1\\0&1&0\end{pmatrix}
+\]
+is the adjacency matrix of \cref{fig:three}(a): $A_{12}=A_{21}=1$ and
+$A_{23}=A_{32}=1$, all other entries $0$.
+\nonex The matrix with rows $1\,1\,0$, $1\,0\,0$, $0\,0\,0$ is not the
+adjacency matrix of a simple graph, because $A_{11}=1$ would be a loop. A
+matrix with $A_{12}=1$ and $A_{21}=0$ is not the adjacency matrix of an
+undirected graph, because it is not symmetric.
+
+\medskip
+\plain The number of roads at a town tells how busy the town is.
+
+\begin{definition}[degree; textbook Definition 1.2.1]\label{def:degree}
+The \emph{degree} $d(n_i)$ of a vertex $n_i$ is the number of edges at
+$n_i$ \cite[Definition 1.2.1, p.~16]{petrosyan2015grafneri}.
+\end{definition}
+
+\begin{remark}
+The textbook introduces degree after the adjacency matrix, and this note
+keeps that order. In a simple graph the edges at $n_i$ correspond one to one
+to the vertices adjacent to $n_i$, so the degree is also the number of
+neighbours.
+\end{remark}
+
+\ex In \cref{fig:three}(a), $d(n_1)=1$, $d(n_2)=2$ and $d(n_3)=1$.
+\nonex The number $N=3$ of vertices is not a degree: it counts towns, not
+roads at one town.
+
+\subsection{Walks, trails, paths and cycles}
+
+\plain A trip goes from a town along a road to the next town, and so on.
+The trip may come back to a town it already visited. It may use a road
+again. Count the roads a trip uses. A road used twice is counted twice.
+
+\begin{definition}[walk; textbook Definition 1.2.10]\label{def:walk}
+A \emph{walk of length $k$} from $u_0$ to $u_k$ is a sequence
+$u_0,e_1,u_1,\dots,u_{k-1},e_k,u_k$ of vertices and edges with
+$e_t=u_{t-1}u_t$ for $1\le t\le k$
+\cite[Definition 1.2.10, p.~21]{petrosyan2015grafneri}. Its \emph{length} is
+$k$.
+\end{definition}
+
+\begin{remark}\label{rem:walk}
+Vertices and edges may repeat in a walk, and the length counts every edge
+each time it occurs \cite[p.~22]{petrosyan2015grafneri}. In a simple graph
+the edge between two adjacent vertices is the only one, so a walk is
+determined by its vertices. The textbook also writes a walk as the sequence
+of its vertices \cite[p.~21]{petrosyan2015grafneri}, and so does this note:
+a walk of length $k$ is a list $u_0,\dots,u_k$ of $k+1$ vertices in which
+each vertex is adjacent to the one before it. By \cref{conv:zero} a single
+vertex is a walk of length $0$.
+\end{remark}
+
+\ex On the five-town map (\cref{fig:five}), $n_1,n_3,n_2,n_4,n_3,n_2,n_4,n_3,n_5$ is a walk of length $8$.
+It repeats vertices and edges.
+\nonex On the same map, $n_3,n_1,n_4,n_2,n_3,n_5$ is not a walk, because
+$n_1n_4$ is not an edge.
+
+\medskip
+\plain A round trip ends in the town where it began.
+
+\begin{definition}[closed walk; textbook Definition 1.2.11]\label{def:closed}
+A walk $u_0,\dots,u_k$ is \emph{closed} if $u_0=u_k$
+\cite[Definition 1.2.11, p.~22]{petrosyan2015grafneri}.
+\end{definition}
+
+\begin{remark}
+Nothing else is required: a closed walk may repeat vertices and edges.
+\end{remark}
+
+\ex On the board map (\cref{fig:three}(a)), $n_1,n_2,n_1$ is a closed walk of
+length $2$.
+\nonex On the same map, $n_1,n_2,n_3$ is a walk but not a closed one.
+
+\medskip
+\plain Some trips use no road twice. A town may still be visited twice.
+
+\begin{definition}[trail; textbook Definition 1.2.12]\label{def:trail}
+A \emph{trail} is a walk whose edges $e_1,\dots,e_k$ are pairwise distinct.
+The textbook calls this a ``path'' \cite[Definition 1.2.12,
+p.~22]{petrosyan2015grafneri}; ``trail'' is the English word
+\cite{wikipediapathgraphtheory,grinberg2025introduction}.
+\end{definition}
+
+\begin{remark}
+A trail may visit a vertex more than once, but it may not use an edge more
+than once. To avoid a clash of words, this note writes \emph{trail} for the
+textbook's ``path'' of Definition 1.2.12 each time.
+\end{remark}
+
+\ex On the five-town map, $n_1,n_3,n_2,n_4,n_3,n_5$ is a trail. It visits
+$n_3$ twice but uses each of its five roads once.
+\nonex The walk $n_1,n_3,n_2,n_4,n_3,n_2,n_4,n_3,n_5$ is not a trail: it uses
+the roads $n_2n_3$, $n_2n_4$ and $n_3n_4$ twice each.
+
+\medskip
+\plain A trip that visits no town twice is the most careful kind of trip.
+
+\begin{definition}[path between $n_i$ and $n_j$; textbook Definition 1.2.13, ``simple path'']\label{def:path}
+Let $n_i,n_j\in V$. A \emph{path between $n_i$ and $n_j$} is a walk
+$w_0,w_1,\dots,w_k$ with $w_0=n_i$, $w_k=n_j$ and $w_0,\dots,w_k$
+pairwise distinct. The number $k$ is its \emph{length}.
+\end{definition}
+
+This is the answer to question Q3. For $n_i\ne n_j$ it is the textbook's
+\emph{simple $(n_i,n_j)$-path}, Definition 1.2.13
+\cite[p.~22]{petrosyan2015grafneri}, which the textbook states as a trail
+whose vertices are pairwise distinct; \cref{prop:hierarchy} shows that the
+condition on the edges is then automatic. It is also the English word
+``path'' \cite{wikipediapathgraphtheory,grinberg2025introduction}. The user
+stated that this is the sense of ``path'' in the course (\cref{conv:path}).
+
+\begin{remark}
+A path never repeats a vertex, so it never repeats an edge either
+(\cref{prop:hierarchy}). A
+path between a vertex and itself has only one vertex, and so has length $0$:
+by \cref{conv:zero} it is the sequence $n_i$ alone. A path of length $k$ has
+$k+1$ different vertices.
+\end{remark}
+
+\ex On the five-town map, $n_1,n_3,n_4,n_5$ is a path between $n_1$ and
+$n_5$ of length $3$. Another path between the same towns is $n_1,n_5$, of
+length $1$.
+\nonex $n_1,n_3,n_2,n_4,n_3,n_5$ is a trail but not a path, because $n_3$
+repeats.
+
+\medskip
+\plain A round trip ends in the town where it began. Here we look at round
+trips that use no road twice. Such a trip may still pass through a town more
+than once.
+
+\begin{definition}[cycle; textbook Definition 1.2.14]\label{def:cycle}
+A \emph{cycle} is a closed trail, which the textbook words as a closed
+``path'' \cite[Definition 1.2.14, p.~22]{petrosyan2015grafneri}.
+\end{definition}
+
+\begin{remark}
+A cycle may visit a vertex more than once, but it may not use an edge more
+than once. The word ``cycle'' is used here in the textbook's sense, which is
+broader than a simple cycle (\cref{def:simplecycle}).
+\end{remark}
+
+\ex On the five-town map, $n_3,n_2,n_1,n_3,n_5,n_4,n_3$ is a cycle.
+\nonex $n_1,n_3,n_2$ is a trail that is not closed, so it is not a cycle.
+
+\medskip
+\plain Some round trips pass through no town twice before they end. The
+textbook calls them simple.
+
+\begin{definition}[simple cycle; textbook Definition 1.2.15]\label{def:simplecycle}
+A cycle is \emph{simple} if only its first and last vertices are equal
+\cite[Definition 1.2.15, p.~22]{petrosyan2015grafneri}.
+\end{definition}
+
+\begin{remark}
+In a simple graph a simple cycle has length at least $3$. A cycle of length
+$1$ would need a loop. A cycle of length $2$ would be $u,v,u$, which uses the
+edge $uv$ twice, against the definition of a trail. The textbook writes $C_n$
+for the simple cycle on $n$ vertices, with $n\ge 3$
+\cite[p.~22]{petrosyan2015grafneri}. To prevent confusion this note writes
+``simple cycle'' whenever that is meant.
+\end{remark}
+
+\ex On the five-town map, $n_1,n_3,n_4,n_2,n_1$ is a simple cycle of length
+$4$.
+\nonex $n_3,n_2,n_1,n_3,n_5,n_4,n_3$ is a cycle but not a simple cycle,
+because $n_3$ repeats inside it.
+
+\medskip
+\plain Pick two towns. Look at all trips between them that visit no town
+twice. The fewest roads on such a trip is the answer. If there is no such trip,
+we say the answer is endless.
+
+\begin{definition}[distance; textbook Definition 1.2.16]\label{def:distance}
+The \emph{distance} $d(u,v)$ between $u$ and $v$ is the length of a shortest
+path from $u$ to $v$ if there is one, and $\inftysym$ otherwise.
+\end{definition}
+
+\begin{remark}
+The textbook states the definition with its own word ``path'', that is, with
+trails \cite[Definition 1.2.16, pp.~22--23]{petrosyan2015grafneri}.
+\Cref{prop:distance} shows that the value is the same with paths, with trails
+and with walks. A distance is a number or $\inftysym$, never a negative number.
+\end{remark}
+
+\ex On the board map, $d(n_1,n_3)=2$: the only path between them is
+$n_1,n_2,n_3$.
+\nonex On the map of \cref{fig:three}(c), $d(n_1,n_3)=\inftysym$, which is not a
+number of roads.

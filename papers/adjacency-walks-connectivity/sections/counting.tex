@@ -1,0 +1,213 @@
+\section{Question 1: what the entries of a power of $A$ count}\label{sec:counting}
+
+\subsection{Matrix powers}
+
+\plain To combine the road table with itself, pick a middle town. Ask
+whether the first town is a neighbour of the middle town. Ask whether the
+middle town is a neighbour of the last. Do this for every possible middle town
+and add up the answers.
+
+\begin{definition}[matrix product and power]\label{def:power}
+For $N\times N$ matrices $X$ and $Y$, the product $XY$ is the $N\times N$
+matrix with
+\begin{equation}\label{eq:product}
+(XY)_{ij}=\sum_{t=1}^{N}X_{it}Y_{tj}.
+\end{equation}
+The identity matrix $I$ has $I_{ii}=1$ and $I_{ij}=0$ for $i\ne j$, and
+$XI=IX=X$. The powers of $A$ are $A^0=I$ and $A^{k+1}=A^kA$ for $k\ge0$.
+\end{definition}
+
+\begin{remark}
+Each entry of a product is a sum over a middle index $t$. Since $A$ has only
+the entries $0$ and $1$, every entry of every power of $A$ is a non-negative
+integer. The exponent $k$ counts how many copies of $A$ are multiplied;
+$A^0=I$ is the case of no copies.
+\end{remark}
+
+\ex For the board matrix, $(A^2)_{22}=A_{21}A_{12}+A_{22}A_{22}+A_{23}A_{32}
+=1\cdot1+0\cdot0+1\cdot1=2$.
+\nonex $(A^2)_{22}$ is not $A_{22}\cdot A_{22}=0$. Squaring the matrix is not
+squaring each entry.
+
+\subsection{Basic properties of $A$}
+
+\plain The road table has a few simple habits. A town is never its own
+neighbour. If one town is a neighbour of another, the second is a neighbour of
+the first. Adding along a row tells how many roads leave that town.
+
+\begin{proposition}[properties of $A$ and its powers]\label{prop:properties}
+Let $A$ be the adjacency matrix of a simple graph.
+\begin{enumerate}
+\item[(1)] $A_{ii}=0$ and $A_{ij}=A_{ji}$ for all $i,j$
+  \cite[p.~11]{petrosyan2015grafneri}.
+\item[(2)] Every power of $A$ is symmetric: $(A^k)_{ij}=(A^k)_{ji}$.
+\item[(3)] The $i$-th row sum of $A$ is the degree: $\sum_{j}A_{ij}=d(n_i)$.
+  The column sums are equal to the row sums.
+\item[(4)] $(A^2)_{ii}=d(n_i)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) is the textbook's remark after the definition of $A(G)$, restated in
+\cref{def:matrix}. (2) Using $(XY)^{T}=Y^{T}X^{T}$ repeatedly and $A^{T}=A$,
+we get $(A^k)^{T}=(A^{T})^k=A^k$. (3) The sum $\sum_jA_{ij}$ counts the
+vertices adjacent to $n_i$. In a simple graph these correspond one to one to
+the edges at $n_i$, so the sum is $d(n_i)$ by \cref{def:degree}; by (1) the
+column sums are the same. (4) By \eqref{eq:product} and (1),
+$(A^2)_{ii}=\sum_tA_{it}A_{ti}=\sum_tA_{it}^2=\sum_tA_{it}=d(n_i)$,
+because $A_{it}\in\{0,1\}$ gives $A_{it}^2=A_{it}$.
+\end{proof}
+
+Paramadevan and Sotheeswaran state (4) in the proof of their Theorem~1
+\cite[p.~17]{paramadevan2021properties}. The textbook states (1) and does not
+state (2) to (4), so those are ours. On the board matrix the row sums are
+$1,2,1$, which are the degrees of \cref{def:degree}'s example.
+
+\subsection{The walk-counting theorem}
+
+\plain Multiply the road table by itself a few times. Each number in the
+result tells how many trips of exactly that many roads lead from one town to
+another. Trips may come back to a town they visited. Trips may use a road
+again. Every such trip is counted.
+
+\begin{theorem}[walk counting]\label{thm:count}
+Let $G$ be a simple undirected graph with vertices $n_1,\dots,n_N$ and
+adjacency matrix $A$. For every integer $k\ge0$ and all $i,j\in\{1,\dots,N\}$,
+the entry $(A^k)_{ij}$ equals the number of walks of length $k$ from $n_i$
+to $n_j$.
+\end{theorem}
+
+Grinberg proves the corresponding theorem for multidigraphs, which includes
+$k=0$ \cite[Theorem 4.5.10, pp.~120--123]{grinberg2025introduction}. The
+textbook has no such theorem (\cref{sec:sources}). The proof below is ours
+and is written for simple graphs.
+
+\begin{proof}
+Write $W_k(i,j)$ for the number of walks of length $k$ from $n_i$ to $n_j$.
+By \cref{rem:walk}, $W_k(i,j)$ is the number of sequences $u_0,\dots,u_k$ of
+vertices with $u_0=n_i$, $u_k=n_j$ and $u_{s-1}$ adjacent to $u_s$ for
+$1\le s\le k$. We prove $W_k(i,j)=(A^k)_{ij}$ by induction on $k$.
+
+\emph{Base case,} $k=0$. The only walk of length $0$ that starts at $n_i$ is
+the single vertex $n_i$. So $W_0(i,j)=1$ if $i=j$ and $0$ otherwise, which is
+$I_{ij}=(A^0)_{ij}$. (For $k=1$ directly: a walk of length $1$ from $n_i$
+to $n_j$ is one edge, so $W_1(i,j)=A_{ij}$.)
+
+\emph{Induction hypothesis.} For some $k\ge0$, $W_k(i,t)=(A^k)_{it}$ for all
+$i,t$.
+
+\emph{Step.} Take a walk $u_0,\dots,u_{k+1}$ of length $k+1$ from $n_i$ to
+$n_j$, and let $n_t=u_k$ be its next-to-last vertex. Dropping the last vertex
+leaves a walk of length $k$ from $n_i$ to $n_t$, and $n_t$ is adjacent to
+$n_j$. Conversely, a walk of length $k$ from $n_i$ to $n_t$, followed by
+$n_j$ when $n_t$ is adjacent to $n_j$, is a walk of length $k+1$ from $n_i$
+to $n_j$. Different $t$ give different walks, because $t$ can be read off the
+walk. Hence
+\[
+W_{k+1}(i,j)=\sum_{t=1}^{N}W_k(i,t)\,A_{tj},
+\]
+because $A_{tj}=1$ allows exactly one last step from $n_t$ to $n_j$ and
+$A_{tj}=0$ allows none. By the induction hypothesis the right side is
+$\sum_t(A^k)_{it}A_{tj}=(A^{k+1})_{ij}$ by \eqref{eq:product}. This closes the
+induction.
+\end{proof}
+
+\begin{remark}
+The theorem counts walks of exactly length $k$, and it needs no assumption
+that the graph is connected. A zero entry $(A^k)_{ij}=0$ says only that no
+walk of length exactly $k$ joins the two vertices; a walk of another length
+may exist. For $k=2$ and $i=j$ the theorem restates \cref{prop:properties}(4):
+$(A^2)_{ii}$ counts the closed walks $n_i,n_t,n_i$, one for each neighbour
+$n_t$.
+\end{remark}
+
+\subsection{Worked example on the board matrix}
+
+\plain Here is the board country with three towns in a row. We multiply the
+road table by itself and read a few numbers. Each number counts trips of the
+chosen number of roads.
+
+\begin{example}[the board matrix]\label{ex:board}
+For the board matrix $A$ of \cref{def:matrix},
+\[
+A^2=\begin{pmatrix}1&0&1\\0&2&0\\1&0&1\end{pmatrix},\qquad
+A^3=\begin{pmatrix}0&2&0\\2&0&2\\0&2&0\end{pmatrix}.
+\]
+The entry $(A^2)_{13}=1$ counts the walk $n_1,n_2,n_3$. The entry
+$(A^2)_{22}=2$ counts the walks $n_2,n_1,n_2$ and $n_2,n_3,n_2$. The entry
+$(A^3)_{12}=2$ counts $n_1,n_2,n_1,n_2$ and $n_1,n_2,n_3,n_2$. The diagonal
+of $A^2$ is $1,2,1$, the degrees. The entry $(A^2)_{12}=0$, although $n_1$ and
+$n_2$ are adjacent, because no walk of length exactly $2$ joins them: the map
+has no triangle. Exact length is what matters.
+\end{example}
+
+For the drawing of \cref{fig:three}(b) read as three roads
+(\cref{conv:matrix}) the matrices are
+\[
+A=\begin{pmatrix}0&1&1\\1&0&1\\1&1&0\end{pmatrix},\quad
+A^2=\begin{pmatrix}2&1&1\\1&2&1\\1&1&2\end{pmatrix},\quad
+A^3=\begin{pmatrix}2&3&3\\3&2&3\\3&3&2\end{pmatrix}.
+\]
+Here $(A^3)_{11}=2$ counts the closed walks $n_1,n_2,n_3,n_1$ and
+$n_1,n_3,n_2,n_1$. All these matrices were computed by exact integer
+arithmetic and the walks were listed by direct enumeration
+(\cref{app:provenance}).
+
+\subsection{Walks are not paths}
+
+\plain The table counts trips. A trip may go to a neighbour town and come
+straight back. Such a trip visits a town twice, so it is not a trip that
+visits no town twice. The table can therefore show a number where no such
+trip exists.
+
+\begin{proposition}[walks, not paths]\label{prop:notpaths}
+The entry $(A^k)_{ij}$ counts walks, and in general neither paths nor trails.
+In particular, if $n_i$ has a neighbour, then $(A^2)_{ii}=d(n_i)>0$ although
+there is no path of length $2$ from $n_i$ to $n_i$.
+\end{proposition}
+
+\begin{proof}
+A path between $n_i$ and itself has pairwise distinct vertices with first and
+last equal, so it has one vertex and length $0$ (\cref{def:path}). By
+\cref{prop:properties}(4), $(A^2)_{ii}=d(n_i)$, which is positive when $n_i$
+has a neighbour. The walks it counts are $n_i,n_t,n_i$, and each of these
+uses the edge $n_in_t$ twice, so none is a trail. On the board map,
+$(A^3)_{12}=2$ (\cref{ex:board}), but a graph with $3$ vertices has no path
+of length $3$ by \cref{prop:distance}(c); and neither of the two walks
+counted uses its edges only once.
+\end{proof}
+
+\begin{table}[ht]
+\centering
+\caption{On the five-town map (\cref{fig:five}), the numbers of walks,
+trails and paths of length $k$ from $n_1$ to $n_5$, and the entry
+$(A^k)_{15}$. The last column equals the first count in every row.}
+\label{tab:counts}
+\begin{tabular}{rrrrr}
+\toprule
+$k$ & walks & trails & paths & $(A^k)_{15}$ \\
+\midrule
+1 & 1 & 1 & 1 & 1 \\
+2 & 1 & 1 & 1 & 1 \\
+3 & 8 & 3 & 3 & 8 \\
+4 & 16 & 7 & 3 & 16 \\
+5 & 72 & 6 & 0 & 72 \\
+6 & 192 & 6 & 0 & 192 \\
+7 & 704 & 16 & 0 & 704 \\
+8 & 2112 & 0 & 0 & 2112 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\Cref{tab:counts} shows the difference on a larger map: the matrix entry
+follows the walk column and no other. Paramadevan and Sotheeswaran state in
+their Theorem~1 that the entry counts ``different paths'' of the given length
+\cite[p.~16]{paramadevan2021properties}. With ``path'' in the course or the
+English sense this is not correct as written, by \cref{prop:notpaths}; if their
+word is read as ``walk'' it agrees with \cref{thm:count}. We use their paper
+for the statement of the test in \cref{sec:connectivity} only.
+
+What can be said about paths is this. If $i\ne j$ and $(A^k)_{ij}\ge1$, then
+there is a walk of length $k$ (\cref{thm:count}), hence a path between $n_i$ and
+$n_j$ of length at most $k$ (\cref{lem:shorten}). The value of the entry does
+not give the number of paths.

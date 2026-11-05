@@ -1,3 +1,43 @@
-\section{Discussion}\label{sec:discussion}
+\section{Discussion: limits and open points}\label{sec:discussion}
 
-To be written.
+\paragraph{What the results do not say.} The entry $(A^k)_{ij}$ gives the number
+of walks, not of paths (\cref{prop:notpaths}), and for connectivity only
+whether it is positive matters. The size of an entry is not a measure of how
+well two vertices are joined: \cref{tab:counts} shows entries growing to
+$2112$ at $k=8$ while no path on this five-town map has more than $4$ edges (\cref{prop:distance}(c)). The test of
+\cref{thm:test} decides connectivity; it does not list the paths.
+
+\paragraph{Scope of the proofs.} Both main results are stated and proved for
+finite simple undirected graphs (\cref{conv:graph}). The proof of
+\cref{thm:count} identifies a walk with its vertex sequence and an edge with
+the entry $1$, and we do not claim the result for graphs with loops or
+multiple edges. For directed graphs the matrix is not symmetric and
+``connected'' splits into more than one notion, so the test is not claimed
+there; Grinberg's version of the walk-counting theorem covers directed
+graphs \cite[Theorem 4.5.10]{grinberg2025introduction}.
+
+\paragraph{Conventions that rest on us.} Four readings are assumptions or
+choices rather than facts read from a source: that the mark above $A$ on
+the board is a power $k$ (\cref{conv:power}); that the matrix and not the
+drawing is the example (\cref{conv:matrix}); that the course word ``path''
+means no repeated vertex (\cref{conv:path}), which is the user's statement and
+agrees with the textbook's ``simple path''; and that a walk of length $0$ is
+allowed (\cref{conv:zero}). \Cref{cor:readings} shows that the second
+reading of ``path'' does not change which graphs are connected, so the test
+is the same under any of the three. Nothing in this note claims what the
+lecturer intended beyond what the board photographs and the user's text say.
+
+\paragraph{Where sources disagree.} The textbook and English usage give the
+word ``path'' different meanings (\cref{tab:conventions}). Paramadevan and
+Sotheeswaran's Theorem~1 speaks of ``paths'' where the entry counts walks
+(\cref{sec:counting}), and the proof of their Theorem~2 omits the step from a
+walk to a path (\cref{rem:gap}). We resolved both by proving the statements
+here.
+
+\paragraph{Strength of the evidence.} The absence of the walk-counting
+theorem and of the matrix test from the textbook rests on a search of its
+text layer (\cref{sec:sources}). The computer checks (the exhaustive
+comparison up to $N=6$, the four path graphs of \cref{rem:sharp}) cover finitely
+many cases and support the proofs without replacing them. Grinberg's text is
+a long-lived lecture-notes preprint, and the encyclopedia page is used only for
+the English names of the walk types.

@@ -1,3 +1,26 @@
 \section{Conclusion}\label{sec:conclusion}
 
-To be written.
+\textbf{Q1.} For a finite simple undirected graph with adjacency matrix $A$,
+the entry $(A^k)_{ij}$ is the number of walks of length $k$ from $n_i$ to
+$n_j$ (\cref{thm:count}), for every $k\ge0$. Walks may repeat vertices and
+edges, so the entry does not count paths or trails (\cref{prop:notpaths}).
+For example, on the board map $(A^2)_{11}=1$ counts the walk $n_1,n_2,n_1$.
+This is the textbook's walk, Definition 1.2.10; the textbook has no such
+theorem, so the proof is given here.
+
+\textbf{Q2.} A graph with $N\ge2$ vertices is connected if and only if every
+off-diagonal entry of $S=A+A^2+\dots+A^{N-1}$ is positive
+(\cref{thm:test}), and equivalently if and only if $(I+A)^{N-1}$ has no zero
+entry (\cref{cor:IA}). The proof uses the walk-counting theorem, the lemma that
+a walk contains a path of no greater length (\cref{lem:shorten}), and the fact
+that a path has at most $N-1$ edges (\cref{prop:distance}(c)). On the board
+map every off-diagonal entry of $S$ is $1$, so the map is connected; on the map
+with an isolated town $S$ has zeros, so it is not (\cref{ex:connected},
+\cref{ex:disconnected}).
+
+\textbf{Q3.} A path between $n_i$ and $n_j$ is a walk $w_0,\dots,w_k$ from
+$n_i$ to $n_j$ whose vertices are pairwise distinct (\cref{def:path}). This is
+the textbook's simple path, Definition 1.2.13. The textbook's own word
+``path'', Definition 1.2.12, means a walk with no repeated edge, which this
+note calls a trail. By \cref{cor:readings} the choice among walk, trail and
+path does not change which graphs are connected.

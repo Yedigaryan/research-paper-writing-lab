@@ -1,0 +1,39 @@
+\section{Sources, checks and how to rerun the computations}\label{app:provenance}
+
+\paragraph{Sources and what was read.}
+The \emph{course textbook} \cite{petrosyan2015grafneri} is a local file supplied
+by the user. Its title is in Armenian script; the reference list gives a
+transliteration because the document is typeset with a Latin font. We viewed the
+page images of printed pages 11, 21, 22, 23, 48 and 49 before quoting
+definitions, and read the text layer of pages 16 and 22--23. The rest of the
+book was searched, not read. The two \emph{board photographs}
+\cite{whiteboard1lecture,whiteboard2lecture} show the same board from two
+angles and were read together. \emph{Grinberg's lecture notes}
+\cite{grinberg2025introduction} were read in Section 2.9, in Theorem 4.5.10 and
+its proof, and in the passage on breadth-first search. \emph{Paramadevan and
+Sotheeswaran} \cite{paramadevan2021properties} were read in Section 3.1
+(Theorems 1 to 3 and their proofs). The \emph{encyclopedia page}
+\cite{wikipediapathgraphtheory} was read as raw wikitext on 2026-11-05 and is
+used only for names. The \emph{computer check} \cite{m3connectivityscript} is
+a short program written for this note.
+
+\paragraph{What is ours.} The statements and proofs of \cref{lem:shorten},
+\cref{cor:readings}, \cref{prop:distance}, \cref{prop:properties}(2)--(4),
+\cref{thm:count}, \cref{thm:test}, \cref{cor:IA}, \cref{cor:components} and
+\cref{rem:distance} are proved in this note. Where a source states the same
+result, the text says which one. The reading of the board is recorded as
+conventions 1 to 3 in \cref{sec:conventions}.
+
+\paragraph{Rerunning the numbers.} Every matrix, count and example in the text
+is recomputed, with exact integers, by the program
+\texttt{appendices/computations.py} in the paper folder. From that folder,
+run \texttt{python3 -I appendices/computations.py}; it takes about twenty
+seconds, and its output is saved as \texttt{appendices/computations.out.txt}.
+The program lists the matrices of \cref{ex:board}, \cref{ex:connected},
+\cref{ex:disconnected} and \cref{ex:triangle}, the walks that these examples
+name, the statuses (walk, trail, path, closed) of the examples in
+\cref{sec:background}, the counts of \cref{tab:counts}, a check of the
+binomial identity, a consistency check of the cutting rule of
+\cref{lem:shorten} on all short walks of the five-town map, and the exhaustive
+comparison with breadth-first search for $N\le6$. These checks support the
+proofs and do not replace them.

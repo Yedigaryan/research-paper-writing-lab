@@ -1,0 +1,237 @@
+\section{Question 2: deciding connectivity from $A$}\label{sec:connectivity}
+
+\subsection{Connected graphs and components}
+
+\plain In some countries you can drive from any town to any other town.
+In others, some town is cut off from the rest.
+
+\begin{definition}[connected; textbook Definition 2.1.1]\label{def:connected}
+A graph $G$ is \emph{connected} if for any two vertices $u$ and $v$ there is
+a path between $u$ and $v$ \cite[Definition 2.1.1, p.~48]{petrosyan2015grafneri}.
+The board states the same definition: a graph is called connected if for any
+$n_i,n_j$ there exists a path between the nodes \cite{whiteboard1lecture}.
+\end{definition}
+
+\begin{remark}
+The textbook's word ``path'' in Definition 2.1.1 is its trail, while the
+board and the course use the path of \cref{def:path}. \Cref{cor:readings}
+shows that this does not change which graphs are connected: a walk, a trail
+and a path between two vertices exist for the same pairs. A graph with one
+vertex is connected, since there are no two different vertices to join.
+\end{remark}
+
+\ex The board map of \cref{fig:three}(a) is connected: the paths $n_1,n_2$,
+$n_2,n_3$ and $n_1,n_2,n_3$ join the pairs of vertices, and every vertex is
+joined to itself by a path of length $0$.
+\nonex The map of \cref{fig:three}(c) is not connected: $n_3$ has no
+neighbour, so no walk and hence no path joins $n_3$ to $n_1$
+(\cref{cor:readings}).
+
+\medskip
+\plain Towns that can reach each other form an island. Towns on different
+islands cannot reach each other. A country with one island is one where every town can be reached from every other.
+
+\begin{definition}[connectivity component; textbook, p.~49]\label{def:component}
+The relation ``there is a path between $u$ and $v$'' is an equivalence
+relation on $V$ (reflexive, symmetric and transitive). Its classes induce
+subgraphs of $G$, called the \emph{connectivity components} of $G$
+\cite[p.~49]{petrosyan2015grafneri}. The subgraph induced by a set $X$ of
+vertices has the vertices in $X$ and the edges of $G$ with both ends in $X$.
+\end{definition}
+
+\begin{remark}\label{rem:onecomp}
+A graph is connected if and only if it has exactly one component
+(\cite[Remark 2.1.1, p.~49]{petrosyan2015grafneri}; also
+\cite[Definition 2.9.12, p.~42]{grinberg2025introduction}). Two vertices lie in
+the same component exactly when a path, and by \cref{cor:readings} a walk,
+joins them.
+\end{remark}
+
+\ex The map of \cref{fig:three}(c) has two components: the one with vertices
+$n_1,n_2$ and the road $n_1n_2$, and the one with the single vertex $n_3$.
+\nonex $\{n_1,n_3\}$ is not the vertex set of a component of the map of
+\cref{fig:three}(c), since no path joins $n_1$ and $n_3$.
+
+\subsection{The test}
+
+\plain To see whether one town can reach another, look at trips of one road,
+of two roads, and so on. Add up the tables for all these trips. A zero in a
+place means no such trip joins the two towns, whatever the number of roads.
+We only need to try a few numbers of roads. A trip that visits no town twice
+has at most one road less than there are towns.
+
+\begin{theorem}[connectivity test]\label{thm:test}
+Let $G$ be a simple graph with $N\ge2$ vertices and adjacency matrix $A$, and
+put $S=A+A^2+\dots+A^{N-1}$. Then $G$ is connected if and only if
+$S_{ij}>0$ for every $i\ne j$.
+\end{theorem}
+
+The textbook has no matrix test (\cref{sec:sources}). Paramadevan and
+Sotheeswaran state this test as their Theorem~2
+\cite[p.~17]{paramadevan2021properties}. The proof below is ours and uses
+\cref{thm:count}, \cref{lem:shorten} and \cref{prop:distance}(c).
+
+\begin{proof}
+\emph{Connected implies $S_{ij}>0$.} Let $G$ be connected and let $i\ne j$.
+By \cref{def:connected} there is a path between $n_i$ and $n_j$ (by
+\cref{cor:readings}, whichever of the readings of ``path'' is used); let $k$
+be its length. Since $i\ne j$, $k\ge1$, and by \cref{prop:distance}(c)
+$k\le N-1$. A path is a walk, so by \cref{thm:count} $(A^k)_{ij}\ge1$. Every
+power of $A$ has non-negative entries (\cref{def:power}), so
+$S_{ij}\ge(A^k)_{ij}\ge1$.
+
+\emph{$S_{ij}>0$ for all $i\ne j$ implies connected.} Fix $i\ne j$. The number
+$S_{ij}$ is the sum of the non-negative integers $(A^k)_{ij}$ for
+$k=1,\dots,N-1$, so one of them is positive: some $k$ with $1\le k\le N-1$
+has $(A^k)_{ij}\ge1$. By \cref{thm:count} there is a walk of length $k$ from
+$n_i$ to $n_j$, and by \cref{lem:shorten} a path between $n_i$ and $n_j$. A
+vertex is joined to itself by the path of length $0$. So any two vertices are
+joined by a path, and $G$ is connected.
+\end{proof}
+
+\begin{remark}\label{rem:gap}
+The step from a positive entry to a path is where care is needed. The entry
+counts walks (\cref{prop:notpaths}), and a walk need not be a path.
+\Cref{lem:shorten} supplies the step, and \cref{prop:distance}(c) shows that
+powers up to $N-1$ are enough. In our reading, the proof of Theorem~2 of
+Paramadevan and Sotheeswaran \cite[p.~17]{paramadevan2021properties} treats the
+entries as counts of paths and passes from a nonzero entry to a path without
+this step; this is an interpretation of their text, and we use their paper for
+the statement of the test only. For $N=1$ the sum $S$ is empty and the
+single-vertex graph is connected, so the test is stated for $N\ge2$.
+\end{remark}
+
+\plain There is a neater way to write the same test. Add a stay-at-home
+option to the road table. Then multiply that table by itself a number of
+times, one less than the number of towns. The test then reads: no zero
+anywhere.
+
+\begin{corollary}[the form with $(I+A)^{N-1}$]\label{cor:IA}
+A simple graph $G$ with $N\ge1$ vertices is connected if and only if the
+matrix $(I+A)^{N-1}$ has no zero entry.
+\end{corollary}
+
+The idea is that $I$ and $A$ commute, so $(I+A)^{N-1}$ expands by the binomial
+theorem into $\sum_{k=0}^{N-1}\binom{N-1}{k}A^k$, a sum with positive
+coefficients of the same powers as in $S$ plus $I$. The diagonal is positive
+because of $I$, and an off-diagonal entry is positive exactly when the same
+entry of $S$ is. The full proof is in \cref{app:derivations}. No source that we
+read states the test in this form with a proof; the result is derived in this
+note.
+
+\subsection{Worked examples}
+
+\plain First the board country, with three towns in a row. We list the road
+table, the table for trips of two roads, and their sum. Then we look for zeros.
+
+\begin{example}[a connected map]\label{ex:connected}
+The board map has $N=3$, so $S=A+A^2$ and the other form is $(I+A)^2$. The
+matrices are
+\[
+A=\begin{pmatrix}0&1&0\\1&0&1\\0&1&0\end{pmatrix},\quad
+A^2=\begin{pmatrix}1&0&1\\0&2&0\\1&0&1\end{pmatrix},\quad
+S=\begin{pmatrix}1&1&1\\1&2&1\\1&1&1\end{pmatrix},
+\]
+\[
+I+A=\begin{pmatrix}1&1&0\\1&1&1\\0&1&1\end{pmatrix},\qquad
+(I+A)^2=\begin{pmatrix}2&2&1\\2&3&2\\1&2&2\end{pmatrix}.
+\]
+Every off-diagonal entry of $S$ is positive and $(I+A)^2$ has no zero entry,
+so by \cref{thm:test} and \cref{cor:IA} the map is connected, as it should be.
+The entry $S_{13}=1$ comes from $(A^2)_{13}=1$, the walk $n_1,n_2,n_3$. The
+entry $(A^2)_{12}=0$ although $n_1$ and $n_2$ are adjacent; the entry $A_{12}=1$
+makes up for it in $S$. This is why the powers are summed and a single power
+is not enough. As a check of \cref{cor:IA}, $(I+A)^2=I+2A+A^2$ here.
+\end{example}
+
+\plain Now a country where one town has no road. We do the same
+calculation and find zeros.
+
+\begin{example}[a map that is not connected]\label{ex:disconnected}
+Take the map of \cref{fig:three}(c), with the single road $n_1n_2$ and $n_3$
+alone. Then
+\[
+A=\begin{pmatrix}0&1&0\\1&0&0\\0&0&0\end{pmatrix},\quad
+A^2=\begin{pmatrix}1&0&0\\0&1&0\\0&0&0\end{pmatrix},\quad
+S=\begin{pmatrix}1&1&0\\1&1&0\\0&0&0\end{pmatrix},
+\]
+\[
+I+A=\begin{pmatrix}1&1&0\\1&1&0\\0&0&1\end{pmatrix},\qquad
+(I+A)^2=\begin{pmatrix}2&2&0\\2&2&0\\0&0&1\end{pmatrix}.
+\]
+The matrix $S$ has zeros at $(1,3)$, $(2,3)$ and their mirror images, and
+$(I+A)^2$ has zeros in the same places. By \cref{thm:test} and \cref{cor:IA} the
+map is not connected. By \cref{cor:components} below the components are
+$\{n_1,n_2\}$ and $\{n_3\}$.
+\end{example}
+
+\plain For the drawing on the board, read with a third road, every pair of
+towns is joined by a road. We expect no zeros.
+
+\begin{example}[the drawing read as three roads]\label{ex:triangle}
+For the map of \cref{fig:three}(b) every entry of $S$ is $2$ and every entry
+of $(I+A)^2$ is $3$. The map is connected, which is also visible directly.
+\end{example}
+
+\subsection{Components, distance and sharpness}
+
+\plain The table of sums also tells which towns share an island. A zero in a
+place means the two towns are on different islands.
+
+\begin{corollary}[components from $S$]\label{cor:components}
+For $i\ne j$, the vertices $n_i$ and $n_j$ lie in the same component of $G$
+if and only if $S_{ij}>0$. So the pairs with $S_{ij}=0$ are exactly the pairs
+in different components.
+\end{corollary}
+
+\begin{proof}
+If $n_i$ and $n_j$ are in the same component, a path joins them
+(\cref{rem:onecomp}), and the first half of the proof of \cref{thm:test}, applied
+to this pair alone, gives $S_{ij}>0$. If $S_{ij}>0$, the second half of that
+proof gives a path between $n_i$ and $n_j$, so they are in the same class of
+the relation of \cref{def:component}.
+\end{proof}
+
+\begin{remark}[distance]\label{rem:distance}
+For distinct vertices in the same component, $d(n_i,n_j)$ is the least $k\ge1$
+with $(A^k)_{ij}>0$. Indeed, a walk of length $k$ exists exactly when the
+entry is positive (\cref{thm:count}), and the shortest walk has the length of
+the shortest path (\cref{prop:distance}(a)). On the board map,
+$A_{13}=0$ and $(A^2)_{13}=1$, so $d(n_1,n_3)=2$, in agreement with
+\cref{ex:boardpaths}.
+\end{remark}
+
+\begin{remark}[the limit $N-1$ cannot be lowered]\label{rem:sharp}
+This is an experimental finding, a computation on four graphs, and it
+illustrates \cref{prop:distance}(c) without proving it. On the path graphs
+with $N=3,4,5,6$ vertices (one road between consecutive towns), the first
+power with a positive $(1,N)$ entry is $A^{N-1}$ in each case
+\cite{m3connectivityscript}. A limit below $N-1$ would miss such a pair.
+\end{remark}
+
+\subsection{A computer check}
+
+This is an experimental finding, not a proof. For every labelled simple graph
+with $N=1,2,\dots,6$ vertices (1, 2, 8, 64, 1024 and 32768 graphs, of which
+1, 1, 4, 38, 728 and 26704 are connected), both matrix tests of this section
+gave the same answer as a breadth-first search from $n_1$
+\cite{m3connectivityscript}. The proofs above do not rest on this check.
+
+\subsection{Breadth-first search, for comparison}
+
+\plain Stand in town 1. Visit all its neighbour towns. Then visit the
+neighbours of those. Note each town once. If every town was visited, then
+every town can be reached from town 1.
+
+Breadth-first search starts with the set $\{n_1\}$ and repeatedly adds every
+$n_j$ with $A_{kj}=1$ for some $n_k$ already in the set. When nothing can be
+added, $G$ is connected exactly when the set contains all $N$ vertices. The
+vertices added are those joined to $n_1$ by a path, so by \cref{rem:onecomp} the
+set is the component of $n_1$. Grinberg states that in a breadth-first search
+tree the tree path from the root is a shortest path
+\cite[p.~176]{grinberg2025introduction}; using the search to decide
+connectivity is our reading, not a statement of that source. By our own count,
+forming $S$ takes $N-2$ matrix products, whereas the search reads the row of
+each visited vertex at most once. On the maps of \cref{ex:connected} and
+\cref{ex:disconnected} it visits $n_1,n_2,n_3$ and $n_1,n_2$ respectively
+\cite{m3connectivityscript}.

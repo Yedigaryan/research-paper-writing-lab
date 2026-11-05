@@ -3,6 +3,7 @@
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{tikz}
 \usepackage[hidelinks]{hyperref}
 \usepackage{cleveref}
 \usepackage[backend=biber,style=numeric,urldate=long]{biblatex}
@@ -15,23 +16,56 @@
 \theoremstyle{plain}
 \newtheorem{theorem}[definition]{Theorem}
 \newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{corollary}[definition]{Corollary}
 \theoremstyle{remark}
 \newtheorem{remark}[definition]{Remark}
 
-\title{Adjacency walks connectivity}
-\author{}
+\crefname{definition}{Definition}{Definitions}
+\crefname{example}{Example}{Examples}
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{Lemma}{Lemmas}
+\crefname{proposition}{Proposition}{Propositions}
+\crefname{corollary}{Corollary}{Corollaries}
+\crefname{remark}{Remark}{Remarks}
+\crefname{enumi}{convention}{conventions}
+\crefname{section}{Section}{Sections}
+\crefname{appendix}{Appendix}{Appendices}
+
+\newcommand{\plain}{\textbf{In plain words.}\ }
+\newcommand{\ex}{\par\noindent\textit{Example.}\ }
+\newcommand{\nonex}{\par\noindent\textit{Non-example.}\ }
+\newcommand{\inftysym}{{+}\infty}
+
+\title{What the powers of an adjacency matrix count,\\
+and how the matrix shows that a graph is connected}
+\author{A study note for the graph theory course}
 \date{\today}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-To be written by the author agent.
+A graph with $N$ vertices can be written as an $N$ by $N$ table of zeros and
+ones, its adjacency matrix $A$. This note answers three questions about
+that table. First, the entry in row $i$ and column $j$ of the $k$-th power
+of $A$ counts the walks of length $k$ from vertex $n_i$ to vertex $n_j$. It
+counts walks, not paths. Second, a graph with $N\ge 2$ vertices is connected
+exactly when every off-diagonal entry of $A+A^2+\dots+A^{N-1}$ is positive,
+and equivalently when $(I+A)^{N-1}$ has no zero entry. Third, under the
+course convention a path between two vertices is a walk from one to the
+other with no repeated vertex. Each result is proved, shown on a connected
+and on a disconnected graph with three vertices, and compared with the
+textbook's definitions and numbering. The note is written for a first
+reading, and each definition and theorem is introduced by a short
+paragraph in plain words.
 \end{abstract}
 
 \input{sections/introduction}
 \input{sections/background}
-\input{sections/analysis}
+\input{sections/paths}
+\input{sections/counting}
+\input{sections/connectivity}
 \input{sections/discussion}
 \input{sections/conclusion}
 
@@ -39,5 +73,6 @@ To be written by the author agent.
 
 \appendix
 \input{appendices/derivations}
+\input{appendices/provenance}
 
 \end{document}
