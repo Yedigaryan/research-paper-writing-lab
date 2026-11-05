@@ -1,0 +1,338 @@
+{
+  "sources": [
+    {
+      "id": "wikipediapathgraphtheory",
+      "type": "web",
+      "title": "Path (graph theory)",
+      "authors": [],
+      "year": null,
+      "venue": "Wikipedia, English edition, section 'Walk, trail, and path'",
+      "identifier": {
+        "doi": null,
+        "url": "https://en.wikipedia.org/wiki/Path_(graph_theory)",
+        "isbn": null,
+        "path": null
+      },
+      "accessed": "2026-11-05",
+      "access_status": "partial",
+      "credibility": "tertiary",
+      "found_by": "module:m2",
+      "notes": "Read the raw wikitext of the page (action=raw) on 2026-11-05 and copied the quotes with markup removed. Revision id not recorded. The page cites Bender and Williamson (2010), p. 162, for the trail and path definitions; that book was not read. Used only for the English naming (trail, path, simple path) that Definitions 1.2.12 and 1.2.13 of the textbook are compared with; encyclopedia text, editable, tertiary."
+    }
+  ],
+  "claims": [
+    {
+      "id": "M2-1",
+      "text": "In a simple graph a walk is determined by its vertex sequence u_0, u_1, ..., u_k, because the edge u_{i-1}u_i is the only edge between those two vertices. So a walk of length k from n_i to n_j is the same data as a sequence of k+1 vertices with consecutive vertices adjacent. The textbook abbreviates a walk by its vertex sequence in the same way; Grinberg defines a walk for simple graphs as the vertex sequence.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 21, end of Definition 1.2.10",
+          "quote": "ենթադրելով, որ յուրաքանչյուր հաջորդ գագաթ հարևան է նախորդին:"
+        },
+        {
+          "source": "grinberg2025introduction",
+          "locator": "Definition 2.9.1(a), printed p. 36",
+          "quote": "A walk (in G) means a finite sequence (v0 , v1 , . . . , vk ) of vertices of G (with k ≥ 0) such that all of v0 v1 , v1 v2 , v2 v3 , . . . , vk−1 vk are edges of G."
+        }
+      ],
+      "derivation": "modules/m2.md, section 5, Proposition 2.1",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/walks.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-2",
+      "text": "Convention of the paper: a walk of length 0 (a single vertex) is allowed, and it is a path, a trail and a closed walk. Grinberg allows k >= 0. The textbook's Definition 1.2.10 does not say whether k = 0 is allowed, and its Lemma 1.2.1 excludes u = v, so this is the paper's choice, made so that 'every walk contains a path' also holds when the ends coincide.",
+      "kind": "interpretation",
+      "module": "m2",
+      "support": [
+        {
+          "source": "grinberg2025introduction",
+          "locator": "Definition 2.9.1(a), printed p. 36",
+          "quote": "A walk (in G) means a finite sequence (v0 , v1 , . . . , vk ) of vertices of G (with k ≥ 0)"
+        },
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 23, Lemma 1.2.1",
+          "quote": "Ենթադրենք, որ G գրաֆում u-ն և v-ն իրարից տարբեր երկու գագաթներ են:"
+        }
+      ],
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [
+        "sections/walks.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-3",
+      "text": "English usage (as in Wikipedia and Grinberg): a trail is a walk with all edges distinct; a path is a walk, equivalently a trail, with all vertices distinct. Some authors say 'simple path' for the latter. This matches the textbook's Definition 1.2.12 ('path' = English trail) and Definition 1.2.13 ('simple path' = English path), so the course word 'path' (no repeated vertices) is the English word 'path' and the textbook's own word 'path' is the English 'trail'.",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "wikipediapathgraphtheory",
+          "locator": "Section 'Walk, trail, and path'",
+          "quote": "A trail is a walk in which all edges are distinct."
+        },
+        {
+          "source": "wikipediapathgraphtheory",
+          "locator": "Section 'Walk, trail, and path'",
+          "quote": "A path is a trail in which all vertices (and therefore also all edges) are distinct."
+        },
+        {
+          "source": "wikipediapathgraphtheory",
+          "locator": "Section 'Walk, trail, and path'",
+          "quote": "Some authors do not require that all vertices of a path be distinct and instead use the term simple path to refer to such a path where all vertices are distinct."
+        },
+        {
+          "source": "grinberg2025introduction",
+          "locator": "Definition 2.9.1(c), printed p. 36",
+          "quote": "A path (in G) means a walk (in G) whose vertices are distinct."
+        },
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 22, Definitions 1.2.12 and 1.2.13",
+          "quote": "G գրաֆի (u0, uk)-ճանապարհը կանվանենք պարզ (u0, uk)-ճանապարհ, եթե նրա մեջ մտնող բոլոր գագաթները զույգ առ զույգ տարբեր են:"
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/walks.tex"
+      ],
+      "contradicted_by": [
+        "C12",
+        "C13"
+      ]
+    },
+    {
+      "id": "M2-4",
+      "text": "Every simple path (no repeated vertex) is a trail (no repeated edge), and every trail is a walk; neither inclusion reverses. Proof of the first: if the edge u_{i-1}u_i equalled u_{j-1}u_j with i < j, then u_{i-1} would equal u_{j-1} or u_j, two vertices with larger index, against distinctness. Strictness: on the textbook's graph of Fig. 1.2.5, v1,v3,v2,v4,v3,v5 is a trail with v3 repeated, and v1,v3,v2,v4,v3,v2,v4,v3,v5 is a walk that is not a trail. Grinberg leaves the first inclusion as Exercise 2.9.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 22, example after Definition 1.2.12",
+          "quote": "Նկատենք, որ նկ. 1.2.5-ի G գրաֆի v1, v3, v2, v4, v3, v5 շրջանցումը ճանապարհ է, իսկ v1, v3, v2, v4, v3, v2, v4, v3, v5-ը՝ ոչ:"
+        },
+        {
+          "source": "grinberg2025introduction",
+          "locator": "Exercise 2.9, printed p. 37",
+          "quote": "Let G be a simple graph. Let w be a path in G. Prove that the edges of w are distinct."
+        }
+      ],
+      "derivation": "modules/m2.md, section 5, Proposition 2.2; modules/m2_checks.py parts 1 and 2",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/walks.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-5",
+      "text": "The textbook's examples on Fig. 1.2.5 (printed pp. 21 to 22) check out when the figure is read as the graph with edges v1v2, v1v3, v1v5, v2v3, v2v4, v3v4, v3v5, v4v5: the walk v1,v3,v2,v4,v3,v2,v4,v3,v5 has length 8; v3,v1,v4,v2,v3,v5 is not a walk (v1v4 is no edge); v1,v3,v4,v5 is a simple path; v3,v2,v1,v3,v5,v4,v3 is a closed trail but not a simple cycle; v1,v3,v4,v2,v1 is a simple cycle. The edge list is my reading of the page image; the book does not print it.",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 21 (walk example) and p. 22 (path and cycle examples)",
+          "quote": "Նկատենք, որ նկ. 1.2.5-ի G գրաֆի v1, v3, v2, v4, v3, v2, v4, v3, v5 շրջանցման երկարությունը հավասար է ութի:"
+        },
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 22, example after Definition 1.2.13",
+          "quote": "Նկատենք, որ նկ. 1.2.5-ի G գրաֆի v1, v3, v2, v4, v3, v5 ճանապարհը պարզ (v1, v5)-ճանապարհ չէ, իսկ v1, v3, v4, v5-ը նույն գրաֆի պարզ (v1, v5)-ճանապարհ է:"
+        },
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 22, example after Definition 1.2.15",
+          "quote": "Նկատենք, որ նկ. 1.2.5-ի G գրաֆի v3, v2, v1, v3, v5, v4, v3 ճանապարհը պարզ ցիկլ չէ, իսկ v1, v3, v4, v2, v1-ը նույն գրաֆի պարզ ցիկլ է:"
+        }
+      ],
+      "derivation": "modules/m2_checks.py part 1",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/walks.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-6",
+      "text": "Lemma (walk to path, with length bound): in a simple graph, if there is a walk of length k from u to v (u = v allowed), there is a path from u to v of length at most k, formed by some of the walk's vertices in their order. Proof by strong induction on k: if no vertex repeats the walk is a path; otherwise cut out the part between two equal vertices u_i = u_j (i < j), which leaves a walk from u to v of length k - (j - i) < k. The textbook's Lemma 1.2.1 states the case u different from v by induction on the length, without the bound; Grinberg's Proposition 2.9.5 and Corollary 2.9.7 give the shortening and the bound.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 23, proof of Lemma 1.2.1",
+          "quote": "Ապացույցը կատարենք մակածման եղանակով ըստ (u, v)-շրջանցման k երկարության:"
+        },
+        {
+          "source": "grinberg2025introduction",
+          "locator": "Proposition 2.9.5, printed p. 38 (proof to p. 39)",
+          "quote": "Assume that a is not a path. Then, there exists a walk from u to v whose length is smaller than k."
+        },
+        {
+          "source": "grinberg2025introduction",
+          "locator": "Corollary 2.9.7, printed p. 39",
+          "quote": "Assume that there is a walk from u to v of length k for some k ∈ N. Then, there is a path from u to v of length ≤ k."
+        }
+      ],
+      "derivation": "modules/m2.md, section 5, Lemma 2.3; modules/m2_checks.py part 3 (101662 walks checked)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/walks.tex"
+      ],
+      "contradicted_by": [
+        "C16",
+        "C17"
+      ]
+    },
+    {
+      "id": "M2-7",
+      "text": "For two vertices u and v of a simple graph the following are equivalent: a walk from u to v exists; a trail from u to v exists; a simple path from u to v exists. Proof: path implies trail (M2-4), trail implies walk (definition), walk implies path (M2-6). Hence the textbook's Definition 2.1.1 (whose 'path' is the 1.2.12 trail), the board's definition and the reading with simple paths define the same connected graphs. Grinberg states the walk-path equivalence only (Proposition 2.9.10) and says nothing about trails, so the trail part is the paper's own.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 48, Definition 2.1.1",
+          "quote": "G գրաֆը կանվանենք կապակցված, եթե նրա ցանկացած երկու u և v գագաթների համար G գրաֆում գոյություն ունի (u, v)-ճանապարհ:"
+        },
+        {
+          "source": "grinberg2025introduction",
+          "locator": "Proposition 2.9.10, printed p. 42",
+          "quote": "Then, u ≃G v if and only if there exists a path from u to v."
+        }
+      ],
+      "derivation": "modules/m2.md, section 5, Corollary 2.4; modules/m2_checks.py part 5",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/walks.tex"
+      ],
+      "contradicted_by": [
+        "C19"
+      ]
+    },
+    {
+      "id": "M2-8",
+      "text": "Distance, Definition 1.2.16, does not depend on which of the three readings is used: the length of a shortest walk, shortest trail and shortest path between u and v are equal when one exists (a shortest walk is a path by M2-6, and a path is a trail and a walk), so d(u,v) = +infinity exactly when no walk exists. When finite, d(u,v) <= N - 1 because a path of length k has k + 1 distinct vertices. The textbook lists three distance axioms; Grinberg notes that a shortest walk is a shortest path.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 22 to 23, Definition 1.2.16",
+          "quote": "կսահմանենք որպես կարճագույն (u, v)-ճանապարհի երկարություն, եթե G գրաֆում գոյություն ունի առնվազն մեկ (u, v)-ճանապարհ, և +∞՝ հակառակ դեպքում:"
+        },
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 23, property 3 after Definition 1.2.16",
+          "quote": "G գրաֆի ցանկացած u, v և w գագաթների համար dG(u, v) ≤ dG(u, w) + dG(w, v):"
+        },
+        {
+          "source": "grinberg2025introduction",
+          "locator": "Section 2.9.4, printed p. 40",
+          "quote": "a shortest walk from u to v (if it exists) must also be a shortest path from u to v"
+        }
+      ],
+      "derivation": "modules/m2.md, section 5, Proposition 2.5; modules/m2_checks.py parts 4 and 5",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/walks.tex"
+      ],
+      "contradicted_by": [
+        "C15",
+        "C18"
+      ]
+    },
+    {
+      "id": "M2-9",
+      "text": "In the textbook a cycle (Definition 1.2.14) is a closed trail, and a simple cycle (1.2.15) repeats only its first and last vertex. In a simple graph (no loops, no multiple edges) a simple cycle has length at least 3: length 1 needs a loop, and length 2 would use the same edge twice, against distinct edges. The textbook writes the simple cycle on n vertices as C_n with n >= 3. Note the book's Definition 1.2.14 is about its 'path', so a cycle there is a closed trail, not a closed simple path.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 22, Definition 1.2.14",
+          "quote": "փակ ճանապարհ կամ ցիկլ, եթե այն փակ շրջանցում է, այսինքն՝ եթե u0 = uk:"
+        },
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 22, after Definition 1.2.15",
+          "quote": "n գագաթ ունեցող պարզ ցիկլը կնշանակենք Cn-ով, n ≥ 3:"
+        }
+      ],
+      "derivation": "modules/m2.md, section 5, Proposition 2.6; modules/m2_checks.py part 7",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/walks.tex"
+      ],
+      "contradicted_by": [
+        "C14"
+      ]
+    },
+    {
+      "id": "M2-10",
+      "text": "On the textbook's graph of Fig. 1.2.5 (edge list in M2-5), between v1 and v5 the numbers of walks, trails and simple paths of length k = 0, ..., 8 are 0/0/0, 1/1/1, 1/1/1, 8/3/3, 16/7/3, 72/6/0, 192/6/0, 704/16/0, 2112/0/0; the walk counts equal (A^k)_{15}. The graph has 13 simple cycles (4 of length 3, 5 of length 4, 4 of length 5). Computed by script.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 21, Fig. 1.2.5",
+          "quote": "Նկ. 1.2.5"
+        }
+      ],
+      "derivation": "modules/m2_checks.py parts 6 and 7, output in modules/m2_checks.out.txt",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/walks.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-11",
+      "text": "Course convention for 'path between n_i and n_j': a simple (n_i, n_j)-path of textbook Definition 1.2.13, that is a walk n_i = w_0, ..., w_k = n_j with pairwise distinct vertices. For i = j the only such path is the length-0 path. The board's definition of connected says 'a path between nodes'; the user stated that path means no repeated vertices, and that statement is recorded in the brief, not in a source file, so this reading of the board's word is an assumption.",
+      "kind": "interpretation",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 22, Definition 1.2.13",
+          "quote": "G գրաֆի (u0, uk)-ճանապարհը կանվանենք պարզ (u0, uk)-ճանապարհ, եթե նրա մեջ մտնող բոլոր գագաթները զույգ առ զույգ տարբեր են:"
+        },
+        {
+          "source": "whiteboard1lecture",
+          "locator": "whiteboard-1.jpg, last lines",
+          "quote": "Def. Graph is called connected if for any n_i, n_j (exists) path between nodes"
+        }
+      ],
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [
+        "sections/walks.tex"
+      ],
+      "contradicted_by": [
+        "C13"
+      ]
+    }
+  ],
+  "contradictions": []
+}

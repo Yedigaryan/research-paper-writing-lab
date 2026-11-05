@@ -1,0 +1,76 @@
+== 1. Book examples on Fig. 1.2.5 (printed pp. 21-22) ==
+walk v1,v3,v2,v4,v3,v2,v4,v3,v5: True length 8 (book: eight)
+sequence v3,v1,v4,v2,v3,v5 is a walk: False (book: not a walk; v1v4 is not an edge: False )
+v1,v3,v2,v4,v3,v5 trail: True  path: False (book: trail, not simple path)
+v1,v3,v2,v4,v3,v2,v4,v3,v5 trail: False (book: not a trail)
+v1,v3,v4,v5 path: True
+v3,v2,v1,v3,v5,v4,v3 closed trail: True  simple cycle: False (book: not simple)
+v1,v3,v4,v2,v1 simple cycle: True
+
+== 2. Hierarchy: path => trail => walk, and strictness ==
+path => trail => walk holds on all walks up to length 7 in 8 graphs
+(trail but not path) example in G: (1, 3, 2, 4, 3, 5)
+(walk but not trail) example in G: (1, 3, 2, 4, 3, 2, 4, 3, 5)
+
+== 3. Lemma: shortening a walk gives a path of length <= k ==
+walks checked: 101662  all shortened to a path, same ends, length <= k
+most cut steps needed by one walk: 4
+example: shorten (1, 3, 2, 4, 3, 2, 4, 3, 5) -> (1, 3, 5)
+closed walk (1,2,1) in board graph -> (1,) (length-0 path, u = v)
+
+== 4. Path length at most N - 1 ==
+G (Fig. 1.2.5): N = 5, longest path length = 4, N - 1 = 4
+board: N = 3, longest path length = 2, N - 1 = 2
+disconnected 3: N = 3, longest path length = 1, N - 1 = 2
+triangle: N = 3, longest path length = 2, N - 1 = 2
+path P4: N = 4, longest path length = 3, N - 1 = 3
+cycle C4: N = 4, longest path length = 3, N - 1 = 3
+K4: N = 4, longest path length = 3, N - 1 = 3
+two edges 4: N = 4, longest path length = 1, N - 1 = 3
+
+== 5. Existence and distance agree for walk, trail, path ==
+shortest walk = shortest trail = shortest path (or none within N + 2 steps) for every ordered pair in all 8 graphs
+
+== 6. Counts between v1 and v5 in G, by length (walk / trail / path) ==
+length  walks  trails  paths  (A^k)_15
+    0      0       0      0         0
+    1      1       1      1         1
+    2      1       1      1         1
+    3      8       3      3         8
+    4     16       7      3        16
+    5     72       6      0        72
+    6    192       6      0       192
+    7    704      16      0       704
+    8   2112       0      0      2112
+
+== 7. Simple cycles of G (as vertex cycles, up to start and direction) ==
+length 3 (1, 2, 3)
+length 3 (1, 3, 5)
+length 3 (2, 3, 4)
+length 3 (3, 4, 5)
+length 4 (1, 2, 3, 5)
+length 4 (1, 2, 4, 3)
+length 4 (1, 2, 4, 5)
+length 4 (1, 3, 4, 5)
+length 4 (2, 3, 5, 4)
+length 5 (1, 2, 3, 4, 5)
+length 5 (1, 2, 4, 3, 5)
+length 5 (1, 2, 4, 5, 3)
+length 5 (1, 3, 2, 4, 5)
+number of simple cycles: 13
+simple cycles of length 1 or 2 anywhere: False
+
+== 8. Board graph (edges 1-2, 2-3) ==
+paths from n1 to n3: [(1, 2, 3)]
+paths from n1 to n1: [(1,)]
+paths from n1 to n2: [(1, 2)]
+walks of length 2 from n1 to n1: [(1, 2, 1)] (none is a path)
+distances in board graph:
+   [0, 1, 2]
+   [1, 0, 1]
+   [2, 1, 0]
+distances in disconnected example (inf = no path):
+   [0, 1, inf]
+   [1, 0, inf]
+   [inf, inf, 0]
+all checks passed
