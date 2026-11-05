@@ -5,13 +5,15 @@ is connected if and only if $(I+A)^{N-1}$ has no zero entry. It uses
 \cref{thm:test} and the notation of \cref{def:power}.
 
 \begin{proof}[Proof of \cref{cor:IA}]
-The identity matrix commutes with every matrix, so $I$ and $A$ commute and the
-binomial theorem applies:
+The binomial theorem holds for two matrices that commute. The identity matrix
+commutes with every matrix, so $I$ and $A$ commute, and
 \begin{equation}\label{eq:binomial}
 (I+A)^{N-1}=\sum_{k=0}^{N-1}\binom{N-1}{k}A^k,
 \end{equation}
 where $\binom{N-1}{k}$ is the number of ways to choose $k$ items from $N-1$
-items, and is at least $1$ for $0\le k\le N-1$. By \cref{def:power} every
+items, and is at least $1$ for $0\le k\le N-1$. The exponent $N-1$ is the
+same bound as in $S$: it is the longest length a path can have
+(\cref{prop:distance}(c)). By \cref{def:power} every
 $A^k$ has non-negative integer entries, so every term of \eqref{eq:binomial}
 is non-negative.
 

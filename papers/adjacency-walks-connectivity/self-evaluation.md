@@ -1,9 +1,8 @@
 # Self-evaluation
 
 Register: study-note. LaTeX is installed; `build.sh` exits 0 and produces an
-18-page `main.pdf`. Claim ids (C, M1-, M2-, M3-) are in `evidence/evidence.json`;
-they appear only in this file, never in the paper text. No claim was added to
-the evidence file (no `author.json` fragment was needed). Numbers in the paper are
+18-page `main.pdf`. Claim ids (C, M1-, M2-, M3-, A-) are in `evidence/evidence.json`;
+they appear only in this file, never in the paper text. One claim, A-1, was added in round 1 (`evidence/modules/author.json`, merged). Numbers in the paper are
 recomputed by `appendices/computations.py` (output in
 `appendices/computations.out.txt`).
 
@@ -48,7 +47,7 @@ Conclusion Q3 follows from Definition 2.8 plus Cor 3.3.
 
 ## Section 4 Question 1 (`sections/counting.tex`)
 Purpose: matrix powers, properties, walk-counting theorem, walks versus paths.
-- Prop 4.2 (1): C2; (2) M1-4; (3), (4): M1-2, C7 (Paramadevan p. 17 states (4)).
+- Prop 4.2 (a): C2; (b) M1-4; (c), (d): M1-2, C7 (Paramadevan p. 17 states (d)). Items are lettered so they do not clash with equation (1).
 - Theorem 4.4 walk counting: M1-3, C4, C5 (own induction proof; textbook lacks it: C9).
 - Example 4.5 and triangle matrices: M1-6, C28.
 - Prop 4.6 walks not paths, counterexamples: M1-5, C8, C18.
@@ -63,12 +62,12 @@ Purpose: define connected and components, prove the test, give worked examples.
 - Theorem 5.4 test: M3-3, C22 (qualified), C24 for the form; proof from Theorem 4.4, Lemma 3.2, Prop 3.4(c). N=1 excluded.
 - Paramadevan's proof incomplete: C23 (qualified; marked as interpretation in text).
 - Cor 5.5 (I+A)^(N-1): C24, M3-4; full proof in appendix; no source states it (said in text).
-- Examples (matrices): M3-8; board matrix: C28. Cor 5.7 components: M3-5. Remark distance: M3-6. Sharpness: M3-7 (experimental, said so). Exhaustive check N<=6: M3-9 (experimental, said so).
-- BFS paragraph: M3-10, C25 (qualified). Cost remark "N-2 products" is marked as our own count, unsourced.
+- Examples (matrices): M3-8; board matrix: C28. Cor 5.7 components: M3-5. Remark distance: M3-6. Sharpness: Proposition 5.12 with a proof, A-1 (derived; M3-7 is now only the computer illustration). Exhaustive check N<=6: M3-9 (experimental, said so).
+- BFS paragraph (now before the computer check): M3-10, C25 (qualified). The "N-2 products" count is justified in one sentence and marked as our own; no timing claim is made.
 Conclusion Q2 follows from Theorem 5.4 and Corollary 5.5.
 
 ## Section 6 Discussion, Section 7 Conclusion
-Discussion restates limits; the directed-graph remark is one sentence (cites C4). Claims about loops and multiple edges are explicitly not made. Conclusion answers Q1 to Q3 with pointers; no new claims.
+Discussion (condensed in round 1) holds: what the results do not say, scope (loops, multigraphs, directed graphs in one sentence), the two statements of the published paper with quotations (C6, C22, C23, qualified), and the strength of the computer checks; the directed-graph remark is one sentence (cites C4). Claims about loops and multiple edges are explicitly not made. Conclusion answers Q1 to Q3 with pointers; no new claims.
 
 ## Appendices
 A (`derivations.tex`): proof of Cor 5.5 (C24, M3-4). B (`provenance.tex`): sources read and pages viewed (from source notes), what is ours, how to rerun.
@@ -89,3 +88,34 @@ No unverified claims. Qualified claims, each disclosed in the text: C6, C9, C19,
 - The (I+A)^(N-1) form has no source; only our derivation.
 - The BFS cost comparison is unsourced and qualitative.
 - Textbook title is transliterated in the bibliography because pdflatex has no Armenian font.
+
+## Revision log, round 1 (technician pre-read)
+All edits grepped across `sections/`, `appendices/`, `main.tex`. "The user" and "text layer" no longer occur in the reader's text.
+- F1 (intro 1.1): added a sentence saying the note replies to lecture photos and an assignment and that the board content is reproduced; "user"/"us" removed; also in convention 1, 5 and Appendix B.
+- F2: Q1 now reads "entry (i,j) of the k-th power"; the mark's uncertainty is only in convention 2.
+- F3: pairs written (1,2),(2,3); drawing described in words with pointer to Fig. 1(b); extra 1-3 line named.
+- F4: board's (G,V), A_ij = 1 if e_ij in V stated in full; V versus E explained.
+- F5: edge list pointer to the Fig. 2 caption; says the examples need only the list; names the checks (the textbook's walk, trail, path, cycle examples).
+- F6: Section 1.4 now says "searched the textbook's text for 'matrix'"; page list and source detail moved to Appendix B.
+- F7: duplicate "round trip" sentence removed (cycle plain-words paragraph); Section 1.2 says story words are only an aid and never appear in statements or proofs.
+- F8: worked line n1,n2,n3 (length 2) before Definition of walk.
+- F9: Definition of path made self-contained; textbook comparison moved to Section 3.1, with a sentence there that the textbook's "trail with distinct vertices" and our definition agree by Prop. 3.1.
+- F10: degree is now deg(n_i) everywhere; notation list says d(u,v) is distance.
+- F11: both cases written in the proof of Prop. 3.1.
+- F12: count of deleted vertices (b-a) and the example 1,2,3,2,4 -> 1,2,4 added to Lemma 3.2.
+- F13: transpose defined; Prop. 4.2 items lettered (a)-(d); proof split into four lines; "(1) and (1)" removed.
+- F14: step of Thm 4.4 cites Eq. (1) of Def. 4.1 and A^(k+1)=A^k A; items lettered so no clash.
+- F15: proof of Prop. 4.7 split; both walks named with the edge each repeats.
+- F16: caption of Table 3 explains how counts were obtained and the zeros (path bound 4; trail would need all 8 roads, none found by listing).
+- F17: Section 4.5 now only points to Section 6; Section 6 quotes the source's Theorem 1 sentence and states the point is the word "path". Quote copied from the evidence quote of C6.
+- F18: path list fixed.
+- F19: equivalence class explained; reflexive, symmetric, transitive each justified (transitivity by joining walks and Cor. 3.3).
+- F20: Remark 5.6 keeps only the technical point; the critique, with the quoted last line of the proof of Theorem 2 (C23), moved to Section 6, marked as interpretation.
+- F21: sentence added in Section 5.2 and in Appendix A: binomial theorem needs commuting matrices, I commutes with all; N-1 is the same bound as in S.
+- F22: remark replaced by Proposition 5.12 with a proof (index changes by 1 per step); new claim A-1; computer run kept as illustration.
+- F23: BFS subsection moved before the computer check; BFS defined in a half-sentence there; the check says in words what the program compares.
+- F24: BFS index renamed m (A_{mj}); N-2 products justified; stated that the section is a comparison and cross-check and no running-time claim is made.
+- F25: Section 6 condensed; conventions and text-search repeats removed.
+- F26: abstract: format sentence deleted; now says results are checked by computation on all graphs with up to 6 vertices.
+- Overfull boxes: both gone (appendix wording changed; `\raggedright` in the bibliography and short bib note).
+Checks after round 1: build ok; check_citations 0 errors, 0 warnings; check_claims 0 errors, 1 warning (C9 no quote, base file); inspect_pdf 0 errors, 0 warnings; check_plain_words 31 paragraphs, 25 statements, 0 errors, 0 warnings.

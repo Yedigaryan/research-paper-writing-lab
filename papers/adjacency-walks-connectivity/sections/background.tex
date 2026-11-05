@@ -107,7 +107,7 @@ undirected graph, because it is not symmetric.
 \plain The number of roads at a town tells how busy the town is.
 
 \begin{definition}[degree; textbook Definition 1.2.1]\label{def:degree}
-The \emph{degree} $d(n_i)$ of a vertex $n_i$ is the number of edges at
+The \emph{degree} $\deg(n_i)$ of a vertex $n_i$ is the number of edges at
 $n_i$ \cite[Definition 1.2.1, p.~16]{petrosyan2015grafneri}.
 \end{definition}
 
@@ -118,7 +118,7 @@ to the vertices adjacent to $n_i$, so the degree is also the number of
 neighbours.
 \end{remark}
 
-\ex In \cref{fig:three}(a), $d(n_1)=1$, $d(n_2)=2$ and $d(n_3)=1$.
+\ex In \cref{fig:three}(a), $\deg(n_1)=1$, $\deg(n_2)=2$ and $\deg(n_3)=1$.
 \nonex The number $N=3$ of vertices is not a degree: it counts towns, not
 roads at one town.
 
@@ -127,6 +127,10 @@ roads at one town.
 \plain A trip goes from a town along a road to the next town, and so on.
 The trip may come back to a town it already visited. It may use a road
 again. Count the roads a trip uses. A road used twice is counted twice.
+
+For example, on the board map the list $n_1,n_2,n_3$ is a walk that uses the
+edges $n_1n_2$ and $n_2n_3$, so its length is $2$. The formal definition
+follows.
 
 \begin{definition}[walk; textbook Definition 1.2.10]\label{def:walk}
 A \emph{walk of length $k$} from $u_0$ to $u_k$ is a sequence
@@ -200,11 +204,10 @@ pairwise distinct. The number $k$ is its \emph{length}.
 
 This is the answer to question Q3. For $n_i\ne n_j$ it is the textbook's
 \emph{simple $(n_i,n_j)$-path}, Definition 1.2.13
-\cite[p.~22]{petrosyan2015grafneri}, which the textbook states as a trail
-whose vertices are pairwise distinct; \cref{prop:hierarchy} shows that the
-condition on the edges is then automatic. It is also the English word
-``path'' \cite{wikipediapathgraphtheory,grinberg2025introduction}. The user
-stated that this is the sense of ``path'' in the course (\cref{conv:path}).
+\cite[p.~22]{petrosyan2015grafneri}, and it is the English word ``path''. How
+these names relate to the textbook's own ``path'' of Definition 1.2.12 is
+compared in \cref{tab:conventions} of \cref{sec:paths}. The course meaning
+is given with the assignment (\cref{conv:path}).
 
 \begin{remark}
 A path never repeats a vertex, so it never repeats an edge either
@@ -221,9 +224,8 @@ length $1$.
 repeats.
 
 \medskip
-\plain A round trip ends in the town where it began. Here we look at round
-trips that use no road twice. Such a trip may still pass through a town more
-than once.
+\plain Now look at round trips that use no road twice. Such a trip may still
+pass through a town more than once.
 
 \begin{definition}[cycle; textbook Definition 1.2.14]\label{def:cycle}
 A \emph{cycle} is a closed trail, which the textbook words as a closed

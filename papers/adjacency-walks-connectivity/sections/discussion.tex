@@ -4,8 +4,10 @@
 of walks, not of paths (\cref{prop:notpaths}), and for connectivity only
 whether it is positive matters. The size of an entry is not a measure of how
 well two vertices are joined: \cref{tab:counts} shows entries growing to
-$2112$ at $k=8$ while no path on this five-town map has more than $4$ edges (\cref{prop:distance}(c)). The test of
-\cref{thm:test} decides connectivity; it does not list the paths.
+$2112$ at $k=8$ while no path on this five-town map has more than $4$ edges
+(\cref{prop:distance}(c)). The test of \cref{thm:test} decides connectivity; it
+does not list the paths. Nothing in this note claims what the lecturer intended
+beyond what the board and the assignment say.
 
 \paragraph{Scope of the proofs.} Both main results are stated and proved for
 finite simple undirected graphs (\cref{conv:graph}). The proof of
@@ -16,28 +18,22 @@ multiple edges. For directed graphs the matrix is not symmetric and
 there; Grinberg's version of the walk-counting theorem covers directed
 graphs \cite[Theorem 4.5.10]{grinberg2025introduction}.
 
-\paragraph{Conventions that rest on us.} Four readings are assumptions or
-choices rather than facts read from a source: that the mark above $A$ on
-the board is a power $k$ (\cref{conv:power}); that the matrix and not the
-drawing is the example (\cref{conv:matrix}); that the course word ``path''
-means no repeated vertex (\cref{conv:path}), which is the user's statement and
-agrees with the textbook's ``simple path''; and that a walk of length $0$ is
-allowed (\cref{conv:zero}). \Cref{cor:readings} shows that the second
-reading of ``path'' does not change which graphs are connected, so the test
-is the same under any of the three. Nothing in this note claims what the
-lecturer intended beyond what the board photographs and the user's text say.
+\paragraph{Two statements in a published paper.} Paramadevan and Sotheeswaran
+\cite[p.~16]{paramadevan2021properties} write: ``the number of different paths
+of length $l$ between the $i$th and $j$th vertices of $G$ is equal to the
+$(i,j)$th entry of $A_G^l$'' (their Theorem~1). The only point we make is about
+the word ``path''. With ``path'' meaning no repeated vertex, the statement is
+not correct as written, by \cref{prop:notpaths}; with ``path'' meaning ``walk''
+its content is our \cref{thm:count}. Their Theorem~2 is the test of
+\cref{thm:test}. The last line of its proof reads: ``Conversely, if $b_{ij}\ne0$,
+then there exist at least one path from $v_i$ to $v_j$, thus $G$ is connected''
+\cite[p.~17]{paramadevan2021properties}. In our reading this passes from a
+nonzero entry of a sum of powers to a path without the step of
+\cref{lem:shorten}, which turns a walk into a path (\cref{rem:gap}); this is an
+interpretation of their text, and we use their paper for the statement of the
+test only.
 
-\paragraph{Where sources disagree.} The textbook and English usage give the
-word ``path'' different meanings (\cref{tab:conventions}). Paramadevan and
-Sotheeswaran's Theorem~1 speaks of ``paths'' where the entry counts walks
-(\cref{sec:counting}), and the proof of their Theorem~2 omits the step from a
-walk to a path (\cref{rem:gap}). We resolved both by proving the statements
-here.
-
-\paragraph{Strength of the evidence.} The absence of the walk-counting
-theorem and of the matrix test from the textbook rests on a search of its
-text layer (\cref{sec:sources}). The computer checks (the exhaustive
-comparison up to $N=6$, the four path graphs of \cref{rem:sharp}) cover finitely
-many cases and support the proofs without replacing them. Grinberg's text is
-a long-lived lecture-notes preprint, and the encyclopedia page is used only for
-the English names of the walk types.
+\paragraph{Strength of the computer checks.} The exhaustive comparison up to
+$N=6$ (\cref{sec:connectivity}) and the path graphs of \cref{prop:sharp} cover
+finitely many cases. The first supports the proofs without replacing them; the
+second only illustrates a proposition that is proved.

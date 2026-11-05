@@ -8,7 +8,10 @@
 \usepackage{cleveref}
 \usepackage[backend=biber,style=numeric,urldate=long]{biblatex}
 \addbibresource{references.bib}
+\usepackage{etoolbox}
+\appto{\bibsetup}{\raggedright}
 \graphicspath{{figures/}}
+\setlength{\emergencystretch}{2em}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -55,10 +58,8 @@ exactly when every off-diagonal entry of $A+A^2+\dots+A^{N-1}$ is positive,
 and equivalently when $(I+A)^{N-1}$ has no zero entry. Third, under the
 course convention a path between two vertices is a walk from one to the
 other with no repeated vertex. Each result is proved, shown on a connected
-and on a disconnected graph with three vertices, and compared with the
-textbook's definitions and numbering. The note is written for a first
-reading, and each definition and theorem is introduced by a short
-paragraph in plain words.
+and on a disconnected graph with three vertices, and checked by computation
+on all graphs with up to 6 vertices.
 \end{abstract}
 
 \input{sections/introduction}

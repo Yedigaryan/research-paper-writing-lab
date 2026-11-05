@@ -2,24 +2,24 @@
 
 \subsection{The three questions and where they came from}
 
-A lecture board shows a small drawing with three points labelled 1, 2 and 3,
-and next to it a table of zeros and ones with the rows $0\,1\,0$,
-$1\,0\,1$ and $0\,1\,0$ \cite{whiteboard1lecture,whiteboard2lecture}. The
-board says that a graph with $N$ nodes is given through this table, called
-its adjacency matrix and written $A$, and then asks two questions
-\cite{whiteboard1lecture}. A third question comes from the assignment text,
-which the user reported to us.
+This note replies to a student's photographs of a lecture board and to the
+text of an assignment. Everything on the board that matters is reproduced
+here, so the reader needs no photograph. The board shows a small drawing with
+three points labelled 1, 2 and 3, and next to it a table of zeros and ones
+with the rows $0\,1\,0$, $1\,0\,1$ and $0\,1\,0$
+\cite{whiteboard1lecture,whiteboard2lecture}. It says that a graph with $N$
+nodes is given through this table, called its adjacency matrix and written
+$A$, and it asks two questions \cite{whiteboard1lecture}. A third question
+comes from the assignment.
 
 \begin{enumerate}
 \item[\textbf{Q1}] (board, question 1) What does the entry in row $i$ and
-  column $j$ of a power of $A$ represent? The board writes a small mark
-  above the letter $A$; we read it as a power $k$ (\cref{conv:power}).
+  column $j$ of the $k$-th power $A^k$ represent?
 \item[\textbf{Q2}] (board, question 2) How can one tell from $A$ whether
   the graph is connected?
-\item[\textbf{Q3}] (assignment text, as reported) What is the definition of
-  a path between two vertices $n_i$ and $n_j$? The board uses the word
-  \emph{path} in its definition of connected but does not define it
-  \cite{whiteboard1lecture}.
+\item[\textbf{Q3}] (assignment) What is the definition of a path between two
+  vertices $n_i$ and $n_j$? The board uses the word \emph{path} in its
+  definition of connected but does not define it \cite{whiteboard1lecture}.
 \end{enumerate}
 
 Short answers, with every word defined in \cref{sec:background}. Q1: the entry counts the walks of exactly $k$ roads from
@@ -40,7 +40,8 @@ has towns and roads. Each road joins two different towns. Two towns share at
 most one road. People make trips along the roads. \Cref{fig:three} shows the
 country of the board. It has three towns in a row. A road joins towns 1 and
 2, and a road joins towns 2 and 3. The story paragraphs use only the story
-words of \cref{tab:story}.
+words of \cref{tab:story}. The story words are only an aid. They never appear in
+statements or proofs.
 
 \begin{table}[ht]
 \centering
@@ -106,34 +107,37 @@ cited later by their number.
 \begin{enumerate}
 \item\label{conv:graph} \emph{Finite simple undirected graphs.} Every graph
   is finite, has no road from a town to itself, no two roads between the same
-  two towns, and no one-way roads. The user stated this setting, and the
+  two towns, and no one-way roads. The assignment states this setting, and the
   symmetric, zero-diagonal matrix on the board fits it
   \cite{whiteboard1lecture}.
-\item\label{conv:power} \emph{The mark above $A$ is a power $k$.} The mark
-  is a small letter between quotation-like strokes that could be read as $k$
-  or $n$ \cite{whiteboard1lecture,whiteboard2lecture}. The user's text asks
-  about powers $A^k$, so we read $k$. This is an assumption, not something
-  read off the board.
+\item\label{conv:power} \emph{The exponent in Q1 is $k$.} On the board, question 1
+  has a small mark above the letter $A$. It is a small letter between
+  quotation-like strokes that could be read as $k$ or $n$
+  \cite{whiteboard1lecture,whiteboard2lecture}. The assignment asks about
+  powers $A^k$, so we read $k$. This is an assumption, not something read off
+  the board.
 \item\label{conv:matrix} \emph{The matrix, not the drawing, is the example.}
-  The drawing on the board shows three lines: 1--2 (with a stray arrowhead at
-  2), 1--3 and 2--3. The matrix has a $1$ only for the pairs $1,2$ and $2,3$
-  \cite{whiteboard1lecture,whiteboard2lecture}. The two disagree on the pair
-  $1,3$. The problem statement says the graph is given through its matrix,
+  The drawing on the board has three lines, between towns 1 and 2 (with an
+  arrowhead at 2), between 1 and 3, and between 2 and 3; \cref{fig:three}(b)
+  shows it. The matrix has a $1$ only for the pairs $(1,2)$ and $(2,3)$
+  \cite{whiteboard1lecture,whiteboard2lecture}. So the drawing has an extra
+  line between 1 and 3 that the matrix does not have. The problem statement says the graph is given through its matrix,
   so \cref{fig:three}(a) is the example, and the arrowhead is read as a stray
   mark because the matrix is symmetric. The drawing's three-road map
   (\cref{fig:three}(b)) is also computed, as a side example.
 \item\label{conv:notation} \emph{Notation.} The board writes $(G,V)$ for a
-  graph and $e_{ij}\in V$ for ``there is a road between $n_i$ and $n_j$''.
-  The textbook writes $G=(V,E)$ with $V$ the set of vertices and $E$ the set
-  of edges, so the board's $V$ in that sentence is the textbook's $E$
-  \cite{whiteboard1lecture,petrosyan2015grafneri}. We write $G=(V,E)$,
+  graph, and defines $A_{ij}=1$ if $e_{ij}\in V$ and $A_{ij}=0$ if
+  $e_{ij}\notin V$. Here $e_{ij}$ is the edge between $n_i$ and $n_j$. The
+  textbook writes $G=(V,E)$ with $V$ the set of vertices and $E$ the set of
+  edges. So the board uses $V$ for the set of edges where the textbook uses
+  $E$ \cite{whiteboard1lecture,petrosyan2015grafneri}. We write $G=(V,E)$,
   $V=\{n_1,\dots,n_N\}$, $N=|V|$, and $e_{ij}$ or $n_in_j$ for the edge
   joining $n_i$ and $n_j$. The textbook calls the vertices $v_i$; this note
   uses $n_i$ as on the board.
   The textbook's page numbers in this note are printed page numbers, which
   are one less than the page numbers of the PDF file.
 \item\label{conv:path} \emph{The word ``path''.} Under the course
-  convention, stated by the user, a path has no repeated vertex. This is
+  convention, given with the assignment, a path has no repeated vertex. This is
   the textbook's \emph{simple path}. The textbook's own word ``path'' means
   something weaker. \Cref{tab:conventions} compares the two.
 \item\label{conv:zero} \emph{Walks of length 0.} We allow a walk that is
@@ -143,14 +147,16 @@ cited later by their number.
 \item\label{conv:fig} \emph{The five-town map.} Several examples use the map
   of \cref{fig:five}. It is drawn after the textbook's Fig.\ 1.2.5
   \cite[p.~21]{petrosyan2015grafneri}. The textbook prints no list of
-  edges, so we read the edge list from the page image. All the textbook's
-  statements about that figure that we checked hold on this reading.
+  edges, so we read one from the page image. The list is given in the caption
+  of \cref{fig:five}, and the examples need only that list, not the textbook's
+  figure. The textbook's own examples of a walk, a trail, a path and a cycle
+  on that figure come out as the book says on this list.
 \end{enumerate}
 
 The notation used throughout is as follows. $A=(A_{ij})$ is the adjacency
 matrix; $A^k$ is its $k$-th power and $(A^k)_{ij}$ the entry in row $i$ and
-column $j$ of that power; $I$ is the identity matrix; $d(n_i)$ is the degree
-of $n_i$; $S=A+A^2+\dots+A^{N-1}$ is the sum used in the test of
+column $j$ of that power; $I$ is the identity matrix; $\deg(n_i)$ is the degree
+of $n_i$, and $d(u,v)$, with two arguments, is the distance between $u$ and $v$; $S=A+A^2+\dots+A^{N-1}$ is the sum used in the test of
 \cref{sec:connectivity}. The letters $N$ (number of vertices), $k$ (length
 of a walk or exponent), $i,j,t$ (indices) and $S$ keep one meaning
 throughout.
@@ -158,18 +164,14 @@ throughout.
 \subsection{What the sources contain}\label{sec:sources}
 
 The textbook \cite{petrosyan2015grafneri} defines the adjacency matrix, walks,
-trails, paths, cycles, distance and connectedness, and we use its numbers.
-A search of the text layer of the whole book for the word ``matrix'' finds
-the adjacency matrix only on printed pages 7, 11, 12, 34 and 61, and finds
-no theorem about the powers of $A$ and no matrix test for connectivity.
-The text layer drops most symbols, so this shows that we did not find such a
-statement, not that none exists. We therefore prove both results in this
-note. Grinberg's lecture notes \cite{grinberg2025introduction} state the
+trails, paths, cycles, distance and connectedness, and we use its numbers. We
+searched the textbook's text for the word ``matrix'' and did not find a theorem
+about the powers of $A$ or a matrix test for connectivity. This shows only
+that we did not find them, so we prove both results in this note.
+Grinberg's lecture notes \cite{grinberg2025introduction} state the
 walk-counting theorem for multidigraphs, which are more general than simple
 graphs, and give the walk-to-path lemma with a length bound. Paramadevan and
 Sotheeswaran \cite{paramadevan2021properties} state the connectivity test as
-their Theorem~2. We use their paper for the statement only; their Theorem~1
-and the proof of their Theorem~2 are discussed in \cref{prop:notpaths} and
-\cref{rem:gap}. An encyclopedia page \cite{wikipediapathgraphtheory} is
-used only to name the English words for the textbook's two kinds of path.
-What each source supports is listed in \cref{app:provenance}.
+their Theorem~2. The details of what was read, and where, are in
+\cref{app:provenance}; our comments on their Theorems~1 and 2 are in
+\cref{sec:discussion}.

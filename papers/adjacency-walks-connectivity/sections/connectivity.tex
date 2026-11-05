@@ -20,9 +20,9 @@ and a path between two vertices exist for the same pairs. A graph with one
 vertex is connected, since there are no two different vertices to join.
 \end{remark}
 
-\ex The board map of \cref{fig:three}(a) is connected: the paths $n_1,n_2$,
-$n_2,n_3$ and $n_1,n_2,n_3$ join the pairs of vertices, and every vertex is
-joined to itself by a path of length $0$.
+\ex The board map of \cref{fig:three}(a) is connected: the paths $n_1,n_2$ and
+$n_2,n_3$ and $n_1,n_2,n_3$ join all pairs of distinct vertices, and every
+vertex is joined to itself by a path of length $0$.
 \nonex The map of \cref{fig:three}(c) is not connected: $n_3$ has no
 neighbour, so no walk and hence no path joins $n_3$ to $n_1$
 (\cref{cor:readings}).
@@ -35,8 +35,13 @@ islands cannot reach each other. A country with one island is one where every to
 The relation ``there is a path between $u$ and $v$'' is an equivalence
 relation on $V$ (reflexive, symmetric and transitive). Its classes induce
 subgraphs of $G$, called the \emph{connectivity components} of $G$
-\cite[p.~49]{petrosyan2015grafneri}. The subgraph induced by a set $X$ of
-vertices has the vertices in $X$ and the edges of $G$ with both ends in $X$.
+\cite[p.~49]{petrosyan2015grafneri}. An equivalence class is a group of vertices that can all reach one another.
+The relation is reflexive because a vertex reaches itself by a path of length
+$0$, symmetric because a path can be read backwards, and transitive because a
+walk from $u$ to $v$ followed by a walk from $v$ to $w$ is a walk from $u$ to
+$w$, which contains a path by \cref{cor:readings}. The subgraph induced by a
+set $X$ of vertices has the vertices in $X$ and the edges of $G$ with both ends
+in $X$.
 \end{definition}
 
 \begin{remark}\label{rem:onecomp}
@@ -93,11 +98,8 @@ joined by a path, and $G$ is connected.
 The step from a positive entry to a path is where care is needed. The entry
 counts walks (\cref{prop:notpaths}), and a walk need not be a path.
 \Cref{lem:shorten} supplies the step, and \cref{prop:distance}(c) shows that
-powers up to $N-1$ are enough. In our reading, the proof of Theorem~2 of
-Paramadevan and Sotheeswaran \cite[p.~17]{paramadevan2021properties} treats the
-entries as counts of paths and passes from a nonzero entry to a path without
-this step; this is an interpretation of their text, and we use their paper for
-the statement of the test only. For $N=1$ the sum $S$ is empty and the
+powers up to $N-1$ are enough. The published proof of the same test omits this
+step (\cref{sec:discussion}). For $N=1$ the sum $S$ is empty and the
 single-vertex graph is connected, so the test is stated for $N\ge2$.
 \end{remark}
 
@@ -111,9 +113,10 @@ A simple graph $G$ with $N\ge1$ vertices is connected if and only if the
 matrix $(I+A)^{N-1}$ has no zero entry.
 \end{corollary}
 
-The idea is that $I$ and $A$ commute, so $(I+A)^{N-1}$ expands by the binomial
-theorem into $\sum_{k=0}^{N-1}\binom{N-1}{k}A^k$, a sum with positive
-coefficients of the same powers as in $S$ plus $I$. The diagonal is positive
+The idea is this. The binomial theorem holds for matrices that commute, and $I$
+commutes with every matrix, so $(I+A)^{N-1}$ expands into $\sum_{k=0}^{N-1}\binom{N-1}{k}A^k$, a sum with positive
+coefficients of the same powers as in $S$ plus $I$. The exponent $N-1$ is the same
+bound as in $S$: it is the longest length a path can have. The diagonal is positive
 because of $I$, and an off-diagonal entry is positive exactly when the same
 entry of $S$ is. The full proof is in \cref{app:derivations}. No source that we
 read states the test in this form with a proof; the result is derived in this
@@ -201,21 +204,29 @@ $A_{13}=0$ and $(A^2)_{13}=1$, so $d(n_1,n_3)=2$, in agreement with
 \cref{ex:boardpaths}.
 \end{remark}
 
-\begin{remark}[the limit $N-1$ cannot be lowered]\label{rem:sharp}
-This is an experimental finding, a computation on four graphs, and it
-illustrates \cref{prop:distance}(c) without proving it. On the path graphs
-with $N=3,4,5,6$ vertices (one road between consecutive towns), the first
-power with a positive $(1,N)$ entry is $A^{N-1}$ in each case
-\cite{m3connectivityscript}. A limit below $N-1$ would miss such a pair.
-\end{remark}
+\plain Take towns in a row, each joined only to the next. To get from the first
+town to the last, you must pass every road in between. So no shorter trip
+exists. If we only looked at shorter trips, we would wrongly say the first and
+last towns are cut off.
 
-\subsection{A computer check}
+\begin{proposition}[the limit $N-1$ cannot be lowered]\label{prop:sharp}
+Let $N\ge2$ and let $G$ be the path graph with vertices $n_1,\dots,n_N$ and edges
+$n_in_{i+1}$ for $1\le i<N$. Then $(A^k)_{1N}=0$ for $k<N-1$ and
+$(A^{N-1})_{1N}=1$. Hence a sum $A+\dots+A^m$ with $m<N-1$ has a zero at
+position $(1,N)$, although $G$ is connected.
+\end{proposition}
 
-This is an experimental finding, not a proof. For every labelled simple graph
-with $N=1,2,\dots,6$ vertices (1, 2, 8, 64, 1024 and 32768 graphs, of which
-1, 1, 4, 38, 728 and 26704 are connected), both matrix tests of this section
-gave the same answer as a breadth-first search from $n_1$
-\cite{m3connectivityscript}. The proofs above do not rest on this check.
+\begin{proof}
+Each edge of $G$ joins two vertices whose indices differ by exactly $1$, so
+each step of a walk changes the index by $+1$ or $-1$. A walk from $n_1$ to
+$n_N$ must change the index from $1$ to $N$, a total change of $N-1$, so it
+has at least $N-1$ steps. By \cref{thm:count} this gives $(A^k)_{1N}=0$ for
+$k<N-1$. A walk of length $N-1$ must use $+1$ at every step, so the only one is
+$n_1,n_2,\dots,n_N$, and $(A^{N-1})_{1N}=1$.
+\end{proof}
+
+A computer run on the path graphs with $N=3,4,5,6$ gave the first positive power
+$A^{N-1}$ each time, as the proposition says \cite{m3connectivityscript}.
 
 \subsection{Breadth-first search, for comparison}
 
@@ -223,15 +234,26 @@ gave the same answer as a breadth-first search from $n_1$
 neighbours of those. Note each town once. If every town was visited, then
 every town can be reached from town 1.
 
-Breadth-first search starts with the set $\{n_1\}$ and repeatedly adds every
-$n_j$ with $A_{kj}=1$ for some $n_k$ already in the set. When nothing can be
-added, $G$ is connected exactly when the set contains all $N$ vertices. The
+This section is a comparison and a cross-check; the note does not rely on it.
+\emph{Breadth-first search} starts with the set $\{n_1\}$ and repeatedly adds
+every $n_j$ with $A_{mj}=1$ for some $n_m$ already in the set. When nothing can
+be added, $G$ is connected exactly when the set contains all $N$ vertices. The
 vertices added are those joined to $n_1$ by a path, so by \cref{rem:onecomp} the
 set is the component of $n_1$. Grinberg states that in a breadth-first search
 tree the tree path from the root is a shortest path
 \cite[p.~176]{grinberg2025introduction}; using the search to decide
 connectivity is our reading, not a statement of that source. By our own count,
-forming $S$ takes $N-2$ matrix products, whereas the search reads the row of
-each visited vertex at most once. On the maps of \cref{ex:connected} and
-\cref{ex:disconnected} it visits $n_1,n_2,n_3$ and $n_1,n_2$ respectively
-\cite{m3connectivityscript}.
+forming $S$ takes $N-2$ matrix products: $A^2,\dots,A^{N-1}$, each from the
+previous one by one product. The search reads the row of each visited vertex at
+most once. These are different units, so we make no claim about running time.
+On the maps of \cref{ex:connected} and \cref{ex:disconnected} the search visits
+$n_1,n_2,n_3$ and $n_1,n_2$ respectively \cite{m3connectivityscript}.
+
+\subsection{A computer check}
+
+This is an experimental finding, not a proof. A program listed every labelled
+simple graph with $N=1,2,\dots,6$ vertices (1, 2, 8, 64, 1024 and 32768 graphs,
+of which 1, 1, 4, 38, 728 and 26704 are connected). For each graph it decided
+connectivity by the sum test, by the $(I+A)^{N-1}$ test and by breadth-first
+search from $n_1$ (the previous subsection), and the three answers always
+agreed \cite{m3connectivityscript}. The proofs above do not rest on this check.

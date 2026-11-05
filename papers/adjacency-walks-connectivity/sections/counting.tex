@@ -38,30 +38,39 @@ the first. Adding along a row tells how many roads leave that town.
 \begin{proposition}[properties of $A$ and its powers]\label{prop:properties}
 Let $A$ be the adjacency matrix of a simple graph.
 \begin{enumerate}
-\item[(1)] $A_{ii}=0$ and $A_{ij}=A_{ji}$ for all $i,j$
+\item[(a)] $A_{ii}=0$ and $A_{ij}=A_{ji}$ for all $i,j$
   \cite[p.~11]{petrosyan2015grafneri}.
-\item[(2)] Every power of $A$ is symmetric: $(A^k)_{ij}=(A^k)_{ji}$.
-\item[(3)] The $i$-th row sum of $A$ is the degree: $\sum_{j}A_{ij}=d(n_i)$.
+\item[(b)] Every power of $A$ is symmetric: $(A^k)_{ij}=(A^k)_{ji}$.
+\item[(c)] The $i$-th row sum of $A$ is the degree: $\sum_{j}A_{ij}=\deg(n_i)$.
   The column sums are equal to the row sums.
-\item[(4)] $(A^2)_{ii}=d(n_i)$.
+\item[(d)] $(A^2)_{ii}=\deg(n_i)$.
 \end{enumerate}
 \end{proposition}
 
+The \emph{transpose} $X^{T}$ of a matrix $X$ has $(X^{T})_{ij}=X_{ji}$; it
+swaps rows and columns, and a matrix with $X^{T}=X$ is symmetric. The rule
+$(XY)^{T}=Y^{T}X^{T}$ is used below.
+
 \begin{proof}
-(1) is the textbook's remark after the definition of $A(G)$, restated in
-\cref{def:matrix}. (2) Using $(XY)^{T}=Y^{T}X^{T}$ repeatedly and $A^{T}=A$,
-we get $(A^k)^{T}=(A^{T})^k=A^k$. (3) The sum $\sum_jA_{ij}$ counts the
-vertices adjacent to $n_i$. In a simple graph these correspond one to one to
-the edges at $n_i$, so the sum is $d(n_i)$ by \cref{def:degree}; by (1) the
-column sums are the same. (4) By \eqref{eq:product} and (1),
-$(A^2)_{ii}=\sum_tA_{it}A_{ti}=\sum_tA_{it}^2=\sum_tA_{it}=d(n_i)$,
-because $A_{it}\in\{0,1\}$ gives $A_{it}^2=A_{it}$.
+(a) is the textbook's remark after the definition of $A(G)$, restated in
+\cref{def:matrix}.
+
+(b) By (a), $A^{T}=A$. Using $(XY)^{T}=Y^{T}X^{T}$ repeatedly,
+$(A^k)^{T}=(A^{T})^k=A^k$.
+
+(c) The sum $\sum_jA_{ij}$ counts the vertices adjacent to $n_i$. In a simple
+graph these correspond one to one to the edges at $n_i$, so the sum is
+$\deg(n_i)$ by \cref{def:degree}. By (a) the column sums are the same.
+
+(d) By Eq.~\eqref{eq:product} with $X=Y=A$ and by (a),
+$(A^2)_{ii}=\sum_tA_{it}A_{ti}=\sum_tA_{it}^2$. Since $A_{it}\in\{0,1\}$ we
+have $A_{it}^2=A_{it}$, so $(A^2)_{ii}=\sum_tA_{it}=\deg(n_i)$ by (c).
 \end{proof}
 
-Paramadevan and Sotheeswaran state (4) in the proof of their Theorem~1
-\cite[p.~17]{paramadevan2021properties}. The textbook states (1) and does not
-state (2) to (4), so those are ours. On the board matrix the row sums are
-$1,2,1$, which are the degrees of \cref{def:degree}'s example.
+Paramadevan and Sotheeswaran state (d) in the proof of their Theorem~1
+\cite[p.~17]{paramadevan2021properties}. The textbook states (a) and does not
+state (b) to (d), so those are ours. On the board matrix the row sums are
+$1,2,1$, which are the degrees of the example of \cref{def:degree}.
 
 \subsection{The walk-counting theorem}
 
@@ -108,15 +117,15 @@ W_{k+1}(i,j)=\sum_{t=1}^{N}W_k(i,t)\,A_{tj},
 \]
 because $A_{tj}=1$ allows exactly one last step from $n_t$ to $n_j$ and
 $A_{tj}=0$ allows none. By the induction hypothesis the right side is
-$\sum_t(A^k)_{it}A_{tj}=(A^{k+1})_{ij}$ by \eqref{eq:product}. This closes the
-induction.
+$\sum_t(A^k)_{it}A_{tj}=(A^{k+1})_{ij}$ by the definition of the product, Eq.~\eqref{eq:product}, and
+$A^{k+1}=A^kA$ (\cref{def:power}). This closes the induction.
 \end{proof}
 
 \begin{remark}
 The theorem counts walks of exactly length $k$, and it needs no assumption
 that the graph is connected. A zero entry $(A^k)_{ij}=0$ says only that no
 walk of length exactly $k$ joins the two vertices; a walk of another length
-may exist. For $k=2$ and $i=j$ the theorem restates \cref{prop:properties}(4):
+may exist. For $k=2$ and $i=j$ the theorem restates \cref{prop:properties}(d):
 $(A^2)_{ii}$ counts the closed walks $n_i,n_t,n_i$, one for each neighbour
 $n_t$.
 \end{remark}
@@ -162,26 +171,32 @@ trip exists.
 
 \begin{proposition}[walks, not paths]\label{prop:notpaths}
 The entry $(A^k)_{ij}$ counts walks, and in general neither paths nor trails.
-In particular, if $n_i$ has a neighbour, then $(A^2)_{ii}=d(n_i)>0$ although
+In particular, if $n_i$ has a neighbour, then $(A^2)_{ii}=\deg(n_i)>0$ although
 there is no path of length $2$ from $n_i$ to $n_i$.
 \end{proposition}
 
 \begin{proof}
 A path between $n_i$ and itself has pairwise distinct vertices with first and
 last equal, so it has one vertex and length $0$ (\cref{def:path}). By
-\cref{prop:properties}(4), $(A^2)_{ii}=d(n_i)$, which is positive when $n_i$
+\cref{prop:properties}(d), $(A^2)_{ii}=\deg(n_i)$, which is positive when $n_i$
 has a neighbour. The walks it counts are $n_i,n_t,n_i$, and each of these
 uses the edge $n_in_t$ twice, so none is a trail. On the board map,
-$(A^3)_{12}=2$ (\cref{ex:board}), but a graph with $3$ vertices has no path
-of length $3$ by \cref{prop:distance}(c); and neither of the two walks
-counted uses its edges only once.
+$(A^3)_{12}=2$ (\cref{ex:board}). A graph with $3$ vertices has no path of
+length $3$ by \cref{prop:distance}(c), so these entries do not count paths.
+The two walks counted are $n_1,n_2,n_1,n_2$, which uses the edge $n_1n_2$ three
+times, and $n_1,n_2,n_3,n_2$, which uses the edge $n_2n_3$ twice; so neither is a
+trail.
 \end{proof}
 
 \begin{table}[ht]
 \centering
 \caption{On the five-town map (\cref{fig:five}), the numbers of walks,
 trails and paths of length $k$ from $n_1$ to $n_5$, and the entry
-$(A^k)_{15}$. The last column equals the first count in every row.}
+$(A^k)_{15}$. The last column equals the walk count in every row. The counts were obtained by
+listing all walks of each length on the map. A trail has at most $8$ edges, the
+number of roads, and a path has at most $4$ (\cref{prop:distance}(c)), which
+explains the zeros for paths from $k=5$ on; a trail of length $8$ would have to
+use every road once, and the listing finds none.}
 \label{tab:counts}
 \begin{tabular}{rrrrr}
 \toprule
@@ -200,12 +215,10 @@ $k$ & walks & trails & paths & $(A^k)_{15}$ \\
 \end{table}
 
 \Cref{tab:counts} shows the difference on a larger map: the matrix entry
-follows the walk column and no other. Paramadevan and Sotheeswaran state in
-their Theorem~1 that the entry counts ``different paths'' of the given length
-\cite[p.~16]{paramadevan2021properties}. With ``path'' in the course or the
-English sense this is not correct as written, by \cref{prop:notpaths}; if their
-word is read as ``walk'' it agrees with \cref{thm:count}. We use their paper
-for the statement of the test in \cref{sec:connectivity} only.
+follows the walk column and no other. Paramadevan and Sotheeswaran state a
+related theorem in terms of ``paths''; the only point is their use of that
+word, and we discuss it in \cref{sec:discussion}. We use their paper for the
+statement of the test in \cref{sec:connectivity}.
 
 What can be said about paths is this. If $i\ne j$ and $(A^k)_{ij}\ge1$, then
 there is a walk of length $k$ (\cref{thm:count}), hence a path between $n_i$ and
