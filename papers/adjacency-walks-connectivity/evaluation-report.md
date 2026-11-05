@@ -141,3 +141,69 @@ As in round 1. The cycle definition (length at least 1) is marked as the paper's
 Release conditions: 1 holds (minimum 4). 2 holds. 3 holds. 4 holds. 5 holds per the evaluator, though open reader finding R2-F16 is a small inconsistency in a proof note. 6 holds. 7 holds. 8 holds. 9 holds (checked by the orchestrator). 10 holds (the evaluator recommends PASS).
 
 Decision: REVISE (not released this round) -- every release condition holds, but seven minor evaluator findings and one factual inconsistency in the reader findings (R2-F16) are open and easy to fix. Fixing them after this evaluation would release a draft that no independent evaluator has seen (condition 10), so the paper goes to one more round, round 3 of 3, for the fixes and their confirmation. The template has no value for this case, so the round records REVISE.
+
+## Round 3, 2026-11-05
+
+Question: as in round 1 (brief.md section 1).
+Scope: as in round 1.
+Research summary: No new research in this round. Merged evidence: 7 sources, 60 claims. The paper-author (the fresh agent from round 2) fixed E2-F1 to E2-F7 and the reader findings that did not conflict with the brief, and declined the rest with reasons (reports/paper-author-round3.md; self-evaluation.md, "Revision log, round 3"). This round's evaluator is a fresh agent, given the rounds 1 and 2 record.
+
+Model levels (configured): research 2, modules 2, author 2, reader 2, evaluator 3, orchestrator session model. Hierarchy requirement: met for the configured levels. No fallback was reported.
+
+Mechanical checks (orchestrator, before this round): build pass (20 pages), citations pass (0 errors, 0 warnings), claims pass (0 errors, 1 warning: C9 has no quote, qualified), pdf pass (0 errors, 0 warnings), plain words pass (0 errors, 0 warnings). The evaluator also compiled independently with latexmk: pass, no LaTeX warnings, and the committed main.pdf is identical to build/main.pdf. self-evaluation.md has a heading for every file that main.tex inputs, plus revision logs for rounds 1 to 3.
+
+### Scores
+
+| Dimension | Score | Observation |
+|---|---|---|
+| 1 Correctness | 5 | Every matrix, Table 3 and Table 4 recomputed independently and match; every proof step holds. |
+| 2 Evidence coverage | 4 | All claims map to evidence; Def. 2.1 cites the textbook without a locator (E3-F4). |
+| 3 Citation integrity | 5 | Four sources fetched or viewed; every checked attribution and locator is correct. |
+| 4 Logical validity | 5 | Conclusions follow; the Paramadevan critique is labelled as an interpretation in both places. |
+| 5 Understandability | 4 | Plain-words layer complete; "neighbour" undefined as a technical term (E3-F1); "loop" story clash (E3-F2). |
+| 6 Completeness | 5 | Every brief objective present. |
+| 7 Methodological rigor | 5 | Explicit inductions, conventions recorded, experimental checks labelled. |
+| 8 Critical analysis | 5 | Scope limits and the Paramadevan comparison handled. |
+| 9 Internal consistency | 4 | Attribution of (d) self-contradicts at counting.tex:74-77 (E3-F3); "neighbour" story/technical double use. |
+| 10 Reproducibility | 5 | Both scripts re-run byte-identical. |
+| 11 LaTeX and PDF quality | 4 | Independent build clean; 2.5 cm blank band under Figure 1 remains (E2-F6). |
+| 12 Answer relevance | 5 | Section 7 answers Q1, Q2, Q3 directly. |
+
+### Findings
+
+Earlier findings, as confirmed by this round's evaluator: E1-F1 to E1-F7 stay resolved. E1-F8 is resolved apart from the Figure 1 band, carried as E2-F6. E2-F1, E2-F2, E2-F3, E2-F4, E2-F5 and E2-F7 are resolved. R2-F16 is resolved.
+
+Open findings at release (reports/paper-evaluator-round3.md), all minor:
+
+| Id | Severity | Location | Defect | Status |
+|---|---|---|---|---|
+| E2-F6 | minor | introduction.tex:80-107 | Blank band of about 2.5 cm between the Figure 1 subfigure labels and the caption (PDF p. 2), from the global circle node style. | documented: cosmetic; no content affected. Fixing it after this evaluation would release a draft no evaluator has seen, and no round is left. |
+| E3-F1 | minor | counting.tex:181 and others | "neighbour" used as a technical term without a definition. | documented: the meaning (adjacent vertex) is the plain one and Table 1 glosses it; no statement is ambiguous. Same reason for not editing after evaluation. |
+| E3-F2 | minor | paths.tex:68 | "loop" in a plain-words paragraph clashes with the technical loop. | documented: in a non-binding story paragraph; the lemma statement and proof are unaffected. |
+| E3-F3 | minor | counting.tex:74-77 | (d) credited to Paramadevan and then called "ours". | documented: the intended reading (the proofs are ours, (d) is also stated in [5]) is clear from Remark 5.13 and Section 6; the attribution to [5] is present. |
+| E3-F4 | minor | background.tex:43 | Textbook cited without a page locator in Def. 2.1. | documented: the notation G = (V, E) is standard; every numbered textbook definition the paper relies on carries a locator. |
+
+Technician reader, round 3: 39 comprehension findings (R3-F1 to R3-F39) in reader-findings.md under "## Round 3". The reader's summary matches the paper's conclusions, so there is no summary-mismatch finding. Status: documented. The largest group (R3-F3 to F7, F9, F12, F21, F29, F31, F33, F35, F39) asks to cut the board transcription and mismatch report, the textbook numbering and conventions, BFS, the distance remark or the published-paper comparison. The brief requires these, and the round 2 author declined the same requests with that reason. The rest are presentation preferences (ordering, worked products, one more example line) on steps that the round 3 evaluator found explained (understandability 4). None names a missing essential concept or reasoning step: R3-F23 asks for a non-negativity remark that Remark 4.2 and the proof already give, and R3-F26 asks for an N = 1 note that Remark 5.7 and Appendix A give. They are recorded for a later edition, not applied after the final evaluation.
+
+### Citation and claim coverage
+
+Sources 7; claims 60: supported 47, qualified 13, unverified 0, removed 0. Spot checks this round: paramadevan2021properties fetched, supports; grinberg2025introduction fetched, supports; wikipediapathgraphtheory fetched, supports; petrosyan2015grafneri local page images (PDF pp. 23, 24, 50), supports; whiteboard1lecture local, supports. The Table 4 counts were confirmed independently against OEIS A001187 by the evaluator; the paper itself states that it did not compare them with an outside source.
+
+### Unverified claims and access limits
+
+- No unverified claims. Qualified in text: C6, C9, C19, C22, C23, C25, C27, M1-7, M2-2, M2-11, M3-10, M3-11, M3-12.
+- C9 (the textbook has no walk-counting theorem or matrix test) rests on a text search of a PDF whose text layer drops symbols.
+- The board's mark above A is read as k by assumption (C27). The course meaning of "path" rests on the user's statement recorded in the brief (M2-11).
+- Not accessed: Galway notes (TLS failure), Bai BIMSA notes (not found), Berkeley scribe notes (503), Iowa State Section 9.4 (TLS failure, then 503), Geneseo chapter 2 (404). None is cited.
+
+### Known limitations
+
+- The (I+A)^(N-1) form of the test is proved in the paper; no accessed source states it.
+- The breadth-first search section makes no running-time claim.
+- Simple graphs only; loops, multigraphs and directed graphs appear only as a remark.
+- Computer checks (all labelled graphs up to N = 6) are experimental support, not proof.
+- The open minor findings listed above.
+
+Release conditions: 1 holds (minimum score 4). 2 holds (no critical finding). 3 holds. 4 holds. 5 holds (no essential concept or step unexplained, per the evaluator and the reader-findings review above). 6 holds (configured 3 > 2). 7 holds. 8 holds. 9 holds. 10 holds (the evaluator recommends PASS on the current draft).
+
+Decision: PASS -- every release condition holds on the draft the round 3 evaluator saw. No critical or major finding is open, and the five remaining minor findings and the round 3 reader findings are documented above with reasons. The released draft is exactly the evaluated draft.
