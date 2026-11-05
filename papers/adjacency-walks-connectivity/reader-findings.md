@@ -180,3 +180,86 @@ F28 | comprehension | Section 6, "Two statements in a published paper" | About h
 
 F29 | comprehension | Appendix B: "the program appendices/computations.py described below repeats those computations" alongside [4] "m3 connectivity.py" | There are two programs with overlapping roles. "Every number in the text can be rerun from that one program" conflicts with the text citing [4] for the 5.6 check. | Use one script name throughout, or say which sections each covers.
 
+
+## Round 3
+
+Evaluation round 3. Source: reports/technician-reader-round3.md.
+
+F1 | comprehension | Section 1.1, "every word is defined in Section 2 or, for 'connected', in Section 5" | Three terms appear before they are defined. "Walk" and "path" are given informal glosses, and "Theorem 4.4", "Proposition 4.7" and "Definition 2.15" are cited before the reader can open them. Only the order of the note is stated, not why it needs the 2-3 page detour before Q1. | Give the one-line walk-counting answer first, then say the detour exists only to fix the word "path".
+
+F2 | comprehension | Section 1.2, "Before every definition, theorem and worked example there is a short story paragraph... The story words are only an aid, and the story paragraphs can be skipped" | A reader cannot tell whether the "In plain words" paragraphs carry any logic. The paragraphs are used in the proofs' reasoning but never labelled as non-binding. Table 1 also lists terms (trail, cycle, identity matrix, "endless") before they are defined. | Say at the first use of each term that Table 1 is a glossary to return to, and trim the unused entries.
+
+F3 | comprehension | Section 1.3 item 3, "the arrowhead is read as a stray mark because the matrix is symmetric" and the drawing with "an extra line between 1 and 3" | The reader cannot see the board, so Fig. 1(b) is the only evidence. The caption does not say which line carries the arrowhead. Also unclear is why a conflicting drawing is computed at all (Example 5.11). | Mark the arrowhead on Fig. 1(b), and state in one sentence that 1(b) is a side example only.
+
+F4 | comprehension | Section 1.3 item 4, "defines Aij = 1 if eij ∈ V ... So the board's V means the set of edges" | Item 4 reports a board notation clash that the reader cannot check. The note never says that the (G, V) notation is irrelevant to the results. | Delete the paragraph, or move it to an appendix or footnote.
+
+F5 | comprehension | Section 1.3 item 2, "a small letter between quotation-like strokes that could be read as k or n" | The sentence is about a reading of a photograph. The reader gets no effect on any result except "harmless". | Cut to one sentence: "We write the exponent as k."
+
+F6 | comprehension | Section 1.3 item 6, "its distance properties give d(u, v) = 0 exactly when u = v [7, p. 23], and its relation 'there is a path between u and v' is reflexive" | The argument depends on the textbook's contents, which the reader cannot see, and on a "d(u,v)" not yet defined (Def 2.21 comes later). The textbook's "path" and "walk" definitions are also not yet in hand. | State simply "we allow a one-vertex walk of length 0, so that A^0 = I counts walks", and drop the textbook justification.
+
+F7 | comprehension | Section 1.4 and Appendix B, "We searched the textbook's text for the word 'matrix'... This shows only that we did not find them" | The reader is told what the sources lack, but not why this matters for a student's question. The long Section 1.4 and Appendix B discussion of what was read is source bookkeeping, not part of the mathematics. | Shorten Section 1.4 to a citation list, or move it to Appendix B.
+
+F8 | comprehension | Section 2.2, Definition 2.9 "u0, e1, u1, ..., uk−1, ek, uk of vertices and edges with es = us−1 us" followed by Remark 2.10, "so a walk is determined by its vertices" | The definition has two sequences interleaved, and the switch to a vertex-only list is stated only in a remark. A reader must reread to see that the two forms are the same. | State in the definition itself that, in a simple graph, a walk is written as the vertex list u0, ..., uk.
+
+F9 | comprehension | Section 2.2, Definition 2.17 and Remark 2.18, "A cycle is a closed trail of length at least 1... Cycles are not used again after this section" | The reader is asked to learn cycle, simple cycle and "trail" (Defs 2.17, 2.19) as terms with unusual meanings that the note never uses. | Remove cycles and simple cycles, or mark them "not used later" at the head of the definition.
+
+F10 | comprehension | Proposition 3.1 proof, "since two equal sets of two elements match their elements in one of two ways, there are two cases (in short, a repeated edge forces a repeated vertex)" | The parenthesis is stated before the argument, and the cases are hard to follow (indices a−1, b−1, a, b). | Drop the parenthesis; write the two cases as an explicit list.
+
+F11 | comprehension | Lemma 3.2 proof, "deleting the 2 vertices u2, u3 leaves n1, n2, n4... In general, delete the b − a vertices ua+1, ..., ub" | The example is placed in the middle of the proof, before the general step. It is hard to see which of the two copies of the repeated vertex is kept. The induction hypothesis "For some k ≥ 1" is also awkward, since it should read "for all smaller values". | Put the example after the proof, and say "keep u_a, remove everything after it up to and including u_b".
+
+F12 | comprehension | Proposition 3.4(c), "[1, Section 2.9.4, p. 40]" | The proof depends on the cited source for a one-line pigeonhole argument that the proof does not need. | Drop the citation from the proof.
+
+F13 | comprehension | Section 3 opening, "four facts that the later sections use... (Proposition 3.4(c))" | The reader meets the text "Proposition 3.1 ... Lemma 3.2 ... Corollary 3.3 ... Proposition 3.4" as four consecutive statements, with no sign of why the equivalence of walk, trail and path is needed. The reason is only stated in a later plain-words paragraph. | Add one sentence: "The matrix counts walks, so we need to turn walks into paths in Section 5."
+
+F14 | comprehension | Definition 4.1, "The powers of A are A0 = I and Ak+1 = Ak A" and Remark 4.2 "This is the formula whose terms are matched to walks" | Matrix multiplication is stated, but the reader who has not multiplied matrices has only one example, (A²)22, with the sum written out in a mixed notation (A21A12 + A22A22 + A23A32). The reader sees one term A22A22 that is not explained. | Show a full 3 by 3 product, or say that one row is multiplied against one column.
+
+F15 | comprehension | Proposition 4.3 and the text after it, "Part (d) is used in Proposition 4.7, and (c) is used to prove (d). Part (b) is given for completeness and is not used later." | Parts (b) and (c) are stated, proved and cited, though not needed by any theorem. The reader cannot tell which parts matter. The transpose rule is also quoted without proof ("the standard rule"). | Keep only (a) and (d), or flag (b) and (c) as optional.
+
+F16 | comprehension | Proof of Theorem 4.4 step, "Different t give different walks, because nt is the next-to-last vertex of the walk, so the groups of walks for different t are disjoint" | The decomposition by the next-to-last vertex is the heart of the proof, but the formula Wk+1(i,j) = Σt Wk(i,t) Atj is stated after the prose. The index t is also reused from Eq. (1) without a note. | Put the displayed equation first, then explain each factor.
+
+F17 | comprehension | Example 4.6, "no vertex is adjacent to both n1 and n2 (the map has no triangle, that is, no closed walk of length 3 through three different vertices)" | The term "triangle" is introduced inline, and the parenthesis defines it in a way that is not the usual one. The reader also meets for the first time the claim that (A²)12 = 0 for adjacent vertices. | Say "a triangle is three vertices that are all pairwise adjacent".
+
+F18 | comprehension | Example 4.6, "A3 = [0 2 0; 2 0 2; 0 2 0]" and the second 3-by-3 example "A3 = [2 3 3; ...]" | Several matrices are printed without saying how they were computed, and the reader is told to see "Appendix B" for a check. A reader cannot confirm even one product by hand. | Show one full multiplication, A² · A.
+
+F19 | comprehension | Table 3 and the paragraph after it, "The trail counts (1, 1, 3, 7, 6, 6, 16, 0) are not monotone and come from the enumeration by program, so only the final zero is explained here" | The reader must trust a program for the trail and path columns. Also unexplained is how the 8 roads give the Euler-trail argument. The Euler argument uses terms (Euler trail, odd degree) that were not introduced. The table's purpose (walks vs paths) is clear only from the last column. | Show the table with only the walk and path columns, or explain one row by hand, and either define "Euler trail" or drop the trail column.
+
+F20 | comprehension | Table 3, row k=1, k=2 | The counts are 1 walk, 1 trail and 1 path for k=2 from n1 to n5. A reader who has the edge list can see that n1 n5 is an edge and n1, ?, n5 of length 2 would need a common neighbour; the table claims one exists, but the text never names it. | Add a line listing the length-2 and length-3 walks.
+
+F21 | comprehension | Section 5.1, Definition 5.1 and Remark 5.2, "The textbook's word 'path' in Definition 2.1.1 is its trail, while the board and the course use the path of Definition 2.15" | A reader must keep three meanings of "path" (textbook, board, course) in mind at once, and the remark appears before the reader has seen why they agree. | State the definition once using "walk" and refer to Corollary 3.3.
+
+F22 | comprehension | Lemma 5.3 and Definition 5.4, "The classes of the relation of Lemma 5.3 induce subgraphs of G, called the connectivity components" | "Equivalence relation", "class" and "induced subgraph" are used before they are defined. Only a one-line gloss follows. The remarks on components are not needed for Theorem 5.6; they serve only Corollary 5.12. | Define "equivalence class" in a sentence, or move components to the corollary that needs them.
+
+F23 | comprehension | Theorem 5.6 proof, "Every power of A has non-negative entries (Remark 4.2), so Sij ≥ (Ak)ij ≥ 1" | The step is short, and the reader must remember Remark 4.2 for non-negativity. It is not said why adding more powers cannot cancel a positive entry. | Add "no entries are negative, so no cancellation can occur".
+
+F24 | comprehension | Remark 5.7, "In our reading, the published proof of the same test relies on its Theorem 1 counting paths and so does not supply this step" | A claim about another paper's error is asserted before the reader has read the details (they come only in Section 6). The reader cannot judge it. | Say "see Section 6" and drop the claim here.
+
+F25 | comprehension | Corollary 5.8 discussion, "The binomial theorem holds for matrices X, Y that commute... where (N−1 choose k) is the number of ways to choose k items from N − 1 items" | The "idea" is stated in a dense paragraph before the corollary has been proved, and the reader gets the proof only in Appendix A. A binomial coefficient is introduced to a reader who may not know it. | Put a short worked line, "(I+A)² = I + 2A + A²", before the paragraph, and keep the proof in the appendix.
+
+F26 | comprehension | Corollary 5.8 statement, "A simple graph G with N ≥ 1 vertices" versus Theorem 5.6, "N ≥ 2" | The two ranges differ, and the reason (N = 1, empty sum S) is explained only in Remark 5.7 and in Appendix A. | Add "(for N = 1 the matrix is (1))" in the corollary.
+
+F27 | comprehension | Example 5.9, "Walks of exactly length 2 cannot use the single edge n1n2, which is why the powers are summed and a single power is not enough" | The sentence is hard to parse. The reader must see that (A²)12 = 0 while A12 = 1. | Rewrite: "A single power can miss a connected pair: (A²)12 = 0 even though n1, n2 are adjacent."
+
+F28 | comprehension | Example 5.11, "Every entry of S is 2, including the diagonal" | The reader sees the diagonal is included, but the test ignores it. The example adds no test content, and the reason for including it is not given. | Remove, or say "the diagonal is not used by the test".
+
+F29 | comprehension | Remark 5.13, "d(ni, nj) is the least k ≥ 1 with (Ak)ij > 0. The statement is not new... Their proof of Theorem 3 reads a nonzero entry as a path" | This is a third result (distance) not in the abstract or the three questions, and it is mixed with commentary on another paper. | Add it to the abstract and the introduction or delete it.
+
+F30 | comprehension | Proposition 5.14, "(the path graph; it is one graph, not a single path in the sense of Definition 2.15)" and the closing sentence "A computer run on the path graphs with N = 3, 4, 5, 6 gave the first positive power A^(N−1)" | The name "path graph" collides with the defined word "path". The purpose (that N−1 cannot be reduced) is given only in the plain-words paragraph. The reader may wonder why a computer run is cited for a result that is proved. | Rename it a "chain" throughout, and drop the computer sentence.
+
+F31 | comprehension | Section 5.5, "By our own count, forming S takes N − 2 matrix products... Matrix products and row reads cannot be compared directly, so we do not compare their cost" | The section introduces breadth-first search, then says it is unused and gives no result. The reader cannot say what the section is for, apart from the later computer check. | Move the definition of breadth-first search into Section 5.6, or delete 5.5.
+
+F32 | comprehension | Section 5.6 and Table 4, "A labelled graph has its vertices fixed as n1, ..., nN... (table 4; we have not compared these counts with an outside source)" | The "connected" column cannot be checked by the reader, and the sentence says the counts are unchecked. The reader is told the three tests "always agreed [4]" but must trust a local script. Also, "none" is stated for the number of disagreements, but no table shows this. | Add a row with the number of disagreements, or state that 1, 1, 4, 38, 728, 26704 are known counts and name the check.
+
+F33 | comprehension | Section 6, "Two statements in a published paper... the statement is not correct as written, by Proposition 4.7" | This is a long critique of another paper that the reader has not read, and the section's title ("limits and open points") does not say so. The paragraph says "we use their paper for the statement of the test only", which sits oddly with Remark 5.13 where it is also cited for distance. | Move to a short footnote, or label the paragraph "Comparison with [5]".
+
+F34 | comprehension | Section 6, "table 3 shows entries growing to 2112 at k = 8 while no path on this five-town map has more than 4 edges" | The claim "size of an entry is not a measure of how well two vertices are joined" is asserted from one table. | Say "so the size of an entry reflects how many walks there are, not connectivity".
+
+F35 | comprehension | Conclusion Q1, "on the board map (A2)11 = 1 counts the walk n1, n2, n1" | The conclusion repeats a fact from the example, and it repeats "This is the textbook's walk, Definition 1.2.10; the textbook has no such theorem" with numbers the reader has not been led to. | Remove the textbook numbers from the conclusion.
+
+F36 | comprehension | Abstract, "the usual English meaning, which differs from the textbook's word" and "The two theorems are proved" | The reader has no idea which textbook, and the "two theorems" are not named (Theorem 4.4, Theorem 5.6) while three questions were listed. The abstract also says "checked by computation on all graphs with up to 6 vertices", which does not say what is compared. | Say "the course textbook" and name the theorems; add "against breadth-first search".
+
+F37 | comprehension | Appendix A, "using IAk = Ak and Pascal's rule ... (with (−1 choose k) = (m choose m+1) = 0)" | The inductive step is displayed as one dense line with a sum shifted by one index. The reader must follow the reindexing silently. | Write the reindexing step on its own line.
+
+F38 | comprehension | Appendix B, "The text cites the first program for the examples... and the second program reproduces them" | Two programs ([4] and appendices/computations.py) are described, with different roles, so the reader does not know which one a number came from. The files are local and unavailable to the reader. | Cite one program, or state in each caption which program produced the numbers.
+
+F39 | comprehension | Whole paper, the source-handling passages (Sections 1.1, 1.3, 1.4, 6, Appendix B) | A large part of the text describes a board the reader has not seen, a textbook in Armenian, and a script, so the reader cannot check any of it. The mathematical content (Theorems 4.4 and 5.6) is short against that. | Cut the provenance material to a short preface, and keep the mathematics in the main text.
+
