@@ -1,0 +1,175 @@
+{
+  "sources": [],
+  "claims": [
+    {
+      "id": "M1-1",
+      "text": "For a finite simple undirected graph G with vertices n_1, ..., n_N, the adjacency matrix A has A_ij = 1 if n_i and n_j are adjacent and 0 otherwise; it is a symmetric 0-1 matrix with zero diagonal. The textbook gives the definition and the two properties; the board gives the same definition in its own letters (board V = textbook E). The board's example matrix has these properties.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 11, after Definition 1.1.6 (no number of its own)",
+          "quote": "Նկատենք, որ ցանկացած i-ի համար (1 ≤ i ≤ n) aii = 0, և ցանկացած i, j-ի համար (1 ≤ i, j ≤ n) aij = aji:"
+        },
+        {
+          "source": "whiteboard1lecture",
+          "locator": "whiteboard-1.jpg, top line; same in whiteboard-2.jpg",
+          "quote": "A_ij = 1 if e_ij in V; 0 if e_ij not in V"
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/background.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M1-2",
+      "text": "In a simple graph the i-th row sum of A equals the degree d(n_i), because the neighbours of n_i correspond one to one to the edges at n_i (no loops, no multiple edges); the diagonal entry (A^2)_{ii} equals d(n_i) because (A^2)_{ii} = sum over t of A_it A_ti = sum over t of A_it. On the board matrix the degrees are 1, 2, 1.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 16, Definition 1.2.1",
+          "quote": "կանվանենք այդ գագաթին կից կողերի քանակը:"
+        },
+        {
+          "source": "paramadevan2021properties",
+          "locator": "Section 3.1, proof of Theorem 1, p. 17",
+          "quote": "While the (i, i)th entry of A2G is equal to the number of 10 s in the ith row, and hence equal to the degree of the ith vertex."
+        }
+      ],
+      "derivation": "modules/m1.md, section 3.3 (properties) and section 5 (script modules/m1-calc.py, degrees line)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/background.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M1-3",
+      "text": "Walk-counting theorem: for a simple undirected graph and every integer k >= 0, (A^k)_{ij} equals the number of walks of length k from n_i to n_j (A^0 = I, the identity matrix). Proof by induction on k: the base case k = 0, and the step splits a walk of length k+1 at its last vertex before the end. Because the graph is simple, a walk is determined by its vertex sequence. The textbook has no such theorem (see C9); the proof is the paper's own, and Grinberg Theorem 4.5.10 states the multidigraph version.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "grinberg2025introduction",
+          "locator": "Theorem 4.5.10 and proof of Claim 1, printed pp. 120 to 123",
+          "quote": "Let k ∈ N, and let i, j ∈ V. Then, (C^k)_{i,j} equals the number of all walks of D having starting point i, ending point j and length k."
+        },
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 21, Definition 1.2.10",
+          "quote": "հաջորդականությունը կանվանենք k երկարությամբ u0-ից uk շրջանցում կամ k երկարությամբ (u0, uk)-շրջանցում, եթե ei = ui−1ui, երբ 1 ≤ i ≤ k:"
+        }
+      ],
+      "derivation": "modules/m1.md, section 3.4 (Theorem 1 and proof); appendices/derivations.tex, walk-counting theorem; numerical check modules/m1-calc.py",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex",
+        "appendices/derivations.tex"
+      ],
+      "contradicted_by": [
+        "C6"
+      ]
+    },
+    {
+      "id": "M1-4",
+      "text": "The powers of A are symmetric, (A^k)_{ij} = (A^k)_{ji}, because (A^k)^T = (A^T)^k = A^k; reading it by the theorem, reversing a walk gives a walk of the same length in the opposite direction.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 11, after Definition 1.1.6 (no number of its own)",
+          "quote": "Նկատենք, որ ցանկացած i-ի համար (1 ≤ i ≤ n) aii = 0, և ցանկացած i, j-ի համար (1 ≤ i, j ≤ n) aij = aji:"
+        }
+      ],
+      "derivation": "modules/m1.md, section 3.3, property 4",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/background.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M1-5",
+      "text": "Walks are not paths. On the board graph (edges n_1n_2 and n_2n_3), (A^2)_{11} = 1 counts the walk n_1, n_2, n_1, which repeats n_1 and is therefore not a path under the course convention (Definition 1.2.13); no path of length 2 from n_1 to n_1 exists. Also (A^3)_{12} = 2 counts the walks n_1,n_2,n_1,n_2 and n_1,n_2,n_3,n_2, while a three-vertex graph has no path of length 3 (a path of length k has k+1 distinct vertices). In general (A^2)_{ii} = d(n_i) > 0 whenever n_i has a neighbour.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 22, Definition 1.2.13",
+          "quote": "G գրաֆի (u0, uk)-ճանապարհը կանվանենք պարզ (u0, uk)-ճանապարհ, եթե նրա մեջ մտնող բոլոր գագաթները զույգ առ զույգ տարբեր են:"
+        },
+        {
+          "source": "whiteboard1lecture",
+          "locator": "whiteboard-1.jpg, 3 by 3 matrix labelled adj.",
+          "quote": "rows 0 1 0 / 1 0 1 / 0 1 0"
+        },
+        {
+          "source": "grinberg2025introduction",
+          "locator": "Section 2.9.4, printed p. 40",
+          "quote": "However, any path from u to v must have length ≤ n − 1, where n is the number of vertices of G (since a path of length k has k + 1 distinct vertices, but G has only n vertices to spare)."
+        }
+      ],
+      "derivation": "modules/m1.md, section 3.5 and section 5; script modules/m1-calc.py (walk lists)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": [
+        "C6"
+      ]
+    },
+    {
+      "id": "M1-6",
+      "text": "Computed values (exact integer arithmetic, script modules/m1-calc.py): for the board matrix, A^2 = [[1,0,1],[0,2,0],[1,0,1]] and A^3 = [[0,2,0],[2,0,2],[0,2,0]]; for the triangle (the drawing's three edges) A^2 = [[2,1,1],[1,2,1],[1,1,2]] and A^3 = [[2,3,3],[3,2,3],[3,3,2]], where (A^3)_{11} = 2 counts the closed walks n_1,n_2,n_3,n_1 and n_1,n_3,n_2,n_1. The theorem agrees with brute-force enumeration of walks on both graphs for k = 0 to 5 and on 200 random simple graphs with up to 6 vertices for k = 0 to 4.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "whiteboard1lecture",
+          "locator": "whiteboard-1.jpg, 3 by 3 matrix labelled adj.",
+          "quote": "rows 0 1 0 / 1 0 1 / 0 1 0"
+        }
+      ],
+      "derivation": "modules/m1-calc.py, output reproduced in modules/m1.md section 5",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M1-7",
+      "text": "In a simple graph a walk (textbook Definition 1.2.10) is determined by its sequence of vertices, since each edge e_i = u_{i-1}u_i is fixed by its two ends; hence a walk of length k is a vertex sequence u_0, ..., u_k in which consecutive vertices are adjacent, and the length counts edges with repetition. A walk of length 0 is a single vertex. Whether the textbook admits k = 0 was not checked on the page; the paper adopts length 0 as a convention (needed for A^0 = I), as Grinberg does.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 22, remark after Definition 1.2.10",
+          "quote": "Նշենք, որ շրջանցման մեջ գագաթները և կողերը կարող են կրկնվել"
+        }
+      ],
+      "derivation": "modules/m1.md, section 3.2",
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [
+        "sections/background.tex"
+      ],
+      "contradicted_by": []
+    }
+  ],
+  "contradictions": []
+}
