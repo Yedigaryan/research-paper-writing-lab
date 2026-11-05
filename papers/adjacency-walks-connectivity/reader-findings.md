@@ -117,3 +117,66 @@ F27 | comprehension | 1.3, notation list, "t (indices)" and "S" | The symbol t i
 
 F28 | comprehension | 2.1, Remark 2.22 and Example 5.9 | Forward references to Proposition 3.4 and Corollary 5.11 are used before their statements. The reader must accept them in advance. | Say "(proved in Section 3)" and "(Corollary 5.11 below, stated for later)".
 
+
+## Round 2
+
+Evaluation round 2. Source: reports/technician-reader-round2.md.
+
+F1 | comprehension | Abstract: "the entry in row i and column j of the k-th power of A counts the walks of length k from vertex ni to vertex nj" and "under the course convention a path…" | The abstract uses ni, nj, "walk" and "course convention" with no definitions. A reader without the course doesn't know which convention is meant or that it differs from the textbook's. | Add one clause to the abstract: "a walk may repeat vertices and edges; the course's 'path' may not repeat a vertex". Define ni as "the i-th vertex".
+
+F2 | comprehension | 1.1: "a small drawing with three points … and next to it a table … [2, 3]" and "Everything on the board that matters is reproduced here" | The first paragraph is about photographs I can't see. Citations [2, 3] are local image files. I have to take the transcription of the board on faith. | Put the board matrix and a one-line description of the drawing in a displayed box. State that the photos aren't needed. Move the provenance to the appendix.
+
+F3 | comprehension | 1.1: "Short answers; every word is defined in Section 2. Q1: … (Theorem 4.4) … (Proposition 4.7) … (Definition 2.15)" | The short answers cite theorem numbers I can't open yet. "Every word is defined in Section 2" is false for "connected" and "component" (Section 5) and for "off-diagonal". | Say "defined in Sections 2 and 5". Say what "no zero off the diagonal" means in a few words.
+
+F4 | comprehension | 1.2 and Table 1: "table 1, which comes right after this paragraph" and the story dictionary | The table is not where the text says it is. Some story words aren't intuitive ("stay-at-home table", "endless"). I couldn't tell whether the story is part of the argument or decoration. The paragraph says story words "never appear in statements or proofs", yet the short answers use them. | Place the table where it is announced. Drop the unneeded rows (identity, infinite distance, cycle). Say once, up front, that the story paragraphs can be skipped.
+
+F5 | comprehension | 1.3 convention 2: "a small letter between quotation-like strokes that could be read as k or n … The assignment, as it was reported" | "As it was reported" doesn't say by whom. This is board-reading detail that doesn't affect the mathematics. | Cut to: "We write the exponent as k." Move the reading doubt to the appendix.
+
+F6 | comprehension | 1.3 convention 3: "the arrowhead is read as a stray mark because the matrix is symmetric" and "The drawing's three-road map (fig. 1(b)) is also computed, as a side example" | I had to reread this three times. It is not clear which graph is the main example. The reasoning "stray mark because symmetric" is a guess, though it is stated as settled. | Open with "Main example: fig. 1(a). The board drawing disagrees with the board matrix; we use the matrix." Then give the side example in one sentence.
+
+F7 | comprehension | 1.3 convention 4: "the board writes (G, V) … Aij = 1 if eij ∈ V … So the board's V means the set of edges" | The notation is garbled in the text. It isn't clear whether the board has a typo or a different meaning. The textbook page-offset remark is irrelevant to the reader. | Say: "The board writes V where it means the edge set; this note writes E." Delete the page-number remark.
+
+F8 | comprehension | 1.3 convention 6: "The textbook's definition of a walk does not say so in words, but it assumes it implicitly: its distance properties give d(u, v) = 0 exactly when u = v" | The justification is about the textbook, and I can't check it. The point that matters is that A0 = I must count walks. | Replace with "We allow a walk of length 0 (one vertex), so that A0 = I fits Theorem 4.4."
+
+F9 | comprehension | 1.3 convention 7 and Fig. 2: "we read one from the page image … Nothing depends on matching the textbook" | Reader-irrelevant provenance. Convention 7 is a list of edges in a figure caption, not a convention. | Delete the textbook references from the convention. Just say Fig. 2 is the five-town graph.
+
+F10 | comprehension | 1.4: "We searched the textbook's text for the word 'matrix' and did not find a theorem … This shows only that we did not find them" | This is process commentary. A reader without the textbook gains nothing from it, and it raises doubt about whether the results are new. | Move 1.4 to the appendix. Keep one sentence: "Both results are proved here."
+
+F11 | comprehension | 2.2, Definition 2.17 and Remarks 2.18, 2.20 (cycle, simple cycle) | Cycles and simple cycles are defined and exemplified but never used. The text says "Cycles are not used again after this section". I could not say why they are there. | Delete Definitions 2.17 and 2.19 along with their remarks. Or add a one-line reason.
+
+F12 | comprehension | Definition 2.13 and Table 2: textbook word "path" for a trail, plus the "textbook number" column | Three vocabularies (textbook, English, this note) are presented before I know why they matter. Table 2 has a column of textbook numbers that mean nothing to me. | Open Section 3.1 with a single sentence, "The textbook's 'path' is our 'trail'". Drop the number column.
+
+F13 | comprehension | Proof of Proposition 3.1: "since two equal sets of two elements match their elements in one of two ways, there are two cases. If ua−1 = ub−1 …" | I had to read it three times, and the wording hides a simple fact: a repeated edge forces a repeated vertex. | Rewrite as "If ea = eb with a < b, they share an endpoint at different positions, so a vertex repeats."
+
+F14 | comprehension | Proof of Lemma 3.2: "deleting the 2 vertices u2, u3 leaves 1, 2, 4" | The example uses bare numbers 1, 2, 3, 2, 4 for vertices. The notation is inconsistent with ni and not tied to u0…uk. | Write the example as n1, n2, n3, n2, n4, with the u-indices shown beneath.
+
+F15 | comprehension | Section 3 intro: "three facts that the later sections use … every path is a trail …, Lemma 3.2, … Proposition 3.4" | Proposition 3.1 and Corollary 3.3 are also used. Proposition 3.4 has three parts, (a) to (c), and only (c) is called out, which makes "three facts" misleading. | Say "four facts", or reword the list to match the numbering.
+
+F16 | comprehension | 4.2: "parts (b) and (c) are given for completeness and are not used later" | This contradicts the proof of (d), which uses (c): "so (A2)ii = Σt Ait = deg(ni) by (c)". Part (d) is used later. | Change to "(b) is not used later; (c) is used to prove (d)."
+
+F17 | comprehension | Proof of Proposition 4.3(b): "By (a), AT = A. Using (XY)T = YT XT repeatedly, (Ak)T = (AT)k = Ak" | The rule (XY)T = YT XT is stated without a reason. The step to powers is a one-line jump. | Cite it as the standard rule. Add "by induction on k".
+
+F18 | comprehension | Theorem 4.4 proof: "Different t give different walks, because t can be read off the walk." | The step is sound but sketched. It is the whole reason the sum has no overlaps. | Add: "t is the second-to-last vertex of the walk, so the groups for different t are disjoint."
+
+F19 | comprehension | Proposition 4.7: "in general neither paths nor trails" | The claim "in general" is shown by a single example, and nothing says what "counts paths" would have meant. Paths of length 3 can't occur in a 3-vertex graph, which is true but indirect. | State plainly: "The entry can be positive when no path or trail of that length exists." Then cite (A2)ii.
+
+F20 | comprehension | Table 3 and the paragraph after it: trails column 3, 7, 6, 6, 16, 0; "In a trail that uses every road, each vertex other than the two ends is entered and left equally often" | The trail counts are not monotone (7, then 6, 6, then 16, then 0). The reader doesn't know why, and none of them can be checked without the program. The parity argument is Euler's trail theorem, but it is unnamed and the "ends" case (closed vs open trail) is not handled. | Name it ("a trail using every road is an Euler trail"). Say which columns are expected to behave oddly and why. State that the counts come from enumeration.
+
+F21 | comprehension | Corollary 5.8 prose: "The binomial theorem holds for matrices X, Y that commute … expands into Σ C(N−1, k) Ak, a sum with positive coefficients" | The binomial coefficient notation, "commute" and "positive coefficients" are used before they're explained. The main text asserts the equivalence and defers the real argument to Appendix A. | Give one line: "(I+A)N−1 = Σ C(N−1, k) Ak, with every coefficient at least 1, so it is positive exactly where S is positive (off the diagonal)". Define C(n, k) where it first appears.
+
+F22 | comprehension | Appendix A: "using IAk = Ak and Pascal's rule C(m,k) + C(m,k−1) = C(m+1,k) (with C(m,−1) = C(m,m+1) = 0)" | The displayed induction is hard to follow, and the statement that the binomial theorem is "proved in two lines" is not true of what follows. | Either cite the binomial theorem for commuting matrices as standard, or lay the induction out one line per step.
+
+F23 | comprehension | Example 5.9: "The entry (A2)12 = 0 although n1 and n2 are adjacent; the entry A12 = 1 makes up for it in S." | I didn't see why this matters until the sentence after: "This is why the powers are summed". The link is implicit. | Add "Walks of exactly length 2 can't use the single edge n1 n2, which is why the test sums several powers."
+
+F24 | comprehension | Remark 5.13 (distance): "d(ni, nj) is the least k ≥ 1 with (Ak)ij > 0 … Their proof of Theorem 3 reads a nonzero entry as a path; the proof here … is ours" | The remark mixes a new result with commentary on a published paper's proof. The reasoning ("Indeed, a walk of length k exists exactly when …") is compressed. | Split into the statement, a two-line proof, and a note about the other paper moved to Section 6.
+
+F25 | comprehension | Proposition 5.14: "let G be the path graph with vertices n1,…,nN" | "Path graph" collides with the course's strict "path". A first-time reader may think it is a graph of one path. | Say "a chain of N towns (the path graph)". Say what the proposition is for: the bound N−1 can't be improved.
+
+F26 | comprehension | 5.5 Breadth-first search: "we do not compare their cost" | The section is called a comparison and states that it compares nothing. Breadth-first search is introduced as a cross-check, but the reader isn't told what the cross-check gives. Its purpose is unclear. | Delete the cost sentences, or state the cost claim. Say that the section exists to give an independent algorithm for 5.6.
+
+F27 | comprehension | 5.6: "the three answers always agreed [4]" and "of which 1, 1, 4, 38, 728 and 26704 are connected" | Nothing is shown besides the counts. The program [4] is a local file and the appendix names a different program, so I can't tell which one backs which claim. I have to take the agreement on faith. | Cite one script. Put the counts of connected graphs in a small table and say what the script prints.
+
+F28 | comprehension | Section 6, "Two statements in a published paper" | About half a page of critique of another paper's wording that is not needed to follow the note, and is hedged ("this is an interpretation of their text"). A reader may wonder whether the note's claim is correct or only that paper's phrasing. | Cut to two sentences: "[5]'s Theorem 1 says 'paths' where it means 'walks'."
+
+F29 | comprehension | Appendix B: "the program appendices/computations.py described below repeats those computations" alongside [4] "m3 connectivity.py" | There are two programs with overlapping roles. "Every number in the text can be rerun from that one program" conflicts with the text citing [4] for the 5.6 check. | Use one script name throughout, or say which sections each covers.
+
