@@ -22,12 +22,15 @@ comes from the assignment.
   definition of connected but does not define it \cite{whiteboard1lecture}.
 \end{enumerate}
 
-Short answers; every word is defined in \cref{sec:background}. Q1: the entry
+Short answers; every word is defined in \cref{sec:background} or, for
+``connected'', in \cref{sec:connectivity}. Q1: the entry
 counts the walks of length exactly $k$ from $n_i$ to $n_j$ (\cref{thm:count}).
-A walk is a trip along edges that may revisit vertices and reuse edges. The
+A walk is a sequence of vertices, each joined by an edge to the next, that may
+revisit vertices and reuse edges. The
 entry counts walks, not paths (\cref{prop:notpaths}); a path is a walk that
 never visits a vertex twice. Q2: the graph is connected exactly when a sum of
-powers of $A$ has no zero off the diagonal (\cref{thm:test}). Q3: a path is
+powers of $A$ has no zero outside the main diagonal, that is, in a position $(i,j)$ with
+$i\ne j$ (\cref{thm:test}). Q3: a path is
 a walk that never visits a vertex twice (\cref{def:path}). The order of the
 note follows what each answer needs. The words come first (\cref{sec:background}),
 then the comparison of path conventions (\cref{sec:paths}), then Q1
@@ -42,10 +45,11 @@ has towns and roads. Each road joins two different towns. Two towns share at
 most one road. People make trips along the roads. \Cref{fig:three} shows the
 country of the board. It has three towns in a row. A road joins towns 1 and
 2, and a road joins towns 2 and 3. The story paragraphs use only the story
-words of \cref{tab:story}, which comes right after this paragraph. The story words are only an aid. They never appear in
-statements or proofs.
+words of \cref{tab:story}. The story words are only an aid, and the story
+paragraphs can be skipped. The story words are not used in definitions or in
+the statements of theorems.
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \caption{The story dictionary: one story word for each technical term.}
 \label{tab:story}
@@ -73,7 +77,7 @@ infinite distance & endless \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[every node/.style={circle,draw,inner sep=2pt,minimum size=14pt},
     road/.style={thick}]
@@ -110,8 +114,8 @@ cited later by their number.
 
 \begin{enumerate}
 \item\label{conv:graph} \emph{Finite simple undirected graphs.} Every graph
-  is finite, has no road from a town to itself, no two roads between the same
-  two towns, and no one-way roads. The assignment states this setting, and the
+  is finite, has no edge from a vertex to itself, no two edges between the same
+  two vertices, and no one-way edges. The assignment states this setting, and the
   symmetric, zero-diagonal matrix on the board fits it
   \cite{whiteboard1lecture}.
 \item\label{conv:power} \emph{The exponent in Q1 is $k$.} On the board, question 1

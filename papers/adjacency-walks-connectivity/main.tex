@@ -52,11 +52,13 @@ and how the matrix shows that a graph is connected}
 A graph with $N$ vertices can be written as an $N$ by $N$ table of zeros and
 ones, its adjacency matrix $A$. This note answers three questions about
 that table. First, the entry in row $i$ and column $j$ of the $k$-th power
-of $A$ counts the walks of length $k$ from vertex $n_i$ to vertex $n_j$. It
+of $A$ counts the walks of length $k$ from the $i$-th vertex $n_i$ to the
+$j$-th vertex $n_j$; a walk may repeat vertices and edges. It
 counts walks, not paths. Second, a graph with $N\ge 2$ vertices is connected
 exactly when every off-diagonal entry of $A+A^2+\dots+A^{N-1}$ is positive,
 and equivalently when $(I+A)^{N-1}$ has no zero entry. Third, under the
-course convention a path between two vertices is a walk from one to the
+course convention (the usual English meaning, which differs from the
+textbook's word) a path between two vertices is a walk from one to the
 other with no repeated vertex. The two theorems are proved, the test is shown on a
 connected and on a disconnected graph with three vertices, and the test is
 checked by computation on all graphs with up to 6 vertices.

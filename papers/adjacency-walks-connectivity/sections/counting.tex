@@ -52,14 +52,15 @@ The \emph{transpose} $X^{T}$ of a matrix $X$ has $(X^{T})_{ij}=X_{ji}$; it
 swaps rows and columns, and a matrix with $X^{T}=X$ is symmetric. The rule
 $(XY)^{T}=Y^{T}X^{T}$ is used below.
 
-Part (d) is used in \cref{prop:notpaths}; parts (b) and (c) are given for
-completeness and are not used later.
+Part (d) is used in \cref{prop:notpaths}, and (c) is used to prove (d). Part (b)
+is given for completeness and is not used later.
 
 \begin{proof}
 (a) is the textbook's remark after the definition of $A(G)$, restated in
 \cref{def:matrix}.
 
-(b) By (a), $A^{T}=A$. Using $(XY)^{T}=Y^{T}X^{T}$ repeatedly,
+(b) By (a), $A^{T}=A$. The rule $(XY)^{T}=Y^{T}X^{T}$ is the standard rule for
+transposes. By induction on $k$ it gives
 $(A^k)^{T}=(A^{T})^k=A^k$.
 
 (c) The sum $\sum_jA_{ij}$ counts the vertices adjacent to $n_i$. In a simple
@@ -114,8 +115,8 @@ $n_j$, and let $n_t=u_k$ be its next-to-last vertex. Dropping the last vertex
 leaves a walk of length $k$ from $n_i$ to $n_t$, and $n_t$ is adjacent to
 $n_j$. Conversely, a walk of length $k$ from $n_i$ to $n_t$, followed by
 $n_j$ when $n_t$ is adjacent to $n_j$, is a walk of length $k+1$ from $n_i$
-to $n_j$. Different $t$ give different walks, because $t$ can be read off the
-walk. Hence
+to $n_j$. Different $t$ give different walks, because $n_t$ is the next-to-last vertex of
+the walk, so the groups of walks for different $t$ are disjoint. Hence
 \[
 W_{k+1}(i,j)=\sum_{t=1}^{N}W_k(i,t)\,A_{tj},
 \]
@@ -148,10 +149,12 @@ A^3=\begin{pmatrix}0&2&0\\2&0&2\\0&2&0\end{pmatrix}.
 \]
 The entry $(A^2)_{13}=1$ counts the walk $n_1,n_2,n_3$. The entry
 $(A^2)_{22}=2$ counts the walks $n_2,n_1,n_2$ and $n_2,n_3,n_2$. The entry
-$(A^3)_{12}=2$ counts $n_1,n_2,n_1,n_2$ and $n_1,n_2,n_3,n_2$. The diagonal
+$(A^3)_{12}=2$ counts $n_1,n_2,n_1,n_2$ and $n_1,n_2,n_3,n_2$; by hand,
+$(A^3)_{12}=\sum_t(A^2)_{1t}A_{t2}=1\cdot1+0\cdot0+1\cdot1=2$. The diagonal
 of $A^2$ is $1,2,1$, the degrees. The entry $(A^2)_{12}=0$, although $n_1$ and
-$n_2$ are adjacent, because no walk of length exactly $2$ joins them: the map
-has no triangle. Exact length is what matters.
+$n_2$ are adjacent, because no walk of length exactly $2$ joins them: no vertex
+is adjacent to both $n_1$ and $n_2$ (the map has no triangle, that is, no closed
+walk of length $3$ through three different vertices). Exact length is what matters.
 \end{example}
 
 For the drawing of \cref{fig:three}(b) read as three roads
@@ -162,9 +165,7 @@ A^2=\begin{pmatrix}2&1&1\\1&2&1\\1&1&2\end{pmatrix},\quad
 A^3=\begin{pmatrix}2&3&3\\3&2&3\\3&3&2\end{pmatrix}.
 \]
 Here $(A^3)_{11}=2$ counts the closed walks $n_1,n_2,n_3,n_1$ and
-$n_1,n_3,n_2,n_1$. These matrices are small enough to check by hand, for example
-$(A^3)_{12}=\sum_t(A^2)_{1t}A_{t2}=1\cdot1+0\cdot0+1\cdot1=2$ for the board
-matrix. They were also computed by exact integer arithmetic and the walks were listed by direct enumeration
+$n_1,n_3,n_2,n_1$. All these matrices were computed by exact integer arithmetic and the walks were listed by direct enumeration
 (\cref{app:provenance}).
 
 \subsection{Walks are not paths}
@@ -175,7 +176,8 @@ visits no town twice. The table can therefore show a number where no such
 trip exists.
 
 \begin{proposition}[walks, not paths]\label{prop:notpaths}
-The entry $(A^k)_{ij}$ counts walks, and in general neither paths nor trails.
+The entry $(A^k)_{ij}$ counts walks, and in general neither paths nor trails:
+it can be positive when no path or trail of length $k$ joins the two vertices.
 In particular, if $n_i$ has a neighbour, then $(A^2)_{ii}=\deg(n_i)>0$ although
 there is no path of length $2$ from $n_i$ to $n_i$.
 \end{proposition}
@@ -185,8 +187,8 @@ A path between $n_i$ and itself has pairwise distinct vertices with first and
 last equal, so it has one vertex and length $0$ (\cref{def:path}). By
 \cref{prop:properties}(d), $(A^2)_{ii}=\deg(n_i)$, which is positive when $n_i$
 has a neighbour. The walks it counts are $n_i,n_t,n_i$, and each of these
-uses the edge $n_in_t$ twice, so none is a trail. On the board map,
-$(A^3)_{12}=2$ (\cref{ex:board}). A graph with $3$ vertices has no path of
+uses the edge $n_in_t$ twice, so none is a trail. In the graph of
+\cref{fig:three}(a), $(A^3)_{12}=2$ (\cref{ex:board}). A graph with $3$ vertices has no path of
 length $3$ by \cref{prop:distance}(c), so these entries do not count paths.
 The two walks counted are $n_1,n_2,n_1,n_2$, which uses the edge $n_1n_2$ three
 times, and $n_1,n_2,n_3,n_2$, which uses the edge $n_2n_3$ twice; so neither is a
@@ -220,10 +222,11 @@ $k$ & walks & trails & paths & $(A^k)_{15}$ \\
 \Cref{tab:counts} shows the difference on a larger map: the matrix entry
 follows the walk column and no other. The path column is $0$ from $k=5$ on
 because a path has at most $4$ edges here (\cref{prop:distance}(c)). A trail
-uses each of the $8$ roads at most once, so it has at most $8$ edges. The count $0$ for trails
-of length $8$ has a reason. Such a trail would use every road exactly once. In a
-trail that uses every road, each vertex other than the two ends is entered and
-left equally often, so all its roads come in pairs and its degree is even. Hence
+uses each of the $8$ roads at most once, so it has at most $8$ edges. The trail counts ($1,1,3,7,6,6,16,0$) are not monotone and come from the
+enumeration by program, so only the final zero is explained here. The count $0$ for trails
+of length $8$ has a reason. Such a trail would use every edge exactly once (an
+Euler trail). In such a trail, each vertex other than the two ends is entered and
+left equally often, so its edges come in pairs and its degree is even. Hence
 at most two vertices, the ends, can have odd degree. On this map the degrees
 $\deg(n_1),\dots,\deg(n_5)$ are $3,3,4,3,3$, so four vertices have odd degree,
 and no such trail exists.

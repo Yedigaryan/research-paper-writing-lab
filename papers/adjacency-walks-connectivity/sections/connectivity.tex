@@ -30,8 +30,8 @@ neighbour, so no walk and hence no path joins $n_3$ to $n_1$
 \medskip
 \plain Say two towns are linked when one can reach the other. Every town is
 linked to itself. If the first is linked to the second, the second is linked
-to the first. If the first is linked to the second and the second to a third,
-the first is linked to the third. So the towns split into groups of towns that
+to the first. Suppose the first is linked to the second and the second to a third. Then the
+first is linked to the third. So the towns split into groups of towns that
 are all linked to one another.
 
 \begin{lemma}[reachability is an equivalence relation]\label{lem:equiv}
@@ -132,7 +132,9 @@ matrix $(I+A)^{N-1}$ has no zero entry.
 \end{corollary}
 
 The idea is this. The binomial theorem holds for matrices $X,Y$ that commute,
-that is, $XY=YX$, and $I$ commutes with every matrix, so $(I+A)^{N-1}$ expands into $\sum_{k=0}^{N-1}\binom{N-1}{k}A^k$, a sum with positive
+that is, $XY=YX$, and $I$ commutes with every matrix, so $(I+A)^{N-1}$ expands into $\sum_{k=0}^{N-1}\binom{N-1}{k}A^k$, where
+$\binom{N-1}{k}$ is the number of ways to choose $k$ items from $N-1$ items, a
+whole number at least $1$. So it is a sum with positive
 coefficients of the same powers as in $S$ plus $I$. The exponent $N-1$ is the same
 bound as in $S$: it is the longest length a path can have. The diagonal is positive
 because of $I$, and an off-diagonal entry is positive exactly when the same
@@ -162,8 +164,8 @@ Every off-diagonal entry of $S$ is positive and $(I+A)^2$ has no zero entry,
 so by \cref{thm:test} and \cref{cor:IA} the map is connected, as it should be.
 The entry $S_{13}=1$ comes from $(A^2)_{13}=1$, the walk $n_1,n_2,n_3$. The
 entry $(A^2)_{12}=0$ although $n_1$ and $n_2$ are adjacent; the entry $A_{12}=1$
-makes up for it in $S$. This is why the powers are summed and a single power
-is not enough. As a check of \cref{cor:IA}, $(I+A)^2=I+2A+A^2$ here.
+makes up for it in $S$. Walks of exactly length $2$ cannot use the single edge $n_1n_2$, which is why the
+powers are summed and a single power is not enough. As a check of \cref{cor:IA}, $(I+A)^2=I+2A+A^2$ here.
 \end{example}
 
 \plain Now a country where one town has no road. We do the same
@@ -238,8 +240,9 @@ exists. If we only looked at shorter trips, we would wrongly say the first and
 last towns are cut off.
 
 \begin{proposition}[the limit $N-1$ cannot be lowered]\label{prop:sharp}
-Let $N\ge2$ and let $G$ be the path graph with vertices $n_1,\dots,n_N$ and edges
-$n_in_{i+1}$ for $1\le i<N$. Then $(A^k)_{1N}=0$ for $k<N-1$ and
+Let $N\ge2$ and let $G$ be the graph with vertices $n_1,\dots,n_N$ and edges
+$n_in_{i+1}$ for $1\le i<N$, a chain of $N$ vertices (the \emph{path graph}; it is
+one graph, not a single path in the sense of \cref{def:path}). Then $(A^k)_{1N}=0$ for $k<N-1$ and
 $(A^{N-1})_{1N}=1$. Hence a sum $A+\dots+A^m$ with $m<N-1$ has a zero at
 position $(1,N)$, although $G$ is connected.
 \end{proposition}
@@ -284,9 +287,28 @@ $n_1,n_2,n_3$ and $n_1,n_2$ respectively \cite{m3connectivityscript}.
 This is an experimental finding, not a proof. A \emph{labelled} graph has its
 vertices fixed as $n_1,\dots,n_N$, and each of the $N(N-1)/2$ pairs of vertices
 either is an edge or is not, so there are $2^{N(N-1)/2}$ labelled simple graphs.
-A program listed all of them for $N=1,2,\dots,6$ (1, 2, 8, 64, 1024 and 32768
-graphs, of which 1, 1, 4, 38, 728 and 26704 are connected; we have not compared
-these counts with an outside source). For each graph it decided
+A program listed all of them for $N=1,2,\dots,6$ (\cref{tab:exhaustive}; we have
+not compared these counts with an outside source). For each graph it decided
 connectivity by the sum test, by the $(I+A)^{N-1}$ test and by breadth-first
 search from $n_1$ (the previous subsection), and the three answers always
-agreed \cite{m3connectivityscript}. The proofs above do not rest on this check.
+agreed \cite{m3connectivityscript}. The proofs above do not rest on this check. The program prints the two counts of
+\cref{tab:exhaustive} and the number of graphs on which the three answers differ
+(none).
+
+\begin{table}[htbp]
+\centering
+\caption{The graphs listed in the computer check.}
+\label{tab:exhaustive}
+\begin{tabular}{rrr}
+\toprule
+$N$ & labelled simple graphs & connected \\
+\midrule
+1 & 1 & 1 \\
+2 & 2 & 1 \\
+3 & 8 & 4 \\
+4 & 64 & 38 \\
+5 & 1024 & 728 \\
+6 & 32768 & 26704 \\
+\bottomrule
+\end{tabular}
+\end{table}
