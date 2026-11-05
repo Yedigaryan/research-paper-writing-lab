@@ -1309,7 +1309,7 @@
     },
     {
       "id": "M3-6",
-      "text": "For distinct i and j in the same component, the textbook distance d(n_i, n_j) (Definition 1.2.16) equals the least k >= 1 with (A^k)_{ij} > 0. Proof: a walk of that length exists; if a shorter path existed it would give a smaller k; and a shortest walk is a path (Lemma 3.2).",
+      "text": "For distinct i and j in the same component, the textbook distance d(n_i, n_j) (Definition 1.2.16) equals the least k >= 1 with (A^k)_{ij} > 0. Proof: a walk of that length exists; if a shorter path existed it would give a smaller k; and a shortest walk is a path (Lemma 3.2). Paramadevan and Sotheeswaran state the same result (Theorem 3) with a proof that rests on their path-count reading; the module's proof via Lemma 3.2 is independent of it.",
       "kind": "derived",
       "module": "m3",
       "support": [
@@ -1322,6 +1322,11 @@
           "source": "m3connectivityscript",
           "locator": "scripts/m3_connectivity.out, distance block, board graph",
           "quote": "d(n1, n3) = 2"
+        },
+        {
+          "source": "paramadevan2021properties",
+          "locator": "Section 3.1, Theorem 3, p. 17",
+          "quote": "The distance between two vertices vi and vj is equal to l if and only if l is the smallest integer such that (AlG )ij 6= 0."
         }
       ],
       "derivation": "modules/m3.md, Section 3, Remark 3.6",
@@ -1402,6 +1407,45 @@
           "source": "grinberg2025introduction",
           "locator": "Section on spanning trees, printed p. 176",
           "quote": "the path from r to v in this spanning tree is a shortest path from r to v in G. For this reason, this spanning tree is called a breadth-first search (“BFS”) tree."
+        }
+      ],
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M3-11",
+      "text": "Paramadevan and Sotheeswaran, Theorem 3 (p. 17): for a connected graph, the distance between v_i and v_j is l if and only if l is the smallest integer such that (A^l)_{ij} is nonzero. Their proof says that no path of length less than l exists and then reads the nonzero entry as a path; it uses their walk/path-count reading (see C23) and does not apply the walk-to-path lemma. The result is correct; the distance remark in the paper is therefore attributed to them as a statement, with the proof given by Lemma 3.2.",
+      "kind": "fact",
+      "module": "m3",
+      "support": [
+        {
+          "source": "paramadevan2021properties",
+          "locator": "Section 3.1, Theorem 3, p. 17",
+          "quote": "The distance between two vertices vi and vj is equal to l if and only if l is the smallest integer such that (AlG )ij 6= 0."
+        },
+        {
+          "source": "paramadevan2021properties",
+          "locator": "Section 3.1, proof of Theorem 3, p. 17",
+          "quote": "Conversely, suppose that l is the smallest integer such that (AlG )ij 6= 0. Therefore, there is no paths from vi to vj of length less than l."
+        }
+      ],
+      "confidence": "high",
+      "status": "qualified",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M3-12",
+      "text": "Paramadevan and Sotheeswaran, Section 2.2 'Properties of Adjacency matrix', item 7 (printed p. 16, not p. 15 as the evaluator reported; the page number is printed at the foot of each page, and item 7 lies between the footers 15 and 16 of the extracted text, so it is on p. 16): the (i,j) entry of A^m equals the number of walks of length m from v_i to v_j, and the least nonzero m is the distance. This item is stated without proof and is correct on the walk reading, in contrast with their Theorem 1 (C6) which says 'paths'. Page assignment rests on the pdftotext footers, not on a page image.",
+      "kind": "fact",
+      "module": "m3",
+      "support": [
+        {
+          "source": "paramadevan2021properties",
+          "locator": "Section 2.2, item 7, p. 16",
+          "quote": "The (i, j)th entry of Am G is equal to the number of walks of length m from vi to vj , and the least non-zero m satisfying the non-zero (i, j)th entry is equal to the distance from vi to vj ."
         }
       ],
       "confidence": "medium",
