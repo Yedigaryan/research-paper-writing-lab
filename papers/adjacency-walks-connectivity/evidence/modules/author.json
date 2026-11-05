@@ -16,7 +16,29 @@
       "derivation": "sections/connectivity.tex, Proposition on the limit N-1 (proof by index change per step)",
       "confidence": "high",
       "status": "supported",
-      "used_in": ["sections/connectivity.tex"],
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "A-2",
+      "text": "On the five-town map (edges n1n2, n1n3, n1n5, n2n3, n2n4, n3n4, n3n5, n4n5) the degrees are 3,3,4,3,3. A trail of length 8 uses all 8 edges once; each vertex other than the ends is entered and left equally often, so it has even degree; the map has four odd-degree vertices, so no trail of length 8 exists. This explains the 0 in the k = 8 trail count of the table of walks, trails and paths.",
+      "kind": "derived",
+      "module": "author",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 16, Definition 1.2.1",
+          "quote": "կանվանենք այդ գագաթին կից կողերի քանակը:"
+        }
+      ],
+      "derivation": "sections/counting.tex, paragraph after the table of counts (parity argument); degrees printed by appendices/computations.py",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/counting.tex"
+      ],
       "contradicted_by": []
     }
   ],

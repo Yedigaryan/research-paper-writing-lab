@@ -17,10 +17,11 @@ The identity matrix $I$ has $I_{ii}=1$ and $I_{ij}=0$ for $i\ne j$, and
 $XI=IX=X$. The powers of $A$ are $A^0=I$ and $A^{k+1}=A^kA$ for $k\ge0$.
 \end{definition}
 
-\begin{remark}
+\begin{remark}\label{rem:power}
 Each entry of a product is a sum over a middle index $t$. Since $A$ has only
 the entries $0$ and $1$, every entry of every power of $A$ is a non-negative
-integer. The exponent $k$ counts how many copies of $A$ are multiplied;
+integer. This is the formula whose terms are matched to walks in \cref{thm:count}.
+The exponent $k$ counts how many copies of $A$ are multiplied;
 $A^0=I$ is the case of no copies.
 \end{remark}
 
@@ -50,6 +51,9 @@ Let $A$ be the adjacency matrix of a simple graph.
 The \emph{transpose} $X^{T}$ of a matrix $X$ has $(X^{T})_{ij}=X_{ji}$; it
 swaps rows and columns, and a matrix with $X^{T}=X$ is symmetric. The rule
 $(XY)^{T}=Y^{T}X^{T}$ is used below.
+
+Part (d) is used in \cref{prop:notpaths}; parts (b) and (c) are given for
+completeness and are not used later.
 
 \begin{proof}
 (a) is the textbook's remark after the definition of $A(G)$, restated in
@@ -158,8 +162,9 @@ A^2=\begin{pmatrix}2&1&1\\1&2&1\\1&1&2\end{pmatrix},\quad
 A^3=\begin{pmatrix}2&3&3\\3&2&3\\3&3&2\end{pmatrix}.
 \]
 Here $(A^3)_{11}=2$ counts the closed walks $n_1,n_2,n_3,n_1$ and
-$n_1,n_3,n_2,n_1$. All these matrices were computed by exact integer
-arithmetic and the walks were listed by direct enumeration
+$n_1,n_3,n_2,n_1$. These matrices are small enough to check by hand, for example
+$(A^3)_{12}=\sum_t(A^2)_{1t}A_{t2}=1\cdot1+0\cdot0+1\cdot1=2$ for the board
+matrix. They were also computed by exact integer arithmetic and the walks were listed by direct enumeration
 (\cref{app:provenance}).
 
 \subsection{Walks are not paths}
@@ -193,10 +198,7 @@ trail.
 \caption{On the five-town map (\cref{fig:five}), the numbers of walks,
 trails and paths of length $k$ from $n_1$ to $n_5$, and the entry
 $(A^k)_{15}$. The last column equals the walk count in every row. The counts were obtained by
-listing all walks of each length on the map. A trail has at most $8$ edges, the
-number of roads, and a path has at most $4$ (\cref{prop:distance}(c)), which
-explains the zeros for paths from $k=5$ on; a trail of length $8$ would have to
-use every road once, and the listing finds none.}
+listing all walks of each length on the map.}
 \label{tab:counts}
 \begin{tabular}{rrrrr}
 \toprule
@@ -215,10 +217,15 @@ $k$ & walks & trails & paths & $(A^k)_{15}$ \\
 \end{table}
 
 \Cref{tab:counts} shows the difference on a larger map: the matrix entry
-follows the walk column and no other. Paramadevan and Sotheeswaran state a
-related theorem in terms of ``paths''; the only point is their use of that
-word, and we discuss it in \cref{sec:discussion}. We use their paper for the
-statement of the test in \cref{sec:connectivity}.
+follows the walk column and no other. The path column is $0$ from $k=5$ on
+because a path has at most $4$ edges here (\cref{prop:distance}(c)). A trail
+uses each of the $8$ roads at most once, so it has at most $8$ edges. The count $0$ for trails
+of length $8$ has a reason. Such a trail would use every road exactly once. In a
+trail that uses every road, each vertex other than the two ends is entered and
+left equally often, so all its roads come in pairs and its degree is even. Hence
+at most two vertices, the ends, can have odd degree. On this map the degrees
+$\deg(n_1),\dots,\deg(n_5)$ are $3,3,4,3,3$, so four vertices have odd degree,
+and no such trail exists.
 
 What can be said about paths is this. If $i\ne j$ and $(A^k)_{ij}\ge1$, then
 there is a walk of length $k$ (\cref{thm:count}), hence a path between $n_i$ and

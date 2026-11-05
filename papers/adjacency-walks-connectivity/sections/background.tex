@@ -135,7 +135,7 @@ follows.
 \begin{definition}[walk; textbook Definition 1.2.10]\label{def:walk}
 A \emph{walk of length $k$} from $u_0$ to $u_k$ is a sequence
 $u_0,e_1,u_1,\dots,u_{k-1},e_k,u_k$ of vertices and edges with
-$e_t=u_{t-1}u_t$ for $1\le t\le k$
+$e_s=u_{s-1}u_s$ for $1\le s\le k$
 \cite[Definition 1.2.10, p.~21]{petrosyan2015grafneri}. Its \emph{length} is
 $k$.
 \end{definition}
@@ -199,7 +199,8 @@ the roads $n_2n_3$, $n_2n_4$ and $n_3n_4$ twice each.
 \begin{definition}[path between $n_i$ and $n_j$; textbook Definition 1.2.13, ``simple path'']\label{def:path}
 Let $n_i,n_j\in V$. A \emph{path between $n_i$ and $n_j$} is a walk
 $w_0,w_1,\dots,w_k$ with $w_0=n_i$, $w_k=n_j$ and $w_0,\dots,w_k$
-pairwise distinct. The number $k$ is its \emph{length}.
+pairwise distinct. The number $k$ is its \emph{length}. If $n_i=n_j$, the only
+path is the one-vertex walk $n_i$, of length $0$ (\cref{conv:zero}).
 \end{definition}
 
 This is the answer to question Q3. For $n_i\ne n_j$ it is the textbook's
@@ -209,7 +210,7 @@ these names relate to the textbook's own ``path'' of Definition 1.2.12 is
 compared in \cref{tab:conventions} of \cref{sec:paths}. The course meaning
 is given with the assignment (\cref{conv:path}).
 
-\begin{remark}
+\begin{remark}\label{rem:path}
 A path never repeats a vertex, so it never repeats an edge either
 (\cref{prop:hierarchy}). A
 path between a vertex and itself has only one vertex, and so has length $0$:
@@ -228,14 +229,17 @@ repeats.
 pass through a town more than once.
 
 \begin{definition}[cycle; textbook Definition 1.2.14]\label{def:cycle}
-A \emph{cycle} is a closed trail, which the textbook words as a closed
+A \emph{cycle} is a closed trail of length at least $1$, which the textbook words as a closed
 ``path'' \cite[Definition 1.2.14, p.~22]{petrosyan2015grafneri}.
 \end{definition}
 
 \begin{remark}
 A cycle may visit a vertex more than once, but it may not use an edge more
 than once. The word ``cycle'' is used here in the textbook's sense, which is
-broader than a simple cycle (\cref{def:simplecycle}).
+broader than a simple cycle (\cref{def:simplecycle}). Length at least $1$ is our
+reading, so that the one-vertex walk of \cref{conv:zero} is not a cycle.
+Cycles are not used again after this section; they are defined to follow the
+textbook's order.
 \end{remark}
 
 \ex On the five-town map, $n_3,n_2,n_1,n_3,n_5,n_4,n_3$ is a cycle.
@@ -277,7 +281,7 @@ path from $u$ to $v$ if there is one, and $\inftysym$ otherwise.
 \begin{remark}
 The textbook states the definition with its own word ``path'', that is, with
 trails \cite[Definition 1.2.16, pp.~22--23]{petrosyan2015grafneri}.
-\Cref{prop:distance} shows that the value is the same with paths, with trails
+\Cref{prop:distance} (proved in \cref{sec:paths}) shows that the value is the same with paths, with trails
 and with walks. A distance is a number or $\inftysym$, never a negative number.
 \end{remark}
 

@@ -712,6 +712,26 @@
       "contradicted_by": []
     },
     {
+      "id": "A-2",
+      "text": "On the five-town map (edges n1n2, n1n3, n1n5, n2n3, n2n4, n3n4, n3n5, n4n5) the degrees are 3,3,4,3,3. A trail of length 8 uses all 8 edges once; each vertex other than the ends is entered and left equally often, so it has even degree; the map has four odd-degree vertices, so no trail of length 8 exists. This explains the 0 in the k = 8 trail count of the table of walks, trails and paths.",
+      "kind": "derived",
+      "module": "author",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "Printed p. 16, Definition 1.2.1",
+          "quote": "կանվանենք այդ գագաթին կից կողերի քանակը:"
+        }
+      ],
+      "derivation": "sections/counting.tex, paragraph after the table of counts (parity argument); degrees printed by appendices/computations.py",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/counting.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
       "id": "M1-1",
       "text": "For a finite simple undirected graph G with vertices n_1, ..., n_N, the adjacency matrix A has A_ij = 1 if n_i and n_j are adjacent and 0 otherwise; it is a symmetric 0-1 matrix with zero diagonal. The textbook gives the definition and the two properties; the board gives the same definition in its own letters (board V = textbook E). The board's example matrix has these properties.",
       "kind": "fact",

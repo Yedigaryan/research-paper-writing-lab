@@ -28,20 +28,37 @@ neighbour, so no walk and hence no path joins $n_3$ to $n_1$
 (\cref{cor:readings}).
 
 \medskip
+\plain Say two towns are linked when one can reach the other. Every town is
+linked to itself. If the first is linked to the second, the second is linked
+to the first. If the first is linked to the second and the second to a third,
+the first is linked to the third. So the towns split into groups of towns that
+are all linked to one another.
+
+\begin{lemma}[reachability is an equivalence relation]\label{lem:equiv}
+The relation ``there is a path between $u$ and $v$'' on $V$ is reflexive,
+symmetric and transitive.
+\end{lemma}
+
+\begin{proof}
+Reflexive: a vertex is joined to itself by a path of length $0$. Symmetric: a
+path read backwards is a path. Transitive: a walk from $u$ to $v$ followed by a
+walk from $v$ to $w$ is a walk from $u$ to $w$, which contains a path by
+\cref{lem:shorten}.
+\end{proof}
+
+The textbook states that this relation is an equivalence relation
+\cite[p.~49]{petrosyan2015grafneri}. An \emph{equivalence class} is a group of
+vertices that can all reach one another.
+
 \plain Towns that can reach each other form an island. Towns on different
-islands cannot reach each other. A country with one island is one where every town can be reached from every other.
+islands cannot reach each other. A country with one island is one where every
+town can be reached from every other.
 
 \begin{definition}[connectivity component; textbook, p.~49]\label{def:component}
-The relation ``there is a path between $u$ and $v$'' is an equivalence
-relation on $V$ (reflexive, symmetric and transitive). Its classes induce
-subgraphs of $G$, called the \emph{connectivity components} of $G$
-\cite[p.~49]{petrosyan2015grafneri}. An equivalence class is a group of vertices that can all reach one another.
-The relation is reflexive because a vertex reaches itself by a path of length
-$0$, symmetric because a path can be read backwards, and transitive because a
-walk from $u$ to $v$ followed by a walk from $v$ to $w$ is a walk from $u$ to
-$w$, which contains a path by \cref{cor:readings}. The subgraph induced by a
-set $X$ of vertices has the vertices in $X$ and the edges of $G$ with both ends
-in $X$.
+The classes of the relation of \cref{lem:equiv} induce subgraphs of $G$, called
+the \emph{connectivity components} of $G$
+\cite[p.~49]{petrosyan2015grafneri}. The subgraph induced by a set $X$ of
+vertices has the vertices in $X$ and the edges of $G$ with both ends in $X$.
 \end{definition}
 
 \begin{remark}\label{rem:onecomp}
@@ -62,8 +79,8 @@ $n_1,n_2$ and the road $n_1n_2$, and the one with the single vertex $n_3$.
 \plain To see whether one town can reach another, look at trips of one road,
 of two roads, and so on. Add up the tables for all these trips. A zero in a
 place means no such trip joins the two towns, whatever the number of roads.
-We only need to try a few numbers of roads. A trip that visits no town twice
-has at most one road less than there are towns.
+We only need to try trips of up to one road less than there are towns. A
+trip that visits no town twice never has more roads than that.
 
 \begin{theorem}[connectivity test]\label{thm:test}
 Let $G$ be a simple graph with $N\ge2$ vertices and adjacency matrix $A$, and
@@ -82,7 +99,7 @@ By \cref{def:connected} there is a path between $n_i$ and $n_j$ (by
 \cref{cor:readings}, whichever of the readings of ``path'' is used); let $k$
 be its length. Since $i\ne j$, $k\ge1$, and by \cref{prop:distance}(c)
 $k\le N-1$. A path is a walk, so by \cref{thm:count} $(A^k)_{ij}\ge1$. Every
-power of $A$ has non-negative entries (\cref{def:power}), so
+power of $A$ has non-negative entries (\cref{rem:power}), so
 $S_{ij}\ge(A^k)_{ij}\ge1$.
 
 \emph{$S_{ij}>0$ for all $i\ne j$ implies connected.} Fix $i\ne j$. The number
@@ -98,8 +115,9 @@ joined by a path, and $G$ is connected.
 The step from a positive entry to a path is where care is needed. The entry
 counts walks (\cref{prop:notpaths}), and a walk need not be a path.
 \Cref{lem:shorten} supplies the step, and \cref{prop:distance}(c) shows that
-powers up to $N-1$ are enough. The published proof of the same test omits this
-step (\cref{sec:discussion}). For $N=1$ the sum $S$ is empty and the
+powers up to $N-1$ are enough. In our reading, the published proof of the same
+test relies on its Theorem~1 counting paths and so does not supply this step
+(\cref{sec:discussion}). For $N=1$ the sum $S$ is empty and the
 single-vertex graph is connected, so the test is stated for $N\ge2$.
 \end{remark}
 
@@ -113,12 +131,13 @@ A simple graph $G$ with $N\ge1$ vertices is connected if and only if the
 matrix $(I+A)^{N-1}$ has no zero entry.
 \end{corollary}
 
-The idea is this. The binomial theorem holds for matrices that commute, and $I$
-commutes with every matrix, so $(I+A)^{N-1}$ expands into $\sum_{k=0}^{N-1}\binom{N-1}{k}A^k$, a sum with positive
+The idea is this. The binomial theorem holds for matrices $X,Y$ that commute,
+that is, $XY=YX$, and $I$ commutes with every matrix, so $(I+A)^{N-1}$ expands into $\sum_{k=0}^{N-1}\binom{N-1}{k}A^k$, a sum with positive
 coefficients of the same powers as in $S$ plus $I$. The exponent $N-1$ is the same
 bound as in $S$: it is the longest length a path can have. The diagonal is positive
 because of $I$, and an off-diagonal entry is positive exactly when the same
-entry of $S$ is. The full proof is in \cref{app:derivations}. No source that we
+entry of $S$ is. The full proof, including the binomial theorem for commuting matrices, is in
+\cref{app:derivations}; \cref{ex:connected} checks the case $(I+A)^2=I+2A+A^2$. No source that we
 read states the test in this form with a proof; the result is derived in this
 note.
 
@@ -164,7 +183,7 @@ I+A=\begin{pmatrix}1&1&0\\1&1&0\\0&0&1\end{pmatrix},\qquad
 \]
 The matrix $S$ has zeros at $(1,3)$, $(2,3)$ and their mirror images, and
 $(I+A)^2$ has zeros in the same places. By \cref{thm:test} and \cref{cor:IA} the
-map is not connected. By \cref{cor:components} below the components are
+map is not connected. By \cref{cor:components}, stated below, the components are
 $\{n_1,n_2\}$ and $\{n_3\}$.
 \end{example}
 
@@ -172,8 +191,13 @@ $\{n_1,n_2\}$ and $\{n_3\}$.
 towns is joined by a road. We expect no zeros.
 
 \begin{example}[the drawing read as three roads]\label{ex:triangle}
-For the map of \cref{fig:three}(b) every entry of $S$ is $2$ and every entry
-of $(I+A)^2$ is $3$. The map is connected, which is also visible directly.
+For the map of \cref{fig:three}(b),
+\[
+S=\begin{pmatrix}2&2&2\\2&2&2\\2&2&2\end{pmatrix},\qquad
+(I+A)^2=\begin{pmatrix}3&3&3\\3&3&3\\3&3&3\end{pmatrix}.
+\]
+Every entry of $S$ is $2$, including the diagonal, and every entry of $(I+A)^2$
+is $3$. The map is connected, which is also visible directly.
 \end{example}
 
 \subsection{Components, distance and sharpness}
@@ -197,7 +221,11 @@ the relation of \cref{def:component}.
 
 \begin{remark}[distance]\label{rem:distance}
 For distinct vertices in the same component, $d(n_i,n_j)$ is the least $k\ge1$
-with $(A^k)_{ij}>0$. Indeed, a walk of length $k$ exists exactly when the
+with $(A^k)_{ij}>0$. The statement is not new: Paramadevan and Sotheeswaran
+give it as their Theorem~3 \cite[p.~17]{paramadevan2021properties}, and as item 7
+of their Section 2.2, which counts walks \cite[p.~16]{paramadevan2021properties}.
+Their proof of Theorem~3 reads a nonzero entry as a path; the proof here, which
+goes through \cref{lem:shorten}, is ours. Indeed, a walk of length $k$ exists exactly when the
 entry is positive (\cref{thm:count}), and the shortest walk has the length of
 the shortest path (\cref{prop:distance}(a)). On the board map,
 $A_{13}=0$ and $(A^2)_{13}=1$, so $d(n_1,n_3)=2$, in agreement with
@@ -221,7 +249,8 @@ Each edge of $G$ joins two vertices whose indices differ by exactly $1$, so
 each step of a walk changes the index by $+1$ or $-1$. A walk from $n_1$ to
 $n_N$ must change the index from $1$ to $N$, a total change of $N-1$, so it
 has at least $N-1$ steps. By \cref{thm:count} this gives $(A^k)_{1N}=0$ for
-$k<N-1$. A walk of length $N-1$ must use $+1$ at every step, so the only one is
+$k<N-1$. A walk of length $N-1$ has $N-1$ steps of $\pm1$ with sum $N-1$, so every step
+is $+1$; hence the only one is
 $n_1,n_2,\dots,n_N$, and $(A^{N-1})_{1N}=1$.
 \end{proof}
 
@@ -245,15 +274,19 @@ tree the tree path from the root is a shortest path
 connectivity is our reading, not a statement of that source. By our own count,
 forming $S$ takes $N-2$ matrix products: $A^2,\dots,A^{N-1}$, each from the
 previous one by one product. The search reads the row of each visited vertex at
-most once. These are different units, so we make no claim about running time.
+most once. Matrix products and row reads cannot be compared directly, so we do not
+compare their cost.
 On the maps of \cref{ex:connected} and \cref{ex:disconnected} the search visits
 $n_1,n_2,n_3$ and $n_1,n_2$ respectively \cite{m3connectivityscript}.
 
 \subsection{A computer check}
 
-This is an experimental finding, not a proof. A program listed every labelled
-simple graph with $N=1,2,\dots,6$ vertices (1, 2, 8, 64, 1024 and 32768 graphs,
-of which 1, 1, 4, 38, 728 and 26704 are connected). For each graph it decided
+This is an experimental finding, not a proof. A \emph{labelled} graph has its
+vertices fixed as $n_1,\dots,n_N$, and each of the $N(N-1)/2$ pairs of vertices
+either is an edge or is not, so there are $2^{N(N-1)/2}$ labelled simple graphs.
+A program listed all of them for $N=1,2,\dots,6$ (1, 2, 8, 64, 1024 and 32768
+graphs, of which 1, 1, 4, 38, 728 and 26704 are connected; we have not compared
+these counts with an outside source). For each graph it decided
 connectivity by the sum test, by the $(I+A)^{N-1}$ test and by breadth-first
 search from $n_1$ (the previous subsection), and the three answers always
 agreed \cite{m3connectivityscript}. The proofs above do not rest on this check.

@@ -22,9 +22,11 @@ comes from the assignment.
   definition of connected but does not define it \cite{whiteboard1lecture}.
 \end{enumerate}
 
-Short answers, with every word defined in \cref{sec:background}. Q1: the entry counts the walks of exactly $k$ roads from
-$n_i$ to $n_j$ (\cref{thm:count}); it counts walks, not paths
-(\cref{prop:notpaths}). Q2: the graph is connected exactly when a sum of
+Short answers; every word is defined in \cref{sec:background}. Q1: the entry
+counts the walks of length exactly $k$ from $n_i$ to $n_j$ (\cref{thm:count}).
+A walk is a trip along edges that may revisit vertices and reuse edges. The
+entry counts walks, not paths (\cref{prop:notpaths}); a path is a walk that
+never visits a vertex twice. Q2: the graph is connected exactly when a sum of
 powers of $A$ has no zero off the diagonal (\cref{thm:test}). Q3: a path is
 a walk that never visits a vertex twice (\cref{def:path}). The order of the
 note follows what each answer needs. The words come first (\cref{sec:background}),
@@ -40,10 +42,10 @@ has towns and roads. Each road joins two different towns. Two towns share at
 most one road. People make trips along the roads. \Cref{fig:three} shows the
 country of the board. It has three towns in a row. A road joins towns 1 and
 2, and a road joins towns 2 and 3. The story paragraphs use only the story
-words of \cref{tab:story}. The story words are only an aid. They never appear in
+words of \cref{tab:story}, which comes right after this paragraph. The story words are only an aid. They never appear in
 statements or proofs.
 
-\begin{table}[ht]
+\begin{table}[t]
 \centering
 \caption{The story dictionary: one story word for each technical term.}
 \label{tab:story}
@@ -65,11 +67,13 @@ degree of a vertex & number of roads at a town \\
 distance & fewest roads needed between two towns \\
 connected graph & every town can be reached from every other \\
 component & island of towns \\
+identity matrix & stay-at-home table \\
+infinite distance & endless \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\begin{figure}[ht]
+\begin{figure}[t]
 \centering
 \begin{tikzpicture}[every node/.style={circle,draw,inner sep=2pt,minimum size=14pt},
     road/.style={thick}]
@@ -113,9 +117,10 @@ cited later by their number.
 \item\label{conv:power} \emph{The exponent in Q1 is $k$.} On the board, question 1
   has a small mark above the letter $A$. It is a small letter between
   quotation-like strokes that could be read as $k$ or $n$
-  \cite{whiteboard1lecture,whiteboard2lecture}. The assignment asks about
-  powers $A^k$, so we read $k$. This is an assumption, not something read off
-  the board.
+  \cite{whiteboard1lecture,whiteboard2lecture}. The assignment, as it was
+  reported, asks about powers $A^k$, so we read $k$. This is an assumption,
+  not something read off the board. It is harmless: the theorem of
+  \cref{sec:counting} holds for every exponent, whatever it is called.
 \item\label{conv:matrix} \emph{The matrix, not the drawing, is the example.}
   The drawing on the board has three lines, between towns 1 and 2 (with an
   arrowhead at 2), between 1 and 3, and between 2 and 3; \cref{fig:three}(b)
@@ -124,13 +129,15 @@ cited later by their number.
   line between 1 and 3 that the matrix does not have. The problem statement says the graph is given through its matrix,
   so \cref{fig:three}(a) is the example, and the arrowhead is read as a stray
   mark because the matrix is symmetric. The drawing's three-road map
-  (\cref{fig:three}(b)) is also computed, as a side example.
+  (\cref{fig:three}(b)) is also computed, as a side example
+  (\cref{ex:triangle}); it is not a claim about what the lecturer meant.
 \item\label{conv:notation} \emph{Notation.} The board writes $(G,V)$ for a
   graph, and defines $A_{ij}=1$ if $e_{ij}\in V$ and $A_{ij}=0$ if
   $e_{ij}\notin V$. Here $e_{ij}$ is the edge between $n_i$ and $n_j$. The
   textbook writes $G=(V,E)$ with $V$ the set of vertices and $E$ the set of
-  edges. So the board uses $V$ for the set of edges where the textbook uses
-  $E$ \cite{whiteboard1lecture,petrosyan2015grafneri}. We write $G=(V,E)$,
+  edges. So the board's $V$ means the set of edges; the textbook calls that set $E$
+  \cite{whiteboard1lecture,petrosyan2015grafneri}. This note always writes $E$,
+  and the board's notation does not appear again. We write $G=(V,E)$,
   $V=\{n_1,\dots,n_N\}$, $N=|V|$, and $e_{ij}$ or $n_in_j$ for the edge
   joining $n_i$ and $n_j$. The textbook calls the vertices $v_i$; this note
   uses $n_i$ as on the board.
@@ -141,16 +148,19 @@ cited later by their number.
   the textbook's \emph{simple path}. The textbook's own word ``path'' means
   something weaker. \Cref{tab:conventions} compares the two.
 \item\label{conv:zero} \emph{Walks of length 0.} We allow a walk that is
-  one vertex and no edge. The textbook's definition does not say whether
-  this is allowed \cite{petrosyan2015grafneri}; the choice is ours, made so
-  that $A^0$, the identity matrix, also counts walks.
+  one vertex and no edge. The textbook's definition of a walk does not say so
+  in words, but it assumes it implicitly: its distance properties give
+  $d(u,v)=0$ exactly when $u=v$ \cite[p.~23]{petrosyan2015grafneri}, and its
+  relation ``there is a path between $u$ and $v$'' is reflexive
+  \cite[p.~49]{petrosyan2015grafneri}. We make the convention explicit so that
+  $A^0$, the identity matrix, also counts walks. It is used in
+  \cref{lem:shorten}, in \cref{rem:path} and in \cref{app:derivations}.
 \item\label{conv:fig} \emph{The five-town map.} Several examples use the map
   of \cref{fig:five}. It is drawn after the textbook's Fig.\ 1.2.5
   \cite[p.~21]{petrosyan2015grafneri}. The textbook prints no list of
   edges, so we read one from the page image. The list is given in the caption
-  of \cref{fig:five}, and the examples need only that list, not the textbook's
-  figure. The textbook's own examples of a walk, a trail, a path and a cycle
-  on that figure come out as the book says on this list.
+  of \cref{fig:five}. Nothing depends on matching the textbook: the five-town
+  map is defined by that edge list, and the textbook only suggested it.
 \end{enumerate}
 
 The notation used throughout is as follows. $A=(A_{ij})$ is the adjacency
@@ -158,13 +168,15 @@ matrix; $A^k$ is its $k$-th power and $(A^k)_{ij}$ the entry in row $i$ and
 column $j$ of that power; $I$ is the identity matrix; $\deg(n_i)$ is the degree
 of $n_i$, and $d(u,v)$, with two arguments, is the distance between $u$ and $v$; $S=A+A^2+\dots+A^{N-1}$ is the sum used in the test of
 \cref{sec:connectivity}. The letters $N$ (number of vertices), $k$ (length
-of a walk or exponent), $i,j,t$ (indices) and $S$ keep one meaning
+of a walk or exponent), $i,j$ (indices of vertices), $s,t$ (positions or
+middle indices in sums) and $S$ keep one meaning
 throughout.
 
 \subsection{What the sources contain}\label{sec:sources}
 
 The textbook \cite{petrosyan2015grafneri} defines the adjacency matrix, walks,
-trails, paths, cycles, distance and connectedness, and we use its numbers. We
+trails, paths, cycles, distance and connectedness, and we use its numbers, only to match names and numbers; the proofs in this note do
+not depend on it. We
 searched the textbook's text for the word ``matrix'' and did not find a theorem
 about the powers of $A$ or a matrix test for connectivity. This shows only
 that we did not find them, so we prove both results in this note.

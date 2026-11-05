@@ -2,18 +2,27 @@
 
 This appendix proves \cref{cor:IA}: a simple graph $G$ with $N\ge1$ vertices
 is connected if and only if $(I+A)^{N-1}$ has no zero entry. It uses
-\cref{thm:test} and the notation of \cref{def:power}.
+\cref{thm:test} and the notation of \cref{def:power} and \cref{rem:power}.
 
 \begin{proof}[Proof of \cref{cor:IA}]
-The binomial theorem holds for two matrices that commute. The identity matrix
-commutes with every matrix, so $I$ and $A$ commute, and
+Two matrices $X,Y$ commute if $XY=YX$; the identity matrix commutes with every
+matrix, because $IX=XI=X$. For this reason the binomial expansion holds for
+$I+A$, and we prove it in two lines. For every $m\ge0$,
+$(I+A)^m=\sum_{k=0}^{m}\binom{m}{k}A^k$. For $m=0$ both sides are $I$. If it
+holds for $m$, then
+\[
+(I+A)^{m+1}=(I+A)^m(I+A)=\sum_{k=0}^{m}\binom{m}{k}A^k+\sum_{k=0}^{m}\binom{m}{k}A^{k+1}
+=\sum_{k=0}^{m+1}\left[\binom{m}{k}+\binom{m}{k-1}\right]A^k,
+\]
+using $IA^k=A^k$ and Pascal's rule $\binom{m}{k}+\binom{m}{k-1}=\binom{m+1}{k}$
+(with $\binom{m}{-1}=\binom{m}{m+1}=0$). With $m=N-1$ this gives
 \begin{equation}\label{eq:binomial}
 (I+A)^{N-1}=\sum_{k=0}^{N-1}\binom{N-1}{k}A^k,
 \end{equation}
 where $\binom{N-1}{k}$ is the number of ways to choose $k$ items from $N-1$
 items, and is at least $1$ for $0\le k\le N-1$. The exponent $N-1$ is the
 same bound as in $S$: it is the longest length a path can have
-(\cref{prop:distance}(c)). By \cref{def:power} every
+(\cref{prop:distance}(c)). By \cref{rem:power} every
 $A^k$ has non-negative integer entries, so every term of \eqref{eq:binomial}
 is non-negative.
 

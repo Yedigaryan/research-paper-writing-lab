@@ -49,7 +49,8 @@ reversed.
 \begin{proof}
 A trail is a walk by \cref{def:trail}. Let $u_0,\dots,u_k$ be a path, so
 its vertices are pairwise distinct, and suppose two of its edges are equal:
-$e_a=e_b$ with $a<b$. Then $\{u_{a-1},u_a\}=\{u_{b-1},u_b\}$, so there are two cases. If
+$e_a=e_b$ with $a<b$. Then $\{u_{a-1},u_a\}=\{u_{b-1},u_b\}$, so, since two equal sets of two elements match their elements in one of two
+ways, there are two cases. If
 $u_{a-1}=u_{b-1}$, two vertices with different indices $a-1\ne b-1$ are
 equal. If $u_{a-1}=u_b$, two vertices with different indices $a-1\ne b$ are
 equal. Either way a vertex repeats, which contradicts the distinctness of the
@@ -59,11 +60,6 @@ is not a path, and $n_1,n_3,n_2,n_4,n_3,n_2,n_4,n_3,n_5$ is a walk that is not
 a trail (the examples of \cref{def:trail} and \cref{def:path}). The textbook
 gives the same two examples \cite[p.~22]{petrosyan2015grafneri}.
 \end{proof}
-
-The textbook states Definition 1.2.13 as a trail whose vertices are pairwise
-distinct. By \cref{prop:hierarchy} a walk with pairwise distinct vertices is
-already a trail, so that statement and \cref{def:path} describe the same
-walks.
 
 \subsection{A walk contains a path}
 
@@ -93,18 +89,24 @@ of length $0$.
 \emph{Induction hypothesis.} For some $k\ge1$, the claim holds for every walk
 of length less than $k$.
 
-\emph{Step.} Let $u_0,\dots,u_k$ be a walk. If its vertices are pairwise
-distinct, it is a path of length $k$, and we are done. Otherwise
-$u_a=u_b$ for some $a<b$. Delete the $b-a$ vertices $u_{a+1},\dots,u_b$; one copy of the repeated vertex,
-$u_a$, stays. The result is $u_0,\dots,u_a,u_{b+1},\dots,u_k$ (if $b=k$ it ends
-at $u_a=u_k=v$). For example, the walk $1,2,3,2,4$ has $u_1=u_3=2$, so $a=1$ and
-$b=3$; deleting the $2$ vertices $u_2,u_3$ leaves $1,2,4$, and the length drops
-from $4$ to $2$. It is
-still a walk: the only new pair of neighbours is $u_a,u_{b+1}$, and since
-$u_a=u_b$ and $u_b$ is adjacent to $u_{b+1}$, they are adjacent. It has the
-same ends, it uses vertices of the original walk in the same order, and its
-length is $k-(b-a)<k$. By the induction hypothesis it contains a path from
-$u$ to $v$ of length at most $k-(b-a)\le k$. \qedhere
+\emph{Step.} Let $u_0,\dots,u_k$ be a walk with $k\ge1$. If its vertices are
+pairwise distinct, it is a path of length $k$, and we are done. Otherwise
+$u_a=u_b$ for some $a<b$. First an example: the walk $1,2,3,2,4$ has
+$u_1=u_3=2$, so $a=1$ and $b=3$; deleting the $2$ vertices $u_2,u_3$ leaves
+$1,2,4$, and the length drops from $4$ to $2$. In general, delete the $b-a$
+vertices $u_{a+1},\dots,u_b$; one copy of the repeated vertex, $u_a$, stays.
+The result is $u_0,\dots,u_a,u_{b+1},\dots,u_k$ (if $b=k$ it ends at
+$u_a=u_k=v$). Three things hold.
+\begin{enumerate}
+\item[(i)] It is still a walk: the only new pair of neighbours is
+  $u_a,u_{b+1}$, and since $u_a=u_b$ and $u_b$ is adjacent to $u_{b+1}$, they
+  are adjacent.
+\item[(ii)] It has the same ends, and it uses vertices of the original walk in
+  the same order.
+\item[(iii)] It is shorter: its length is $k-(b-a)<k$.
+\end{enumerate}
+By the induction hypothesis it contains a path from $u$ to $v$ of length at most
+$k-(b-a)\le k$. \qedhere
 \end{proof}
 
 Example: on the five-town map the walk $n_1,n_3,n_2,n_4,n_3,n_2,n_4,n_3,n_5$
