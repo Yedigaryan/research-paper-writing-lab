@@ -14,6 +14,12 @@ session model; agent models come from each candidate's frontmatter.
 | base | earlier run | | | 3 | INCOMPLETE | | 21.37 |
 | inv | session_01V3X5px4ShXGvaa9cTb4xGT | 2026-11-05 10:46 | 2026-11-05 22:52 | 3 | PASS | b4a5dd7 | 20.26 |
 | dom | session_01V3X5pzCTTYKai69Mbmmzz1 | 2026-11-06 14:57 | 2026-11-06 15:46 | 3 | PASS | ab876b9 | 18.76 |
+| composed | session_01V3X5pv2N8SZAvo5Wd9Aoba | 2026-11-06 20:29 | | | | | |
+
+Composer: merge, 6 kept, 4 revised, 2 dropped; notes in
+composer-notes.md. Probe branch claude/harness/adjacency-pipeline/composed,
+reset commit ef32713, from base 3aa1ca7; tests/run-checks.sh passed
+after install.
 
 ## Confounds
 

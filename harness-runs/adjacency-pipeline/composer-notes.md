@@ -1,0 +1,33 @@
+# Composer notes: adjacency-pipeline
+
+Verbatim from the harness-composer's reply. The composer may write only
+inside compose/harness/, so the orchestrator saved these notes. A copy is
+in compose/NOTES.md (ignored by git).
+
+Decision: merge. 6 kept, 4 revised, 2 dropped. The tree is valid (18
+files, SKILL.md body 262 lines). It differs from both inv and dom. It was
+installed on claude/harness/adjacency-pipeline/composed at ef32713 from
+base 3aa1ca7.
+
+Edits the composer was unsure about:
+- Dropping the inv early reader pass. Its effect is confounded: dom
+  reached the same round-1 result without it, and the reader's findings
+  kept growing (26, then 28, 29, 39).
+- Keeping the sources/user-statements.md step. It targets base R3-1, but
+  it never ran in the inv rollout.
+- A fact line the composer added to math-pitfalls.md (the sum test
+  ignores the diagonal; an isolated vertex has degree zero). It rests
+  only on dom E2-F7 and E2-F8.
+
+kept -> SKILL.md Step 1: save the user's own words verbatim in `sources/user-statements.md` (or label the file a summary) so agents can cite them (inv) -> base reader R3-1 major at release, "course meaning of path rests on an assignment text that is not quoted" (rollouts/base.md, Round 3 table, line 10696); inv reader R1-F3 raised the same gap again. Not exercised in the inv run (no user-statements file appears), so the effect is unobserved; kept because it is cheap and guards against quoting a summary.
+kept -> new scripts/check_plain_words.py, run in SKILL.md Step 4 and by paper-author with `--terms`, described in latex-structure.md (inv) -> base had missing plain-words paragraphs (E1-6) and overlong sentences that recurred every round (E1-8, E2-3, E3-5; base.md lines 10527, 10609, 10687). In inv the script ran at every gate, a warning was acted on (inv.md line 8933, fixed at line 8370), and no evaluator raised a missing-paragraph or sentence-length finding in any round (inv.md lines 9498, 9566, 9638).
+kept -> check_citations.py accepts an undated source with no year field and rejects "n.d."; matching lines in paper-author.md and latex-structure.md (inv) -> the base script forced a year: base E1-14, E2-8 and E3-6 raised n.d. every round, and base's own limitations blame the checker (base.md line 10715). The dom run, still on the base script, wrote year = {n.d.} "because the checker requires a year or date" (dom.md lines 3853, 4753, 5915). No n.d. finding in inv.
+kept -> check_citations.py warns only when an uncited source still carries live claims; paper-author must cite it or set those claims to removed (inv) -> base E1-15, E2-9 and E3-7: the same two uncited sources stayed open all three rounds (base.md line 10689). inv reported 0 citation warnings in every round; dom without the change raised E1-F10 for the same reason (dom.md line 8071).
+kept -> paper-author.md and module-owner.md now point to the "Facts that are easy to state wrongly" section of math-pitfalls.md (dom) -> without the pointer, authors never reached that file, and base produced the false plain-words sentence E2-1 (base.md line 10607) and the parity finding R3-15 (line 10697). In dom no evaluator raised a major mathematics finding.
+kept -> dom's removal of the "Clean text" bullet from paper-author.md -> latex-structure.md line 40, which the author reads first, carries the same sentence word for word, so this cuts duplicated always-on text with no loss.
+revised -> paper-author.md: grep for a finding's phrase before closing it (inv); the grep now also covers `<paper>/evidence`, and occurrences are fixed in the file that owns the claim -> base findings resolved only in part and carried forward (E1-4 to E2-2, E1-7 to E2-3 to E3-5; base.md line 10601). In dom, E1-F1 was fixed in the text, but evidence claim C31 kept the old wording and became E2-F5 (dom.md lines 6284, 8152).
+revised -> math-pitfalls.md (dom): the length-0 row now says definitions may be silent while later usage assumes it; added one bullet that the sum test ignores the diagonal and the degree of an isolated vertex is zero -> dom E1-F2 and inv E1-F2 both corrected a "textbook is silent on length 0" claim (dom.md line 8063, inv.md line 9524); dom E2-F7 and E2-F8 were false plain-words sentences about the diagonal and an isolated vertex (dom.md lines 6301, 8154-8155).
+revised -> graph-sources.md (dom). Corrected entries: (a) length 0: the definitions are silent, but p. 23 property 1 and the p. 49 reflexivity assume it; (b) Galway: the degree statement is an equality, quoted, cited by printed page; (c) Paramadevan: never defines "path"; item 7 (p. 16) counts walks; Theorem 1 has two readings; Theorem 3 (p. 17) is the distance result and must be credited; (d) Bai defines path as vertex-distinct; (e) pages 12, 34 and 61 are marked as evaluator-viewed, with a rule to view a page before describing it; (f) the critique section now uses the two-reading rule -> each dom entry as first written was copied into the paper and drew a finding: "false as stated" became dom E1-F1 major (dom.md line 8062); "relates ... to its degree" became E1-F7 (line 5046); "not evidence either way" became E1-F2 (line 8063); the page list became E2-F6 (line 8153); the PDF/printed page mix became E2-F4 (line 8151). inv E1-F1 major was the uncredited Theorem 3 and item 7 (inv.md line 9523). The dom evaluator confirmed Bai's path definition (dom.md line 7561).
+revised -> quality-checklist.md source-critique item (dom): adds the two-reading rule and crediting what the same source states correctly -> base R1-30 and E3-1 (critique placed beside a theorem; one counterexample claimed to refute three statements, base.md lines 10547, 10683), dom E1-F1 and inv E1-F1 as above.
+dropped -> SKILL.md Step 4: a technician-reader read of the first draft before evaluation round 1 (inv) -> confounded and costly. dom, without it, reached the same round 1 (one evaluator major, understandability 4; dom.md lines 8049, 8062) and the same round-3 PASS. inv's reader findings did not shrink (26 in that early read, then 28, 29, 39; inv.md lines 9702-9963). The base run's blocking reader majors came from a reader output that graded severity, which these runs' readers no longer do.
+dropped -> inspect_pdf.py median-line-count warning, its latex-structure.md line, and the paper-author pdftoppm render paragraph (inv) -> the check missed the very defect it targets: inv's blank band under Figure 1 persisted from E1-F8 to E2-F6 and was documented at release while inspect_pdf reported 0 warnings (inv.md lines 9530, 9566, 9665). A check that passes a known defect gives false assurance; dom had no layout finding without it.
