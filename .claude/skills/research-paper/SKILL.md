@@ -61,7 +61,13 @@ are staging only and are merged into it by script.
 
 Inspect everything the user supplied: text, images, PDFs, documents, code,
 datasets, tables, papers. Read images and PDFs directly. Copy supplied files
-into `papers/<slug>/sources/` with descriptive names.
+into `papers/<slug>/sources/` with descriptive names. When the paper will
+rest on something the user only said or typed (a convention, a question,
+an assignment they did not attach), save their words verbatim with the
+date in `sources/user-statements.md` and list it in the input inventory,
+so agents can quote and cite it as a `local-file` source. If only a
+summary of their words is available, the file says it is a summary and
+nobody quotes it.
 
 For photos of whiteboards, handwritten notes, or book pages, follow
 `references/photo-input.md` before anything else: transcribe, separate the
@@ -159,6 +165,11 @@ python3 .claude/skills/research-paper/scripts/check_citations.py papers/<slug>
 python3 .claude/skills/research-paper/scripts/check_claims.py papers/<slug>
 python3 .claude/skills/research-paper/scripts/inspect_pdf.py papers/<slug>
 ```
+
+In the `study-note` register also run
+`python3 .claude/skills/research-paper/scripts/check_plain_words.py papers/<slug>`;
+its errors are failures, and its warnings go to the author with the next
+batch of findings.
 
 Any failure goes back to the author before evaluation. The evaluator's time
 is the most expensive in the pipeline; never spend it on a paper that does

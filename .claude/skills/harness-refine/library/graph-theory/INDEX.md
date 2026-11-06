@@ -5,6 +5,11 @@ stored with its full component tree and why it was picked. Browse this
 index, then open the entries that look relevant to the matter in front
 of you.
 
+## harnesses/adjacency-pipeline/
+- harness: harnesses/adjacency-pipeline/harness/ (7 references, 7 scripts, 3 agents; 25,635 always-on chars)
+- why: harnesses/adjacency-pipeline/EXPERIENCE.md
+- cue: A mechanical gate script requires a metadata field (year, date, author, page) that some legitimate sources do not have, such as undated lecture notes or anonymous course files, and agents must pass the gate before evaluation.
+
 ## harnesses/adjacency-walks-connectivity/
 - harness: harnesses/adjacency-walks-connectivity/harness/ (7 references, 6 scripts, 3 agents; 23,663 always-on chars)
 - why: harnesses/adjacency-walks-connectivity/EXPERIENCE.md
