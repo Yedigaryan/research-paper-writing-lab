@@ -1,6 +1,7 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage[T1]{fontenc}
+\usepackage{mathptmx}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage{graphicx}
@@ -11,6 +12,10 @@
 \usepackage[backend=biber,style=numeric,urldate=long]{biblatex}
 \addbibresource{references.bib}
 \graphicspath{{figures/}}
+\setlength{\emergencystretch}{3em}
+\setcounter{biburlnumpenalty}{100}
+\setcounter{biburlucpenalty}{100}
+\setcounter{biburllcpenalty}{100}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -38,19 +43,21 @@ what the powers of $A$ count and how $A$ shows that a graph is connected}
 
 \begin{abstract}
 A finite simple undirected graph with $N$ vertices can be given by its
-adjacency matrix $A$. This note answers three questions about it, two
-taken from a lecture whiteboard and one from an assignment. First, the
-entry in row $i$ and column $j$ of the matrix power $A^k$ counts the walks
-of length $k$ from vertex $n_i$ to vertex $n_j$; it counts walks, not
-paths. Second, the graph is connected if and only if every entry off the
-diagonal of $A+A^2+\dots+A^{N-1}$ is positive, which holds if and only if
-$(I+A)^{N-1}$ has no zero entry. Third, a path between $n_i$ and $n_j$ is
-a sequence of pairwise distinct vertices from $n_i$ to $n_j$ in which
-consecutive vertices are adjacent, the course textbook's simple path. All
-statements are proved in full, the course textbook's numbering is used for
-its definitions, and every matrix in the worked examples was computed by
-script. Each definition, theorem, and test is preceded by a plain-words
-paragraph told as a story about a frog on islands.
+adjacency matrix $A$, a table of zeros and ones that records which pairs of
+vertices are joined by an edge. A \emph{walk} is a route that follows edges
+from vertex to vertex and may revisit vertices and edges; a graph is
+\emph{connected} if every vertex can be reached from every other. This note
+answers three questions about $A$, two taken from a lecture whiteboard and
+one from an assignment. First, the entry in row $i$ and column $j$ of the
+matrix power $A^k$ counts the walks of length $k$ from vertex $n_i$ to
+vertex $n_j$; it counts walks, not paths. Second, the graph is connected if
+and only if every entry off the diagonal of $A+A^2+\dots+A^{N-1}$ is
+positive, which holds if and only if $(I+A)^{N-1}$ has no zero entry.
+Third, a path between $n_i$ and $n_j$ is a sequence of pairwise distinct
+vertices from $n_i$ to $n_j$ in which consecutive vertices are joined by an
+edge. The two tests and the walk-counting theorem are proved in full here;
+the textbook's definitions, the breadth-first-search comparison, and
+standard linear algebra are cited, not proved.
 \end{abstract}
 
 \input{sections/introduction}

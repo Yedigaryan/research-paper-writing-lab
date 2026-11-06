@@ -7,9 +7,10 @@ also stand for vertices; $uv$ is the edge joining $u$ and $v$, and
 $|E|$ is the number of edges. The indices $i,j,r$ run over $1,\dots,N$.
 The letter $k$ is a non-negative integer used for the length of a walk and
 for the exponent of a matrix power. $A$ is the adjacency matrix, $I$ the
-$N\times N$ identity matrix, and $d(n_i)$ the degree of $n_i$. The textbook
+$N\times N$ identity matrix, and $\deg(n_i)$ the degree of $n_i$. The textbook
 writes the same objects with $v_i$ and $d_G(v)$
-\cite[pp.~9, 16]{petrosyan2015graphs}.
+\cite[pp.~9, 16]{petrosyan2015graphs}; this note writes $\deg$ for degree so
+that the letter $d$ is free for distance (\cref{def:distance}).
 
 \subsection{Graphs, neighbours, and the adjacency matrix}
 
@@ -106,7 +107,7 @@ be a loop.
 number of bridges at the island.
 
 \begin{definition}[Degree; textbook Definition~1.2.1]\label{def:degree}
-The \emph{degree} $d(n_i)$ of the vertex $n_i$ is the number of edges that
+The \emph{degree} $\deg(n_i)$ of the vertex $n_i$ is the number of edges that
 have $n_i$ as an end \cite[Definition~1.2.1, p.~16]{petrosyan2015graphs}.
 \end{definition}
 
@@ -133,7 +134,7 @@ Let $A$ be the adjacency matrix of $G$. Then
 \begin{enumerate}
 \item $A_{ij}=A_{ji}$ for all $i,j$ (symmetry);
 \item $A_{ii}=0$ for all $i$ (zero diagonal);
-\item $\sum_{j}A_{ij}=d(n_i)$ for every $i$ (row sums are degrees);
+\item $\sum_{j}A_{ij}=\deg(n_i)$ for every $i$ (row sums are degrees);
 \item $\sum_{i,j}A_{ij}=2|E|$.
 \end{enumerate}
 \end{proposition}
@@ -145,8 +146,9 @@ the proof below is the note's own.
 $uv=vu$. (2) A simple graph has no edge from $n_i$ to itself, so $n_i$ is
 not adjacent to itself. (3) Row $i$ has a $1$ in column $j$ exactly when
 $n_in_j\in E$, so the row sum counts the edges at $n_i$, which is
-$d(n_i)$. (4) By (3) the sum of all entries is the sum of all degrees,
-which is $2|E|$ by the textbook's Theorem~1.2.1 (Euler)
+$\deg(n_i)$. (4) By (3) the sum of all entries is the sum of all degrees. Every edge has
+two ends, so it is counted once at each end when the degrees are added; the
+sum is therefore $2|E|$, which is the textbook's Theorem~1.2.1 (Euler)
 \cite[Theorem~1.2.1, p.~16]{petrosyan2015graphs}. Since $A$ is symmetric,
 column sums are the degrees too.
 \end{proof}
@@ -165,17 +167,25 @@ For $N\times N$ matrices $X$ and $Y$ the product $XY$ has entries
 \end{equation}
 The \emph{powers} of $A$ are $A^0=I$ (ones on the diagonal, zeros
 elsewhere) and $A^{k+1}=A^{k}A$ for $k\ge 0$. This is the standard
-definition from linear algebra.
+definition from linear algebra. In words, the entry in row $i$ and column
+$j$ of $XY$ is obtained by running along row $i$ of $X$ and down column $j$
+of $Y$, multiplying the entries in pairs, and adding the results. The
+\emph{transpose} $X^{T}$ of $X$ is the matrix with $(X^{T})_{ij}=X_{ji}$,
+that is, $X$ flipped over its diagonal; the standard rule
+$(XY)^{T}=Y^{T}X^{T}$ is used in \cref{sec:counting}. By
+\cref{prop:basic}, $A^{T}=A$.
 \end{definition}
 
-\begin{remark}
+\begin{remark}\label{rem:nonneg}
 A power is not the entrywise power. Every entry of $A^k$ is a non-negative
 integer, because $A$ has entries $0$ and $1$ and sums and products of
 non-negative integers are non-negative integers; this is used in
 \cref{sec:connectivity}.
 \end{remark}
 \begin{example}
-For the board matrix, $(A^2)_{11}=0\cdot 0+1\cdot 1+0\cdot 0=1$ and
+For the board matrix, row $1$ of $A$ is $(0,1,0)$ and column $1$ of $A$ is
+$(0,1,0)$, so $(A^2)_{11}=0\cdot 0+1\cdot 1+0\cdot 0=1$. Row $2$ is
+$(1,0,1)$ and column $2$ is $(1,0,1)$, so
 $(A^2)_{22}=1\cdot 1+0\cdot 0+1\cdot 1=2$.
 \end{example}
 \begin{nonexample}

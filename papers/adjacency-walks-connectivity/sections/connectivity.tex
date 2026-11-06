@@ -1,4 +1,4 @@
-\section{Question 2: deciding connectivity from $A$}\label{sec:connectivity}
+\section{Question 2: deciding connectivity from \texorpdfstring{$A$}{A}}\label{sec:connectivity}
 
 Question (Q2) asks how to know from $A$ whether the graph is connected.
 This section defines connectedness and components, proves a test that uses
@@ -16,7 +16,9 @@ $G$ is \emph{connected} if for any two vertices $u$ and $v$ there is a
 path from $u$ to $v$. The board states the same definition: for any $n_i$,
 $n_j$ there exists a path between the nodes \cite{whiteboard1,whiteboard2}.
 The textbook's Definition~2.1.1 asks for a $(u,v)$-``path''
-\cite[Definition~2.1.1, p.~48]{petrosyan2015graphs}.
+\cite[Definition~2.1.1, p.~48]{petrosyan2015graphs}. (Asking for a walk, a
+trail, or a path gives the same connected graphs; see
+\cref{prop:together}.)
 \end{definition}
 
 \begin{remark}
@@ -45,6 +47,14 @@ other. Every island is its own friend. If the first island is a friend of
 the second, the second is a friend of the first. A friend of a friend is a
 friend.
 
+A \emph{relation} $\sim$ on the vertices says, for each ordered pair
+$u,v$, whether $u\sim v$ holds or not. It is \emph{reflexive} if $u\sim u$
+for every $u$, \emph{symmetric} if $u\sim v$ implies $v\sim u$, and
+\emph{transitive} if $u\sim v$ and $v\sim w$ imply $u\sim w$. A relation with
+all three properties is an \emph{equivalence relation}; it splits the set
+into \emph{equivalence classes}, the groups of vertices that are related to
+each other, so that every vertex lies in exactly one class.
+
 \begin{lemma}[Being joined by a path is an equivalence relation]\label{lem:equiv}
 Let $u\sim v$ mean that there is a path from $u$ to $v$. Then $\sim$ is
 reflexive, symmetric, and transitive.
@@ -64,8 +74,9 @@ a path from $u$ to $w$.
 group is a friend of anybody in another group.
 
 \begin{definition}[Connectivity component; textbook, printed p.~49]\label{def:component}
-The equivalence classes of $\sim$, together with the subgraphs they induce,
-are the \emph{connectivity components} of $G$. The textbook introduces them
+The equivalence classes of $\sim$, each taken together with the edges of
+$G$ that join two of its vertices (the subgraph \emph{induced} on the
+class), are the \emph{connectivity components} of $G$. The textbook introduces them
 in the prose after Definition~2.1.1, with no number of their own
 \cite[p.~49]{petrosyan2015graphs}. Two vertices lie in the same component
 exactly when a path joins them.
@@ -98,6 +109,10 @@ that is, exactly when there is only one equivalence class. Since $N\ge 1$,
 at least one class exists.
 \end{proof}
 
+Components are a reformulation of connectedness (\cref{cor:onecomp}). The
+proofs of the two tests below do not use them; they are used only to
+describe the shape of the matrices in \cref{ex:disconnected}.
+
 \subsection{The test}
 
 \plainwords{} Pick two different islands. Make tables for one hop, for two
@@ -126,8 +141,10 @@ $k\le N-1$.
 
 \plainwords{} Add up the tables for one hop, for two hops, and so on. Stop at
 one fewer hops than there are islands. Look only at cells where the row island
-and the column island are different. If none of those cells is zero, the
-pond is in one piece. If one of them is zero, it is not.
+and the column island are different. The other cells count trips that come
+back to where they started, and those say nothing about reaching other
+islands. If none of the cells you look at is zero, the pond is in one
+piece. If one of them is zero, it is not.
 
 \begin{theorem}[Sum test]\label{thm:sum}
 Let $B=A+A^2+\dots+A^{N-1}$. Then $G$ is connected if and only if
@@ -136,9 +153,10 @@ $B_{ij}>0$ for all $i\ne j$.
 The statement is Theorem~2 of Paramadevan and Sotheeswaran
 \cite[p.~17]{paramadevan2021adjacency}; the proof here is the note's own.
 \begin{proof}
-Each $A^k$ has non-negative entries (Remark after \cref{def:power}), so
-$B_{ij}=\sum_{k=1}^{N-1}(A^k)_{ij}$ is positive exactly when at least one
-term is positive. For $i\ne j$ this holds exactly when a path joins $n_i$
+Each $A^k$ has non-negative entries (\cref{rem:nonneg}), so
+$B_{ij}=\sum_{k=1}^{N-1}(A^k)_{ij}$ is a sum of non-negative terms, no term can
+cancel another, and the sum is positive exactly when at least one term is
+positive. For $i\ne j$ this holds exactly when a path joins $n_i$
 and $n_j$, by \cref{lem:reach}. So $B_{ij}>0$ for all $i\ne j$ exactly when
 every pair of different vertices is joined by a path, which is
 \cref{def:connected} (a vertex is joined to itself by the path of length
@@ -146,11 +164,11 @@ $0$). For $N=1$ the sum is empty and there are no entries off the
 diagonal; $G$ is connected and the statement holds without content.
 \end{proof}
 
-\plainwords{} There is a shortcut that needs only one table. Put a one in
-every cell where the row island and the column island are the same. Then
-multiply this new table by itself again and again. Use it as a factor one
-fewer time than there are islands. The pond is in one piece exactly when no cell
-of the result is zero.
+\plainwords{} There is a shortcut that needs only one new table. Start with
+the island table. Add a one to every cell where the row island and the
+column island are the same. Multiply this new table by itself again and
+again. Use it as a factor one fewer time than there are islands. The pond
+is in one piece exactly when no cell of the result is zero.
 
 \begin{theorem}[Power test]\label{thm:power}
 $G$ is connected if and only if every entry of $T=(I+A)^{N-1}$ is positive.
@@ -161,11 +179,16 @@ binomial identity as the proof below \cite[p.~2]{gotti18211}. That this
 test is equivalent to the sum test is shown here, and no source read states
 both together.
 \begin{proof}
-The matrices $I$ and $A$ commute, so the binomial theorem gives
+Two matrices $X$ and $Y$ \emph{commute} if $XY=YX$. The binomial theorem
+$(X+Y)^n=\sum_k\binom nk X^kY^{n-k}$ holds for matrices that commute, and
+$I$ commutes with every matrix, in particular with $A$ (because
+$IA=A=AI$). The binomial coefficient $\binom{n}{k}$ is the number of ways
+to choose $k$ items from $n$; it is a positive integer for $0\le k\le n$.
+So
 \begin{equation}\label{eq:binomial}
 (I+A)^{N-1}=\sum_{k=0}^{N-1}\binom{N-1}{k}A^k,
 \end{equation}
-where each binomial coefficient is a positive integer. Take $i\ne j$.
+where each binomial coefficient is at least $1$. Take $i\ne j$.
 Then $I_{ij}=0$, so $T_{ij}=\sum_{k=1}^{N-1}\binom{N-1}{k}(A^k)_{ij}$. All
 terms are non-negative and all coefficients are at least $1$, so $T_{ij}>0$
 exactly when some $(A^k)_{ij}$ with $1\le k\le N-1$ is positive, that is,
@@ -185,8 +208,11 @@ counts; only whether they are zero is used.
 \begin{itemize}
 \item The diagonal of $B$ is ignored. A connected graph can have zeros on
   the diagonal of $B$: for $N=2$ and one edge, $B=A=\begin{pmatrix}0&1\\1&0\end{pmatrix}$.
-  The disconnected example below has $B_{33}=0$ as well, but what makes
-  it disconnected are the zeros off the diagonal.
+  The reason: $B_{ii}$ counts closed walks from $n_i$ back to
+  itself, which say nothing about reaching other vertices; with $N=2$ the
+  sum stops at $A^1$, which has no closed walks. The disconnected example
+  below has $B_{33}=0$ as well, but what makes it disconnected are the
+  zeros off the diagonal.
 \item A positive entry says a walk of exactly length $k$ exists, hence a
   path of length at most $k$ (\cref{rem:positive}); it does not say a path
   of exactly length $k$ exists.
@@ -228,10 +254,12 @@ T=\begin{pmatrix}2&2&0\\2&2&0\\0&0&1\end{pmatrix}.
 \]
 The entries $B_{13}=B_{23}=B_{31}=B_{32}=0$, so $G$ is not connected by
 \cref{thm:sum}. $T$ has zeros in the same four places, so \cref{thm:power}
-says the same. The matrices $B$ and $T$ are block diagonal along the two
-components $\{n_1,n_2\}$ and $\{n_3\}$ of \cref{cor:onecomp}; the script
-shows this shape, and in general it follows from \cref{lem:reach}. Note
-$(A^2)_{33}=0$: the isolated vertex has degree $0$ (\cref{prop:powers}).
+says the same. The two components of \cref{cor:onecomp} are
+$\{n_1,n_2\}$ and $\{n_3\}$, and the non-zero entries of $B$ and $T$ all lie
+in the rows and columns of one of them: they form two blocks along the
+diagonal, a $2\times 2$ block and a $1\times 1$ block. In general no walk
+joins vertices in different components, so by \cref{lem:reach} every entry
+that links two components is zero.
 \end{example}
 
 \plainwords{} Suppose we looked only at the table for two hops, with three
@@ -278,7 +306,9 @@ $N$ vertices are visited. This is the note's interpretation of the two
 sources for its own definition of connected, which neither source states
 in exactly this form; the BFS lemma is cited and not proved here. BFS reads
 $A$ row by row and needs no matrix powers. As an estimate by counting, not
-a measurement, it takes about $N^2$ operations on an adjacency matrix, against
-$N-2$ matrix products of about $N^3$ multiplications each for the matrix
-tests, so the matrix tests answer the question as posed, with $A$ alone,
+a measurement: BFS reads one row of $N$ entries for each of at most $N$
+visited vertices, about $N^2$ operations. A product of two $N\times N$
+matrices has $N^2$ entries, each a sum of $N$ products by \cref{eq:product},
+so about $N^3$ multiplications, and reaching $A^{N-1}$ from $A$ takes $N-2$
+products. So the matrix tests answer the question as posed, with $A$ alone,
 but are not the cheap way.

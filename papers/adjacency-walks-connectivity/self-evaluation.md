@@ -1,8 +1,7 @@
 # Self-evaluation (author), round 0
 
-Build status: `build.sh` exits 2 because no LaTeX toolchain (`latexmk`,
-`biber`) is installed in this environment. The paper has never been
-compiled. I checked by script that every `\begin` has its `\end`, that braces
+Build status (round 0, superseded by round 1 below): `build.sh` exited 2 because no
+LaTeX toolchain was installed. In round 1 the paper compiles (21 pages). I checked by script that every `\begin` has its `\end`, that braces
 and dollar signs balance, and that every `\ref` and `\cref` has a label. That
 is not a compile; TikZ, `cleveref`, and `biblatex` behaviour is untested.
 `main.pdf` does not exist, so `inspect_pdf.py` could not run (exit 1, "main.pdf
@@ -260,6 +259,154 @@ check the drawing: three lines, an arrowhead at vertex 2 on the 1-2 line.
   only; the example after the cut lemma and the worked examples after the tests
   serve as their worked instances.
 
-## Per-finding log
 
-Round 0: no findings yet.
+## Round 1 update
+
+Mechanical checks after the round 1 revision: `build.sh` exit 0 (21 pages);
+`check_citations.py` 11 keys, 0 errors, 0 warnings; `check_claims.py` 0
+errors, 10 inherited warnings; `inspect_pdf.py` 0 errors, 0 warnings;
+`check_plain_words.py` 34 paragraphs, 28 statements, 0 errors, 0 warnings.
+`pdffonts` shows Type 1 fonts throughout except one Type 3 font that I did
+not trace (probably from the TikZ figure or a symbol); the "ff" ligature now
+extracts correctly ("off the diagonal").
+
+Evidence: new claim a5 in `evidence/modules/author.json` (walk count equals
+path count when k is the distance; larger k can differ or agree; the triangle
+entry (A^2)_12 = 1 is from `m3_connectivity.py` output). `evidence.json`
+rebuilt. No other claim was added; sentences I reworded carry the same
+citations as before.
+
+Changed sections and what to re-read:
+
+- Abstract (`main.tex`): defines walk and connected, no presentation remarks,
+  says what is proved and what is cited. Fonts: `mathptmx` (Type 1 Times with
+  math); `lmodern` is not installed here.
+- Section 1 (`introduction.tex`): Q1 to Q3 stated up front; provenance
+  shortened; conventions rewritten as 7 short items (drawing details and
+  search details moved to Section 6.2 and Appendix A); reading guide added.
+  Premises of the claims are unchanged (C1 to C9, C11, C26, C30, C47).
+- Section 2 (`background.tex`): handshake reason stated; degree renamed
+  deg; transpose and the product rule defined (standard linear algebra,
+  marked as such); product explained with row and column vectors.
+- Section 3 (`walks.tex`): walk defined as a vertex sequence first, with the
+  length-0 part attributed to this note; purpose of trails, cycles, distance
+  stated; Lemma 3.8 proof shortened to one vertex argument; Lemma 3.9 uses
+  positions s < t and explains strong induction.
+- Section 4 (`counting.tex`): the false sentence is replaced (a5); k-range
+  attributions corrected to what the sources say; proof and example details
+  expanded; labelled-graph count explained.
+- Section 5 (`connectivity.tex`): relation, equivalence class, induced
+  subgraph, commute, binomial theorem and coefficient defined; diagonal
+  reason; block shape explained; cost estimate derived in the text.
+- Section 6 (`discussion.tex`) and 7: title shortened; counts moved to the
+  appendix; drawing-versus-matrix report is now Section 6.2 (label
+  `sec:drawing`); Section 6.4 states its purpose and the B_22 and T_11
+  arguments use "at most one path of any length joins the vertex to itself",
+  which holds with or without length 0; the conclusion says why N - 1.
+- Appendix A: search details, counts, `\path` for file names.
+
+## Per-finding log, round 1
+
+Evaluator findings.
+
+- E1 (major): replaced "Otherwise the counts differ" by the correct statement
+  (equality of walk and path counts when k is the distance; for larger k the
+  entry is at least the path count, can be larger as in Example 4.5, or equal
+  as in the triangle with (A^2)_12 = 1). Grepped sections, appendix and
+  evidence for "counts differ" and similar: no other occurrence. The earlier
+  sentences "A walk whose length equals the distance is a path" and Example
+  4.5 are correct and kept. Claim a5 added. Note: the module report
+  `modules/m1.md` section 3.4 still contains the false sentence ("In
+  general the counts differ" is a weaker form there); I do not own that file.
+- E2: abstract now says the two tests and the walk-counting theorem are proved
+  and the textbook definitions, BFS comparison and standard linear algebra are
+  cited.
+- E3: relation, reflexive, symmetric, transitive, equivalence class and
+  induced subgraph are defined before Lemma 5.2 and in Definition 5.3.
+- E4: commute, the binomial theorem for commuting matrices, the binomial
+  coefficient, and why I commutes are stated in the proof of the power test.
+- E5: Definition 3.1 leads with the vertex sequence, cites the textbook only
+  for the formal sequence, and says that k = 0 is this note's convention.
+- E6: Section 4 now says Galway states positive integer k, Bai and Gotti state
+  length k, and neither says in the passages read whether k = 0 is included
+  (C31 "k a positive integer", C34, C38).
+- E7: transpose defined in Section 2 (Definition of powers).
+- E8: strong induction explained at the start of the proof of Lemma 3.9.
+- E9: block structure described in words with the reason; the back reference is
+  now `\cref{rem:nonneg}`.
+- E10: fonts changed to `mathptmx` (Type 1). I could not use `lmodern`, which
+  is not installed; the "ff" ligature now survives in the text layer. One
+  Type 3 font remains (untraced).
+- E11: section titles use `\texorpdfstring`; Discussion title shortened; file
+  names use `\path`; `\emergencystretch` and url penalties remove the two
+  overfull boxes (both were in the bibliography, not the appendix; the
+  appendix fix still applies).
+
+Reader findings.
+
+- R1: abstract defines walk and connected; presentation remarks removed.
+- R2: same as E10.
+- R3: Q1 to Q3 stated at the start of Section 1; the board mark is in
+  Convention 3.
+- R4: provenance sentence is now "as it was relayed to the author of this
+  note; the relay is a summary and not the assignment's own words", with the
+  citation kept.
+- R5: Convention 2 says once "we write G = (V, E) ...", board and textbook
+  differences in one sentence.
+- R6: sentence about prime or quotation marks deleted.
+- R7: drawing discrepancy moved to Section 6.2; Convention 4 says only that the
+  matrix defines the example.
+- R8: walk explained in a clause where "path" first appears in Convention 5;
+  textbook comparison pointed to Table 2.
+- R9: Convention 6 explains why length 0 is wanted (A^0 = I).
+- R10: Convention 7 is one sentence; search details moved to Appendix A.
+- R11: the claim about order is fixed to match the layout (plain-words
+  paragraph first, then the definition). I did not reduce the story words:
+  each plain-words paragraph and the dictionary use them consistently, and
+  replacing them would touch all 34 paragraphs; flagged for the evaluator.
+- R12: Q1 answer reworded and cites the non-example `ex:notreach`.
+- R13: handshake reason stated in the proof of Proposition 2.5.
+- R14: degree renamed deg; textbook's d_G(v) mentioned.
+- R15 and R16: matrix product explained in words in Definition 2.6; Example 2.7
+  writes out row and column vectors. I did not add a separate 2 by 2 example.
+- R17: caption of Figure 1 lists the edges of H; the figure itself renders in
+  the PDF. I did not inspect the PDF image beyond the build.
+- R18: Definition 3.1 leads with the vertex sequence.
+- R19: purpose of trails stated at the start of Section 3.
+- R20 and R21: purpose of cycles and distance stated at the start of Section 3
+  (distance is used in Corollary 4.7).
+- R22: positions s < t used instead of i < j.
+- R23: Lemma 3.8 proof rewritten so that one end vertex settles all cases.
+- R24: `(A^k)_ir = (A^k)_ir * 1 = ...` written out, and the zero case likewise.
+- R25: the why-walks remark points to Example 4.5.
+- R26: the three terms are written as (A^2)_11 A_12 + (A^2)_12 A_22 +
+  (A^2)_13 A_32.
+- R27: parity reason added (each hop alternates between the middle vertex and
+  an end vertex).
+- R28: 64 = 2^6 explained.
+- R29: transpose defined in Section 2.
+- R30: the "Otherwise" sentence replaced (see E1); Example 4.5 is the example
+  where the counts differ.
+- R31: Definition 5.1 now says walk, trail or path give the same graphs and
+  points to Proposition 3.11.
+- R32: see E3.
+- R33: a paragraph before the test says components are a reformulation, used
+  only to describe the block shape in Example 5.9.
+- R34: "no term can cancel another" added.
+- R35: see E4.
+- R36: plain-words paragraph for the power test now says "start with the
+  island table and add a one to every cell where row and column island are the
+  same".
+- R37: reason for ignoring the diagonal added (closed walks say nothing about
+  reaching other vertices) in the theorem's plain-words paragraph and in the
+  limits list.
+- R38: see E9.
+- R39: the remark on (A^2)_33 removed.
+- R40: abstract qualified (E2); operation counts derived in two sentences in
+  the BFS paragraph.
+- R41: counts moved to Appendix A; Section 6.1 says only what the check shows.
+- R42: Section 6.4 opens with its purpose and optional status; B_22 and T_11
+  arguments simplified.
+- R43: the conclusion says a path visits each vertex at most once, so it has at
+  most N - 1 edges.
+- R44: reading guide added at the end of Section 1.

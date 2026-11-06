@@ -13,7 +13,12 @@ The mathematical sections only cite.
   pages. Printed pages 7, 9, 11, 16, 21, 22, 23, 48, and 49 were viewed as
   images. The text layer drops mathematical symbols, so formulas were
   checked on the images. Other pages were reached only through a text
-  search (Convention~\ref{conv:proofs}).
+  search for the Armenian phrase for ``adjacency matrix'', which finds it on
+  printed pages 7, 11, 12, 34, and 61; pages 7 and 11 were read and hold the
+  notation and the definition, and pages 12, 34, and 61 were not read for
+  this note. No walk-counting theorem and no matrix test for connectivity was
+  found, which is the result of a search and not of reading the whole book
+  (Convention~\ref{conv:proofs}).
 \item University of Galway notes, section 1.1, read in full; they carry no
   author name and no date \cite{galwaynotes}. Gotti's lecture notes, read in
   full; no usable date \cite{gotti18211}.
@@ -33,23 +38,35 @@ The mathematical sections only cite.
   assignment's words.
 \end{itemize}
 
+\paragraph{Counts behind the checks of \cref{sec:discussion}.} The script
+\path{scripts/m3_connectivity.py} compared the sum test, the power test, and
+a breadth-first search on all labelled simple graphs with $N=1,\dots,6$
+vertices, that is $1$, $2$, $8$, $64$, $1024$, and $32768$ graphs, of which
+$1$, $1$, $4$, $38$, $728$, and $26704$ are connected, with no
+disagreement. The counts of connected graphs are what the script found, not
+figures taken from a source. The script \path{scripts/walk_path_lemmas.py}
+checked the cut of \cref{lem:cut} on every walk of length $0$ to $8$ on all
+$8$ graphs with three vertices, of length $0$ to $7$ on all $64$ graphs with
+four, and of length $0$ to $5$ on all $1024$ graphs with five ($2052$,
+$72664$, and $743680$ walks), with no failure.
+
 \paragraph{How to rerun the computations.} From the paper folder:
 \begin{itemize}
-\item \texttt{python3 -I scripts/walks\_check.py} prints the powers of the
+\item \texttt{python3 -I} \path{scripts/walks_check.py} prints the powers of the
   board matrix, the walks behind the entries, the classification of every
   example sequence on $H$, the path graph on four vertices, and the brute
   force check of \cref{thm:counting}; its output is in
-  \texttt{scripts/output-walks\_check.txt}.
-\item \texttt{python3 -I scripts/m3\_connectivity.py} prints $A$, $A^2$,
+  \path{scripts/output-walks_check.txt}.
+\item \texttt{python3 -I} \path{scripts/m3_connectivity.py} prints $A$, $A^2$,
   $B$, and $T$ for the connected, the disconnected, and the triangle
   example, the check that a single power is not a test, the binomial
   identity, and the exhaustive comparison of the three tests for
-  $N=1,\dots,6$; its output is in \texttt{scripts/output-m3\_connectivity.txt}.
-\item \texttt{python3 -I scripts/walk\_path\_lemmas.py} checks
+  $N=1,\dots,6$; its output is in \path{scripts/output-m3_connectivity.txt}.
+\item \texttt{python3 -I} \path{scripts/walk_path_lemmas.py} checks
   \cref{lem:distinct,lem:cut,cor:bound,prop:distance} on all graphs with three,
   four, and five vertices (about six seconds); its output is in
-  \texttt{scripts/output-walk\_path\_lemmas.txt}.
+  \path{scripts/output-walk_path_lemmas.txt}.
 \end{itemize}
 All three use only the Python standard library. The note itself compiles
 with \texttt{latexmk} and \texttt{biber} (TeX Live) by the commands in the
-paper folder's \texttt{README.md}.
+paper folder's \path{README.md}.

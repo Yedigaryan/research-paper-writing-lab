@@ -5,29 +5,26 @@
 A graph is a set of points, called vertices, together with lines, called
 edges, that join some pairs of points. A computer cannot look at a drawing,
 so a graph is often given as a table of zeros and ones, the adjacency
-matrix $A$. This note is about what that table can tell us.
-
-The questions come from a lecture whiteboard that was photographed twice
-from slightly different angles \cite{whiteboard1,whiteboard2}. The board
-holds a rule for the entries $A_{ij}$ of an adjacency matrix, a drawing of
-three vertices labelled 1, 2, 3, a $3\times 3$ matrix with rows $0\,1\,0$,
-$1\,0\,1$, $0\,1\,0$, and a problem statement: a graph with $N$ nodes is
-given through its adjacency matrix $A$. Two questions follow.
+matrix $A$, with one row and one column for each vertex. This note is
+about what that table can tell us. It asks three questions.
 \begin{enumerate}
-\item[(Q1)] What does the entry $A_{ij}$ of a power of $A$ represent? (The
-  board writes a small mark above $A$; see Convention~\ref{conv:power}.)
-\item[(Q2)] How can we know from $A$ whether the graph is connected?
+\item[(Q1)] What does the entry in row $i$ and column $j$ of the matrix
+  power $(A^k)_{ij}$ represent?
+\item[(Q2)] How can we know from $A$ whether the graph is connected, that
+  is, whether every vertex can be reached from every other?
+\item[(Q3)] What is the definition of a path between the vertices $n_i$ and
+  $n_j$?
 \end{enumerate}
-The last line of the board defines a connected graph as one in which, for
-any $n_i$ and $n_j$, there exists a path between the nodes
-\cite{whiteboard1,whiteboard2}. The assignment text adds a third question,
-as it was reported to this note (the report is a summary, not the
-assignment's own words, and is used here as reported content)
-\cite{userstatements}.
-\begin{enumerate}
-\item[(Q3)] What is the definition of a path between the vertices $n_i$
-  and $n_j$?
-\end{enumerate}
+Questions (Q1) and (Q2) come from a lecture whiteboard that was
+photographed twice from slightly different angles
+\cite{whiteboard1,whiteboard2}. The board holds a rule for the entries
+$A_{ij}$ of an adjacency matrix, a drawing of three vertices, a $3\times 3$
+matrix with rows $0\,1\,0$, $1\,0\,1$, $0\,1\,0$, a problem statement (a
+graph with $N$ nodes is given through its adjacency matrix $A$), the two
+questions, and a definition: a graph is connected if for any $n_i$ and
+$n_j$ there exists a path between the nodes. Question (Q3) was added by the
+assignment, as it was relayed to the author of this note; the relay is a
+summary and not the assignment's own words \cite{userstatements}.
 
 The questions matter because they connect a picture to arithmetic. If
 multiplying the table by itself counts routes between vertices, then a
@@ -37,71 +34,55 @@ every other.
 
 \subsection{Conventions and assumptions}\label{sec:conventions}
 
-Where the board, the assignment as reported, and the course textbook
-(Petrosyan, Mkrtchyan, and Kamalyan, \emph{Graph Theory}, in Armenian)
-disagree or leave a point open, this list fixes what the note uses. The
-list is cited by item number later. The textbook is cited by printed page
-number; the page of the PDF file is one higher \cite{petrosyan2015graphs}.
+Where the board, the assignment as relayed, and the course textbook
+(Petrosyan, Mkrtchyan, and Kamalyan, \emph{Graph Theory}, in Armenian) differ
+or leave a point open, this list fixes what the note uses. Later sections
+cite it by item number. The textbook is cited by printed page number; the
+page of the PDF file is one higher \cite{petrosyan2015graphs}.
 \begin{enumerate}
 \item\label{conv:setting} \textbf{Setting.} The graph is finite, simple (no
   edge joins a vertex to itself, and no two edges have the same two ends),
   and undirected, and it has $N\ge 1$ vertices. This is how the assignment
-  was reported \cite{userstatements}; it agrees with the board matrix,
-  which is symmetric and has zeros on its diagonal \cite{whiteboard1}.
-\item\label{conv:names} \textbf{Names.} Vertices are called
-  $n_1,\dots,n_N$, as on the board. The board writes the graph as $(G,V)$
-  and says ``$e_{ij}\in V$'' for ``$n_i$ and $n_j$ are joined by an
-  edge'', so its $V$ is the set of edges. The textbook writes
-  $G=(V,E)$, names vertices $v_i$, and writes the edge joining $u$ and
-  $v$ as $uv$; it never writes $e_{ij}$ \cite[p.~9]{petrosyan2015graphs}.
-  The difference is only one of notation. This note writes $G=(V,E)$ and
-  $n_in_j$ for the edge $e_{ij}$ of the board.
-\item\label{conv:power} \textbf{The mark above $A$.} In question (Q1) the
-  board has a small mark above $A$, between tick marks. In the photos it
-  could not be resolved as a letter $k$ or $n$ \cite{whiteboard1}. It is
-  read as a power $k$, because the assignment, as reported, asks about
-  $A^k$ \cite{userstatements}. The theorem proved in
-  \cref{sec:counting} holds for every $k$, so the answer does not depend
-  on which integer it is; it would change if the mark were a prime or
-  quotation marks.
-\item\label{conv:drawing} \textbf{Drawing and matrix disagree.} The board
-  drawing shows three lines, between 1 and 2 (with an arrowhead at 2),
-  between 1 and 3, and between 2 and 3, but the matrix has $A_{13}=A_{31}=0$
-  and so encodes only the two edges $n_1n_2$ and $n_2n_3$
-  \cite{whiteboard1,whiteboard2}. The \emph{matrix} is taken as the example
-  graph, because the problem statement says that the graph is given
-  through its adjacency matrix. The arrowhead is read as a stray mark,
-  because the matrix is symmetric and the graph is undirected. This
-  example graph is called the \emph{board graph}. The drawing read
-  literally is a triangle; it is treated in \cref{sec:discussion}.
+  was relayed \cite{userstatements}; it agrees with the board matrix, which
+  is symmetric and has zeros on its diagonal \cite{whiteboard1}.
+\item\label{conv:names} \textbf{Names.} We write $G=(V,E)$ with $V$ the
+  vertices and $E$ the edges, call the vertices $n_1,\dots,n_N$ as the board
+  does, and write $n_in_j$ for the edge between $n_i$ and $n_j$. The board
+  uses other letters (its $V$ is the set of edges, and it writes $e_{ij}$
+  for an edge), and the textbook writes $v_i$ for vertices and never
+  $e_{ij}$ \cite[p.~9]{petrosyan2015graphs}. This is a difference of
+  notation only.
+\item\label{conv:power} \textbf{The exponent.} In question (Q1) the board has
+  a small mark above $A$ that could not be resolved in the photos as a
+  letter $k$ or $n$ \cite{whiteboard1}. It is read as a power $k$, because
+  the assignment, as relayed, asks about $A^k$ \cite{userstatements}. The
+  theorem in \cref{sec:counting} holds for every $k$.
+\item\label{conv:drawing} \textbf{The matrix defines the example.} The
+  board drawing and the board matrix do not show the same graph
+  (\cref{sec:drawing}). Because the problem statement says that the graph is
+  given through its adjacency matrix, the \emph{matrix} is the example. Its
+  graph has the two edges $n_1n_2$ and $n_2n_3$ and is called the
+  \emph{board graph}.
 \item\label{conv:path} \textbf{The word ``path''.} In the course, ``path''
-  means a walk with no repeated vertex, which is the textbook's
-  Definition~1.2.13, the \emph{simple path} \cite{petrosyan2015graphs}.
-  That the course uses it this way is reported by the summary of the
-  assignment \cite{userstatements}. The textbook's own word ``path''
-  (Definition~1.2.12) means a walk with no repeated \emph{edge}; this note
-  calls that a \emph{trail}, which is the usual English word, and writes
-  ``path'' only in the course sense. \Cref{tab:naming} compares the
-  conventions.
-\item\label{conv:length} \textbf{Length~0.} A single vertex counts as a
-  walk of length 0. The textbook's Definitions 1.2.10 to 1.2.16 do not say
-  this in words, but its usage assumes it: its first property of distance
-  (distance zero exactly between a vertex and itself) and the reflexivity
-  of its relation on printed pp.~23 and~49 \cite{petrosyan2015graphs}.
-  Grinberg's definition of a walk also allows length 0
-  \cite[Definition~2.9.1(a), p.~36]{grinberg2025graph}. It is therefore
-  this note's own convention, and the sources agree with it. It makes
-  $A^0=I$ count something, and it gives every vertex exactly one path to
-  itself.
-\item\label{conv:proofs} \textbf{Who proves what.} The textbook contains
-  neither the walk-counting theorem nor a matrix test for connectivity.
-  A search of its text layer for the phrase ``adjacency matrix'' finds hits
-  only on printed pp.~7, 11, 12, 34, and 61; the two pages 7 and 11 were
-  read and hold the notation and the definition, and the other three were
-  not read for this note \cite{petrosyan2015graphs}. This is the result of a
-  search, not of reading the whole book. Both results are therefore taken
-  from other sources, and a statement whose proof is printed here is the
-  note's own proof, with the sources named in its first sentence.
+  means a walk with no repeated vertex (a walk is a route along edges, which
+  may revisit vertices and edges; \cref{def:walk}). This is the textbook's
+  Definition~1.2.13, the \emph{simple path} \cite{petrosyan2015graphs}; that
+  the course uses it is part of the relayed assignment \cite{userstatements}.
+  The textbook's own word ``path'' means something else, which this note
+  calls a \emph{trail}; \cref{tab:naming} compares the words.
+\item\label{conv:length} \textbf{Length~0.} A single vertex counts as a walk
+  of length 0. This is chosen so that the identity matrix $A^0=I$ counts
+  walks too: from each vertex to itself there is one walk of length 0, and
+  between different vertices there is none. The textbook's definitions do
+  not say this in words, but its usage assumes it
+  \cite[pp.~23, 49]{petrosyan2015graphs}, and Grinberg's definition of a
+  walk allows it \cite[Definition~2.9.1(a), p.~36]{grinberg2025graph}. It is
+  this note's own convention.
+\item\label{conv:proofs} \textbf{Who proves what.} As far as a search of its
+  text showed, the textbook contains neither the walk-counting theorem nor
+  a matrix test for connectivity (details in \cref{app:repro})
+  \cite{petrosyan2015graphs}. This note proves both, and names in the first
+  sentence after each statement the sources that also state it.
 \end{enumerate}
 
 \subsection{The story}\label{sec:story}
@@ -114,8 +95,9 @@ frog may hop back, and may use the same bridge again. A square
 \emph{table} has one row and one column for each island. A cell holds a
 one if the row island and the column island are next door to each other.
 Otherwise it holds a zero. \Cref{tab:dictionary} gives the dictionary. Each
-story word stands for one technical term. The formal text introduces the
-technical term before the story uses its word.
+story word stands for one technical term. In the formal text, the
+plain-words paragraph comes first and uses only story words; the
+definition that follows gives the technical term.
 
 \begin{table}[ht]
 \centering
@@ -147,8 +129,8 @@ term.}\label{tab:dictionary}
 \begin{itemize}
 \item (Q1) The entry in row $i$ and column $j$ of $A^k$ is the number of
   walks of length $k$ from $n_i$ to $n_j$ (\cref{thm:counting}). It
-  counts walks, not paths, and it is not ``1 if reachable''
-  (\cref{ex:notpaths}).
+  counts walks, not paths (\cref{ex:notpaths}), and it is not simply $1$
+  when $n_j$ can be reached from $n_i$ (\cref{ex:notreach}).
 \item (Q2) $G$ is connected if and only if every entry off the diagonal of
   $B=A+A^2+\dots+A^{N-1}$ is positive, which holds if and only if
   $(I+A)^{N-1}$ has no zero entry (\cref{thm:sum,thm:power}). A single
@@ -158,7 +140,7 @@ term.}\label{tab:dictionary}
   consecutive vertices are adjacent (\cref{def:pathbetween}).
 \end{itemize}
 
-\subsection{Organisation}
+\subsection{Organisation and reading guide}
 
 \Cref{sec:background} fixes the graph, the adjacency matrix, and matrix
 powers. \Cref{sec:walks} introduces walks, trails, paths, and cycles in the
@@ -167,3 +149,11 @@ textbook's order and answers (Q3). \Cref{sec:counting} answers (Q1) and
 and one not. \Cref{sec:discussion} collects limits and the comparison with
 other sources, and \cref{sec:conclusion} states the answers. The appendix
 lists the sources, the pages checked, and how to rerun the scripts.
+
+A reader who wants only the answers can read \cref{sec:background} up to
+\cref{def:power}, then \cref{def:walk,def:path,def:pathbetween},
+\cref{lem:cut}, and \cref{cor:bound} in \cref{sec:walks};
+\cref{thm:counting} in \cref{sec:counting}; and \cref{def:connected},
+\cref{lem:reach}, \cref{thm:sum}, and the examples in
+\cref{sec:connectivity}. Trails, cycles, distance, components, the power
+test, and \cref{sec:discussion} are not needed for (Q1) to (Q3).

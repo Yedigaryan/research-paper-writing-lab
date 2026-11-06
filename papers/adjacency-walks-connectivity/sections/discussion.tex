@@ -1,26 +1,30 @@
-\section{Discussion: checks, limits, and the comparison with other sources}\label{sec:discussion}
+\section{Discussion}\label{sec:discussion}
 
 \subsection{Checks by computation}
 
 The proofs above do not depend on the following checks; they are checks of
 instances. A script compared the sum test, the power test, and a
 breadth-first search written independently of the matrices on every
-labelled simple graph with $N=1,\dots,6$ vertices, that is $1$, $2$, $8$,
-$64$, $1024$, and $32768$ graphs, of which $1$, $1$, $4$, $38$, $728$, and
-$26704$ are connected; the three tests agreed on all of them. The counts of
-connected graphs are what the script found, not figures taken from a
-source. A second script checked the cut of \cref{lem:cut} on every walk of
-length $0$ to $8$ on all $8$ graphs with three vertices, of length $0$ to
-$7$ on all $64$ graphs with four, and of length $0$ to $5$ on all $1024$
-graphs with five ($2052$, $72664$, and $743680$ walks), with no failure; it
-also found that no path was longer than $N-1$ and that shortest walks,
-trails, and paths gave the same distance (\cref{app:repro}).
+labelled simple graph with up to six vertices (``labelled'' means that the
+vertices have fixed names, so each choice of which pairs are edges is a
+separate graph, $2^{N(N-1)/2}$ in all), and the three tests agreed on every
+one. A second script checked the cut of \cref{lem:cut} on all walks up to a
+fixed length on all graphs with three, four, and five vertices, with no
+failure; it also found that no path was longer than $N-1$ and that shortest
+walks, trails, and paths gave the same distance. The counts are in
+\cref{app:repro}.
 
-\subsection{The board drawing read literally}
+\subsection{The board drawing and the board matrix}\label{sec:drawing}
 
-If the drawing on the board is read literally, with all three lines, it is
-the triangle on $n_1,n_2,n_3$, not the graph of the matrix
-(Convention~\ref{conv:drawing}). The script gives, for the triangle,
+The board drawing and the board matrix differ edge by edge. The drawing
+shows three lines: between 1 and 2 (with an arrowhead at 2), between 1 and
+3, and between 2 and 3. The matrix has ones for the pairs $n_1n_2$ and
+$n_2n_3$ only and $A_{13}=A_{31}=0$, so the line between 1 and 3 is in the
+drawing and not in the matrix \cite{whiteboard1,whiteboard2}. The note uses
+the matrix (Convention~\ref{conv:drawing}) and reads the arrowhead as a
+stray mark, because the matrix is symmetric and the graph is undirected.
+Read literally, the drawing is the triangle on $n_1,n_2,n_3$. The script
+gives, for the triangle,
 \[
 A^2=\begin{pmatrix}2&1&1\\1&2&1\\1&1&2\end{pmatrix},\quad
 B=\begin{pmatrix}2&2&2\\2&2&2\\2&2&2\end{pmatrix},\quad
@@ -28,7 +32,7 @@ T=(I+A)^2=\begin{pmatrix}3&3&3\\3&3&3\\3&3&3\end{pmatrix}.
 \]
 Both tests again say that the graph is connected, so the answer to (Q2)
 for the board does not depend on which of the two graphs is meant. The
-entries differ, however: $(A^2)_{11}=2=d(n_1)$ here, against $1$ for the
+entries differ, however: $(A^2)_{11}=2=\deg(n_1)$ here, against $1$ for the
 board graph, in agreement with \cref{prop:powers}.
 
 \subsection{Words that differ between sources}
@@ -51,12 +55,14 @@ traps.
 
 \subsection{Statements in two sources that need care}\label{sec:sources}
 
-The walk-counting theorem and the connectivity test are stated correctly
-in the sources named at \cref{thm:counting,thm:sum,thm:power}, read with
-walks. Two sources also contain sentences that are wrong when ``path'' is
-read as a walk with no repeated vertex. They are listed here, quoted, and
-restated in this note's notation (the superscripts in the first quotation are as the text layer of the source renders them), and nothing else in the note depends on
-them.
+This subsection is optional. It explains why some sentences in published
+sources can mislead a reader who takes ``path'' to mean a walk with no
+repeated vertex. The walk-counting theorem and the connectivity tests are
+stated correctly in the sources named at
+\cref{thm:counting,thm:sum,thm:power}, read with walks. Three sentences are
+quoted below, each restated in this note's notation (the superscripts in
+the first quotation are as the text layer of the source renders them). Nothing
+else in the note depends on them.
 \begin{itemize}
 \item Paramadevan and Sotheeswaran, Theorem~1: ``the number of different
   paths of length l between the ith and j th vertices of G is equal to the
@@ -71,23 +77,20 @@ them.
   \cite[p.~17]{paramadevan2021adjacency}. In this note's notation: $B_{ij}$
   counts the paths of length less than $N$ from $n_i$ to $n_j$. Read as
   paths in the sense of \cref{def:path}, it fails for the board graph:
-  $B_{22}=2$ (\cref{ex:connected}), but at most one path of length less
-  than $3$ joins $n_2$ to itself, the path $(n_2)$ of length $0$ if length
-  $0$ is allowed and none if it is not. So it fails under either
-  convention for length $0$. ($B_{11}=1$ would not refute it when length
-  $0$ is allowed.) The statement of Theorem~2 itself is the sum test and is
-  correct (\cref{thm:sum}); what is missing from the proof is the step
-  from a non-zero entry to a path, which is \cref{lem:cut}.
+  $B_{22}=2$ (\cref{ex:connected}), but at most one path of any length
+  joins $n_2$ to itself, the one-vertex path $(n_2)$ (and none if length $0$
+  is not allowed). The statement of Theorem~2 itself is the sum test and is
+  correct (\cref{thm:sum}); what the proof lacks is the step from a
+  non-zero entry to a path, which is \cref{lem:cut}.
 \item Bai's proof sketch of Theorem~2 says that ``$(I+A)^{n-1}$ aggregates
   all paths of length $\le n-1$'' \cite[p.~2]{bai2025adjacency}. In this
   note's notation: $T_{ij}$ counts the paths of length at most $N-1$ from
   $n_i$ to $n_j$. Bai defines a path as ``a walk where no vertex is
   repeated (except possibly the first and last vertex if it's a cycle)''
   \cite[p.~1]{bai2025adjacency}. For the board graph $T_{11}=2$
-  (\cref{ex:connected}), but only one path of length at most $2$ joins
-  $n_1$ to itself, the path $(n_1)$ of length $0$; the walk $n_1n_2n_1$
-  is not a cycle in the sense of \cref{def:cycle}, since it reuses an
-  edge. Bai's own convention for a cycle was not read, so this refutation is
+  (\cref{ex:connected}), but at most one path of any length joins $n_1$ to
+  itself, the one-vertex path $(n_1)$; the walk $n_1n_2n_1$ is not a cycle
+  in the sense of \cref{def:cycle}, since it reuses an edge. Bai's own convention for a cycle was not read, so this refutation is
   made for the restatement in this note's notation. Bai's Theorem~1 states
   that the entry counts ``walks --- not paths'' \cite[p.~1]{bai2025adjacency},
   and Bai's statement of Theorem~2 is correct, as \cref{thm:power} shows.

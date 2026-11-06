@@ -13,7 +13,9 @@ The three questions have direct answers.
   most $k$ (\cref{rem:positive}).
 \item[(Q2)] $G$ is connected if and only if every entry off the diagonal of
   $B=A+A^2+\dots+A^{N-1}$ is positive (\cref{thm:sum}), and also if and
-  only if $(I+A)^{N-1}$ has no zero entry (\cref{thm:power}). The proof uses
+  only if $(I+A)^{N-1}$ has no zero entry (\cref{thm:power}). The cutoff $N-1$ is the
+  largest length a path can have: a path visits each vertex at most once,
+  so it has at most $N-1$ edges. The proof uses
   walk counting, the fact that a walk contains a path no longer than
   itself (\cref{lem:cut}), and the fact that a path has length at most
   $N-1$ (\cref{cor:bound}). The board graph, whose edges are $n_1n_2$ and

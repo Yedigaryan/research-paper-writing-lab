@@ -9,6 +9,12 @@ $n_1n_3$, $n_3n_4$, $n_4n_5$ (\cref{fig:graphs}, middle), which is this
 note's own example, not the textbook's; the classification of every
 sequence below was checked by script (\cref{app:repro}).
 
+Only walks and paths (\cref{def:walk,def:path,def:pathbetween}) and the
+lemmas on them are needed for (Q1) to (Q3). Trails are included because the
+textbook uses the word ``path'' for them and its definition of connected
+rests on that word; cycles and distance are included to keep the textbook's
+order, and distance is used in \cref{cor:dist}.
+
 \begin{figure}[ht]
 \centering
 \begin{tikzpicture}[v/.style={circle,draw,inner sep=1.2pt,minimum size=6mm,font=\small},scale=1]
@@ -42,7 +48,8 @@ sequence below was checked by script (\cref{app:repro}).
 \end{tikzpicture}
 \caption{The graphs used in the examples. Left: the board graph, with
 edges $n_1n_2$ and $n_2n_3$ and the adjacency matrix of the board
-(Convention~\ref{conv:drawing}). Middle: the graph $H$ of this section.
+(Convention~\ref{conv:drawing}). Middle: the graph $H$ of this section, with edges $n_1n_2$, $n_2n_3$,
+$n_1n_3$, $n_3n_4$, $n_4n_5$.
 Right: one edge and an isolated vertex, the disconnected example of
 \cref{sec:connectivity}.}\label{fig:graphs}
 \end{figure}
@@ -60,11 +67,15 @@ number of hops is how long the trip is. A frog that does not hop at all
 makes a trip with no hops.
 
 \begin{definition}[Walk; textbook Definition~1.2.10]\label{def:walk}
-A \emph{walk of length $k\ge 0$ from $u_0$ to $u_k$} is a sequence
-$u_0,e_1,u_1,\dots,e_k,u_k$ of vertices and edges in which $e_t=u_{t-1}u_t$
-for $1\le t\le k$ \cite[Definition~1.2.10, p.~21]{petrosyan2015graphs}. In a
-simple graph the edges are fixed by the vertices, so a walk is written by
-its vertices $u_0u_1\cdots u_k$, each one adjacent to the one before.
+A \emph{walk from $u_0$ to $u_k$} is a sequence of vertices
+$u_0u_1\cdots u_k$ in which each vertex is adjacent to the one before it;
+its \emph{length} is $k$, the number of edges used. Formally, the textbook
+defines it as a sequence $u_0,e_1,u_1,\dots,e_k,u_k$ of vertices and edges
+with $e_t=u_{t-1}u_t$ for $1\le t\le k$
+\cite[Definition~1.2.10, p.~21]{petrosyan2015graphs}; in a simple graph the
+edges are fixed by the vertices, so the vertex sequence says the same. This
+note allows $k=0$ (Convention~\ref{conv:length}), which the textbook's
+definition does not state in words.
 \end{definition}
 
 \begin{remark}
@@ -270,11 +281,12 @@ distinct edges. Hence every path is a trail.
 The textbook's Definition~1.2.13 asks for both properties
 \cite[p.~22]{petrosyan2015graphs}; the proof is the note's own.
 \begin{proof}
-Suppose $e_s=\{u_{s-1},u_s\}$ and $e_t=\{u_{t-1},u_t\}$ are equal for some
-$1\le s<t\le k$. Two equal two-element sets give $u_{s-1}=u_{t-1}$ or
-$u_{s-1}=u_t$. The vertices are distinct, so the first forces $s-1=t-1$,
-contradicting $s<t$, and the second forces $s-1=t$, contradicting $s<t$.
-So no two edges are equal.
+Suppose two edges are equal, $e_s=e_t$ with positions $1\le s<t\le k$,
+where $e_s=\{u_{s-1},u_s\}$ and $e_t=\{u_{t-1},u_t\}$. The vertex $u_{s-1}$
+is an end of $e_s$, hence an end of $e_t$, so $u_{s-1}=u_{t-1}$ or
+$u_{s-1}=u_t$. Because the vertices of the walk are pairwise distinct, two
+of them are equal only if they have the same position, so $s-1=t-1$ or
+$s-1=t$. Both are impossible, because $s<t$. So no two edges are equal.
 \end{proof}
 
 \plainwords{} Take any trip from one island to another. Suppose the frog
@@ -294,16 +306,22 @@ Corollary~2.9.7 covers $u=v$ and gives the bound
 \cite[p.~39]{grinberg2025graph}. The proof below, which allows $k=0$, is the
 note's own.
 \begin{proof}
-Strong induction on $k$. \emph{Base case $k=0$.} Then $W=(u)$ has one
-vertex, which is not repeated, so $W$ is itself a path of length $0$.
+By strong induction on $k$: to prove the statement for walks of length $k$,
+we may assume it for all shorter walks, of every length from $0$ to
+$k-1$. (Ordinary induction would assume it only for length $k-1$; we need
+more, because the cut below removes an unknown number of edges.)
+\emph{Base case $k=0$.} Then $W=(u)$ has one vertex, which is not repeated,
+so $W$ is itself a path of length $0$.
 \emph{Inductive case.} Let $k\ge 1$ and assume the statement for all walks
 shorter than $k$. If the vertices of $W$ are pairwise distinct, $W$ is a
-path of length $k$. Otherwise there are indices $i<j$ with $u_i=u_j$. Form
-$W'=u_0\cdots u_iu_{j+1}\cdots u_k$ (if $j=k$, then $W'=u_0\cdots u_i$).
-It is a walk, because the only new consecutive pair is $u_i,u_{j+1}$ and
-$u_i=u_j$ is adjacent to $u_{j+1}$. It runs from $u$ to $v$, its edges are
-edges of $W$, and its length is $k-(j-i)<k$. By the induction hypothesis
-$W'$ contains a path from $u$ to $v$ of length at most $k-(j-i)\le k$.
+path of length $k$. Otherwise there are positions $s<t$ with $u_s=u_t$,
+the same vertex visited twice. Form $W'=u_0\cdots u_su_{t+1}\cdots u_k$,
+that is, delete the part of $W$ between the two visits (if $t=k$, then
+$W'=u_0\cdots u_s$). It is a walk, because the only new consecutive pair is
+$u_s,u_{t+1}$ and $u_s=u_t$ is adjacent to $u_{t+1}$. It runs from $u$ to
+$v$, its edges are edges of $W$, and its length is $k-(t-s)<k$. By the
+induction hypothesis $W'$ contains a path from $u$ to $v$ of length at most
+$k-(t-s)\le k$. (The example after this proof shows the cut.)
 \end{proof}
 
 \begin{example}

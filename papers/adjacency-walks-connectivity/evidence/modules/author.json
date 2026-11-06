@@ -62,6 +62,20 @@
         "sections/counting.tex"
       ],
       "contradicted_by": []
+    },
+    {
+      "id": "a5",
+      "text": "If k equals the distance between n_i and n_j, every walk of length k from n_i to n_j is a path (a repeated vertex would allow a cut to a shorter walk), so (A^k)_ij is the number of paths of length k; for larger k the entry is at least the number of paths of length k and can be larger (board graph, (A^3)_12 = 2 with no path of length 3) or equal (triangle, (A^2)_12 = 1 counts the path n1 n3 n2, though the distance is 1). Triangle entry from script output.",
+      "kind": "derived",
+      "module": "author",
+      "support": [],
+      "derivation": "sections/counting.tex, paragraph after Example 'The entry (A^2)_11'; scripts/m3_connectivity.py (triangle A^2), scripts/walks_check.py",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/counting.tex"
+      ],
+      "contradicted_by": []
     }
   ],
   "contradictions": []

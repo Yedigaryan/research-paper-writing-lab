@@ -1,4 +1,4 @@
-\section{Question 1: what the entries of $A^k$ count}\label{sec:counting}
+\section{Question 1: what the entries of \texorpdfstring{$A^k$}{A\^{}k} count}\label{sec:counting}
 
 Question (Q1) asks what the entry in row $i$ and column $j$ of a power of
 $A$ represents (Convention~\ref{conv:power}). The answer is a count of
@@ -18,12 +18,13 @@ Let $G$ be a simple undirected graph with vertices $n_1,\dots,n_N$ and
 adjacency matrix $A$. For every integer $k\ge 0$ and all $i,j$, the entry
 $(A^k)_{ij}$ is the number of walks of length $k$ from $n_i$ to $n_j$.
 \end{theorem}
-The theorem is stated for $k\ge 1$ by the University of Galway notes
-\cite[Theorem~1.1.3, p.~4]{galwaynotes} and by Bai \cite[Theorem~1,
-p.~1]{bai2025adjacency}, and for every natural number by Gotti
-\cite[Proposition~2, p.~1]{gotti18211}; the Galway notes and Gotti prove it
-by induction on $k$. The case $k=0$ is this note's convention
-(Convention~\ref{conv:length}). The textbook does not contain the theorem
+The University of Galway notes state the theorem for a positive integer $k$
+\cite[Theorem~1.1.3, p.~4]{galwaynotes}; Bai states it for walks of length
+$k$ \cite[Theorem~1, p.~1]{bai2025adjacency}, and Gotti for walks of length
+$\ell\in\mathbb{N}$ \cite[Proposition~2, p.~1]{gotti18211}, and in the
+passages read neither says whether $k=0$ is included. The Galway notes and
+Gotti prove it by induction on $k$. The case $k=0$ is this note's
+convention (Convention~\ref{conv:length}). The textbook does not contain the theorem
 (Convention~\ref{conv:proofs}). The proof below is the note's own.
 \begin{proof}
 By induction on $k$.
@@ -54,9 +55,9 @@ $u_k=n_r$ for exactly one $r$. Fix $r$.
   one to one to the walks of length $k$ from $n_i$ to $n_r$: delete the
   final vertex $n_j$ to go one way, and append $n_j$ to go back, which
   gives a walk because $n_r$ is adjacent to $n_j$. By the induction
-  hypothesis there are $(A^k)_{ir}=(A^k)_{ir}A_{rj}$ of them.
+  hypothesis there are $(A^k)_{ir}$ of them, and $(A^k)_{ir}=(A^k)_{ir}\cdot 1=(A^k)_{ir}A_{rj}$.
 \item If $n_r$ is not adjacent to $n_j$ (so $A_{rj}=0$), no walk can end
-  with the move from $n_r$ to $n_j$, so there are $0=(A^k)_{ir}A_{rj}$ of
+  with the move from $n_r$ to $n_j$, so there are $0=(A^k)_{ir}\cdot 0=(A^k)_{ir}A_{rj}$ of
   them.
 \end{itemize}
 Every walk is counted for exactly one $r$, so the number of walks of length
@@ -69,7 +70,8 @@ a vertex sequence whose consecutive vertices are adjacent, repeats allowed.
 Sorting by the last-but-one vertex therefore never has to ask whether
 $n_r$ was visited before. For paths the deletion of the final vertex would
 still give a path, but appending $n_j$ may repeat a vertex, and the one to
-one correspondence breaks. The same induction works for directed graphs and
+one correspondence breaks; \cref{ex:notpaths} shows a walk that is counted
+and is not a path. The same induction works for directed graphs and
 multigraphs \cite[Proposition~2, p.~1]{gotti18211}, which are outside this
 note's scope.
 
@@ -99,17 +101,19 @@ Each entry counts walks, and the script listed them:
 \item $(A^2)_{12}=0$ and $(A^3)_{11}=0$: there is no such walk.
 \end{itemize}
 The inductive case for $(A^3)_{12}$ reads, with $r=1,2,3$,
-$\sum_r(A^2)_{1r}A_{r2}=1\cdot 1+0\cdot 0+1\cdot 1=2$: the term for $r=1$
-is the walk $n_1n_2n_1$ followed by the move to $n_2$, and the term for
+$\sum_r(A^2)_{1r}A_{r2}=(A^2)_{11}A_{12}+(A^2)_{12}A_{22}+(A^2)_{13}A_{32}
+=1\cdot 1+0\cdot 0+1\cdot 1=2$: the term for $r=1$ is the walk $n_1n_2n_1$ followed by the move to $n_2$, and the term for
 $r=3$ is $n_1n_2n_3$ followed by the move to $n_2$.
 \end{example}
 
 The zero entries have a reason, which is a fact about this graph only:
-every edge joins $n_2$ to $n_1$ or $n_3$, so a walk from $n_1$ to $n_1$
-has even length, and a walk from $n_1$ to $n_2$ has odd length. As a check
+every edge joins $n_2$ to $n_1$ or $n_3$, so each hop alternates between
+the middle vertex $n_2$ and an end vertex. A walk from $n_1$ to $n_1$ makes
+an even number of hops, and a walk from $n_1$ to $n_2$ an odd number. As a check
 of instances and not as a proof, the script also compared the matrix power
 with a direct enumeration of walks for $k=0,\dots,6$ on six small graphs and
-for $k=0,\dots,5$ on all $64$ labelled simple graphs on four vertices, and
+for $k=0,\dots,5$ on all $64$ labelled simple graphs on four vertices ($64=2^6$ choices of which
+of the $6$ possible pairs are edges), and
 found no mismatch.
 
 \begin{nonexample}[What the theorem does not say]\label{ex:notreach}
@@ -126,7 +130,7 @@ out and back.
 
 \begin{proposition}[Symmetry and the diagonal of $A^2$]\label{prop:powers}
 For every $k\ge 0$ the matrix $A^k$ is symmetric. Moreover
-$(A^2)_{ii}=d(n_i)$ for every $i$, and so the sum of the diagonal entries
+$(A^2)_{ii}=\deg(n_i)$ for every $i$, and so the sum of the diagonal entries
 of $A^2$ is $2|E|$.
 \end{proposition}
 The second statement is made, as an equality of walk counts, in the
@@ -140,7 +144,7 @@ reversing a walk from $n_i$ to $n_j$ gives a walk from $n_j$ to $n_i$ of the
 same length, and this is one to one. For the second statement,
 \cref{thm:counting} says $(A^2)_{ii}$ counts the walks $n_in_rn_i$. Such a
 walk exists for each vertex $n_r$ adjacent to $n_i$ and for no other, so
-the count is $d(n_i)$. The diagonal sum is the sum of all degrees, which is
+the count is $\deg(n_i)$. The diagonal sum is the sum of all degrees, which is
 $2|E|$ by \cref{prop:basic}.
 \end{proof}
 
@@ -164,9 +168,15 @@ path of length $3$ needs four distinct vertices and the graph has three.
 \end{example}
 
 Where walks and paths do agree: $(A^2)_{13}=1$ counts $n_1n_2n_3$, which is
-a path. In general a walk whose length equals the distance between its
-ends is a path, since a repeated vertex would let us cut out a closed block
-and get a shorter walk (\cref{lem:cut}). Otherwise the counts differ.
+a path. In general, if $k$ equals the distance between $n_i$ and $n_j$,
+every walk of length $k$ from $n_i$ to $n_j$ is a path, since a repeated
+vertex would let us cut out a closed block and get a shorter walk
+(\cref{lem:cut}), contradicting that $k$ is the least length; so then
+$(A^k)_{ij}$ is the number of paths of length $k$ from $n_i$ to $n_j$. For
+$k$ larger than the distance the entry is at least the number of paths of
+length $k$ and can be larger, as in \cref{ex:notpaths}, where there are
+walks and no paths at all; it can also agree, as in the triangle, where
+$(A^2)_{12}=1$ counts the single walk $n_1n_3n_2$, which is a path.
 
 \begin{remark}[What a positive entry gives]\label{rem:positive}
 If $(A^k)_{ij}>0$, there is a walk of length $k$ from $n_i$ to $n_j$
