@@ -410,3 +410,103 @@ Reader findings.
 - R43: the conclusion says a path visits each vertex at most once, so it has at
   most N - 1 edges.
 - R44: reading guide added at the end of Section 1.
+
+## Round 2 update
+
+Checks after the round 2 edits: `build.sh` exit 0 (21 pages, no overfull
+boxes, no undefined references after the final pass); `check_citations.py`
+0 errors, 0 warnings; `check_claims.py` 0 errors, 10 inherited warnings;
+`inspect_pdf.py` 0 errors, 0 warnings; `check_plain_words.py` 34 paragraphs,
+28 statements, 0 errors, 0 warnings; `pdffonts` shows no Type 3 font.
+No new evidence claim. Only small local edits; no section was restructured.
+
+Changed: abstract and fonts (`main.tex`: `courier` for typewriter text,
+`array` for Table 2); Section 1 (Q1 wording, footnote for the board letters,
+exponent and quotation-mark reading, drawing difference in a clause, "friends"
+row and a note on which story words matter, reading guide in words); Section 2
+(footnote on the board rule, column sums, transpose purpose); Section 3
+(labels `rem:pathbetween` and `rem:cycle`, distance sentence, path graph
+defined, cases in Lemma 3.8, "contains", minimum over a larger set, ragged
+Table 2); Section 4 (k = 1 start of the induction, directed graphs and
+multigraphs glossed, parity consequence, triangle introduced); Section 5
+(components wording and a "not needed for the tests" sentence, role of I,
+zero-walk reason, the single-power example rephrased, BFS role sentence and
+N^4 versus N^2); Section 6 (references by label, purpose of 6.4 and the Bai
+clause shortened, drawing choice does not affect the results); Appendix A.
+
+## Per-finding log, round 2
+
+Evaluator findings.
+
+- E12: Section 4 now says that Galway, Bai and Gotti all start their
+  induction at k = 1 and that k = 0 is this note's convention. This follows
+  the evaluator's reading; I did not re-fetch Bai's and Gotti's proofs, and
+  the evidence quotes (C31, C34, C38) show the statements, not the base case.
+- E13: the triangle is introduced with its edges in Section 4.4 and points to
+  Section 6.2.
+- E14: Q1 is worded "the entry (A^k)_ij of the matrix power A^k".
+- E15: Convention 3 gives the quotation-mark reading and says Q1 would then
+  ask what A_ij itself represents, the case k = 1.
+- E16: "friends | joined by a path" added to Table 1.
+- E17: remarks after the definitions of a path between two vertices and of a
+  cycle are labelled and referenced with `\cref`.
+- E18: `courier` (Type 1) replaces the bitmap typewriter font; `lmtt` is not
+  installed. `pdffonts` shows no Type 3 font.
+- E19: Table 2 columns are ragged right; "such a walk" is now "a walk between
+  two vertices".
+
+Reader findings (R2-n).
+
+- R2-1: abstract names the course, defines I and BFS, and states Q3 as the
+  course's meaning of "path". "Textbook" is introduced in Section 1.
+- R2-2: not done. A redrawn board figure would add a figure and a claim about
+  handwriting I cannot make exact; the board content is described in words in
+  Section 1.1 and Section 6.2.
+- R2-3 and R2-9: the board's letters are now in footnotes (Convention 2,
+  Definition 2.3).
+- R2-4: Convention 4 says the drawing has a line between 1 and 3 the matrix
+  lacks.
+- R2-5: Convention 5 now gives the example n_1 n_2 n_1 (a walk, not a path).
+  A full definition of walk, trail, path there would duplicate Section 3.
+- R2-6: kept as written; the sentence already says "This note proves both".
+  The search detail is in the appendix.
+- R2-7: table says "connectivity component", matching the text. Marking
+  rows by need: one sentence under Table 1 lists the words needed for Q1 to Q3.
+- R2-8: reading guide now says in words what each part contributes.
+- R2-10: column sums explained via A_ij = A_ji.
+- R2-11: transpose kept in Section 2 (needed for a one-line proof); its
+  purpose is now stated ("needed only for Proposition 4.4").
+- R2-12: the sentence says the examples are small enough to check by hand.
+- R2-13: "goes once around a ring and ends where it began" added to the cycle
+  remark.
+- R2-14: the distance definition says shortest walks or shortest paths give
+  the same number (Proposition 3.12).
+- R2-15: the two cases are written out (s = t and s = t + 1).
+- R2-16: "contains" defined in the lemma statement. The proof is kept.
+- R2-17: path graph defined at both uses.
+- R2-18: "the least value over a larger set cannot be larger" added.
+- R2-19: directed graphs and multigraphs glossed in one phrase.
+- R2-20: kept in the example; "labelled" glossed there. Moving the sentence to
+  Section 6.1 would restructure.
+- R2-21: parity consequence for (A^2)_12 stated.
+- R2-22: see E13.
+- R2-23: cited by label; "see Section 6.4" by label.
+- R2-24: the induced-subgraph wording is replaced by "groups of vertices ...
+  with the edges between them".
+- R2-25: not moved (restructuring); a sentence says the subsection is not
+  needed for the tests.
+- R2-26: a sentence on the role of I added after the power test.
+- R2-27: "because it counts zero walks" added.
+- R2-28: the single-power example rephrased ("Suppose a test looked only at
+  A^{N-1} ...").
+- R2-29: totals stated, about N^4 for the matrix tests and about N^2 for BFS.
+- R2-30: opening sentence says BFS is a different method, for context only.
+- R2-31: opening sentence on purpose; the Bai caveat shortened to one clause.
+- R2-32: Section 6.2 says no result depends on which graph is meant.
+- R2-33: scripts keep their names (renaming would require changing the
+  appendix, evidence derivations and the module reports); the appendix says what
+  each checks, that the prefix m3 is a label, and that the proofs do not use the
+  counts.
+- R2-34: not done. Grouping all provenance after the conclusion would
+  restructure sections; this is the choice of keeping Convention items short
+  and details in Appendix A.

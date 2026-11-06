@@ -21,10 +21,9 @@ $(A^k)_{ij}$ is the number of walks of length $k$ from $n_i$ to $n_j$.
 The University of Galway notes state the theorem for a positive integer $k$
 \cite[Theorem~1.1.3, p.~4]{galwaynotes}; Bai states it for walks of length
 $k$ \cite[Theorem~1, p.~1]{bai2025adjacency}, and Gotti for walks of length
-$\ell\in\mathbb{N}$ \cite[Proposition~2, p.~1]{gotti18211}, and in the
-passages read neither says whether $k=0$ is included. The Galway notes and
-Gotti prove it by induction on $k$. The case $k=0$ is this note's
-convention (Convention~\ref{conv:length}). The textbook does not contain the theorem
+$\ell\in\mathbb{N}$ \cite[Proposition~2, p.~1]{gotti18211}. All three start
+their induction at $k=1$. The case $k=0$ is this note's convention
+(Convention~\ref{conv:length}). The textbook does not contain the theorem
 (Convention~\ref{conv:proofs}). The proof below is the note's own.
 \begin{proof}
 By induction on $k$.
@@ -71,8 +70,9 @@ Sorting by the last-but-one vertex therefore never has to ask whether
 $n_r$ was visited before. For paths the deletion of the final vertex would
 still give a path, but appending $n_j$ may repeat a vertex, and the one to
 one correspondence breaks; \cref{ex:notpaths} shows a walk that is counted
-and is not a path. The same induction works for directed graphs and
-multigraphs \cite[Proposition~2, p.~1]{gotti18211}, which are outside this
+and is not a path. The same induction works for directed graphs (edges
+with a direction) and multigraphs (several edges allowed between two
+vertices) \cite[Proposition~2, p.~1]{gotti18211}, which are outside this
 note's scope.
 
 \subsection{The board graph, worked}
@@ -109,10 +109,13 @@ $r=3$ is $n_1n_2n_3$ followed by the move to $n_2$.
 The zero entries have a reason, which is a fact about this graph only:
 every edge joins $n_2$ to $n_1$ or $n_3$, so each hop alternates between
 the middle vertex $n_2$ and an end vertex. A walk from $n_1$ to $n_1$ makes
-an even number of hops, and a walk from $n_1$ to $n_2$ an odd number. As a check
+an even number of hops, and a walk from $n_1$ to $n_2$ an odd number. So there is no walk of length
+$2$ from $n_1$ to $n_2$, and $(A^2)_{12}=0$; the same holds for every even
+power. As a check
 of instances and not as a proof, the script also compared the matrix power
 with a direct enumeration of walks for $k=0,\dots,6$ on six small graphs and
-for $k=0,\dots,5$ on all $64$ labelled simple graphs on four vertices ($64=2^6$ choices of which
+for $k=0,\dots,5$ on all $64$ labelled simple graphs on four vertices (labelled: the vertices
+have fixed names; $64=2^6$ choices of which
 of the $6$ possible pairs are edges), and
 found no mismatch.
 
@@ -159,8 +162,8 @@ counts it anyway.
 \begin{example}[The entry $(A^2)_{11}$ in the board graph]\label{ex:notpaths}
 By \cref{ex:powers}, $(A^2)_{11}=1$, and the walk it counts is
 $n_1n_2n_1$. This walk visits $n_1$ twice, so it is not a path
-(\cref{def:path}). No path of length $2$ joins $n_1$ to itself: by the
-remark after \cref{def:pathbetween} the only path from $n_1$ to $n_1$ is
+(\cref{def:path}). No path of length $2$ joins $n_1$ to itself: by
+\cref{rem:pathbetween} the only path from $n_1$ to $n_1$ is
 $(n_1)$, of length $0$. So ``$(A^2)_{11}$ counts the paths of length $2$
 from $n_1$ to $n_1$'' is false, while ``counts the walks'' is true.
 Likewise $(A^3)_{12}=2$ counts $n_1n_2n_1n_2$ and $n_1n_2n_3n_2$, but a
@@ -175,7 +178,8 @@ vertex would let us cut out a closed block and get a shorter walk
 $(A^k)_{ij}$ is the number of paths of length $k$ from $n_i$ to $n_j$. For
 $k$ larger than the distance the entry is at least the number of paths of
 length $k$ and can be larger, as in \cref{ex:notpaths}, where there are
-walks and no paths at all; it can also agree, as in the triangle, where
+walks and no paths at all; it can also agree, as in the triangle (the graph with edges $n_1n_2$, $n_2n_3$, $n_1n_3$, which
+is the board drawing read literally; \cref{sec:drawing}), where
 $(A^2)_{12}=1$ counts the single walk $n_1n_3n_2$, which is a path.
 
 \begin{remark}[What a positive entry gives]\label{rem:positive}
@@ -200,7 +204,7 @@ $d(n_i,n_i)=0$.
 \end{corollary}
 Paramadevan and Sotheeswaran state this for connected graphs
 \cite[Theorem~3, p.~17]{paramadevan2021adjacency}; the proof below is the
-note's own (see \cref{sec:discussion} for what their proof reads into a
+note's own (see \cref{sec:sources} for what their proof reads into a
 non-zero entry).
 \begin{proof}
 By \cref{thm:counting}, $(A^k)_{ij}>0$ exactly when a walk of length $k$

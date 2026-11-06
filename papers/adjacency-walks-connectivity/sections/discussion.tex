@@ -23,7 +23,9 @@ $n_2n_3$ only and $A_{13}=A_{31}=0$, so the line between 1 and 3 is in the
 drawing and not in the matrix \cite{whiteboard1,whiteboard2}. The note uses
 the matrix (Convention~\ref{conv:drawing}) and reads the arrowhead as a
 stray mark, because the matrix is symmetric and the graph is undirected.
-Read literally, the drawing is the triangle on $n_1,n_2,n_3$. The script
+Read literally, the drawing is the triangle on $n_1,n_2,n_3$ (edges $n_1n_2$,
+$n_2n_3$, $n_1n_3$). None of the results of this note depends on which of
+the two graphs is meant: the theorems hold for every simple graph. The script
 gives, for the triangle,
 \[
 A^2=\begin{pmatrix}2&1&1\\1&2&1\\1&1&2\end{pmatrix},\quad
@@ -47,15 +49,15 @@ traps.
   connected.
 \item The textbook's ``closed path or cycle'' is a closed trail, which is
   wider than a cycle: two triangles sharing a vertex give a closed trail
-  of length $6$ that is not a cycle (the remark after
-  \cref{def:cycle}). This note uses ``cycle'' only in the narrow sense.
+  of length $6$ that is not a cycle (\cref{rem:cycle}). This note uses ``cycle'' only in the narrow sense.
 \item The textbook measures distance by shortest trails; \cref{prop:distance}
   shows that this equals the shortest walk and the shortest path.
 \end{itemize}
 
 \subsection{Statements in two sources that need care}\label{sec:sources}
 
-This subsection is optional. It explains why some sentences in published
+This subsection is optional. The word ``path'' is used loosely in some
+sources, and this subsection explains why some sentences in published
 sources can mislead a reader who takes ``path'' to mean a walk with no
 repeated vertex. The walk-counting theorem and the connectivity tests are
 stated correctly in the sources named at
@@ -90,8 +92,8 @@ else in the note depends on them.
   \cite[p.~1]{bai2025adjacency}. For the board graph $T_{11}=2$
   (\cref{ex:connected}), but at most one path of any length joins $n_1$ to
   itself, the one-vertex path $(n_1)$; the walk $n_1n_2n_1$ is not a cycle
-  in the sense of \cref{def:cycle}, since it reuses an edge. Bai's own convention for a cycle was not read, so this refutation is
-  made for the restatement in this note's notation. Bai's Theorem~1 states
+  in the sense of \cref{def:cycle}, since it reuses an edge. Bai's convention for a cycle was not read, so this holds for the
+  restatement. Bai's Theorem~1 states
   that the entry counts ``walks --- not paths'' \cite[p.~1]{bai2025adjacency},
   and Bai's statement of Theorem~2 is correct, as \cref{thm:power} shows.
 \end{itemize}

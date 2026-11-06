@@ -2,6 +2,8 @@
 \usepackage[margin=2.5cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{mathptmx}
+\usepackage{courier}
+\usepackage{array}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage{graphicx}
@@ -47,16 +49,18 @@ adjacency matrix $A$, a table of zeros and ones that records which pairs of
 vertices are joined by an edge. A \emph{walk} is a route that follows edges
 from vertex to vertex and may revisit vertices and edges; a graph is
 \emph{connected} if every vertex can be reached from every other. This note
-answers three questions about $A$, two taken from a lecture whiteboard and
-one from an assignment. First, the entry in row $i$ and column $j$ of the
+answers three questions about $A$, two taken from a lecture whiteboard of a
+graph theory course and one from an assignment for that course. Here $I$ is
+the identity matrix. First, the entry in row $i$ and column $j$ of the
 matrix power $A^k$ counts the walks of length $k$ from vertex $n_i$ to
 vertex $n_j$; it counts walks, not paths. Second, the graph is connected if
 and only if every entry off the diagonal of $A+A^2+\dots+A^{N-1}$ is
 positive, which holds if and only if $(I+A)^{N-1}$ has no zero entry.
-Third, a path between $n_i$ and $n_j$ is a sequence of pairwise distinct
+Third, the course's meaning of ``path'' is this: a path between $n_i$ and $n_j$ is a sequence of pairwise distinct
 vertices from $n_i$ to $n_j$ in which consecutive vertices are joined by an
 edge. The two tests and the walk-counting theorem are proved in full here;
-the textbook's definitions, the breadth-first-search comparison, and
+the course textbook's definitions, a comparison with breadth-first search
+(a different method that visits the vertices one layer at a time), and
 standard linear algebra are cited, not proved.
 \end{abstract}
 

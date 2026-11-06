@@ -7,7 +7,8 @@ cycle, distance. Each concept is a small change to the one before it. The
 examples use the graph $H$ on five vertices with edges $n_1n_2$, $n_2n_3$,
 $n_1n_3$, $n_3n_4$, $n_4n_5$ (\cref{fig:graphs}, middle), which is this
 note's own example, not the textbook's; the classification of every
-sequence below was checked by script (\cref{app:repro}).
+sequence below was checked by script (\cref{app:repro}); the examples are
+small enough to check by hand as well.
 
 Only walks and paths (\cref{def:walk,def:path,def:pathbetween}) and the
 lemmas on them are needed for (Q1) to (Q3). Trails are included because the
@@ -173,7 +174,7 @@ $k$. This is \cref{def:path} with the ends fixed, that is, the
 textbook's Definition~1.2.13 with ends $n_i$ and $n_j$.
 \end{definition}
 
-\begin{remark}
+\begin{remark}\label{rem:pathbetween}
 If $i\ne j$, such a path has at least one edge. If $i=j$, the only path is
 the single vertex $(n_i)$ of length 0, because $u_0=u_k$ with $k\ge 1$
 would repeat a vertex. Two vertices may be joined by several paths of
@@ -203,8 +204,9 @@ textbook's simple cycle \cite[Definition~1.2.15, p.~22]{petrosyan2015graphs}
 and the English ``cycle''. The word ``cycle'' is used only in this sense.
 \end{definition}
 
-\begin{remark}
-In a simple graph a cycle has length at least $3$. Length $1$ would need an
+\begin{remark}\label{rem:cycle}
+A cycle goes once around a ring of vertices and ends where it began. In a
+simple graph a cycle has length at least $3$. Length $1$ would need an
 edge from a vertex to itself. Length $2$ would be $w_0w_1w_0$, which uses
 the edge $w_0w_1$ twice and is not a trail. The textbook's $C_n$ has
 $n\ge 3$ \cite[p.~22]{petrosyan2015graphs}. A closed trail need not be a
@@ -229,7 +231,8 @@ infinitely far apart.
 The \emph{distance} $d(u,v)$ is the length of a shortest $(u,v)$-trail if
 there is one, and $\infty$ otherwise
 \cite[Definition~1.2.16, pp.~22--23]{petrosyan2015graphs}. (The textbook
-words this with its own ``path'', that is, trail.)
+words this with its own ``path'', that is, trail.) The same number results
+from shortest walks or shortest paths (\cref{prop:distance}).
 \end{definition}
 
 \begin{remark}
@@ -247,7 +250,7 @@ not $0$ or $3$.
 
 \begin{table}[ht]
 \centering
-\begin{tabular}{@{}p{3.6cm}p{2.5cm}p{3.4cm}p{2.2cm}p{1.5cm}@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.8cm}>{\raggedright\arraybackslash}p{2.3cm}>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{1.6cm}@{}}
 \toprule
 Concept & This note (course) & Textbook's word & English & Textbook number \\
 \midrule
@@ -257,7 +260,7 @@ walk with no repeated edge & trail & ``path'' & trail & 1.2.12 \\
 walk with no repeated vertex & path & ``simple path'' & path & 1.2.13 \\
 closed trail & closed trail & ``closed path or cycle'' & closed trail & 1.2.14 \\
 closed trail, only first and last vertex repeat & cycle & ``simple cycle'' & cycle & 1.2.15 \\
-least length of such a walk & distance & distance & distance & 1.2.16 \\
+least length of a walk between two vertices & distance & distance & distance & 1.2.16 \\
 \bottomrule
 \end{tabular}
 \caption{Three naming conventions for the same concepts. The textbook
@@ -286,7 +289,8 @@ where $e_s=\{u_{s-1},u_s\}$ and $e_t=\{u_{t-1},u_t\}$. The vertex $u_{s-1}$
 is an end of $e_s$, hence an end of $e_t$, so $u_{s-1}=u_{t-1}$ or
 $u_{s-1}=u_t$. Because the vertices of the walk are pairwise distinct, two
 of them are equal only if they have the same position, so $s-1=t-1$ or
-$s-1=t$. Both are impossible, because $s<t$. So no two edges are equal.
+$s-1=t$. The first gives $s=t$ and the second gives $s=t+1$; both contradict
+$s<t$. So no two edges are equal.
 \end{proof}
 
 \plainwords{} Take any trip from one island to another. Suppose the frog
@@ -297,7 +301,7 @@ hops. Keep cutting. In the end the frog lands on no island twice.
 \begin{lemma}[Every walk contains a path]\label{lem:cut}
 Let $W=u_0\cdots u_k$ be a walk from $u$ to $v$ (equal or not). Then there
 is a path from $u$ to $v$ of length at most $k$ whose edges are edges of
-$W$.
+$W$ (we say that $W$ \emph{contains} this path).
 \end{lemma}
 The textbook's Lemma~1.2.1 states this for $u\ne v$, without a bound on
 the length, and proves it by induction on the length of the walk
@@ -345,8 +349,9 @@ p.~40]{grinberg2025graph}. The second sentence follows with
 \cref{lem:cut}: a walk of any length contains a path, and every path has
 length at most $N-1$.
 \end{proof}
-The bound is attained: the path graph on $N$ vertices has a path of length
-$N-1$.
+The bound is attained: the graph whose vertices lie in a row $n_1,n_2,\dots,n_N$, with edges
+$n_1n_2,\dots,n_{N-1}n_N$ (the \emph{path graph}), has the path
+$n_1n_2\cdots n_N$ of length $N-1$.
 
 \plainwords{} Suppose some trip joins two islands. Then a fresh-bridge trip
 joins them, and a fresh-island trip joins them too. So it does not matter
@@ -381,7 +386,8 @@ The textbook lists three properties of distance without proof
 note's own.
 \begin{proof}
 Every path is a trail and every trail is a walk (\cref{lem:distinct}), so
-$L_w\le L_t\le L_p$. If a walk $W$ of least length $L_w$ exists and
+$L_w\le L_t\le L_p$ (the least value over a larger set cannot be larger:
+every trail is a walk, and every path is a trail). If a walk $W$ of least length $L_w$ exists and
 repeated a vertex, the cut in the proof of \cref{lem:cut} would give a
 shorter walk, contradicting minimality; so $W$ is a path and
 $L_p\le L_w$. The three numbers agree. The textbook's $d(u,v)$ is $L_t$ by

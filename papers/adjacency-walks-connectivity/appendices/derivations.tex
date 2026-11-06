@@ -44,7 +44,7 @@ a breadth-first search on all labelled simple graphs with $N=1,\dots,6$
 vertices, that is $1$, $2$, $8$, $64$, $1024$, and $32768$ graphs, of which
 $1$, $1$, $4$, $38$, $728$, and $26704$ are connected, with no
 disagreement. The counts of connected graphs are what the script found, not
-figures taken from a source. The script \path{scripts/walk_path_lemmas.py}
+figures taken from a source; the proofs do not use them. The script \path{scripts/walk_path_lemmas.py}
 checked the cut of \cref{lem:cut} on every walk of length $0$ to $8$ on all
 $8$ graphs with three vertices, of length $0$ to $7$ on all $64$ graphs with
 four, and of length $0$ to $5$ on all $1024$ graphs with five ($2052$,
@@ -61,7 +61,7 @@ $72664$, and $743680$ walks), with no failure.
   $B$, and $T$ for the connected, the disconnected, and the triangle
   example, the check that a single power is not a test, the binomial
   identity, and the exhaustive comparison of the three tests for
-  $N=1,\dots,6$; its output is in \path{scripts/output-m3_connectivity.txt}.
+  $N=1,\dots,6$; its output is in \path{scripts/output-m3_connectivity.txt}. (The prefix m3 in the file name is only a label.)
 \item \texttt{python3 -I} \path{scripts/walk_path_lemmas.py} checks
   \cref{lem:distinct,lem:cut,cor:bound,prop:distance} on all graphs with three,
   four, and five vertices (about six seconds); its output is in

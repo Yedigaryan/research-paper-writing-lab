@@ -76,10 +76,10 @@ A_{ij}=\begin{cases}1,& n_i \text{ and } n_j \text{ are adjacent},\\
 \end{equation}
 The textbook gives this matrix no number of its own; it states the rule
 and notes $a_{ii}=0$ and $a_{ij}=a_{ji}$ on printed p.~11
-\cite{petrosyan2015graphs}. The board writes the same rule as $A_{ij}=1$
-if $e_{ij}\in V$ and $0$ if $e_{ij}\notin V$, with $e_{ij}$ the edge
-joining $n_i$ and $n_j$ and $V$ the board's name for the edge set
-\cite{whiteboard1,whiteboard2} (Convention~\ref{conv:names}).
+\cite{petrosyan2015graphs}. The board writes the same rule in other letters
+\cite{whiteboard1,whiteboard2}.\footnote{As $A_{ij}=1$ if $e_{ij}\in V$ and
+$0$ if $e_{ij}\notin V$, with $e_{ij}$ the edge joining $n_i$ and $n_j$ and
+$V$ the board's name for the edge set (Convention~\ref{conv:names}).}
 \end{definition}
 
 \begin{remark}
@@ -149,8 +149,9 @@ $n_in_j\in E$, so the row sum counts the edges at $n_i$, which is
 $\deg(n_i)$. (4) By (3) the sum of all entries is the sum of all degrees. Every edge has
 two ends, so it is counted once at each end when the degrees are added; the
 sum is therefore $2|E|$, which is the textbook's Theorem~1.2.1 (Euler)
-\cite[Theorem~1.2.1, p.~16]{petrosyan2015graphs}. Since $A$ is symmetric,
-column sums are the degrees too.
+\cite[Theorem~1.2.1, p.~16]{petrosyan2015graphs}. Since $A_{ij}=A_{ji}$,
+column $j$ has the same entries as row $j$, so the column sums are the
+degrees too.
 \end{proof}
 
 \subsection{Matrix products and powers}
@@ -172,7 +173,7 @@ $j$ of $XY$ is obtained by running along row $i$ of $X$ and down column $j$
 of $Y$, multiplying the entries in pairs, and adding the results. The
 \emph{transpose} $X^{T}$ of $X$ is the matrix with $(X^{T})_{ij}=X_{ji}$,
 that is, $X$ flipped over its diagonal; the standard rule
-$(XY)^{T}=Y^{T}X^{T}$ is used in \cref{sec:counting}. By
+$(XY)^{T}=Y^{T}X^{T}$ is needed only for \cref{prop:powers}. By
 \cref{prop:basic}, $A^{T}=A$.
 \end{definition}
 

@@ -8,8 +8,8 @@ so a graph is often given as a table of zeros and ones, the adjacency
 matrix $A$, with one row and one column for each vertex. This note is
 about what that table can tell us. It asks three questions.
 \begin{enumerate}
-\item[(Q1)] What does the entry in row $i$ and column $j$ of the matrix
-  power $(A^k)_{ij}$ represent?
+\item[(Q1)] What does the entry $(A^k)_{ij}$, in row $i$ and column $j$ of
+  the matrix power $A^k$, represent?
 \item[(Q2)] How can we know from $A$ whether the graph is connected, that
   is, whether every vertex can be reached from every other?
 \item[(Q3)] What is the definition of a path between the vertices $n_i$ and
@@ -48,24 +48,27 @@ page of the PDF file is one higher \cite{petrosyan2015graphs}.
 \item\label{conv:names} \textbf{Names.} We write $G=(V,E)$ with $V$ the
   vertices and $E$ the edges, call the vertices $n_1,\dots,n_N$ as the board
   does, and write $n_in_j$ for the edge between $n_i$ and $n_j$. The board
-  uses other letters (its $V$ is the set of edges, and it writes $e_{ij}$
-  for an edge), and the textbook writes $v_i$ for vertices and never
-  $e_{ij}$ \cite[p.~9]{petrosyan2015graphs}. This is a difference of
-  notation only.
+  and the textbook use other letters; this is a difference of notation
+  only.\footnote{The board's $V$ is the set of edges, and it writes $e_{ij}$
+  for an edge. The textbook writes $v_i$ for vertices and never $e_{ij}$
+  \cite[p.~9]{petrosyan2015graphs}.}
 \item\label{conv:power} \textbf{The exponent.} In question (Q1) the board has
   a small mark above $A$ that could not be resolved in the photos as a
   letter $k$ or $n$ \cite{whiteboard1}. It is read as a power $k$, because
   the assignment, as relayed, asks about $A^k$ \cite{userstatements}. The
-  theorem in \cref{sec:counting} holds for every $k$.
+  theorem in \cref{sec:counting} holds for every $k$. If the mark were a
+  pair of quotation marks around $A$, question (Q1) would ask what $A_{ij}$
+  itself represents, which is the case $k=1$ of that theorem.
 \item\label{conv:drawing} \textbf{The matrix defines the example.} The
-  board drawing and the board matrix do not show the same graph
-  (\cref{sec:drawing}). Because the problem statement says that the graph is
+  board drawing and the board matrix do not show the same graph: the drawing has a line between 1 and 3 that
+  the matrix lacks (\cref{sec:drawing}). Because the problem statement says that the graph is
   given through its adjacency matrix, the \emph{matrix} is the example. Its
   graph has the two edges $n_1n_2$ and $n_2n_3$ and is called the
   \emph{board graph}.
 \item\label{conv:path} \textbf{The word ``path''.} In the course, ``path''
   means a walk with no repeated vertex (a walk is a route along edges, which
-  may revisit vertices and edges; \cref{def:walk}). This is the textbook's
+  may revisit vertices and edges, so $n_1n_2n_1$ is a walk but not a path;
+  \cref{def:walk}). This is the textbook's
   Definition~1.2.13, the \emph{simple path} \cite{petrosyan2015graphs}; that
   the course uses it is part of the relayed assignment \cite{userstatements}.
   The textbook's own word ``path'' means something else, which this note
@@ -117,12 +120,16 @@ fresh-island trip & path \\
 ring trip & cycle \\
 fewest hops between two islands & distance \\
 in one piece & connected \\
-group of islands & connected component \\
+group of islands & connectivity component \\
+friends & joined by a path \\
 \bottomrule
 \end{tabular}
 \caption{The story dictionary. One story word stands for one technical
 term.}\label{tab:dictionary}
 \end{table}
+
+Only some of these words are needed for (Q1) to (Q3): island, bridge, next
+door, table, cell, trip, fresh-island trip, and in one piece.
 
 \subsection{The answers in brief}
 
@@ -150,10 +157,12 @@ and one not. \Cref{sec:discussion} collects limits and the comparison with
 other sources, and \cref{sec:conclusion} states the answers. The appendix
 lists the sources, the pages checked, and how to rerun the scripts.
 
-A reader who wants only the answers can read \cref{sec:background} up to
-\cref{def:power}, then \cref{def:walk,def:path,def:pathbetween},
-\cref{lem:cut}, and \cref{cor:bound} in \cref{sec:walks};
-\cref{thm:counting} in \cref{sec:counting}; and \cref{def:connected},
-\cref{lem:reach}, \cref{thm:sum}, and the examples in
-\cref{sec:connectivity}. Trails, cycles, distance, components, the power
+A reader who wants only the answers can read, in \cref{sec:background}, the
+definitions of the adjacency matrix and of matrix powers; in
+\cref{sec:walks}, the definitions of walk and path (\cref{def:walk,def:path,def:pathbetween})
+and the lemma that every walk contains a path (\cref{lem:cut}) with the
+bound on the length of a path (\cref{cor:bound}); in \cref{sec:counting},
+the walk-counting theorem (\cref{thm:counting}); and in
+\cref{sec:connectivity}, the definition of connected, the reachability
+lemma (\cref{lem:reach}), the sum test (\cref{thm:sum}), and the examples. Trails, cycles, distance, components, the power
 test, and \cref{sec:discussion} are not needed for (Q1) to (Q3).

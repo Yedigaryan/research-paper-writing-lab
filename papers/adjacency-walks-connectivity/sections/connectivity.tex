@@ -47,7 +47,8 @@ other. Every island is its own friend. If the first island is a friend of
 the second, the second is a friend of the first. A friend of a friend is a
 friend.
 
-A \emph{relation} $\sim$ on the vertices says, for each ordered pair
+The rest of this subsection, up to the next subsection, is not needed for
+the tests, which use only \cref{def:connected}. A \emph{relation} $\sim$ on the vertices says, for each ordered pair
 $u,v$, whether $u\sim v$ holds or not. It is \emph{reflexive} if $u\sim u$
 for every $u$, \emph{symmetric} if $u\sim v$ implies $v\sim u$, and
 \emph{transitive} if $u\sim v$ and $v\sim w$ imply $u\sim w$. A relation with
@@ -74,9 +75,9 @@ a path from $u$ to $w$.
 group is a friend of anybody in another group.
 
 \begin{definition}[Connectivity component; textbook, printed p.~49]\label{def:component}
-The equivalence classes of $\sim$, each taken together with the edges of
-$G$ that join two of its vertices (the subgraph \emph{induced} on the
-class), are the \emph{connectivity components} of $G$. The textbook introduces them
+The equivalence classes of $\sim$, that is, the groups of vertices that
+are joined to each other by paths, each taken with the edges of $G$ between
+its vertices, are the \emph{connectivity components} of $G$. The textbook introduces them
 in the prose after Definition~2.1.1, with no number of their own
 \cite[p.~49]{petrosyan2015graphs}. Two vertices lie in the same component
 exactly when a path joins them.
@@ -198,6 +199,10 @@ whatever the graph. Hence ``no entry of $T$ is zero'' means ``$B_{ij}>0$ for
 all $i\ne j$'', and \cref{thm:sum} finishes the proof.
 \end{proof}
 
+The role of $I$ is to let a walk stay put at a vertex: $(I+A)^{N-1}$
+contains $A^k$ for every $k$ up to $N-1$ in one matrix, by
+\cref{eq:binomial}.
+
 So the answer to (Q2) is: form $B$, or $T$; look at the entries off the
 diagonal of $B$, or at all entries of $T$; the graph is connected if and
 only if none of them is zero. The entries are walk counts and not path
@@ -259,7 +264,7 @@ $\{n_1,n_2\}$ and $\{n_3\}$, and the non-zero entries of $B$ and $T$ all lie
 in the rows and columns of one of them: they form two blocks along the
 diagonal, a $2\times 2$ block and a $1\times 1$ block. In general no walk
 joins vertices in different components, so by \cref{lem:reach} every entry
-that links two components is zero.
+that links two components is zero, because it counts zero walks.
 \end{example}
 
 \plainwords{} Suppose we looked only at the table for two hops, with three
@@ -267,8 +272,8 @@ islands in a row. The first island and the middle island are next door. Yet
 their cell is zero. Every trip between them has an odd number of hops.
 
 \begin{example}[A single power is not a test]\label{ex:single}
-In the board graph the only power tried by a test that used $A^{N-1}$
-alone would be $A^2$, and $(A^2)_{12}=0$ although $n_1n_2$ is an edge. The
+Suppose a test looked only at $A^{N-1}$. For the board graph, $N=3$, so
+this is $A^2$, and $(A^2)_{12}=0$ although $n_1n_2$ is an edge. The
 reason in words: every edge of this graph joins $n_2$ to $n_1$ or $n_3$,
 so every walk from $n_1$ to $n_2$ has odd length, and $A^2$ sees only even
 lengths.
@@ -279,7 +284,8 @@ are three hops apart. A list of tables that stops at two hops misses them.
 So the list must go on until one fewer hops than there are islands.
 
 \begin{example}[Stopping the sum early]\label{ex:early}
-For the path graph with edges $n_1n_2$, $n_2n_3$, $n_3n_4$ ($N=4$), the
+For the path graph with edges $n_1n_2$, $n_2n_3$, $n_3n_4$ (four vertices in a
+row, $N=4$), the
 script gives $(A^1)_{14}=0$, $(A^2)_{14}=0$, and $(A^3)_{14}=1$. The entry
 $(1,4)$ of $A+A^2$ is $0$, and of $A+A^2+A^3$ it is $1$. A sum stopped at
 $A^2$ would call this connected graph disconnected.
@@ -292,7 +298,8 @@ Stand on one island. Mark it. Then mark every island next door to a marked
 island, round after round, until no new island is marked. The pond is in
 one piece exactly when every island ends up marked.
 
-Breadth-first search (BFS) from a start vertex $s$ visits $s$, then all of
+This subsection gives a different method, for context only; it is not part
+of the answer to (Q2). Breadth-first search (BFS) from a start vertex $s$ visits $s$, then all of
 its neighbours, then all not yet visited neighbours of those, layer by
 layer, and stops when a layer is empty. Lau's lecture slides list ``To
 determine whether a given graph is connected'' among the questions BFS
@@ -310,5 +317,5 @@ a measurement: BFS reads one row of $N$ entries for each of at most $N$
 visited vertices, about $N^2$ operations. A product of two $N\times N$
 matrices has $N^2$ entries, each a sum of $N$ products by \cref{eq:product},
 so about $N^3$ multiplications, and reaching $A^{N-1}$ from $A$ takes $N-2$
-products. So the matrix tests answer the question as posed, with $A$ alone,
+products, about $N^4$ multiplications in all, against about $N^2$ for BFS. So the matrix tests answer the question as posed, with $A$ alone,
 but are not the cheap way.
