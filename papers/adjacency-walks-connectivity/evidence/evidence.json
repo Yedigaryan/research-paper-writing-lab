@@ -209,6 +209,25 @@
       "credibility": "secondary",
       "found_by": "research-agent",
       "notes": "Seen only as a search result title and URL in this run; never opened. Supports nothing. It treats digraphs."
+    },
+    {
+      "id": "m3_check_script",
+      "type": "code",
+      "title": "m3_check.py: matrices and exhaustive connectivity check for module m3",
+      "authors": [],
+      "year": null,
+      "venue": "Script in this repository, written by module owner m3",
+      "identifier": {
+        "doi": null,
+        "url": null,
+        "isbn": null,
+        "path": "modules/m3_check.py"
+      },
+      "accessed": "2026-11-06",
+      "access_status": "full",
+      "credibility": "primary",
+      "found_by": "module:m3",
+      "notes": "Run with python3 -I; output saved in modules/m3_check.out. Integer matrix multiplication, brute-force walk enumeration for k = 1 to 4, BFS, exhaustive over all labelled simple graphs with N = 1 to 6. Checks the statement for small N; it is not a proof."
     }
   ],
   "claims": [
@@ -890,6 +909,634 @@
       "contradicted_by": [
         "C25"
       ]
+    },
+    {
+      "id": "M1-1",
+      "text": "Row i of A sums to the degree of n_i: the row sum counts the entries equal to 1 in row i, i.e. the vertices adjacent to n_i, i.e. the edges at n_i in a simple graph. Consequently the sum of all entries of A is 2|E|. Supersedes base claim C4.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 11, after Definition 1.1.6",
+          "quote": "A(G) մատրիցը կանվանենք G գրաֆի հարևանության մատրից: Նկատենք, որ ցանկացած i-ի համար (1 ≤ i ≤ n) a_ii = 0, և ցանկացած i,j-ի համար (1 ≤ i, j ≤ n) a_ij = a_ji:"
+        },
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 16, Definition 1.2.1",
+          "quote": "G գրաֆում v գագաթի աստիճան, որը կնշանակենք d_G(v)-ով կամ d(v)-ով, կանվանենք այդ գագաթին կից կողերի քանակը:"
+        },
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 16, Theorem 1.2.1 (Euler)",
+          "quote": "Կամայական G = (V, E) գրաֆում տեղի ունի Σ d_G(v) = 2|E(G)| հավասարությունը:"
+        }
+      ],
+      "derivation": "modules/m1.md, section 5.1 (proof), script modules/m1-calc/m1_check.py (row sums checked on the board graph, a 4-vertex graph and 300 random graphs)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M1-2",
+      "text": "(A^2)_ii equals the degree of n_i, so it is positive for every non-isolated vertex, while no path (distinct vertices) of length 2 starts and ends at n_i. On the board graph (A^2)_11 = 1, (A^2)_22 = 2, (A^2)_33 = 1; the only length-2 closed walks are n1 n2 n1, n2 n1 n2, n2 n3 n2, n3 n2 n3. Supersedes base claim C7.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "uogalway_adjacency_notes",
+          "locator": "p. 4, after Theorem 1.1.3",
+          "quote": "The number of walks of length 2 from a vertex to itself is just the number of edges at that vertex, or the vertex degree."
+        },
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 22, Definition 1.2.13",
+          "quote": "G գրաֆի (u0, uk)-ճանապարհը կանվանենք պարզ (u0, uk)-ճանապարհ, եթե նրա մեջ մտնող բոլոր գագաթները զույգ առ զույգ տարբեր են:"
+        }
+      ],
+      "derivation": "modules/m1.md, section 5.2 (proof and product), script modules/m1-calc/m1_check.py, output modules/m1-calc/m1_check.out",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M1-3",
+      "text": "Walk counting for a simple graph: for k >= 1, (A^k)_ij is the number of walks of length k from n_i to n_j. The paper proves it by induction on k, with base case k = 1 and step (A^(k+1))_ij = sum_r (A^k)_ir A_rj, grouping walks by their last-but-one vertex n_r. The textbook contains no such theorem (C8).",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "uogalway_adjacency_notes",
+          "locator": "Theorem 1.1.3, p. 4",
+          "quote": "Let k be a positive integer. Then the entry in the (i, j)-position of the matrix A^k is the number of walks of length k from v_i to v_j in G."
+        },
+        {
+          "source": "gotti_mit18211_lec27",
+          "locator": "Proposition 2, p. 1",
+          "quote": "For any j, k ∈ [n] and ℓ ∈ N, there are A^ℓ_jk walks of length ℓ from j to k."
+        },
+        {
+          "source": "bai2025adjacency",
+          "locator": "Theorem 1, p. 1",
+          "quote": "Then for any two vertices i and j, the entry (A^k)_ij counts the number of walks of length k from vertex i to vertex j."
+        }
+      ],
+      "derivation": "modules/m1.md, section 5.3 (full induction proof); brute-force check in modules/m1-calc/m1_check.py (24255 entries, 0 failures)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M1-4",
+      "text": "A^k counts walks, not paths, off the diagonal as well: on the board graph (A^3)_12 = 2, counted by the walks n1 n2 n1 n2 and n1 n2 n3 n2, and neither is a path nor a trail, and no path of length 3 joins n1 to n2 because a path in a 3-vertex graph has length at most 2.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "bai2025adjacency",
+          "locator": "Theorem 1 and following paragraph, p. 1",
+          "quote": "counts walks — not paths. This is because matrix multiplication accumulates all sequences of edges between two vertices, including those that revisit vertices and edges."
+        },
+        {
+          "source": "grinberg2025graph",
+          "locator": "Section 2.9.4, p. 40",
+          "quote": "any path from u to v must have length ≤ n − 1, where n is the number of vertices of G (since a path of length k has k + 1 distinct vertices, but G has only n vertices to spare)."
+        }
+      ],
+      "derivation": "modules/m1.md, section 5.4, script modules/m1-calc/m1_check.py",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M1-5",
+      "text": "Convention of this paper: a walk of length 0 (a single vertex) is allowed, so A^0 = I counts it and the theorem holds for k >= 0; the textbook is silent on length 0 and Grinberg allows it. This is the paper's own convention, not the textbook's.",
+      "kind": "interpretation",
+      "module": "m1",
+      "support": [
+        {
+          "source": "grinberg2025graph",
+          "locator": "Definition 2.9.1(a),(c), p. 36",
+          "quote": "A walk (in G) means a finite sequence (v0 , v1 , . . . , vk ) of vertices of G (with k ≥ 0) such that all of v0 v1 , v1 v2 , v2 v3 , . . . , vk−1 vk are edges of G."
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M1-6",
+      "text": "A^k is symmetric for every k >= 0 when G is undirected: reversing a walk from n_i to n_j gives a walk from n_j to n_i of the same length, and this is a bijection. (Equivalently, the transpose of a product reverses the factors and A equals its transpose.)",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 11, after Definition 1.1.6",
+          "quote": "A(G) մատրիցը կանվանենք G գրաֆի հարևանության մատրից: Նկատենք, որ ցանկացած i-ի համար (1 ≤ i ≤ n) a_ii = 0, և ցանկացած i,j-ի համար (1 ≤ i, j ≤ n) a_ij = a_ji:"
+        }
+      ],
+      "derivation": "modules/m1.md, section 5.5",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-1",
+      "text": "In the textbook a walk may repeat vertices and edges, and its length counts each edge as many times as it occurs in the walk (p. 22, remark after the example).",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 22, first paragraph (page viewed as image)",
+          "quote": "Նշենք, որ շրջանցման մեջ գագաթները և կողերը կարող են կրկնվել, իսկ (u0, uk)-շրջանցման երկարությունը ցույց է տալիս այդ շրջանցման մեջ առկա կողերի քանակը, երբ յուրաքանչյուր կող հաշվվում է այնքան անգամ, որքան այն հանդիպում է շրջանցման մեջ:"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-2",
+      "text": "The textbook abbreviates a walk by its vertex sequence u_0, u_1, ..., u_k, assuming each vertex is adjacent to the previous one (p. 21, end of Definition 1.2.10).",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 21, Definition 1.2.10, last sentence (page viewed as image)",
+          "quote": "Սահմանված (u0, uk)-շրջանցումը կրճատ կնշանակենք նրա գագաթների u0, u1, …, u_{k−1}, uk հաջորդականությամբ, ենթադրելով, որ յուրաքանչյուր հաջորդ գագաթ հարևան է նախորդին:"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-3",
+      "text": "The textbook's own examples on Fig. 1.2.5: v1,v3,v2,v4,v3,v5 is a path (trail) but v1,v3,v2,v4,v3,v2,v4,v3,v5 is not; v1,v3,v2,v4,v3,v5 is not a simple (v1,v5)-path while v1,v3,v4,v5 is; v3,v2,v1,v3,v5,v4,v3 is not a simple cycle while v1,v3,v4,v2,v1 is.",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 22, after Definition 1.2.12 (page viewed as image)",
+          "quote": "Նկատենք, որ նկ. 1.2.5-ի G գրաֆի v1, v3, v2, v4, v3, v5 շրջանցումը ճանապարհ է, իսկ v1, v3, v2, v4, v3, v2, v4, v3, v5-ը՝ ոչ:"
+        },
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 22, after Definition 1.2.14 (page viewed as image)",
+          "quote": "Նկատենք, որ նկ. 1.2.5-ի G գրաֆի v1, v3, v2, v4, v3, v5 ճանապարհը պարզ (v1, v5)-ճանապարհ չէ, իսկ v1, v3, v4, v5-ը նույն գրաֆի պարզ (v1, v5)-ճանապարհ է:"
+        },
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 22, after Definition 1.2.15 (page viewed as image)",
+          "quote": "Նկատենք, որ նկ. 1.2.5-ի G գրաֆի v3, v2, v1, v3, v5, v4, v3 ճանապարհը պարզ ցիկլ չէ, իսկ v1, v3, v4, v2, v1-ը նույն գրաֆի պարզ ցիկլ է:"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-4",
+      "text": "With the Fig. 1.2.5 edge list read from the figure image (v1v2, v1v3, v1v5, v2v3, v2v4, v3v4, v3v5, v4v5), a script reproduces every classification in M2-3 and also shows 3,2,1,3,5,4,3 is a closed trail (the book's cycle, Def. 1.2.14). The edge list is the module owner's reading of the figure, not a textbook statement.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 21, Fig. 1.2.5 (page viewed as image)",
+          "quote": null
+        }
+      ],
+      "derivation": "modules/m2-calc.py, PART 1; modules/m2.md section 5.1",
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-5",
+      "text": "Walk-to-path lemma with a bound and with u = v allowed: from any walk w_0,...,w_k (k >= 0) from u to v one obtains a path from u to v of length at most k whose vertices all occur in the walk. Proof by strong induction on k, deleting the block between two equal vertices.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 23, Lemma 1.2.1 and its proof (page viewed as image)",
+          "quote": "Ենթադրենք, որ G գրաֆում u-ն և v-ն իրարից տարբեր երկու գագաթներ են: Այդ դեպքում ցանկացած (u, v)-շրջանցումից կարելի է առանձնացնել պարզ (u, v)-ճանապարհ:"
+        },
+        {
+          "source": "grinberg2025graph",
+          "locator": "Corollary 2.9.7, p. 39",
+          "quote": "Assume that there is a walk from u to v of length k for some k ∈ N. Then, there is a path from u to v of length ≤ k."
+        }
+      ],
+      "derivation": "modules/m2.md section 5.2, Lemma M2.2; checked by modules/m2-calc.py PART 3 (not a proof)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-6",
+      "text": "The textbook's proof of Lemma 1.2.1 passes to the sequence u_0,...,u_i,u_{j+1},...,u_k for u_i = u_j, i < j; when j = k this sequence has no term u_{j+1}, and the proof does not treat that case separately (the sequence is then u_0,...,u_i). Reading of the proof by the module owner.",
+      "kind": "interpretation",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 23, proof of Lemma 1.2.1, last paragraph (page viewed as image)",
+          "quote": "Հետևաբար, կարող ենք ենթադրել, որ գոյություն ունեն i < j թվեր այնպես, որ ui = uj: Դիտարկենք u0, u1, …, ui, u_{j+1}, …, uk (u, v)-շրջանցումը:"
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-7",
+      "text": "In a simple graph every path in the course sense (no repeated vertex) is a trail (no repeated edge), but a trail need not be a path; so path, trail, walk are nested: course paths are contained in trails, which are contained in walks, both inclusions strict.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 22, Definitions 1.2.12 and 1.2.13 and the example after 1.2.12 (page viewed as image)",
+          "quote": "Սահմանվանում 1.2.13: G գրաֆի (u0, uk)-ճանապարհը կանվանենք պարզ (u0, uk)-ճանապարհ, եթե նրա մեջ մտնող բոլոր գագաթները զույգ առ զույգ տարբեր են:"
+        }
+      ],
+      "derivation": "modules/m2.md section 5.3, Proposition M2.3; strictness by the examples of M2-3 and the board graph",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-8",
+      "text": "For any vertices u, v of a simple graph: there is a (u,v)-trail (textbook Def. 1.2.12) if and only if there is a (u,v)-path in the course sense (Def. 1.2.13). Hence the textbook's Definition 2.1.1 of connected is unchanged if its path is read as the course path.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 48, Definition 2.1.1 (quote as recorded in claim C23; page not re-viewed by this module)",
+          "quote": "G գրաֆը կանվանենք կապակցված, եթե նրա ցանկացած երկու u և v գագաթների համար գոյություն ունի (u, v)-ճանապարհ:"
+        }
+      ],
+      "derivation": "modules/m2.md section 5.4, Proposition M2.4 (uses M2-5 and M2-7)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-9",
+      "text": "Distance as the least length of a walk, as the least length of a trail (textbook Def. 1.2.16) and as the least length of a course path are the same number (or all +infinity) for every pair u, v.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "pp. 22-23, Definition 1.2.16",
+          "quote": "G գրաֆում u և v գագաթների միջև հեռավորությունը կսահմանենք որպես կարճագույն (u, v)-ճանապարհի երկարություն, եթե G գրաֆում գոյություն ունի առնվազն մեկ (u, v)-ճանապարհ, և +∞` հակառակ դեպքում:"
+        },
+        {
+          "source": "grinberg2025graph",
+          "locator": "Section 2.9.4, p. 40",
+          "quote": "Corollary 2.9.7 shows that a shortest walk from u to v (if it exists) must also be a shortest path from u to v."
+        }
+      ],
+      "derivation": "modules/m2.md section 5.5, Proposition M2.5; checked by modules/m2-calc.py PART 3",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-10",
+      "text": "Reversing a walk (path) from u to v gives a walk (path) from v to u of the same length, so 'there is a path between u and v' does not depend on the order of u and v in an undirected graph.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 21, Definition 1.2.10 (edge e_i = u_{i-1}u_i, an unordered pair)",
+          "quote": "եթե ei = u_{i−1}ui, երբ 1 ≤ i ≤ k:"
+        }
+      ],
+      "derivation": "modules/m2.md section 5.3, Proposition M2.3(c)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-11",
+      "text": "The textbook writes C_n for the simple cycle on n vertices, with n >= 3, and P_n for the simple path on n vertices.",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 22, after the example for Definition 1.2.15 (page viewed as image)",
+          "quote": "n գագաթ ունեցող պարզ ցիկլը կնշանակենք C_n-ով, n ≥ 3: n գագաթ ունեցող պարզ ճանապարհը կնշանակենք P_n-ով:"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-12",
+      "text": "In a simple graph a closed trail of positive length has at least 3 edges: length 1 would need a loop and length 2, u,v,u, uses the edge uv twice. So a cycle in the textbook's sense (Def. 1.2.14) of positive length has length at least 3, as does a simple cycle (consistent with C_n, n >= 3).",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 22, after Definition 1.2.15, C_n with n >= 3",
+          "quote": "n գագաթ ունեցող պարզ ցիկլը կնշանակենք C_n-ով, n ≥ 3:"
+        }
+      ],
+      "derivation": "modules/m2.md section 5.6, Proposition M2.6",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-13",
+      "text": "The textbook's distance property 1 states d_G(u,v) = 0 if and only if u = v. This presupposes a (u,u)-trail of length 0, so the textbook seems to allow length 0 in practice although Definitions 1.2.10 to 1.2.16 do not say so. Reading by the module owner; the paper adopts length 0 as its own convention.",
+      "kind": "interpretation",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 23, property 1 after Definition 1.2.16 (page viewed as image)",
+          "quote": "G գրաֆի ցանկացած u և v գագաթների համար d_G(u, v) ≥ 0, և d_G(u, v) = 0 այն և միայն այն դեպքում, երբ u = v;"
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-14",
+      "text": "On the board graph (edges n1n2, n2n3) the counts by script: (n1,n1) has 1 walk of length 2 and 0 paths of length 2; (n2,n2) has 2 walks of length 2; (n1,n3) has 1 walk and 1 path of length 2 and 2 walks but 0 trails and 0 paths of length 4; (n1,n2) has 2 walks of length 3 and none of length 2 or 4.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "whiteboard1",
+          "locator": "3 by 3 matrix, upper left",
+          "quote": null
+        }
+      ],
+      "derivation": "modules/m2-calc.py, PART 2; modules/m2.md section 5.7",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-15",
+      "text": "Brute-force check: for all labelled simple graphs on 1 to 5 vertices and all ordered pairs u, v (26705 pairs, including u = v), a walk of length k <= 7 implies a path of length <= k, least walk length = least trail length = least path length, every path is a trail, every path has length <= N - 1. Zero failures. This is a check of the proofs, not a proof.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "grinberg2025graph",
+          "locator": "Corollary 2.9.7, p. 39",
+          "quote": "Assume that there is a walk from u to v of length k for some k ∈ N. Then, there is a path from u to v of length ≤ k."
+        }
+      ],
+      "derivation": "modules/m2-calc.py, PART 3",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-C1",
+      "text": "For different vertices u and v, there is a (u,v)-walk iff there is a simple (u,v)-path (no repeated vertex). Proved by taking a shortest walk and cutting out any loop; also the textbook's Lemma 1.2.1 and Grinberg's Corollary 2.9.7.",
+      "kind": "derived",
+      "module": "m3",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 23, Lemma 1.2.1",
+          "quote": "Ենթադրենք, որ G գրաֆում u-ն և v-ն իրարից տարբեր երկու գագաթներ են: Այդ դեպքում ցանկացած (u, v)-շրջանցումից կարելի է առանձնացնել պարզ (u, v)-ճանապարհ:"
+        },
+        {
+          "source": "grinberg2025graph",
+          "locator": "Corollary 2.9.7, p. 39",
+          "quote": "Assume that there is a walk from u to v of length k for some k ∈ N. Then, there is a path from u to v of length ≤ k."
+        }
+      ],
+      "derivation": "modules/m3.md, Section 3.2, Lemma 3.1 (c) implies (a)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-C2",
+      "text": "For different vertices u and v in a simple graph, a (u,v)-trail (the book's path, Def. 1.2.12) exists iff a simple (u,v)-path (Def. 1.2.13) exists iff a (u,v)-walk exists; so the book's Definition 2.1.1 and the course's path convention define the same connected graphs.",
+      "kind": "derived",
+      "module": "m3",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 22, Definition 1.2.12",
+          "quote": "G գրաֆի (u0, uk)-շրջանցումը կանվանենք u0-ից uk ճանապարհ կամ (u0, uk)-ճանապարհ, եթե u0u1-ը,…, u_{k−1}uk-ն G գրաֆի զույգ առ զույգ տարբեր կողեր են:"
+        },
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 22, Definition 1.2.13",
+          "quote": "G գրաֆի (u0, uk)-ճանապարհը կանվանենք պարզ (u0, uk)-ճանապարհ, եթե նրա մեջ մտնող բոլոր գագաթները զույգ առ զույգ տարբեր են:"
+        }
+      ],
+      "derivation": "modules/m3.md, Section 3.2, Lemma 3.1",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-C3",
+      "text": "A simple graph on N vertices is connected iff every off-diagonal entry of A + A^2 + ... + A^(N-1) is positive. Complete proof from walk counting (C5), the walk-to-path lemma (m3-C1) and the path-length bound N - 1 (C21). Paramadevan and Sotheeswaran state the result; their proof is not used.",
+      "kind": "derived",
+      "module": "m3",
+      "support": [
+        {
+          "source": "paramadevan2021properties",
+          "locator": "Theorem 2, p. 17",
+          "quote": "Then, AG is connected if and only if bij ≠ 0, when i ≠ j."
+        },
+        {
+          "source": "uogalway_adjacency_notes",
+          "locator": "Theorem 1.1.3, p. 4",
+          "quote": "Let k be a positive integer. Then the entry in the (i, j)-position of the matrix A^k is the number of walks of length k from v_i to v_j in G."
+        }
+      ],
+      "derivation": "modules/m3.md, Section 3.3, Theorem 3.2",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-C4",
+      "text": "Every entry of (I + A)^(N-1) is positive iff every off-diagonal entry of A + ... + A^(N-1) is positive: by the binomial theorem (I and A commute) the matrix is the sum of C(N-1,k) A^k for k = 0..N-1, all coefficients at least 1; diagonal entries are always at least 1. Its entries are walk counts with binomial weights, not path counts.",
+      "kind": "derived",
+      "module": "m3",
+      "support": [
+        {
+          "source": "gotti_mit18211_lec27",
+          "locator": "Proposition 3, p. 2",
+          "quote": "Let G be a simple graph on [n], and let A be the adjacency matrix of G. Then G is connected if and only if all the entries of (I_n + A)^(n−1) are positive."
+        },
+        {
+          "source": "bai2025adjacency",
+          "locator": "Theorem 2, p. 1",
+          "quote": "Then G is connected if and only if the matrix power (I + A)^(n−1) has all entries strictly positive."
+        }
+      ],
+      "derivation": "modules/m3.md, Section 3.5, Theorem 3.4; check in modules/m3_check.out (binomial identity, equal: True)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-C5",
+      "text": "For i different from j, (A + ... + A^(N-1))_ij > 0 iff n_i and n_j lie in the same connectivity component; the off-diagonal zeros of the sum mark exactly the pairs in different components.",
+      "kind": "derived",
+      "module": "m3",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 49, prose before Remark 2.1.1",
+          "quote": "G գրաֆի G1, …, Gp ենթագրաֆներին ընդունված է անվանել G գրաֆի կապակցվածության կամ կապակցված բաղադրիչներ:"
+        }
+      ],
+      "derivation": "modules/m3.md, Section 3.4, Corollary 3.3; examples in Section 5.2",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-C6",
+      "text": "A single power is not a test and the limit N - 1 cannot be lowered on a path graph. On the board graph (A^2)_12 = 0 although n1n2 is an edge, and (A^1)_13 = 0 while (A^2)_13 = 1. Reason: every edge joins {n1, n3} to {n2}, so walks from n1 to n2 have odd length. The claim that the end vertices of a path graph on N vertices are joined only by a path of length N - 1 is checked by script for N = 3 only.",
+      "kind": "derived",
+      "module": "m3",
+      "support": [
+        {
+          "source": "uogalway_adjacency_notes",
+          "locator": "Theorem 1.1.3, p. 4",
+          "quote": "Let k be a positive integer. Then the entry in the (i, j)-position of the matrix A^k is the number of walks of length k from v_i to v_j in G."
+        }
+      ],
+      "derivation": "modules/m3.md, Section 5.3; modules/m3_check.out, counterexamples block",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-C7",
+      "text": "On the board graph (edges n1n2, n2n3) A = [[0,1,0],[1,0,1],[0,1,0]], A^2 = [[1,0,1],[0,2,0],[1,0,1]], A + A^2 = [[1,1,1],[1,2,1],[1,1,1]], (I+A)^2 = [[2,2,1],[2,3,2],[1,2,2]]: connected. For edge n1n2 only (n3 isolated) A + A^2 = [[1,1,0],[1,1,0],[0,0,0]] and (I+A)^2 = [[2,2,0],[2,2,0],[0,0,1]]: not connected. For the triangle A + A^2 has every entry 2 and (I+A)^2 every entry 3. Every matrix is computed by modules/m3_check.py and cross-checked against brute-force walk counts for k = 1 to 4.",
+      "kind": "derived",
+      "module": "m3",
+      "support": [
+        {
+          "source": "m3_check_script",
+          "locator": "modules/m3_check.out, examples 1, 2 and extra",
+          "quote": "sum test says connected: True | power test: True | BFS: True"
+        }
+      ],
+      "derivation": "modules/m3_check.py, output modules/m3_check.out; modules/m3.md Section 5.1 and 5.2",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-C8",
+      "text": "For every labelled simple graph on N = 1 to 6 vertices (1, 2, 8, 64, 1024, 32768 graphs; 1, 1, 4, 38, 728, 26704 connected) the sum test, the (I+A)^(N-1) test and breadth-first search give the same answer. This checks the theorem for small N; it is not a proof.",
+      "kind": "experimental",
+      "module": "m3",
+      "support": [
+        {
+          "source": "m3_check_script",
+          "locator": "modules/m3_check.out, last line",
+          "quote": "N=6: graphs=32768, connected=26704, disagreements=0"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-C9",
+      "text": "The paper tests only pairs of different vertices; for u = v the book handles the case through the reflexivity of its path relation, and the book does not say whether a walk of length 0 exists. This reading of Definition 2.1.1 and of the board definition is the paper's own.",
+      "kind": "interpretation",
+      "module": "m3",
+      "support": [
+        {
+          "source": "petrosyan2015grafneri",
+          "locator": "p. 49, list of properties of the relation alpha",
+          "quote": "ռեֆլեքսիվություն, այսինքն ցանկացած v ∈ V համար vαv,"
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m3-C10",
+      "text": "Breadth-first search with adjacency lists costs O(n + m) (Waterloo CS 341 slide 8). Given only the matrix A, a search scans one row of N entries per dequeued vertex, so N^2 entries in all (derived, not sourced). The step 'G is connected iff all vertices are marked' is derived by the paper from the slide-11 statement and Lemma 3.1, not found in a source.",
+      "kind": "fact",
+      "module": "m3",
+      "support": [
+        {
+          "source": "schost_cs341_module3",
+          "locator": "slide 8 of 56, Complexity",
+          "quote": "Total: O(n + m)"
+        }
+      ],
+      "derivation": "modules/m3.md, Section 3.6",
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [],
+      "contradicted_by": []
     }
   ],
   "contradictions": [
