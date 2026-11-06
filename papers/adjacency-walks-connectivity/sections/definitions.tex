@@ -10,7 +10,7 @@ $n_1\ \rule[0.6ex]{3em}{0.4pt}\ n_2\ \rule[0.6ex]{3em}{0.4pt}\ n_3$
 
 \plain{A country has towns and roads. Each road joins two different towns and runs both ways. No two roads join the same pair of towns. No road starts and ends in the same town.}
 \begin{definition}[graph; textbook Definition~1.1.1]\label{def:graph}
-A \emph{graph} $G=(V,E)$ consists of a finite set $V$ of \emph{vertices} and a set $E$ of \emph{edges}, each edge being an unordered pair of two different vertices \cite[Def.~1.1.1, p.~9]{petrosyan2015grafneri}. This is the definition of a simple undirected graph \cite[Def.~1.1.1, p.~1]{uogalway_adjacency_notes}. The edge joining $n_i$ and $n_j$ is written $n_in_j$; the board writes it $e_{ij}$.
+A \emph{graph} $G=(V,E)$ consists of a finite set $V$ of \emph{vertices} and a set $E$ of \emph{edges}, each edge being an unordered pair of two different vertices \cite[Def.~1.1.1, p.~9]{petrosyan2015grafneri}. This is the definition of a simple undirected graph \cite[Def.~1.1.1, p.~2]{uogalway_adjacency_notes}. The edge joining $n_i$ and $n_j$ is written $n_in_j$; the board writes it $e_{ij}$.
 \end{definition}
 \begin{remark}
 Because $E$ is a set of unordered pairs of different vertices, there are no loops and no repeated edges, and the edge $n_in_j$ is the same as the edge $n_jn_i$.
@@ -84,7 +84,7 @@ The number of vertices $N$ is not a degree. The board graph has $N=3$ and no ver
 
 \plain{Add up one row of the road table. You get the number of roads at that town. Add up all the rows. You count every road twice, once from each end.}
 \begin{theorem}[row sums are degrees]\label{prop:rowsums}
-For every $i$, $\sum_{j=1}^{N}A_{ij}=\deg(n_i)$. Consequently the sum of all entries of $A$ is $2|E|$, twice the number of edges. The second statement is the textbook's Theorem~1.2.1, that the sum of all degrees is $2|E|$ \cite[p.~16]{petrosyan2015grafneri}, which is taken from the textbook without proof. The first statement follows from the textbook's rule for $A$ \cite[p.~11]{petrosyan2015grafneri}; its proof is given here. (The textbook's Definition~1.2.1 is the definition of degree, and its Theorem~1.2.1 is this sum.)
+For every $i$, $\sum_{j=1}^{N}A_{ij}=\deg(n_i)$. Consequently the sum of all entries of $A$ is $2|E|$, twice the number of edges. The second statement is the textbook's Theorem~1.2.1, that the sum of all degrees is $2|E|$ \cite[p.~16]{petrosyan2015grafneri}, which the textbook proves on p.~16 and which is not proved again here. The first statement follows from the textbook's rule for $A$ \cite[p.~11]{petrosyan2015grafneri}; its proof is given here. (The textbook's Definition~1.2.1 is the definition of degree, and its Theorem~1.2.1 is this sum.)
 \end{theorem}
 \begin{proof}
 Fix $i$. By \Cref{def:adjmatrix}, $A_{ij}=1$ exactly when $n_j$ is adjacent to $n_i$. So $\sum_j A_{ij}$ is the number of neighbours of $n_i$. Send each edge at $n_i$ to its other end. No edge at $n_i$ returns to $n_i$ because there are no loops, and two different edges at $n_i$ never reach the same neighbour because there are no repeated edges. So this assignment is a one-to-one correspondence between the edges at $n_i$ and the neighbours of $n_i$, and the number of neighbours is $\deg(n_i)$. Adding over $i$ gives $\sum_i \deg(n_i)$, which is $2|E|$ by the textbook's Theorem~1.2.1 (the sum of degrees).
@@ -134,7 +134,7 @@ $n_2,n_1,n_2$ is not a trail of the board graph, since it uses the edge $n_1n_2$
 
 \plain{A no-revisit trip never visits a town twice. Between two towns, such a trip is what the third question asks about.}
 \begin{definition}[path; path between $n_i$ and $n_j$; textbook Definition~1.2.13, simple path]\label{def:path}
-A \emph{path} is a walk whose vertices are pairwise different \cite[Def.~1.2.13, p.~22]{petrosyan2015grafneri}; the textbook calls it a simple path. A \emph{path between $n_i$ and $n_j$} is a sequence $u_0,u_1,\dots,u_k$ of vertices with $u_0=n_i$, $u_k=n_j$, with $u_{s-1}u_s$ an edge for $1\le s\le k$, and with $u_0,\dots,u_k$ pairwise different. Its length is $k$.
+A \emph{path} is a walk whose vertices are pairwise different \cite[Def.~1.2.13, p.~22]{petrosyan2015grafneri}; the textbook calls it a simple path. A \emph{path between $n_i$ and $n_j$} is a sequence $u_0,u_1,\dots,u_k$ of vertices with $u_0=n_i$, $u_k=n_j$, with $u_{s-1}u_s$ an edge for $1\le s\le k$, and with $u_0,\dots,u_k$ pairwise different. Its length is $k$. The two ends $n_i$ and $n_j$ may coincide only when $k=0$.
 \end{definition}
 \begin{remark}
 This is the answer to question~(Q3), in the convention fixed by Convention~5. By Convention~6, $n_i$ alone is a path between $n_i$ and $n_i$, of length $0$. Because a path never repeats a vertex, it never repeats an edge, so every path is a trail (\Cref{prop:nesting}).

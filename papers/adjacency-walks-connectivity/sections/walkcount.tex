@@ -25,7 +25,7 @@ Sort the walks of length $k+1$ from $n_i$ to $n_j$ by their last-but-one vertex 
 \end{proof}
 
 \begin{remark}\label{rem:zero}
-With Convention~6 the statement also holds for $k=0$: $A^0=I$, there is one walk of length $0$ from $n_i$ to itself and none from $n_i$ to a different vertex. The step of the proof then starts from $k=0$ unchanged. This is the note's own convention. The textbook's definitions of walks do not say whether length $0$ is allowed, but its usage assumes it (Convention~6).
+With Convention~6 the statement also holds for $k=0$: $A^0=I$, there is one walk of length $0$ from $n_i$ to itself and none from $n_i$ to a different vertex. So the base case $k=0$ holds because $A^0=I$, and the step of the proof then applies from $k=0$ unchanged. This is the note's own convention. The textbook's definitions of walks do not say whether length $0$ is allowed, but its usage assumes it (Convention~6).
 \end{remark}
 
 \begin{remark}\label{rem:entrycount}
@@ -34,7 +34,7 @@ An entry of $A^k$ is a count, not a walk. A positive entry $(A^k)_{ij}$ means th
 
 \subsection{Walks, not paths}
 
-\plain{The product adds up, over every middle town, the ways to get there and the ways to go on. It never asks whether a town was visited before. So a trip that goes out and straight back is counted. The cell for a town and itself is therefore not zero, though no no-revisit trip of two steps can start and end at one town.}
+\plain{The product adds up, over every middle town, the ways to get there and the ways to go on. It never asks whether a town was visited before. So a trip that goes out and straight back is counted. The cell for a town that has at least one road, and itself, is therefore not zero, though no no-revisit trip of two steps can start and end at one town.}
 
 \begin{theorem}[the diagonal of $A^2$]\label{prop:notpaths}
 For every $i$, $(A^2)_{ii}=\deg(n_i)$. If $\deg(n_i)\ge 1$ then $(A^2)_{ii}\ge 1$, although no path of length $2$ joins $n_i$ to $n_i$. So $(A^2)_{ii}$ counts walks and not paths.

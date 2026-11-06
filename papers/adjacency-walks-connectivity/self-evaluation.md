@@ -166,3 +166,24 @@ Reader findings
 - R1-F20: the purpose of the binomial expansion is stated in the proof of Theorem 5.3.
 
 Not changed or open: Table 2 not moved; Armenian script not typeset; the textbook's page 12, 34, 61 hits still not re-viewed.
+
+## Per-finding log, round 2
+
+Build: ok, no overfull boxes; check_citations 0 errors, 0 warnings; check_claims 0 errors, 0 unverified (5 quote warnings in other owners' claims); inspect_pdf 0 errors. Changed sections: introduction (Convention 3, 8), definitions (Def. 2.1 locator, Def. 2.8, Theorem 2.6), paths (Lemma 3.3), walkcount (plain words, Remark 4.2), connectivity (plain words, Remark 5.6, BFS opening), discussion, conclusion, appendix. Evidence: A-3 locator now "proof of Theorem 1, pp. 16-17"; evidence.json rebuilt from base plus fragments.
+
+- E2-F1: discussion item 2 now says "length less than n" means lengths 1 to n-1 under the walk reading.
+- E2-F2: Remark 5.6 example is now a vertex on no closed trail of positive length, including the board graph; the discussion adds the reflexivity of ~ and components to what depends on Convention 6.
+- E2-F3: conclusion wording changed as specified.
+- E2-F4: Galway Def. 1.1.1 cited as printed p. 2.
+- E2-F5: A-3 locator changed; C31, C2 and M2-14 were fixed by their owners and re-merged.
+- E2-F6: not viewed by me; reworded to "the text layer of these pages contains neither result" in Convention 8 and the appendix.
+- E2-F7: plain words now speak of "these cells" for two different towns.
+- E2-F8: plain words now speak of a town with at least one road.
+- E2-F9: Theorem 2.6 now says the textbook proves its Theorem 1.2.1 on p. 16 and it is not proved again here.
+- E2-F10: appendix header copied verbatim from compute.out; discussion cites the compute script for the exhaustive check and mentions the earlier script as agreeing.
+- E2-F11: Convention 3 and the introduction paragraph add the quotation-mark reading, answered by Definition 2.3 (adjacency matrix) and the case k = 1 of Theorem 4.1. The evaluator wrote "Definition 2.5"; the paper's adjacency matrix definition has label def:adjmatrix and the text uses a cross-reference, so the number follows the build.
+- R2-F11: Definition of path says the ends may coincide only when k = 0.
+- R2-F15: one-line idea added before the index argument in Lemma 3.3(a); the detailed argument is kept.
+- R2-F17: Remark 4.2 says the base case k = 0 holds because A^0 = I.
+- R2-F22: BFS subsection opens by saying it is for comparison and not needed for the answers.
+- Not applied: the structural suggestions (moving definitions to an appendix, dropping the story layer), as instructed.

@@ -6,7 +6,7 @@ The board defines a connected graph by the existence of a path between any two v
 
 \subsection{The sum test}
 
-\plain{To know whether every town can reach every other town, add up the tables for one step, two steps, and so on up to $N-1$ steps. Look at the cells for two different towns. If no cell of the sum is zero, every town can reach every other. If some cell is zero, that pair of towns cannot reach each other. Why stop at $N-1$ steps? A trip that never visits a town twice has fewer steps than there are towns.}
+\plain{To know whether every town can reach every other town, add up the tables for one step, two steps, and so on up to $N-1$ steps. Look at the cells for two different towns, not at a town and itself. If none of these cells is zero, every town can reach every other. If one of them is zero, that pair of towns cannot reach each other. Why stop at $N-1$ steps? A trip that never visits a town twice has fewer steps than there are towns.}
 
 \begin{theorem}[sum test]\label{thm:sumtest}
 A simple graph with $N$ vertices and adjacency matrix $A$ is connected if and only if $S_{ij}>0$ for all $i\ne j$.
@@ -58,7 +58,7 @@ In the board graph, $N-1=2$ and $(A^2)_{12}=0$ although $n_1n_2$ is an edge. The
 \end{remark}
 
 \begin{remark}[reading ``any two vertices'' without Convention~6]\label{rem:readingconnected}
-Without Convention~6, a trail of length $0$ would not exist, and an isolated vertex has no trail of positive length to itself. Then ``any two vertices'' in \Cref{def:connected} would have to be read as ``any two different vertices'', since otherwise every graph with an isolated vertex would fail the definition for the pair $u=v$ alone. Under that reading the definition and the tests of this section agree, because the proof of \Cref{thm:sumtest} uses only pairs of different vertices, and for $N=1$ there are no such pairs, so the graph with one vertex is connected under either reading.
+Without Convention~6, a trail of length $0$ would not exist, and a vertex that lies on no closed trail of positive length has no trail of positive length to itself. Then ``any two vertices'' in \Cref{def:connected} would have to be read as ``any two different vertices'', since otherwise every graph with such a vertex, including the board graph, would fail the definition for the pair $u=v$ alone. Under that reading the definition and the tests of this section agree, because the proof of \Cref{thm:sumtest} uses only pairs of different vertices, and for $N=1$ there are no such pairs, so the graph with one vertex is connected under either reading.
 \end{remark}
 
 \begin{remark}[the diagonal says nothing]\label{rem:diagonal}
@@ -66,6 +66,8 @@ By Convention~6 every vertex reaches itself by a walk of length $0$, so a pair $
 \end{remark}
 
 \subsection{An alternative: breadth-first search}
+
+This subsection is for comparison only; the answers to the three questions do not need it.
 
 \plain{There is another way to find out. Stand in one town and mark it. Then mark every town joined to a marked town, again and again, until no new town can be marked. If every town is marked, the country is one group.}
 
