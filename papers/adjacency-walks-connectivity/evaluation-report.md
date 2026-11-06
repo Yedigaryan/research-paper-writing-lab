@@ -180,3 +180,101 @@ to 9 hold, but eleven minor findings are neither resolved nor documented.
 Two (E2-F7, E2-F8) are literally false sentences in the plain-words layer
 and E2-F5 leaves the evidence file contradicting the text, so they are
 fixed rather than documented. Round 3, the last allowed, is ordered.
+
+## Round 3, 2026-11-06
+
+Question: unchanged from round 1.
+Scope: unchanged from round 1.
+Research summary: between rounds the research agent rewrote C31 to the
+two-reading wording and fixed the Galway locators (C2, C5, C7); the m2
+owner re-supported M2-14 from compute.out; the author corrected the A-3
+locator. Merged evidence: 11 sources, 68 claims.
+
+Model levels (configured): research 2, modules 2, author 2, reader 2,
+evaluator 3 (fresh agent), orchestrator session model (not pinned).
+Hierarchy requirement: met for the configured levels. No runtime fallback
+reported by the harness; served models are not observable in-session.
+
+Mechanical checks: build pass (20 pages, 0 overfull boxes, 1 cosmetic
+underfull box), citations pass (0 errors, 0 warnings), claims pass (0
+errors, 0 unverified, 5 warnings: quote-less supports on qualified or
+local-image claims), pdf pass (0 errors, 0 warnings).
+
+### Scores
+
+| Dimension | Score | Observation |
+|---|---|---|
+| 1 Correctness | 5 | Every matrix and count recomputed independently; every proof traced, including N = 1 and q = k. |
+| 2 Evidence coverage | 4 | Textbook Def. 1.1.1 (p. 9) and the p. 16 proof statement have no evidence entry (N1). |
+| 3 Citation integrity | 5 | Seven sources checked; Galway locators consistent. |
+| 4 Logical validity | 5 | Tests rest only on Thm 4.1, Lemmas 3.1, 3.4; Convention 6 dependencies listed. |
+| 5 Understandability | 5 | Plain-words layer complete; false sentences corrected. |
+| 6 Completeness | 5 | Every brief objective present. |
+| 7 Methodological rigor | 5 | Conventions explicit; search claim limited to the text layer. |
+| 8 Critical analysis | 5 | Two-reading treatment of published sentences with counterexamples. |
+| 9 Internal consistency | 5 | Length-0 wording and script references consistent. |
+| 10 Reproducibility | 5 | compute.py rerun byte-identical; appendix block matches. |
+| 11 LaTeX and PDF quality | 5 | Clean build; one cosmetic underfull box (N2). |
+| 12 Answer relevance | 5 | Q1 to Q3 answered directly. |
+
+### Findings
+
+Round 2 findings E2-F1 to E2-F11: all resolved, confirmed by the round 3
+evaluator. Round 1 findings E1-F1 to E1-F10: no regression.
+
+| Id | Severity | Location | Defect | Status |
+|---|---|---|---|---|
+| E3-N1 | minor | definitions.tex:13, :87; provenance.tex:3; evidence.json | Textbook Def. 1.1.1 (p. 9) and the p. 16 proof of Theorem 1.2.1 cited without an evidence entry; p. 9 not in the viewed-pages list. | documented: both statements verified correct by the evaluator on the page images (PDF pp. 10, 17); the gap is in the evidence record, not the text. The three-round limit leaves no further revision round. |
+| E3-N2 | minor | paths.tex:19 (Table 2) | One underfull hbox; output visually acceptable. | documented: cosmetic, no effect on content. |
+| E3-N3 | minor | evidence.json M2-14 | "length 2 or 4" for (n1, n2); length 4 not covered by a quoted line. | documented: the paper does not use the length-4 part; the statement is true by parity (every walk n1 to n2 has odd length, Remark 5.5). |
+
+Technician reader: 30 comprehension findings (R3-F1 to R3-F30) in
+`reader-findings.md`; its summary matches the paper's conclusion, so
+there is no mismatch finding. The evaluator's comprehension review found
+no failing passage. The reader findings are advisory and mostly
+structural (move conventions and source bookkeeping to an appendix, trim
+the story layer, cut definitions not used in the main proofs). They
+conflict in part with the study-note standard (textbook build order, a
+plain-words paragraph before every definition) and were not applied in
+this round; they are recorded for a later refinement step.
+
+### Citation and claim coverage
+
+11 sources, all cited; 68 claims: 56 supported, 12 qualified, 0
+unverified. Evaluator spot checks: 7 sources (textbook as page images),
+all support.
+
+### Unverified claims and access limits
+
+- No unverified claims. Twelve qualified claims, each qualified in text.
+- Textbook search-hit pages 7, 12, 34, 61: the author relies on the text
+  layer; the evaluators viewed them as images and found neither result.
+
+### Known limitations
+
+- The sum-form connectivity test has one external statement (Paramadevan,
+  regional journal); the proof is the note's own.
+- Breadth-first search has slide-level support only.
+- The board drawing shows three edges, the matrix two; the paper follows
+  the matrix and shows that both readings are connected.
+- Walks of length 0 are the note's own convention; the textbook's
+  definitions are silent but its usage on pp. 23 and 49 assumes them.
+
+### Release conditions
+
+1. Every dimension at least 3: holds (minimum 4).
+2. No unresolved critical defect: holds.
+3. Every substantive factual claim supported or qualified: holds.
+4. Material conclusions justified: holds.
+5. No essential concept or step unexplained: holds.
+6. Evaluator level above author and module owners: holds (3 over 2,
+   configured).
+7. build.sh succeeds, inspect_pdf.py no errors: holds.
+8. check_citations.py and check_claims.py no errors: holds.
+9. self-evaluation.md covers every section: holds (Sections 1 to 8,
+   Appendix A, per-finding logs for rounds 1 and 2).
+10. Independent evaluation of the current draft passed: holds (round 3
+    evaluator, PASS).
+
+Decision: PASS -- all ten release conditions hold; the three remaining
+minor findings are documented above with reasons.
