@@ -1,0 +1,304 @@
+{
+  "sources": [],
+  "claims": [
+    {
+      "id": "m2-1",
+      "text": "A walk whose vertices are pairwise distinct has pairwise distinct edges, so the course path (a walk with no repeated vertex) is exactly the textbook's simple path of Definition 1.2.13 (a trail with no repeated vertex).",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "Definition 1.2.13, printed p. 22 (viewed as image)",
+          "quote": "եթե նրա մեջ մտնող բոլոր գագաթները զույգ առ զույգ տարբեր են"
+        }
+      ],
+      "derivation": "modules/m2.md, Section 5.1 (Lemma 2.1); script modules/m2-check.py, section 5 (no distinct-vertex walk with a repeated edge among all labelled simple graphs on 3, 4, 5 vertices)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m2-2",
+      "text": "For any vertices u and v (equal or not) of a simple graph, every (u,v)-walk of length k contains a path from u to v of length at most k, obtained by deleting closed blocks; proved by strong induction on k. The textbook's Lemma 1.2.1 states it for u different from v without a length bound; Grinberg Corollary 2.9.7 states it with the bound and covers u = v.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "Lemma 1.2.1, printed p. 23 (viewed as image)",
+          "quote": "իրարից տարբեր երկու գագաթներ են: Այդ դեպքում ցանկացած"
+        },
+        {
+          "source": "grinberg2025graph",
+          "locator": "Corollary 2.9.7, p. 39",
+          "quote": "Assume that there is a walk from u to v of length k for some k ∈ N. Then, there is a path from u to v of length ≤ k."
+        }
+      ],
+      "derivation": "modules/m2.md, Section 5.2 (Lemma 2.2); script modules/m2-check.py, section 5 (reduction procedure checked on every walk of length 0..8 on 3 vertices, 0..7 on 4, 0..5 on 5: zero failures)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m2-3",
+      "text": "A path in a graph with N vertices has length at most N - 1, because a path of length k has k + 1 distinct vertices; hence if some walk joins two vertices, a path of length at most N - 1 joins them.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "grinberg2025graph",
+          "locator": "Section 2.9.4, p. 40",
+          "quote": "any path from u to v must have length ≤ n − 1, where n is the number of vertices of G"
+        }
+      ],
+      "derivation": "modules/m2.md, Section 5.3 (Corollary 2.3); script modules/m2-check.py, section 5 (longest path seen equals N - 1, never more)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m2-4",
+      "text": "For vertices u and v the following are equivalent: a (u,v)-walk exists; a (u,v)-trail (the textbook's 'path', Definition 1.2.12) exists; a (u,v)-path (the textbook's simple path, Definition 1.2.13) exists. So the textbook's Definition 2.1.1 of connected, which says 'path' in its sense of trail, agrees with the board's and the course's definition of connected with the course path.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "Definition 2.1.1, printed p. 48",
+          "quote": "գրաֆը կանվանենք կապակցված, եթե նրա ցանկացած երկու"
+        },
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "Definition 1.2.12, printed p. 22",
+          "quote": "զույգ առ զույգ տարբեր կողեր են"
+        }
+      ],
+      "derivation": "modules/m2.md, Section 5.4 (Proposition 2.4); script modules/m2-check.py, section 5 (distance computed four ways agrees)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m2-5",
+      "text": "The textbook's distance (length of a shortest trail, or infinity), the least length of a walk, the least length of a path, and the breadth-first search level are the same number for every pair of vertices of a finite simple graph; so a paper using the course path may say 'shortest path' without changing the value of Definition 1.2.16.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "Definition 1.2.16, printed pp. 22 to 23 (viewed as image)",
+          "quote": "հեռավորությունը կսահմանենք որպես կարճագույն"
+        }
+      ],
+      "derivation": "modules/m2.md, Section 5.5 (Proposition 2.5); script modules/m2-check.py, section 5 (zero disagreements on all labelled simple graphs on 3, 4, 5 vertices, all ordered pairs)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m2-6",
+      "text": "Grinberg Definition 3.4.5 defines a trail as a walk whose edges are distinct (stated for multigraphs); Exercise 2.16(d) on p. 51 uses the same meaning for simple graphs. This is the English word for the textbook's 'path' of Definition 1.2.12.",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "grinberg2025graph",
+          "locator": "Definition 3.4.5, p. 101",
+          "quote": "A trail of G means a walk of G whose edges are distinct."
+        },
+        {
+          "source": "grinberg2025graph",
+          "locator": "Exercise 2.16(d), p. 51",
+          "quote": "A trail (in a graph) means a walk whose edges are distinct (but whose vertices are not necessarily distinct)."
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m2-7",
+      "text": "Grinberg Definition 2.10.1: a closed walk is a walk whose first vertex equals its last; a cycle is a closed walk (w_0, ..., w_k) with k >= 3 and w_0, ..., w_{k-1} distinct (simple graphs).",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "grinberg2025graph",
+          "locator": "Definition 2.10.1 (b), p. 47",
+          "quote": "A cycle of G means a closed walk (w0 , w1 , . . . , wk ) such that k ≥ 3 and such that the vertices w0 , w1 , . . . , wk−1 are distinct."
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m2-8",
+      "text": "In a simple graph the textbook's simple cycle (Definition 1.2.15, a closed trail of positive length whose only repeated vertices are the first and last) has length at least 3 and coincides with Grinberg's cycle; the textbook writes C_n with n >= 3 for the simple cycle on n vertices and P_n for the simple path on n vertices.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "Definition 1.2.15 and the notation C_n, P_n after it, printed p. 22 (viewed as image; 'n >= 3' read from the image)",
+          "quote": "ցիկլը կանվանենք պարզ, եթե նրանում կրկնվում են միայն առաջին և վերջին գագաթները"
+        },
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "printed p. 22, notation after Definition 1.2.15",
+          "quote": "գագաթ ունեցող պարզ ցիկլը կնշանակենք"
+        },
+        {
+          "source": "grinberg2025graph",
+          "locator": "Definition 2.10.1 (b), p. 47",
+          "quote": "A cycle of G means a closed walk (w0 , w1 , . . . , wk ) such that k ≥ 3 and such that the vertices w0 , w1 , . . . , wk−1 are distinct."
+        }
+      ],
+      "derivation": "modules/m2.md, Section 5.6 (Lemma 2.6)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m2-9",
+      "text": "The textbook's examples on Fig. 1.2.5 (printed p. 22) say: v1,v3,v2,v4,v3,v2,v4,v3,v5 is a walk of length 8 but not a trail; v3,v1,v4,v2,v3,v5 is not a walk; v1,v3,v2,v4,v3,v5 is a trail but not a simple path while v1,v3,v4,v5 is a simple path; v3,v2,v1,v3,v5,v4,v3 is not a simple cycle while v1,v3,v4,v2,v1 is. With the seven edges v1v2, v1v3, v2v3, v2v4, v3v4, v3v5, v4v5 the script confirms every statement; the figure has one more edge, v1v5, which none of these examples uses.",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "printed p. 22, example after Definition 1.2.10 (viewed as image)",
+          "quote": "իսկ երկրորդը՝ ոչ"
+        },
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "printed p. 22, example after Definition 1.2.15 (viewed as image)",
+          "quote": "նույն գրաֆի պարզ ցիկլ է"
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m2-10",
+      "text": "The textbook lists three properties of distance (nonnegative with d(u,v) = 0 exactly when u = v; symmetric; triangle inequality) and notes that for a graph with a joining path between any two vertices the pair (V, d) is a metric space; it gives no proof, the paper proves them in Section 5.5 from walks.",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "printed p. 23, after Definition 1.2.16 (viewed as image)",
+          "quote": "իրենից ներկայացնում է մետրիկական տարածություն"
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m2-11",
+      "text": "Convention of this paper: a walk may have length 0 (a single vertex); then a vertex has exactly one path to itself, and the distance from a vertex to itself is 0. The textbook's definitions 1.2.10 to 1.2.16 do not say this in words; its distance property 1 and the reflexivity of its relation alpha assume it, and Grinberg Definition 2.9.1(a) allows k >= 0.",
+      "kind": "interpretation",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "printed p. 23, property 1 of distance (viewed as image)",
+          "quote": "այն և միայն այն դեպքում, երբ"
+        },
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "printed p. 49, reflexivity",
+          "quote": "ռեֆլեքսիվություն, այսինքն ցանկացած"
+        },
+        {
+          "source": "grinberg2025graph",
+          "locator": "Definition 2.9.1 (a), p. 36",
+          "quote": "(with k ≥ 0)"
+        }
+      ],
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m2-12",
+      "text": "Per the orchestrator's summary of the user's statements, 'path' in the course means a walk with no repeated vertices, textbook Definition 1.2.13. The textbook definition itself is supported (C21); that the course uses it is reported by the summary only, not in the user's words.",
+      "kind": "interpretation",
+      "module": "m2",
+      "support": [
+        {
+          "source": "userstatements",
+          "locator": "item 4",
+          "quote": null
+        },
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "Definition 1.2.13, printed p. 22",
+          "quote": "եթե նրա մեջ մտնող բոլոր գագաթները զույգ առ զույգ տարբեր են"
+        }
+      ],
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m2-13",
+      "text": "A closed trail need not be a simple cycle: in the graph with edges n1n2, n2n3, n1n3, n1n4, n4n5, n1n5 (two triangles sharing n1) the sequence n1,n2,n3,n1,n4,n5,n1 is a closed trail of length 6 that repeats n1 in the middle. So the textbook's 'closed path or cycle' (Definition 1.2.14) is wider than its simple cycle (Definition 1.2.15) and than the English cycle.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "Definition 1.2.14, printed p. 22 (viewed as image)",
+          "quote": "կանվանենք փակ ճանապարհ կամ ցիկլ, եթե այն փակ շրջանցում է"
+        }
+      ],
+      "derivation": "modules/m2.md, Section 5.7; script modules/m2-check.py, section 4",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m2-14",
+      "text": "Only two English-language sources (Grinberg, Bai) were read for the 'English' column of the naming table, and Bai's cycle convention was not read. Whether other English books use the same words was not checked. The table's English column is therefore the usage of those sources, not a survey.",
+      "kind": "open-question",
+      "module": "m2",
+      "support": [],
+      "confidence": "low",
+      "status": "unverified",
+      "used_in": [],
+      "contradicted_by": []
+    }
+  ],
+  "contradictions": [
+    {
+      "claims": [
+        "C27",
+        "m2-4",
+        "C7"
+      ],
+      "sources": [
+        "petrosyan2015graphs",
+        "whiteboard1"
+      ],
+      "summary": "Textbook Definition 2.1.1 requires a (u,v)-path in the textbook's sense (a trail); the board's definition of connected says 'path', which the course reads as a walk with no repeated vertex.",
+      "resolution": "Proposition 2.4 in modules/m2.md: a walk, a trail and a path between two vertices exist together, so the two definitions of connected select the same graphs."
+    }
+  ]
+}
