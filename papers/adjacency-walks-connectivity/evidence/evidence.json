@@ -1,0 +1,6 @@
+{
+  "question": "For a simple undirected graph with N vertices given by its adjacency matrix A: what does (A^k)_{ij} represent, how can one determine from A whether the graph is connected, and what is a path between n_i and n_j?",
+  "sources": [],
+  "claims": [],
+  "contradictions": []
+}
