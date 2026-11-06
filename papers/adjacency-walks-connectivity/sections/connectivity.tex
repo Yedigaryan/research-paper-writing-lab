@@ -1,0 +1,68 @@
+\section{Question (Q2): deciding connectivity from the adjacency matrix}\label{sec:connectivity}
+
+The board defines a connected graph by the existence of a path between any two vertices \cite{whiteboard1}, and the textbook gives the same definition in terms of its own word ``path'', which is a trail (\Cref{def:connected}). \Cref{prop:trailpath} shows that the choice of word does not change which graphs are connected. This section turns the definition into a test that reads only $A$.
+
+\paragraph{Notation.} Let $S=A+A^2+\dots+A^{N-1}$. For $N=1$ the sum is empty and $S$ is the zero matrix. The matrix $I$ is the identity matrix of \Cref{def:power}.
+
+\subsection{The sum test}
+
+\plain{To know whether every town can reach every other town, add up the tables for one step, two steps, and so on up to $N-1$ steps. Look at the cells for two different towns. If no cell of the sum is zero, every town can reach every other. If some cell is zero, that pair of towns cannot reach each other. Why stop at $N-1$ steps? A trip that never visits a town twice has fewer steps than there are towns.}
+
+\begin{theorem}[sum test]\label{thm:sumtest}
+A simple graph with $N$ vertices and adjacency matrix $A$ is connected if and only if $S_{ij}>0$ for all $i\ne j$.
+\end{theorem}
+Paramadevan and Sotheeswaran state this result as their Theorem~2 \cite[p.~17]{paramadevan2021properties}. Their proof counts ``different paths'' and does not use the step from a walk to a path, so it is not used here; the proof below is given here and rests on \Cref{thm:walkcount}, \Cref{lem:walkpath} and \Cref{prop:trailpath}.
+\begin{proof}
+If $N=1$ there is no pair with $i\ne j$, so the condition holds; and a graph with one vertex is connected, since its only pair is $u=v$ (Convention~6). Let $N\ge 2$ and fix $i\ne j$. By \Cref{thm:walkcount} every entry of every $A^k$ is a count, so a nonnegative integer. So $S_{ij}$ is a sum of nonnegative integers, and $S_{ij}>0$ if and only if $(A^k)_{ij}\ge 1$ for some $k$ with $1\le k\le N-1$.
+
+\emph{Claim: $S_{ij}>0$ if and only if there is a walk from $n_i$ to $n_j$.} Suppose $S_{ij}>0$. Choose $k$ with $1\le k\le N-1$ and $(A^k)_{ij}\ge 1$. By \Cref{thm:walkcount} there are $(A^k)_{ij}\ge 1$ walks of length $k$ from $n_i$ to $n_j$, so a walk exists. Conversely, suppose a walk exists. By \Cref{lem:walkpath} there is a path from $n_i$ to $n_j$, of some length $k$ with $k\le N-1$. Since $i\ne j$ the path has at least two vertices, so $k\ge 1$. A path is a walk, so $(A^k)_{ij}\ge 1$ by \Cref{thm:walkcount}. All other terms of $S_{ij}$ are nonnegative, so $S_{ij}\ge 1$. This proves the claim.
+
+Now suppose $G$ is connected. For $i\ne j$ there is a trail from $n_i$ to $n_j$ (\Cref{def:connected}), hence a walk, hence $S_{ij}>0$ by the claim. Conversely, suppose $S_{ij}>0$ for all $i\ne j$. By the claim there is a walk, and so by \Cref{prop:trailpath} a trail, between any two different vertices. Pairs with $u=v$ are covered by the walk of length $0$ (Convention~6). So $G$ is connected.
+\end{proof}
+
+\plain{The zeros of the sum tell you which pairs of towns cannot reach each other. Pairs that can reach each other are in the same group of towns.}
+
+\begin{lemma}[components from $S$]\label{cor:components}
+For $i\ne j$, $S_{ij}>0$ if and only if $n_i$ and $n_j$ lie in the same connectivity component. So the zero entries of $S$ off the diagonal mark exactly the pairs of vertices in different components, and $G$ is connected if and only if there is no such zero.
+\end{lemma}
+\begin{proof}
+By the claim in the proof of \Cref{thm:sumtest}, $S_{ij}>0$ if and only if a walk from $n_i$ to $n_j$ exists. By \Cref{prop:trailpath} this holds if and only if a trail exists, that is, $n_i\sim n_j$ (\Cref{def:connected}), which means that $n_i$ and $n_j$ lie in one equivalence class.
+\end{proof}
+
+\subsection{The same test with one matrix power}
+
+\plain{There is a shortcut. Add a $1$ to every town's own cell in the road table, then multiply together $N-1$ copies of that new table. The country is one group exactly when no cell of the result is zero. The extra $1$s let trips of fewer steps count too.}
+
+\begin{theorem}[power test]\label{thm:powertest}
+A simple graph with $N$ vertices is connected if and only if every entry of $(I+A)^{N-1}$ is positive.
+\end{theorem}
+Gotti's Proposition~3 \cite[p.~2]{gotti_mit18211_lec27} and Bai's Theorem~2 \cite[p.~1]{bai2025adjacency} state this result. Gotti's proof rests on the bound $N-1$ on the length of a path and on the binomial identity \cite[p.~2]{gotti_mit18211_lec27}; the proof below is given here and also covers the step from a walk to a path.
+\begin{proof}
+The matrices $I$ and $A$ commute, since $IA=A=AI$, so the binomial theorem applies:
+\begin{equation}\label{eq:binomial}
+(I+A)^{N-1}=\sum_{k=0}^{N-1}\binom{N-1}{k}A^k,\qquad A^0=I.
+\end{equation}
+Every coefficient $\binom{N-1}{k}$ is an integer and is at least $1$ for $0\le k\le N-1$, and every entry of every $A^k$ is a nonnegative integer. In \eqref{eq:binomial}, on the diagonal the term $k=0$ contributes $\binom{N-1}{0}I_{ii}=1$, so every diagonal entry is at least $1$ for every graph. Off the diagonal, $I_{ij}=0$, so the entry equals $\sum_{k=1}^{N-1}\binom{N-1}{k}(A^k)_{ij}$. If $S_{ij}>0$, some $(A^k)_{ij}\ge 1$ with $1\le k\le N-1$, and its coefficient is at least $1$, so the entry is positive. If the entry is positive, some $(A^k)_{ij}\ge 1$ with $1\le k\le N-1$, so $S_{ij}>0$. So all entries of $(I+A)^{N-1}$ are positive if and only if $S_{ij}>0$ for all $i\ne j$, which by \Cref{thm:sumtest} holds if and only if $G$ is connected.
+\end{proof}
+
+\begin{remark}\label{rem:binomialcounts}
+The entries of $(I+A)^{N-1}$ and of $S$ are sums of walk counts, in the case of $(I+A)^{N-1}$ with binomial weights. They are not counts of paths. Only their positivity is used by the tests. \Cref{sec:discussion} checks two published sentences that read them as path counts.
+\end{remark}
+
+\subsection{What the test does not do}
+
+\plain{One step is not enough, and neither is one fixed number of steps. Some pairs of towns need one step, others need two. That is why the tables for every number of steps are added. Also, the cell of a town with itself says nothing about the groups.}
+
+\begin{remark}[one power is not a test]\label{rem:onepower}
+In the board graph, $N-1=2$ and $(A^2)_{12}=0$ although $n_1n_2$ is an edge. The reason in words: every edge joins $n_2$ to one of $n_1$ and $n_3$, so every walk from $n_1$ to $n_2$ takes an odd number of steps, and $A^2$ counts only walks of two steps. On the other hand $(A^1)_{13}=0$ while $(A^2)_{13}=1$, so the pair $n_1,n_3$ needs the second power and the pair $n_1,n_2$ needs the first. Both $A$ and $A^2$ are needed. The limit $N-1$ cannot be lowered in general: in a graph with vertices $n_1,\dots,n_N$ and edges $n_sn_{s+1}$ for $1\le s<N$, each step changes the index by $1$, so every walk from $n_1$ to $n_N$ has at least $N-1$ steps. For $N=4$ the script gives $(A^1)_{14}=(A^2)_{14}=0$ and $(A^3)_{14}=1$ \cite{author_compute_script}.
+\end{remark}
+
+\begin{remark}[the diagonal says nothing]\label{rem:diagonal}
+By Convention~6 every vertex reaches itself by a walk of length $0$, so a pair $u=v$ carries no information about connectivity, and neither does the diagonal of $S$. The connected graph with two vertices and one edge has $S=\begin{pmatrix}0&1\\1&0\end{pmatrix}$, with zero diagonal. The disconnected graph of \Cref{sec:examples} has diagonal $(1,1,0)$, and the connected board graph has diagonal $(1,2,1)$. This is why \Cref{thm:sumtest} reads only entries with $i\ne j$, and why $(I+A)^{N-1}$, whose diagonal entries are always positive, can be read as ``no zero anywhere''.
+\end{remark}
+
+\subsection{An alternative: breadth-first search}
+
+\plain{There is another way to find out. Stand in one town and mark it. Then mark every town joined to a marked town, again and again, until no new town can be marked. If every town is marked, the country is one group.}
+
+Breadth-first search (BFS) starts at $n_1$, marks it, and keeps a waiting line of marked vertices; it repeatedly takes the first vertex of the line and marks and queues each of its unmarked neighbours. The CS~341 lecture slides of the University of Waterloo state that, for every vertex $v$, there is a path from the start to $v$ if and only if $v$ is marked at the end \cite[slide~11]{schost_cs341_module3}, and that with adjacency lists the running time is proportional to the number of vertices plus the number of edges \cite[slide~8]{schost_cs341_module3}. The slides list connectivity as an application without proof, so this note does not claim a proof from them. The following step is derived here: $G$ is connected if and only if all $N$ vertices are marked, because if $n_1$ reaches every vertex then two vertices are joined through $n_1$, by a walk to $n_1$ and a walk from $n_1$, and a walk gives a path by \Cref{lem:walkpath}. When the input is the matrix $A$, the search scans one row of $N$ entries for each vertex taken from the line, which is at most $N^2$ entries in total (derived). BFS needs no matrix powers and also lists the component of $n_1$. It is given for comparison only; the question on the board asks for a test from $A$ by algebra.

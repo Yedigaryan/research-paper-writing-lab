@@ -8,17 +8,21 @@
 \usepackage[backend=biber,style=numeric,urldate=long]{biblatex}
 \addbibresource{references.bib}
 \graphicspath{{figures/}}
+\crefname{nonexample}{non-example}{non-examples}
+\newcommand{\plain}[1]{\par\smallskip\noindent\textbf{In plain words.} #1\par\smallskip}
+\newcommand{\prooftag}{\par\noindent\textit{Proof.} }
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{example}[definition]{Example}
+\newtheorem{nonexample}[definition]{Non-example}
 \theoremstyle{plain}
 \newtheorem{theorem}[definition]{Theorem}
 \newtheorem{lemma}[definition]{Lemma}
 \theoremstyle{remark}
 \newtheorem{remark}[definition]{Remark}
 
-\title{Adjacency walks connectivity}
+\title{Walks, paths and connectivity from the adjacency matrix of a graph}
 \author{}
 \date{\today}
 
@@ -26,18 +30,21 @@
 \maketitle
 
 \begin{abstract}
-To be written by the author agent.
+A graph with $N$ vertices can be stored as a table of zeros and ones, its adjacency matrix $A$. This study note answers three questions about that table. First, the entry in row $i$ and column $j$ of the matrix power $A^k$ is the number of walks of length exactly $k$ from vertex $n_i$ to vertex $n_j$; it counts walks, not paths. Second, a graph is connected exactly when every off-diagonal entry of $A + A^2 + \dots + A^{N-1}$ is positive, which is the same as saying that $(I+A)^{N-1}$ has no zero entry. Third, a path between $n_i$ and $n_j$, in the convention of the course, is a walk from $n_i$ to $n_j$ in which no vertex occurs twice. Each statement is proved from the definitions of the course textbook, whose numbering is used, and is shown on a connected and on a disconnected example with three vertices. The lecture board that raised the questions has a drawing that disagrees with its matrix; the note reports the disagreement and follows the matrix.
 \end{abstract}
 
 \input{sections/introduction}
-\input{sections/background}
-\input{sections/analysis}
+\input{sections/definitions}
+\input{sections/paths}
+\input{sections/walkcount}
+\input{sections/connectivity}
+\input{sections/examples}
 \input{sections/discussion}
 \input{sections/conclusion}
 
 \printbibliography
 
 \appendix
-\input{appendices/derivations}
+\input{appendices/provenance}
 
 \end{document}

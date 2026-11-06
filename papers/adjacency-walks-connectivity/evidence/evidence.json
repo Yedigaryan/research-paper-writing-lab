@@ -211,6 +211,25 @@
       "notes": "Seen only as a search result title and URL in this run; never opened. Supports nothing. It treats digraphs."
     },
     {
+      "id": "author_compute_script",
+      "type": "code",
+      "title": "compute.py: every matrix, sum, count and exhaustive check printed in the paper",
+      "authors": [],
+      "year": 2026,
+      "venue": "Script in this repository, written by the paper's author",
+      "identifier": {
+        "doi": null,
+        "url": null,
+        "isbn": null,
+        "path": "appendices/compute.py"
+      },
+      "accessed": "2026-11-06",
+      "access_status": "full",
+      "credibility": "primary",
+      "found_by": "author",
+      "notes": "Run with python3 -I compute.py; output saved in appendices/compute.out. Pure Python integer arithmetic. Checks statements for small graphs; it is not a proof."
+    },
+    {
       "id": "m3_check_script",
       "type": "code",
       "title": "m3_check.py: matrices and exhaustive connectivity check for module m3",
@@ -909,6 +928,46 @@
       "contradicted_by": [
         "C25"
       ]
+    },
+    {
+      "id": "A-1",
+      "text": "For every labelled simple graph with 1 to 4 vertices and k = 0 to 4, every entry of A^k equals the number of walks of length k found by explicit enumeration of vertex sequences: 5525 entries compared, 0 failures. This checks the walk-counting theorem for small graphs; it is not a proof.",
+      "kind": "experimental",
+      "module": "author",
+      "support": [
+        {
+          "source": "author_compute_script",
+          "locator": "appendices/compute.out, last block",
+          "quote": "entries compared: 5525  failures: 0"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/discussion.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "A-2",
+      "text": "In the path graph with vertices n_1,...,n_N and edges n_s n_(s+1), every step changes the vertex index by 1, so every walk from n_1 to n_N has at least N-1 steps; hence the upper limit N-1 of the sum test cannot be lowered. For N = 4 the script gives (A^1)_14 = (A^2)_14 = 0 and (A^3)_14 = 1.",
+      "kind": "derived",
+      "module": "author",
+      "support": [
+        {
+          "source": "author_compute_script",
+          "locator": "appendices/compute.out, block 'Four-vertex path'",
+          "quote": "(A^3)_14 = 1"
+        }
+      ],
+      "derivation": "sections/connectivity.tex, Remark on one power (index argument); numbers by script",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
+      "contradicted_by": []
     },
     {
       "id": "M1-1",

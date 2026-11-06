@@ -1,0 +1,71 @@
+\section{Worked examples and the board mismatch}\label{sec:examples}
+
+Every matrix below was computed by the script described in \Cref{app:provenance}, and every entry that is interpreted was matched against an explicit list of walks.
+
+\subsection{Example 1, connected: the board graph}
+
+\plain{Three towns stand in a row. The middle town has a road to each end town. The two end towns have no road between them. You can get from any town to any other, but the ends meet only through the middle.}
+
+The board graph has vertices $n_1,n_2,n_3$ and edges $n_1n_2$ and $n_2n_3$ (\Cref{fig:board}). Its adjacency matrix is the matrix of \Cref{ex:boardmatrix}. The powers are
+\[
+A=\begin{pmatrix}0&1&0\\1&0&1\\0&1&0\end{pmatrix},\quad
+A^2=\begin{pmatrix}1&0&1\\0&2&0\\1&0&1\end{pmatrix},\quad
+A^3=\begin{pmatrix}0&2&0\\2&0&2\\0&2&0\end{pmatrix}.
+\]
+For $N=3$ the sum test uses $S=A+A^2$, and the power test uses $(I+A)^2$:
+\[
+S=\begin{pmatrix}1&1&1\\1&2&1\\1&1&1\end{pmatrix},\qquad
+(I+A)^2=\begin{pmatrix}2&2&1\\2&3&2\\1&2&2\end{pmatrix}.
+\]
+
+\paragraph{Reading the entries.} By \Cref{thm:walkcount}, each entry counts walks.
+\begin{itemize}
+\item $(A^2)_{13}=1$ counts the single walk $n_1,n_2,n_3$. Note that $A_{13}=0$: there is no edge $n_1n_3$, yet the second power is positive, because a walk of two steps exists.
+\item $(A^2)_{11}=1$ counts the walk $n_1,n_2,n_1$. $(A^2)_{22}=2$ counts the walks $n_2,n_1,n_2$ and $n_2,n_3,n_2$. $(A^2)_{33}=1$ counts $n_3,n_2,n_3$. By hand, $(A^2)_{22}=A_{21}A_{12}+A_{22}A_{22}+A_{23}A_{32}=1+0+1=2$. The diagonal $(1,2,1)$ equals the degrees $d(n_1),d(n_2),d(n_3)$, as \Cref{prop:notpaths} says. These are walks and not paths: none of them is a path, and none is even a trail, since each uses an edge twice.
+\item $(A^3)_{12}=2$ counts the walks $n_1,n_2,n_1,n_2$ and $n_1,n_2,n_3,n_2$ (\Cref{rem:board3}). There is no path of length $3$ from $n_1$ to $n_2$. Also $(A^2)_{12}=0$ although $n_1n_2$ is an edge, for the parity reason of \Cref{rem:onepower}.
+\item $(A^4)_{13}=2$ counts the walks $n_1,n_2,n_1,n_2,n_3$ and $n_1,n_2,n_3,n_2,n_3$. No path of length $4$ joins $n_1$ and $n_3$, although a path of length $2$ does (\Cref{rem:exactlength}).
+\end{itemize}
+
+\paragraph{The tests.} The six entries of $S$ with $i\ne j$ are all $1$, so by \Cref{thm:sumtest} the graph is connected. For example, $S_{13}=A_{13}+(A^2)_{13}=0+1=1$. All nine entries of $(I+A)^2$ are positive, so \Cref{thm:powertest} gives the same answer. The entries of $S$ and of $(I+A)^2$ are not path counts: $S_{22}=2$ and $((I+A)^2)_{11}=2$, but at most one path (the one of length $0$) joins a vertex to itself.
+
+\subsection{Example 2, disconnected: one edge and an isolated vertex}
+
+\plain{Two towns have a road between them. A third town has no road at all. Nobody can reach the third town, and it cannot reach anyone.}
+
+Take vertices $n_1,n_2,n_3$ and the single edge $n_1n_2$. Then
+\[
+A=\begin{pmatrix}0&1&0\\1&0&0\\0&0&0\end{pmatrix},\quad
+A^2=\begin{pmatrix}1&0&0\\0&1&0\\0&0&0\end{pmatrix},\quad
+S=\begin{pmatrix}1&1&0\\1&1&0\\0&0&0\end{pmatrix},\quad
+(I+A)^2=\begin{pmatrix}2&2&0\\2&2&0\\0&0&1\end{pmatrix}.
+\]
+The entries $S_{13}$, $S_{23}$, $S_{31}$, and $S_{32}$ are $0$, so by \Cref{thm:sumtest} the graph is not connected. By \Cref{cor:components} these zeros mark exactly the pairs in different components, and the components are $\{n_1,n_2\}$ and $\{n_3\}$. The same four positions are zero in $(I+A)^2$, so \Cref{thm:powertest} agrees. Breadth-first search from $n_1$ marks $n_1$ and $n_2$ only, which agrees too. The diagonal of $S$ has a zero at position $(3,3)$. This says nothing about $n_3$ reaching itself, which illustrates \Cref{rem:diagonal}.
+
+\subsection{The board drawing and the board matrix}
+
+\plain{The picture on the board and the table on the board do not show the same country. The picture shows three roads. The table shows two. This note follows the table, and says so. It also shows that the answer to the question about one group is the same either way.}
+
+The drawing on the board shows three circled vertices labelled $1$, $2$, $3$ and three lines \cite{whiteboard1,whiteboard2}. The two photographs show the same board and were read together. \Cref{tab:mismatch} compares the drawing and the matrix edge by edge.
+
+\begin{table}[ht]
+\centering
+\caption{The board drawing compared with the board matrix, edge by edge. The matrix has $A_{12}=A_{21}=A_{23}=A_{32}=1$ and all other entries $0$.}\label{tab:mismatch}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Pair of vertices & Drawing & Matrix \\
+\midrule
+$1$ and $2$ & a line, with an arrowhead at $2$ & edge ($A_{12}=A_{21}=1$) \\
+$1$ and $3$ & a line & no edge ($A_{13}=A_{31}=0$) \\
+$2$ and $3$ & a line & edge ($A_{23}=A_{32}=1$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The one disagreement is the pair $1$ and $3$. The arrowhead is read as a stray mark (Convention~4): the matrix has $A_{12}=A_{21}=1$, so the connection runs both ways, and the problem concerns undirected graphs. The note takes the matrix as the example, because the board says the graph is given through its adjacency matrix (Convention~4). If the drawing were taken instead, the graph would be the triangle with all three edges. For the triangle, the script gives
+\[
+A=\begin{pmatrix}0&1&1\\1&0&1\\1&1&0\end{pmatrix},\quad
+A^2=\begin{pmatrix}2&1&1\\1&2&1\\1&1&2\end{pmatrix},\quad
+S=\begin{pmatrix}2&2&2\\2&2&2\\2&2&2\end{pmatrix},\quad
+(I+A)^2=\begin{pmatrix}3&3&3\\3&3&3\\3&3&3\end{pmatrix}.
+\]
+Both tests say connected, so the answer to question (Q2) for the board's example does not depend on how the mismatch is read. Which reading the lecturer meant cannot be settled from the photographs.

@@ -1,0 +1,189 @@
+\section{Definitions}\label{sec:definitions}
+
+\paragraph{Notation.} Throughout, $G=(V,E)$ is a finite simple undirected graph (Convention~1) with vertex set $V=\{n_1,\dots,n_N\}$ and $N\ge 1$. The letters $u$ and $v$ stand for any vertices. The letters $i$, $j$, $r$ index vertices, $p$, $q$, $s$, $t$ are positions in a list of vertices, and $k$ is a length. The definitions follow the order of the textbook, and each carries the textbook's number when it has one. After each definition come a remark on what it allows and forbids, an example, and a non-example. The running example is the \emph{board graph} of \Cref{fig:board}: three vertices and the two edges $n_1n_2$ and $n_2n_3$ (Convention~4).
+
+\begin{figure}[ht]
+\centering
+$n_1\ \rule[0.6ex]{3em}{0.4pt}\ n_2\ \rule[0.6ex]{3em}{0.4pt}\ n_3$
+\caption{The board graph: vertices $n_1,n_2,n_3$ and edges $n_1n_2$ and $n_2n_3$, the graph described by the matrix on the board.}\label{fig:board}
+\end{figure}
+
+\plain{A country has towns and roads. Each road joins two different towns and runs both ways. No two roads join the same pair of towns. No road starts and ends in the same town.}
+\begin{definition}[graph; textbook Definition~1.1.1]\label{def:graph}
+A \emph{graph} $G=(V,E)$ consists of a finite set $V$ of \emph{vertices} and a set $E$ of \emph{edges}, each edge being an unordered pair of two different vertices \cite[Def.~1.1.1, p.~9]{petrosyan2015grafneri}. This is the definition of a simple undirected graph \cite[Def.~1.1.1, p.~1]{uogalway_adjacency_notes}. The edge joining $n_i$ and $n_j$ is written $n_in_j$; the board writes it $e_{ij}$.
+\end{definition}
+\begin{remark}
+Because $E$ is a set of unordered pairs of different vertices, there are no loops and no repeated edges, and the edge $n_in_j$ is the same as the edge $n_jn_i$.
+\end{remark}
+\begin{example}
+The board graph of \Cref{fig:board} has $V=\{n_1,n_2,n_3\}$ and $E=\{n_1n_2,\,n_2n_3\}$.
+\end{example}
+\begin{nonexample}
+Two roads between the same two towns, or a road from a town back to itself, do not give a simple graph.
+\end{nonexample}
+
+\plain{Two towns are joined when a road runs between them. That is all this word means. Towns without a road between them are not joined, even if you can reach one from the other through a third town.}
+\begin{definition}[adjacent; textbook Definition~1.1.4]\label{def:adjacent}
+Two vertices $n_i$ and $n_j$ are \emph{adjacent} if $n_in_j$ is an edge \cite[Def.~1.1.4, p.~11]{petrosyan2015grafneri}.
+\end{definition}
+\begin{remark}
+Adjacency concerns one edge only. A vertex is never adjacent to itself in a simple graph.
+\end{remark}
+\begin{example}
+In the board graph, $n_1$ and $n_2$ are adjacent.
+\end{example}
+\begin{nonexample}
+In the board graph, $n_1$ and $n_3$ are not adjacent, although a trip from $n_1$ to $n_3$ exists through $n_2$.
+\end{nonexample}
+
+\plain{The road table has one row and one column for each town. Look at the row of one town and the column of another. Write $1$ if a road joins them and $0$ if not. The table looks the same if rows and columns are swapped, because roads run both ways. Every cell from a town to itself holds $0$.}
+\begin{definition}[adjacency matrix; textbook, after Definition~1.1.6]\label{def:adjmatrix}
+The \emph{adjacency matrix} of $G$ is the $N\times N$ matrix $A$ with $A_{ij}=1$ if $n_i$ and $n_j$ are adjacent and $A_{ij}=0$ otherwise \cite[p.~11]{petrosyan2015grafneri}. The board writes this rule with $e_{ij}$ in place of adjacency. The textbook gives the matrix no number of its own and never writes $e_{ij}$.
+\end{definition}
+\begin{remark}
+Every entry is $0$ or $1$. The diagonal is zero, $A_{ii}=0$, and the matrix is symmetric, $A_{ij}=A_{ji}$ \cite[p.~11]{petrosyan2015grafneri}. The first holds because there are no loops, the second because an edge is unordered.
+\end{remark}
+\begin{example}\label{ex:boardmatrix}
+The board graph has
+\[
+A=\begin{pmatrix}0&1&0\\1&0&1\\0&1&0\end{pmatrix},
+\]
+which is the matrix written on the board.
+\end{example}
+\begin{nonexample}
+The matrix with rows $(0,1,0)$, $(0,0,1)$, $(0,0,0)$ is not symmetric, so it is not the adjacency matrix of any simple undirected graph. A matrix with a $1$ on its diagonal is not one either.
+\end{nonexample}
+
+\plain{To multiply two tables, take one row of the first and one column of the second. Multiply their cells in pairs, going along together, and add the results. That sum is the new cell. Doing this twice gives the table for two steps, three times gives three steps, and so on.}
+\begin{definition}[matrix product and power]\label{def:power}
+For $N\times N$ matrices $X$ and $Y$, the product $XY$ has entry $(XY)_{ij}=\sum_{r=1}^{N}X_{ir}Y_{rj}$, which combines row $i$ of $X$ with column $j$ of $Y$. The powers of $A$ are $A^0=I$, the identity matrix with ones on the diagonal and zeros elsewhere, and $A^{k+1}=A^kA$ for $k\ge 0$.
+\end{definition}
+\begin{remark}
+The sum runs over every vertex $n_r$. It adds the products of two entries, one from each factor, for each $r$.
+\end{remark}
+\begin{example}
+For the board matrix, $(A^2)_{11}=A_{11}A_{11}+A_{12}A_{21}+A_{13}A_{31}=0+1+0=1$.
+\end{example}
+\begin{nonexample}
+The matrix $A^2$ is not the matrix whose entries are the squares of the entries of $A$. Squaring each entry of the board matrix gives $A$ again, while $(A^2)_{22}=2$ (see \Cref{sec:examples}).
+\end{nonexample}
+
+\plain{The number of roads at a town is the number of ways to leave it by one road. A town with no road is cut off from every other town. The road table shows this number as the sum of one row.}
+\begin{definition}[degree; textbook Definition~1.2.1]\label{def:degree}
+The \emph{degree} $d(n_i)$ of a vertex is the number of edges at it \cite[Def.~1.2.1, p.~16]{petrosyan2015grafneri}.
+\end{definition}
+\begin{remark}
+A vertex of degree $0$ is called isolated here; it is adjacent to nothing.
+\end{remark}
+\begin{example}
+In the board graph, $d(n_1)=1$, $d(n_2)=2$, and $d(n_3)=1$.
+\end{example}
+\begin{nonexample}
+The number of vertices $N$ is not a degree. The board graph has $N=3$ and no vertex of degree $3$.
+\end{nonexample}
+
+\plain{Add up one row of the road table. You get the number of roads at that town. Add up all the rows. You count every road twice, once from each end.}
+\begin{theorem}[row sums are degrees]\label{prop:rowsums}
+For every $i$, $\sum_{j=1}^{N}A_{ij}=d(n_i)$. Consequently the sum of all entries of $A$ is $2|E|$, twice the number of edges. This follows from the textbook's rule for $A$ and its Theorem~1.2.1 (the sum of all degrees is $2|E|$) \cite[pp.~11, 16]{petrosyan2015grafneri}; the proof of the first statement is given here.
+\end{theorem}
+\begin{proof}
+Fix $i$. By \Cref{def:adjmatrix}, $A_{ij}=1$ exactly when $n_j$ is adjacent to $n_i$. So $\sum_j A_{ij}$ is the number of neighbours of $n_i$. Send each edge at $n_i$ to its other end. No edge at $n_i$ returns to $n_i$ because there are no loops, and two different edges at $n_i$ never reach the same neighbour because there are no repeated edges. So this assignment is a one-to-one correspondence between the edges at $n_i$ and the neighbours of $n_i$, and the number of neighbours is $d(n_i)$. Adding over $i$ gives $\sum_i d(n_i)$, which is $2|E|$ by Theorem~1.2.1 of the textbook.
+\end{proof}
+
+\plain{A trip goes from town to town along roads. You may turn round and drive a road again. You may pass through a town as often as you like. The number of steps is the number of roads driven, and a road driven twice counts twice.}
+\begin{definition}[walk; textbook Definition~1.2.10]\label{def:walk}
+A \emph{walk of length $k$ from $u_0$ to $u_k$} is a sequence $u_0,e_1,u_1,\dots,e_k,u_k$ of vertices and edges with $e_s=u_{s-1}u_s$ for $1\le s\le k$ \cite[Def.~1.2.10, p.~21]{petrosyan2015grafneri}. In a simple graph a walk is determined by its vertices, and the textbook also writes a walk as the list $u_0,u_1,\dots,u_k$ \cite[p.~21]{petrosyan2015grafneri}. The \emph{length} is the number of edges, counted each time an edge occurs.
+\end{definition}
+\begin{remark}
+Vertices and edges may repeat \cite[p.~22]{petrosyan2015grafneri}. Length zero is allowed by Convention~6: the single vertex $n_i$ is a walk of length $0$ from $n_i$ to itself.
+\end{remark}
+\begin{example}
+In the board graph, $n_1,n_2,n_1,n_2,n_3$ is a walk of length $4$ from $n_1$ to $n_3$.
+\end{example}
+\begin{nonexample}
+$n_1,n_3$ is not a walk of the board graph, because $n_1n_3$ is not an edge. For the textbook's own example, $v_1,v_3,v_2,v_4,v_3,v_2,v_4,v_3,v_5$ is a walk of its Fig.~1.2.5 and $v_3,v_1,v_4,v_2,v_3,v_5$ is not, because $v_1v_4$ is not an edge there \cite[p.~22]{petrosyan2015grafneri}.
+\end{nonexample}
+
+\plain{A round trip ends in the town where it began. Nothing else is asked of it. It may drive a road twice.}
+\begin{definition}[closed walk; textbook Definition~1.2.11]\label{def:closedwalk}
+A walk $u_0,\dots,u_k$ is \emph{closed} if $u_0=u_k$ \cite[Def.~1.2.11, p.~22]{petrosyan2015grafneri}.
+\end{definition}
+\begin{remark}
+A closed walk may repeat vertices and edges. A walk of length $0$ is closed.
+\end{remark}
+\begin{example}
+$n_2,n_1,n_2$ is a closed walk of the board graph, of length $2$.
+\end{example}
+\begin{nonexample}
+$n_1,n_2,n_3$ is a walk that is not closed.
+\end{nonexample}
+
+\plain{A no-repeat-road trip never drives the same road twice. It may still come back to a town it has visited.}
+\begin{definition}[trail; the textbook's ``path'', Definition~1.2.12]\label{def:trail}
+A walk is a \emph{trail} if its edges $u_0u_1,\dots,u_{k-1}u_k$ are pairwise different. The textbook calls this a path \cite[Def.~1.2.12, p.~22]{petrosyan2015grafneri}, and the English word for it is trail.
+\end{definition}
+\begin{remark}
+Vertices may repeat in a trail; edges may not.
+\end{remark}
+\begin{example}
+The textbook's example $v_1,v_3,v_2,v_4,v_3,v_5$ is a trail of its Fig.~1.2.5 although $v_3$ occurs twice \cite[p.~22]{petrosyan2015grafneri}.
+\end{example}
+\begin{nonexample}
+$n_2,n_1,n_2$ is not a trail of the board graph, since it uses the edge $n_1n_2$ twice. The textbook's $v_1,v_3,v_2,v_4,v_3,v_2,v_4,v_3,v_5$ is not a trail either, since it uses $v_3v_2$ twice \cite[p.~22]{petrosyan2015grafneri}.
+\end{nonexample}
+
+\plain{A no-revisit trip never visits a town twice. Between two towns, such a trip is what the third question asks about.}
+\begin{definition}[path; path between $n_i$ and $n_j$; textbook Definition~1.2.13, simple path]\label{def:path}
+A \emph{path} is a walk whose vertices are pairwise different \cite[Def.~1.2.13, p.~22]{petrosyan2015grafneri}; the textbook calls it a simple path. A \emph{path between $n_i$ and $n_j$} is a sequence $u_0,u_1,\dots,u_k$ of vertices with $u_0=n_i$, $u_k=n_j$, with $u_{s-1}u_s$ an edge for $1\le s\le k$, and with $u_0,\dots,u_k$ pairwise different. Its length is $k$.
+\end{definition}
+\begin{remark}
+This is the answer to question~(Q3), in the convention fixed by Convention~5. By Convention~6, $n_i$ alone is a path between $n_i$ and $n_i$, of length $0$. Because a path never repeats a vertex, it never repeats an edge, so every path is a trail (\Cref{prop:nesting}).
+\end{remark}
+\begin{example}
+In the board graph, $n_1,n_2,n_3$ is a path between $n_1$ and $n_3$ of length $2$. In the textbook's Fig.~1.2.5, $v_1,v_3,v_4,v_5$ is a simple path \cite[p.~22]{petrosyan2015grafneri}.
+\end{example}
+\begin{nonexample}
+$n_1,n_2,n_1,n_2,n_3$ is a walk but not a path, because $n_1$ and $n_2$ occur twice. The textbook's $v_1,v_3,v_2,v_4,v_3,v_5$ is a trail but not a simple path, because $v_3$ occurs twice \cite[p.~22]{petrosyan2015grafneri}.
+\end{nonexample}
+
+\plain{A round trip that never drives a road twice may still visit a town twice. A clean round trip does not. It visits no town twice except the start, which is also the end. A clean round trip needs at least three roads.}
+\begin{definition}[closed trail, textbook Definition~1.2.14; cycle, textbook Definition~1.2.15]\label{def:cycle}
+A \emph{closed trail} is a trail that is a closed walk. The textbook calls it a closed path or cycle \cite[Def.~1.2.14, p.~22]{petrosyan2015grafneri}. A closed trail is \emph{simple} in the textbook if only its first and last vertices repeat \cite[Def.~1.2.15, p.~22]{petrosyan2015grafneri}. This note calls such a simple closed trail of positive length a \emph{cycle}, which is the English meaning of cycle and the textbook's simple cycle (Convention~6 gives a cycle positive length).
+\end{definition}
+\begin{remark}
+A cycle has at least $3$ edges and $3$ vertices (\Cref{prop:shortcycle}). Where a source uses ``cycle'' for a closed trail, this note writes closed trail.
+\end{remark}
+\begin{example}
+The textbook's $v_1,v_3,v_4,v_2,v_1$ is a simple cycle, and $v_3,v_2,v_1,v_3,v_5,v_4,v_3$ is a closed trail that is not simple \cite[p.~22]{petrosyan2015grafneri}.
+\end{example}
+\begin{nonexample}
+The board graph has no cycle: it has only two edges, and a cycle needs three (\Cref{prop:shortcycle}). The closed walk $n_2,n_1,n_2$ is not a closed trail.
+\end{nonexample}
+
+\plain{The distance between two towns is the fewest steps in any trip between them. If no trip joins them, the distance is called infinite.}
+\begin{definition}[distance; textbook Definition~1.2.16]\label{def:distance}
+The \emph{distance} $d(u,v)$ is the length of a shortest trail from $u$ to $v$ if at least one trail exists, and $+\infty$ otherwise \cite[Def.~1.2.16, pp.~22--23]{petrosyan2015grafneri}.
+\end{definition}
+\begin{remark}
+The textbook measures the shortest trail, in the sense of \Cref{def:trail}. \Cref{prop:distance} shows that the same number results from the shortest walk or the shortest path, so ``shortest path'' keeps its usual meaning here.
+\end{remark}
+\begin{example}
+In the board graph, $d(n_1,n_3)=2$, given by the path $n_1,n_2,n_3$.
+\end{example}
+\begin{nonexample}
+The number $4$ is the length of a walk from $n_1$ to $n_3$ but not the distance, because a walk of length $2$ exists.
+\end{nonexample}
+
+\plain{A country is one group when you can get from any town to any other town by some trip. If not, the towns split into groups. Within a group every town reaches every other town. Between two groups there is no trip at all.}
+\begin{definition}[connected, textbook Definition~2.1.1; connectivity component]\label{def:connected}
+$G$ is \emph{connected} if for any two vertices $u$ and $v$ there is a trail from $u$ to $v$ \cite[Def.~2.1.1, p.~48]{petrosyan2015grafneri}. Write $u\sim v$ if there is a trail from $u$ to $v$. The textbook notes that $\sim$ is reflexive, symmetric, and transitive, without giving a proof \cite[p.~49]{petrosyan2015grafneri}. Its equivalence classes $V_1,\dots,V_p$ give the induced subgraphs $G_1,\dots,G_p$, which the textbook calls the \emph{connectivity components} of $G$ \cite[p.~49]{petrosyan2015grafneri}. By the textbook's Remark~2.1.1, $G$ is connected if and only if it has exactly one component \cite[p.~49]{petrosyan2015grafneri}.
+\end{definition}
+\begin{remark}
+The textbook's word is ``path'', meaning trail. \Cref{prop:trailpath} shows that nothing changes if ``trail'' is replaced by the course's path, so the board's wording ``there exists a path between nodes'' defines the same graphs. By Convention~6, the pair $u=v$ is always satisfied by the walk of length $0$, so only pairs of different vertices matter.
+\end{remark}
+\begin{example}
+The board graph is connected and has one component, $\{n_1,n_2,n_3\}$.
+\end{example}
+\begin{nonexample}
+The graph with the single edge $n_1n_2$ and the isolated vertex $n_3$ is not connected. Its components are $\{n_1,n_2\}$ and $\{n_3\}$ (\Cref{sec:examples}).
+\end{nonexample}

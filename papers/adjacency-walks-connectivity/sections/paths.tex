@@ -1,0 +1,87 @@
+\section{Question (Q3): paths, and the three words for them}\label{sec:paths}
+
+The definition of a path between $n_i$ and $n_j$ is \Cref{def:path}: a sequence of vertices from $n_i$ to $n_j$, each two neighbours in the sequence joined by an edge, with no vertex repeated. This section adds only what is new: a comparison of the conventions, and the facts that connect paths to walks. These facts are needed for questions (Q1) and (Q2).
+
+\subsection{Three conventions for one family of words}
+
+\plain{Books do not agree on what to call a trip. Some words mean the strict kind, which never visits a town twice. Some mean the looser kind, which never drives a road twice. The table matches the words of the course, of the textbook, and of English.}
+
+\begin{table}[ht]
+\centering
+\caption{The course, textbook, and English words for walks with different restrictions. The first column says what may not repeat.}\label{tab:naming}
+\begin{tabular}{@{}p{3.9cm}lp{4.3cm}l@{}}
+\toprule
+What may not repeat & Course word (this note) & Textbook word & English word \\
+\midrule
+nothing & walk & walk, Def.~1.2.10 & walk \\
+no edge & trail & path, Def.~1.2.12 & trail \\
+no vertex & path & simple path, Def.~1.2.13 & path \\
+closed, no edge, first vertex equals last & closed trail & closed path or cycle, Def.~1.2.14 & closed trail \\
+closed, only first and last vertex coincide & cycle & simple cycle, Def.~1.2.15 & cycle \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The textbook rows are Definitions 1.2.10 to 1.2.15 \cite[pp.~21--22]{petrosyan2015grafneri}. The course column follows Convention~5. The English word for a walk without repeated vertices is path, as in Grinberg's Definition~2.9.1(c) \cite[p.~36]{grinberg2025graph}, and the English cycle is the textbook's simple cycle. The one place where the textbook's wording and the course's wording clash is the word ``path'': the textbook's path is this note's trail, and the textbook's simple path is this note's path.
+
+\subsection{Every walk contains a path}
+
+\plain{Take any trip between two towns. If it visits some town twice, cut out the part between the two visits. What is left is still a trip between the same two towns, and it is shorter. Repeat until no town is visited twice. A trip that never visits a town twice has fewer steps than there are towns.}
+
+\begin{lemma}[a walk contains a path]\label{lem:walkpath}
+Let $w_0,w_1,\dots,w_k$ with $k\ge 0$ be a walk from $u$ to $v$ in a simple graph with $N$ vertices. Then there is a path from $u$ to $v$ of length at most $k$ whose vertices all occur among $w_0,\dots,w_k$. Every path has length at most $N-1$.
+\end{lemma}
+The textbook states the first part for $u\ne v$ and without a length bound as its Lemma~1.2.1 \cite[p.~23]{petrosyan2015grafneri}. Grinberg states it with the bound and also for $u=v$ \cite[Cor.~2.9.7, p.~39]{grinberg2025graph}, and states the bound $N-1$ \cite[p.~40]{grinberg2025graph}. The proof below is given here.
+\begin{proof}
+We use strong induction on $k$. \emph{Base case $k=0$.} The walk is the single vertex $u=v$, which is a path of length $0$.
+
+\emph{Induction hypothesis.} Let $k\ge 1$ and assume the statement holds for all walks of length less than $k$.
+
+\emph{Step.} If $w_0,\dots,w_k$ are pairwise different, the walk is a path of length $k$ and we are done. Otherwise there are positions $p<q$ with $w_p=w_q$. Delete the block $w_{p+1},\dots,w_q$ and call the result $W'=w_0,\dots,w_p,w_{q+1},\dots,w_k$. It is a walk. Consecutive vertices inside $w_0,\dots,w_p$ and inside $w_{q+1},\dots,w_k$ are joined as in the original walk. The one new pair is $w_p,w_{q+1}$. If $q<k$, it is an edge because $w_p=w_q$ and $w_qw_{q+1}$ is an edge. If $q=k$ there is no $w_{q+1}$, and $W'=w_0,\dots,w_p$ ends at $w_p=w_q=w_k=v$. If $p=0$, the walk $W'$ still starts at $w_0=u$. So $W'$ is a walk from $u$ to $v$, of length $k-(q-p)<k$, that uses only vertices of the original walk. By the induction hypothesis $W'$ contains a path from $u$ to $v$ of length at most $k-(q-p)<k$ with all its vertices among those of $W'$. This proves the first part.
+
+For the bound, a path of length $k$ has $k+1$ pairwise different vertices, and $G$ has only $N$ vertices, so $k+1\le N$, that is $k\le N-1$.
+\end{proof}
+
+\begin{remark}\label{rem:exactlength}
+If $u\ne v$ and there is a walk of length $k$ from $u$ to $v$, then there is a path from $u$ to $v$ of length between $1$ and $\min(k,N-1)$. The lemma does not give a path of exactly length $k$. In the board graph there are two walks of length $4$ from $n_1$ to $n_3$ and no path of length $4$ (\Cref{sec:examples}).
+\end{remark}
+
+\subsection{Nesting, reversal, trails and distance}
+
+\plain{A no-revisit trip never drives a road twice, because driving a road twice means visiting its towns twice. So every no-revisit trip is also a no-repeat-road trip. Driving a trip backwards gives a trip of the same number of steps in the other direction.}
+
+\begin{lemma}[nesting and reversal]\label{prop:nesting}
+(a) Every path is a trail, and every trail is a walk; each inclusion can be strict. (b) If $u_0,\dots,u_k$ is a walk, trail, or path from $a$ to $b$, then $u_k,\dots,u_0$ is a walk, trail, or path from $b$ to $a$, of the same length.
+\end{lemma}
+\begin{proof}
+(a) Suppose a path $u_0,\dots,u_k$ had two equal edges $u_{s-1}u_s=u_{t-1}u_t$ with $s<t$. The positions $s-1$ and $t-1$ differ, and so do $s-1$ and $t$. A path has pairwise different vertices, so $u_{s-1}$ is neither $u_{t-1}$ nor $u_t$. This contradicts $\{u_{s-1},u_s\}=\{u_{t-1},u_t\}$. Every trail is a walk by definition. The inclusions are strict: in the board graph $n_2,n_1,n_2$ is a walk and not a trail, and the textbook's $v_1,v_3,v_2,v_4,v_3,v_5$ is a trail and not a path \cite[p.~22]{petrosyan2015grafneri}. (b) Edges are unordered pairs, and the conditions on repeated edges and vertices do not depend on the order of the list.
+\end{proof}
+
+\plain{Every no-revisit trip is also a no-repeat-road trip. Now go the other way. If some no-repeat-road trip joins two towns, then some no-revisit trip joins them too. So two towns can reach each other by one kind of trip exactly when they can by the other.}
+
+\begin{lemma}[trail if and only if path]\label{prop:trailpath}
+For vertices $u$ and $v$ there is a trail from $u$ to $v$ if and only if there is a path from $u$ to $v$ if and only if there is a walk from $u$ to $v$. Hence \Cref{def:connected} defines the same connected graphs whether ``trail'' is replaced by ``path'' or by ``walk''.
+\end{lemma}
+\begin{proof}
+A path is a trail and a trail is a walk (\Cref{prop:nesting}). A walk from $u$ to $v$ contains a path from $u$ to $v$ (\Cref{lem:walkpath}), which closes the circle of implications.
+\end{proof}
+
+\plain{The fewest steps of any trip between two towns is the same number whichever kind of trip we allow. So the word ``distance'' means one thing.}
+
+\begin{lemma}[distance]\label{prop:distance}
+For vertices $u$ and $v$, let $W$, $T$, and $P$ be the least lengths of a walk, a trail, and a path from $u$ to $v$, each taken as $+\infty$ if none exists. Then $W=T=P$. In particular the textbook's distance (\Cref{def:distance}) is $T$, and equals the length of a shortest walk and of a shortest path.
+\end{lemma}
+\begin{proof}
+Every path is a trail and every trail is a walk, so $W\le T\le P$. If $W$ is finite, a walk of length $W$ contains a path of length at most $W$ (\Cref{lem:walkpath}), so $P\le W$. Hence $W=T=P$. If $W=+\infty$, there is no walk and so no trail and no path, and all three are $+\infty$.
+\end{proof}
+Grinberg makes the same remark for walks and paths \cite[p.~40]{grinberg2025graph}.
+
+\plain{A clean round trip needs at least three roads. One road is not enough, because a road cannot start and end in the same town. Two roads are not enough, because the trip would drive one road there and back.}
+
+\begin{lemma}[short cycles]\label{prop:shortcycle}
+In a simple graph a closed trail of positive length has at least $3$ edges. Hence a cycle has at least $3$ edges and $3$ different vertices.
+\end{lemma}
+\begin{proof}
+A closed trail $u_0,\dots,u_k$ with $k\ge 1$ cannot have $k=1$, since $u_1=u_0$ would make $u_0u_1$ a loop. It cannot have $k=2$, since $u_0,u_1,u_0$ uses the edge $u_0u_1$ twice. So $k\ge 3$. In a cycle only the first and last vertex coincide, so $u_0,\dots,u_{k-1}$ are $k\ge 3$ different vertices.
+\end{proof}
+The textbook writes $C_n$ with $n\ge 3$ for the simple cycle on $n$ vertices \cite[p.~22]{petrosyan2015grafneri}.

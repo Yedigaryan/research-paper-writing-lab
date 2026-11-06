@@ -1,3 +1,11 @@
 \section{Conclusion}\label{sec:conclusion}
 
-To be written.
+The three questions have the following answers, for finite simple undirected graphs with the conventions of \Cref{sec:introduction}.
+
+\begin{enumerate}
+\item[(Q1)] The entry $(A^k)_{ij}$ of the $k$-th power of the adjacency matrix is the number of walks of length exactly $k$ from $n_i$ to $n_j$ (\Cref{thm:walkcount}). It counts walks, in which vertices and edges may repeat, and not paths: $(A^2)_{ii}$ equals the degree of $n_i$, which is positive for every vertex with a neighbour, although no path of length $2$ joins a vertex to itself (\Cref{prop:notpaths}). The proof is by induction on $k$, grouping walks by their last-but-one vertex.
+\item[(Q2)] A graph with $N$ vertices is connected if and only if every entry off the diagonal of $A+A^2+\dots+A^{N-1}$ is positive (\Cref{thm:sumtest}), and equivalently if and only if $(I+A)^{N-1}$ has no zero entry (\Cref{thm:powertest}). The proof combines walk counting with the fact that every walk contains a path and that a path has at most $N-1$ edges (\Cref{lem:walkpath}). The zero entries of the sum mark exactly the pairs of vertices in different components (\Cref{cor:components}). On the board's matrix the test says connected, and on the graph with one edge and an isolated vertex it says not connected (\Cref{sec:examples}). Breadth-first search gives the same answer by another route.
+\item[(Q3)] In the course, a path between $n_i$ and $n_j$ is a sequence of vertices from $n_i$ to $n_j$, each two neighbours joined by an edge, with no vertex repeated (\Cref{def:path}); it is the textbook's simple path, Definition~1.2.13. The textbook's own word ``path'' (Definition~1.2.12) means a walk with no repeated edge, called a trail here. For deciding connectivity the three kinds of route, walk, trail, and path, join exactly the same pairs of vertices (\Cref{prop:trailpath}).
+\end{enumerate}
+
+Two points were reported and not settled. The board's drawing has three lines and its matrix has two edges, and the note follows the matrix (\Cref{tab:mismatch}); both readings give a connected graph. The textbook does not say whether a walk of length $0$ exists, and the note allows it as its own convention; no answer to question (Q2) depends on that choice.

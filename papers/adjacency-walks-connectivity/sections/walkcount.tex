@@ -1,0 +1,49 @@
+\section{Question (Q1): what the entry of a power of $A$ represents}\label{sec:walkcount}
+
+The answer to question (Q1), with the mark above $A$ read as an exponent $k$ (Convention~3), is that $(A^k)_{ij}$ is a count of walks. Walks are defined in \Cref{def:walk}, and the product that forms $A^k$ in \Cref{def:power}.
+
+\subsection{The walk-counting theorem}
+
+\plain{Ask how many trips of exactly $k$ steps lead from one town to another. The road table answers for one step: the cell holds $1$ if there is a road and $0$ if not. The table multiplied by itself answers for two steps, and so on. A trip may turn back and may revisit towns, and every such trip is counted.}
+
+\begin{theorem}[walk counting]\label{thm:walkcount}
+Let $G$ be a simple graph with adjacency matrix $A$. For every integer $k\ge 1$ and all $i,j$ (including $i=j$), the entry $(A^k)_{ij}$ is the number of walks of length $k$ from $n_i$ to $n_j$.
+\end{theorem}
+Theorem~1.1.3 of the University of Galway notes \cite[p.~4]{uogalway_adjacency_notes}, Proposition~2 of Gotti's lecture notes \cite[p.~1]{gotti_mit18211_lec27}, and Theorem~1 of Bai's lecture notes \cite[p.~1]{bai2025adjacency} state the same result. The textbook has no such theorem (Convention~8). The proof below is given here.
+\begin{proof}
+We use induction on $k$.
+
+\emph{Base case $k=1$.} A walk of length $1$ from $n_i$ to $n_j$ is a single edge $n_in_j$. In a simple graph there is at most one such edge, so the number of walks of length $1$ is $1$ if $n_i$ and $n_j$ are adjacent and $0$ otherwise. This is $A_{ij}=(A^1)_{ij}$ by \Cref{def:adjmatrix}.
+
+\emph{Induction hypothesis.} Assume for some $k\ge 1$ that, for all $i$ and $j$, $(A^k)_{ij}$ is the number of walks of length $k$ from $n_i$ to $n_j$.
+
+\emph{Step.} By \Cref{def:power}, $A^{k+1}=A^kA$, so
+\begin{equation}\label{eq:step}
+(A^{k+1})_{ij}=\sum_{r=1}^{N}(A^k)_{ir}A_{rj}.
+\end{equation}
+Sort the walks of length $k+1$ from $n_i$ to $n_j$ by their last-but-one vertex $n_r$. Such a walk consists of a walk of length $k$ from $n_i$ to $n_r$, followed by one step from $n_r$ to $n_j$, and cutting off the last edge recovers the two parts uniquely. The final step is possible in exactly $A_{rj}$ ways, which is $1$ if $n_rn_j$ is an edge and $0$ otherwise. By the induction hypothesis the first part can be chosen in $(A^k)_{ir}$ ways. The two choices are independent, and every pair of choices gives a walk of length $k+1$. So for fixed $r$ the number of such walks is $(A^k)_{ir}A_{rj}$. Different values of $r$ give different walks, since the last-but-one vertex differs, and every walk has some last-but-one vertex. Adding over $r$ gives the right side of \eqref{eq:step}. So $(A^{k+1})_{ij}$ is the number of walks of length $k+1$ from $n_i$ to $n_j$, which completes the induction.
+\end{proof}
+
+\begin{remark}\label{rem:zero}
+With Convention~6 the statement also holds for $k=0$: $A^0=I$, there is one walk of length $0$ from $n_i$ to itself and none from $n_i$ to a different vertex. The step of the proof then starts from $k=0$ unchanged. This is the note's own convention, since the textbook is silent on length $0$.
+\end{remark}
+
+\begin{remark}\label{rem:entrycount}
+An entry of $A^k$ is a count, not a walk. A positive entry $(A^k)_{ij}$ means that a walk of length $k$ from $n_i$ to $n_j$ exists, and so, by \Cref{lem:walkpath}, that a path from $n_i$ to $n_j$ of length at most $k$ exists. It does not mean that a path of length exactly $k$ exists (\Cref{rem:exactlength}). The matrix $A^k$ is symmetric for every $k$, because reversing a walk from $n_i$ to $n_j$ gives a walk from $n_j$ to $n_i$ of the same length (\Cref{prop:nesting}(b)), so the two counts are equal.
+\end{remark}
+
+\subsection{Walks, not paths}
+
+\plain{The product adds up, over every middle town, the ways to get there and the ways to go on. It never asks whether a town was visited before. So a trip that goes out and straight back is counted. The cell for a town and itself is therefore not zero, though no no-revisit trip of two steps can start and end at one town.}
+
+\begin{theorem}[the diagonal of $A^2$]\label{prop:notpaths}
+For every $i$, $(A^2)_{ii}=d(n_i)$. If $d(n_i)\ge 1$ then $(A^2)_{ii}\ge 1$, although no path of length $2$ joins $n_i$ to $n_i$. So $(A^2)_{ii}$ counts walks and not paths.
+\end{theorem}
+Galway's notes state that walks of length $2$ from a vertex to itself are related to its degree \cite[p.~4]{uogalway_adjacency_notes}. The proof is given here.
+\begin{proof}
+By \Cref{def:power}, $(A^2)_{ii}=\sum_r A_{ir}A_{ri}$. Since $A_{ri}=A_{ir}$ (\Cref{def:adjmatrix}) and every entry is $0$ or $1$, each term equals $A_{ir}^2=A_{ir}$. So $(A^2)_{ii}=\sum_r A_{ir}=d(n_i)$ by \Cref{prop:rowsums}. A path of length $2$ has $3$ pairwise different vertices, but its first and last vertices would both be $n_i$. So there is no such path. The only path from $n_i$ to $n_i$ is the one of length $0$ (Convention~6), which is not of length $2$.
+\end{proof}
+
+\begin{remark}\label{rem:board3}
+The same happens off the diagonal. In the board graph, $(A^3)_{12}=2$, counted by the walks $n_1,n_2,n_1,n_2$ and $n_1,n_2,n_3,n_2$. Both repeat a vertex and an edge, and no path has length $3$, because a path in a graph with $3$ vertices has length at most $2$ (\Cref{lem:walkpath}). The matrices are in \Cref{sec:examples}. Counting paths is not what a matrix power does.
+\end{remark}
