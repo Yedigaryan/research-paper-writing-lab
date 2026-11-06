@@ -14,7 +14,7 @@ session model; agent models come from each candidate's frontmatter.
 | base | earlier run | | | 3 | INCOMPLETE | | 21.37 |
 | inv | session_01V3X5px4ShXGvaa9cTb4xGT | 2026-11-05 10:46 | 2026-11-05 22:52 | 3 | PASS | b4a5dd7 | 20.26 |
 | dom | session_01V3X5pzCTTYKai69Mbmmzz1 | 2026-11-06 14:57 | 2026-11-06 15:46 | 3 | PASS | ab876b9 | 18.76 |
-| composed | session_01V3X5pv2N8SZAvo5Wd9Aoba | 2026-11-06 20:29 | | | | | |
+| composed | session_01V3X5pv2N8SZAvo5Wd9Aoba | 2026-11-06 20:29 | 2026-11-06 21:18 | 3 | PASS | 96a36c8 | 18.92 |
 
 Composer: merge, 6 kept, 4 revised, 2 dropped; notes in
 composer-notes.md. Probe branch claude/harness/adjacency-pipeline/composed,
@@ -36,3 +36,10 @@ after install.
 - The scheduled start fired at 08:07 UTC. A worker restart delayed the
   inv session to 10:46. The dom probe began a day later, after the
   orchestrator session was idle.
+- Deliverable headers: build_evidence.py overcounted pages by one. The
+  base, inv, and dom headers in context/ were regenerated before
+  selection; only line 3 changed. True pages: base 23, inv 20, dom 20,
+  composed 21.
+- Selection pool: the four final papers, plus task.md, the two
+  whiteboard photos, and the course textbook (Grafneri_tesutyun.pdf),
+  which the brief names as the primary source.
