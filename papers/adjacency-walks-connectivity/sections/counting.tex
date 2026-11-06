@@ -1,0 +1,206 @@
+\section{Question 1: what the entries of $A^k$ count}\label{sec:counting}
+
+Question (Q1) asks what the entry in row $i$ and column $j$ of a power of
+$A$ represents (Convention~\ref{conv:power}). The answer is a count of
+walks (\cref{def:walk}); it is not a count of paths (\cref{def:path}).
+
+\subsection{The walk-counting theorem}
+
+\plainwords{} Look at the island table. A one means one hop is possible.
+To make two hops, the frog first goes to some middle island, and then on
+to the last island. For each middle island, multiply two cells and add the
+results. That is exactly how the table is multiplied by itself. So the
+table multiplied by itself counts two-hop trips. The same idea works for
+any number of hops.
+
+\begin{theorem}[Walk counting]\label{thm:counting}
+Let $G$ be a simple undirected graph with vertices $n_1,\dots,n_N$ and
+adjacency matrix $A$. For every integer $k\ge 0$ and all $i,j$, the entry
+$(A^k)_{ij}$ is the number of walks of length $k$ from $n_i$ to $n_j$.
+\end{theorem}
+The theorem is stated for $k\ge 1$ by the University of Galway notes
+\cite[Theorem~1.1.3, p.~4]{galwaynotes} and by Bai \cite[Theorem~1,
+p.~1]{bai2025adjacency}, and for every natural number by Gotti
+\cite[Proposition~2, p.~1]{gotti18211}; the Galway notes and Gotti prove it
+by induction on $k$. The case $k=0$ is this note's convention
+(Convention~\ref{conv:length}). The textbook does not contain the theorem
+(Convention~\ref{conv:proofs}). The proof below is the note's own.
+\begin{proof}
+By induction on $k$.
+
+\emph{Base case $k=0$.} $A^0=I$. A walk of length $0$ from $n_i$ to $n_j$ is
+a single vertex that is both the start and the end, so there is exactly one
+such walk if $i=j$, namely $(n_i)$, and none if $i\ne j$. This is $I_{ij}$.
+(A reader who does not want length $0$ can start at $k=1$ instead: a walk
+of length $1$ from $n_i$ to $n_j$ is the sequence $n_in_j$ with $n_i$
+adjacent to $n_j$, so there is one if $A_{ij}=1$ and none if $A_{ij}=0$,
+which is $A_{ij}$. The inductive case below is unchanged.)
+
+\emph{Induction hypothesis.} Suppose that for some $k\ge 0$ and all pairs
+$(i,r)$, the entry $(A^k)_{ir}$ is the number of walks of length $k$ from
+$n_i$ to $n_r$.
+
+\emph{Inductive case.} Fix $i$ and $j$. Since $A^{k+1}=A^kA$,
+by \cref{eq:product}
+\begin{equation}\label{eq:step}
+(A^{k+1})_{ij}=\sum_{r=1}^{N}(A^k)_{ir}A_{rj}.
+\end{equation}
+Sort the walks of length $k+1$ from $n_i$ to $n_j$ by their last-but-one
+vertex. A walk $u_0\cdots u_ku_{k+1}$ with $u_0=n_i$ and $u_{k+1}=n_j$ has
+$u_k=n_r$ for exactly one $r$. Fix $r$.
+\begin{itemize}
+\item If $n_r$ is adjacent to $n_j$ (so $A_{rj}=1$), the walks of length
+  $k+1$ from $n_i$ to $n_j$ whose last-but-one vertex is $n_r$ correspond
+  one to one to the walks of length $k$ from $n_i$ to $n_r$: delete the
+  final vertex $n_j$ to go one way, and append $n_j$ to go back, which
+  gives a walk because $n_r$ is adjacent to $n_j$. By the induction
+  hypothesis there are $(A^k)_{ir}=(A^k)_{ir}A_{rj}$ of them.
+\item If $n_r$ is not adjacent to $n_j$ (so $A_{rj}=0$), no walk can end
+  with the move from $n_r$ to $n_j$, so there are $0=(A^k)_{ir}A_{rj}$ of
+  them.
+\end{itemize}
+Every walk is counted for exactly one $r$, so the number of walks of length
+$k+1$ from $n_i$ to $n_j$ is $\sum_r(A^k)_{ir}A_{rj}$, which is
+$(A^{k+1})_{ij}$ by \cref{eq:step}.
+\end{proof}
+
+Why the proof is valid, and why it counts walks: it uses only that a walk is
+a vertex sequence whose consecutive vertices are adjacent, repeats allowed.
+Sorting by the last-but-one vertex therefore never has to ask whether
+$n_r$ was visited before. For paths the deletion of the final vertex would
+still give a path, but appending $n_j$ may repeat a vertex, and the one to
+one correspondence breaks. The same induction works for directed graphs and
+multigraphs \cite[Proposition~2, p.~1]{gotti18211}, which are outside this
+note's scope.
+
+\subsection{The board graph, worked}
+
+\plainwords{} Take three islands in a row, with a bridge between each
+neighbouring pair. Multiply the table by itself once, twice, and more
+times. Each cell is a number of trips. We list the trips behind some cells
+to check that the numbers are right.
+
+\begin{example}[Powers of the board matrix]\label{ex:powers}
+For the board graph (\cref{fig:graphs}, left) the powers, computed by
+script (\cref{app:repro}), are
+\[
+A^2=\begin{pmatrix}1&0&1\\0&2&0\\1&0&1\end{pmatrix},\quad
+A^3=\begin{pmatrix}0&2&0\\2&0&2\\0&2&0\end{pmatrix},\quad
+A^4=\begin{pmatrix}2&0&2\\0&4&0\\2&0&2\end{pmatrix}.
+\]
+Each entry counts walks, and the script listed them:
+\begin{itemize}
+\item $(A^2)_{11}=1$: the walk $n_1n_2n_1$.
+\item $(A^2)_{13}=1$: the walk $n_1n_2n_3$.
+\item $(A^2)_{22}=2$: the walks $n_2n_1n_2$ and $n_2n_3n_2$.
+\item $(A^3)_{12}=2$: the walks $n_1n_2n_1n_2$ and $n_1n_2n_3n_2$.
+\item $(A^4)_{22}=4$: the walks $n_2n_1n_2n_1n_2$, $n_2n_1n_2n_3n_2$,
+  $n_2n_3n_2n_1n_2$, and $n_2n_3n_2n_3n_2$.
+\item $(A^2)_{12}=0$ and $(A^3)_{11}=0$: there is no such walk.
+\end{itemize}
+The inductive case for $(A^3)_{12}$ reads, with $r=1,2,3$,
+$\sum_r(A^2)_{1r}A_{r2}=1\cdot 1+0\cdot 0+1\cdot 1=2$: the term for $r=1$
+is the walk $n_1n_2n_1$ followed by the move to $n_2$, and the term for
+$r=3$ is $n_1n_2n_3$ followed by the move to $n_2$.
+\end{example}
+
+The zero entries have a reason, which is a fact about this graph only:
+every edge joins $n_2$ to $n_1$ or $n_3$, so a walk from $n_1$ to $n_1$
+has even length, and a walk from $n_1$ to $n_2$ has odd length. As a check
+of instances and not as a proof, the script also compared the matrix power
+with a direct enumeration of walks for $k=0,\dots,6$ on six small graphs and
+for $k=0,\dots,5$ on all $64$ labelled simple graphs on four vertices, and
+found no mismatch.
+
+\begin{nonexample}[What the theorem does not say]\label{ex:notreach}
+The entry $(A^k)_{ij}$ is not ``$1$ if $n_j$ can be reached from $n_i$''.
+In the board graph $(A^4)_{22}=4$, not $1$.
+\end{nonexample}
+
+\subsection{Properties of the powers}
+
+\plainwords{} A trip can be run backwards. So the table for any number of
+hops is the same when flipped. For two hops, the cell for an island and
+itself is the number of bridges at that island. Each bridge gives one trip
+out and back.
+
+\begin{proposition}[Symmetry and the diagonal of $A^2$]\label{prop:powers}
+For every $k\ge 0$ the matrix $A^k$ is symmetric. Moreover
+$(A^2)_{ii}=d(n_i)$ for every $i$, and so the sum of the diagonal entries
+of $A^2$ is $2|E|$.
+\end{proposition}
+The second statement is made, as an equality of walk counts, in the
+University of Galway notes \cite[p.~4]{galwaynotes}, whose sentence reads
+``The number of walks of length 2 from a vertex to itself is just the
+number of edges at that vertex, or the vertex degree.''; the proof here is
+the note's own.
+\begin{proof}
+Since $A^T=A$ and $(XY)^T=Y^TX^T$, we get $(A^k)^T=(A^T)^k=A^k$. In words:
+reversing a walk from $n_i$ to $n_j$ gives a walk from $n_j$ to $n_i$ of the
+same length, and this is one to one. For the second statement,
+\cref{thm:counting} says $(A^2)_{ii}$ counts the walks $n_in_rn_i$. Such a
+walk exists for each vertex $n_r$ adjacent to $n_i$ and for no other, so
+the count is $d(n_i)$. The diagonal sum is the sum of all degrees, which is
+$2|E|$ by \cref{prop:basic}.
+\end{proof}
+
+\subsection{Walks are not paths}
+
+\plainwords{} The table counts trips. It does not count fresh-island trips.
+Take the frog that hops from the first island to the middle one and back.
+That is a trip of two hops from the first island to itself. The frog lands
+on the first island twice, so it is not a fresh-island trip. The table
+counts it anyway.
+
+\begin{example}[The entry $(A^2)_{11}$ in the board graph]\label{ex:notpaths}
+By \cref{ex:powers}, $(A^2)_{11}=1$, and the walk it counts is
+$n_1n_2n_1$. This walk visits $n_1$ twice, so it is not a path
+(\cref{def:path}). No path of length $2$ joins $n_1$ to itself: by the
+remark after \cref{def:pathbetween} the only path from $n_1$ to $n_1$ is
+$(n_1)$, of length $0$. So ``$(A^2)_{11}$ counts the paths of length $2$
+from $n_1$ to $n_1$'' is false, while ``counts the walks'' is true.
+Likewise $(A^3)_{12}=2$ counts $n_1n_2n_1n_2$ and $n_1n_2n_3n_2$, but a
+path of length $3$ needs four distinct vertices and the graph has three.
+\end{example}
+
+Where walks and paths do agree: $(A^2)_{13}=1$ counts $n_1n_2n_3$, which is
+a path. In general a walk whose length equals the distance between its
+ends is a path, since a repeated vertex would let us cut out a closed block
+and get a shorter walk (\cref{lem:cut}). Otherwise the counts differ.
+
+\begin{remark}[What a positive entry gives]\label{rem:positive}
+If $(A^k)_{ij}>0$, there is a walk of length $k$ from $n_i$ to $n_j$
+(\cref{thm:counting}), hence, by \cref{lem:cut}, a path from $n_i$ to $n_j$
+of length at most $k$. It does not follow that a path of length exactly $k$
+exists, and a path of exactly that length can be missing. This is what
+\cref{sec:connectivity} uses.
+\end{remark}
+
+\subsection{Distance from the powers}
+
+\plainwords{} Pick two different islands. To see how far apart they are, look at
+the tables for one hop, two hops, and so on. Stop at the first
+table in which the cell for the two islands is not zero. That number of
+hops is the fewest hops between them.
+
+\begin{corollary}[Distance from walk counts]\label{cor:dist}
+For vertices $n_i\ne n_j$, the distance $d(n_i,n_j)$ is the least $k\ge 1$
+with $(A^k)_{ij}>0$ if such a $k$ exists, and $\infty$ otherwise. Also
+$d(n_i,n_i)=0$.
+\end{corollary}
+Paramadevan and Sotheeswaran state this for connected graphs
+\cite[Theorem~3, p.~17]{paramadevan2021adjacency}; the proof below is the
+note's own (see \cref{sec:discussion} for what their proof reads into a
+non-zero entry).
+\begin{proof}
+By \cref{thm:counting}, $(A^k)_{ij}>0$ exactly when a walk of length $k$
+from $n_i$ to $n_j$ exists. So the least such $k$ is the least length of a
+walk from $n_i$ to $n_j$, which equals $d(n_i,n_j)$ by
+\cref{prop:distance}; if no such $k$ exists no walk exists, and both sides
+are $\infty$. For $i=j$ the walk $(n_i)$ has length $0$, so $d(n_i,n_i)=0$.
+\end{proof}
+
+\begin{example}
+In the board graph, $(A^1)_{13}=0$ and $(A^2)_{13}=1$, so
+$d(n_1,n_3)=2$, as in \cref{def:distance}.
+\end{example}

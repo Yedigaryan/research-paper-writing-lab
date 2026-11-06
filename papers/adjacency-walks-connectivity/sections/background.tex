@@ -1,3 +1,185 @@
-\section{Background}\label{sec:background}
+\section{Graphs and the adjacency matrix}\label{sec:background}
 
-To be written.
+\paragraph{Notation.} Throughout, $G=(V,E)$ is a finite simple undirected
+graph (Convention~\ref{conv:setting}) with vertex set
+$V=\{n_1,\dots,n_N\}$, $N\ge 1$, and edge set $E$. The letters $u,v,w$
+also stand for vertices; $uv$ is the edge joining $u$ and $v$, and
+$|E|$ is the number of edges. The indices $i,j,r$ run over $1,\dots,N$.
+The letter $k$ is a non-negative integer used for the length of a walk and
+for the exponent of a matrix power. $A$ is the adjacency matrix, $I$ the
+$N\times N$ identity matrix, and $d(n_i)$ the degree of $n_i$. The textbook
+writes the same objects with $v_i$ and $d_G(v)$
+\cite[pp.~9, 16]{petrosyan2015graphs}.
+
+\subsection{Graphs, neighbours, and the adjacency matrix}
+
+\plainwords{} A pond has some islands. Some pairs of islands have a bridge
+between them. A bridge joins two different islands. No two islands have
+more than one bridge. A bridge can be crossed in both directions.
+
+\begin{definition}[Graph; textbook Definition~1.1.1]\label{def:graph}
+A \emph{graph} $G$ is an ordered pair $(V,E)$, where $V$ is a set whose
+elements are the \emph{vertices} and $E$ is a set whose elements are the
+\emph{edges} \cite[Definition~1.1.1, p.~9]{petrosyan2015graphs}. In this
+note $V$ is finite, and each edge is a set $uv=\{u,v\}$ of two different
+vertices (Convention~\ref{conv:setting}).
+\end{definition}
+
+\begin{remark}
+Because an edge is a set of two different vertices, there is no edge from
+a vertex to itself, and $uv$ and $vu$ are the same edge, so there is no
+direction. Because $E$ is a set, two vertices are joined by at most one
+edge.
+\end{remark}
+\begin{example}
+The board graph has $V=\{n_1,n_2,n_3\}$ and $E=\{n_1n_2,\,n_2n_3\}$
+(\cref{fig:graphs}, left).
+\end{example}
+\begin{nonexample}
+Giving $n_1$ an edge to itself, or giving $n_1$ and $n_2$ two separate
+edges, does not produce a graph in this note's sense.
+\end{nonexample}
+
+\plainwords{} Two islands are next door when one bridge joins them. If a
+frog can hop between two islands in one hop, they are next door. An island
+is never next door to itself.
+
+\begin{definition}[Adjacent; textbook Definition~1.1.4]\label{def:adjacent}
+The vertices $u$ and $v$ are \emph{adjacent} if $uv\in E$
+\cite[Definition~1.1.4, p.~11]{petrosyan2015graphs}.
+\end{definition}
+
+\begin{remark}
+Adjacency is symmetric, and in a simple graph no vertex is adjacent to
+itself.
+\end{remark}
+\begin{example}
+In the board graph, $n_1$ and $n_2$ are adjacent.
+\end{example}
+\begin{nonexample}
+In the board graph, $n_1$ and $n_3$ are not adjacent, and neither is
+$n_2$ with itself.
+\end{nonexample}
+
+\plainwords{} Draw a square table. Give each island one row and one
+column. Put a one in a cell when the row island and the column island are
+next door. Put a zero in every other cell. The table lists all the
+bridges.
+
+\begin{definition}[Adjacency matrix; textbook, after Definition~1.1.6]\label{def:matrix}
+The \emph{adjacency matrix} of $G$ is the $N\times N$ matrix $A=(A_{ij})$
+with
+\begin{equation}\label{eq:adj}
+A_{ij}=\begin{cases}1,& n_i \text{ and } n_j \text{ are adjacent},\\
+0,& \text{otherwise.}\end{cases}
+\end{equation}
+The textbook gives this matrix no number of its own; it states the rule
+and notes $a_{ii}=0$ and $a_{ij}=a_{ji}$ on printed p.~11
+\cite{petrosyan2015graphs}. The board writes the same rule as $A_{ij}=1$
+if $e_{ij}\in V$ and $0$ if $e_{ij}\notin V$, with $e_{ij}$ the edge
+joining $n_i$ and $n_j$ and $V$ the board's name for the edge set
+\cite{whiteboard1,whiteboard2} (Convention~\ref{conv:names}).
+\end{definition}
+
+\begin{remark}
+Every entry is $0$ or $1$, never $2$ or a weight, which is correct because
+a simple graph has at most one edge between two vertices. A $1$ on the
+diagonal would be a loop, which a simple graph does not have.
+\end{remark}
+\begin{example}
+The board matrix has rows $0\,1\,0$, $1\,0\,1$, $0\,1\,0$
+\cite{whiteboard1,whiteboard2}:
+\[
+A=\begin{pmatrix}0&1&0\\1&0&1\\0&1&0\end{pmatrix}.
+\]
+It is the adjacency matrix of the board graph, whose only edges are
+$n_1n_2$ and $n_2n_3$ (Convention~\ref{conv:drawing}).
+\end{example}
+\begin{nonexample}
+The matrix with rows $0\,1\,0$, $0\,0\,1$, $0\,1\,0$ is not the adjacency
+matrix of a simple undirected graph, because it is not symmetric. A matrix
+with a $1$ in the top left corner is not one either, because that $1$ would
+be a loop.
+\end{nonexample}
+
+\plainwords{} Count the bridges that touch one island. That count is the
+number of bridges at the island.
+
+\begin{definition}[Degree; textbook Definition~1.2.1]\label{def:degree}
+The \emph{degree} $d(n_i)$ of the vertex $n_i$ is the number of edges that
+have $n_i$ as an end \cite[Definition~1.2.1, p.~16]{petrosyan2015graphs}.
+\end{definition}
+
+\begin{remark}
+The textbook defines degree after the adjacency matrix, so this note uses
+it only after \cref{def:matrix}.
+\end{remark}
+\begin{example}
+In the board graph the degrees of $n_1,n_2,n_3$ are $1,2,1$.
+\end{example}
+\begin{nonexample}
+The number of edges of the board graph, which is $2$, is not the degree of
+$n_1$, which is $1$.
+\end{nonexample}
+
+\plainwords{} Flip the table over its slanted line of cells from top left
+to bottom right. Nothing changes. Cells on that line stay zero, because no
+island is next door to itself. Add up one row. You get the number of
+bridges at that island. Add up the whole table. You count every bridge
+twice.
+
+\begin{proposition}[Basic properties of $A$]\label{prop:basic}
+Let $A$ be the adjacency matrix of $G$. Then
+\begin{enumerate}
+\item $A_{ij}=A_{ji}$ for all $i,j$ (symmetry);
+\item $A_{ii}=0$ for all $i$ (zero diagonal);
+\item $\sum_{j}A_{ij}=d(n_i)$ for every $i$ (row sums are degrees);
+\item $\sum_{i,j}A_{ij}=2|E|$.
+\end{enumerate}
+\end{proposition}
+Items 1 and 2 are stated in the textbook \cite[p.~11]{petrosyan2015graphs}
+and in the University of Galway notes \cite[Notes~1 and 2, p.~3]{galwaynotes};
+the proof below is the note's own.
+\begin{proof}
+(1) $n_i$ and $n_j$ are adjacent exactly when $n_j$ and $n_i$ are, since
+$uv=vu$. (2) A simple graph has no edge from $n_i$ to itself, so $n_i$ is
+not adjacent to itself. (3) Row $i$ has a $1$ in column $j$ exactly when
+$n_in_j\in E$, so the row sum counts the edges at $n_i$, which is
+$d(n_i)$. (4) By (3) the sum of all entries is the sum of all degrees,
+which is $2|E|$ by the textbook's Theorem~1.2.1 (Euler)
+\cite[Theorem~1.2.1, p.~16]{petrosyan2015graphs}. Since $A$ is symmetric,
+column sums are the degrees too.
+\end{proof}
+
+\subsection{Matrix products and powers}
+
+\plainwords{} To make a new table from two tables, take one row of the
+first and one column of the second. Multiply their cells in pairs. Add the
+results. That is one cell of the new table. Do this for every row and
+column. Do it to the island table with itself, and again, and again.
+
+\begin{definition}[Matrix product and power]\label{def:power}
+For $N\times N$ matrices $X$ and $Y$ the product $XY$ has entries
+\begin{equation}\label{eq:product}
+(XY)_{ij}=\sum_{r=1}^{N}X_{ir}Y_{rj}.
+\end{equation}
+The \emph{powers} of $A$ are $A^0=I$ (ones on the diagonal, zeros
+elsewhere) and $A^{k+1}=A^{k}A$ for $k\ge 0$. This is the standard
+definition from linear algebra.
+\end{definition}
+
+\begin{remark}
+A power is not the entrywise power. Every entry of $A^k$ is a non-negative
+integer, because $A$ has entries $0$ and $1$ and sums and products of
+non-negative integers are non-negative integers; this is used in
+\cref{sec:connectivity}.
+\end{remark}
+\begin{example}
+For the board matrix, $(A^2)_{11}=0\cdot 0+1\cdot 1+0\cdot 0=1$ and
+$(A^2)_{22}=1\cdot 1+0\cdot 0+1\cdot 1=2$.
+\end{example}
+\begin{nonexample}
+Squaring every entry of $A$ separately gives $A$ back, because the entries
+are $0$ or $1$; it is not $A^2$, whose entry in row $2$ and column $2$ is
+$2$, not $0$.
+\end{nonexample}

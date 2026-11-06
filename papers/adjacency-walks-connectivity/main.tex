@@ -1,8 +1,11 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[margin=2.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{tikz}
 \usepackage[hidelinks]{hyperref}
 \usepackage{cleveref}
 \usepackage[backend=biber,style=numeric,urldate=long]{biblatex}
@@ -12,13 +15,21 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{example}[definition]{Example}
+\newtheorem{nonexample}[definition]{Non-example}
 \theoremstyle{plain}
 \newtheorem{theorem}[definition]{Theorem}
 \newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{corollary}[definition]{Corollary}
 \theoremstyle{remark}
 \newtheorem{remark}[definition]{Remark}
 
-\title{Adjacency walks connectivity}
+% Opening words of every plain-words paragraph.
+\newcommand{\plainwords}{\noindent\textbf{In plain words.}}
+
+
+\title{Adjacency matrices, walks, and connectivity:\\
+what the powers of $A$ count and how $A$ shows that a graph is connected}
 \author{}
 \date{\today}
 
@@ -26,12 +37,27 @@
 \maketitle
 
 \begin{abstract}
-To be written by the author agent.
+A finite simple undirected graph with $N$ vertices can be given by its
+adjacency matrix $A$. This note answers three questions about it, two
+taken from a lecture whiteboard and one from an assignment. First, the
+entry in row $i$ and column $j$ of the matrix power $A^k$ counts the walks
+of length $k$ from vertex $n_i$ to vertex $n_j$; it counts walks, not
+paths. Second, the graph is connected if and only if every entry off the
+diagonal of $A+A^2+\dots+A^{N-1}$ is positive, which holds if and only if
+$(I+A)^{N-1}$ has no zero entry. Third, a path between $n_i$ and $n_j$ is
+a sequence of pairwise distinct vertices from $n_i$ to $n_j$ in which
+consecutive vertices are adjacent, the course textbook's simple path. All
+statements are proved in full, the course textbook's numbering is used for
+its definitions, and every matrix in the worked examples was computed by
+script. Each definition, theorem, and test is preceded by a plain-words
+paragraph told as a story about a frog on islands.
 \end{abstract}
 
 \input{sections/introduction}
 \input{sections/background}
-\input{sections/analysis}
+\input{sections/walks}
+\input{sections/counting}
+\input{sections/connectivity}
 \input{sections/discussion}
 \input{sections/conclusion}
 

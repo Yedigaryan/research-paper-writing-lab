@@ -1,3 +1,55 @@
-\section{Derivations}\label{app:derivations}
+\section{Sources, pages checked, and reproduction}\label{app:repro}
 
-To be written.
+This appendix is the only place that describes how the note was prepared.
+The mathematical sections only cite.
+
+\paragraph{What was read.}
+\begin{itemize}
+\item The two whiteboard photos were viewed as images and read together;
+  they show one board \cite{whiteboard1,whiteboard2}. Quotations of the
+  board are a transcription of handwriting.
+\item The textbook, a PDF of 216 pages in Armenian \cite{petrosyan2015graphs}.
+  Printed pages are one lower than PDF pages; this note cites printed
+  pages. Printed pages 7, 9, 11, 16, 21, 22, 23, 48, and 49 were viewed as
+  images. The text layer drops mathematical symbols, so formulas were
+  checked on the images. Other pages were reached only through a text
+  search (Convention~\ref{conv:proofs}).
+\item University of Galway notes, section 1.1, read in full; they carry no
+  author name and no date \cite{galwaynotes}. Gotti's lecture notes, read in
+  full; no usable date \cite{gotti18211}.
+\item Grinberg, an arXiv text of 454 pages; Section 2.9 and the
+  breadth-first-search passage near p.~176 were read, and
+  Definition~2.10.1, Exercise~2.16(d), and Definition~3.4.5 from the text
+  layer \cite{grinberg2025graph}. Page numbers are the version's own.
+\item Bai's lecture note, Section 1 only \cite{bai2025adjacency}.
+  Paramadevan and Sotheeswaran, Sections 2.2 and 3.1 \cite{paramadevan2021adjacency}.
+\item Lau's slides, read through their text layer, with pages 3, 4, and 8
+  used here; the algorithm listing and the correctness proof are images and were not
+  read \cite{lau2021bfs}. McCauley's slides, text layer, pages 5 to 12 and
+  24 \cite{mccauley2025bfs}. Page numbers of the two slide decks are PDF
+  pages.
+\item The summary of the assignment \cite{userstatements} is a summary
+  written when the request was received; it is not quoted as the
+  assignment's words.
+\end{itemize}
+
+\paragraph{How to rerun the computations.} From the paper folder:
+\begin{itemize}
+\item \texttt{python3 -I scripts/walks\_check.py} prints the powers of the
+  board matrix, the walks behind the entries, the classification of every
+  example sequence on $H$, the path graph on four vertices, and the brute
+  force check of \cref{thm:counting}; its output is in
+  \texttt{scripts/output-walks\_check.txt}.
+\item \texttt{python3 -I scripts/m3\_connectivity.py} prints $A$, $A^2$,
+  $B$, and $T$ for the connected, the disconnected, and the triangle
+  example, the check that a single power is not a test, the binomial
+  identity, and the exhaustive comparison of the three tests for
+  $N=1,\dots,6$; its output is in \texttt{scripts/output-m3\_connectivity.txt}.
+\item \texttt{python3 -I scripts/walk\_path\_lemmas.py} checks
+  \cref{lem:distinct,lem:cut,cor:bound,prop:distance} on all graphs with three,
+  four, and five vertices (about six seconds); its output is in
+  \texttt{scripts/output-walk\_path\_lemmas.txt}.
+\end{itemize}
+All three use only the Python standard library. The note itself compiles
+with \texttt{latexmk} and \texttt{biber} (TeX Live) by the commands in the
+paper folder's \texttt{README.md}.

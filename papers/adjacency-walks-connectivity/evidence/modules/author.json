@@ -1,0 +1,68 @@
+{
+  "sources": [],
+  "claims": [
+    {
+      "id": "a1",
+      "text": "Classification of the sequences used as examples and non-examples in the definitions section, on the graph H with edges n1n2, n2n3, n1n3, n3n4, n4n5: n1 n2 n3 n4 n3 n1 is a closed walk of length 5; n1 n4 is not a walk; n1 n2 n1 is a closed walk and not a trail; n1 n2 n3 n1 is a closed trail and a cycle; n3 n1 n2 n3 n4 is a trail and not a path; n1 n2 n1 n3 is a walk and not a trail; n1 n3 n4 n5 is a path; n2 alone is a walk of length 0 and a path. Cutting n1 n2 n1 n2 n3 at its repeated vertices gives the path n1 n2 n3. Computed by script.",
+      "kind": "derived",
+      "module": "author",
+      "support": [],
+      "derivation": "scripts/walks_check.py, section on graph H; output in scripts/output-walks_check.txt",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/walks.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "a2",
+      "text": "On the path graph with edges n1n2, n2n3, n3n4 (N = 4): (A^1)_14 = 0, (A^2)_14 = 0, (A^3)_14 = 1, so the sum A + ... + A^k has entry (1,4) equal to 0 for k = 1, 2 and 1 for k = 3; stopping the sum before A^(N-1) can give a false 'not connected'. Computed by script.",
+      "kind": "derived",
+      "module": "author",
+      "support": [],
+      "derivation": "scripts/walks_check.py, section on the path graph on four vertices; output in scripts/output-walks_check.txt",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "a3",
+      "text": "Computational check, not a proof: for six small graphs (P3, the triangle, the 4-cycle, one edge plus an isolated vertex, the star on four vertices, the graph H) and k = 0..6, and for all 64 labelled simple graphs on 4 vertices and k = 0..5, every entry of A^k equals the number of walks of length k enumerated directly; zero mismatches. Also the walk lists behind the entries of A^2, A^3, A^4 of the board graph.",
+      "kind": "derived",
+      "module": "author",
+      "support": [],
+      "derivation": "scripts/walks_check.py, brute-force section; output in scripts/output-walks_check.txt",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/counting.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "a4",
+      "text": "Distance from walk counts (derived): for distinct vertices n_i, n_j of a finite simple graph, the distance d(n_i, n_j) is the least k >= 1 with (A^k)_ij > 0 if some such k exists and infinity otherwise; d(n_i, n_i) = 0. Proof from the walk-counting theorem and the equality of the least walk length and the least path length (m2-5). Paramadevan and Sotheeswaran state it for connected graphs as their Theorem 3 (C46) and their proof reads a non-zero entry as a path.",
+      "kind": "derived",
+      "module": "author",
+      "support": [
+        {
+          "source": "paramadevan2021adjacency",
+          "locator": "Theorem 3, p. 17 (statement only)",
+          "quote": "The distance between two vertices vi and vj is equal to l if and only if l is the smallest integer such that (AlG)ij ≠ 0."
+        }
+      ],
+      "derivation": "sections/counting.tex, Corollary on distance",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/counting.tex"
+      ],
+      "contradicted_by": []
+    }
+  ],
+  "contradictions": []
+}

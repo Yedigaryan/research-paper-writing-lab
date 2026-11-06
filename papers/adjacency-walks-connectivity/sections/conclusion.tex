@@ -1,3 +1,30 @@
 \section{Conclusion}\label{sec:conclusion}
 
-To be written.
+The three questions have direct answers.
+
+\begin{enumerate}
+\item[(Q1)] For a finite simple undirected graph with adjacency matrix $A$
+  and every $k\ge 0$, the entry $(A^k)_{ij}$ is the number of walks of
+  length $k$ from $n_i$ to $n_j$ (\cref{thm:counting}). It counts walks,
+  in which vertices and edges may repeat, and not paths: in the board graph
+  $(A^2)_{11}=1$ counts $n_1n_2n_1$, which is not a path
+  (\cref{ex:notpaths}). It is not ``$1$ if reachable'' either
+  (\cref{ex:notreach}). A positive entry does give a path of length at
+  most $k$ (\cref{rem:positive}).
+\item[(Q2)] $G$ is connected if and only if every entry off the diagonal of
+  $B=A+A^2+\dots+A^{N-1}$ is positive (\cref{thm:sum}), and also if and
+  only if $(I+A)^{N-1}$ has no zero entry (\cref{thm:power}). The proof uses
+  walk counting, the fact that a walk contains a path no longer than
+  itself (\cref{lem:cut}), and the fact that a path has length at most
+  $N-1$ (\cref{cor:bound}). The board graph, whose edges are $n_1n_2$ and
+  $n_2n_3$, is connected (\cref{ex:connected}); one edge and an isolated
+  vertex is not (\cref{ex:disconnected}). A single power is not a test
+  (\cref{ex:single}).
+\item[(Q3)] A path between $n_i$ and $n_j$ is a sequence
+  $n_i=u_0,u_1,\dots,u_k=n_j$ with $k\ge 0$ in which $u_{t-1}$ and $u_t$ are
+  adjacent for every $t$ and the vertices $u_0,\dots,u_k$ are pairwise
+  distinct; this is the textbook's simple path, Definition~1.2.13
+  (\cref{def:pathbetween}). The textbook's own word ``path'' means a trail.
+  The two readings define the same connected graphs
+  (\cref{prop:together}).
+\end{enumerate}

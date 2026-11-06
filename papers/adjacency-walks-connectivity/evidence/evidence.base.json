@@ -1194,12 +1194,12 @@
     },
     {
       "id": "C53",
-      "text": "Breadth-first search as an alternative connectivity check, with its cost, is not sourced beyond C51: no textbook or algorithms source was opened.",
+      "text": "REMOVED, superseded by m3-1 to m3-4 (Lau and McCauley lecture slides were opened and give the breadth-first search statements). Original text: Breadth-first search as an alternative connectivity check, with its cost, is not sourced beyond C51: no textbook or algorithms source was opened.",
       "kind": "open-question",
       "module": "m3",
       "support": [],
       "confidence": "low",
-      "status": "unverified",
+      "status": "removed",
       "used_in": [],
       "contradicted_by": []
     }

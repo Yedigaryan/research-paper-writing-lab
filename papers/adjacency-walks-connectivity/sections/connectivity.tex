@@ -1,0 +1,284 @@
+\section{Question 2: deciding connectivity from $A$}\label{sec:connectivity}
+
+Question (Q2) asks how to know from $A$ whether the graph is connected.
+This section defines connectedness and components, proves a test that uses
+only powers of $A$, and shows it on one connected and one disconnected
+graph.
+
+\subsection{Connected graphs and components}
+
+\plainwords{} A pond is in one piece when the frog can hop from any island to
+any other island. It may cross many bridges on the way. If some island
+cannot be reached from some other island, the pond is not in one piece.
+
+\begin{definition}[Connected; textbook Definition~2.1.1, and the board]\label{def:connected}
+$G$ is \emph{connected} if for any two vertices $u$ and $v$ there is a
+path from $u$ to $v$. The board states the same definition: for any $n_i$,
+$n_j$ there exists a path between the nodes \cite{whiteboard1,whiteboard2}.
+The textbook's Definition~2.1.1 asks for a $(u,v)$-``path''
+\cite[Definition~2.1.1, p.~48]{petrosyan2015graphs}.
+\end{definition}
+
+\begin{remark}
+Two readings of ``path'' are in play. The textbook's ``path'' is a trail
+(\cref{def:trail}); the course's, and this note's, is the path of
+\cref{def:path} (Convention~\ref{conv:path}). By \cref{prop:together}
+both readings, and a reading by walks, give the same connected graphs, so
+the choice does not affect this section. A graph with one vertex is
+connected, since the path $(u)$ of length $0$ joins $u$ to itself.
+\end{remark}
+\begin{example}
+The board graph is connected: $n_1n_2$, $n_2n_3$, and $n_1n_2n_3$ are paths
+that join its three pairs of different vertices. The textbook's three graphs
+under its Fig.~2.1.1 are connected
+\cite[p.~48]{petrosyan2015graphs}.
+\end{example}
+\begin{nonexample}
+The graph with the single edge $n_1n_2$ and the isolated vertex $n_3$ is
+not connected: no walk, hence no path, joins $n_3$ to $n_1$. The graph of
+the textbook's Fig.~2.1.2 is not connected and has four connectivity
+components \cite[p.~49]{petrosyan2015graphs}.
+\end{nonexample}
+
+\plainwords{} Call two islands friends if a frog can get from one to the
+other. Every island is its own friend. If the first island is a friend of
+the second, the second is a friend of the first. A friend of a friend is a
+friend.
+
+\begin{lemma}[Being joined by a path is an equivalence relation]\label{lem:equiv}
+Let $u\sim v$ mean that there is a path from $u$ to $v$. Then $\sim$ is
+reflexive, symmetric, and transitive.
+\end{lemma}
+The textbook notes these three properties on printed p.~49 without giving a
+proof \cite{petrosyan2015graphs}; the proof below is the note's own.
+\begin{proof}
+\emph{Reflexive.} The walk $(u)$ of length $0$ is a path from $u$ to $u$.
+\emph{Symmetric.} Reversing a path from $u$ to $v$ gives a path from $v$
+to $u$. \emph{Transitive.} If $W_1$ is a walk from $u$ to $v$ and $W_2$ is a
+walk from $v$ to $w$, writing $W_1$ and then $W_2$ (with the repeated $v$
+written once) is a walk from $u$ to $w$, and by \cref{lem:cut} it contains
+a path from $u$ to $w$.
+\end{proof}
+
+\plainwords{} The islands split into groups of friends. Nobody in one
+group is a friend of anybody in another group.
+
+\begin{definition}[Connectivity component; textbook, printed p.~49]\label{def:component}
+The equivalence classes of $\sim$, together with the subgraphs they induce,
+are the \emph{connectivity components} of $G$. The textbook introduces them
+in the prose after Definition~2.1.1, with no number of their own
+\cite[p.~49]{petrosyan2015graphs}. Two vertices lie in the same component
+exactly when a path joins them.
+\end{definition}
+
+\begin{remark}
+Every vertex lies in exactly one component, and a graph with $N\ge 1$
+vertices has at least one component.
+\end{remark}
+\begin{example}
+The board graph has one component, $\{n_1,n_2,n_3\}$.
+\end{example}
+\begin{nonexample}
+The graph with the single edge $n_1n_2$ and the isolated vertex $n_3$ has
+two components, $\{n_1,n_2\}$ and $\{n_3\}$. The set $\{n_1\}$ alone is not
+a component of it, because $n_2$ is joined to $n_1$ by a path.
+\end{nonexample}
+
+\plainwords{} The pond is in one piece exactly when all the islands form a
+single group of friends.
+
+\begin{corollary}[Textbook Remark~2.1.1]\label{cor:onecomp}
+$G$ is connected if and only if it has exactly one connectivity component.
+\end{corollary}
+The textbook states this as Remark~2.1.1
+\cite[p.~49]{petrosyan2015graphs}; the argument here is the note's own.
+\begin{proof}
+$G$ is connected exactly when every two vertices are related by $\sim$,
+that is, exactly when there is only one equivalence class. Since $N\ge 1$,
+at least one class exists.
+\end{proof}
+
+\subsection{The test}
+
+\plainwords{} Pick two different islands. Make tables for one hop, for two
+hops, and so on. Stop at one fewer hops than there are islands. Look at the
+cell for the two islands in each table. The frog can get from one island to
+the other exactly when one of these cells is not zero. A longer list is
+never needed.
+
+\begin{lemma}[Reachability from the powers]\label{lem:reach}
+Let $i\ne j$. There is a path from $n_i$ to $n_j$ if and only if
+$(A^k)_{ij}>0$ for some $k$ with $1\le k\le N-1$.
+\end{lemma}
+The reasoning combines walk counting with the walk-to-path lemma; it is the
+note's own proof, and the step from a positive entry to a path is the one
+that some sources pass over (\cref{sec:discussion}).
+\begin{proof}
+($\Rightarrow$) Let a path from $n_i$ to $n_j$ have length $k$. Since
+$i\ne j$, $k\ge 1$. By \cref{cor:bound}, $k\le N-1$. A path is a walk, so by
+\cref{thm:counting} the entry $(A^k)_{ij}$ counts at least this walk, and
+$(A^k)_{ij}\ge 1$.
+($\Leftarrow$) If $(A^k)_{ij}>0$ with $1\le k\le N-1$, then by
+\cref{thm:counting} some walk of length $k$ joins $n_i$ to $n_j$. By
+\cref{lem:cut} it contains a path from $n_i$ to $n_j$, of length at most
+$k\le N-1$.
+\end{proof}
+
+\plainwords{} Add up the tables for one hop, for two hops, and so on. Stop at
+one fewer hops than there are islands. Look only at cells where the row island
+and the column island are different. If none of those cells is zero, the
+pond is in one piece. If one of them is zero, it is not.
+
+\begin{theorem}[Sum test]\label{thm:sum}
+Let $B=A+A^2+\dots+A^{N-1}$. Then $G$ is connected if and only if
+$B_{ij}>0$ for all $i\ne j$.
+\end{theorem}
+The statement is Theorem~2 of Paramadevan and Sotheeswaran
+\cite[p.~17]{paramadevan2021adjacency}; the proof here is the note's own.
+\begin{proof}
+Each $A^k$ has non-negative entries (Remark after \cref{def:power}), so
+$B_{ij}=\sum_{k=1}^{N-1}(A^k)_{ij}$ is positive exactly when at least one
+term is positive. For $i\ne j$ this holds exactly when a path joins $n_i$
+and $n_j$, by \cref{lem:reach}. So $B_{ij}>0$ for all $i\ne j$ exactly when
+every pair of different vertices is joined by a path, which is
+\cref{def:connected} (a vertex is joined to itself by the path of length
+$0$). For $N=1$ the sum is empty and there are no entries off the
+diagonal; $G$ is connected and the statement holds without content.
+\end{proof}
+
+\plainwords{} There is a shortcut that needs only one table. Put a one in
+every cell where the row island and the column island are the same. Then
+multiply this new table by itself again and again. Use it as a factor one
+fewer time than there are islands. The pond is in one piece exactly when no cell
+of the result is zero.
+
+\begin{theorem}[Power test]\label{thm:power}
+$G$ is connected if and only if every entry of $T=(I+A)^{N-1}$ is positive.
+\end{theorem}
+The statement is Proposition~3 of Gotti \cite[p.~2]{gotti18211} and
+Theorem~2 of Bai \cite[p.~1]{bai2025adjacency}. Gotti's proof uses the same
+binomial identity as the proof below \cite[p.~2]{gotti18211}. That this
+test is equivalent to the sum test is shown here, and no source read states
+both together.
+\begin{proof}
+The matrices $I$ and $A$ commute, so the binomial theorem gives
+\begin{equation}\label{eq:binomial}
+(I+A)^{N-1}=\sum_{k=0}^{N-1}\binom{N-1}{k}A^k,
+\end{equation}
+where each binomial coefficient is a positive integer. Take $i\ne j$.
+Then $I_{ij}=0$, so $T_{ij}=\sum_{k=1}^{N-1}\binom{N-1}{k}(A^k)_{ij}$. All
+terms are non-negative and all coefficients are at least $1$, so $T_{ij}>0$
+exactly when some $(A^k)_{ij}$ with $1\le k\le N-1$ is positive, that is,
+exactly when $B_{ij}>0$. On the diagonal the term $k=0$ contributes
+$\binom{N-1}{0}I_{ii}=1$, so every diagonal entry of $T$ is at least $1$
+whatever the graph. Hence ``no entry of $T$ is zero'' means ``$B_{ij}>0$ for
+all $i\ne j$'', and \cref{thm:sum} finishes the proof.
+\end{proof}
+
+So the answer to (Q2) is: form $B$, or $T$; look at the entries off the
+diagonal of $B$, or at all entries of $T$; the graph is connected if and
+only if none of them is zero. The entries are walk counts and not path
+counts; only whether they are zero is used.
+
+\subsection{What the test does not say}\label{sec:limits}
+
+\begin{itemize}
+\item The diagonal of $B$ is ignored. A connected graph can have zeros on
+  the diagonal of $B$: for $N=2$ and one edge, $B=A=\begin{pmatrix}0&1\\1&0\end{pmatrix}$.
+  The disconnected example below has $B_{33}=0$ as well, but what makes
+  it disconnected are the zeros off the diagonal.
+\item A positive entry says a walk of exactly length $k$ exists, hence a
+  path of length at most $k$ (\cref{rem:positive}); it does not say a path
+  of exactly length $k$ exists.
+\item The sum has to go up to $A^{N-1}$. Stopping earlier can give a false
+  ``not connected'' (\cref{ex:early}).
+\end{itemize}
+
+\subsection{Worked examples}
+
+\plainwords{} We run the test on two ponds with three islands. In the
+first, the islands lie in a row, and the frog can get anywhere. In the
+second, two islands share a bridge and the third island stands alone. The
+tables are computed by a program, not by hand.
+
+\begin{example}[A connected graph: the board graph]\label{ex:connected}
+Here $N=3$, so $B=A+A^2$ and $T=(I+A)^2$. With $A$ and $A^2$ from
+\cref{ex:powers},
+\[
+B=A+A^2=\begin{pmatrix}1&1&1\\1&2&1\\1&1&1\end{pmatrix},\qquad
+T=(I+A)^2=\begin{pmatrix}2&2&1\\2&3&2\\1&2&2\end{pmatrix}.
+\]
+All entries of $B$ off the diagonal are positive: the pairs $n_1n_2$ and
+$n_2n_3$ get theirs from $A$, and the pair $n_1n_3$ gets $B_{13}=1$ from
+$A^2$, which counts the path $n_1n_2n_3$. So $G$ is connected. $T$ has no
+zero entry; each entry equals the entry of $A^0+2A+A^2$, for example
+$T_{12}=0+2+0=2$ and $T_{22}=1+0+2=3$, as \cref{eq:binomial} says. The
+number $B_{22}=2$ counts the walks $n_2n_1n_2$ and $n_2n_3n_2$ and not
+paths; only its being positive matters, and the diagonal is not read.
+\end{example}
+
+\begin{example}[A disconnected graph]\label{ex:disconnected}
+Take the edge $n_1n_2$ and the isolated vertex $n_3$ (\cref{fig:graphs},
+right). Then
+\[
+A=\begin{pmatrix}0&1&0\\1&0&0\\0&0&0\end{pmatrix},\quad
+A^2=\begin{pmatrix}1&0&0\\0&1&0\\0&0&0\end{pmatrix},\quad
+B=\begin{pmatrix}1&1&0\\1&1&0\\0&0&0\end{pmatrix},\quad
+T=\begin{pmatrix}2&2&0\\2&2&0\\0&0&1\end{pmatrix}.
+\]
+The entries $B_{13}=B_{23}=B_{31}=B_{32}=0$, so $G$ is not connected by
+\cref{thm:sum}. $T$ has zeros in the same four places, so \cref{thm:power}
+says the same. The matrices $B$ and $T$ are block diagonal along the two
+components $\{n_1,n_2\}$ and $\{n_3\}$ of \cref{cor:onecomp}; the script
+shows this shape, and in general it follows from \cref{lem:reach}. Note
+$(A^2)_{33}=0$: the isolated vertex has degree $0$ (\cref{prop:powers}).
+\end{example}
+
+\plainwords{} Suppose we looked only at the table for two hops, with three
+islands in a row. The first island and the middle island are next door. Yet
+their cell is zero. Every trip between them has an odd number of hops.
+
+\begin{example}[A single power is not a test]\label{ex:single}
+In the board graph the only power tried by a test that used $A^{N-1}$
+alone would be $A^2$, and $(A^2)_{12}=0$ although $n_1n_2$ is an edge. The
+reason in words: every edge of this graph joins $n_2$ to $n_1$ or $n_3$,
+so every walk from $n_1$ to $n_2$ has odd length, and $A^2$ sees only even
+lengths.
+\end{example}
+
+\plainwords{} Now take four islands in a row. The first and the last island
+are three hops apart. A list of tables that stops at two hops misses them.
+So the list must go on until one fewer hops than there are islands.
+
+\begin{example}[Stopping the sum early]\label{ex:early}
+For the path graph with edges $n_1n_2$, $n_2n_3$, $n_3n_4$ ($N=4$), the
+script gives $(A^1)_{14}=0$, $(A^2)_{14}=0$, and $(A^3)_{14}=1$. The entry
+$(1,4)$ of $A+A^2$ is $0$, and of $A+A^2+A^3$ it is $1$. A sum stopped at
+$A^2$ would call this connected graph disconnected.
+\end{example}
+
+\subsection{Breadth-first search, for comparison}
+
+\plainwords{} There is another way to decide, with no tables multiplied.
+Stand on one island. Mark it. Then mark every island next door to a marked
+island, round after round, until no new island is marked. The pond is in
+one piece exactly when every island ends up marked.
+
+Breadth-first search (BFS) from a start vertex $s$ visits $s$, then all of
+its neighbours, then all not yet visited neighbours of those, layer by
+layer, and stops when a layer is empty. Lau's lecture slides list ``To
+determine whether a given graph is connected'' among the questions BFS
+answers, and state that there is a path from $s$ to $v$ if and only if $v$
+is marked visited at the end \cite[pp.~4, 8]{lau2021bfs}; McCauley's
+slides state that in a connected undirected graph BFS from any vertex
+visits every vertex, and that if the graph is not connected BFS will not
+visit all nodes \cite[pp.~10, 7]{mccauley2025bfs}. Together this
+suggests the test: run BFS from $n_1$; $G$ is connected exactly when all
+$N$ vertices are visited. This is the note's interpretation of the two
+sources for its own definition of connected, which neither source states
+in exactly this form; the BFS lemma is cited and not proved here. BFS reads
+$A$ row by row and needs no matrix powers. As an estimate by counting, not
+a measurement, it takes about $N^2$ operations on an adjacency matrix, against
+$N-2$ matrix products of about $N^3$ multiplications each for the matrix
+tests, so the matrix tests answer the question as posed, with $A$ alone,
+but are not the cheap way.
