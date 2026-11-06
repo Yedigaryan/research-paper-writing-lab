@@ -79,7 +79,7 @@
       "access_status": "full",
       "credibility": "secondary",
       "found_by": "research-agent",
-      "notes": "Downloaded and read all 7 pages as text. File names no author and no date; the URL path is not an authorship. Lecture notes, original proof of the standard theorem. Page numbers are the notes' printed numbers. Superscripts flattened in quotes (A^k)."
+      "notes": "Downloaded and read all 7 pages as text. File names no author and no date; the URL path is not an authorship. Lecture notes, original proof of the standard theorem. Page numbers are the notes' printed numbers, which are PDF pages plus one (the first page carries no number). Superscripts flattened in quotes (A^k)."
     },
     {
       "id": "gotti_mit18211_lec27",
@@ -258,7 +258,7 @@
         },
         {
           "source": "uogalway_adjacency_notes",
-          "locator": "Definition 1.1.1, p. 1",
+          "locator": "Definition 1.1.1, printed p. 2 (PDF p. 1)",
           "quote": "A simple undirected graph G = (V, E) consists of a non-empty set V of vertices and a set E of unordered pairs of distinct elements of V, called edges."
         }
       ],
@@ -317,7 +317,7 @@
       "support": [
         {
           "source": "uogalway_adjacency_notes",
-          "locator": "Theorem 1.1.3, p. 4",
+          "locator": "Theorem 1.1.3, printed p. 4 (PDF p. 3)",
           "quote": "Let k be a positive integer. Then the entry in the (i, j)-position of the matrix A^k is the number of walks of length k from v_i to v_j in G."
         },
         {
@@ -365,7 +365,7 @@
       "support": [
         {
           "source": "uogalway_adjacency_notes",
-          "locator": "p. 4, after Theorem 1.1.3",
+          "locator": "printed p. 4 (PDF p. 3), after Theorem 1.1.3",
           "quote": "The number of walks of length 2 from a vertex to itself is just the number of edges at that vertex, or the vertex degree."
         }
       ],
@@ -827,8 +827,8 @@
     },
     {
       "id": "C31",
-      "text": "Paramadevan and Sotheeswaran Theorem 1 states that the (i,j) entry of A^l is the number of different paths of length l. As stated this is false: (A^2)_11 = 1 on the board graph with no path of length 2 from n1 to itself.",
-      "kind": "fact",
+      "text": "Paramadevan and Sotheeswaran Theorem 1 says the (i,j) entry of A^l is the number of different paths of length l between vertices i and j. The source never defines path. Under the walk reading, which its own proof and property 7 use, the sentence agrees with walk counting. Under the standard no-repeated-vertex meaning it is false: on the board graph (A^2)_11 = 1 with no path of length 2 from n1 to itself, and (A^3)_12 = 2 while only one path joins n1 to n2.",
+      "kind": "interpretation",
       "module": "m1",
       "support": [
         {
@@ -838,7 +838,7 @@
         }
       ],
       "derivation": null,
-      "confidence": "high",
+      "confidence": "medium",
       "status": "supported",
       "used_in": [],
       "contradicted_by": [
@@ -1365,12 +1365,27 @@
       "module": "m2",
       "support": [
         {
-          "source": "whiteboard1",
-          "locator": "3 by 3 matrix, upper left",
-          "quote": null
+          "source": "author_compute_script",
+          "locator": "appendices/compute.out, board graph block, line 24",
+          "quote": "n1 to n1, length 2: entry 1, walks [(1, 2, 1)], trails [], paths []"
+        },
+        {
+          "source": "author_compute_script",
+          "locator": "appendices/compute.out, board graph block, line 25",
+          "quote": "n2 to n2, length 2: entry 2, walks [(2, 1, 2), (2, 3, 2)], trails [], paths []"
+        },
+        {
+          "source": "author_compute_script",
+          "locator": "appendices/compute.out, board graph block, lines 29-30",
+          "quote": "n1 to n3, length 2: entry 1, walks [(1, 2, 3)], trails [(1, 2, 3)], paths [(1, 2, 3)]\nn1 to n3, length 4: entry 2, walks [(1, 2, 1, 2, 3), (1, 2, 3, 2, 3)], trails [], paths []"
+        },
+        {
+          "source": "author_compute_script",
+          "locator": "appendices/compute.out, board graph block, lines 27-28",
+          "quote": "n1 to n2, length 3: entry 2, walks [(1, 2, 1, 2), (1, 2, 3, 2)], trails [], paths []\nn1 to n2, length 2: entry 0, walks [], trails [], paths []"
         }
       ],
-      "derivation": "modules/m2-calc.py, PART 2; modules/m2.md section 5.7",
+      "derivation": "appendices/compute.py (output appendices/compute.out); same counts independently printed by modules/m2-calc.py PART 2; modules/m2.md section 5.7",
       "confidence": "high",
       "status": "supported",
       "used_in": [],

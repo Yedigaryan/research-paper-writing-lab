@@ -262,12 +262,27 @@
       "module": "m2",
       "support": [
         {
-          "source": "whiteboard1",
-          "locator": "3 by 3 matrix, upper left",
-          "quote": null
+          "source": "author_compute_script",
+          "locator": "appendices/compute.out, board graph block, line 24",
+          "quote": "n1 to n1, length 2: entry 1, walks [(1, 2, 1)], trails [], paths []"
+        },
+        {
+          "source": "author_compute_script",
+          "locator": "appendices/compute.out, board graph block, line 25",
+          "quote": "n2 to n2, length 2: entry 2, walks [(2, 1, 2), (2, 3, 2)], trails [], paths []"
+        },
+        {
+          "source": "author_compute_script",
+          "locator": "appendices/compute.out, board graph block, lines 29-30",
+          "quote": "n1 to n3, length 2: entry 1, walks [(1, 2, 3)], trails [(1, 2, 3)], paths [(1, 2, 3)]\nn1 to n3, length 4: entry 2, walks [(1, 2, 1, 2, 3), (1, 2, 3, 2, 3)], trails [], paths []"
+        },
+        {
+          "source": "author_compute_script",
+          "locator": "appendices/compute.out, board graph block, lines 27-28",
+          "quote": "n1 to n2, length 3: entry 2, walks [(1, 2, 1, 2), (1, 2, 3, 2)], trails [], paths []\nn1 to n2, length 2: entry 0, walks [], trails [], paths []"
         }
       ],
-      "derivation": "modules/m2-calc.py, PART 2; modules/m2.md section 5.7",
+      "derivation": "appendices/compute.py (output appendices/compute.out); same counts independently printed by modules/m2-calc.py PART 2; modules/m2.md section 5.7",
       "confidence": "high",
       "status": "supported",
       "used_in": [],
