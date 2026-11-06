@@ -173,6 +173,10 @@ class EvidenceTests(unittest.TestCase):
             self.assertIn("self-evaluation.md", traj)
             deliv = (ctx / "deliverables" / "base.md").read_text()
             self.assertIn("pages", deliv.splitlines()[2])
+            if shutil.which("pdfinfo") and (PAPER / "main.pdf").is_file():
+                info = subprocess.run(["pdfinfo", str(PAPER / "main.pdf")], text=True, capture_output=True).stdout
+                n = next(l.split()[-1] for l in info.splitlines() if l.startswith("Pages:"))
+                self.assertIn(f"Compiled PDF, {n} pages", deliv.splitlines()[2])
             self.assertGreater(len(deliv), 10_000)
             self.assertTrue((ctx / "harness" / SKILL).is_file())
             self.assertFalse((ctx / "harness" / ".claude/agents/paper-evaluator.md").exists())

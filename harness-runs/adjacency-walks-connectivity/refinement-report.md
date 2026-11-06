@@ -154,3 +154,13 @@ selector checked every textbook locator against page images, while the
 inv round 1 evaluator recorded the missing degree definition (inv F1) as
 minor. This is why the blind choice and the highest round 1 recommendation
 differ.
+
+## Correction: page counts
+
+The page counts in the Candidates table came from the deliverable
+headers, which build_evidence.py overcounted by one (it added one to the
+page-break count, which already equals the page count). The true counts,
+from pdfinfo: base first draft 35, base final 38, inv 31, dom 28,
+composed 29. The selector read the same off-by-one header for every
+candidate, so the selection is unaffected. The script was fixed during
+the adjacency-pipeline step.

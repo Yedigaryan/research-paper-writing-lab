@@ -155,7 +155,8 @@ def deliverable(paper: Path, label: str) -> str:
     if pdf.is_file() and shutil.which("pdftotext"):
         r = subprocess.run(["pdftotext", "-layout", str(pdf), "-"], text=True, capture_output=True)
         if r.returncode == 0:
-            pages = r.stdout.count("\f") + (1 if r.stdout.strip() else 0)
+            body = r.stdout.rstrip("\f\n")
+            pages = body.count("\f") + 1 if body.strip() else 0
             head.append(f"Compiled PDF, {pages} pages, rendered with pdftotext -layout.")
             return "\n".join(head) + "\n\n```\n" + r.stdout.rstrip() + "\n```\n"
     head.append("No compiled PDF. LaTeX sources follow, main.tex first.")
