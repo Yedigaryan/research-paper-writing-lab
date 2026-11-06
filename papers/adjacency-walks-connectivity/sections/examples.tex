@@ -21,7 +21,7 @@ S=\begin{pmatrix}1&1&1\\1&2&1\\1&1&1\end{pmatrix},\qquad
 \paragraph{Reading the entries.} By \Cref{thm:walkcount}, each entry counts walks.
 \begin{itemize}
 \item $(A^2)_{13}=1$ counts the single walk $n_1,n_2,n_3$. Note that $A_{13}=0$: there is no edge $n_1n_3$, yet the second power is positive, because a walk of two steps exists.
-\item $(A^2)_{11}=1$ counts the walk $n_1,n_2,n_1$. $(A^2)_{22}=2$ counts the walks $n_2,n_1,n_2$ and $n_2,n_3,n_2$. $(A^2)_{33}=1$ counts $n_3,n_2,n_3$. By hand, $(A^2)_{22}=A_{21}A_{12}+A_{22}A_{22}+A_{23}A_{32}=1+0+1=2$. The diagonal $(1,2,1)$ equals the degrees $d(n_1),d(n_2),d(n_3)$, as \Cref{prop:notpaths} says. These are walks and not paths: none of them is a path, and none is even a trail, since each uses an edge twice.
+\item $(A^2)_{11}=1$ counts the walk $n_1,n_2,n_1$. $(A^2)_{22}=2$ counts the walks $n_2,n_1,n_2$ and $n_2,n_3,n_2$. $(A^2)_{33}=1$ counts $n_3,n_2,n_3$. By hand, $(A^2)_{22}=A_{21}A_{12}+A_{22}A_{22}+A_{23}A_{32}=1+0+1=2$. The diagonal $(1,2,1)$ equals the degrees $\deg(n_1),\deg(n_2),\deg(n_3)$, as \Cref{prop:notpaths} says. These are walks and not paths: none of them is a path, and none is even a trail, since each uses an edge twice.
 \item $(A^3)_{12}=2$ counts the walks $n_1,n_2,n_1,n_2$ and $n_1,n_2,n_3,n_2$ (\Cref{rem:board3}). There is no path of length $3$ from $n_1$ to $n_2$. Also $(A^2)_{12}=0$ although $n_1n_2$ is an edge, for the parity reason of \Cref{rem:onepower}.
 \item $(A^4)_{13}=2$ counts the walks $n_1,n_2,n_1,n_2,n_3$ and $n_1,n_2,n_3,n_2,n_3$. No path of length $4$ joins $n_1$ and $n_3$, although a path of length $2$ does (\Cref{rem:exactlength}).
 \end{itemize}
@@ -45,7 +45,20 @@ The entries $S_{13}$, $S_{23}$, $S_{31}$, and $S_{32}$ are $0$, so by \Cref{thm:
 
 \plain{The picture on the board and the table on the board do not show the same country. The picture shows three roads. The table shows two. This note follows the table, and says so. It also shows that the answer to the question about one group is the same either way.}
 
-The drawing on the board shows three circled vertices labelled $1$, $2$, $3$ and three lines \cite{whiteboard1,whiteboard2}. The two photographs show the same board and were read together. \Cref{tab:mismatch} compares the drawing and the matrix edge by edge.
+The drawing on the board shows three circled vertices labelled $1$, $2$, $3$ and three lines \cite{whiteboard1,whiteboard2}. The two photographs show the same board and were read together. \Cref{fig:boarddrawing} redraws it as read from the photographs, and \Cref{tab:mismatch} compares the drawing and the matrix edge by edge.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[v/.style={circle,draw,inner sep=2pt}]
+\node[v] (a) at (0,0) {1};
+\node[v] (b) at (4,0) {2};
+\node[v] (c) at (2,-2.2) {3};
+\draw[->] (a) -- (b);
+\draw (a) -- (c);
+\draw (b) -- (c);
+\end{tikzpicture}
+\caption{The board drawing as read from the photographs: three vertices, a line from $1$ to $2$ with an arrowhead at $2$, a line from $1$ to $3$, and a line from $2$ to $3$. This is a redrawing by the author of this note, not a copy.}\label{fig:boarddrawing}
+\end{figure}
 
 \begin{table}[ht]
 \centering

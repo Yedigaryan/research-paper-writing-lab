@@ -33,11 +33,16 @@ Let $w_0,w_1,\dots,w_k$ with $k\ge 0$ be a walk from $u$ to $v$ in a simple grap
 \end{lemma}
 The textbook states the first part for $u\ne v$ and without a length bound as its Lemma~1.2.1 \cite[p.~23]{petrosyan2015grafneri}. Grinberg states it with the bound and also for $u=v$ \cite[Cor.~2.9.7, p.~39]{grinberg2025graph}, and states the bound $N-1$ \cite[p.~40]{grinberg2025graph}. The proof below is given here.
 \begin{proof}
-We use strong induction on $k$. \emph{Base case $k=0$.} The walk is the single vertex $u=v$, which is a path of length $0$.
+We use strong induction on $k$: to prove the statement for walks of length $k$ we may assume it for walks of every shorter length, not only length $k-1$. \emph{Base case $k=0$.} The walk is the single vertex $u=v$, which is a path of length $0$.
 
 \emph{Induction hypothesis.} Let $k\ge 1$ and assume the statement holds for all walks of length less than $k$.
 
-\emph{Step.} If $w_0,\dots,w_k$ are pairwise different, the walk is a path of length $k$ and we are done. Otherwise there are positions $p<q$ with $w_p=w_q$. Delete the block $w_{p+1},\dots,w_q$ and call the result $W'=w_0,\dots,w_p,w_{q+1},\dots,w_k$. It is a walk. Consecutive vertices inside $w_0,\dots,w_p$ and inside $w_{q+1},\dots,w_k$ are joined as in the original walk. The one new pair is $w_p,w_{q+1}$. If $q<k$, it is an edge because $w_p=w_q$ and $w_qw_{q+1}$ is an edge. If $q=k$ there is no $w_{q+1}$, and $W'=w_0,\dots,w_p$ ends at $w_p=w_q=w_k=v$. If $p=0$, the walk $W'$ still starts at $w_0=u$. So $W'$ is a walk from $u$ to $v$, of length $k-(q-p)<k$, that uses only vertices of the original walk. By the induction hypothesis $W'$ contains a path from $u$ to $v$ of length at most $k-(q-p)<k$ with all its vertices among those of $W'$. This proves the first part.
+\emph{Step.} If $w_0,\dots,w_k$ are pairwise different, the walk is a path of length $k$ and we are done. Otherwise there are positions $p<q$ with $w_p=w_q$. Delete the block $w_{p+1},\dots,w_q$ and call the result $W'=w_0,\dots,w_p,w_{q+1},\dots,w_k$. We check that $W'$ is a walk from $u$ to $v$. Consecutive vertices inside $w_0,\dots,w_p$ and inside $w_{q+1},\dots,w_k$ are joined as in the original walk, so only the join between $w_p$ and $w_{q+1}$ is new, and there are two cases.
+\begin{itemize}
+\item \emph{Case $q<k$.} Since $w_p=w_q$ and $w_qw_{q+1}$ is an edge, $w_pw_{q+1}$ is an edge. The walk $W'$ ends at $w_k=v$. For example, from the walk $n_1,n_2,n_1,n_2,n_3$ of the board graph, with $p=0$ and $q=2$, the deletion gives $n_1,n_2,n_3$.
+\item \emph{Case $q=k$.} There is no $w_{q+1}$, and $W'=w_0,\dots,w_p$ ends at $w_p=w_q=w_k=v$. For example, from $n_1,n_2,n_1$ with $p=0$ and $q=2=k$ the deletion gives the single vertex $n_1$.
+\end{itemize}
+In both cases $W'$ starts at $w_0=u$ (also when $p=0$, since then $W'$ begins with $w_0$), ends at $v$, has length $k-(q-p)<k$, and uses only vertices of the original walk. By the induction hypothesis $W'$ contains a path from $u$ to $v$ of length at most $k-(q-p)<k$ with all its vertices among those of $W'$. This proves the first part.
 
 For the bound, a path of length $k$ has $k+1$ pairwise different vertices, and $G$ has only $N$ vertices, so $k+1\le N$, that is $k\le N-1$.
 \end{proof}
@@ -54,7 +59,7 @@ If $u\ne v$ and there is a walk of length $k$ from $u$ to $v$, then there is a p
 (a) Every path is a trail, and every trail is a walk; each inclusion can be strict. (b) If $u_0,\dots,u_k$ is a walk, trail, or path from $a$ to $b$, then $u_k,\dots,u_0$ is a walk, trail, or path from $b$ to $a$, of the same length.
 \end{lemma}
 \begin{proof}
-(a) Suppose a path $u_0,\dots,u_k$ had two equal edges $u_{s-1}u_s=u_{t-1}u_t$ with $s<t$. The positions $s-1$ and $t-1$ differ, and so do $s-1$ and $t$. A path has pairwise different vertices, so $u_{s-1}$ is neither $u_{t-1}$ nor $u_t$. This contradicts $\{u_{s-1},u_s\}=\{u_{t-1},u_t\}$. Every trail is a walk by definition. The inclusions are strict: in the board graph $n_2,n_1,n_2$ is a walk and not a trail, and the textbook's $v_1,v_3,v_2,v_4,v_3,v_5$ is a trail and not a path \cite[p.~22]{petrosyan2015grafneri}. (b) Edges are unordered pairs, and the conditions on repeated edges and vertices do not depend on the order of the list.
+(a) Suppose a path $u_0,\dots,u_k$ had two equal edges $u_{s-1}u_s=u_{t-1}u_t$ with $s<t$. Since $s<t$, we have $s-1<t-1$ and $s-1<t$, so the positions $s-1$ and $t-1$ differ, and so do $s-1$ and $t$. A path has pairwise different vertices, so $u_{s-1}$ is neither $u_{t-1}$ nor $u_t$. But the two edges are equal as sets, $\{u_{s-1},u_s\}=\{u_{t-1},u_t\}$, so $u_{s-1}$ must equal $u_{t-1}$ or $u_t$. This is a contradiction. Every trail is a walk by definition. The inclusions are strict: in the board graph $n_2,n_1,n_2$ is a walk and not a trail, and the textbook's $v_1,v_3,v_2,v_4,v_3,v_5$ is a trail and not a path \cite[p.~22]{petrosyan2015grafneri}. (b) Edges are unordered pairs, and the conditions on repeated edges and vertices do not depend on the order of the list.
 \end{proof}
 
 \plain{Every no-revisit trip is also a no-repeat-road trip. Now go the other way. If some no-repeat-road trip joins two towns, then some no-revisit trip joins them too. So two towns can reach each other by one kind of trip exactly when they can by the other.}

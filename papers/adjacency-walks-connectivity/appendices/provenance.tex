@@ -1,11 +1,26 @@
 \section{Sources, pages checked, and how to rerun the calculations}\label{app:provenance}
 
-\paragraph{Sources.} The course textbook is an Armenian-language study manual by Petrosyan, Mkrtchyan and Kamalyan \cite{petrosyan2015grafneri}; its Armenian title is omitted from the bibliography because the typesetting here does not support the script, and the file is \texttt{Grafneri\_tesutyun.pdf}. The textbook pages viewed as images for the definitions quoted are the printed pages 11, 16, 21, 22, 23, 48, and 49. The text search described in Convention~8 hit the printed pages 7, 11, 12, 34, and 61; of these only page 11 was viewed as an image for this note. The lecture board is the pair of photographs \cite{whiteboard1,whiteboard2}, both viewed. The other sources are lecture notes and a journal article, listed in the bibliography with the date they were accessed, 2026-11-06 \cite{uogalway_adjacency_notes,gotti_mit18211_lec27,grinberg2025graph,bai2025adjacency,paramadevan2021properties,schost_cs341_module3}. Grinberg's text is a preprint and is used for statements only; its proofs are not used. An open web copy of Lehman, Leighton and Meyer was located but not read, and is not cited.
+\paragraph{Sources.} The course textbook, an Armenian study manual by Petrosyan, Mkrtchyan and Kamalyan \cite{petrosyan2015grafneri}, has its Armenian title omitted from the bibliography because the typesetting here does not support the script, and the file is \path{Grafneri_tesutyun.pdf}. The textbook pages viewed as images for the definitions quoted are the printed pages 11, 16, 21, 22, 23, 48, and 49. The text search described in Convention~8 hit the printed pages 7, 11, 12, 34, and 61; of these only page 11 was viewed as an image for this note. The lecture board is the pair of photographs \cite{whiteboard1,whiteboard2}, both viewed. The other sources are lecture notes and a journal article, listed in the bibliography with the date they were accessed, 2026-11-06 \cite{uogalway_adjacency_notes,gotti_mit18211_lec27,grinberg2025graph,bai2025adjacency,paramadevan2021properties,schost_cs341_module3}. Grinberg's text is a preprint and is used for statements only; its proofs are not used.
 
-\paragraph{Calculations.} Every matrix, sum, and count in the text is printed by the script \texttt{appendices/compute.py} (pure Python, no packages), whose output is saved in \texttt{appendices/compute.out}. To rerun it, change to the paper folder and execute
+\paragraph{Calculations.} Every matrix, sum, and count in the text is printed by the script \path{appendices/compute.py} (pure Python, no packages), whose output is saved in \path{appendices/compute.out}. To rerun it, change to the paper folder and execute
 \begin{verbatim}
 python3 -I appendices/compute.py
 \end{verbatim}
-The run takes about twenty seconds, most of it in the exhaustive check over all graphs with up to $6$ vertices. An earlier script, \texttt{modules/m3\_check.py}, computed the same matrices for the two examples and the exhaustive check, and its output agrees \cite{m3_check_script}. The script \texttt{appendices/compute.py} \cite{author_compute_script} also lists, for the board graph, the walks, trails, and paths of given length between given vertices, which are the lists quoted in \Cref{sec:examples}.
+The run takes about twenty seconds, most of it in the exhaustive check over all graphs with up to $6$ vertices. An earlier script, \path{modules/m3_check.py}, computed the same matrices for the two examples and the exhaustive check, and its output agrees \cite{m3_check_script}. The script \path{appendices/compute.py} \cite{author_compute_script} also lists, for the board graph, the walks, trails, and paths of given length between given vertices, which are the lists quoted in \Cref{sec:examples}.
 
-\paragraph{Building the paper.} The document is compiled with \texttt{latexmk -pdf} and \texttt{biber}, which come with TeX Live (see \texttt{README.md}).
+\paragraph{Key output of the script.} The last two blocks of \path{appendices/compute.out}, which support the experimental statements in \Cref{sec:discussion}, read as follows.
+\begin{verbatim}
+=== Exhaustive check over all labelled simple graphs, N = 1..6
+N=1: graphs 1, connected 1, disagreements 0
+N=2: graphs 2, connected 1, disagreements 0
+N=3: graphs 8, connected 4, disagreements 0
+N=4: graphs 64, connected 38, disagreements 0
+N=5: graphs 1024, connected 728, disagreements 0
+N=6: graphs 32768, connected 26704, disagreements 0
+
+=== Walk-count theorem against enumeration, N = 1..4, k = 0..4
+entries compared: 5525  failures: 0
+\end{verbatim}
+Here ``disagreements'' counts graphs on which the sum test, the power test, and breadth-first search do not all give the same answer. The script also prints the four-vertex path powers $(A^1)_{14}=0$, $(A^2)_{14}=0$, $(A^3)_{14}=1$ used in \Cref{rem:onepower}.
+
+\paragraph{Building the paper.} The document is compiled with \texttt{latexmk -pdf} and \texttt{biber}, which come with TeX Live (see \path{README.md}).

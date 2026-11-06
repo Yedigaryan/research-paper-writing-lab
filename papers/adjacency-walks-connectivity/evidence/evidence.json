@@ -947,6 +947,26 @@
       "contradicted_by": []
     },
     {
+      "id": "A-3",
+      "text": "Paramadevan and Sotheeswaran do not define the word 'path' (a search of the extracted text of the paper for 'path' and 'walk' finds no definition). In the proof of their Theorem 1 (p. 16) they identify the (i,i) entry of A^2, which they say equals the degree of the ith vertex, with a number of 'different paths of length 2 between' the ith and jth vertices, so they use 'path' in the sense of walk there, and the proof builds 'paths of length (p + 1)' from 'paths ... of length p' together with an edge. Reading by the author after fetching the paper on 2026-11-06.",
+      "kind": "interpretation",
+      "module": "author",
+      "support": [
+        {
+          "source": "paramadevan2021properties",
+          "locator": "proof of Theorem 1, p. 16",
+          "quote": "While the (i, i)th entry of A2G is equal to the number of 10 s in the ith row, and hence equal to the degree of the ith vertex."
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [
+        "sections/discussion.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
       "id": "M1-1",
       "text": "Row i of A sums to the degree of n_i: the row sum counts the entries equal to 1 in row i, i.e. the vertices adjacent to n_i, i.e. the edges at n_i in a simple graph. Consequently the sum of all entries of A is 2|E|. Supersedes base claim C4.",
       "kind": "derived",

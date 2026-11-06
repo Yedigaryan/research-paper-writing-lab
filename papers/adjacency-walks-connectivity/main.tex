@@ -2,6 +2,8 @@
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{xurl}
 \usepackage{booktabs}
 \usepackage[hidelinks]{hyperref}
 \usepackage{cleveref}
@@ -30,7 +32,7 @@
 \maketitle
 
 \begin{abstract}
-A graph with $N$ vertices can be stored as a table of zeros and ones, its adjacency matrix $A$. This study note answers three questions about that table. First, the entry in row $i$ and column $j$ of the matrix power $A^k$ is the number of walks of length exactly $k$ from vertex $n_i$ to vertex $n_j$; it counts walks, not paths. Second, a graph is connected exactly when every off-diagonal entry of $A + A^2 + \dots + A^{N-1}$ is positive, which is the same as saying that $(I+A)^{N-1}$ has no zero entry. Third, a path between $n_i$ and $n_j$, in the convention of the course, is a walk from $n_i$ to $n_j$ in which no vertex occurs twice. Each statement is proved from the definitions of the course textbook, whose numbering is used, and is shown on a connected and on a disconnected example with three vertices. The lecture board that raised the questions has a drawing that disagrees with its matrix; the note reports the disagreement and follows the matrix.
+This study note comes from a graph theory course. A lecture whiteboard of that course poses two questions about the adjacency matrix $A$ of a graph with $N$ vertices, a table of zeros and ones that has a $1$ where two vertices are joined by an edge, and the assignment adds a third. First, the entry in row $i$ and column $j$ of the matrix power $A^k$ is the number of walks of length exactly $k$ from vertex $n_i$ to vertex $n_j$; it counts walks, not paths. Second, a graph is connected exactly when every off-diagonal entry of $A + A^2 + \dots + A^{N-1}$ is positive, which is the same as saying that $(I+A)^{N-1}$ has no zero entry. Third, a path between $n_i$ and $n_j$, in the convention of the course, is a walk from $n_i$ to $n_j$ in which no vertex occurs twice. Each result is proved here, using the course textbook's definitions and numbering, and is shown on a connected and on a disconnected example with three vertices. The board's drawing and its matrix differ by one edge; the note follows the matrix.
 \end{abstract}
 
 \input{sections/introduction}

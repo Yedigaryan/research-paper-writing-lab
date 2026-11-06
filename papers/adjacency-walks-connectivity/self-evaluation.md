@@ -1,10 +1,10 @@
 # Self-evaluation (author), round 0
 
-Build status: `build.sh` exited 2 (latexmk and biber are not installed in this environment; apt could not find the packages). `main.pdf` was therefore not produced, and `inspect_pdf.py` reports "main.pdf not found". The LaTeX was checked statically only: every `\ref`/`\Cref` target exists, `\begin`/`\end` and braces balance, no non-ASCII characters. Compile errors are possible and undetected. `check_citations.py`: 0 errors, 1 warning (source `lehman_llm_adjacency_libretexts` is not cited; it was never opened). `check_claims.py`: 0 errors, 8 warnings (all from claims owned by other modules or the base file).
+Build status (round 1 revision): `build.sh` ok, 20 pages, no overfull boxes, no hyperref warnings. `check_citations.py`: 0 errors, 0 warnings. `check_claims.py`: 0 errors, 6 warnings (support entries without a quote in claims owned by the base file or other modules), 0 unverified. `inspect_pdf.py`: 0 errors, 0 warnings. Biber prints 6 warnings that `year = {n.d.}` is not an integer (sources with no date).
 
-Evidence changes: new fragment `evidence/modules/author.json` (source `author_compute_script`, claims A-1, A-2); `evidence.json` rebuilt by `cp evidence.base.json evidence.json` plus `merge_evidence.py`; the diff against the previous merged file is additions only.
+Evidence changes: fragment `evidence/modules/author.json` (source `author_compute_script`, claims A-1, A-2, and in round 1 A-3 about Paramadevan's undefined word "path", qualified). `evidence.json` was rebuilt from the updated base (C4 and C7 now supported, Lehman source removed) by `cp evidence.base.json evidence.json` plus `merge_evidence.py`.
 
-Claim ids below are for the evaluator; they do not appear in the paper text. Claims C4 and C7 (unverified) are not used; M1-1 and M1-2 replace them.
+Claim ids below are for the evaluator; they do not appear in the paper text. C4 and C7 are now supported; the paper still proves both statements itself (Theorem 2.6 and Theorem 4.4) and rests on M1-1 and M1-2.
 
 Conventions chosen (as the orchestrator fixed them): path = course path = textbook Def. 1.2.13; textbook Def. 1.2.12 "path" is written trail; length 0 allowed as the paper's own convention (M1-5, M2-13, qualified); cycles have positive length; the walk-to-path lemma is proved once (Lemma 3.1 = Lemma M2.2, claims M2-5, M2-8 via Lemmas 3.3), and Section 5 cites it.
 
@@ -81,6 +81,7 @@ Claims and support:
 - Theorem 5.3 (I+A)^(N-1): m3-C4 (derived, binomial theorem; premises Theorem 5.1). Stated by Gotti Prop. 3 p. 2 and Bai Thm 2 p. 1 (C25); Gotti's proof ingredients C26.
 - Remark 5.4 entries are not path counts: refers to Section 7.
 - Remark 5.5 one power is not a test; N-1 cannot be lowered: m3-C6 (derived), A-2 (index argument for general N; numbers for N = 4 by script).
+- New remark (reading "any two vertices" without Convention 6): derived from the proof of Theorem 5.1 and Def. 2.14; premises M2-13, m3-C9.
 - Remark 5.6 the diagonal says nothing: m3-C9 (qualified interpretation, script).
 - BFS paragraph: C28 (qualified, slide 11), m3-C10 (qualified, slide 8; the N^2 scan and "connected iff all marked" are derived there and marked as derived in the text).
 
@@ -103,6 +104,7 @@ Claims and support:
 - Dependence on length 0: derived from Theorem 5.1 using only i different from j.
 - State of the sources: C8, C27, C25, C26, C28.
 - Experimental check N up to 6: m3-C8 (m3_check_script); walk-count check, 5525 entries: A-1 (author_compute_script). Marked experimental, not proof.
+- Sentence 1 of the failing-sentences item: A-3 (Paramadevan never defines "path"; its proof for l = 2 uses it for walk), plus C31, C32 and the off-diagonal counterexample M1-4. Now stated conditionally on the meaning of "path".
 - The three failing sentences: C31, C32 (Paramadevan Thm 1 and property 7), C33 (Paramadevan proof of Thm 2), C34 (Bai proof sketch). Each is quoted with page, restated, and refuted with the board graph (Theorem 4.4; B_22 = 2; R_11 = 2; checked against the length-0 convention). The quotations are typeset with the symbols adjusted; the text says so.
 
 Not justified: I quote C31 and C33 as stored in the evidence file (copied from the source by the research agent); I did not reopen the papers.
@@ -125,6 +127,42 @@ Not justified: textbook pages 12, 34, 61 and 7 (search hits) were not viewed in 
 4. Unverified claims C4 and C7 are not used. No claim with status `unverified` appears in the text. Qualified claims used and disclosed in the text: C8, C19, C27, C28, C29, M1-5, M2-13, m3-C9, m3-C10.
 5. The statement that Paramadevan's proof "does not use the step from a walk to a path" comes from the module report and graph-sources.md, not from a quote.
 
-## Per-finding log
+## Per-finding log, round 1
 
-(No findings yet.)
+Section changes: main.tex (abstract), introduction, definitions, paths, walkcount, connectivity, examples, discussion, appendix, references.bib. New claim: A-3 (Paramadevan does not define "path"; I fetched the paper and read p. 16 myself). New dependencies: sections/discussion.tex now rests on A-3 for sentence 1; sections/introduction.tex Convention 6 rests on M2-13 (p. 23, d(u,v)=0 iff u=v) and m3-C9 (p. 49, reflexivity); the new Remark 5.6 (reading "any two vertices") is derived from Theorem 5.1's proof.
+
+Evaluator findings
+- E1-F1 (major): rewrote the discussion item as conditional. It now says the paper does not define "path", that its proof for l = 2 uses "path" for walk, that under the walk reading sentence 1 is Theorem 4.1 (and its own property 7), and that under the standard no-repeated-vertex meaning (Grinberg Def. 2.9.1(c), Def. 2.8 here) it is false, with counterexamples (A^2)_11 = 1 and the off-diagonal (A^3)_12 = 2 (no path of length 3, independent of Convention 6). Sentence 2 is qualified the same way. "False as written" and "disagrees with itself" removed. Sentence 3 kept with the reason (Bai's Theorem 1 distinguishes walks from paths).
+- E1-F2: Convention 6 and Remark 4.2 and the discussion no longer say the textbook is silent overall; they say Definitions 1.2.10 to 1.2.16 do not say, and that p. 23 (d(u,v)=0 iff u=v) and p. 49 (reflexivity) assume length 0.
+- E1-F3: new Remark 5.6 states that without Convention 6, "any two vertices" must be read as two different vertices, that definition and tests then agree, and handles N = 1; the discussion points to it.
+- E1-F4: Def. 2.14 now explains reflexive, symmetric, transitive, equivalence relation, equivalence class, induced subgraph.
+- E1-F5: Non-example cites Fig. 1.2.5, p. 21, with "as the figure shows".
+- E1-F6: strong induction explained in a clause; binomial theorem for commuting matrices and the binomial coefficient explained.
+- E1-F7: Galway sentence now says the number of such walks equals the degree.
+- E1-F8: abstract now says "Each result is proved here, using the course textbook's definitions and numbering"; "proposition" removed from Convention 8.
+- E1-F9: file paths use \path{}, xurl added, section title uses \texorpdfstring, Remark on distance shortened, bibliography titles shortened. Build has no overfull boxes and no hyperref warnings.
+- E1-F10: evidence rebuilt from the updated base; Lehman mention removed (it was in the appendix; it was never in the bib).
+
+Reader findings
+- R1-F1: abstract now names the course, the whiteboard, and what the adjacency matrix is; the mismatch is one clause.
+- R1-F2: the board wording of Q1 and Q2 is quoted in the introduction; the reading of the mark as k is stated as an interpretation. Redrawn board figure added (Figure 2, Section 6.3) and referenced from Convention 4.
+- R1-F3: Q3 is stated to come from the assignment text as reported, not reproduced, and to be best taken as the note's chosen question.
+- R1-F4: transliteration "harevanutyan matrits" given; the note says a non-Armenian reader cannot check the textbook citations directly. Armenian script not given, because pdflatex cannot typeset it; I did not add the Armenian script.
+- R1-F5: Convention 5 now has a one-line preview of the naming (textbook path = trail, simple path = path). Table 2 was not moved.
+- R1-F6: Def. 2.12 defines cycle once; the textbook's names follow in a separate sentence and in Table 2.
+- R1-F7: Section 2 opens by saying which definitions the later proofs use and why the others are given.
+- R1-F8: handled with E1-F4; reflexivity is tied to Convention 6.
+- R1-F9: degree is now written deg; d is kept for distance, with a sentence saying so.
+- R1-F10: Theorem 2.6 says the sum of degrees is the textbook's Theorem 1.2.1, taken without proof, and that Definition 1.2.1 is degree.
+- R1-F11: Lemma 3.1 proof is split into cases q < k and q = k, each with an example on the board graph.
+- R1-F12: reasons s-1 < t-1, s-1 < t and set equality added.
+- R1-F13: Theorem 4.1 proof states the one-to-one correspondence explicitly.
+- R1-F14: 5525 = 5 x 1105 derived in the discussion; N = 4 path powers given in Remark 5.5 with the walk; key script output reproduced in the appendix.
+- R1-F15: BFS paragraph derives both directions, the N^2 bound (each vertex is queued once), and states the purpose.
+- R1-F16: Figure 2 added in Section 6.3 (not next to Figure 1, because the mismatch is discussed there; Convention 4 refers to it).
+- R1-F17: quotations are the sources' words with symbols typeset; wording softened to "do not hold under the standard meaning of path"; I re-read the Paramadevan text myself.
+- R1-F18: "module owner" and "supplied by the user" removed from the bibliography; scripts described as supplementary verification scripts; key output reproduced in the appendix.
+- R1-F19: plain-words paragraphs for adjacent and degree trimmed; the others kept because the study-note standard requires one before every definition.
+- R1-F20: the purpose of the binomial expansion is stated in the proof of Theorem 5.3.
+
+Not changed or open: Table 2 not moved; Armenian script not typeset; the textbook's page 12, 34, 61 hits still not re-viewed.

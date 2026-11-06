@@ -1,4 +1,4 @@
-\section{Question (Q1): what the entry of a power of $A$ represents}\label{sec:walkcount}
+\section{Question (Q1): what the entry of a power of \texorpdfstring{$A$}{A} represents}\label{sec:walkcount}
 
 The answer to question (Q1), with the mark above $A$ read as an exponent $k$ (Convention~3), is that $(A^k)_{ij}$ is a count of walks. Walks are defined in \Cref{def:walk}, and the product that forms $A^k$ in \Cref{def:power}.
 
@@ -21,11 +21,11 @@ We use induction on $k$.
 \begin{equation}\label{eq:step}
 (A^{k+1})_{ij}=\sum_{r=1}^{N}(A^k)_{ir}A_{rj}.
 \end{equation}
-Sort the walks of length $k+1$ from $n_i$ to $n_j$ by their last-but-one vertex $n_r$. Such a walk consists of a walk of length $k$ from $n_i$ to $n_r$, followed by one step from $n_r$ to $n_j$, and cutting off the last edge recovers the two parts uniquely. The final step is possible in exactly $A_{rj}$ ways, which is $1$ if $n_rn_j$ is an edge and $0$ otherwise. By the induction hypothesis the first part can be chosen in $(A^k)_{ir}$ ways. The two choices are independent, and every pair of choices gives a walk of length $k+1$. So for fixed $r$ the number of such walks is $(A^k)_{ir}A_{rj}$. Different values of $r$ give different walks, since the last-but-one vertex differs, and every walk has some last-but-one vertex. Adding over $r$ gives the right side of \eqref{eq:step}. So $(A^{k+1})_{ij}$ is the number of walks of length $k+1$ from $n_i$ to $n_j$, which completes the induction.
+Sort the walks of length $k+1$ from $n_i$ to $n_j$ by their last-but-one vertex $n_r$. Such a walk consists of a walk of length $k$ from $n_i$ to $n_r$, followed by one step from $n_r$ to $n_j$, and cutting off the last edge recovers the two parts uniquely. The final step is possible in exactly $A_{rj}$ ways, which is $1$ if $n_rn_j$ is an edge and $0$ otherwise. By the induction hypothesis the first part can be chosen in $(A^k)_{ir}$ ways. This is a one-to-one correspondence between the walks $w_0,\dots,w_k,w_{k+1}$ with $w_k=n_r$ and the pairs (walk $w_0,\dots,w_k$ of length $k$ from $n_i$ to $n_r$, final step $w_k,w_{k+1}$ with $w_{k+1}=n_j$). Every such pair gives a walk of length $k+1$, because the final step needs only that $n_rn_j$ is an edge and puts no condition on the first part, and the two choices are independent. So for fixed $r$ the number of such walks is $(A^k)_{ir}A_{rj}$. Different values of $r$ give different walks, since the last-but-one vertex differs, and every walk has some last-but-one vertex. Adding over $r$ gives the right side of \eqref{eq:step}. So $(A^{k+1})_{ij}$ is the number of walks of length $k+1$ from $n_i$ to $n_j$, which completes the induction.
 \end{proof}
 
 \begin{remark}\label{rem:zero}
-With Convention~6 the statement also holds for $k=0$: $A^0=I$, there is one walk of length $0$ from $n_i$ to itself and none from $n_i$ to a different vertex. The step of the proof then starts from $k=0$ unchanged. This is the note's own convention, since the textbook is silent on length $0$.
+With Convention~6 the statement also holds for $k=0$: $A^0=I$, there is one walk of length $0$ from $n_i$ to itself and none from $n_i$ to a different vertex. The step of the proof then starts from $k=0$ unchanged. This is the note's own convention. The textbook's definitions of walks do not say whether length $0$ is allowed, but its usage assumes it (Convention~6).
 \end{remark}
 
 \begin{remark}\label{rem:entrycount}
@@ -37,11 +37,11 @@ An entry of $A^k$ is a count, not a walk. A positive entry $(A^k)_{ij}$ means th
 \plain{The product adds up, over every middle town, the ways to get there and the ways to go on. It never asks whether a town was visited before. So a trip that goes out and straight back is counted. The cell for a town and itself is therefore not zero, though no no-revisit trip of two steps can start and end at one town.}
 
 \begin{theorem}[the diagonal of $A^2$]\label{prop:notpaths}
-For every $i$, $(A^2)_{ii}=d(n_i)$. If $d(n_i)\ge 1$ then $(A^2)_{ii}\ge 1$, although no path of length $2$ joins $n_i$ to $n_i$. So $(A^2)_{ii}$ counts walks and not paths.
+For every $i$, $(A^2)_{ii}=\deg(n_i)$. If $\deg(n_i)\ge 1$ then $(A^2)_{ii}\ge 1$, although no path of length $2$ joins $n_i$ to $n_i$. So $(A^2)_{ii}$ counts walks and not paths.
 \end{theorem}
-Galway's notes state that walks of length $2$ from a vertex to itself are related to its degree \cite[p.~4]{uogalway_adjacency_notes}. The proof is given here.
+Galway's notes state that the number of walks of length $2$ from a vertex to itself equals the degree of the vertex \cite[p.~4]{uogalway_adjacency_notes}. The proof is given here.
 \begin{proof}
-By \Cref{def:power}, $(A^2)_{ii}=\sum_r A_{ir}A_{ri}$. Since $A_{ri}=A_{ir}$ (\Cref{def:adjmatrix}) and every entry is $0$ or $1$, each term equals $A_{ir}^2=A_{ir}$. So $(A^2)_{ii}=\sum_r A_{ir}=d(n_i)$ by \Cref{prop:rowsums}. A path of length $2$ has $3$ pairwise different vertices, but its first and last vertices would both be $n_i$. So there is no such path. The only path from $n_i$ to $n_i$ is the one of length $0$ (Convention~6), which is not of length $2$.
+By \Cref{def:power}, $(A^2)_{ii}=\sum_r A_{ir}A_{ri}$. Since $A_{ri}=A_{ir}$ (\Cref{def:adjmatrix}) and every entry is $0$ or $1$, each term equals $A_{ir}^2=A_{ir}$. So $(A^2)_{ii}=\sum_r A_{ir}=\deg(n_i)$ by \Cref{prop:rowsums}. A path of length $2$ has $3$ pairwise different vertices, but its first and last vertices would both be $n_i$. So there is no such path. The only path from $n_i$ to $n_i$ is the one of length $0$ (Convention~6), which is not of length $2$.
 \end{proof}
 
 \begin{remark}\label{rem:board3}
