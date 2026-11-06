@@ -1,0 +1,18 @@
+{
+  "cand-a": {
+    "label": "composed",
+    "source": "harness-runs/adjacency-pipeline/context/deliverables/composed.md"
+  },
+  "cand-b": {
+    "label": "base",
+    "source": "harness-runs/adjacency-pipeline/context/deliverables/base.md"
+  },
+  "cand-c": {
+    "label": "inv",
+    "source": "harness-runs/adjacency-pipeline/context/deliverables/inv.md"
+  },
+  "cand-d": {
+    "label": "dom",
+    "source": "harness-runs/adjacency-pipeline/context/deliverables/dom.md"
+  }
+}
