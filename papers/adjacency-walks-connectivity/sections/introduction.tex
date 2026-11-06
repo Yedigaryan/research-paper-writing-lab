@@ -85,19 +85,19 @@ infinite distance & endless \\
   \begin{scope}
     \node (a1) at (0,0) {1}; \node (a2) at (1.6,0) {2}; \node (a3) at (3.2,0) {3};
     \draw[road] (a1)--(a2); \draw[road] (a2)--(a3);
-    \node[draw=none,minimum size=0pt] at (1.6,-1.0) {(a) board map};
+    \node[shape=rectangle,draw=none,inner sep=0pt,minimum size=0pt] at (1.6,-1.0) {(a) board map};
   \end{scope}
   % (b) drawing read as three roads
   \begin{scope}[xshift=5.2cm]
     \node (b1) at (0,0) {1}; \node (b2) at (3.2,0) {2}; \node (b3) at (1.6,1.4) {3};
     \draw[road] (b1)--(b2); \draw[road] (b1)--(b3); \draw[road] (b2)--(b3);
-    \node[draw=none,minimum size=0pt] at (1.6,-1.0) {(b) drawing read as three roads};
+    \node[shape=rectangle,draw=none,inner sep=0pt,minimum size=0pt] at (1.6,-1.0) {(b) drawing read as three roads};
   \end{scope}
   % (c) disconnected
   \begin{scope}[xshift=11.2cm]
     \node (c1) at (0,0) {1}; \node (c2) at (1.6,0) {2}; \node (c3) at (1.6,1.4) {3};
     \draw[road] (c1)--(c2);
-    \node[draw=none,minimum size=0pt] at (0.8,-1.0) {(c) one town alone};
+    \node[shape=rectangle,draw=none,inner sep=0pt,minimum size=0pt] at (0.8,-1.0) {(c) one town alone};
   \end{scope}
 \end{tikzpicture}
 \caption{The three small maps used in this note. Map (a) is the one given by

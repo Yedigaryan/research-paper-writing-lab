@@ -207,3 +207,21 @@ Sources 7; claims 60: supported 47, qualified 13, unverified 0, removed 0. Spot 
 Release conditions: 1 holds (minimum score 4). 2 holds (no critical finding). 3 holds. 4 holds. 5 holds (no essential concept or step unexplained, per the evaluator and the reader-findings review above). 6 holds (configured 3 > 2). 7 holds. 8 holds. 9 holds. 10 holds (the evaluator recommends PASS on the current draft).
 
 Decision: PASS -- every release condition holds on the draft the round 3 evaluator saw. No critical or major finding is open, and the five remaining minor findings and the round 3 reader findings are documented above with reasons. The released draft is exactly the evaluated draft.
+
+## Post-release fixes, 2026-11-06
+
+At the user's request the paper-author fixed the five minor findings left open at the round 3 release (reports/paper-author-postrelease.md). This is not a fourth evaluation round. A fresh paper-evaluator (level 3) verified only these five fixes and the diff (reports/paper-evaluator-postrelease.md).
+
+Mechanical checks (orchestrator, before verification): build pass (20 pages), citations pass (0 errors, 0 warnings), claims pass (0 errors, 1 warning: C9, unchanged), pdf pass (0 errors, 0 warnings), plain words pass (0 errors, 0 warnings). The evaluator's independent latexmk build matches the committed main.pdf.
+
+| Id | Fix | Status |
+|---|---|---|
+| E2-F6 | Figure 1 label nodes set to rectangles with no padding; the blank band is gone (PDF p. 2 rendered). | resolved (confirmed) |
+| E3-F1 | Remark 2.4 defines "neighbour"; every later technical use comes after it. | resolved (confirmed) |
+| E3-F2 | "loop" in the Lemma 3.2 plain-words paragraph replaced. | resolved (confirmed) |
+| E3-F3 | counting.tex now claims only the proofs of (b) to (d), and credits (d) to [5]. | resolved (confirmed) |
+| E3-F4 | Definition 2.1 cites [7, p. 9]; checked on the page image (PDF p. 10, Definition 1.1.1). | resolved (confirmed) |
+
+New findings: none. Two remarks from the verifier, not defects in the paper: the docstring of appendices/computations.py:190 still says "loop", which does not appear in the PDF; and evidence.json has no claim with a p. 9 locator for the G = (V, E) notation sentence, which was accepted without one at round 3.
+
+Decision: PASS stands. No minor finding from the evaluation rounds is now open; the round 3 technician reader findings stay documented as recorded above.

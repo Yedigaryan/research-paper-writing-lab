@@ -140,3 +140,12 @@ Reader findings, done
 Reader findings, declined (required by the brief or a reader-position preference)
 - R2-F2 (board transcription is required, kept); F4 (the three-convention table is required; only its position claim was fixed; story layer is required); F5, F6 (board mismatch report required; wording kept as it is clear after round 2); F7 (board notation mismatch is required); F8 (the textbook support for length-0 walks answers E1-F2); F9, F10 (textbook provenance and the search result are required and qualified); F11 (cycles are in the brief's required definitions); F12 (textbook numbering and the table are required); F24 (the Paramadevan remark is the E1-F1 fix and stays); F26 (BFS section is required by the brief); F28 (the published-paper discussion is required).
 Checks after round 3: build ok, 20 pages; check_citations 0 errors, 0 warnings; check_claims 0 errors, 1 warning (C9 no quote); inspect_pdf 0 errors, 0 warnings; check_plain_words 0 errors, 0 warnings.
+
+## Revision log, post-release fixes
+Changed: introduction.tex (Figure 1 label nodes), background.tex (Remark 2.4, Definition 2.1), paths.tex (plain words before Lemma 3.2), counting.tex (credit after Prop. 4.3). No new claims, no evidence change.
+- E2-F6: the three label nodes under the subfigures are now `shape=rectangle` with zero inner sep, so they no longer stretch the bounding box. Rendered page 2: no blank band between labels and caption.
+- E3-F1: Remark 2.4 now says "If n_i and n_j are adjacent, n_j is called a neighbour of n_i". Later uses checked: background.tex (degree remark, "number of neighbours"), counting.tex (closed walks n_i,n_t,n_i, "has a neighbour" in Prop. 4.6 and its proof), paths.tex (pair of neighbours in Lemma 3.2), connectivity.tex ("n_3 has no neighbour") all fit the definition.
+- E3-F2: "loop" replaced by "the part of the trip between the two visits" (grep: no other "loop" in a plain-words paragraph; "loop" otherwise means a self-edge).
+- E3-F3: now "so the proofs of (b) to (d) are ours", with the preceding sentence stating that Paramadevan and Sotheeswaran state (d).
+- E3-F4: Definition 2.1 now cites [textbook, p. 9]. Checked on the page image (PDF page 10, printed number 9 at the foot): Definition 1.1.1 introduces G = (V, E) there.
+Checks: build ok (20 pages); check_citations 0 errors, 0 warnings; check_claims 0 errors, 1 warning (C9); inspect_pdf 0 errors, 0 warnings; check_plain_words 0 errors, 0 warnings.
