@@ -94,6 +94,12 @@ print("A^(N-1) = A^2 alone: (A^2)_12 =", power(A, 2)[0][1], "although n1n2 is an
 print("(A^1)_13 =", A[0][2], " (A^2)_13 =", power(A, 2)[0][2], " -> both A and A^2 are needed")
 
 print("=" * 60)
+print("Diagonal of S carries no connectivity information")
+K2 = mat(2, [(1, 2)]); print("K2 (connected): S =", S_sum(K2), " diagonal zero, still connected:", test_sum(K2))
+print("board graph (connected) diagonal of S:", [S_sum(A)[i][i] for i in range(3)])
+print("edge n1n2 + isolated n3 (disconnected) diagonal of S:", [S_sum(mat(3, [(1, 2)]))[i][i] for i in range(3)])
+
+print("=" * 60)
 print("Binomial identity check, (I+A)^(N-1) = sum_k C(N-1,k) A^k, board graph")
 n = 3; T = [[0]*n for _ in range(n)]
 for k in range(n):

@@ -1340,7 +1340,7 @@
     },
     {
       "id": "m3-C1",
-      "text": "For different vertices u and v, there is a (u,v)-walk iff there is a simple (u,v)-path (no repeated vertex). Proved by taking a shortest walk and cutting out any loop; also the textbook's Lemma 1.2.1 and Grinberg's Corollary 2.9.7.",
+      "text": "For vertices u and v (u = v allowed), a walk of length k from u to v contains a path from u to v of length at most k, and every path has length at most N - 1. This module cites m2's Lemma M2.2 (claim M2-5) and does not reprove it; the textbook's Lemma 1.2.1 covers u different from v only and Grinberg's Corollary 2.9.7 gives the bound.",
       "kind": "derived",
       "module": "m3",
       "support": [
@@ -1355,7 +1355,7 @@
           "quote": "Assume that there is a walk from u to v of length k for some k ∈ N. Then, there is a path from u to v of length ≤ k."
         }
       ],
-      "derivation": "modules/m3.md, Section 3.2, Lemma 3.1 (c) implies (a)",
+      "derivation": "modules/m2.md, Section 5.2, Lemma M2.2 (claim M2-5); cited in modules/m3.md Section 3.2, Lemma 3.1 (i)",
       "confidence": "high",
       "status": "supported",
       "used_in": [],
@@ -1363,7 +1363,7 @@
     },
     {
       "id": "m3-C2",
-      "text": "For different vertices u and v in a simple graph, a (u,v)-trail (the book's path, Def. 1.2.12) exists iff a simple (u,v)-path (Def. 1.2.13) exists iff a (u,v)-walk exists; so the book's Definition 2.1.1 and the course's path convention define the same connected graphs.",
+      "text": "A (u,v)-trail (book Def. 1.2.12) exists iff a course (u,v)-path (Def. 1.2.13) exists iff a (u,v)-walk exists, so Definition 2.1.1 and the course path convention define the same connected graphs. This module cites m2's Proposition M2.4 (claim M2-8) and does not reprove it.",
       "kind": "derived",
       "module": "m3",
       "support": [
@@ -1378,7 +1378,7 @@
           "quote": "G գրաֆի (u0, uk)-ճանապարհը կանվանենք պարզ (u0, uk)-ճանապարհ, եթե նրա մեջ մտնող բոլոր գագաթները զույգ առ զույգ տարբեր են:"
         }
       ],
-      "derivation": "modules/m3.md, Section 3.2, Lemma 3.1",
+      "derivation": "modules/m2.md, Section 5.4, Proposition M2.4 (claim M2-8); cited in modules/m3.md Section 3.2, Lemma 3.1 (ii)",
       "confidence": "high",
       "status": "supported",
       "used_in": [],
@@ -1386,7 +1386,7 @@
     },
     {
       "id": "m3-C3",
-      "text": "A simple graph on N vertices is connected iff every off-diagonal entry of A + A^2 + ... + A^(N-1) is positive. Complete proof from walk counting (C5), the walk-to-path lemma (m3-C1) and the path-length bound N - 1 (C21). Paramadevan and Sotheeswaran state the result; their proof is not used.",
+      "text": "A simple graph on N vertices is connected iff every off-diagonal entry of A + A^2 + ... + A^(N-1) is positive. Complete proof from walk counting (C5), the walk-to-path lemma (m3-C1, i.e. M2-5) and the path-length bound N - 1 (C21). Paramadevan and Sotheeswaran state the result; their proof is not used.",
       "kind": "derived",
       "module": "m3",
       "support": [
@@ -1504,7 +1504,7 @@
     },
     {
       "id": "m3-C9",
-      "text": "The paper tests only pairs of different vertices; for u = v the book handles the case through the reflexivity of its path relation, and the book does not say whether a walk of length 0 exists. This reading of Definition 2.1.1 and of the board definition is the paper's own.",
+      "text": "The paper allows walks of length 0 as its own convention (claims M1-5 and M2-13; the textbook is silent, C19). Hence every vertex is joined to itself by the one-vertex path, a pair u = v satisfies Definition 2.1.1 in every graph, and the diagonal of S carries no connectivity information; the test reads only entries with i different from j. Script: the connected graph K2 has S = [[0,1],[1,0]] (zero diagonal), the disconnected graph with edge n1n2 and isolated n3 has diagonal [1,1,0], the connected board graph has diagonal [1,2,1].",
       "kind": "interpretation",
       "module": "m3",
       "support": [
@@ -1512,9 +1512,14 @@
           "source": "petrosyan2015grafneri",
           "locator": "p. 49, list of properties of the relation alpha",
           "quote": "ռեֆլեքսիվություն, այսինքն ցանկացած v ∈ V համար vαv,"
+        },
+        {
+          "source": "m3_check_script",
+          "locator": "modules/m3_check.out, block 'Diagonal of S carries no connectivity information'",
+          "quote": "K2 (connected): S = [[0, 1], [1, 0]]  diagonal zero, still connected: True"
         }
       ],
-      "derivation": null,
+      "derivation": "modules/m3.md Section 3.1; modules/m3_check.py",
       "confidence": "medium",
       "status": "qualified",
       "used_in": [],
