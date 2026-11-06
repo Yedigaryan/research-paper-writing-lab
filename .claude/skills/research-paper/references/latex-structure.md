@@ -59,10 +59,14 @@ and worked example is preceded by a plain words paragraph; see
 
 ## Bibliography
 
-- One entry per source in `evidence.json`, key identical to the source id.
+- One entry per evidence source the paper cites, key identical to the
+  source id. A source whose claims are all `removed`, or that supports no
+  claim, needs no entry.
 - Fields as complete as the source allows: author, title, year, journal or
   publisher, volume, pages, doi, url, urldate. Never fill a field with a
-  guess; leave it out.
+  guess; leave it out. An undated source (evidence `year` null) has no
+  `year` or `date` field at all, never `n.d.`; `check_citations.py`
+  accepts the omission and rejects a year that is not a year.
 - Web sources carry `urldate`. Local files are cited as `@misc` with
   `howpublished` naming the file and `note` saying it was supplied by the
   user.
@@ -79,3 +83,9 @@ install (TeX Live with latexmk and biber).
 `scripts/inspect_pdf.py papers/<slug>` checks the PDF text for unresolved
 references (`??`), unresolved citations, empty pages, and the log for
 overfull boxes and missing figures.
+
+`scripts/check_plain_words.py papers/<slug> --terms <words>` applies in
+the `study-note` register: it finds every plain-words paragraph, fails
+when a definition, theorem, lemma, proposition, or corollary has none
+before it, and warns about sentences over 20 words, notation, and the
+listed technical words inside those paragraphs.

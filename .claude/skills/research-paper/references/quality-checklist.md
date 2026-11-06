@@ -25,6 +25,14 @@ Run every item before presenting the paper. Fix failures, then re-run.
       the paper says what was searched.
 - [ ] Text the user reported but did not supply (an assignment sheet) is
       given as reported content, never inside quotation marks.
+- [ ] A sentence saying a source is wrong sits in one discussion item,
+      not beside a theorem. Each statement it rejects is quoted verbatim
+      with its locator and restated in this paper's notation. If the
+      source does not define the word the statement turns on, both
+      readings are given and only the failing one is refuted, by its own
+      counterexample checked against the restatement. A result the same
+      source states correctly is credited where this paper uses it.
+      Nothing in quotation marks merges or paraphrases two sources.
 
 ## Standard of presentation (modelled on the textbook)
 
