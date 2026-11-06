@@ -188,29 +188,6 @@
       "notes": "Read as text. Year not shown. This is the Module 3 slide deck, which is not the file graph-sources.md calls Lecture 10, so its slide numbers differ from that note. Slide 11 states the BFS correctness summary and lists testing connectivity as an application; the earlier slides argue correctness only in outline. Prove the connectivity step in the paper."
     },
     {
-      "id": "lehman_llm_adjacency_libretexts",
-      "type": "web",
-      "title": "Mathematics for Computer Science (Lehman, Leighton, Meyer), section 9.3 Adjacency Matrices, LibreTexts copy",
-      "authors": [
-        "Eric Lehman",
-        "F. Thomson Leighton",
-        "Albert R. Meyer"
-      ],
-      "year": null,
-      "venue": "LibreTexts Engineering",
-      "identifier": {
-        "doi": null,
-        "url": "https://eng.libretexts.org/Bookshelves/Computer_Science/Programming_and_Computation_Fundamentals/Mathematics_for_Computer_Science_(Lehman_Leighton_and_Meyer)/02%3A_Structures/09%3A_Directed_graphs_and_Partial_Orders/9.03%3A_Adjacency_Matrices",
-        "isbn": null,
-        "path": null
-      },
-      "accessed": "2026-11-06",
-      "access_status": "metadata-only",
-      "credibility": "secondary",
-      "found_by": "research-agent",
-      "notes": "Seen only as a search result title and URL in this run; never opened. Supports nothing. It treats digraphs."
-    },
-    {
       "id": "author_compute_script",
       "type": "code",
       "title": "compute.py: every matrix, sum, count and exhaustive check printed in the paper",
@@ -316,7 +293,7 @@
     },
     {
       "id": "C4",
-      "text": "Row i of A sums to the degree of n_i in a simple graph. Premises are the matrix rule (p. 11) and the degree definition (p. 16); the short proof is the paper's own and is not yet in the derivations appendix.",
+      "text": "Row i of A sums to the degree of n_i in a simple graph. Premises are the matrix rule (p. 11) and the degree definition (p. 16); proved by module m1 as M1-1.",
       "kind": "derived",
       "module": "m1",
       "support": [
@@ -326,9 +303,9 @@
           "quote": "1, եթե v_i և v_j հարևան են, 0, հակառակ դեպքում:"
         }
       ],
-      "derivation": "appendices/derivations.tex (row-sum lemma, to be written by m1)",
+      "derivation": "modules/m1.md, section 5.1 (proof); module claim M1-1 in evidence/modules/m1.json; script modules/m1-calc/m1_check.py",
       "confidence": "high",
-      "status": "unverified",
+      "status": "supported",
       "used_in": [],
       "contradicted_by": []
     },
@@ -382,7 +359,7 @@
     },
     {
       "id": "C7",
-      "text": "(A^2)_{ii} equals the degree of n_i, so it is positive for any non-isolated vertex although no path of length 2 starts and ends at n_i. On the board graph (edges n1n2, n2n3) (A^2)_11 = 1 and (A^2)_22 = 2.",
+      "text": "(A^2)_{ii} equals the degree of n_i, so it is positive for any non-isolated vertex although no path of length 2 starts and ends at n_i. On the board graph (edges n1n2, n2n3) (A^2)_11 = 1 and (A^2)_22 = 2. Proved by module m1 as M1-2.",
       "kind": "derived",
       "module": "m1",
       "support": [
@@ -392,9 +369,9 @@
           "quote": "The number of walks of length 2 from a vertex to itself is just the number of edges at that vertex, or the vertex degree."
         }
       ],
-      "derivation": "appendices/derivations.tex (counterexample, to be written by m1; script-checked product)",
+      "derivation": "modules/m1.md, section 5.2 (proof and product); module claim M1-2 in evidence/modules/m1.json; script modules/m1-calc/m1_check.py",
       "confidence": "high",
-      "status": "unverified",
+      "status": "supported",
       "used_in": [],
       "contradicted_by": []
     },
