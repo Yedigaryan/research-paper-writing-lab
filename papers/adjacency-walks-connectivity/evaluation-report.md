@@ -92,3 +92,91 @@ checks: 8 sources, 7 support, 1 partially supports (Paramadevan, F1).
 
 Decision: FAIL -- release condition 4 not met (major finding E1-F1
 open); revision round 2 ordered.
+
+## Round 2, 2026-11-06
+
+Question: unchanged from round 1.
+Scope: unchanged from round 1.
+Research summary: between rounds the research agent set C4 and C7 to
+supported (via M1-1, M1-2) and removed the unread Lehman source; the
+author added claim A-3 after fetching Paramadevan. Merged evidence: 11
+sources, 68 claims.
+
+Model levels (configured): research 2, modules 2, author 2, reader 2,
+evaluator 3 (fresh agent), orchestrator session model (not pinned).
+Hierarchy requirement: met for the configured levels. No runtime fallback
+reported by the harness; served models are not observable in-session.
+
+Mechanical checks: build pass (20 pages, 0 overfull boxes, no hyperref
+warnings), citations pass (0 errors, 0 warnings), claims pass (0 errors,
+0 unverified, 6 warnings: quote-less supports on qualified claims), pdf
+pass (0 errors, 0 warnings).
+
+### Scores
+
+| Dimension | Score | Observation |
+|---|---|---|
+| 1 Correctness | 4 | All matrices and proofs verified; B_ii length-0 imprecision (E2-F1), Remark 5.6 understated (E2-F2). |
+| 2 Evidence coverage | 4 | Stale evidence entries C31, A-3, M2-14 (E2-F5). |
+| 3 Citation integrity | 4 | Six web sources and textbook checked; Galway locator mix (E2-F4). |
+| 4 Logical validity | 4 | No gaps; dependency list omits reflexivity of ~ (E2-F2). |
+| 5 Understandability | 4 | Two plain-words sentences literally false (E2-F7, E2-F8). |
+| 6 Completeness | 5 | Every brief objective present. |
+| 7 Methodological rigor | 4 | Unviewed-page assertion (E2-F6); verbatim block differs (E2-F10). |
+| 8 Critical analysis | 5 | Two-reading treatment of sources, conventions isolated. |
+| 9 Internal consistency | 4 | Conclusion length-0 wording (E2-F3); script reference (E2-F10). |
+| 10 Reproducibility | 5 | compute.py byte-identical rerun; independent recomputation. |
+| 11 LaTeX and PDF quality | 5 | Clean build, figures and tables render. |
+| 12 Answer relevance | 5 | Q1 to Q3 answered directly. |
+
+### Findings
+
+Round 1 findings: E1-F1 to E1-F10 all resolved, confirmed by the round 2
+evaluator.
+
+| Id | Severity | Location | Defect | Status |
+|---|---|---|---|---|
+| E2-F1 | minor | discussion.tex:15 | "holds for B" ignores length-0 walks. | open |
+| E2-F2 | minor | connectivity.tex:61; discussion.tex:5 | Remark 5.6 example too weak; reflexivity of ~ depends on Convention 6, not listed. | open |
+| E2-F3 | minor | conclusion.tex:11 | Length-0 sentence omits pp. 23, 49 qualification. | open |
+| E2-F4 | minor | definitions.tex:13 | Galway cited by PDF page, elsewhere by printed page. | open |
+| E2-F5 | minor | evidence C31, A-3, M2-14 | Stale wording, wrong page, quote-less support. | open |
+| E2-F6 | minor | introduction.tex:58; provenance.tex:3 | Content of unviewed pages asserted. | open |
+| E2-F7 | minor | connectivity.tex:9 | Plain-words statement of the test is literally wrong (diagonal). | open |
+| E2-F8 | minor | walkcount.tex:37 | "not zero" false for an isolated vertex. | open |
+| E2-F9 | minor | definitions.tex:87 | Implies textbook gives no proof of Theorem 1.2.1. | open |
+| E2-F10 | minor | provenance.tex:21; discussion.tex:9 | Verbatim block differs from compute.out; ambiguous "the script". | open |
+| E2-F11 | minor | introduction.tex:11, :53 | Alternative reading of the mark (quotation mark) not mentioned. | open |
+
+Technician reader: 28 comprehension findings (R2-F1 to R2-F28) in
+`reader-findings.md`; its summary matches the paper's conclusion. Mostly
+structural preferences (move definitions to an appendix, trim the story
+layer) that conflict with the study-note standard, which requires the
+textbook build order and a plain-words paragraph before every definition.
+Targeted items forwarded: R2-F11 (u = v only at length 0), R2-F15
+(shorter Lemma 3.3(a) argument), R2-F17 (Remark 4.2 wording), R2-F21
+(merge diagonal remarks), R2-F22 (BFS optional, stated first).
+
+### Citation and claim coverage
+
+11 sources, all cited; 68 claims: 56 supported, 12 qualified, 0
+unverified. Evaluator spot checks: 8 sources, all support.
+
+### Unverified claims and access limits
+
+- No unverified claims. Twelve qualified claims, each qualified in text.
+- Textbook search-hit pages 7, 12, 34, 61 not viewed by the author (viewed
+  by the evaluator; E2-F6).
+
+### Known limitations
+
+- The sum-form test has one external statement (Paramadevan); proof is the
+  note's own.
+- BFS has slide-level support only.
+- The board drawing disagrees with the matrix; the paper follows the matrix.
+
+Decision: FAIL -- the evaluator recommends PASS and release conditions 1
+to 9 hold, but eleven minor findings are neither resolved nor documented.
+Two (E2-F7, E2-F8) are literally false sentences in the plain-words layer
+and E2-F5 leaves the evidence file contradicting the text, so they are
+fixed rather than documented. Round 3, the last allowed, is ordered.
