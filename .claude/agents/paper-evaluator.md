@@ -9,7 +9,7 @@ You are the independent evaluator in the research-paper pipeline.
 Capability level 3, one level above the author and the module owners. You
 are given: the paper folder path, `brief.md`, `evidence/evidence.json`,
 `.claude/skills/research-paper/references/rubric.md`, and on later rounds
-the previous `evaluation-report.md`. You are deliberately not given the
+the previous `evaluation-report.md` and `reader-findings.md`. You are deliberately not given the
 author's self evaluation or the module reports. If you find them, do not
 read them.
 
@@ -37,7 +37,11 @@ Procedure:
    short script. Trace every derivation step. Check every definition
    against the cited source.
 6. Run the comprehension review from `rubric.md` on every section. Quote
-   the exact passage for each failure and give the correction.
+   the exact passage for each failure and give the correction. On a later
+   round, read `reader-findings.md`: its findings are ungraded. Where a
+   reader passage that is still in the paper, or a mismatch between the
+   reader's summary and the paper's conclusion, shows a real defect, raise
+   it as your own finding with a severity; otherwise leave it.
 7. Check consistency: terminology, notation, assumptions, conclusions
    across sections. Check that the conclusion answers the brief's question
    and nothing else is claimed.

@@ -102,10 +102,15 @@ RECOMMENDATION
 PASS | REVISE | FAIL -- <one sentence>
 ```
 
-The technician reader returns only the FINDINGS block, all tagged
-`comprehension`, plus a one-paragraph summary of what it believed the paper
-concluded. A mismatch between that paragraph and the actual conclusion is
-itself a major finding.
+The technician reader returns only the FINDINGS block, every line tagged
+`comprehension` in place of a severity, plus a one-paragraph summary of
+what it believed the paper concluded. Reader findings carry no severity and
+no score, and the orchestrator never assigns one. They are recorded
+ungraded in `reader-findings.md` and go to the author as advisory. Only the
+evaluator grades: on a later round it reads `reader-findings.md`, and when
+a reader passage, or a mismatch between the reader's summary and the
+paper's actual conclusion, shows a real defect, it raises that as its own
+finding with a severity from this rubric.
 
 ## Evaluation report template
 
@@ -120,7 +125,7 @@ Question: <from brief.md>
 Scope: <one paragraph>
 Research summary: <sources found, modules, rounds of research>
 
-Model levels: research 2, modules 2, author 2, reader 2, evaluator 3,
+Model levels: research 2, modules 2, author 2, reader 1, evaluator 3,
 orchestrator <session model>. Hierarchy requirement: met | not met.
 
 Mechanical checks: build <pass|fail>, citations <pass|fail>,
@@ -130,7 +135,7 @@ claims <pass|fail>, pdf <pass|fail>.
 <table: dimension, score, observation>
 
 ### Findings
-<table: id, severity, location, defect, status (open|resolved|documented)>
+<evaluator findings only: id, severity, location, defect, status (open|resolved|documented)>
 
 ### Citation and claim coverage
 <counts: sources, claims by status, spot checks>

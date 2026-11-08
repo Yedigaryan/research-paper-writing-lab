@@ -60,3 +60,11 @@ findings in `expected-findings.md`.
   findings are advisory. Orchestrator sessions for refinement probes run
   on Opus 5.5, not Fable 5.1. Watch the reader's findings in the next runs;
   if they become shallow or wrong, move it back to Sonnet.
+- 2026-11-08: The orchestrator never grades reader findings. The reader
+  returns ungraded comprehension findings; they are recorded as returned in
+  `reader-findings.md` and sent to the author as advisory. Severity belongs
+  to the evaluator alone, which reads `reader-findings.md` on later rounds
+  and raises a reader passage as its own finding when it shows a real
+  defect. Reason: in the adjacency-pipeline step the base orchestrator
+  graded reader findings itself, which made rounds differ for reasons
+  outside the harness under test.

@@ -181,16 +181,22 @@ Spawn a fresh `paper-evaluator` with the paths to the paper folder, the
 brief, the evidence file, and `references/rubric.md`. Do not give it
 `self-evaluation.md`, the module reports, or your own opinion. On a second
 or later round, also give it the previous `evaluation-report.md` so it can
-verify that earlier findings were resolved; that report is the
-orchestrator's record, not the author's self assessment.
+verify that earlier findings were resolved, and `reader-findings.md` so it
+can judge the reader's passages; both are the orchestrator's record,
+not the author's self assessment.
 
 In the same message spawn `technician-reader` with the paper folder path.
 It reads the compiled text as a reader who knows nothing about the topic
 and returns the exact passages it could not follow.
 
-Both agents return findings in the format fixed in `references/rubric.md`:
-one score per dimension with the observation behind it, and a list of
-findings each with severity, location, the defect, and the correction.
+The evaluator returns the format fixed in `references/rubric.md`: one score
+per dimension with the observation behind it, and a list of findings each
+with severity, location, the defect, and the correction. The reader returns
+only comprehension findings and a summary paragraph, with no severity and
+no score. The orchestrator never assigns a severity to a reader finding.
+Severity is a judgment about the paper and belongs to the evaluator alone;
+a reader passage becomes a graded finding only when an evaluator raises it
+as its own.
 
 Why a fresh evaluator each round: it matches the independence requirement
 literally and cannot be anchored by its own earlier scores. The cost is a
@@ -202,24 +208,35 @@ resolved, switch to messaging the same evaluator and record the change in
 ## Step 6: Record, decide, revise (orchestrator)
 
 Write or append to `evaluation-report.md` using the template in
-`references/rubric.md`: round number, configured model levels, scores,
-findings with severity and status, mechanical check results, and the
-decision for this round. Never overwrite a previous round. Append the
-technician reader's findings for the round to `reader-findings.md`.
+`references/rubric.md`: round number, configured model levels, scores, the
+evaluator's findings with severity and status, mechanical check results,
+and the decision for this round. Never overwrite a previous round. Append
+the technician reader's findings and summary for the round to
+`reader-findings.md` exactly as returned, ungraded; they do not enter the
+findings table of the evaluation report. If the summary paragraph does not
+match the paper's actual conclusion, note that next to it in plain words,
+without a severity.
 
-Apply the release conditions from `references/rubric.md`. If any fails:
+Apply the release conditions from `references/rubric.md`. They are decided
+by the evaluator's findings and scores, never by reader findings. If any
+fails:
 
-1. Group the findings by section and send them to the living `paper-author`
-   agent. A finding that needs new research goes to the owning
-   `module-owner` first, then to the author.
+1. Group the evaluator's findings by section and send them to the living
+   `paper-author` agent, with the reader's findings attached as advisory:
+   the author changes the passage or says in `self-evaluation.md` why it
+   stays, and the next round records that response in `reader-findings.md`.
+   A finding that needs new research goes to the owning `module-owner`
+   first, then to the author.
 2. Require the author to update `self-evaluation.md` for every changed
    section.
 3. Re-run the mechanical gate from Step 4.
 4. Return to Step 5.
 
-Critical and major findings must be resolved. Minor findings are resolved
-or documented in the report with the reason. A finding is resolved when the
-next evaluator confirms it, not when the author says so.
+Critical and major evaluator findings must be resolved. Minor findings are
+resolved or documented in the report with the reason. A finding is resolved
+when the next evaluator confirms it, not when the author says so. The
+orchestrator never holds a release on a reader finding that no evaluator
+raised as its own.
 
 If three rounds pass without reaching release, stop. Report to the user
 which conditions still fail and why, with the decision `INCOMPLETE`. Never

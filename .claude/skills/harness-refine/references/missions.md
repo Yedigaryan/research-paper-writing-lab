@@ -43,9 +43,10 @@ agent in the run.
 
 You are adapting the harness of an autonomous pipeline that turns a
 research brief into an evidence-based LaTeX paper. The pipeline has a
-research agent, parallel module owners, an author, and an independent
-evaluator plus a technician-level reader that score the paper and send
-findings back for revision. The harness is the set of files in
+research agent, parallel module owners, an author, an independent
+evaluator that scores and grades the paper, and a technician-level reader
+that reports, ungraded, the passages it cannot follow. Both send findings
+back for revision. The harness is the set of files in
 `context/harness/`: the skill the orchestrator follows, its reference
 files, its scripts, and the agent definitions for the research agent,
 module owners, and author. The evaluator, the reader, the rubric, and the
