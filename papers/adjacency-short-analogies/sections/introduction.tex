@@ -1,0 +1,23 @@
+\section{Introduction}
+
+Let $G$ be a finite simple undirected graph with $N$ vertices $n_1,\dots,n_N$
+and adjacency matrix $A$ (defined in \cref{sec:setting}). The lecture board
+asks two questions about it, and the assignment adds a third
+\cite{whiteboard1,whiteboard2,userstatements}.
+\begin{enumerate}
+\item[(Q1)] What does the entry $(A^k)_{ij}$ represent? The mark above $A$ on
+  the board is read as an exponent $k$ \cite{userstatements}.
+  \emph{Answer:} it is the number of walks of length $k$ from $n_i$ to $n_j$
+  (\cref{thm:counting}); it counts walks, not paths.
+\item[(Q2)] How can one tell from $A$ whether $G$ is connected?
+  \emph{Answer:} $G$ is connected if and only if every entry off the
+  diagonal of $B=A+A^2+\dots+A^{N-1}$ is positive (\cref{thm:sum}).
+\item[(Q3)] What is a path between $n_i$ and $n_j$? \emph{Answer:} a walk
+  from $n_i$ to $n_j$ in which no vertex occurs twice
+  (\cref{def:pathbetween}).
+\end{enumerate}
+The answers come in the order Q1, Q3, Q2, because the test for Q2 needs the path. A full-text search of the course textbook
+\cite{petrosyan2015graphs} finds neither the walk-counting theorem nor a matrix test for
+connectivity, so both are taken from other sources, and every proof is written out in
+full; ``derived'' marks this paper's own proof of a result stated in a cited source.
+Textbook page numbers are printed ones, one lower than the PDF's.

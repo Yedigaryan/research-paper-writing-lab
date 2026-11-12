@@ -1,0 +1,40 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+\usepackage[backend=biber,style=numeric,urldate=long]{biblatex}
+\addbibresource{references.bib}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}[definition]{Example}
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{lemma}[definition]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+
+\title{Walks, paths, and connectivity from the adjacency matrix: a short account}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For a finite simple undirected graph with adjacency matrix $A$, the entry
+$(A^k)_{ij}$ is the number of walks of length $k$ from vertex $n_i$ to vertex $n_j$
+(walks, not paths). A path is a walk with no repeated vertex. A graph on $N$ vertices is
+connected if and only if every off-diagonal entry of $A+A^2+\dots+A^{N-1}$ is
+positive. Each statement is proved and the test is run on two graphs.
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/setting}
+\input{sections/answers}
+\input{sections/example}
+
+\printbibliography
+
+\end{document}

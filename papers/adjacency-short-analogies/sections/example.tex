@@ -1,0 +1,38 @@
+\section{Worked example and limits}\label{sec:example}
+
+All matrices and walk lists below were computed by the scripts in the
+\texttt{scripts/} folder, which also holds their outputs.
+
+\paragraph{Connected: the board graph} ($N=3$, edges $n_1n_2$, $n_2n_3$).
+Here $B=A+A^2$ with
+\[
+A^2=\begin{pmatrix}1&0&1\\0&2&0\\1&0&1\end{pmatrix},\qquad
+B=\begin{pmatrix}1&1&1\\1&2&1\\1&1&1\end{pmatrix}.
+\]
+By \cref{thm:counting}, $(A^2)_{11}=1$ counts the walk
+$n_1n_2n_1$, $(A^2)_{13}=1$ counts $n_1n_2n_3$, $(A^2)_{22}=2$ counts
+$n_2n_1n_2$ and $n_2n_3n_2$, and $(A^2)_{12}=0$ because no walk of length $2$
+joins $n_1$ to $n_2$. The script also gives $(A^3)_{12}=2$, for the walks
+$n_1n_2n_1n_2$ and $n_1n_2n_3n_2$, and $(A^4)_{22}=4$. All off-diagonal entries of $B$ are positive, so $G$ is
+connected by \cref{thm:sum}: the pairs $n_1n_2$ and $n_2n_3$ get a positive
+entry from $A$, and the pair $n_1n_3$ gets $B_{13}=1$ from $A^2$, which counts
+the path $n_1n_2n_3$.
+
+\paragraph{Disconnected: the edge $n_1n_2$ and the isolated vertex $n_3$}
+($N=3$). Then
+\[
+A=\begin{pmatrix}0&1&0\\1&0&0\\0&0&0\end{pmatrix},\quad
+A^2=\begin{pmatrix}1&0&0\\0&1&0\\0&0&0\end{pmatrix},\quad
+B=\begin{pmatrix}1&1&0\\1&1&0\\0&0&0\end{pmatrix}.
+\]
+The entries $B_{13}=B_{23}=B_{31}=B_{32}=0$, so $G$ is not connected by
+\cref{thm:sum}. This agrees with the graph: no walk joins $n_3$ to $n_1$ or $n_2$.
+
+\paragraph{Limits.} The test answers the question using $A$ alone, but it has
+limits. It reads only whether entries are zero: a positive entry says a walk of
+exactly length $k$ exists, hence a path of length at most $k$, not a path of
+length exactly $k$. The diagonal of $B$ is ignored, and a connected graph can
+have zeros there: for $N=2$ and one edge, $B=A$ has a zero diagonal. The sum must
+run to $A^{N-1}$: on the path graph with edges $n_1n_2$, $n_2n_3$, $n_3n_4$
+($N=4$) the script gives $(A^1)_{14}=(A^2)_{14}=0$ and $(A^3)_{14}=1$, so a sum
+stopped at $A^2$ would call this connected graph disconnected. The test is proved only for finite simple undirected graphs.

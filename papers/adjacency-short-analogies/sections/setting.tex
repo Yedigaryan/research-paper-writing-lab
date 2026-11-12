@@ -1,0 +1,57 @@
+\section{Setting and definitions}\label{sec:setting}
+
+\paragraph{Setting.} $G=(V,E)$ is a graph in the sense of the textbook:
+a set $V=\{n_1,\dots,n_N\}$ of vertices, $N\ge 1$, and a set $E$ of edges
+\cite[Definition~1.1.1, p.~9]{petrosyan2015graphs}. It is finite, simple
+(no edge from a vertex to itself, at most one edge between two vertices) and
+undirected (the edge joining $u$ and $v$, written $uv$, is the same as $vu$)
+\cite{userstatements}. The vertices $u$ and $v$ are \emph{adjacent} if
+$uv\in E$ \cite[Definition~1.1.4, p.~11]{petrosyan2015graphs}. The indices
+$i,j,r$ run over $1,\dots,N$; $k\ge 0$ is an integer.
+
+\begin{definition}[Adjacency matrix]\label{def:matrix}
+The \emph{adjacency matrix} of $G$ is the $N\times N$ matrix $A$ with
+$A_{ij}=1$ if $n_i$ and $n_j$ are adjacent and $A_{ij}=0$ otherwise
+\cite[p.~11]{petrosyan2015graphs}; the board states the same rule in other
+letters \cite{whiteboard1,whiteboard2}.
+\end{definition}
+Its entries are $0$ or $1$. Matrix powers are the usual ones: $(XY)_{ij}=\sum_{r=1}^{N}X_{ir}Y_{rj}$,
+$A^0=I$ (the identity matrix) and $A^{k+1}=A^kA$. Every entry of
+$A^k$ is a non-negative integer, since sums and products of non-negative
+integers are non-negative integers (\emph{used in} \cref{thm:sum}).
+
+\begin{definition}[Walk]\label{def:walk}
+A \emph{walk} from $u_0$ to $u_k$ is a sequence of vertices
+$u_0u_1\cdots u_k$ in which each vertex is adjacent to the one before it; its
+\emph{length} is $k$, the number of edges used, each counted as often as it
+is used. Vertices and edges may repeat. This is the textbook's Definition~1.2.10
+\cite[p.~21]{petrosyan2015graphs}, which lists edges as well; in a simple graph
+the vertices fix the edges. This paper also allows $k=0$: a single vertex is a walk of length $0$ from itself to
+itself. This is the paper's own convention; the textbook's usage assumes it
+\cite[pp.~23, 49]{petrosyan2015graphs}.
+\end{definition}
+
+\begin{definition}[Path]\label{def:path}
+A \emph{path} is a walk whose vertices are pairwise distinct. This is the
+course convention \cite{userstatements}. It is the textbook's \emph{simple
+path} \cite[Definition~1.2.13, p.~22]{petrosyan2015graphs}; the textbook's
+own word ``path'' means a walk with no repeated edge, and this paper never
+uses the word in that sense.
+\end{definition}
+
+\begin{definition}[Connected]\label{def:connected}
+$G$ is \emph{connected} if for any two vertices $u,v$ there is a path from
+$u$ to $v$. The board states this
+\cite{whiteboard1,whiteboard2}; the textbook's Definition~2.1.1
+\cite[p.~48]{petrosyan2015graphs} is the same with the textbook's own ``path''. A vertex is joined to itself by the path
+of length $0$, so only pairs of different vertices matter.
+\end{definition}
+
+\paragraph{Board graph.} The board's matrix has rows $0\,1\,0$, $1\,0\,1$,
+$0\,1\,0$ \cite{whiteboard1,whiteboard2}:
+\[
+A=\begin{pmatrix}0&1&0\\1&0&1\\0&1&0\end{pmatrix}.
+\]
+It encodes the graph with edges $n_1n_2$ and $n_2n_3$, which is the example
+graph throughout. The board's drawing shows a third line that the matrix
+does not encode; the matrix defines the example.
