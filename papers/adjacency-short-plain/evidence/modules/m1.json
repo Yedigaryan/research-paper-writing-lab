@@ -1,0 +1,438 @@
+{
+  "sources": [],
+  "claims": [
+    {
+      "id": "m1-1",
+      "text": "The board defines A_ij as 1 if e_ij is in V (the board's edge set) and 0 if e_ij is not in V.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "whiteboard1",
+          "locator": "top line",
+          "quote": "A_ij = 1 if e_ij in V; 0 if e_ij not in V (handwriting transcription)"
+        },
+        {
+          "source": "whiteboard2",
+          "locator": "top line",
+          "quote": "A_ij = 1 if e_ij in V; 0 if e_ij not in V (handwriting transcription)"
+        }
+      ],
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-2",
+      "text": "The board matrix labelled adj. has rows 0 1 0 / 1 0 1 / 0 1 0 (checked on the image of photo 1 in this run): symmetric, zero diagonal, edges n1n2 and n2n3 only.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "whiteboard1",
+          "locator": "upper centre, 3 by 3 matrix",
+          "quote": "0 1 0 / 1 0 1 / 0 1 0 (handwriting transcription)"
+        },
+        {
+          "source": "whiteboard2",
+          "locator": "upper centre, 3 by 3 matrix",
+          "quote": "0 1 0 / 1 0 1 / 0 1 0 (handwriting transcription)"
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-3",
+      "text": "The board drawing shows three lines (1-2 with an arrowhead at 2, 1-3, 2-3) while the matrix encodes two edges; the paper takes the matrix as the example graph, as the board's problem statement says the graph is given through its adjacency matrix.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "whiteboard1",
+          "locator": "upper left, drawing and matrix",
+          "quote": null
+        },
+        {
+          "source": "whiteboard1",
+          "locator": "Problem paragraph",
+          "quote": "Given graph (G, V) with N nodes i.e. |G| = N and the graph is represented through it's adj. matrix."
+        }
+      ],
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-4",
+      "text": "Board question 1 has a small mark above A that I cannot resolve in the photo (it sits between tick marks and may be k or n); reading it as the power k rests on the brief's assumption and the orchestrator's summary of the user's text, which has no quote.",
+      "kind": "interpretation",
+      "module": "m1",
+      "support": [
+        {
+          "source": "whiteboard1",
+          "locator": "question 1",
+          "quote": "What does A_ij represent (small superscript mark above A)"
+        },
+        {
+          "source": "userstatements",
+          "locator": "summary, not the user's words",
+          "quote": null
+        }
+      ],
+      "confidence": "low",
+      "status": "qualified",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-5",
+      "text": "Textbook adjacency matrix A(G) (printed p. 11, no number of its own, after Definition 1.1.6, formula checked on the page image): for V = {v_1,...,v_n}, a_ij = 1 if v_i and v_j are adjacent and 0 otherwise; a_ii = 0 and a_ij = a_ji.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "printed p. 11, after Definition 1.1.6",
+          "quote": "հարևանության մատրից: Նկատենք, որ ցանկացած"
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-6",
+      "text": "Textbook Definition 1.1.4: u and v are adjacent if uv is in E (printed p. 11, checked on the page image).",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "Definition 1.1.4, printed p. 11",
+          "quote": "գագաթները կանվանենք հարևան, եթե"
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-7",
+      "text": "Textbook Definition 1.2.1: the degree d_G(v) is the number of edges incident to v (printed p. 16, checked on the page image); it comes after the adjacency matrix in the book's order.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "Definition 1.2.1, printed p. 16",
+          "quote": "կանվանենք այդ գագաթին կից կողերի քանակը"
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-8",
+      "text": "Textbook Theorem 1.2.1 (Euler): the sum of d_G(v) over all v equals 2|E(G)|; the proof counts each edge twice, once per end (printed p. 16, checked on the page image).",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "Theorem 1.2.1, printed p. 16",
+          "quote": "Ապացույց: Իրոք, քանի որ ցանկացած կող կից է երկու գագաթի"
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-9",
+      "text": "The textbook was searched by text layer for the adjacency-matrix phrase (hits printed pp. 7, 11, 12, 34, 61) and no walk-counting theorem was found; this is a search result, not a reading of the whole book, so the theorem is proved in the paper from other sources.",
+      "kind": "interpretation",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "printed pp. 7 and 11 viewed; hits on pp. 12, 34, 61 not viewed by this run",
+          "quote": "գրաֆի հարևանության մատրից"
+        }
+      ],
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-10",
+      "text": "For an undirected graph without loops the adjacency matrix is symmetric and has zeros on its main diagonal.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "galwaynotes",
+          "locator": "Notes 1 and 2, printed p. 3",
+          "quote": "The adjacency matrix is symmetric (i.e. equal to its transpose) if the graph is undirected."
+        },
+        {
+          "source": "galwaynotes",
+          "locator": "Note 2, printed p. 3",
+          "quote": "The adjacency matrix has zeros on its main diagonal (unless the graph has loops)."
+        },
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "printed p. 11",
+          "quote": "հարևանության մատրից: Նկատենք, որ ցանկացած"
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-11",
+      "text": "For a simple graph the i-th row sum of A equals d(n_i), and the sum of all entries of A equals 2|E|.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "Definition 1.2.1 and Theorem 1.2.1, printed p. 16",
+          "quote": "կանվանենք այդ գագաթին կից կողերի քանակը"
+        },
+        {
+          "source": "paramadevan2021adjacency",
+          "locator": "Section 2.2, item 8, p. 16",
+          "quote": "Degree of vi is equal to the sum of the off diagonal entries plus twice the diagonal entries."
+        }
+      ],
+      "derivation": "modules/m1.md, section 5, Proposition 2; script output in section 5",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-12",
+      "text": "Walk-counting theorem: for a simple graph with adjacency matrix A and every integer k >= 0 (k >= 1 in the sources), (A^k)_ij is the number of walks of length k from n_i to n_j; proved by induction on k on the last-but-one vertex.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "galwaynotes",
+          "locator": "Theorem 1.1.3, printed p. 4",
+          "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
+        },
+        {
+          "source": "bai2025adjacency",
+          "locator": "Theorem 1, p. 1",
+          "quote": "Then for any two vertices i and j, the entry (Ak )ij counts the number of walks of length k from vertex i to vertex j."
+        },
+        {
+          "source": "gotti18211",
+          "locator": "Proposition 2, p. 1",
+          "quote": "For any j, k ∈ [n] and ` ∈ N, there are A`jk walks of length ` from j to k."
+        }
+      ],
+      "derivation": "modules/m1.md, section 5, Theorem 1 (full induction proof, including the base case k = 0 under the length-0 convention)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-13",
+      "text": "The number of walks of length 2 from a vertex to itself equals the vertex degree, so (A^2)_ii = d(n_i) and trace(A^2) = 2|E|.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "galwaynotes",
+          "locator": "printed p. 4, after Theorem 1.1.3",
+          "quote": "The number of walks of length 2 from a vertex to itself is just the number of edges at that vertex, or the vertex degree."
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-14",
+      "text": "Counterexample, computed by script: in the board graph (edges n1n2, n2n3) (A^2)_11 = 1 but no walk with distinct vertices has length 2 from n1 to n1, since the only such walk is n1 n2 n1; likewise (A^3)_12 = 2 while no path of length 3 joins n1 to n2 (a path of length 3 needs 4 distinct vertices and the graph has 3). So A^k counts walks, not paths.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "bai2025adjacency",
+          "locator": "p. 1, after the definitions",
+          "quote": "counts walks — not paths."
+        }
+      ],
+      "derivation": "modules/m1.md, section 5, Example 1 and script output",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-15",
+      "text": "Bai Theorem 1 is stated for simple graphs and the note says explicitly that the entry counts walks, not paths; Bai defines a path as a walk with no repeated vertex except possibly first and last in a cycle.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "bai2025adjacency",
+          "locator": "p. 1, after the definitions",
+          "quote": "counts walks — not paths."
+        },
+        {
+          "source": "bai2025adjacency",
+          "locator": "definitions after Theorem 1, p. 1",
+          "quote": "Path: A walk where no vertex is repeated (except possibly the first and last vertex if it’s a cycle)."
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-16",
+      "text": "Paramadevan and Sotheeswaran Theorem 1 says the (i,j) entry of A^l is the number of 'different paths of length l' between the vertices; the paper never defines 'path'. Read as walks it is the walk-counting theorem; read with vertex-distinct paths it fails on the board graph by m1-14.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "paramadevan2021adjacency",
+          "locator": "Theorem 1, p. 16",
+          "quote": "the number of different paths of length l between the ith and j th vertices of G is equal to the (i, j)th entry of AlG"
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-17",
+      "text": "This paper allows walks of length 0 (a single vertex) as its own convention, so A^0 = I counts them; the textbook's distance property 1 (d(u,v)=0 exactly when u=v, printed p. 23) and the reflexivity of the relation alpha (printed p. 49) assume it, and Grinberg Definition 2.9.1(a) has k >= 0. The textbook's Definitions 1.2.10 to 1.2.16 do not say it in words. Pages 23 and 49 were not re-viewed by this run; the quotes are from the evidence file's claim C26.",
+      "kind": "interpretation",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "printed p. 23, property 1 of distance",
+          "quote": "այն և միայն այն դեպքում, երբ"
+        },
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "printed p. 49, reflexivity",
+          "quote": "ռեֆլեքսիվություն, այսինքն ցանկացած"
+        },
+        {
+          "source": "grinberg2025graph",
+          "locator": "Definition 2.9.1 (a), p. 36",
+          "quote": "(with k ≥ 0)"
+        }
+      ],
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-18",
+      "text": "Textbook Definition 1.2.10: a walk of length k is a sequence u_0, e_1, u_1, ..., e_k, u_k with e_i = u_{i-1}u_i, so each next vertex is adjacent to the previous one; vertices and edges may repeat (owned by m2).",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "Definition 1.2.10, printed p. 21",
+          "quote": "ենթադրելով, որ յուրաքանչյուր հաջորդ գագաթ հարևան է նախորդին"
+        },
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "printed p. 22, remark after Definition 1.2.10",
+          "quote": "շրջանցման մեջ գագաթները և կողերը կարող են կրկնվել"
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-19",
+      "text": "Every matrix, power, sum and walk list in the module's worked examples (board graph P3, triangle K3, and a brute-force check of the theorem for k = 0..6 on five small graphs) was computed by the script recorded in modules/m1.md section 5 and agrees with enumeration of walks.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [],
+      "derivation": "modules/m1.md, section 5, script and output",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-20",
+      "text": "Gotti Proposition 2 states walk counting for directed or undirected graphs; this supports a one-sentence remark that the theorem is not special to simple undirected graphs (directed graphs are out of scope).",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "gotti18211",
+          "locator": "Proposition 2, p. 1",
+          "quote": "For any j, k ∈ [n] and ` ∈ N, there are A`jk walks of length ` from j to k."
+        }
+      ],
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-21",
+      "text": "A^k is symmetric for every k >= 0 (transpose of a power of a symmetric matrix), and in the board graph every odd power has zero diagonal and every even power has zero entries where the index sum is odd, because every edge joins n2 to {n1, n3} (parity).",
+      "kind": "derived",
+      "module": "m1",
+      "support": [],
+      "derivation": "modules/m1.md, section 5, Proposition 3 and script output",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-22",
+      "text": "The textbook writes an edge joining u and v as e = uv (printed p. 9) and never e_ij; the board's rule with e_ij in V is the board's notation, V being the board's name for the edge set.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan2015graphs",
+          "locator": "printed p. 9, after Definition 1.1.1",
+          "quote": "ապա այդ փաստը կգրենք"
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    }
+  ],
+  "contradictions": []
+}
