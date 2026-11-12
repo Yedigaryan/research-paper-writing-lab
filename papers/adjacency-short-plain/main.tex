@@ -1,13 +1,10 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{amsmath,amsthm,amssymb}
-\usepackage{graphicx}
-\usepackage{booktabs}
 \usepackage[hidelinks]{hyperref}
 \usepackage{cleveref}
 \usepackage[backend=biber,style=numeric,urldate=long]{biblatex}
 \addbibresource{references.bib}
-\graphicspath{{figures/}}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -18,7 +15,7 @@
 \theoremstyle{remark}
 \newtheorem{remark}[definition]{Remark}
 
-\title{Adjacency short plain}
+\title{Walks, paths, and connectivity from the adjacency matrix: a short account}
 \author{}
 \date{\today}
 
@@ -26,18 +23,18 @@
 \maketitle
 
 \begin{abstract}
-To be written by the author agent.
+For a finite simple undirected graph with adjacency matrix $A$, the entry
+$(A^k)_{ij}$ is the number of walks of length $k$ from vertex $n_i$ to vertex $n_j$
+(walks, not paths). A path is a walk with no repeated vertex. A graph on $N$ vertices is
+connected if and only if every off-diagonal entry of $A+A^2+\dots+A^{N-1}$ is
+positive. Each statement is proved and the test is run on two graphs.
 \end{abstract}
 
 \input{sections/introduction}
-\input{sections/background}
-\input{sections/analysis}
-\input{sections/discussion}
-\input{sections/conclusion}
+\input{sections/setting}
+\input{sections/answers}
+\input{sections/example}
 
 \printbibliography
-
-\appendix
-\input{appendices/derivations}
 
 \end{document}

@@ -1,0 +1,112 @@
+\section{Answer to Q1: the entries of $A^k$ count walks}\label{sec:q1}
+
+\begin{theorem}[Walk counting]\label{thm:counting}
+For every integer $k\ge 0$ and all $i,j$, the entry $(A^k)_{ij}$ is the number
+of walks of length $k$ from $n_i$ to $n_j$.
+\end{theorem}
+The University of Galway notes state this for $k\ge 1$ with an induction
+proof \cite[Theorem~1.1.3, p.~4]{galwaynotes}; the case $k=0$ is this paper's
+convention. The proof is derived here.
+\begin{proof}
+By induction on $k$.
+
+\emph{Base case $k=0$.} $A^0=I$. A walk of length $0$ from $n_i$ to $n_j$ is a
+single vertex that is both start and end, so there is exactly one such walk
+if $i=j$ and none if $i\ne j$. This is $I_{ij}$.
+
+\emph{Inductive case.} Assume that for some $k\ge 0$ and all $i,r$ the entry
+$(A^k)_{ir}$ is the number of walks of length $k$ from $n_i$ to $n_r$. Fix $i$
+and $j$. Since $A^{k+1}=A^kA$,
+\begin{equation}\label{eq:step}
+(A^{k+1})_{ij}=\sum_{r=1}^{N}(A^k)_{ir}A_{rj}.
+\end{equation}
+A walk $u_0\cdots u_ku_{k+1}$ of length $k+1$ from $n_i$ to $n_j$ has
+$u_k=n_r$ for exactly one $r$; sort the walks by this $r$. Fix $r$.
+If $n_r$ is adjacent to $n_j$ (so $A_{rj}=1$), the walks of this kind
+correspond one to one to the walks of length $k$ from $n_i$ to $n_r$: deleting
+the final vertex $n_j$ gives such a walk, and appending $n_j$ to such a walk
+gives a walk of the kind, because $n_r$ is adjacent to $n_j$. By the
+hypothesis there are $(A^k)_{ir}=(A^k)_{ir}A_{rj}$ of them. If $n_r$ is not
+adjacent to $n_j$ (so $A_{rj}=0$), no walk can end with the step from $n_r$ to
+$n_j$, so there are $0=(A^k)_{ir}A_{rj}$ of them. Every walk is counted for
+exactly one $r$, so the number of walks of length $k+1$ from $n_i$ to $n_j$ is
+$\sum_r(A^k)_{ir}A_{rj}$, which is $(A^{k+1})_{ij}$ by \cref{eq:step}.
+\end{proof}
+
+\paragraph{Warning: walks, not paths.} The proof uses only that consecutive
+vertices are adjacent, so repeated vertices are counted. For a path, appending
+$n_j$ may repeat a vertex and the one to one correspondence fails. In the
+board graph $(A^2)_{11}=1$ and the walk counted is $n_1n_2n_1$, which repeats
+$n_1$; the only path from $n_1$ to $n_1$ is the single vertex $n_1$, of length
+$0$ (a path of length $k\ge 1$ from a vertex to itself would repeat it). So
+``$(A^2)_{11}$ counts the paths of length $2$ from $n_1$ to $n_1$'' is false,
+although ``counts the walks'' is true. Also $(A^4)_{22}=4$ by script, so the entry is
+not ``$1$ if $n_j$ can be reached from $n_i$''.
+
+\section{Answer to Q3: the path between $n_i$ and $n_j$}\label{sec:q3}
+
+\begin{definition}[Path between $n_i$ and $n_j$]\label{def:pathbetween}
+A \emph{path between $n_i$ and $n_j$} (also a path \emph{from $n_i$ to $n_j$})
+is a sequence $u_0,u_1,\dots,u_k$ with $k\ge 0$, $u_0=n_i$, $u_k=n_j$, in
+which $u_{t-1}$ and $u_t$ are adjacent for $1\le t\le k$ and the vertices
+$u_0,\dots,u_k$ are pairwise distinct. Its length is $k$.
+\end{definition}
+This is \cref{def:path} with the ends fixed, the textbook's
+Definition~1.2.13 with ends $n_i$ and $n_j$
+\cite[p.~22]{petrosyan2015graphs}. If $i\ne j$ such a path has at least one
+edge; if $i=j$ the only path is $(n_i)$, since $u_0=u_k$ with $k\ge 1$ would
+repeat a vertex. In the board graph $n_1n_2n_3$ is the only path from $n_1$ to $n_3$.
+
+\section{Answer to Q2: a connectivity test from $A$}\label{sec:q2}
+
+The test rests on two facts about walks and paths. Both are stated in
+Grinberg \cite[Corollary~2.9.7, p.~39; Section~2.9.4, p.~40]{grinberg2025graph}
+and the first is the textbook's Lemma~1.2.1 for $u\ne v$ without a length
+bound \cite[p.~23]{petrosyan2015graphs}; the proofs are derived here.
+
+\begin{lemma}[Every walk contains a path]\label{lem:cut}
+Let $W=u_0\cdots u_k$ be a walk from $u$ to $v$. Then there is a path from $u$
+to $v$ of length at most $k$.
+\end{lemma}
+\begin{proof}
+By strong induction on $k$: for walks of length $k$ we assume the statement
+for all shorter walks. \emph{Base case $k=0$.} $W=(u)$ has one vertex, so it
+is a path of length $0$. \emph{Inductive case $k\ge 1$.} If the vertices of $W$
+are pairwise distinct, $W$ is a path of length $k$. Otherwise there are
+positions $s<t$ with $u_s=u_t$. Let $W'=u_0\cdots u_su_{t+1}\cdots u_k$
+(if $t=k$, $W'=u_0\cdots u_s$). It is a walk, because the only new
+consecutive pair is $u_s,u_{t+1}$ and $u_s=u_t$ is adjacent to $u_{t+1}$. It
+runs from $u$ to $v$ and has length $k-(t-s)<k$. By the hypothesis $W'$, and so
+$W$, yields a path from $u$ to $v$ of length at most $k-(t-s)\le k$.
+\end{proof}
+
+\begin{lemma}[Reachability from the powers]\label{lem:reach}
+Let $i\ne j$. There is a path from $n_i$ to $n_j$ if and only if
+$(A^k)_{ij}>0$ for some $k$ with $1\le k\le N-1$.
+\end{lemma}
+\begin{proof}
+($\Rightarrow$) Let a path from $n_i$ to $n_j$ have length $k$. As $i\ne j$,
+$k\ge 1$. A path of length $k$ has $k+1$ pairwise distinct vertices among
+the $N$ vertices of the graph, so $k\le N-1$. A path is a walk, so by
+\cref{thm:counting} $(A^k)_{ij}\ge 1$. ($\Leftarrow$) If $(A^k)_{ij}>0$ with
+$1\le k\le N-1$, then by \cref{thm:counting} a walk of length $k$ joins $n_i$
+to $n_j$, and by \cref{lem:cut} a path joins them.
+\end{proof}
+
+\begin{theorem}[Sum test]\label{thm:sum}
+Let $N\ge 2$ (for $N=1$ the graph is connected) and $B=A+A^2+\dots+A^{N-1}$. Then $G$ is connected if and only if
+$B_{ij}>0$ for all $i\ne j$.
+\end{theorem}
+This is Theorem~2 of Paramadevan and Sotheeswaran
+\cite[p.~17]{paramadevan2021adjacency}; the proof here is derived.
+\begin{proof}
+Each $A^k$ has non-negative entries, so $B_{ij}=\sum_{k=1}^{N-1}(A^k)_{ij}$ is a
+sum of non-negative terms, and it is positive exactly when at least one term
+is positive. For $i\ne j$ this holds exactly when a path joins $n_i$ and
+$n_j$, by \cref{lem:reach}. So $B_{ij}>0$ for all $i\ne j$ exactly when every
+pair of different vertices is joined by a path, which is
+\cref{def:connected}.
+\end{proof}
+The cutoff $N-1$ is the largest length a path can have
+(proof of \cref{lem:reach}). The entries of $B$ are walk counts, not path counts; only
+whether they are zero is used.
