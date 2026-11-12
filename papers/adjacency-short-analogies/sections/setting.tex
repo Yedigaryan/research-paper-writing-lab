@@ -9,6 +9,8 @@ undirected (the edge joining $u$ and $v$, written $uv$, is the same as $vu$)
 $uv\in E$ \cite[Definition~1.1.4, p.~11]{petrosyan2015graphs}. The indices
 $i,j,r$ run over $1,\dots,N$; $k\ge 0$ is an integer.
 
+\plainwords{} A pond has islands, and some pairs of islands have a bridge between them. Draw a square table with one row and one column for each island. Put a one in a cell when the two islands are next door, and a zero in every other cell.
+
 \begin{definition}[Adjacency matrix]\label{def:matrix}
 The \emph{adjacency matrix} of $G$ is the $N\times N$ matrix $A$ with
 $A_{ij}=1$ if $n_i$ and $n_j$ are adjacent and $A_{ij}=0$ otherwise
@@ -19,6 +21,8 @@ Its entries are $0$ or $1$. Matrix powers are the usual ones: $(XY)_{ij}=\sum_{r
 $A^0=I$ (the identity matrix) and $A^{k+1}=A^kA$. Every entry of
 $A^k$ is a non-negative integer, since sums and products of non-negative
 integers are non-negative integers (\emph{used in} \cref{thm:sum}).
+
+\plainwords{} A frog sits on an island and hops over a bridge to a next-door island. It may hop back, or land on the same island again. The islands it visits, in order, form a trip. A frog that never hops makes a trip with no hops.
 
 \begin{definition}[Walk]\label{def:walk}
 A \emph{walk} from $u_0$ to $u_k$ is a sequence of vertices
@@ -31,6 +35,8 @@ itself. This is the paper's own convention; the textbook's usage assumes it
 \cite[pp.~23, 49]{petrosyan2015graphs}.
 \end{definition}
 
+\plainwords{} A fresh-island trip lands on no island twice. So it never crosses the same bridge twice either. Every fresh-island trip is a trip, but a trip may land on an island twice.
+
 \begin{definition}[Path]\label{def:path}
 A \emph{path} is a walk whose vertices are pairwise distinct. This is the
 course convention \cite{userstatements}. It is the textbook's \emph{simple
@@ -38,6 +44,8 @@ path} \cite[Definition~1.2.13, p.~22]{petrosyan2015graphs}; the textbook's
 own word ``path'' means a walk with no repeated edge, and this paper never
 uses the word in that sense.
 \end{definition}
+
+\plainwords{} A pond is in one piece when the frog can get from any island to any other. The way may cross many bridges. It is enough to ask for a fresh-island trip between each two islands.
 
 \begin{definition}[Connected]\label{def:connected}
 $G$ is \emph{connected} if for any two vertices $u,v$ there is a path from

@@ -1,5 +1,7 @@
 \section{Answer to Q1: the entries of $A^k$ count walks}\label{sec:q1}
 
+\plainwords{} Take the island table, and use as many copies of it as the trip has hops. Each cell then counts the trips with exactly that many hops from its row island to its column island. These trips may land on an island twice, so they are not all fresh-island trips.
+
 \begin{theorem}[Walk counting]\label{thm:counting}
 For every integer $k\ge 0$ and all $i,j$, the entry $(A^k)_{ij}$ is the number
 of walks of length $k$ from $n_i$ to $n_j$.
@@ -45,6 +47,8 @@ not ``$1$ if $n_j$ can be reached from $n_i$''.
 
 \section{Answer to Q3: the path between $n_i$ and $n_j$}\label{sec:q3}
 
+\plainwords{} Choose two islands. A fresh-island trip between them starts on the first island and ends on the second. A frog that stays put makes such a trip from an island to itself.
+
 \begin{definition}[Path between $n_i$ and $n_j$]\label{def:pathbetween}
 A \emph{path between $n_i$ and $n_j$} (also a path \emph{from $n_i$ to $n_j$})
 is a sequence $u_0,u_1,\dots,u_k$ with $k\ge 0$, $u_0=n_i$, $u_k=n_j$, in
@@ -64,6 +68,8 @@ Grinberg \cite[Corollary~2.9.7, p.~39; Section~2.9.4, p.~40]{grinberg2025graph}
 and the first is the textbook's Lemma~1.2.1 for $u\ne v$ without a length
 bound \cite[p.~23]{petrosyan2015graphs}; the proofs are derived here.
 
+\plainwords{} Suppose a frog gets from one island to another and lands on some island twice. Cut out all the hops between the two visits to that island. What is left is still a trip between the same two islands, with fewer hops. Cutting again and again ends in a fresh-island trip.
+
 \begin{lemma}[Every walk contains a path]\label{lem:cut}
 Let $W=u_0\cdots u_k$ be a walk from $u$ to $v$. Then there is a path from $u$
 to $v$ of length at most $k$.
@@ -80,6 +86,8 @@ runs from $u$ to $v$ and has length $k-(t-s)<k$. By the hypothesis $W'$, and so
 $W$, yields a path from $u$ to $v$ of length at most $k-(t-s)\le k$.
 \end{proof}
 
+\plainwords{} Pick two different islands and look at their cell in the tables for one hop, two hops, and so on. Go up to one fewer hops than there are islands. The frog can get from one island to the other exactly when one of these cells is not zero.
+
 \begin{lemma}[Reachability from the powers]\label{lem:reach}
 Let $i\ne j$. There is a path from $n_i$ to $n_j$ if and only if
 $(A^k)_{ij}>0$ for some $k$ with $1\le k\le N-1$.
@@ -92,6 +100,8 @@ the $N$ vertices of the graph, so $k\le N-1$. A path is a walk, so by
 $1\le k\le N-1$, then by \cref{thm:counting} a walk of length $k$ joins $n_i$
 to $n_j$, and by \cref{lem:cut} a path joins them.
 \end{proof}
+
+\plainwords{} Add the tables for one hop, two hops, and so on, up to one fewer hops than there are islands. Look only at cells for two different islands. The pond is in one piece exactly when none of these cells is zero. How large a cell is does not matter.
 
 \begin{theorem}[Sum test]\label{thm:sum}
 Let $N\ge 2$ (for $N=1$ the graph is connected) and $B=A+A^2+\dots+A^{N-1}$. Then $G$ is connected if and only if

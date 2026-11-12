@@ -50,3 +50,24 @@ None. m2-14 (unverified) is not used.
 
 ## Could not justify
 Nothing in the text lacks a claim, a derivation, or an elementary argument. The Q3 and exponent readings rest on the user's text (qualified claims), and are labelled as such in the introduction.
+
+## Version with analogies: plain-words layer (added)
+
+This folder is the plain version plus analogies. Formal text, proofs, numbers, and citations are unchanged; the only edits are added lines (checked with `diff -r` on `sections/`, differences are all additions), a `\plainwords` macro and a subtitle in `main.tex`. Pages: 5.
+
+Story (introduction, last paragraph, with one sentence saying plain-words paragraphs precede the formal statements): a pond with islands (vertices), bridges (edges), next door (adjacent), a frog making trips of hops (walks, which may land twice on an island), fresh-island trips (paths), in one piece (connected), the island table (adjacency matrix). Every analogy about walks speaks of trips that may revisit islands; entries are trips with exactly that number of hops; the test asks only whether a cell is zero.
+
+Plain-words paragraphs and the statement each precedes:
+1. Definition 2.1 (adjacency matrix): islands, bridges, table of ones and zeros.
+2. Definition 2.2 (walk): trips and hops, repeats allowed, trip with no hops.
+3. Definition 2.3 (path): fresh-island trip, never repeats a bridge either (true by the textbook-independent argument that distinct vertices force distinct edges, the long version's Lemma on this), contrast with a trip.
+4. Definition 2.4 (connected): pond in one piece, fresh-island trips suffice.
+5. Theorem 3.1 (walk counting): cells count trips of exactly that many hops; they may land twice, so not all fresh-island trips.
+6. Definition 4.1 (path between n_i and n_j): fresh-island trip between two islands, zero-hop trip allowed.
+7. Lemma 5.1 (every walk contains a path): cut out the hops between two visits.
+8. Lemma 5.3 (reachability): cell for two different islands, up to one fewer hops than islands.
+9. Theorem 5.4 (sum test): sum of tables, only zero or not matters.
+10. Worked example (start of Section 6): two ponds with three islands.
+
+check_plain_words.py (terms: vertex, edge, walk, path, connected, adjacent, adjacency, matrix, entry, length, degree, theorem, definition, lemma and plurals): 10 paragraphs, 9 statements, 0 errors, 0 warnings after splitting three long sentences. Other checks: build ok (5 pages), citations 0 errors (same 4 accepted warnings), claims 0 errors (same 10), inspect_pdf 0 errors.
+Plain paragraph 3's claim that a fresh-island trip never crosses a bridge twice rests on the paper's own argument that distinct vertices force distinct edges; it is not proved in this short text (an elementary one-line fact, flagged here).

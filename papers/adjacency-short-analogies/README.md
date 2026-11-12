@@ -1,4 +1,6 @@
-# Adjacency short plain
+# Adjacency short analogies
+
+This is the version of `papers/adjacency-short-plain/` with one story in the introduction and an "In plain words" paragraph before each definition, theorem, lemma, and the worked example. All other text is identical.
 
 Research question: For a simple undirected graph with N vertices given by its adjacency matrix A: (1) what does the entry (A^k)_{ij} represent, (2) how can one determine from A whether the graph is connected, and (3) what is the definition of a path between vertices n_i and n_j?
 
@@ -6,10 +8,10 @@ Research question: For a simple undirected graph with N vertices given by its ad
 
 From the repository root:
 
-    bash .claude/skills/research-paper/scripts/build.sh papers/adjacency-short-plain
+    bash .claude/skills/research-paper/scripts/build.sh papers/adjacency-short-analogies
 
 Requires TeX Live with `latexmk` and `biber`. The compiled paper is
-`main.pdf` (4 pages, references included); auxiliary files go to `build/`.
+`main.pdf` (5 pages, references included); auxiliary files go to `build/`.
 
 ## Files
 
