@@ -16,12 +16,12 @@ also holds the papers it has produced.
 
 ## How a paper is produced
 
-1. The session analyses the input, writes `brief.md`, and asks the user only what changes the paper.
-2. `research-agent` builds `evidence/evidence.json`: every source, its access status, every claim with a locator and quote.
-3. One `module-owner` per subtopic explains it from first principles and adds evidence.
-4. `paper-author` writes the LaTeX, compiles it, runs the checks, and writes a self-evaluation.
-5. A fresh `paper-evaluator` on a higher model level scores twelve dimensions and lists findings; `technician-reader` reports passages a newcomer cannot follow.
-6. The session records the round in `evaluation-report.md`, sends findings back to the author, and repeats until every release condition passes or three rounds are spent.
+1. The session analyses the input, writes `brief.md`, and asks the user only what changes the paper. The brief splits the objectives into those needed to answer the question and optional ones, sets a page budget, and says whether the paper carries analogies (off unless the user asks).
+2. `research-agent` builds `evidence/evidence.json`: the sources the objectives need, their access status, every claim with a locator and quote.
+3. One `module-owner` per subtopic explains what the needed objectives require and adds evidence.
+4. `paper-author` writes the LaTeX within the page budget, compiles it, runs the checks, and writes a self-evaluation. Where the inputs came from goes in a short notes-on-sources section, not in the body.
+5. A fresh `paper-evaluator` on a higher model level scores twelve dimensions and lists findings, including material the question does not need; `technician-reader` reads the pages and reports passages a newcomer cannot follow.
+6. The session records the round in `evaluation-report.md` and sends findings back to the author. A round with no critical or major finding is released after final edits for the minor ones; otherwise the loop repeats, up to three rounds. Later rounds re-check sources only for claims that changed.
 
 Compiling a paper needs TeX Live with `latexmk` and `biber`.
 

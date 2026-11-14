@@ -8,25 +8,27 @@ Run every item before presenting the paper. Fix failures, then re-run.
       is missing from the paper without a stated reason.
 - [ ] Every uncertain reading was either resolved with the user or is
       stated as an assumption in the paper.
-- [ ] The paper's example matches the photo's example, or the paper says
-      why it differs and describes the difference correctly, edge by edge
-      (for example, the drawing and the matrix disagreed).
-- [ ] The introduction says where each question came from: the board, the
-      user's text, or the paper itself.
+- [ ] The paper's example matches the photo's example, or the notes on
+      sources say why it differs and describe the difference correctly,
+      edge by edge (for example, the drawing and the matrix disagreed).
+- [ ] The notes on sources say where each question came from: the board,
+      the user's text, or the paper itself. The body states the questions
+      without that history.
 - [ ] The paper uses the course textbook's names for concepts and cites
-      its definition numbers, and says where the textbook convention
-      differs from the board.
+      its definition numbers. Where the textbook convention differs from
+      the board, one clause at the definition says which the paper uses.
 - [ ] Every attribution matches the quote in the evidence file: the same
       object (a closed walk is not a closed trail), the same setting
       (simple graphs, digraphs, multigraphs), the source's own number and
       page, and an author named only if the source record lists one.
 - [ ] Every sentence that says a source lacks something ("the textbook
       does not define ...") was checked by a search of that source, and
-      the paper says what was searched.
+      the notes on sources say what was searched.
 - [ ] Text the user reported but did not supply (an assignment sheet) is
       given as reported content, never inside quotation marks.
-- [ ] A sentence saying a source is wrong sits in one discussion item,
-      not beside a theorem. Each statement it rejects is quoted verbatim
+- [ ] A sentence saying a source is wrong is written only when an
+      objective in the brief calls for it. It then sits in one discussion
+      item, not beside a theorem. Each statement it rejects is quoted verbatim
       with its locator and restated in this paper's notation. If the
       source does not define the word the statement turns on, both
       readings are given and only the failing one is refuted, by its own
@@ -39,10 +41,10 @@ Run every item before presenting the paper. Fix failures, then re-run.
 - [ ] Notation is fixed in one place before the first definition.
 - [ ] Every definition, theorem, and remark is numbered and referred to
       by number afterwards.
-- [ ] Every definition is followed by a remark on what it allows and
-      forbids, an example, and a non-example.
-- [ ] Concepts appear in the textbook's build order; nothing is used
-      before it is defined.
+- [ ] A remark, an example, or a non-example follows a definition only
+      where a reader would go wrong without it, and names the trap.
+- [ ] Every defined concept is used in an answer. Concepts appear in the
+      textbook's build order; nothing is used before it is defined.
 - [ ] Every theorem is stated in one sentence before its argument, and
       the argument names its method and covers every case.
 - [ ] A result the textbook does not contain is marked as proved in the
@@ -68,40 +70,50 @@ Run every item before presenting the paper. Fix failures, then re-run.
 - [ ] No claim is made about what the professor intended beyond what the
       photos and the user said.
 
-## Writing (five-year-old standard)
+## Writing
 
-- [ ] One concrete story is fixed in the introduction and matches the
-      mathematics exactly.
-- [ ] Every definition, theorem, test, and worked example is preceded by
-      an "In plain words" paragraph told in that story, with no notation
-      beyond the letters the introduction's story explained.
-- [ ] Each plain-words paragraph passes the read-aloud test: a
-      five-year-old could follow it sentence by sentence.
-- [ ] Short sentences, one idea each; about fifteen words or fewer in
-      plain-words paragraphs.
+- [ ] The paper is within the page budget of the brief, and nothing in it
+      could be cut without losing part of an answer.
+- [ ] Short sentences, one idea each.
 - [ ] Unfamiliar words explained where they first appear.
-- [ ] Simple explanation first, formal definition second, example third.
 - [ ] No emojis, no decorative symbols, clean copyable text.
 - [ ] Mathematics renders: LaTeX compiles without errors, or for a legacy
       Markdown paper the math renders on GitHub (`$...$`, `$$...$$`, `pmatrix`).
-- [ ] The story has a fixed dictionary, one story word per technical
-      term, given once in a table. Plain-words paragraphs use only those
-      story words; a technical word inside a story paragraph, or two story
-      words for one term, fails.
 - [ ] The reader's text contains nothing from the pipeline: no claim ids,
       no "evidence file", no module names or script-internal names, no
-      unintroduced "the user". Sources, pages checked, and how to rerun
-      the scripts sit together in one short provenance section or
-      appendix; the mathematical sections only cite.
+      unintroduced "the user", "the board", or "the assignment". Where the
+      questions came from, how the photos were read, pages checked, and
+      how to rerun the scripts sit together in the notes on sources; the
+      mathematical sections only cite.
 - [ ] Every scope limit in the brief is met literally: a "one-sentence
       remark" is one sentence in one place, a "short remark" is a
       paragraph, not a section.
-- [ ] Structure: title, introduction with conventions, definitions, one
-      section per question, worked example, conclusion. A question whose
+- [ ] Structure: title, a short introduction with the questions and
+      their answers, notation and definitions, one section per question,
+      worked example, the limits of the answer, notes on sources. A question whose
       answer is a definition is answered by that numbered definition in
       its build-order place; its section points to it and adds only what
       is new there (the convention comparison), never a restated
       definition or restated examples.
+
+## Analogies (only when the brief says `Analogies: yes`)
+
+- [ ] One concrete story is fixed in the introduction, in at most four
+      sentences, and matches the mathematics exactly.
+- [ ] Every definition, theorem, test, and worked example is preceded by
+      an "In plain words" paragraph told in that story, with no notation,
+      of at most three sentences.
+- [ ] Each plain-words paragraph passes the read-aloud test: a
+      five-year-old could follow it sentence by sentence. About fifteen
+      words or fewer per sentence.
+- [ ] Each plain-words paragraph is set off from the statement above it
+      and joined to the statement it introduces.
+- [ ] The story has a fixed dictionary, one story word per technical
+      term, given once. Plain-words paragraphs use only those story words;
+      a technical word inside a story paragraph, or two story words for
+      one term, fails.
+- [ ] With every plain-words paragraph removed, the paper is still
+      complete.
 
 ## Repository
 

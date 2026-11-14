@@ -20,6 +20,10 @@ Read first, in this order:
 5. for the `study-note` register:
    `.claude/skills/research-paper/references/photo-input.md`,
    `book-style-standard.md`, and `quality-checklist.md` in the same folder.
+   When the brief says `Analogies: yes`, in either register, the section
+   "Analogies: the plain words layer" of `photo-input.md` and the
+   "Analogies" items of `quality-checklist.md`. When it says
+   `Analogies: no`, write no story and no plain-words paragraphs.
 6. when the paper cites the course textbook or a graph-theory source:
    `.claude/skills/research-paper/references/graph-sources.md`, the
    verified locators and attributions. Every textbook number, page, author
@@ -31,14 +35,27 @@ Read first, in this order:
 
 Drafting:
 
+- Write to the brief's page budget; it is a ceiling for the whole PDF,
+  references included. Write every objective the brief lists as needed,
+  in full. Add an optional objective only when every needed one is
+  complete and the paper stays within the budget. Leave out what the
+  module reports and the evidence file hold but no objective uses. Meet
+  the budget by leaving material out, never by changing the format or by
+  dropping a proof step. If a needed objective cannot be written in full
+  within the budget, say so in your final message and name the number of
+  pages it takes; do not cut the proof.
 - Integrate the module reports into one paper with a logical progression
   from background to evidence to conclusion. Remove duplication. Resolve
   terminology and notation conflicts and state the convention used.
-- Introduce every concept before using it. Define every term, acronym,
-  variable, and symbol on first use. Explain what, why it matters, how it
-  works, why it is valid, what supports it, what its limits are, and how
-  it answers the question. Write for a technician-level reader with no
-  prior knowledge of the topic.
+- Introduce every concept before using it, and only concepts an answer
+  uses. Define every term, acronym, variable, and symbol on first use.
+  For each concept say what it is and how the answer uses it. Why the
+  question matters, what supports the answer, and what its limits are, is
+  said once for the paper, not once per concept. Write for a
+  technician-level reader with no prior knowledge of the topic.
+- Keep everything about where the inputs came from in the notes on
+  sources (`latex-structure.md`): the body cites and does not mention the
+  board, the assignment, the user, or a search of a source.
 - Every substantive factual claim carries a `\cite` of a source id from
   the evidence file, placed inside the sentence it supports. Mark derived
   results, experimental findings, interpretations, hypotheses, estimates,
@@ -69,7 +86,10 @@ Fix every error. If `build.sh` exits 2 (no LaTeX installed), say so in
 your report and in `self-evaluation.md`; the orchestrator decides how to
 proceed.
 
-In the `study-note` register also run
+`inspect_pdf.py` fails a paper that is over the page budget; cut until it
+passes.
+
+When the brief says `Analogies: yes` also run
 `python3 .claude/skills/research-paper/scripts/check_plain_words.py <paper> --terms <words>`,
 where `<words>` is the comma-separated list of technical terms your story
 dictionary replaces. Fix every error. For each warning, split the
@@ -96,14 +116,26 @@ the body of the file, and the per-finding log is appended below it, never
 in its place. Re-run the checks above. Never mark a finding resolved
 yourself; the next evaluator does that.
 
+A finding whose correction is `cut` or `shorten` is met by cutting. When a
+correction adds text and the paper is at its budget, cut what the finding
+names, or an optional objective, to make room; if nothing can go, say so
+in your final message.
+
+Final edits: when the orchestrator says the round passed and sends minor
+findings and reader findings, change only the passages they name. Add no
+claim and no citation, and change no numbered statement and no step of a
+proof. If a finding cannot be met within those limits, leave the passage
+and say so. No evaluator reads these edits, so keep each one local.
+
 Evidence changes: never edit `evidence/evidence.json` directly. Put new
 claims in `evidence/modules/author.json`, change existing claims in the
 fragment or base file that owns them, then rebuild the merged file as
 `references/evidence-schema.md` says and run `check_claims.py`. When
 `check_citations.py` warns that an uncited source still carries claims,
-either cite it where those claims are used or, if the paper does not use
-them, set those claims to `removed` with the reason in the file that owns
-them, `evidence.base.json` included, and rebuild.
+cite it where those claims are used. If the paper does not use them
+because they serve no objective it wrote, leave the evidence as it is and
+list the warning in `self-evaluation.md`.
 
-Your final message: which files changed, mechanical check results,
-unverified claims in the text, and anything you could not justify.
+Your final message: which files changed, the page count against the
+budget, mechanical check results, unverified claims in the text, and
+anything you could not justify.

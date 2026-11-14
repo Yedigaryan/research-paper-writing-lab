@@ -43,6 +43,8 @@ contradictions between sources (they stay in the evidence file).
 
 ## 4. Audience register
 
+Analogies: yes
+
 `study-note`, limited to the plain words layer. One concrete story is
 fixed in the introduction in at most four sentences, with each story
 word tied to one technical term. A paragraph marked "In plain words"
@@ -99,8 +101,9 @@ are reused as input.
 
 - `main.tex`, `sections/`, `references.bib`, compiled `main.pdf`,
   `self-evaluation.md`.
-- Length: at most 6 pages in total, references included, in the
-  template's format (11pt, A4, 2.5 cm margins). Aim for 5. Do not change
+- Page budget: 6. It counts every page of `main.pdf`, references
+  included, in the template's format (11pt, A4, 2.5 cm margins). Aim
+  for 5. Do not change
   the font size, margins, or line spacing to meet it, and do not move
   body text to an appendix. No appendix.
 - Structure: a short introduction that states the three questions and

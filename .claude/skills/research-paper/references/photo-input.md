@@ -53,26 +53,47 @@ in the brief. This adds to the technician standard:
   `book-style-standard.md`. For this repository the textbook is
   `Grafneri_tesutyun.pdf` at the root; its text layer drops symbols, so
   formulas are checked by viewing the page as an image.
-- Definitions are numbered, in the book's build order, each followed by a
-  remark on what it allows and forbids, an example, and a non-example. The
-  paper cites the book's definition numbers. These three devices after each
-  definition are this repository's rule, stricter than the book's own
-  practice.
+- Definitions are numbered, in the book's build order, and cite the
+  book's definition numbers. Only the concepts an answer uses are defined;
+  the book's whole chain of concepts is not reproduced.
+- A remark, an example, or a non-example follows a definition only where a
+  reader would go wrong without it: the board, the user, and the book use
+  the word differently, or beginners confuse the concept with its
+  neighbour. One worked example carries the paper. A second is written
+  only when it shows something the first cannot, such as a test failing.
 - When the board, the user, or the book disagree on a convention, the
-  paper gives both and says which one it uses.
-- The plain words layer: one concrete story chosen in the introduction, a
-  short paragraph marked "In plain words" before every definition, theorem,
-  test, and worked example, no notation in that paragraph, sentences of
-  about fifteen words, one idea each. Read each aloud in your head; split
-  any sentence that needs a symbol or a defined term.
+  paper uses one, says which in one clause where the term is defined, and
+  gives the other reading in the notes on sources (`latex-structure.md`).
 - Every matrix product, sum, and count is computed by script before it is
   written.
 - Cite the textbook as a `local-file` source in the evidence file with the
   page or definition number as locator.
 
-The `quality-checklist.md` items under "Standard of presentation",
-"Mathematics", and "Writing" apply in this register and are passed to the
-author and the evaluator as additional criteria.
+The `quality-checklist.md` items under "Sources", "Standard of
+presentation", "Mathematics", and "Writing" apply in this register and are
+passed to the author and the evaluator as additional criteria.
+
+## Analogies: the plain words layer
+
+Off unless the brief says `Analogies: yes`; then it applies in either
+register, and the checklist items under "Analogies" apply with it.
+
+- One concrete story is fixed in the introduction in at most four
+  sentences, with one story word for each technical term.
+- A paragraph marked "In plain words" stands before each definition,
+  theorem, lemma, test, and worked example: at most three sentences, no
+  notation, sentences of about fifteen words, one idea each, story words
+  only. Read each aloud in your head; split any sentence that needs a
+  symbol or a defined term.
+- Each paragraph opens the statement it precedes. Put vertical space
+  before it (`\medskip`) and none between it and its statement, so that it
+  is not read as the end of the statement above.
+- An analogy must be true of the mathematics. One that is easier because
+  it is wrong fails; hold each to `math-pitfalls.md`.
+- The formal text stands without the layer: with every plain-words
+  paragraph removed, the paper is still complete.
+- The layer counts toward the page budget. The brief's count allows about
+  one page for every ten statements that get a paragraph.
 
 ## Checking an existing photo-based paper
 
@@ -83,9 +104,9 @@ text, so no clarifying question is needed. Then:
 1. Mark each `quality-checklist.md` item pass or fail with a quoted line.
 2. Recompute every matrix, product, sum, and count with a short script.
 3. Check every cited textbook definition number against the PDF.
-4. List every definition, theorem, test, and worked example and whether a
-   plain words paragraph precedes it; quote any sentence that fails the
-   read-aloud test.
+4. If the paper has a plain words layer, list every definition, theorem,
+   test, and worked example and whether a plain words paragraph precedes
+   it; quote any sentence that fails the read-aloud test.
 
 Report mismatches between paper and photos, any definition that is not
 exactly correct, and any sentence a beginner could not follow. Do not

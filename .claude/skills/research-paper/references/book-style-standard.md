@@ -46,9 +46,11 @@ Observed in its chapters on graphs, walks, paths, and connectivity.
 - Number every definition, theorem, and remark. Cite the book's own
   number next to a definition that comes from it. When the book does not
   contain a result, say so and prove it in the paper.
-- After every definition: one remark on what it allows and forbids, one
-  example that satisfies it, one that does not.
-- Keep the book's build order for the concepts.
+- After a definition, add a remark, an example, or a non-example only
+  where a reader would go wrong without it, and let it name the trap. The
+  book does this selectively, and so does the paper.
+- Keep the book's build order for the concepts the paper uses. A concept
+  that no answer uses is not defined.
 - State every theorem in one sentence before the explanation. Give the
   argument in full, in plain words, with the base case and the step named
   when it is an induction.
@@ -60,16 +62,24 @@ Observed in its chapters on graphs, walks, paths, and connectivity.
   number; a theorem, lemma, or proposition with a proof printed in the
   paper is the paper's own, and a citation in its first sentence says
   which source also states it; a reading of the photos or of the user's
-  report is an item of the conventions list and is cited by item number.
+  report is stated once where the notation is fixed, and where it came
+  from is said in the notes on sources.
   Do not invent a system of bracketed status labels; it needs a legend,
   gets applied unevenly, and the reader has to keep it in mind.
 
 ## Where the paper departs from the book on purpose
 
-The book is written for second year students; the paper is for a beginner
-who may not read the notation yet, and its plain-words layer must be
-followable by a five-year-old when read aloud. So the paper keeps the
-book's rigor and order but adds, before each definition, theorem, and
-example, an "In plain words" paragraph told in one concrete story fixed in
-the introduction, and explains each new word where it first appears. The
-rigor is never reduced; only the reading difficulty is.
+The book is a course text; the paper answers one question within the page
+budget of its brief. So the paper takes the book's rigor, numbering, and
+order, defines only what its answers use, and leaves out the book's
+neighbouring material. Each new word is explained in one clause where it
+first appears.
+
+The book is written for second year students. When the brief says
+`Analogies: yes`, the paper is also for a beginner who may not read the
+notation yet: before each definition, theorem, and worked example it adds
+an "In plain words" paragraph told in one concrete story fixed in the
+introduction, followable by a five-year-old when read aloud; the rules are
+in `photo-input.md`. The rigor is never reduced; only the reading
+difficulty is. When the brief says `Analogies: no`, the paper has no such
+layer.

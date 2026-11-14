@@ -22,9 +22,17 @@ course textbook or a graph-theory source, read `graph-sources.md` in the
 same folder for the verified locators and attributions, and the "Facts
 that are easy to state wrongly" in `math-pitfalls.md` there.
 
+Scope: the brief lists objectives as needed or optional and names the
+ones your module serves. Write what the needed ones require. Write an
+optional one only if the brief assigns it to you, in a section marked
+optional. Leave out neighbouring material, however true: every later agent
+reads your report, and the paper has a page budget. Keep the report under
+about 200 lines. Write no analogies and no story; the author adds them
+when the brief asks for them.
+
 Module report structure:
 
-1. Purpose: what this module establishes and which question it serves.
+1. Purpose: what this module establishes and which objective it serves.
 2. Prerequisites: concepts the reader needs, each defined before use, with
    the module that owns it if it is not this one.
 3. Explanation from first principles: what, why it matters, how it works,
@@ -32,11 +40,12 @@ Module report structure:
    find it obvious. Every symbol, acronym, and term defined on first use.
 4. Evidence: for each substantive claim, the claim id from the evidence
    fragment and what supports it.
-5. Derivations, worked examples, or reproducible calculations. Any number
-   you state is computed by a script you ran; include the script or its
-   path and its output.
+5. Derivations, one worked example, or reproducible calculations. Any
+   number you state is computed by a script you ran; include the script
+   or its path and its output.
 6. Assumptions and their reasons.
-7. Limitations, failure cases, competing explanations.
+7. Limitations, failure cases, and competing explanations that bear on a
+   needed objective.
 8. Dependencies on and conflicts with other modules, as named in the brief.
 9. Open questions you could not settle.
 

@@ -24,15 +24,19 @@ Procedure:
 3. For each module in the brief, search for primary sources: peer-reviewed
    work, official documentation, standards, original datasets, textbooks.
    Prefer the original over a summary of it. Fetch each source you intend
-   to use and record what you actually read in `access_status`.
-4. For every finding, write a claim with the exact locator (page, section,
-   theorem number, table, line) and a copied quote of at most two
-   sentences. Mark the kind honestly: a result the source proves is `fact`
+   to use and record what you actually read in `access_status`. Work
+   through the objectives the brief lists as needed first, until each has
+   located support. For an optional objective stop at one good source.
+   Do not collect sources or claims that no objective uses.
+4. For every finding an objective uses, write a claim with the exact
+   locator (page, section, theorem number, table, line) and a copied quote
+   of at most two sentences. Mark the kind honestly: a result the source proves is `fact`
    with a locator; a number the source measures is `experimental`; a
    source's opinion is `interpretation`.
-5. Search deliberately for disagreement: competing explanations, failed
-   replications, later corrections, errata. Record each as a contradiction
-   with both sides and the condition under which each holds.
+5. Search deliberately for disagreement on the needed objectives:
+   competing explanations, failed replications, later corrections, errata.
+   Record each as a contradiction with both sides and the condition under
+   which each holds.
 6. Assess every source: `primary`, `secondary`, or `tertiary`; publication
    date; known limitations; whether it is a review or original work. Put
    this in `notes`.

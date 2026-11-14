@@ -13,9 +13,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / ".claude" / "skills" / "harness-refine" / "scripts"
+PAPER_SCRIPTS = ROOT / ".claude" / "skills" / "research-paper" / "scripts"
 sys.path.insert(0, str(SCRIPTS))
+sys.path.insert(0, str(PAPER_SCRIPTS))
 import anonymize_pool  # noqa: E402
+import claims_changed  # noqa: E402
 import harness_tree as ht  # noqa: E402
+import inspect_pdf  # noqa: E402
 import library_add  # noqa: E402
 
 PAPER = ROOT / "papers" / "adjacency-walks-connectivity"
@@ -237,6 +241,59 @@ evidence: edit row 1; base R12 versus inv round 1
 confidence: low, one rollout
 </experience>
 """
+
+
+class PaperScriptTests(unittest.TestCase):
+    """The page budget check and the changed-claims list of the paper pipeline."""
+
+    def test_page_budget_is_read_from_the_brief(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            paper = Path(tmp)
+            self.assertIsNone(inspect_pdf.page_budget(paper))
+            (paper / "brief.md").write_text("# Brief\n\n## 10. Deliverables\n\nLength: short.\n")
+            self.assertIsNone(inspect_pdf.page_budget(paper))
+            (paper / "brief.md").write_text("## 10. Deliverables\n\n- Page budget: 5 pages, counted as ...\n")
+            self.assertEqual(inspect_pdf.page_budget(paper), 5)
+            (paper / "brief.md").write_text("`Page budget: 12`\n")
+            self.assertEqual(inspect_pdf.page_budget(paper), 12)
+
+    def test_claims_changed(self):
+        evidence = {
+            "sources": [{"id": "s1", "access_status": "full-text"}],
+            "claims": [
+                {"id": "C1", "text": "a", "kind": "fact", "status": "supported",
+                 "support": [{"source": "s1", "locator": "p. 1", "quote": "a"}]},
+                {"id": "C2", "text": "b", "kind": "fact", "status": "supported",
+                 "support": [{"source": "s1", "locator": "p. 2", "quote": "b"}]},
+                {"id": "C3", "text": "c", "kind": "derived", "status": "qualified", "support": []},
+            ],
+        }
+        before = claims_changed.digests(evidence)
+        self.assertEqual(claims_changed.compare(before, before)["unchanged"], ["C1", "C2", "C3"])
+        evidence["claims"][1]["support"][0]["quote"] = "b, reworded"
+        evidence["claims"].pop(2)
+        evidence["claims"].append({"id": "C4", "text": "d", "kind": "fact", "status": "unverified", "support": []})
+        diff = claims_changed.compare(claims_changed.digests(evidence), before)
+        self.assertEqual((diff["new"], diff["changed"], diff["removed"], diff["unchanged"]),
+                         (["C4"], ["C2"], ["C3"], ["C1"]))
+        evidence["sources"][0]["access_status"] = "unavailable"
+        diff = claims_changed.compare(claims_changed.digests(evidence), before)
+        self.assertEqual(diff["changed"], ["C1", "C2"])
+
+    def test_claims_changed_cli(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            paper = Path(tmp)
+            (paper / "evidence").mkdir()
+            (paper / "evidence" / "evidence.json").write_text(json.dumps(
+                {"sources": [], "claims": [{"id": "C1", "text": "a", "kind": "fact", "status": "qualified"}]}))
+            run = lambda *a: subprocess.run(  # noqa: E731
+                [sys.executable, str(PAPER_SCRIPTS / "claims_changed.py"), str(paper), *a],
+                text=True, capture_output=True)
+            self.assertIn("all 1 claims count as new", run().stdout)
+            self.assertEqual(run("--record", "1").returncode, 0)
+            out = run().stdout
+            self.assertIn("round 1", out)
+            self.assertIn("unchanged: 1", out)
 
 
 class LibraryTests(unittest.TestCase):

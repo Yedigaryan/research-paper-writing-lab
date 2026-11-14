@@ -43,6 +43,8 @@ contradictions between sources (they stay in the evidence file).
 
 ## 4. Audience register
 
+Analogies: no
+
 `technician`. No plain words layer, no story, no analogies, no
 "In plain words" paragraphs. The devices of `book-style-standard.md`
 after each definition (remark, example, non-example) are not required;
@@ -89,8 +91,9 @@ are reused as input.
 
 - `main.tex`, `sections/`, `references.bib`, compiled `main.pdf`,
   `self-evaluation.md`.
-- Length: at most 5 pages in total, references included, in the
-  template's format (11pt, A4, 2.5 cm margins). Aim for 4. Do not change
+- Page budget: 5. It counts every page of `main.pdf`, references
+  included, in the template's format (11pt, A4, 2.5 cm margins). Aim
+  for 4. Do not change
   the font size, margins, or line spacing to meet it, and do not move
   body text to an appendix. No appendix.
 - Structure: a short introduction that states the three questions and

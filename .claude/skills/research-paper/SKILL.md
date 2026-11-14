@@ -17,7 +17,9 @@ paper prose itself; the author agent owns the paper.
 Standard for the finished paper: every meaningful claim is understandable,
 every factual claim has appropriate supporting evidence, and every
 conclusion is justified. The reader is technically literate at technician
-level with no prior knowledge of the topic.
+level with no prior knowledge of the topic. The paper is as long as the
+question needs and no longer: the brief sets a page budget, and material
+that does not serve the question is a defect.
 
 ## Roles
 
@@ -28,7 +30,7 @@ level with no prior knowledge of the topic.
 | `module-owner` | agent, one per module, parallel | 2 | brief, evidence, web | `modules/<id>.md`, `evidence/modules/<id>.json` |
 | `paper-author` | agent, kept alive across revisions | 2 | brief, evidence, modules | `main.tex`, `sections/`, `references.bib`, `self-evaluation.md` |
 | `paper-evaluator` | agent, fresh each round | 3 | paper, brief, evidence, rubric | nothing; returns findings |
-| `technician-reader` | agent | 1 | compiled paper text | nothing; returns unclear passages |
+| `technician-reader` | agent | 1 | compiled paper pages | nothing; returns unclear passages |
 
 Model levels are defined in `references/model-levels.md`. The evaluator
 must sit at least one level above the author and every module owner. The
@@ -82,19 +84,43 @@ module plan or an assumption; it is never evidence for a claim.
 Then write `brief.md` with these sections:
 
 1. Research question, in one sentence, and where it came from.
-2. Objectives: what the paper must answer or show.
+2. Objectives, in two lists. "Needed to answer": what the paper must
+   contain for the question to be answered; nothing else goes here.
+   "Optional": related material that is written only if the page budget
+   allows; the list may be empty. A concept the answer does not use, a
+   second method, a comparison of sources, and a history of the topic are
+   optional unless the user asked for them.
 3. Scope and exclusions.
-4. Audience register: `technician` (default) or `study-note` (adds the plain
-   words layer and the textbook standard; see `references/photo-input.md`).
+4. Audience register: `technician` (default) or `study-note` (adds the
+   textbook standard; see `references/photo-input.md`). Then one line,
+   `Analogies: no` or `Analogies: yes`. The default is `no`. Write `yes`
+   only when the user asks for analogies, a story, or plain-words
+   explanations; it adds the plain words layer of `photo-input.md` in
+   either register.
 5. Input inventory: each supplied file, what it contains, how reliable it is.
 6. Allowed research sources. Web search is the default. If the user supplied
    documents, say whether they are the only allowed sources, the primary
    sources, or context. If this is unclear, ask before research starts.
 7. Assumptions, each with the reason it was made.
 8. Open questions for the user.
-9. Proposed modules: two to five named subtopics with one line each on what
-   the module must establish, and the dependencies between them.
-10. Deliverables and any user constraints (length, citation style, deadline).
+9. Proposed modules: one to five named subtopics, as few as cover the
+   needed objectives, with one line each on what the module must
+   establish and the dependencies between them. Name the objectives each
+   module serves; an optional objective is marked optional there too.
+10. Deliverables and constraints. The first line is `Page budget: <n>`,
+    the largest number of pages `main.pdf` may have, references and
+    appendices included, in the template's format. Then any user
+    constraints (citation style, deadline).
+
+Setting the page budget: a length the user gave wins. Otherwise count what
+the needed objectives require: about half a page for each definition or
+result with its proof, one page for each worked example, and one page for
+the introduction and the references together; round up. A question a
+lecturer answers on one board comes to three to six pages. Write the count
+next to the number. The budget is a ceiling, not a target, and
+`inspect_pdf.py` fails a paper that exceeds it. If the author reports that
+a needed objective cannot be written in full within it, raise the number
+in the brief and say why; never let a proof be cut to fit.
 
 Ask the user when essential information is missing or the question has two
 readings that lead to different papers. Ask one focused question at a time
@@ -105,9 +131,10 @@ asking; do not start research with an open question that changes scope.
 ## Step 2: Research (research-agent)
 
 Spawn `research-agent` with the path to `brief.md`. It produces
-`evidence/evidence.base.json` holding every source found, its credibility
-and access status, the claims each source supports with exact locators,
-and contradictions between sources. It does not write prose.
+`evidence/evidence.base.json` holding the sources the objectives need,
+their credibility and access status, the claims each source supports with
+exact locators, and contradictions between sources that bear on a needed
+objective. It does not write prose.
 
 When it returns, build the merged file and check it:
 
@@ -123,10 +150,11 @@ contradictions list and decide whether any of them changes the module plan.
 
 Spawn one `module-owner` per module in the brief, all in one message so
 they run in parallel. Each gets the brief path, its module id, and the
-evidence path. Each writes `modules/<id>.md` (explanation from first
-principles, derivations, worked examples, assumptions, limitations,
-dependencies on other modules) and `evidence/modules/<id>.json` (new
-sources and the claims the module makes, each tied to support).
+evidence path. Each writes `modules/<id>.md` (what the needed objectives
+of the module require: explanation from first principles, derivations, a
+worked example, assumptions, limitations, dependencies on other modules)
+and `evidence/modules/<id>.json` (new sources and the claims the module
+makes, each tied to support).
 
 When all return, rebuild the merged file from the base file and the
 fragments, then check it. Always rebuild from the base file so that a
@@ -146,8 +174,9 @@ editing the report yourself.
 ## Step 4: Draft (paper-author)
 
 Spawn `paper-author` with the brief, the evidence file, and the module
-reports. It writes the LaTeX paper, compiles it with the build script,
-runs the citation and claim checks, and writes `self-evaluation.md`:
+reports. It writes the LaTeX paper within the page budget, compiles it
+with the build script, runs the citation and claim checks, and writes
+`self-evaluation.md`:
 section by section, what the section claims, which evidence supports each
 claim, and which conclusions follow from what. Keep this agent alive for
 revisions; it is the author and must be able to explain every line.
@@ -166,7 +195,8 @@ python3 .claude/skills/research-paper/scripts/check_claims.py papers/<slug>
 python3 .claude/skills/research-paper/scripts/inspect_pdf.py papers/<slug>
 ```
 
-In the `study-note` register also run
+`inspect_pdf.py` reads the page budget from `brief.md` and fails a paper
+that is over it. When the brief says `Analogies: yes` also run
 `python3 .claude/skills/research-paper/scripts/check_plain_words.py papers/<slug>`;
 its errors are failures, and its warnings go to the author with the next
 batch of findings.
@@ -181,12 +211,19 @@ Spawn a fresh `paper-evaluator` with the paths to the paper folder, the
 brief, the evidence file, and `references/rubric.md`. Do not give it
 `self-evaluation.md`, the module reports, or your own opinion. On a second
 or later round, also give it the previous `evaluation-report.md` so it can
-verify that earlier findings were resolved, and `reader-findings.md` so it
-can judge the reader's passages; both are the orchestrator's record,
-not the author's self assessment.
+verify that earlier findings were resolved, `reader-findings.md` so it
+can judge the reader's passages, and `source-checks.md` with the output of
+
+```
+python3 .claude/skills/research-paper/scripts/claims_changed.py papers/<slug>
+```
+
+so that it fetches sources only for claims that changed and for checks
+that did not hold; see "Source checks across rounds" in the rubric. All of
+these are the orchestrator's record, not the author's self assessment.
 
 In the same message spawn `technician-reader` with the paper folder path.
-It reads the compiled text as a reader who knows nothing about the topic
+It reads the compiled pages as a reader who knows nothing about the topic
 and returns the exact passages it could not follow.
 
 The evaluator returns the format fixed in `references/rubric.md`: one score
@@ -217,9 +254,27 @@ findings table of the evaluation report. If the summary paragraph does not
 match the paper's actual conclusion, note that next to it in plain words,
 without a severity.
 
+Append the evaluator's CITATION SPOT CHECKS block for the round to
+`source-checks.md` as returned, under the round number, and record which
+claims that round saw:
+
+```
+python3 .claude/skills/research-paper/scripts/claims_changed.py papers/<slug> --record <n>
+```
+
 Apply the release conditions from `references/rubric.md`. They are decided
-by the evaluator's findings and scores, never by reader findings. If any
-fails:
+by the evaluator's findings and scores, never by reader findings.
+
+If conditions 1 to 9 hold and no critical or major finding is open, the
+round passes even when minor findings remain. Do not run another
+evaluation for them. Follow "Final edits" in the rubric: send the minor
+findings and the reader's findings to the author, read the diff when it
+returns, confirm that it touches only the passages those findings name and
+adds no claim, citation, changed statement, or changed proof step, re-run
+the mechanical gate from Step 4, record the final edits in the report, and
+go to Step 7. If the diff goes further than that, run another round.
+
+If a condition fails or a critical or major finding is open:
 
 1. Group the evaluator's findings by section and send them to the living
    `paper-author` agent, with the reader's findings attached as advisory:
@@ -233,8 +288,11 @@ fails:
 4. Return to Step 5.
 
 Critical and major evaluator findings must be resolved. Minor findings are
-resolved or documented in the report with the reason. A finding is resolved
-when the next evaluator confirms it, not when the author says so. The
+resolved or documented in the report with the reason. A critical or major
+finding is resolved when the next evaluator confirms it, not when the
+author says so. A finding whose correction is `cut` or `shorten` is
+handled like any other; the author never answers a finding by adding text
+that pushes the paper over its page budget. The
 orchestrator never holds a release on a reader finding that no evaluator
 raised as its own.
 
@@ -249,9 +307,10 @@ When every release condition passes, write the final round in
 paper folder states how to compile, and commit the folder with a clear
 message. Push according to the repository's `CLAUDE.md` git rules.
 
-Report to the user: the question as interpreted, the modules, the scores,
-unverified claims and source access limits, known limitations, and the
-model levels used.
+Report to the user: the question as interpreted, the modules, the page
+count against the budget, the scores, unverified claims and source access
+limits, any findings closed by final edits that no evaluator re-read,
+known limitations, and the model levels used.
 
 ## Checking an existing paper
 

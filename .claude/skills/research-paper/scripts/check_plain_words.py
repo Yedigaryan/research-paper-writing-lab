@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the plain-words layer of a study-note paper.
+"""Check the plain-words layer of a paper whose brief says Analogies: yes.
 
 Usage: check_plain_words.py <paper_dir> [--max-words N] [--terms w1,w2,...]
                             [--marker NAME] [--envs env1,env2,...]

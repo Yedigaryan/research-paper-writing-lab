@@ -34,7 +34,10 @@ is rejected; install writes only editable files and refuses an invalid
 tree; the evidence builder is deterministic on the adjacency paper and its
 leak check fires on an answer-key path; the anonymiser blinds labels and
 keeps the map outside the context; the library script refuses NO_ENTRY and
-rebuilds the index. `run-checks.sh` runs it.
+rebuilds the index. It also covers two scripts of the paper pipeline:
+`inspect_pdf.py` reads the page budget from `brief.md`, and
+`claims_changed.py` lists the claims that are new, changed, or removed
+since the last evaluated round. `run-checks.sh` runs it.
 
 ## Evaluator check
 

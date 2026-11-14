@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """Inspect papers/<slug>/main.pdf for layout and resolution problems.
 
-Usage: inspect_pdf.py <paper_dir>
+Usage: inspect_pdf.py <paper_dir> [--max-pages N]
 
 Errors (exit 1): PDF missing or unreadable, unresolved references (??),
 unresolved citations ([?] or [0]), empty pages, "To be written"
-placeholders left in the text. Warnings: overfull boxes in the build log,
-pages with very little text, missing figure files referenced in the log.
+placeholders left in the text, more pages than the page budget. The budget
+is the line "Page budget: <n>" in brief.md, or --max-pages when given; it
+counts every page of main.pdf, references and appendices included.
+Warnings: overfull boxes in the build log, pages with very little text,
+missing figure files referenced in the log, no page budget in brief.md.
 """
 import re
 import subprocess
@@ -24,11 +27,33 @@ def page_texts(pdf: Path) -> list:
         return out.split("\f")
 
 
+BUDGET_RE = re.compile(r"^\W*page budget\W*?:\W*(\d+)", re.IGNORECASE | re.MULTILINE)
+
+
+def page_budget(paper: Path):
+    """Return the page budget stated in brief.md, or None when there is none."""
+    brief = paper / "brief.md"
+    if not brief.exists():
+        return None
+    m = BUDGET_RE.search(brief.read_text(errors="replace"))
+    return int(m.group(1)) if m else None
+
+
 def main() -> int:
-    if len(sys.argv) != 2:
+    args = sys.argv[1:]
+    max_pages = None
+    if "--max-pages" in args:
+        i = args.index("--max-pages")
+        try:
+            max_pages = int(args[i + 1])
+        except (IndexError, ValueError):
+            print(__doc__, file=sys.stderr)
+            return 1
+        del args[i:i + 2]
+    if len(args) != 1:
         print(__doc__, file=sys.stderr)
         return 1
-    paper = Path(sys.argv[1])
+    paper = Path(args[0])
     pdf = paper / "main.pdf"
     errors, warnings = [], []
     if not pdf.exists():
@@ -52,6 +77,13 @@ def main() -> int:
             errors.append(f"page {n}: unresolved citation")
         if "To be written" in text:
             errors.append(f"page {n}: placeholder text 'To be written'")
+
+    budget = max_pages if max_pages is not None else page_budget(paper)
+    if budget is None:
+        warnings.append("no page budget in brief.md; length not checked")
+    elif len(pages) > budget:
+        errors.append(f"{len(pages)} pages, over the page budget of {budget}; "
+                      "cut material the question does not need")
 
     log = paper / "build" / "main.log"
     if log.exists():
