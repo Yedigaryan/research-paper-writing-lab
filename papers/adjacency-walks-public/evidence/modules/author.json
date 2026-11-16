@@ -10,7 +10,10 @@
    "derivation": "scripts/public_examples.py, graph G1; output scripts/output-public_examples.txt; scripts/output-walks_check.txt",
    "confidence": "high",
    "status": "supported",
-   "used_in": "sections/counting.tex, sections/example.tex",
+   "used_in": [
+    "sections/counting.tex",
+    "sections/example.tex"
+   ],
    "contradicted_by": []
   },
   {
@@ -22,7 +25,9 @@
    "derivation": "scripts/public_examples.py, graph G2; output scripts/output-public_examples.txt",
    "confidence": "high",
    "status": "supported",
-   "used_in": "sections/example.tex",
+   "used_in": [
+    "sections/example.tex"
+   ],
    "contradicted_by": []
   },
   {
@@ -34,7 +39,9 @@
    "derivation": "scripts/public_examples.py, graph G3; output scripts/output-public_examples.txt",
    "confidence": "high",
    "status": "supported",
-   "used_in": "sections/example.tex",
+   "used_in": [
+    "sections/example.tex"
+   ],
    "contradicted_by": []
   },
   {
@@ -52,7 +59,9 @@
    "derivation": "sections/connectivity.tex, Lemma 2 and Lemma 1",
    "confidence": "high",
    "status": "supported",
-   "used_in": "sections/connectivity.tex",
+   "used_in": [
+    "sections/connectivity.tex"
+   ],
    "contradicted_by": []
   },
   {
@@ -70,7 +79,28 @@
    "derivation": "Grinberg Proposition 2.9.10 and Definition 2.9.12, p. 42",
    "confidence": "high",
    "status": "supported",
-   "used_in": "sections/definitions.tex",
+   "used_in": [
+    "sections/definitions.tex"
+   ],
+   "contradicted_by": []
+  },
+  {
+   "id": "p6",
+   "text": "Grinberg Definition 2.1.1: a simple graph is a pair (V, E), where V is a finite set and E is a subset of P2(V), the set of 2-element subsets of V; so there are no loops, at most one edge between two vertices, and the edge uv is the edge vu.",
+   "kind": "fact",
+   "module": "author",
+   "support": [
+    {
+     "source": "grinberg2025graph",
+     "locator": "Definition 2.1.1, p. 9",
+     "quote": "A simple graph is a pair (V, E), where V is a finite set, and where E is a subset of P2 (V )."
+    }
+   ],
+   "confidence": "high",
+   "status": "supported",
+   "used_in": [
+    "sections/definitions.tex"
+   ],
    "contradicted_by": []
   }
  ]

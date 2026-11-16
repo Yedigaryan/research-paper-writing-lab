@@ -121,7 +121,10 @@
       ],
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/counting.tex",
+        "sections/introduction.tex"
+      ],
       "contradicted_by": [
         "C34",
         "C38",
@@ -164,7 +167,9 @@
       ],
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -181,7 +186,10 @@
       ],
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/counting.tex",
+        "sections/introduction.tex"
+      ],
       "contradicted_by": [
         "C31",
         "C38",
@@ -219,7 +227,9 @@
       ],
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -260,7 +270,10 @@
       ],
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/counting.tex",
+        "sections/introduction.tex"
+      ],
       "contradicted_by": [
         "C31",
         "C34",
@@ -302,7 +315,9 @@
       ],
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -338,7 +353,10 @@
       ],
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/connectivity.tex",
+        "sections/introduction.tex"
+      ],
       "contradicted_by": [
         "C43",
         "C45"
@@ -417,7 +435,9 @@
       ],
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": [
         "C20",
         "C21",
@@ -438,7 +458,10 @@
       ],
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/connectivity.tex",
+        "sections/introduction.tex"
+      ],
       "contradicted_by": [
         "C25",
         "C49"
@@ -458,7 +481,9 @@
       ],
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
       "contradicted_by": [
         "C25",
         "C48"
@@ -483,7 +508,9 @@
       ],
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -540,9 +567,7 @@
       "derivation": "sections/counting.tex, Corollary on distance",
       "confidence": "high",
       "status": "supported",
-      "used_in": [
-        "sections/counting.tex"
-      ],
+      "used_in": [],
       "contradicted_by": []
     },
     {
@@ -570,7 +595,9 @@
       "derivation": "modules/m1.md, section 5, Theorem 1 (full induction proof, including the base case k = 0 under the length-0 convention)",
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/counting.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -644,7 +671,9 @@
       "derivation": "modules/m2.md, Section 5.3 (Corollary 2.3); script modules/m2-check.py, section 5 (longest path seen equals N - 1, never more)",
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -679,7 +708,9 @@
       "derivation": "modules/m3.md, Section 3, Theorem M3.2",
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -702,7 +733,9 @@
       "derivation": "modules/m3.md, Section 3, Theorem M3.3",
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -714,7 +747,10 @@
       "derivation": "scripts/public_examples.py, graph G1; output scripts/output-public_examples.txt; scripts/output-walks_check.txt",
       "confidence": "high",
       "status": "supported",
-      "used_in": "sections/counting.tex, sections/example.tex",
+      "used_in": [
+        "sections/counting.tex",
+        "sections/example.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -726,7 +762,9 @@
       "derivation": "scripts/public_examples.py, graph G2; output scripts/output-public_examples.txt",
       "confidence": "high",
       "status": "supported",
-      "used_in": "sections/example.tex",
+      "used_in": [
+        "sections/example.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -738,7 +776,9 @@
       "derivation": "scripts/public_examples.py, graph G3; output scripts/output-public_examples.txt",
       "confidence": "high",
       "status": "supported",
-      "used_in": "sections/example.tex",
+      "used_in": [
+        "sections/example.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -756,7 +796,9 @@
       "derivation": "sections/connectivity.tex, Lemma 2 and Lemma 1",
       "confidence": "high",
       "status": "supported",
-      "used_in": "sections/connectivity.tex",
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -774,7 +816,28 @@
       "derivation": "Grinberg Proposition 2.9.10 and Definition 2.9.12, p. 42",
       "confidence": "high",
       "status": "supported",
-      "used_in": "sections/definitions.tex",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "p6",
+      "text": "Grinberg Definition 2.1.1: a simple graph is a pair (V, E), where V is a finite set and E is a subset of P2(V), the set of 2-element subsets of V; so there are no loops, at most one edge between two vertices, and the edge uv is the edge vu.",
+      "kind": "fact",
+      "module": "author",
+      "support": [
+        {
+          "source": "grinberg2025graph",
+          "locator": "Definition 2.1.1, p. 9",
+          "quote": "A simple graph is a pair (V, E), where V is a finite set, and where E is a subset of P2 (V )."
+        }
+      ],
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": []
     }
   ],

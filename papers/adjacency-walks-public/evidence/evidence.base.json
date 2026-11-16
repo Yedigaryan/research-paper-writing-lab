@@ -121,7 +121,10 @@
    ],
    "confidence": "high",
    "status": "supported",
-   "used_in": [],
+   "used_in": [
+    "sections/counting.tex",
+    "sections/introduction.tex"
+   ],
    "contradicted_by": [
     "C34",
     "C38",
@@ -164,7 +167,9 @@
    ],
    "confidence": "high",
    "status": "supported",
-   "used_in": [],
+   "used_in": [
+    "sections/definitions.tex"
+   ],
    "contradicted_by": []
   },
   {
@@ -181,7 +186,10 @@
    ],
    "confidence": "high",
    "status": "supported",
-   "used_in": [],
+   "used_in": [
+    "sections/counting.tex",
+    "sections/introduction.tex"
+   ],
    "contradicted_by": [
     "C31",
     "C38",
@@ -219,7 +227,9 @@
    ],
    "confidence": "high",
    "status": "supported",
-   "used_in": [],
+   "used_in": [
+    "sections/connectivity.tex"
+   ],
    "contradicted_by": []
   },
   {
@@ -260,7 +270,10 @@
    ],
    "confidence": "high",
    "status": "supported",
-   "used_in": [],
+   "used_in": [
+    "sections/counting.tex",
+    "sections/introduction.tex"
+   ],
    "contradicted_by": [
     "C31",
     "C34",
@@ -302,7 +315,9 @@
    ],
    "confidence": "high",
    "status": "supported",
-   "used_in": [],
+   "used_in": [
+    "sections/connectivity.tex"
+   ],
    "contradicted_by": []
   },
   {
@@ -338,7 +353,10 @@
    ],
    "confidence": "high",
    "status": "supported",
-   "used_in": [],
+   "used_in": [
+    "sections/connectivity.tex",
+    "sections/introduction.tex"
+   ],
    "contradicted_by": [
     "C43",
     "C45"
@@ -417,7 +435,9 @@
    ],
    "confidence": "high",
    "status": "supported",
-   "used_in": [],
+   "used_in": [
+    "sections/definitions.tex"
+   ],
    "contradicted_by": [
     "C20",
     "C21",
@@ -438,7 +458,10 @@
    ],
    "confidence": "high",
    "status": "supported",
-   "used_in": [],
+   "used_in": [
+    "sections/connectivity.tex",
+    "sections/introduction.tex"
+   ],
    "contradicted_by": [
     "C25",
     "C49"
@@ -458,7 +481,9 @@
    ],
    "confidence": "high",
    "status": "supported",
-   "used_in": [],
+   "used_in": [
+    "sections/connectivity.tex"
+   ],
    "contradicted_by": [
     "C25",
     "C48"
@@ -483,7 +508,9 @@
    ],
    "confidence": "high",
    "status": "supported",
-   "used_in": [],
+   "used_in": [
+    "sections/definitions.tex"
+   ],
    "contradicted_by": []
   },
   {
@@ -540,9 +567,7 @@
    "derivation": "sections/counting.tex, Corollary on distance",
    "confidence": "high",
    "status": "supported",
-   "used_in": [
-    "sections/counting.tex"
-   ],
+   "used_in": [],
    "contradicted_by": []
   },
   {
@@ -570,7 +595,9 @@
    "derivation": "modules/m1.md, section 5, Theorem 1 (full induction proof, including the base case k = 0 under the length-0 convention)",
    "confidence": "high",
    "status": "supported",
-   "used_in": [],
+   "used_in": [
+    "sections/counting.tex"
+   ],
    "contradicted_by": []
   },
   {
@@ -644,7 +671,9 @@
    "derivation": "modules/m2.md, Section 5.3 (Corollary 2.3); script modules/m2-check.py, section 5 (longest path seen equals N - 1, never more)",
    "confidence": "high",
    "status": "supported",
-   "used_in": [],
+   "used_in": [
+    "sections/connectivity.tex"
+   ],
    "contradicted_by": []
   },
   {
@@ -679,7 +708,9 @@
    "derivation": "modules/m3.md, Section 3, Theorem M3.2",
    "confidence": "high",
    "status": "supported",
-   "used_in": [],
+   "used_in": [
+    "sections/connectivity.tex"
+   ],
    "contradicted_by": []
   },
   {
@@ -702,7 +733,9 @@
    "derivation": "modules/m3.md, Section 3, Theorem M3.3",
    "confidence": "high",
    "status": "supported",
-   "used_in": [],
+   "used_in": [
+    "sections/connectivity.tex"
+   ],
    "contradicted_by": []
   }
  ],

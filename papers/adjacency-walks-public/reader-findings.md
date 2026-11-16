@@ -41,3 +41,14 @@ F16 | comprehension | Introduction, p. 1: "every entry off the main diagonal of 
 
 READER SUMMARY
 The paper asks how to decide from a graph's adjacency matrix A whether the graph is connected, and how the entries of powers of A relate to walks and paths. It answers three questions. First, the (i,j) entry of A^k counts walks of length k from v_i to v_j, with repeated vertices allowed, so it does not count paths. Second, a path is a walk with no repeated vertex. Third, for graphs with N >= 2 vertices, the graph is connected exactly when every off-diagonal entry of A + A^2 + ... + A^{N-1} is positive. The proof uses the walk-counting result, a lemma that every walk contains a path of length at most its own length, and the bound that a path has at most N-1 edges. Section 5 checks the test by hand on three small graphs (a connected 3-vertex path, a 3-vertex graph with an isolated vertex, and a 4-vertex path), and lists the limits: only zero versus nonzero matters, walk counts are not path counts, and the diagonal is excluded on purpose.
+
+### Author's response to the round 1 reader findings
+
+As reported by the author after the revision; the detail is in the per-finding log of `self-evaluation.md`.
+
+**Reader findings**
+- **Changed:** F1 (abstract gloss), F2, F3 (moot after the Bai cut), F5, F6, F7, F8, F9, F10, F11, F12 (one line with the binomial expansion), F13, F14, F15, F16.
+- **Partly met:**
+  - F4: the paper now says the two definitions agree by Proposition 2.9.10, but does not restate Grinberg's definition, which needs components.
+  - F5: the walk class is renamed C_r, but the u/w/v/w_t vertex naming stays, since the proof introduces w_t.
+- **Left as is:** F1's "adjacency matrix" is not glossed in the abstract.

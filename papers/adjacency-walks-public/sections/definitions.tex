@@ -1,23 +1,23 @@
 \section{Definitions}\label{sec:defs}
 
-Throughout, $G$ is a finite, simple, undirected graph: its vertices are $v_1,\dots,v_N$ with $N\ge 1$; no edge joins a vertex to itself; two vertices are joined by at most one edge; and the edge joining $u$ and $v$ is the same as the edge joining $v$ and $u$ \cite[Section~2.9]{grinberg2025graph}. Two vertices are \emph{adjacent} if an edge joins them. The indices $i,j,r$ run over $1,\dots,N$.
+Throughout, $G$ is a finite, simple, undirected graph: its vertices are $v_1,\dots,v_N$ with $N\ge 1$; no edge joins a vertex to itself; two vertices are joined by at most one edge; and the edge joining $u$ and $v$ is the same as the edge joining $v$ and $u$ \cite[Definition~2.1.1, p.~9]{grinberg2025graph}. Two vertices are \emph{adjacent} if an edge joins them. The indices $i,j,r$ run over $1,\dots,N$.
 
 \begin{definition}[Adjacency matrix]\label{def:matrix}
-The \emph{adjacency matrix} of $G$ is the $N\times N$ matrix $A$ with $A_{ij}=1$ if $v_i$ and $v_j$ are adjacent and $A_{ij}=0$ otherwise \cite[Definition~1.1.2]{galwaynotes}.
+The \emph{adjacency matrix} of $G$ is the $N\times N$ matrix $A$ with $A_{ij}=1$ if $v_i$ and $v_j$ are adjacent and $A_{ij}=0$ otherwise \cite[Definition~1.1.2]{galwaynotes}. The entries $A_{ii}$ form the \emph{diagonal}; the others are \emph{off-diagonal}.
 \end{definition}
 Since $G$ is simple and undirected, $A$ is symmetric and its diagonal is zero \cite[p.~3]{galwaynotes}. Powers are the usual ones: $A^0=I$ is the identity matrix, $A^{k+1}=A^kA$, and the entry in row $i$ and column $j$ of a product is $(XY)_{ij}=\sum_{r=1}^{N}X_{ir}Y_{rj}$. All entries of $A$ are non-negative integers, so all entries of every $A^k$ are too.
 
 \begin{definition}[Walk and length]\label{def:walk}
 A \emph{walk} from $u$ to $w$ is a sequence of vertices $u_0u_1\cdots u_k$ with $k\ge 0$, $u_0=u$, $u_k=w$, in which $u_{t-1}$ and $u_t$ are adjacent for $1\le t\le k$. Its \emph{length} is $k$. Vertices may repeat, and a walk may traverse the same edge several times, each time counted.
 \end{definition}
-A single vertex $u$ is a walk of length $0$ from $u$ to itself. This definition, including $k\ge0$, is Definition~2.9.1(a) of Grinberg \cite[p.~36]{grinberg2025graph}.
+A single vertex $u$ is a walk of length $0$ from $u$ to itself. This definition, including $k\ge0$, is Definition~2.9.1(a) and (b) of Grinberg \cite[p.~36]{grinberg2025graph}.
 
 \begin{definition}[Path, path between two vertices]\label{def:path}
 A \emph{path} is a walk whose vertices are pairwise distinct \cite[Definition~2.9.1(c), p.~36]{grinberg2025graph}. A \emph{path between $u$ and $w$} (or \emph{from $u$ to $w$}) is a path $u_0\cdots u_k$ with $u_0=u$ and $u_k=w$. If $u\ne w$ it has length at least $1$; the only path from $u$ to itself is the single vertex $u$, because $u_0=u_k$ with $k\ge1$ would repeat a vertex.
 \end{definition}
-This is the meaning of ``path'' throughout. Bai's definition agrees, except that it also admits cycles \cite[p.~1]{bai2025adjacency}; Paramadevan and Sotheeswaran leave the word undefined \cite{paramadevan2021adjacency}.
+This is the meaning of ``path'' throughout.
 
 \begin{definition}[Connected]\label{def:connected}
 $G$ is \emph{connected} if for any two vertices $u,w$ there is a path from $u$ to $w$.
 \end{definition}
-This is equivalent to Grinberg's definition by components \cite[Proposition~2.9.10 and Definition~2.9.12, p.~42]{grinberg2025graph}. A vertex is joined to itself by the path of length $0$, so only pairs of different vertices matter.
+Grinberg defines connectedness through components; by his Proposition~2.9.10 \cite[p.~42]{grinberg2025graph} the two definitions agree. A vertex is joined to itself by the path of length $0$, so only pairs of different vertices matter.
