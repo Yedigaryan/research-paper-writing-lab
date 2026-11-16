@@ -59,3 +59,29 @@ Changed: main.tex (abstract gloss of walk), introduction, definitions, counting,
 - F14: "(Lemma 4.1)" added and the sentence split.
 - F15: "takes only A as input".
 - F16: diagonal and off-diagonal defined in Definition 2.1.
+
+## Final edits log
+Evaluator:
+- F13: sentence "This is the meaning of path throughout" cut (definitions.tex).
+- F14: walk vertices in the proof of Theorem 3.1 renamed u_0 ... u_{k+1} (all occurrences in the proof checked); w is now only an endpoint.
+- F15: "The theorem is Theorem 2 of ..." now reads "\Cref{thm:sum} is Theorem 2 of ..."; N = 1 sentence untouched.
+- F16: PDF bookmark string of the Section 3 title is "powers of A"; build log has no hyperref warning.
+Reader:
+- F1: "(that is, with i != j)" added at the introduction's Q3; the abstract is left as is for space.
+- F2: introduction now says the proofs are written out so every step can be checked by hand.
+- F3: reworded to "The cited sources prove this starting from k=1; the induction below covers all k>=0."
+- F4: left; defining components would add a definition beyond the limits.
+- F5: met through evaluator F14.
+- F6: clause "(it still ends at v_r)" added to the deletion step; no new step.
+- F7: sentence now names Lemma 4.1 and Lemma 4.2 by reference.
+- F8: parenthetical now "can have any length from 0 to k-1"; mathematics unchanged.
+- F9: sentence on bracketed numbers added to the introduction.
+- F10: statement untouched; "For N=2 the sum has the single term B=A." added after it.
+- F11: left; the N=1 sentence stays where it is by instruction (F15), and the Limits paragraph says the proof covers N>=2, which is consistent.
+- F12: clause added that I has zero off-diagonal entries so only k>=1 terms contribute there.
+- F13: B for G_3 printed as a display; still 5 pages.
+- F14: "whose A^3 is printed in Section 3" added.
+
+Corrections after the diff check:
+- connectivity.tex: the (I+A)^{N-1} sentence now says each k>=1 term is a positive multiple of (A^k)_ij, so the entry is positive exactly when some (A^k)_ij, 1<=k<=N-1, is positive, that is, when B_ij>0; it no longer says the terms sum to B_ij.
+- counting.tex: "(it still ends at v_r)" changed to "(its last vertex is now u_k=v_r)".

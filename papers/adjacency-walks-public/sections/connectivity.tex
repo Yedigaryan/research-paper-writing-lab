@@ -1,12 +1,12 @@
 \section{Q3: a connectivity test from \texorpdfstring{$A$}{A}}\label{sec:test}
 
-The test rests on two lemmas about walks and paths. The first is Corollary~2.9.7 of Grinberg \cite[p.~39]{grinberg2025graph}; the second combines the walk-counting theorem with the bound that a path has at most $N-1$ edges (it has at most $N$ distinct vertices), which Grinberg states in Section~2.9.4 \cite[p.~40]{grinberg2025graph}. The proofs below are written out in full.
+The test rests on two lemmas about walks and paths. \Cref{lem:cut} is Corollary~2.9.7 of Grinberg \cite[p.~39]{grinberg2025graph}; \cref{lem:reach} combines the walk-counting theorem with the bound that a path has at most $N-1$ edges (it has at most $N$ distinct vertices), which Grinberg states in Section~2.9.4 \cite[p.~40]{grinberg2025graph}. The proofs below are written out in full.
 
 \begin{lemma}[Every walk contains a path]\label{lem:cut}
 Let $W=u_0\cdots u_k$ be a walk from $u$ to $w$. Then there is a path from $u$ to $w$ of length at most $k$.
 \end{lemma}
 \begin{proof}
-By strong induction on $k$ (strong, because $W'$ below may be shorter than $k-1$): for a walk of length $k$ we assume the statement for all walks of smaller length.
+By strong induction on $k$ (strong, because $W'$ below can have any length from $0$ to $k-1$): for a walk of length $k$ we assume the statement for all walks of smaller length.
 
 \emph{Base case $k=0$.} $W=(u)$ has one vertex, so it is a path of length $0$.
 
@@ -25,8 +25,9 @@ Let $i\ne j$. There is a path from $v_i$ to $v_j$ if and only if $(A^k)_{ij}>0$ 
 \begin{theorem}[Sum test]\label{thm:sum}
 Let $N\ge2$ and $B=A+A^2+\dots+A^{N-1}$. Then $G$ is connected if and only if $B_{ij}>0$ for all $i\ne j$.
 \end{theorem}
-For $N=1$ there is no pair of different vertices and the graph is connected. The theorem is Theorem~2 of Paramadevan and Sotheeswaran \cite[p.~17]{paramadevan2021adjacency}.
+For $N=2$ the sum has the single term $B=A$.
+For $N=1$ there is no pair of different vertices and the graph is connected. \Cref{thm:sum} is Theorem~2 of Paramadevan and Sotheeswaran \cite[p.~17]{paramadevan2021adjacency}.
 \begin{proof}
 Every $A^k$ has non-negative entries, so $B_{ij}=\sum_{k=1}^{N-1}(A^k)_{ij}$ is a sum of non-negative terms, and it is positive exactly when at least one term is positive. For $i\ne j$ this holds exactly when a path joins $v_i$ and $v_j$, by \cref{lem:reach}. So $B_{ij}>0$ for all $i\ne j$ exactly when every pair of different vertices is joined by a path, which is \cref{def:connected}.
 \end{proof}
-The cutoff $N-1$ is the largest length a path can have (proof of \cref{lem:reach}). The entries of $B$ are walk counts, not path counts; only whether they are zero is used. The test can also be written as ``$(I+A)^{N-1}$ has no zero entry'' \cite[Proposition~3, p.~2]{gotti18211}\cite[Theorem~2, p.~1]{bai2025adjacency}. Indeed $(I+A)^{N-1}=\sum_{k=0}^{N-1}\binom{N-1}{k}A^k$ because $I$ and $A$ commute; every coefficient is at least $1$, the term $k=0$ makes the diagonal positive, and off the diagonal the entry is positive exactly when $B_{ij}>0$.
+The cutoff $N-1$ is the largest length a path can have (proof of \cref{lem:reach}). The entries of $B$ are walk counts, not path counts; only whether they are zero is used. The test can also be written as ``$(I+A)^{N-1}$ has no zero entry'' \cite[Proposition~3, p.~2]{gotti18211}\cite[Theorem~2, p.~1]{bai2025adjacency}. Indeed $(I+A)^{N-1}=\sum_{k=0}^{N-1}\binom{N-1}{k}A^k$ because $I$ and $A$ commute; every coefficient is at least $1$, the term $k=0$ makes the diagonal positive, and off the diagonal only the terms $k\ge1$ contribute, each a positive multiple of $(A^k)_{ij}$ (every coefficient is at least $1$), so the entry is positive exactly when some $(A^k)_{ij}$ with $1\le k\le N-1$ is positive, that is, exactly when $B_{ij}>0$.
