@@ -66,6 +66,14 @@ Procedure:
    `python3 .claude/skills/research-paper/scripts/check_citations.py <paper>`
    `python3 .claude/skills/research-paper/scripts/check_claims.py <paper>`
    `python3 .claude/skills/research-paper/scripts/inspect_pdf.py <paper>`
+   Then go through the release conditions in `rubric.md` one by one. List
+   the paper folder and check that `self-evaluation.md` exists; do not
+   open it. Each condition that fails is its own finding line, major or
+   higher, with the condition number in the defect: a missing
+   `self-evaluation.md` is condition 9, a failed build or PDF check is
+   condition 7, a failed citation or claim check is condition 8. Where one
+   of your findings already covers the cause, add the condition number to
+   that finding instead of a second line.
 10. On a later round, verify each finding the previous report lists as
     resolved. Re-raise any that is not, with the same id.
 11. Score all twelve dimensions. Every score carries an observation with a

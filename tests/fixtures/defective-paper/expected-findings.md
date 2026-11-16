@@ -22,7 +22,7 @@ major item is a failed test of the evaluator or the rubric.
 | E3 | critical | Section 1, factor 3.7 | Numerical claim rests on a source that could not be accessed; presented as established fact without qualification. |
 | E4 | major | Proof of the theorem | "Obvious by induction" is not a proof. The induction step is the whole content. |
 | E5 | major | Section 2, connectivity test | Text sums powers to $A^N$ while evidence claim C3 says $A^{N-1}$; and the claim has no derivation or source. Internal inconsistency plus unsupported claim. |
-| E6 | major | Section 2, "CSR layout" | Acronym never expanded or explained; concept introduced after use with no definition. |
+| E6 | major, or minor when raised as surplus with the correction cut | Section 2, "CSR layout" | Acronym never expanded or explained; concept introduced after use with no definition. The sentence is outside the brief's scope, so cutting it is an accepted correction. |
 | E7 | major | Conclusion | "Spectral methods are always preferable" appears nowhere in the body or the evidence. New unsupported claim in the conclusion. |
 | E8 | minor | Section 1 | "Simple undirected graph" is assumed in the theorem but the introduction says "any graph". |
 | E9 | minor | Whole paper | No definition of walk, path, adjacency matrix, or connected before use; audience requirement unmet. Major is acceptable. |

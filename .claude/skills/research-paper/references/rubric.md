@@ -108,6 +108,15 @@ Critical and major findings must be resolved, and the next evaluator
 confirms each. Minor findings are resolved or documented with a reason.
 Scores are never adjusted to satisfy a condition.
 
+A release condition that fails is a finding, not only a remark in the
+recommendation. The evaluator raises each failed condition it can observe
+as its own finding line, names the condition number in the defect, and
+grades it major or higher, because the paper cannot be released while it
+stands. When an existing finding already covers the cause, that finding
+names the condition number and no second line is added. Condition 9 is
+observed without reading the author's text: the evaluator checks that
+`self-evaluation.md` exists in the paper folder and does not open it.
+
 ## Final edits
 
 Minor findings never cost an evaluation round on their own. When a round
