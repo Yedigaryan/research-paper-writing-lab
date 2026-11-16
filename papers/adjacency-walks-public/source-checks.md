@@ -16,3 +16,20 @@ galwaynotes | C31, C33 | Theorem 1.1.3 p. 4; Definition 1.1.2 and Notes 1-2 p. 3
 gotti18211 | C34, C36 | Proposition 2 p. 1; Proposition 3 p. 2 | fetched | supports | Verbatim. Prop 3 is for simple graphs. The footnote says it was not covered in class.
 bai2025adjacency | C38, C39, C40 | Theorem 1, path definition, Theorem 2, p. 1 | fetched | supports | Verbatim. Theorem 1 gives no range for k (see F9).
 ```
+
+## Round 2, 2026-11-16
+
+Changed-claims list given to the evaluator: new p6; changed none; removed none; unchanged 35.
+
+```
+CITATION SPOT CHECKS
+grinberg2025graph | p6 | Definition 2.1.1, p. 9 | fetched | supports | arXiv 2308.04512v3 (454 pp.). The definition sits under the "page 9" header. "A simple graph is a pair (V, E), where V is a finite set, and where E is a subset of P2 (V )." is verbatim. "uv = vu" and "P2(V) is the set of all 2-element subsets" are on pp. 9-10. This replaces the round 1 "does not support" line (Section 2.9). I also confirmed that Def 2.9.1(b) defines length (F10).
+paramadevan2021adjacency | C42 | Theorem 2, p. 17 | fetched (control) | supports | JSc EUSL 12(1), pp. 13-21. The statement precedes the page-17 footer. "Then, AG is connected if and only if bij ≠ 0, when i ≠ j" matches. Agrees with the round 1 record.
+grinberg2025graph | C47 | Definition 2.9.1(a),(c), p. 36 | carried | supports | Round 1.
+grinberg2025graph | C48 | Corollary 2.9.7, p. 39 | carried | supports | Round 1.
+grinberg2025graph | C49 | Section 2.9.4, p. 40 | carried | supports | Round 1.
+grinberg2025graph | C50 | Proposition 2.9.10 and Definition 2.9.12, p. 42 | carried | supports | Round 1 (also behind p5).
+galwaynotes | C31, C33 | Theorem 1.1.3 p. 4; Definition 1.1.2 and Notes 1-2 p. 3 | carried | supports | Round 1.
+gotti18211 | C34, C36 | Proposition 2 p. 1; Proposition 3 p. 2 | carried | supports | Round 1.
+bai2025adjacency | C38, C40 | Theorem 1 p. 1; Theorem 2 p. 1 | carried | supports | Round 1. C39 is no longer cited.
+```
