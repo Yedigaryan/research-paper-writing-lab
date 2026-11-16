@@ -11,7 +11,7 @@ Run it from the repository root as `bash .claude/skills/research-paper/scripts/b
 
 ## Files
 
-- `main.tex`, `sections/`, `appendices/`: the paper.
+- `main.tex`, `sections/`: the paper.
 - `references.bib`: bibliography. Keys match source ids in `evidence/evidence.json`.
 - `evidence/evidence.json`: every source and claim with its support.
 - `scripts/`: `public_examples.py` recomputes the matrices of the examples (`python3 -I scripts/public_examples.py`); the other scripts check the long version's lemmas.

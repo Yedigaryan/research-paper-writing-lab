@@ -105,10 +105,10 @@ Mechanical checks: build pass, citations pass, claims pass, pdf pass. Pages 5 of
 | F10 | minor | sections/definitions.tex:13 | (Round 1) Part (a) only, where the length is defined in part (b). | Resolved. | resolved, confirmed by the round 2 evaluator |
 | F11 | minor | evidence/evidence.json a4 and used_in | (Round 1) Stale used_in fields. | Resolved. | resolved, confirmed by the round 2 evaluator |
 | F12 | minor | sections/counting.tex:1, connectivity.tex:1 | (Round 1) hyperref token warnings. | Resolved. | resolved, confirmed by the round 2 evaluator |
-| F13 | minor | sections/definitions.tex:18 | Surplus: "This is the meaning of ``path'' throughout." is a standalone remark that no reader would get wrong, now that the source comparison it once closed is gone. | Cut the sentence. | open, for final edits |
-| F14 | minor | sections/counting.tex:16-18 | The proof of Thm 3.1 names walk vertices w_0,...,w_{k+1}. Def 2.2 and Lemma 4.1 use u_t for walk vertices and w for an endpoint, so the letter w has two roles (reader finding F5, partly met). | In counting.tex:16 and :18, rename w_0 w_1 ... w_k w_{k+1} to u_0 u_1 ... u_k u_{k+1}, w_k to u_k, and w_{k+1} to u_{k+1}. | open, for final edits |
-| F15 | minor | sections/connectivity.tex:28 | "For N = 1 there is no pair of different vertices and the graph is connected. The theorem is Theorem 2 of Paramadevan and Sotheeswaran [5, p. 17]." It is unclear whether "The theorem" means Thm 4.3 or the N=1 remark, and the remark sits between the theorem and its proof (reader finding F11, still present). | Reword the second sentence to "Theorem 4.3 is Theorem 2 of Paramadevan and Sotheeswaran [5, p. 17]." Leave the N=1 sentence as it is. | open, for final edits |
-| F16 | minor | sections/counting.tex:1 | The PDF-string alternative {Ak} makes the section 3 bookmark read "Ak", as if it were a word. | Use \texorpdfstring{$A^k$}{A\^{}k}, or {A to the k}. | open, for final edits |
+| F13 | minor | sections/definitions.tex:18 | Surplus: "This is the meaning of ``path'' throughout." is a standalone remark that no reader would get wrong, now that the source comparison it once closed is gone. | Cut the sentence. | closed by final edits, not re-read by an evaluator |
+| F14 | minor | sections/counting.tex:16-18 | The proof of Thm 3.1 names walk vertices w_0,...,w_{k+1}. Def 2.2 and Lemma 4.1 use u_t for walk vertices and w for an endpoint, so the letter w has two roles (reader finding F5, partly met). | In counting.tex:16 and :18, rename w_0 w_1 ... w_k w_{k+1} to u_0 u_1 ... u_k u_{k+1}, w_k to u_k, and w_{k+1} to u_{k+1}. | closed by final edits, not re-read by an evaluator |
+| F15 | minor | sections/connectivity.tex:28 | "For N = 1 there is no pair of different vertices and the graph is connected. The theorem is Theorem 2 of Paramadevan and Sotheeswaran [5, p. 17]." It is unclear whether "The theorem" means Thm 4.3 or the N=1 remark, and the remark sits between the theorem and its proof (reader finding F11, still present). | Reword the second sentence to "Theorem 4.3 is Theorem 2 of Paramadevan and Sotheeswaran [5, p. 17]." Leave the N=1 sentence as it is. | closed by final edits, not re-read by an evaluator |
+| F16 | minor | sections/counting.tex:1 | The PDF-string alternative {Ak} makes the section 3 bookmark read "Ak", as if it were a word. | Use \texorpdfstring{$A^k$}{A\^{}k}, or {A to the k}. | closed by final edits, not re-read by an evaluator |
 
 ### Citation and claim coverage
 
@@ -121,3 +121,26 @@ None used in the text.
 ### Known limitations
 
 The paper proves the sum test only for finite simple undirected graphs with at least two vertices.
+
+### Final edits
+
+Findings closed after the evaluation: F13 (sentence cut), F14 (walk vertices in the proof of the walk-counting
+theorem renamed to u), F15 (the sentence names the theorem by number), F16 (PDF bookmark string). The author
+also changed twelve of the fourteen round 2 reader passages and left two; the list is in `reader-findings.md`.
+
+Diff confined to the named passages: yes, after one correction. The first diff added to the remark on
+(I + A)^(N-1) the clause that the off-diagonal terms "sum to B_ij". That is false: the terms carry binomial
+coefficients, and in the three-vertex example (I + A)^2 has (1,2) entry 2 while B_12 = 1. The orchestrator's
+diff check found it, and the author replaced the clause with the correct reasoning: each term is a positive
+multiple of (A^k)_ij, so the entry is positive exactly when B_ij is. The printed sum B for the four-vertex
+example was checked by hand. No file under `evidence/` and not `references.bib` was touched; no claim or
+citation was added; no numbered statement and no proof step changed.
+
+Mechanical checks re-run: build pass, citations pass, claims pass, pdf pass, 5 pages of a budget of 5.
+
+No evaluator has re-read the final edits.
+
+Decision: PASS -- every release condition holds: every dimension scores at least 4 in round 2, no critical
+or major finding is open, the mechanical checks pass within the page budget, `self-evaluation.md` covers every
+section, and the independent evaluation of round 2 passed on the draft as it stood before the final edits.
+

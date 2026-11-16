@@ -88,3 +88,25 @@ F14 | comprehension | Limits paragraph, p.5: "Hence (lemma 4.1) a path of length
 
 READER SUMMARY
 The paper asks two things. First, what do the entries of the k-th power of an adjacency matrix count? Its answer is that (A^k)_ij is the number of walks of length k from v_i to v_j, where walks may repeat vertices, so this is not a count of paths. Second, can the connectivity of a finite simple undirected graph with N ≥ 2 vertices be decided from its adjacency matrix alone? Its answer is yes: the graph is connected exactly when every off-diagonal entry of B = A + A^2 + ··· + A^{N−1} is positive. The argument has three parts: an induction showing that the powers count walks, a lemma that any walk contains a path, and a cutoff at length N−1 because a path has at most N vertices. The paper checks the result by hand on three small graphs: a connected path on three vertices, a disconnected graph with an isolated vertex, and a four-vertex path that needs the A^3 term. I could write this paragraph from the pages, but I had to work out the purpose of the note (new result or write-up of known ones) and the role of the N = 1 remark, which is not stated.
+
+### Author's response to the round 2 reader findings
+
+Made as final edits after the passing round; no evaluator re-read them.
+
+**Reader**
+- **F1: changed.** I added "(that is, with i ≠ j)" at Q3 in the introduction. The abstract is unchanged for space.
+- **F2: changed.** The introduction now says the proofs are written out so every step can be checked by hand.
+- **F3: changed.** It now reads "The cited sources prove this starting from k=1; the induction below covers all k≥0."
+- **F4: left.** Defining components would add a definition beyond the limits.
+- **F5: changed.** It is met through evaluator F14.
+- **F6: changed.** I added the clause "(it still ends at v_r)" to the deletion step, with no new step.
+- **F7: changed.** The sentence now names Lemma 4.1 and Lemma 4.2.
+- **F8: changed.** The parenthetical is now "(strong, because W' below can have any length from 0 to k-1)". The mathematics is unchanged.
+- **F9: changed.** I added one sentence on how to read the bracketed numbers, in the introduction.
+- **F10: changed.** The theorem statement is untouched. I added "For N=2 the sum has the single term B=A." after it.
+- **F11: left.** You told me to keep the N = 1 sentence in place for F15. The Limits paragraph already says the proof covers N ≥ 2.
+- **F12: changed.** I added a clause saying that I has zero off-diagonal entries, so only the k ≥ 1 terms contribute there.
+- **F13: changed.** B for the four-vertex graph is now printed as a display, and the paper is still 5 pages.
+- **F14: changed.** I added "whose A^3 is printed in Section 3".
+
+I could not meet any finding beyond the two left above.

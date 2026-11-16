@@ -41,3 +41,5 @@ never editable by the loop.
 ## Papers
 
 - `papers/adjacency-matrix-connectivity/`: adjacency matrix, meaning of the entries of its powers, path definition, and the connectivity test for an undirected graph.
+- `papers/adjacency-walks-public/`: the same three questions for readers outside the course, five pages, references only to publicly accessible sources. Passed evaluation in two rounds.
+- `papers/adjacency-short-plain/` and `papers/adjacency-short-analogies/`: the short version without and with analogies, written to compare the two. Not evaluated.
