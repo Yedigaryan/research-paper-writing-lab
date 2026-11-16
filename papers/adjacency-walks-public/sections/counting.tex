@@ -1,0 +1,29 @@
+\section{Q1: what the entries of $A^k$ count}\label{sec:counting}
+
+\begin{theorem}[Walk counting]\label{thm:counting}
+For every integer $k\ge 0$ and all $i,j$, the entry $(A^k)_{ij}$ is the number of walks of length $k$ from $v_i$ to $v_j$.
+\end{theorem}
+The sources state this for $k\ge1$ \cite[Theorem~1.1.3, p.~4]{galwaynotes}\cite[Proposition~2, p.~1]{gotti18211}\cite[Theorem~1, p.~1]{bai2025adjacency}; the case $k=0$ is covered below.
+\begin{proof}
+By induction on $k$.
+
+\emph{Base case $k=0$.} $A^0=I$. A walk of length $0$ from $v_i$ to $v_j$ is a single vertex that is both start and end, so there is exactly one such walk if $i=j$ and none if $i\ne j$. This is $I_{ij}$.
+
+\emph{Inductive step.} Assume that for some $k\ge0$ and all $i,r$ the entry $(A^k)_{ir}$ is the number of walks of length $k$ from $v_i$ to $v_r$. Fix $i$ and $j$. Since $A^{k+1}=A^kA$,
+\begin{equation}\label{eq:step}
+(A^{k+1})_{ij}=\sum_{r=1}^{N}(A^k)_{ir}A_{rj}.
+\end{equation}
+Write a walk of length $k+1$ from $v_i$ to $v_j$ as $w_0w_1\cdots w_kw_{k+1}$ with $w_0=v_i$ and $w_{k+1}=v_j$; its last vertex is $w_{k+1}$ and the vertex before the last is $w_k$. Exactly one $r$ has $w_k=v_r$, so these walks fall into $N$ classes $\mathcal W_r$, one for each $r$: $\mathcal W_r$ is the set of walks of length $k+1$ from $v_i$ to $v_j$ whose vertex before the last is $v_r$. Every such walk lies in exactly one class.
+
+Fix $r$. If $A_{rj}=1$, that is, $v_r$ and $v_j$ are adjacent, then deleting the final vertex $v_j$ from a walk in $\mathcal W_r$ leaves a walk of length $k$ from $v_i$ to $v_r$; and appending $v_j$ to a walk of length $k$ from $v_i$ to $v_r$ gives a walk in $\mathcal W_r$, because $v_r$ is adjacent to $v_j$. The two operations undo each other, so $\mathcal W_r$ and the set of walks of length $k$ from $v_i$ to $v_r$ are in one to one correspondence. By the hypothesis, $|\mathcal W_r|=(A^k)_{ir}=(A^k)_{ir}A_{rj}$. If $A_{rj}=0$, then $v_r$ and $v_j$ are not adjacent, so no walk can have $w_k=v_r$ and $w_{k+1}=v_j$, and $|\mathcal W_r|=0=(A^k)_{ir}A_{rj}$.
+
+Adding over the $N$ classes, the number of walks of length $k+1$ from $v_i$ to $v_j$ is $\sum_r(A^k)_{ir}A_{rj}$, which is $(A^{k+1})_{ij}$ by \cref{eq:step}.
+\end{proof}
+
+\paragraph{The entries count walks, not paths.} The proof uses only that consecutive vertices are adjacent, so walks with repeated vertices are counted. Take the graph $G_1$ with $N=3$ and edges $v_1v_2$ and $v_2v_3$. Its matrix and the next two powers are
+\[
+A=\begin{pmatrix}0&1&0\\1&0&1\\0&1&0\end{pmatrix},\quad
+A^2=\begin{pmatrix}1&0&1\\0&2&0\\1&0&1\end{pmatrix},\quad
+A^3=\begin{pmatrix}0&2&0\\2&0&2\\0&2&0\end{pmatrix}.
+\]
+By \cref{thm:counting}, $(A^2)_{11}=1$ counts the one walk $v_1v_2v_1$ of length $2$ from $v_1$ to $v_1$. It repeats $v_1$, so it is not a path; the only path from $v_1$ to $v_1$ is $v_1$ alone, of length $0$ (\cref{def:path}). So ``$(A^2)_{11}$ is the number of paths of length $2$ from $v_1$ to $v_1$'' is false, although ``the number of walks'' is true. Nor is the entry ``$1$ if $v_j$ can be reached from $v_i$'': $(A^3)_{12}=2$ counts the walks $v_1v_2v_1v_2$ and $v_1v_2v_3v_2$, and $(A^3)_{13}=0$ although a path $v_1v_2v_3$ joins $v_1$ to $v_3$ (it has length $2$, not $3$).

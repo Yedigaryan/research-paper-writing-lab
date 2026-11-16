@@ -6,7 +6,7 @@ Research question: For a finite simple undirected graph with N vertices and adja
 
     bash ../../.claude/skills/research-paper/scripts/build.sh .
 
-Requires TeX Live with `latexmk` and `biber`. The compiled paper is
+Run it from the repository root as `bash .claude/skills/research-paper/scripts/build.sh papers/adjacency-walks-public`. Requires TeX Live with `latexmk` and `biber`. The compiled paper is
 `main.pdf`. Auxiliary files go to `build/`.
 
 ## Files
@@ -14,6 +14,5 @@ Requires TeX Live with `latexmk` and `biber`. The compiled paper is
 - `main.tex`, `sections/`, `appendices/`: the paper.
 - `references.bib`: bibliography. Keys match source ids in `evidence/evidence.json`.
 - `evidence/evidence.json`: every source and claim with its support.
-- `modules/`: subject-matter module reports.
+- `scripts/`: `public_examples.py` recomputes the matrices of the examples (`python3 -I scripts/public_examples.py`); the other scripts check the long version's lemmas.
 - `self-evaluation.md`: the author's section by section justification.
-- `evaluation-report.md`: independent evaluation rounds and release decision.

@@ -1,0 +1,77 @@
+{
+ "sources": [],
+ "claims": [
+  {
+   "id": "p1",
+   "text": "Three-vertex path graph G1 (edges v1v2, v2v3): A^2 has rows (1,0,1),(0,2,0),(1,0,1); A^3 has rows (0,2,0),(2,0,2),(0,2,0); B = A + A^2 has rows (1,1,1),(1,2,1),(1,1,1). (A^2)_11 = 1 counts the walk v1v2v1; (A^2)_13 = 1 counts v1v2v3; (A^2)_22 = 2 counts v2v1v2 and v2v3v2; (A^3)_12 = 2 counts v1v2v1v2 and v1v2v3v2. The only path from v1 to v1 is the single vertex v1 (length 0), so (A^2)_11 does not count paths. Computed by script.",
+   "kind": "derived",
+   "module": "author",
+   "support": [],
+   "derivation": "scripts/public_examples.py, graph G1; output scripts/output-public_examples.txt; scripts/output-walks_check.txt",
+   "confidence": "high",
+   "status": "supported",
+   "used_in": "sections/counting.tex, sections/example.tex",
+   "contradicted_by": []
+  },
+  {
+   "id": "p2",
+   "text": "Disconnected graph G2 (edge v1v2, isolated vertex v3): A has rows (0,1,0),(1,0,0),(0,0,0); A^2 has rows (1,0,0),(0,1,0),(0,0,0); B = A + A^2 has rows (1,1,0),(1,1,0),(0,0,0); B_13 = B_23 = B_31 = B_32 = 0. Computed by script.",
+   "kind": "derived",
+   "module": "author",
+   "support": [],
+   "derivation": "scripts/public_examples.py, graph G2; output scripts/output-public_examples.txt",
+   "confidence": "high",
+   "status": "supported",
+   "used_in": "sections/example.tex",
+   "contradicted_by": []
+  },
+  {
+   "id": "p3",
+   "text": "Four-vertex path graph G3 (edges v1v2, v2v3, v3v4): A^2 has rows (1,0,1,0),(0,2,0,1),(1,0,2,0),(0,1,0,1); A^3 has rows (0,2,0,1),(2,0,3,0),(0,3,0,2),(1,0,2,0); B = A + A^2 + A^3 has rows (1,3,1,1),(3,2,4,1),(1,4,2,3),(1,1,3,1). The entry (1,4) of A and of A^2 is 0 and of A^3 is 1, counting the walk v1v2v3v4. Computed by script.",
+   "kind": "derived",
+   "module": "author",
+   "support": [],
+   "derivation": "scripts/public_examples.py, graph G3; output scripts/output-public_examples.txt",
+   "confidence": "high",
+   "status": "supported",
+   "used_in": "sections/example.tex",
+   "contradicted_by": []
+  },
+  {
+   "id": "p4",
+   "text": "Reachability lemma (derived): for i different from j, a path from v_i to v_j exists iff (A^k)_ij > 0 for some k with 1 <= k <= N-1. Proof: a path of length k has k+1 distinct vertices so k <= N-1 (Grinberg Section 2.9.4), a path is a walk and the walk-counting theorem gives a positive entry; conversely a walk of length k gives a path of length at most k (Grinberg Corollary 2.9.7, proved in the paper as the lemma that every walk contains a path).",
+   "kind": "derived",
+   "module": "author",
+   "support": [
+    {
+     "source": "grinberg2025graph",
+     "locator": "Corollary 2.9.7, p. 39",
+     "quote": "Assume that there is a walk from u to v of length k for some k ∈ N. Then, there is a path from u to v of length ≤ k."
+    }
+   ],
+   "derivation": "sections/connectivity.tex, Lemma 2 and Lemma 1",
+   "confidence": "high",
+   "status": "supported",
+   "used_in": "sections/connectivity.tex",
+   "contradicted_by": []
+  },
+  {
+   "id": "p5",
+   "text": "The connectivity definition used (every two vertices are joined by a path) is equivalent to Grinberg's one-component definition, by his Proposition 2.9.10: u and v lie in the same component iff a path joins them.",
+   "kind": "derived",
+   "module": "author",
+   "support": [
+    {
+     "source": "grinberg2025graph",
+     "locator": "Proposition 2.9.10, p. 42",
+     "quote": "Then, u ≃G v if and only if there exists a path from u to v."
+    }
+   ],
+   "derivation": "Grinberg Proposition 2.9.10 and Definition 2.9.12, p. 42",
+   "confidence": "high",
+   "status": "supported",
+   "used_in": "sections/definitions.tex",
+   "contradicted_by": []
+  }
+ ]
+}

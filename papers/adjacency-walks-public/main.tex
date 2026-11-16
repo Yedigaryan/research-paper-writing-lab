@@ -7,6 +7,9 @@
 \usepackage{cleveref}
 \usepackage[backend=biber,style=numeric,urldate=long]{biblatex}
 \addbibresource{references.bib}
+\setcounter{biburlnumpenalty}{100}
+\setcounter{biburlucpenalty}{100}
+\setcounter{biburllcpenalty}{100}
 \graphicspath{{figures/}}
 
 \theoremstyle{definition}
@@ -18,26 +21,23 @@
 \theoremstyle{remark}
 \newtheorem{remark}[definition]{Remark}
 
-\title{Adjacency walks public}
+\title{Walks, paths, and connectivity from the adjacency matrix}
 \author{}
-\date{\today}
+\date{November 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-To be written by the author agent.
+For a finite simple undirected graph with vertices $v_1,\dots,v_N$ and adjacency matrix $A$, the entry $(A^k)_{ij}$ is the number of walks of length $k$ from $v_i$ to $v_j$ (walks, not paths). A path is a walk with no repeated vertex. For $N\ge2$, the graph is connected if and only if every off-diagonal entry of $A+A^2+\dots+A^{N-1}$ is positive. Each statement is proved in full and the test is run on three small graphs.
 \end{abstract}
 
 \input{sections/introduction}
-\input{sections/background}
-\input{sections/analysis}
-\input{sections/discussion}
-\input{sections/conclusion}
+\input{sections/definitions}
+\input{sections/counting}
+\input{sections/connectivity}
+\input{sections/example}
 
 \printbibliography
-
-\appendix
-\input{appendices/derivations}
 
 \end{document}
