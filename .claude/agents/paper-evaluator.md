@@ -37,7 +37,12 @@ Procedure:
    exists, the metadata matches, and the cited passage supports the
    attributed statement. Report each in the CITATION SPOT CHECKS block
    with the claim id and the locator you checked. A source that does not
-   exist or does not say what is attributed is a critical finding. On a
+   exist or does not say what is attributed is a critical finding. A quote
+   that is not verbatim in the source, or a locator that points to the
+   wrong part of it (a section where the statement is an exercise, a
+   wrong number or page), is at least major even when the source supports
+   the fact: a reader who follows the citation does not find what the
+   paper says is there. On a
    later round follow "Source checks across rounds" in `rubric.md`: carry
    the recorded checks of unchanged claims, fetch for changed claims and
    for checks that did not come out as `supports`, and fetch one carried

@@ -49,7 +49,12 @@ location in the paper. A score with no observation is invalid.
 - Critical: invalidates a material conclusion, fabricated or misrepresented
   evidence, or a major correctness, integrity, or safety problem.
 - Major: a significant claim unsupported, a key concept unexplained, or an
-  important part of the question unanswered.
+  important part of the question unanswered. Also major, at the least: a
+  quotation that is not verbatim in its source, and a statement attributed
+  to the wrong part of a source (a section in place of an exercise, a
+  theorem in place of a remark, the wrong page or number), even when the
+  source does support the fact. If the source does not support the fact,
+  the finding is critical.
 - Minor: clarity, consistency, presentation, or a nonessential omission.
 
 ## Surplus
