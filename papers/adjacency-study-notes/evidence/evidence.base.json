@@ -202,7 +202,9 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -220,7 +222,9 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -238,7 +242,9 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -256,7 +262,9 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -297,7 +305,9 @@
       "derivation": null,
       "confidence": "medium",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/notes.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -320,7 +330,9 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -343,7 +355,9 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -379,7 +393,9 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -397,7 +413,9 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -420,7 +438,9 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -438,7 +458,9 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -456,7 +478,9 @@
       "derivation": null,
       "confidence": "medium",
       "status": "qualified",
-      "used_in": [],
+      "used_in": [
+        "sections/notes.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -479,7 +503,9 @@
       "derivation": null,
       "confidence": "medium",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -497,7 +523,9 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -515,7 +543,9 @@
       "derivation": null,
       "confidence": "medium",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/notes.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -566,7 +596,9 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/walks.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -584,7 +616,9 @@
       "derivation": null,
       "confidence": "medium",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/walks.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -607,7 +641,10 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/walks.tex",
+        "sections/limits.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -631,7 +668,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/background.tex"
+        "sections/walks.tex"
       ],
       "contradicted_by": []
     },
@@ -673,7 +710,9 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -691,7 +730,9 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -709,7 +750,9 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -732,7 +775,9 @@
       "derivation": null,
       "confidence": "medium",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -756,7 +801,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/connectivity.tex"
       ],
       "contradicted_by": []
     },
@@ -780,7 +825,9 @@
       "derivation": null,
       "confidence": "medium",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -834,7 +881,9 @@
       "derivation": null,
       "confidence": "medium",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/limits.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -857,7 +906,9 @@
       "derivation": null,
       "confidence": "medium",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/limits.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -875,7 +926,9 @@
       "derivation": null,
       "confidence": "medium",
       "status": "qualified",
-      "used_in": [],
+      "used_in": [
+        "sections/notes.tex"
+      ],
       "contradicted_by": []
     }
   ],

@@ -41,7 +41,9 @@
       "derivation": null,
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -64,7 +66,9 @@
       "derivation": "modules/m1.md section 3, remark after Definition 2 and section 3 on N3",
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/definitions.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -87,7 +91,9 @@
       "derivation": "modules/m1.md section 3 (Theorem 1 and its proof); numerical check in scripts/m1_walks.py",
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/walks.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -120,7 +126,9 @@
       "derivation": "modules/m1.md section 3, Proposition 1; script check of direction 1 in scripts/m1_walks.py (last line of output)",
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
       "contradicted_by": []
     },
     {
@@ -143,7 +151,9 @@
       "derivation": "scripts/m1_walks.py and scripts/m1_walks_output.txt; premise m1-3",
       "confidence": "high",
       "status": "supported",
-      "used_in": [],
+      "used_in": [
+        "sections/walks.tex"
+      ],
       "contradicted_by": []
     },
     {

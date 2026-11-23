@@ -50,7 +50,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/connectivity.tex"
       ],
       "contradicted_by": []
     },
@@ -70,7 +70,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/connectivity.tex"
       ],
       "contradicted_by": []
     },
@@ -100,7 +100,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/connectivity.tex"
       ],
       "contradicted_by": []
     },
@@ -125,7 +125,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/connectivity.tex"
       ],
       "contradicted_by": []
     },
@@ -145,7 +145,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/examples.tex"
       ],
       "contradicted_by": []
     },
@@ -165,7 +165,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/examples.tex"
       ],
       "contradicted_by": []
     },
@@ -185,7 +185,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/discussion.tex"
+        "sections/limits.tex"
       ],
       "contradicted_by": []
     },
@@ -204,9 +204,7 @@
       "derivation": "scripts/m2_connectivity_test.py (last lines of output of the BOARD GRAPH and single power item); parity argument in modules/m2.md section 5.4",
       "confidence": "high",
       "status": "supported",
-      "used_in": [
-        "sections/discussion.tex"
-      ],
+      "used_in": [],
       "contradicted_by": []
     },
     {
@@ -225,7 +223,7 @@
       "confidence": "medium",
       "status": "qualified",
       "used_in": [
-        "sections/discussion.tex"
+        "sections/limits.tex"
       ],
       "contradicted_by": []
     },
@@ -245,7 +243,7 @@
       "confidence": "high",
       "status": "supported",
       "used_in": [
-        "sections/analysis.tex"
+        "sections/connectivity.tex"
       ],
       "contradicted_by": []
     }
