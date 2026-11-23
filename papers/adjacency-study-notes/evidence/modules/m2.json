@@ -1,0 +1,253 @@
+{
+  "sources": [
+    {
+      "id": "wayne_cos226_undirected",
+      "type": "web",
+      "title": "Undirected Graphs (COS 226 lecture slides)",
+      "authors": [
+        "Kevin Wayne"
+      ],
+      "year": 2006,
+      "venue": "Princeton University, COS 226 lecture slides (undirected.ppt as PDF)",
+      "identifier": {
+        "doi": null,
+        "url": "https://www.cs.princeton.edu/courses/archive/fall06/cos226/lectures/undirected.pdf",
+        "isbn": null,
+        "path": null
+      },
+      "accessed": "2026-11-23",
+      "access_status": "partial",
+      "credibility": "secondary",
+      "found_by": "module:m2",
+      "notes": "Downloaded the PDF and extracted the text; read slide 24 (PDF p. 6) on depth-first search and its running time. Author and year 2006 are from the PDF metadata (Author: Kevin Wayne; creation date 2006-11-20), not from a title slide; the URL path says fall06. Slides, not peer reviewed. The slide is about depth-first search, not breadth-first search. The rest of the deck was not read."
+    }
+  ],
+  "claims": [
+    {
+      "id": "M2-1",
+      "text": "N6. Every walk of length k from n_i to n_j (i = j allowed) contains a path from n_i to n_j of length at most k; the case i = j is covered because the walk of length 0 is a path. Proved by strong induction on k by deleting the part between two equal vertices.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Proposition 2.9.5, p. 38",
+          "quote": "Assume that a is not a path. Then, there exists a walk from u to v whose length is smaller than k."
+        },
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Corollary 2.9.7, p. 39",
+          "quote": "Assume that there is a walk from u to v of length k for some k ∈ N. Then, there is a path from u to v of length ≤ k."
+        },
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "Lemma 1.2.1, printed p. 23 (viewed as page image, PDF p. 24)",
+          "quote": "Լեմմա 1.2.1: Ենթադրենք, որ G գրաֆում u-ն և v-ն իրարից տարբեր երկու գագաթներ են: Այդ դեպքում ցանկացած (u, v)-շրջանցումից կարելի է առանձնացնել պարզ (u, v)-ճանապարհ:"
+        }
+      ],
+      "derivation": "modules/m2.md, section 3, Lemma 2.1 (premise: definitions of walk and path from m1)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-2",
+      "text": "N6. A path in a graph with N vertices has length at most N - 1, because a path of length k lists k + 1 pairwise distinct vertices.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Section 2.9.4, p. 40",
+          "quote": "However, any path from u to v must have length ≤ n − 1, where n is the number of vertices of G (since a path of length k has k + 1 distinct vertices, but G has only n vertices to spare)."
+        }
+      ],
+      "derivation": "modules/m2.md, section 3, Lemma 2.1(b)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-3",
+      "text": "N7. For N >= 2 and S = A + A^2 + ... + A^(N-1), the graph is connected exactly when S_ij > 0 for all i different from j. Proof: S_ij is the number of walks of length 1 to N-1 from n_i to n_j (walk counting, premise from m1, C19); a path gives a walk of length between 1 and N-1 (M2-2, i different from j); a walk gives a path (M2-1). For N = 1 the condition is vacuous and the graph is connected.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "galway_adjacency_notes",
+          "locator": "Theorem 1.1.3, printed p. 4",
+          "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
+        },
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Corollary 2.9.7, p. 39",
+          "quote": "Then, there is a path from u to v of length ≤ k."
+        },
+        {
+          "source": "paramadevan2021adjacency",
+          "locator": "Theorem 2, p. 17",
+          "quote": "Then, A_G is connected if and only if b_ij ≠ 0, when i ≠ j."
+        }
+      ],
+      "derivation": "modules/m2.md, section 3, Theorem 2.2; script scripts/m2_connectivity_test.py checks it on three graphs by brute force",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-4",
+      "text": "N6/N7. A path has pairwise distinct vertices, hence pairwise distinct edges, so it is a walk with no repeated edge in the textbook's sense (Definition 1.2.12); every such walk is a walk, which contains a path (M2-1). So 'a path exists between any two vertices' and the textbook's Definition 2.1.1 (stated with its Definition 1.2.12 word 'path') describe the same graphs.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "Definition 2.1.1, printed p. 48 (viewed as page image, PDF p. 49)",
+          "quote": "Սահմանում 2.1.1: G գրաֆը կանվանենք կապակցված, եթե նրա ցանկացած երկու u և v գագաթների համար G գրաֆում գոյություն ունի (u, v)-ճանապարհ:"
+        },
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "Definition 1.2.13, printed p. 22 (viewed as page image, PDF p. 23)",
+          "quote": "Սահմանում 1.2.13: G գրաֆի (u0, uk)-ճանապարհը կանվանենք պարզ (u0, uk)-ճանապարհ, եթե նրա մեջ մտնող բոլոր գագաթները զույգ առ զույգ տարբեր են:"
+        }
+      ],
+      "derivation": "modules/m2.md, section 3, Remark 2.3",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-5",
+      "text": "N8. Board graph (matrix rows 0 1 0 / 1 0 1 / 0 1 0, N = 3): A^2 has rows 1 0 1 / 0 2 0 / 1 0 1, S = A + A^2 has rows 1 1 1 / 1 2 1 / 1 1 1, every off-diagonal entry is 1, so the test says connected. (A^2)_11 = 1 counts the walk n1 n2 n1, (A^2)_13 = 1 counts n1 n2 n3, (A^2)_22 = 2 counts n2 n1 n2 and n2 n3 n2, (A^2)_12 = 0.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "whiteboard1",
+          "locator": "3 by 3 grid labelled 'adj.'",
+          "quote": "adj."
+        }
+      ],
+      "derivation": "scripts/m2_connectivity_test.py, output scripts/m2_connectivity_test.out, section BOARD GRAPH; the matrix is the board's, the reading of the grid is in brief.md section 5",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-6",
+      "text": "N8. Disconnected graph on n1, n2, n3 with the single edge n1n2: A has rows 0 1 0 / 1 0 0 / 0 0 0, A^2 has rows 1 0 0 / 0 1 0 / 0 0 0, S = A + A^2 has rows 1 1 0 / 1 1 0 / 0 0 0; S_13 = S_23 = 0, so the test says not connected, which is right because n3 has no neighbour.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "galway_adjacency_notes",
+          "locator": "Notes 1 and 2 on the adjacency matrix, printed p. 3",
+          "quote": "The adjacency matrix is symmetric (i.e. equal to its transpose) if the graph is undirected. The adjacency matrix has zeros on its main diagonal (unless the graph has loops)."
+        }
+      ],
+      "derivation": "scripts/m2_connectivity_test.py, output scripts/m2_connectivity_test.out, section DISCONNECTED GRAPH",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-7",
+      "text": "N9. Entries of S count walks, not paths: in the path graph n1 n2 n3 n4, S_12 = 3, counting the walks n1 n2 (length 1), n1 n2 n1 n2 and n1 n2 n3 n2 (length 3), of which only n1 n2 is a path. On the board graph S_22 = 2 counts two walks while the only path from n2 to n2 is the walk of length 0.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "bai_bimsa_adjacency",
+          "locator": "text after the definitions of walk and path, p. 1",
+          "quote": "counts walks — not paths."
+        }
+      ],
+      "derivation": "scripts/m2_connectivity_test.py, sections BOARD GRAPH and PATH GRAPH on 4 vertices",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/discussion.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-8",
+      "text": "N9. A single power is not a test: on the board graph A^(N-1) = A^2 has (A^2)_12 = 0 although n1n2 is an edge, because walks from n1 to n2 have odd length.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "galway_adjacency_notes",
+          "locator": "Theorem 1.1.3, printed p. 4",
+          "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
+        }
+      ],
+      "derivation": "scripts/m2_connectivity_test.py (last lines of output of the BOARD GRAPH and single power item); parity argument in modules/m2.md section 7",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/discussion.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-9",
+      "text": "N9. A search that starts at one vertex and marks the vertices it reaches finds all vertices connected to it in time O(E) because each edge is examined at most twice; the source states this for depth-first search, not breadth-first search, and says nothing about the test above. So the statement that the matrix test is not the cheapest way is an interpretation resting on this one premise and on the fact that the test forms N - 2 matrix products.",
+      "kind": "interpretation",
+      "module": "m2",
+      "support": [
+        {
+          "source": "wayne_cos226_undirected",
+          "locator": "slide 24 (PDF p. 6), Depth First Search",
+          "quote": "Running time. O(E) since each edge examined at most twice."
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [
+        "sections/discussion.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-10",
+      "text": "O1 (optional). (I + A)^(N-1) is the sum over k = 0..N-1 of C(N-1, k) A^k because I and A commute; every coefficient is at least 1, so an off-diagonal entry is positive exactly when the same entry of S is positive, and every diagonal entry is at least 1. Hence (I + A)^(N-1) has no zero entry exactly when the test holds. Board graph: rows 2 2 1 / 2 3 2 / 1 2 2; disconnected graph: rows 2 2 0 / 2 2 0 / 0 0 1.",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "gotti_18211_lecture27",
+          "locator": "Proposition 3, p. 2",
+          "quote": "Then G is connected if and only if all the entries of (In + A)n−1 are positive."
+        }
+      ],
+      "derivation": "modules/m2.md section 8; scripts/m2_connectivity_test.py (last lines)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/analysis.tex"
+      ],
+      "contradicted_by": []
+    }
+  ],
+  "contradictions": []
+}
