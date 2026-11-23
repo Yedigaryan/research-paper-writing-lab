@@ -200,7 +200,7 @@
           "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
         }
       ],
-      "derivation": "scripts/m2_connectivity_test.py (last lines of output of the BOARD GRAPH and single power item); parity argument in modules/m2.md section 7",
+      "derivation": "scripts/m2_connectivity_test.py (last lines of output of the BOARD GRAPH and single power item); parity argument in modules/m2.md section 5.4",
       "confidence": "high",
       "status": "supported",
       "used_in": [
@@ -240,7 +240,7 @@
           "quote": "Then G is connected if and only if all the entries of (In + A)n−1 are positive."
         }
       ],
-      "derivation": "modules/m2.md section 8; scripts/m2_connectivity_test.py (last lines)",
+      "derivation": "modules/m2.md section 8 (O1); scripts/m2_connectivity_test.py (last lines)",
       "confidence": "high",
       "status": "supported",
       "used_in": [

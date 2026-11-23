@@ -38,8 +38,8 @@ Needed to answer:
 - N8. Work the board's three-vertex graph through N5 and N7 with every
   matrix printed, and show the test failing on one disconnected graph.
 - N9. Say in one short paragraph what the test does not give (it is not
-  the cheapest way to test connectivity, and the entries count walks, not
-  paths).
+  the cheapest way to test connectivity, since a graph search does the
+  same job with less work, and the entries count walks, not paths).
 
 Optional, written only if the page budget allows:
 
@@ -54,7 +54,7 @@ In scope: the objectives above.
 
 Out of scope: trail, cycle, closed walk, and distance as separate
 definitions (distance only under O2); components beyond what the proof of
-N7 needs; breadth-first search beyond one sentence in N9; directed graphs,
+N7 needs; graph search (depth-first or breadth-first) beyond one sentence in N9; directed graphs,
 multigraphs, weights, eigenvalues, the Laplacian, complexity analysis; a
 table of naming conventions; a critique of the sources beyond O3.
 
