@@ -1,0 +1,6 @@
+{
+  "question": "For a simple undirected graph with N vertices given by its adjacency matrix A: what does the entry (A^k)_{ij} represent, how can one tell from A whether the graph is connected, and what is the definition of a path between vertices n_i and n_j?",
+  "sources": [],
+  "claims": [],
+  "contradictions": []
+}
