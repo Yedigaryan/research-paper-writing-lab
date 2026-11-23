@@ -21,6 +21,25 @@
       "credibility": "secondary",
       "found_by": "module:m2",
       "notes": "Downloaded the PDF and extracted the text; read slide 24 (PDF p. 6) on depth-first search and its running time. The title-slide footer reads 'Robert Sedgewick and Kevin Wayne • Copyright © 2006 • http://www.Princeton.EDU/~cos226', which gives the authors and the year; the PDF metadata also names Kevin Wayne and a 2006 creation date. Slides, not peer reviewed. The slide is about depth-first search, not breadth-first search. The rest of the deck was not read."
+    },
+    {
+      "id": "m2_connectivity_script",
+      "type": "code",
+      "title": "m2_connectivity_test.py: matrices, sums and walk lists for the sum test",
+      "authors": [],
+      "year": null,
+      "venue": "Script written by module m2 in this run",
+      "identifier": {
+        "doi": null,
+        "url": null,
+        "isbn": null,
+        "path": "scripts/m2_connectivity_test.py"
+      },
+      "accessed": "2026-11-23",
+      "access_status": "full",
+      "credibility": "primary",
+      "found_by": "module:m2",
+      "notes": "Run with python3 -I; output saved in scripts/m2_connectivity_test.out. Computes A, its powers and S = A + ... + A^(N-1) for the board graph, a disconnected graph on 3 vertices and the path graph on 4 vertices, lists the walks that chosen entries count, compares each S_ij with a brute-force walk count and each verdict with a brute-force path search, and prints (I + A)^(N-1) for the board and disconnected graphs. A check of examples, not a proof."
     }
   ],
   "claims": [
@@ -139,6 +158,11 @@
           "source": "whiteboard1",
           "locator": "3 by 3 grid labelled 'adj.'",
           "quote": "adj."
+        },
+        {
+          "source": "m2_connectivity_script",
+          "locator": "scripts/m2_connectivity_test.out, board graph section",
+          "quote": "off-diagonal entries (i, j, S_ij): [(1, 2, 1), (1, 3, 1), (2, 1, 1), (2, 3, 1), (3, 1, 1), (3, 2, 1)]"
         }
       ],
       "derivation": "scripts/m2_connectivity_test.py, output scripts/m2_connectivity_test.out, section BOARD GRAPH; the matrix is the board's, the reading of the grid is in brief.md section 5",
@@ -244,6 +268,26 @@
       "status": "supported",
       "used_in": [
         "sections/connectivity.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "M2-11",
+      "text": "O3. Paramadevan and Sotheeswaran's own list of properties of the adjacency matrix, Section 2.2 item 7 (p. 16), states the walk-counting fact with the word 'walks'; their Theorem 1 (p. 16) states it with the undefined word 'paths'.",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "paramadevan2021adjacency",
+          "locator": "Section 2.2, item 7, p. 16 (the list begins on p. 15; item 7 is on p. 16)",
+          "quote": "is equal to the number of walks of length m from vi to vj"
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": [
+        "sections/limits.tex"
       ],
       "contradicted_by": []
     }

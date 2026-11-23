@@ -178,6 +178,26 @@
       "status": "supported",
       "used_in": [],
       "contradicted_by": []
+    },
+    {
+      "id": "m1-7",
+      "text": "N2. The textbook, in the sentence that follows Definition 1.2.10 on printed p. 21 (it is a separate sentence after the definition, not part of its numbered statement), says a walk is abbreviated by the sequence of its vertices u_0, u_1, ..., u_(k-1), u_k, on the understanding that each next vertex is adjacent to the previous one. English rendering: 'We will write a defined (u_0, u_k)-walk briefly as the sequence of its vertices u_0, ..., u_k, assuming that each subsequent vertex is adjacent to the preceding one.'",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "printed p. 21, sentence immediately after Definition 1.2.10 (viewed as page image, PDF p. 22)",
+          "quote": "Սահմանված (u0, uk)-շրջանցումը կրճատ կնշանակենք նրա գագաթների u0, u1, …, uk-1, uk հաջորդականությամբ, ենթադրելով, որ յուրաքանչյուր հաջորդ գագաթ հարևան է նախորդին:"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
+      "contradicted_by": []
     }
   ],
   "contradictions": [
