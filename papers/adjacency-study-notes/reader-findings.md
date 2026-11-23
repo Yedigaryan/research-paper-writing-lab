@@ -1,0 +1,51 @@
+# Reader findings
+
+The technician reader's findings, as returned, ungraded. They are advisory; severity belongs to the evaluator alone.
+
+## Round 1, 2026-11-23
+
+Reader level 1. It read the PDF pages. Its summary states the three answers of the paper; it names two questions and gives the definition of a path as part of the answer, where the paper lists it as a third question.
+
+FINDINGS
+F1 | comprehension | Section 3, Example 3.2: "Example 3.2 (The board graph). Let G1 have N = 3 vertices and the edges n1n2 and n2n3." | "The board graph" is never explained at this point. The reader is also not told that the board's drawing has a third edge (1-3); that is revealed only in Notes on sources on page 5, after Sections 3-5 have already used G1 as the example graph. | Add to Example 3.2: "the graph drawn on the lecture board [5, 6], with the edge n1n3 left out (see Notes on sources)."
+
+F2 | comprehension | Section 3, Theorem 3.1: "Galway, Gotti, and Bai state this result [7, Theorem 1.1.3, p. 4]" | Reference [7] has no author name, so "Galway" reads as a person's surname. The reader cannot tell whether it is an author or an institution. | Write "University of Galway lecture notes [7, Theorem 1.1.3, p. 4]" or add the author's name to reference [7].
+
+F3 | comprehension | Section 2, Definition 2.3 paragraph: "it agrees with the textbook's property d(u, v) = 0 exactly when u = v [9, p. 23]" | The symbol d is never defined. The reader cannot tell whether it is a distance, a degree, or a metric. | Define it in the sentence, e.g. "the textbook's distance d(u, v), which is 0 exactly when u = v."
+
+F4 | comprehension | Section 3, proof of Theorem 3.1 (Step): "Sort the walks by this r and fix r." | The verb "sort" does not say what is done. The reader must work out that walks are grouped by their last-but-one vertex and the argument is run for one r at a time. | "Group the walks by their last-but-one vertex n_r, and fix one r at a time."
+
+F5 | comprehension | Section 4, proof of Lemma 4.1(a) (Step): "the one new consecutive pair is (wa, wb+1), adjacent in w." | No reason is given for why (wa, wb+1) is an edge. The reader must infer that wa = wb, so the pair equals (wb, wb+1), which is an edge of w. | "The new pair (wa, wb+1) equals (wb, wb+1) because wa = wb, so it is adjacent in w."
+
+F6 | comprehension | Section 4, Proposition 4.2 heading: "The textbook's connected and this paper's agree." | The heading is ungrammatical and does not say what is claimed. The reader had to re-read it to see that it means the two definitions of connected agree. | "Proposition 4.2 (Connectedness agrees with the textbook's definition)."
+
+F7 | comprehension | Section 4, Proposition 4.2 proof, "Path implies trail": "Then v_{s-1} is v_{t-1} or v_t. But s-1 < t-1 < t, so v_{s-1} sits at a different position from both, and the vertices of a path are distinct: a contradiction." | The case split is not written out. The reader must reconstruct that v_{s-1} = v_{t-1} and v_{s-1} = v_t are two separate cases, each giving two equal vertices at different positions. | "Case v_{s-1} = v_{t-1}: positions s-1 and t-1 hold the same vertex. Case v_{s-1} = v_t: positions s-1 and t hold the same vertex. Both contradict distinctness."
+
+F8 | comprehension | Section 6, first paragraph: "The test is also not the cheapest way to decide connectivity. It forms N - 2 matrix products, while a graph search ... runs in time O(E) ... That the test is therefore the more expensive one is an interpretation." | The paper states a cost claim as fact and then, in the next sentence, calls it an interpretation. The cost of one matrix product is never given, so the comparison of N-2 products with O(E) has no common unit. The reader cannot tell which part to believe. | State the cost of one matrix product (or say it is not analysed) at the start, and present the comparison only as a remark, or drop "not the cheapest way".
+
+F9 | comprehension | Section 6, second paragraph: "the paper never defines 'path'; read as walks it is Theorem 3.1, read with the paths of Definition 2.4 it fails" | This contradicts Definition 2.4, which defines "path" in the paper. The reader cannot tell what the paper means by "never defines". | "the phrase 'different paths' is never defined here; read as walks it is Theorem 3.1, and read with the paths of Definition 2.4 it fails."
+
+F10 | comprehension | Section 6, second paragraph: "Bai's proof sketch says (I+A)^{n-1} 'aggregates all paths of length <= n-1'" | The lowercase n here is a different symbol from the paper's N and from the vertices n_i. Its meaning is not stated, so the reader may take it as a vertex index. | Write "(I+A)^{N-1} ... length at most N-1" with a note that Bai's n is this paper's N, or state the convention once.
+
+F11 | comprehension | Section 2, Definition 2.4 and Remark 2.5 (with Definition 2.6): "[9, Definition 1.2.13, p. 22] ... called a trail in English. This paper never uses 'path' in that sense; it writes 'trail'." | Three terms (path, simple path, trail) are mapped across the textbook and this paper, and the textbook's "simple path" is this paper's "path", while the textbook's "path" is this paper's "trail". The reader must hold this mapping across three definitions and cannot check it. | Add a one-line mapping in Remark 2.5: "this paper's path = textbook's simple path; textbook's path = this paper's trail."
+
+F12 | comprehension | Section 2, Definition 2.4: "This is the meaning of 'path' throughout the paper." vs. Notes on sources: "the claim that the course's 'path' means no repeated vertex rests on a summary and not on the user's own words (qualified)." | The body states the convention as settled. The caveat that it comes from a summary of a course assignment appears only in the back matter, and "the course" is never introduced in the body. The reader cannot tell which claims are source-qualified. | Add to Definition 2.4: "(a course convention; its source is qualified in Notes on sources)."
+
+F13 | comprehension | Notes on sources: "(qualified)" appears twice, after the claim about "path" and after "(printed pp. 11, 12, 34, 61)" | "(qualified)" is an unexplained tag. The reader cannot tell whether it is a hedge, a label, or a status. | Replace with the plain hedge, e.g. "this is a summary-based claim, not checked against the source."
+
+F14 | comprehension | Notes on sources: "The two small marks above A on the board are read as the exponent k, as the summary says." | The board marks are never shown or described earlier, and the Introduction does not say where the questions came from (board or assignment). The reader cannot see why the exponent reading matters. | In the Introduction, add one sentence on provenance: "Questions 1 and 2 are from a lecture board; question 3 is from an assignment known through a summary (see Notes on sources)."
+
+F15 | comprehension | Notes on sources: "the board writes the graph as (G,V) and the edge condition as 'e_ij in V'" | The board's notation is not explained and differs from Definition 2.1, so the reader does not know whether V is the vertex set or the edge set. | In Definition 2.1, add: "The board writes (G, V) with edges e_ij; this paper follows the textbook's G = (V, E)."
+
+F16 | comprehension | Remark 4.4: "By script, R has rows (2,2,1), (2,3,2), (1,2,2) for G1 and (2,2,0), (2,2,0), (0,0,1) for G2 of Section 5." | The matrices R are asserted from a script and are not shown anywhere in the paper, so the reader must take them on faith. The claim that R has no zero entry exactly when Theorem 4.3 holds is checked only by these rows. | Show R for G1 (and G2) in Section 5 next to S, as a matrix display.
+
+F17 | comprehension | Section 5, Example 5.2: "Let G2 have N = 3 vertices and the single edge n1n2, so n3 is isolated" | "Isolated" is used without definition. The reader infers it means no edges, which is only stated as "n3 has no neighbour" later. | "(the single edge n1n2, so n3 has no edge at all)."
+
+F18 | comprehension | Bibliography, [5], [6], [10]: "Supplied by the user." / "File sources/user-statements.md." | "The user" is never identified, and the file paths point to material a reader outside the project cannot open. The reader cannot check the source of questions 1-3 or the path convention. | Replace with a description of the source (e.g. "photograph of a lecture board, held by the author, not publicly available") and drop internal file paths.
+
+F19 | comprehension | Bibliography [9] and Notes on sources: "Its authors are given by surname only, publisher and year were not read." | The main textbook (cited about 10 times for definitions) is in Armenian, which the body never says, and its reference is incomplete. The reader cannot locate it. | State the language in the body at first citation and mark the missing publisher and year in the reference.
+
+F20 | comprehension | Section 5, intro: "each verdict against a brute-force search for paths" and "scripts/m2_connectivity_test.py" | "Verdict" is undefined, and the scripts are not described until the back matter (Notes on sources). The reader does not know what the script checks or what is produced. | Add one sentence in Section 5: "The script computes A, A^2, S and a yes/no verdict for each graph, and checks each against brute force."
+
+READER SUMMARY
+I can state the question and the answer. The paper asks what the entries of the powers of a graph's adjacency matrix count, and whether connectivity of a simple undirected graph can be read from A alone. Its answer, as I understood it, is that (A^k)_ij counts walks of length k from n_i to n_j (not paths, since walks may repeat vertices). A path is then a walk with no repeated vertex, and a graph is connected exactly when every off-diagonal entry of A + A^2 + ... + A^{N-1} is positive, because any walk contains a path of length at most N-1. The paper proves both results and checks them on two three-vertex graphs, and it claims the test is not the cheapest way to decide connectivity. I could not fully follow why the example graph differs from the board drawing, or why the cost comparison is stated and then called an interpretation, and I had to infer several proof steps (findings F4-F7). The overall question and answer were recoverable, but only after reading the back-matter notes.
