@@ -307,8 +307,13 @@
       "support": [
         {
           "source": "galway_adjacency_notes",
-          "locator": "Notes 1 and 2 on the adjacency matrix, printed p. 3",
-          "quote": "The adjacency matrix is symmetric (i.e. equal to its transpose) if the graph is undirected. The adjacency matrix has zeros on its main diagonal (unless the graph has loops)."
+          "locator": "Note 1 on the adjacency matrix, printed p. 3",
+          "quote": "1. The adjacency matrix is symmetric (i.e. equal to its transpose) if the graph is undirected."
+        },
+        {
+          "source": "galway_adjacency_notes",
+          "locator": "Note 2 on the adjacency matrix, printed p. 3",
+          "quote": "2. The adjacency matrix has zeros on its main diagonal (unless the graph has loops)."
         }
       ],
       "derivation": null,
@@ -443,8 +448,13 @@
       "support": [
         {
           "source": "grinberg_graph_theory",
-          "locator": "Definition 2.9.1(c),(d), p. 36",
-          "quote": "A path (in G) means a walk (in G) whose vertices are distinct. A path from p to q means a path that starts at p and ends at q."
+          "locator": "Definition 2.9.1(c), p. 36",
+          "quote": "A path (in G) means a walk (in G) whose vertices are distinct."
+        },
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Definition 2.9.1(d), p. 36",
+          "quote": "A path from p to q means a path that starts at p and ends at q."
         }
       ],
       "derivation": null,
@@ -503,7 +513,7 @@
         {
           "source": "petrosyan_graph_theory",
           "locator": "distance property 1, printed p. 23",
-          "quote": "G գրաֆի ցանկացած u և v գագաթների համար d_G(u, v) ≥ 0, և d_G(u, v) = 0 այն և միայն այն դեպքում, երբ u = v;"
+          "quote": "1. G գրաֆի ցանկացած u և v գագաթների համար d_G(u, v) ≥ 0, և d_G(u, v) = 0 այն և միայն այն դեպքում, երբ u = v;"
         }
       ],
       "derivation": null,
@@ -607,8 +617,8 @@
       "support": [
         {
           "source": "gotti_18211_lecture27",
-          "locator": "Proposition 2 and the sentence before it, p. 1",
-          "quote": "As we proceed to show, adjacency matrices can be used to compute number of walks in a graph."
+          "locator": "Proposition 2, p. 1",
+          "quote": "Let G be a graph (directed or undirected) on [n] with adjacency matrix A. For any j, k ∈ [n] and ℓ ∈ N, there are Aℓjk walks of length ℓ from j to k."
         }
       ],
       "derivation": null,
