@@ -1307,8 +1307,18 @@
       "support": [
         {
           "source": "galway_adjacency_notes",
-          "locator": "Notes 1 and 2 on the adjacency matrix, printed p. 3",
-          "quote": "The adjacency matrix is symmetric (i.e. equal to its transpose) if the graph is undirected. The adjacency matrix has zeros on its main diagonal (unless the graph has loops)."
+          "locator": "Note 1 on the adjacency matrix, printed p. 3",
+          "quote": "1. The adjacency matrix is symmetric (i.e. equal to its transpose) if the graph is undirected."
+        },
+        {
+          "source": "galway_adjacency_notes",
+          "locator": "Note 2 on the adjacency matrix, printed p. 3",
+          "quote": "2. The adjacency matrix has zeros on its main diagonal (unless the graph has loops)."
+        },
+        {
+          "source": "m2_connectivity_script",
+          "locator": "scripts/m2_connectivity_test.out, DISCONNECTED GRAPH section, line 55",
+          "quote": "off-diagonal entries (i, j, S_ij): [(1, 2, 1), (1, 3, 0), (2, 1, 1), (2, 3, 0), (3, 1, 0), (3, 2, 0)]"
         }
       ],
       "derivation": "scripts/m2_connectivity_test.py, output scripts/m2_connectivity_test.out, section DISCONNECTED GRAPH",

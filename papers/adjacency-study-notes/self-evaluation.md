@@ -95,3 +95,20 @@ Reader findings (advisory)
 - F8: limits.tex adds the clause that Paramadevan and Sotheeswaran's own list of properties states the fact with walks (Section 2.2, item 7, p. 16; M2-11).
 - F11: references.bib has the entry m2_connectivity_script (evidence source record), cited in the first sentence of Section 5.
 Checks: see the final report of this pass; page count stays 6.
+
+## Final edits (round 2 minor findings and reader passages)
+Sections touched: abstract (main.tex), 1, 2, 3, 4, 5, 6, Notes; references.bib. Checks: build ok, 6 pages; citations 0/0; claims 0/0; inspect_pdf 0/0. No claim, no new cite key, no statement or proof step changed.
+
+Evaluator findings
+- F16: stray semicolon removed (connectivity.tex).
+- F17: "Grinberg's example of a length-0 walk" (definitions.tex), citation unchanged.
+- F18: "Grinberg proves (a) without its last clause and states (b)" (connectivity.tex); Lemma 4.1 unchanged.
+- F19: "stated only for two different vertices and has no length bound".
+- F20: pages added: Galway Definition 1.1.1, p. 2; Grinberg Definition 2.9.1(c),(d), p. 36; Bai "definition of path after Theorem 1, p. 1".
+- F21: the rule requires the "supplied by" note, so it stays but no longer says "the user": "supplied by the student who requested these notes", photograph "not public"; script notes say "written for these notes; see Notes on sources". File paths stay in howpublished. Keys unchanged.
+- F22: Example 5.1 diagonal sentence cut; Example 5.2 last sentence shortened as asked.
+
+Reader passages (changed unless marked stays)
+- F1 changed (abstract names Theorems 3.1 and 4.3). F2 changed (gloss of walk in the introduction). F3 stays: the course is not named in any input. F4 changed. F5 changed. F6 stays: would add a sentence and the distance clause carries its citation. F7 changed.
+- F8, F9, F11, F12, F13, F14 stay: they rewrite proof steps or the wording of a proof; F9 "penultimate" would also change the proof's terms.
+- F10 changed (roles named; "their proofs start at k = 1"). F15 stays: proof step of the remark. F16 stays: would add a citation. F17 stays: no room and it alters the example's working. F18 changed (clause added). F19 stays: no cost source beyond M2-9. F20 stays: the marks cannot be shown without a figure. F21 changed (matrix is the object both questions are about; arrowhead and third line ignored). F22 stays: the convention is already pointed to the Notes. F23 stays: C34 limits the viewed pages to what the notes list; listing the others adds length. F24 changed ("unnumbered"). F25 changed ("isolated mode"). F26 changed ("where I is the identity matrix"). F27 changed (textbook's order; pages sentence kept).

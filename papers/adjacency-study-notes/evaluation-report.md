@@ -125,3 +125,19 @@ As in round 1. The technician reader's 27 passages for this round are in `reader
 ### Release conditions
 
 Conditions 1 to 9 hold as the evaluator reported them: every score is at least 4, no critical finding, no unverified claim, complete proofs, hierarchy met, mechanical checks pass, `self-evaluation.md` present. No critical or major finding is open. Eight minor findings (F15 to F22) remain and go to final edits; no further evaluation round is run for them.
+
+### Final edits
+
+Findings closed after the evaluation: F15 by the m2 module owner (the Galway support of claim M2-6 is now two verbatim entries with their markers, as in C5, plus the script output line; the orchestrator compared the new quotes with C5 and with line 55 of `scripts/m2_connectivity_test.out`), and F16, F17, F18, F19, F20, F22 by the author with the evaluator's corrections. F18 was closed by the attribution wording; Lemma 4.1 and its proof are unchanged, so the clause "whose vertices all occur in the walk" stays in the lemma although no later proof uses it.
+
+F21 is closed in part and documented: the bibliography no longer says "the user" (it says "the student who requested these notes"), and the script entries point to the notes on sources. The words "supplied by" stay because `references/latex-structure.md` requires them in a local-file entry, and the titles of the two script entries still name the script files.
+
+Reader passages of round 2: the author changed twelve (reader F1, F2, F4, F5, F7, F10, F18, F21, F24, F25, F26, F27) and left fifteen, each with its reason in `reader-findings.md`.
+
+Diff confined to the named passages: yes. The orchestrator read the word-level diff of `main.tex`, `sections/`, and `references.bib`. No statement of a definition, theorem, lemma, or proposition changed, no line inside a proof changed, and no citation key was added; the locators added for F20 agree with evidence claims C2, C12, and C13. One edit adds a reason and not only wording: the notes on sources now say the paper uses the board's matrix because it is the object both questions are about and ignores the arrowhead and the third line. This is the assumption recorded in the brief, section 7, and the orchestrator judged it a statement of the paper's own choice, not a new claim about a source.
+
+Mechanical checks re-run: build pass, citations pass (12 keys, 12 entries, 12 sources), claims pass (49 supported, 3 qualified, 0 unverified), pdf pass, 6 pages of a budget of 6. `claims_changed.py` against the round 2 snapshot lists one changed claim, M2-6 (its support entries), and nothing new or removed.
+
+Not re-read by an evaluator.
+
+Decision: PASS -- conditions 1 to 9 held in round 2 with no critical or major finding open, the minor findings were closed or documented by final edits, and the mechanical checks pass on the final files.

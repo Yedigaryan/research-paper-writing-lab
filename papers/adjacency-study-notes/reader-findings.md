@@ -87,3 +87,32 @@ F27 | comprehension | Section 1, p. 1: "Section 2 fixes the notation and the def
 
 READER SUMMARY
 The paper asks three questions about a finite simple undirected graph with adjacency matrix A: what the entries of a power A^k mean, whether connectivity can be read from A, and what "path" should mean. Its answers, as I understood them, are that the (i, j) entry of A^k counts walks of length k from one vertex to another (not paths, as a three-vertex example shows); that a graph is connected exactly when every off-diagonal entry of A + A^2 + ... + A^{N-1} is positive, with a proof by reducing to walks and a lemma that a walk contains a short path; and that the paper's "path" is a walk with no repeated vertex, which it distinguishes from the textbook's "trail". I could follow the answer to each question, but the path convention and the choice of example graph rest on an unchecked summary and a board photo that the paper does not show, which I had to take on faith.
+
+### Author's response after round 2 (final edits)
+
+From the author's report, as returned. The paper was released in round 2, so no later reader or evaluator read these changes.
+
+**Reader passages** (27, advisory)
+- **Changed:**
+- F1: the abstract now names Theorems 3.1 and 4.3 ("The first two results are proved in full (Theorems 3.1 and 4.3)").
+- F2: the introduction glosses "walk".
+- F4, F5: wording reworked.
+- F7: added "the textbook's u_s is this paper's v_s".
+- F10: the sources' roles are named ("the lecture notes by Gotti and by Bai") and "their proofs start at k = 1".
+- F18: added "(a path never repeats a vertex)".
+- F21: the Notes now say the matrix is the object both questions are about, and the arrowhead and third line are ignored.
+- F24: now "unnumbered".
+- F25: added "(isolated mode)" after `python3 -I`.
+- F26: Remark 4.4 now says "where I is the identity matrix".
+- F27: the introduction sentence about the textbook's order is shortened.
+- **Stay:**
+- F3: the course is not named in any input.
+- F6: it would add a sentence, and the distance clause carries its citation.
+- F8, F9, F11, F12, F13, F14: they rewrite proof steps or proof wording.
+- F15: it is a proof step of Remark 4.4.
+- F16: it would add a citation.
+- F17: there is no room, and it alters the worked example.
+- F19: there is no cost source beyond M2-9.
+- F20: the board marks cannot be shown without a figure.
+- F22: Definition 2.4 already points to the Notes on sources.
+- F23: C34 limits the viewed pages to those the Notes list, and listing the others adds length.
