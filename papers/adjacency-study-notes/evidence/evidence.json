@@ -209,6 +209,7 @@
       "type": "web",
       "title": "Undirected Graphs (COS 226 lecture slides)",
       "authors": [
+        "Robert Sedgewick",
         "Kevin Wayne"
       ],
       "year": 2006,
@@ -223,7 +224,7 @@
       "access_status": "partial",
       "credibility": "secondary",
       "found_by": "module:m2",
-      "notes": "Downloaded the PDF and extracted the text; read slide 24 (PDF p. 6) on depth-first search and its running time. Author and year 2006 are from the PDF metadata (Author: Kevin Wayne; creation date 2006-11-20), not from a title slide; the URL path says fall06. Slides, not peer reviewed. The slide is about depth-first search, not breadth-first search. The rest of the deck was not read."
+      "notes": "Downloaded the PDF and extracted the text; read slide 24 (PDF p. 6) on depth-first search and its running time. The title-slide footer reads 'Robert Sedgewick and Kevin Wayne • Copyright © 2006 • http://www.Princeton.EDU/~cos226', which gives the authors and the year; the PDF metadata also names Kevin Wayne and a 2006 creation date. Slides, not peer reviewed. The slide is about depth-first search, not breadth-first search. The rest of the deck was not read."
     }
   ],
   "claims": [
