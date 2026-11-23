@@ -8,6 +8,8 @@
 \usepackage[backend=biber,style=numeric,urldate=long]{biblatex}
 \addbibresource{references.bib}
 \graphicspath{{figures/}}
+\setlength{\emergencystretch}{3em}
+\setcounter{biburlnumpenalty}{100}\setcounter{biburlucpenalty}{100}\setcounter{biburllcpenalty}{100}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -17,27 +19,29 @@
 \newtheorem{lemma}[definition]{Lemma}
 \theoremstyle{remark}
 \newtheorem{remark}[definition]{Remark}
+\theoremstyle{plain}
+\newtheorem{proposition}[definition]{Proposition}
 
-\title{Adjacency study notes}
+\title{Adjacency matrices, walks, paths, and connectivity: study notes}
 \author{}
-\date{\today}
+\date{November 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-To be written by the author agent.
+For a finite simple undirected graph with $N$ vertices and adjacency matrix $A$, we answer three questions. The entry $(A^k)_{ij}$ is the number of walks of length $k$ from vertex $n_i$ to vertex $n_j$. The graph is connected exactly when every entry off the diagonal of $A + A^2 + \dots + A^{N-1}$ is positive. A path between $n_i$ and $n_j$ is a walk between them in which no vertex occurs twice. Both results are proved in full and worked on two small graphs.
 \end{abstract}
 
 \input{sections/introduction}
-\input{sections/background}
-\input{sections/analysis}
-\input{sections/discussion}
-\input{sections/conclusion}
+\input{sections/definitions}
+\input{sections/walks}
+\input{sections/connectivity}
+\input{sections/examples}
+\input{sections/limits}
+\input{sections/notes}
 
 \printbibliography
 
-\appendix
-\input{appendices/derivations}
 
 \end{document}

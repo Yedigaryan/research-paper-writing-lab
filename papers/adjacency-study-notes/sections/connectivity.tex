@@ -1,0 +1,45 @@
+\section{A connectivity test from $A$: the answer to question 2}\label{sec:connectivity}
+
+A positive $(A^k)_{ij}$ says by \Cref{thm:walks} only that a walk of length $k$ exists, and a walk may revisit vertices, while \Cref{def:connected} asks for paths. The next lemma closes that gap and also bounds the lengths to be checked.
+
+\begin{lemma}[Walk contains path]\label{lem:walkpath}
+Let $G$ have $N$ vertices.
+(a) If there is a walk of length $k$ from $n_i$ to $n_j$ ($i = j$ allowed), there is a path from $n_i$ to $n_j$ of length at most $k$ whose vertices all occur in the walk.
+(b) A path in $G$ has length at most $N - 1$.
+\end{lemma}
+
+Grinberg proves (a) and states (b) \cite[Corollary 2.9.7, p.~39; p.~40]{grinberg_graph_theory}; the textbook's Lemma 1.2.1 is stated for $u \ne v$ and has no length bound \cite[p.~23]{petrosyan_graph_theory}. The proofs below are this paper's own.
+
+\begin{proof}
+(a) By strong induction on $k$. \emph{Base case} $k = 0$: the walk is $(n_i)$, so $n_j = n_i$, and $(n_i)$ has no repeated vertex, so it is a path of length $0$. \emph{Step:} let $k \ge 1$ and assume (a) for every walk of smaller length. Let $w = (w_0, \dots, w_k)$ be a walk from $n_i$ to $n_j$. If no vertex repeats in $w$, then $w$ is a path of length $k$. Otherwise $w_a = w_b$ for some $a < b$. Form $w' = (w_0, \dots, w_a, w_{b+1}, \dots, w_k)$, which is $(w_0, \dots, w_a)$ when $b = k$. It is a walk: consecutive terms inside the two kept blocks were adjacent in $w$, and the one new consecutive pair is $(w_a, w_{b+1}) = (w_b, w_{b+1})$, adjacent in $w$. It starts at $w_0 = n_i$, and it ends at $w_k = n_j$ (when $b = k$ it ends at $w_a = w_b = w_k$). Its length is $k - (b - a) < k$. By the induction hypothesis $w'$ contains a path from $n_i$ to $n_j$ of length at most $k - (b-a) \le k$, with vertices occurring in $w'$ and so in $w$.
+
+(b) A path of length $k$ has $k + 1$ terms $w_0, \dots, w_k$, pairwise distinct vertices of $G$. $G$ has $N$ vertices, so $k + 1 \le N$.
+\end{proof}
+
+\begin{proposition}[The textbook's connected and this paper's agree]\label{prop:same}
+For all $n_i, n_j$ in a simple graph, there is a path from $n_i$ to $n_j$ (\Cref{def:path}) if and only if there is a trail from $n_i$ to $n_j$. Hence the graphs that are connected by \Cref{def:connected} are the graphs that are connected by the textbook's Definition 2.1.1, which uses its own ``path'', the trail of \Cref{rem:trap}.
+\end{proposition}
+
+\begin{proof}
+(Derived here.) \emph{Path implies trail.} Let $(v_0, \dots, v_k)$ be a path and suppose two of its edges are equal, $\{v_{s-1}, v_s\} = \{v_{t-1}, v_t\}$ with $s < t$. Then $v_{s-1}$ is $v_{t-1}$ or $v_t$. But $s - 1 < t - 1 < t$, so $v_{s-1}$ sits at a different position from both, and the vertices of a path are distinct: a contradiction. So the edges are pairwise distinct and the path is a trail. \emph{Trail implies path.} A trail from $n_i$ to $n_j$ is a walk from $n_i$ to $n_j$, so by \Cref{lem:walkpath}(a) it contains a path from $n_i$ to $n_j$. The two directions give the equivalence for each pair, hence for the quantified definitions.
+\end{proof}
+
+\begin{theorem}[Sum test]\label{thm:test}
+Let $N \ge 2$ and $S = A + A^2 + \dots + A^{N-1}$. The graph is connected if and only if $S_{ij} > 0$ for all $i \ne j$.
+\end{theorem}
+
+Paramadevan and Sotheeswaran state this test; their proof moves from a non-zero entry to a path without the step of \Cref{lem:walkpath}(a) \cite[Theorem 2, p.~17]{paramadevan2021adjacency}. The proof below supplies that step and is this paper's own.
+
+\begin{proof}
+\emph{Step 0.} By \Cref{thm:walks} each $(A^k)_{ij}$ is a number of walks, a non-negative integer. So $S_{ij} = W_1(i,j) + \dots + W_{N-1}(i,j)$, and $S_{ij} > 0$ if and only if for some $k$ with $1 \le k \le N-1$ there is a walk of length $k$ from $n_i$ to $n_j$.
+
+\emph{Connected implies $S_{ij} > 0$.} Let $i \ne j$. By \Cref{def:connected} there is a path $P$ from $n_i$ to $n_j$, of length $k$ say. Since $n_i \ne n_j$, $P$ has at least two vertices, so $k \ge 1$, and $k \le N - 1$ by \Cref{lem:walkpath}(b). $P$ is a walk of length $k$, so $S_{ij} \ge W_k(i,j) \ge 1$.
+
+\emph{$S_{ij} > 0$ for all $i \ne j$ implies connected.} Take any pair $n_i, n_j$. If $i = j$, the path $(n_i)$ of length $0$ serves. If $i \ne j$, Step 0 gives a walk from $n_i$ to $n_j$, and \Cref{lem:walkpath}(a) gives a path from $n_i$ to $n_j$. Every pair has a path, so $G$ is connected.
+\end{proof}
+
+The bound $N-1$ is used only in the first direction. The diagonal is left out because it is not needed (each vertex has its length-$0$ path) and because it can be zero in a connected graph: for $N = 2$ and one edge, $S = A$ has zero diagonal. For $N = 1$ the graph is connected and no pair has $i \ne j$, so the condition holds vacuously, while $S$ is an empty sum; the test is therefore stated for $N \ge 2$.
+
+\begin{remark}[The form $(I+A)^{N-1}$]\label{rem:binom}
+Gotti and Bai state the test with $R = (I + A)^{N-1}$ in place of $S$ \cite[Proposition 3, p.~2]{gotti_18211_lecture27} \cite[Theorem 2, p.~1]{bai_bimsa_adjacency}. The following is derived here. Since $I$ and $A$ commute, the binomial theorem gives $R = \sum_{k=0}^{N-1} \binom{N-1}{k} A^k$. Every coefficient is at least $1$ and every $A^k$ has non-negative entries, so for $i \ne j$ the entry $R_{ij}$ is positive exactly when $S_{ij}$ is (the term $k = 0$ adds only to the diagonal), and each $R_{ii} \ge 1$. So $R$ has no zero entry exactly when the test of \Cref{thm:test} holds. By script, $R$ has rows $(2,2,1), (2,3,2), (1,2,2)$ for $G_1$ and $(2,2,0), (2,2,0), (0,0,1)$ for $G_2$ of \Cref{sec:examples}.
+\end{remark}
