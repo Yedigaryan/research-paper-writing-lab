@@ -1,0 +1,8 @@
+The three corrections are in, and the paper is still 6 pages against the budget of 6. `build.sh` succeeded. `check_citations.py` gives 12 keys, 12 bib entries and 0 errors or warnings. `check_claims.py` gives 49 supported, 3 qualified, 0 unverified, 0 errors and 0 warnings. `inspect_pdf.py` gives 6 pages, 0 errors and 0 warnings.
+
+**The three sentences as they now read**
+- **F5** (`sections/definitions.tex`): "In a simple graph two vertices carry at most one edge, so the edges are determined by the vertices, and the textbook itself writes a walk briefly by its sequence of vertices [p. 21, the sentence after Definition 1.2.10]." The citation is to the textbook (`petrosyan_graph_theory`), supported by claim `m1-7`.
+- **F8** (`sections/limits.tex`): "... Theorem 1 says that (A^k)_{ij} is the number of 'different paths' of length k [Theorem 1, p. 16] without defining 'path', although their own list of properties states it with walks [Section 2.2, item 7, p. 16]; read as walks it is Theorem 3.1, ..." The Section 2.2 citation is to `paramadevan2021adjacency`, supported by claim `M2-11`.
+- **F11** (`sections/examples.tex`): "All matrices below are computed by a script [m2_connectivity_script], which also checks each S_ij against a brute-force count of walks and each answer (connected or not) against a brute-force search for paths; the Notes on sources say how to rerun it." `references.bib` has a new `m2_connectivity_script` entry in the same form as `m1_walks_script`. I left Example 3.2 as it was.
+
+I changed nothing else. `self-evaluation.md` has a short second-pass section appended for these three passages.

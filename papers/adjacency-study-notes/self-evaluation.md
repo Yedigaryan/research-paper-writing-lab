@@ -89,3 +89,9 @@ Reader findings (advisory)
 - R18: stays; the style rules require a local-file entry to say it was supplied by the user; the user-statements entry now says it is a summary of the assignment's conventions.
 - R19: the introduction says the textbook is in Armenian; missing publisher and year are in the Notes on sources.
 - R20: Section 5 intro says what the script computes and checks; the file name is in the Notes.
+
+## Round 1 revision, second pass (F5, F8, F11)
+- F5: definitions.tex now cites the textbook's sentence after Definition 1.2.10 (p. 21) for writing a walk by its vertex sequence (m1-7).
+- F8: limits.tex adds the clause that Paramadevan and Sotheeswaran's own list of properties states the fact with walks (Section 2.2, item 7, p. 16; M2-11).
+- F11: references.bib has the entry m2_connectivity_script (evidence source record), cited in the first sentence of Section 5.
+Checks: see the final report of this pass; page count stays 6.
