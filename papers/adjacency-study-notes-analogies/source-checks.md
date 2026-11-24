@@ -41,3 +41,21 @@ wayne_cos226_undirected | M2-9 | slide "Depth First Search" (PDF p. 6) | carried
 petrosyan_graph_theory | C1, C3, C4, C7, C10, C11, C16, C26 | printed pp. 9, 11, 21, 22, 23, 48 | carried | supports | Round 1 record; I also viewed pp. 21 and 23 this round.
 whiteboard1, whiteboard2 | C6, C17, C22 | whole board | carried | supports | Round 1 record.
 ```
+
+## Round 3, 2026-11-24
+
+```
+CITATION SPOT CHECKS
+galway_adjacency_notes | M2-6 | Notes 1 and 2 after Definition 1.1.2, printed p. 3 | fetched | supports | Changed claim. "1. The adjacency matrix is symmetric (i.e. equal to its transpose) if the graph is undirected." and "2. The adjacency matrix has zeros on its main diagonal (unless the graph has loops)." are verbatim, with markers, above the "3" footer. They support only the structural part of M2-6; the paper does not cite Galway for it. Round 2 F15 resolved.
+m2_connectivity_script | M2-6 | scripts/m2_connectivity_test.out, DISCONNECTED GRAPH section, line 55 | viewed | supports | Re-ran with python3 -I: byte-identical. Line 55 is the quoted off-diagonal list, verbatim; the verdict is connected = False and the brute force agrees.
+paramadevan2021adjacency | C27 (control) | Theorem 2, p. 17 | fetched | supports | Control. Theorem 2 (B = A_G + ... + A_G^{n-1}; connected iff b_ij != 0 for i != j) is on PDF p. 5 above the printed "17" footer. Metadata JSc EUSL 12(1), pp. 13-21. Agrees with the round 1 and 2 record.
+gotti_18211_lecture27 | C20, C29 | Proposition 2, p. 1; Proposition 3, p. 2 | carried | supports | Round 2 record.
+grinberg_graph_theory | C8, C12, C15, C24, C25 | Definition 2.9.1(a)-(d), p. 36; Example 2.9.2, p. 37; Corollary 2.9.7, p. 39; Section 2.9.4, p. 40 | carried | supports | Rounds 1 and 2 record.
+bai_bimsa_adjacency | C13, C21, C29, C33 | pp. 1-2 | carried | supports | Rounds 1 and 2 record.
+galway_adjacency_notes | C2, C5, C19 | Definition 1.1.1, p. 2; Notes 1 and 2, p. 3; Theorem 1.1.3, p. 4 | carried | supports | Rounds 1 and 2 record; I saw Definition 1.1.1 on p. 2 in this round's fetch.
+paramadevan2021adjacency | C32, M2-11 | Theorem 1, p. 16; Section 2.2, item 7, p. 16 | carried | supports | Rounds 1 and 2 record.
+wayne_cos226_undirected | M2-9 | slide "Depth First Search" (PDF p. 6) | carried | supports | Round 1 record.
+petrosyan_graph_theory | C1, C3, C4, C7, C10, C11, C15, C16, C26, m1-7 | printed pp. 9, 11, 21, 22, 23, 48 | carried | supports | Rounds 1 and 2 record.
+whiteboard1, whiteboard2 | C6, C17, C22 | whole board | carried | supports | Round 1 record.
+m2_connectivity_script | M2-5 | scripts/m2_connectivity_test.out, BOARD GRAPH section | carried | supports | Round 2 record; this round's re-run is identical.
+```
