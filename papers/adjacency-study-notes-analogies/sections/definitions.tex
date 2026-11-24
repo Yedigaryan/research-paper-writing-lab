@@ -1,39 +1,34 @@
 \section{Setting and definitions}\label{sec:definitions}
 
-\medskip
-\noindent\textbf{In plain words.} A village has houses and lanes. Each lane is two-way and joins two different houses, and two houses share at most one lane. Houses that share a lane are neighbours.
+\plainstart\textbf{In plain words.} A village has houses and lanes. Each lane is two-way and joins two different houses, and two houses share at most one lane. Houses that share a lane are neighbours.\plainend
 \begin{definition}[Graph and adjacency; textbook Definitions 1.1.1 and 1.1.4]\label{def:graph}
 A \emph{graph} is a pair $G = (V, E)$ of a non-empty finite set $V$ of \emph{vertices} and a set $E$ of \emph{edges}; it is \emph{simple undirected} when each edge is an unordered pair of two distinct vertices, so there are no loops and no repeated edges \cite[Definition 1.1.1, p.~9; Definition 1.1.4, p.~11]{petrosyan_graph_theory} \cite[Definition 1.1.1, p.~2]{galway_adjacency_notes}. All graphs in this paper are finite, simple, and undirected. Write $V = \{n_1, \dots, n_N\}$ with $N \ge 1$ (the textbook writes $v_i$), and write $n_i n_j = n_j n_i$ for an edge. Two vertices are \emph{adjacent} if they form an edge.
 \end{definition}
 
-\medskip
-\noindent\textbf{In plain words.} The neighbour chart has one box for every pair of houses. A box says yes when the two houses are neighbours, and no otherwise. The chart reads the same from either side, and no house is its own neighbour.
+\plainstart\textbf{In plain words.} The neighbour chart has a row and a column for each house. The box in one house's row and another's column holds one if they are neighbours, and zero otherwise. Swapping the two houses gives the same number, and a house's box with itself holds zero.\plainend
 \begin{definition}[Adjacency matrix; textbook, p.~11, unnumbered]\label{def:matrix}
 The \emph{adjacency matrix} $A$ of $G$ is the $N \times N$ matrix with $A_{ij} = 1$ if $n_i$ and $n_j$ are adjacent and $A_{ij} = 0$ otherwise \cite[p.~11]{petrosyan_graph_theory}. Edges are unordered pairs of distinct vertices, so $A_{ij} = A_{ji}$ and $A_{ii} = 0$ \cite[p.~11]{petrosyan_graph_theory}.
 \end{definition}
 
 For $N \times N$ matrices $X, Y$ the product has entries $(XY)_{ij} = \sum_{r=1}^{N} X_{ir} Y_{rj}$. The powers of $A$ are $A^0 = I$, the identity matrix (ones on the diagonal, zeros elsewhere), and $A^{k+1} = A^k A$. The entry in row $i$ and column $j$ of $A^k$ is written $(A^k)_{ij}$.
 
-\medskip
-\noindent\textbf{In plain words.} A stroll starts at a house and moves along lanes, one lane at a time. It may pass the same house or the same lane again. Its steps are counted one by one, and standing still is a stroll of no steps.
+\plainstart\textbf{In plain words.} A stroll starts at a house and moves along lanes, one lane at a time. It may pass the same house or the same lane again. Its steps are counted one by one, and standing still is a stroll of no steps.\plainend
 \begin{definition}[Walk and length; textbook Definition 1.2.10]\label{def:walk}
 A \emph{walk} of \emph{length} $k \ge 0$ from $n_i$ to $n_j$ is a sequence $(v_0, v_1, \dots, v_k)$ of vertices with $v_0 = n_i$, $v_k = n_j$, and $v_{s-1}$ adjacent to $v_s$ for $1 \le s \le k$. The length $k$ is the number of edges counted with repetition.
 \end{definition}
 
 The textbook writes a walk as an alternating sequence of vertices and edges $u_0$, $e_1$, $u_1$, \dots, $e_k$, $u_k$, with $e_s = u_{s-1}u_s$ (the textbook's $u_s$ is this paper's $v_s$) \cite[Definition 1.2.10, p.~21]{petrosyan_graph_theory}. In a simple graph two vertices carry at most one edge, so the edges are determined by the vertices, and the textbook itself writes a walk briefly by its sequence of vertices \cite[p.~21, the sentence after Definition 1.2.10]{petrosyan_graph_theory}. In a walk both vertices and edges may repeat \cite[p.~22]{petrosyan_graph_theory}. This paper allows $k = 0$: the single vertex $(n_i)$ is a walk of length $0$ from $n_i$ to itself. That is the paper's convention; it agrees with the textbook's distance $d(u,v)$, which is $0$ exactly when $u = v$ \cite[p.~23]{petrosyan_graph_theory} and with Grinberg's example of a length-$0$ walk \cite[Example 2.9.2, p.~37]{grinberg_graph_theory}. Since $A$ is symmetric, a walk read backwards is a walk.
 
-\medskip
-\noindent\textbf{In plain words.} A no-return stroll never visits the same house twice. Standing still at one house counts as one. A no-return stroll between two houses starts at the first and ends at the second.
+\plainstart\textbf{In plain words.} A no-return stroll never visits the same house twice. Standing still at one house is also a no-return stroll, with no steps. A no-return stroll between two houses starts at the first and ends at the second.\plainend
 \begin{definition}[Path; textbook Definition 1.2.13, ``simple path'']\label{def:path}
 A \emph{path} is a walk whose vertices are pairwise distinct. A \emph{path between $n_i$ and $n_j$} (also called a path from $n_i$ to $n_j$) is a path $(v_0, \dots, v_k)$ with $v_0 = n_i$ and $v_k = n_j$ \cite[Definition 1.2.13, p.~22]{petrosyan_graph_theory} \cite[Definition 2.9.1(c),(d), p.~36]{grinberg_graph_theory} \cite[definition of path after Theorem 1, p.~1]{bai_bimsa_adjacency}. This is the meaning of ``path'' throughout the paper; the source of this convention is given in the Notes on sources.
 \end{definition}
 
 \begin{remark}\label{rem:trap}
-The textbook's own word ``path'' means something weaker: a walk whose edges are pairwise distinct \cite[Definition 1.2.12, p.~22]{petrosyan_graph_theory}, called a \emph{trail} in English. This paper's ``path'' is the textbook's ``simple path''; the textbook's ``path'' is called a ``trail'' here. By \Cref{def:path} each vertex $n_i$ has exactly one path to itself, $(n_i)$, of length $0$. Reversing a path from $n_i$ to $n_j$ gives a path from $n_j$ to $n_i$, so ``between'' is symmetric.
+The textbook's own word ``path'' means a less restricted notion: a walk whose edges are pairwise distinct \cite[Definition 1.2.12, p.~22]{petrosyan_graph_theory}, called a \emph{trail} in English. This paper's ``path'' is the textbook's ``simple path''; the textbook's ``path'' is called a ``trail'' here. By \Cref{def:path} each vertex $n_i$ has exactly one path to itself, $(n_i)$, of length $0$. Reversing a path from $n_i$ to $n_j$ gives a path from $n_j$ to $n_i$, so ``between'' is symmetric.
 \end{remark}
 
-\medskip
-\noindent\textbf{In plain words.} A village is joined-up when any two houses can be linked by a no-return stroll. Standing still links a house to itself. So only pairs of different houses need a real stroll.
+\plainstart\textbf{In plain words.} A village is joined-up when any two houses can be linked by a no-return stroll. Standing still links a house to itself. So only pairs of different houses need a real stroll.\plainend
 \begin{definition}[Connected; textbook Definition 2.1.1, restated]\label{def:connected}
 $G$ is \emph{connected} if for every pair $n_i, n_j$ of vertices there is a path from $n_i$ to $n_j$ \cite[Definition 2.1.1, p.~48]{petrosyan_graph_theory}.
 \end{definition}

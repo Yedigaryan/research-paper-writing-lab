@@ -133,3 +133,30 @@ The twelve paragraphs (statement; why it is true of it)
 - Ex 5.2: one lane between two houses, third house without a lane; boxes to it are zero; rule says not joined-up, which is correct.
 
 What the story cannot express exactly: the exact count in Theorem 3.1 and in Example 3.2 (the numbers appear only in the formal text); "the chart used that many times over" stands for a matrix power, which is a product and not a repetition of a lookup; the sum in Theorem 4.3 is "added up" without saying entry by entry; the requirement N >= 2 is not mentioned; the finite size of the village is not stated. Mirror caveat: a village with a house and no lane is allowed, as the story's "some pairs" says.
+
+## Final edits after round 3
+Pages 7 of 8; build ok; citations 0/0; claims 0/0; inspect_pdf 0/0; check_plain_words 12 paragraphs, 0 errors, 0 warnings. The PDF text shows every plain-words paragraph on the same page as the start of its statement. No claim, citation, numbered statement, or proof step was changed.
+
+Updated story dictionary: vertex, house; edge, lane; adjacent, neighbours; adjacency matrix, neighbour chart; entry, box; a box holds one for neighbours and zero otherwise; walk, stroll; length, steps; path, no-return stroll; connected, joined-up; graph, village; matrix power A^k, chaining the chart with itself once for each step; sum of powers, adding such charts box by box; sum test, the adding rule.
+
+Evaluator findings
+- F23: Theorem 3.1 paragraph now "Chain the neighbour chart with itself, once for each step. Then each box, even a house's box with itself, counts the strolls of that many steps. It counts every stroll, repeats allowed, ..."; boxes hold one or zero in the story (introduction), Definition 2.2 paragraph, and the Theorem 4.3 and Example 5.1, 5.2 paragraphs say "holds more than zero" and "holds zero".
+- F24: Example 3.2 paragraph: "only the middle house has lanes, one to each end house", "Going from ..." replaces "Walking".
+- F25: dictionary adds village = graph, chaining = power, adding box by box = sum, the adding rule = sum test; Examples 5.1, 5.2 say "the adding rule".
+- F26: Definition 2.2 paragraph rewritten as suggested (row and column, one or zero, swapping, house with itself holds zero).
+- F27: `needspace` package and two macros in main.tex (\plainstart: Needspace 9 lines, \bigskip, so the space above exceeds the space below; \plainend: \nopagebreak and -4pt); all twelve paragraphs use them.
+
+Reader passages
+- F1 changed: "Story and dictionary" heading; the dictionary stays one sentence. F2 changed: abstract "The answers to the first two questions are proved in full".
+- F3 changed: "is also a no-return stroll, with no steps". F4 changed: "a less restricted notion". F5 stays: that sentence carries the textbook definition and its citation, kept after round 1.
+- F6 changed with F23. F7 changed: names the clause. F8 stays: proof step. F9 changed in part (box by box, stop at one less than the number of houses); no notation allowed, so no N or Theorem names.
+- F10 changed: Remark 4.4 names G_1 (Example 3.2) and G_2 (Example 5.2). F11 stays: names such as G1 and S are not allowed in the paragraph; the example itself names them right below. F12 stays: needs a citation at a new place.
+- F13 stays: it is inside Definition 2.4, a numbered statement. F14 changed: Notes say Bai and Grinberg define "path" as the paper does and that Bai's sketch uses "paths" for walks (see Section 6); Section 6 states Bai's n as N before the sketch.
+- F15 stays: the introduction already points to the Notes on sources for the example graph. F16 changed: split into the search and the pages read.
+- F17 stays: the local-file rule requires these entries; the notes say the sources are not public. F18 stays: proof label.
+- F19 changed: "as shown below". F20 changed: "so that its definition numbers can be checked".
+
+Corrections to three sentences (after the coordinator's diff review)
+- walks.tex, paragraph before Example 3.2: "Three houses stand in a row; only the middle house has lanes, one to each end house." is now "Three houses stand in a row, with a lane from the middle house to each end house and no other lane." (a lane has two ends, so the old wording was false).
+- definitions.tex, paragraph before Definition 2.2: "Swapping the two houses gives the same box," is now "Swapping the two houses gives the same number,".
+- introduction.tex, story: "a neighbour chart has a box for each pair of houses, holding one for neighbours and zero otherwise" is now "a neighbour chart has a row and a column for each house, and the box in one house's row and another's column holds one for neighbours and zero otherwise", in agreement with the Definition 2.2 paragraph; still four sentences.
