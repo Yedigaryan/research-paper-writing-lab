@@ -1,0 +1,47 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+\usepackage[backend=biber,style=numeric,urldate=long]{biblatex}
+\addbibresource{references.bib}
+\graphicspath{{figures/}}
+\setlength{\emergencystretch}{3em}
+\setcounter{biburlnumpenalty}{100}\setcounter{biburlucpenalty}{100}\setcounter{biburllcpenalty}{100}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}[definition]{Example}
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{lemma}[definition]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+\theoremstyle{plain}
+\newtheorem{proposition}[definition]{Proposition}
+
+\title{Adjacency matrices, walks, paths, and connectivity: study notes}
+\author{}
+\date{November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For a finite simple undirected graph with $N$ vertices and adjacency matrix $A$, we answer three questions. The entry $(A^k)_{ij}$ is the number of walks of length $k$ from vertex $n_i$ to vertex $n_j$. The graph is connected exactly when every entry off the diagonal of $A + A^2 + \dots + A^{N-1}$ is positive. A path between $n_i$ and $n_j$ is a walk between them in which no vertex occurs twice. The first two results are proved in full (Theorems 3.1 and 4.3) and worked on two small graphs.
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/definitions}
+\input{sections/walks}
+\input{sections/connectivity}
+\input{sections/examples}
+\input{sections/limits}
+\input{sections/notes}
+
+\printbibliography
+
+
+\end{document}

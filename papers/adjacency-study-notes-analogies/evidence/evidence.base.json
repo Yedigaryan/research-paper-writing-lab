@@ -1,0 +1,986 @@
+{
+  "question": "For a simple undirected graph with N vertices given by its adjacency matrix A: (1) what does the entry (A^k)_{ij} represent, (2) how can one determine from A whether the graph is connected, and (3) what is the definition of a path between vertices n_i and n_j?",
+  "sources": [
+    {
+      "id": "petrosyan_graph_theory",
+      "type": "book",
+      "title": "Graph Theory (Grafneri tesutyun), course textbook in Armenian",
+      "authors": [
+        "Petrosyan",
+        "Mkrtchyan",
+        "Kamalyan"
+      ],
+      "year": null,
+      "venue": "Course textbook; publisher and year not read",
+      "identifier": {
+        "doi": null,
+        "url": null,
+        "isbn": null,
+        "path": "../../Grafneri_tesutyun.pdf"
+      },
+      "accessed": "2026-11-23",
+      "access_status": "partial",
+      "credibility": "primary",
+      "found_by": "research-agent",
+      "notes": "Primary source for definitions and their numbers. Viewed as page images in this run (PDF page = printed page + 1; printed pages are cited): 9 (Def 1.1.1), 11 (Def 1.1.4, adjacency matrix), 12, 21 (Def 1.2.10), 22 (Defs 1.2.12, 1.2.13), 23 (distance properties, Lemma 1.2.1), 34, 48 (Def 2.1.1), 49, 61. Authors given by surname only, taken from the brief; first names, year and publisher were not read from a title page. Quotes are transcribed from the page images; the text layer drops symbols. Authors' word shrjantsum is rendered walk, chanaparh is the book's path (a trail, Def 1.2.12), partz chanaparh is simple path (Def 1.2.13), following graph-sources.md and the brief. A text-layer search for the adjacency-matrix phrase finds it only on printed pp. 7, 11, 12, 34, 61; p. 7 was not viewed as an image. No walk-counting theorem or matrix connectivity test was found on the pages viewed. Lemma 1.2.1 is stated for u different from v and has no length bound."
+    },
+    {
+      "id": "galway_adjacency_notes",
+      "type": "web",
+      "title": "Linear algebra notes, Chapter 1, 1.1 The Adjacency Matrix (University of Galway notes)",
+      "authors": [],
+      "year": null,
+      "venue": "Lecture notes, maths.nuigalway.ie",
+      "identifier": {
+        "doi": null,
+        "url": "https://maths.nuigalway.ie/~rquinlan/linearalgebra/section1-1.pdf",
+        "isbn": null,
+        "path": null
+      },
+      "accessed": "2026-11-23",
+      "access_status": "partial",
+      "credibility": "primary",
+      "found_by": "research-agent",
+      "notes": "Opened and text-extracted in full (7 PDF pages; printed pages 2 to 8 by the footers, the section starts on printed p. 2). Carries no author name and no date; call them the University of Galway notes. Original teaching text with numbered statements, not peer reviewed. Defines simple undirected graph (Def 1.1.1, p. 2) and proves walk counting (Theorem 1.1.3, p. 4) by induction. Does not define walk or path. Marked partial because the later sections (spectral part, Friendship Theorem) were not read in detail. Math in the quotes is as flattened by text extraction (A^k appears as Ak)."
+    },
+    {
+      "id": "gotti_18211_lecture27",
+      "type": "web",
+      "title": "MIT 18.211 Combinatorial Analysis, Lecture 27: Adjacency Matrices and The Matrix-Tree Theorem",
+      "authors": [
+        "Felix Gotti"
+      ],
+      "year": null,
+      "venue": "Lecture notes, MIT",
+      "identifier": {
+        "doi": null,
+        "url": "https://math.mit.edu/~fgotti/docs/Courses/C.%20Combinatorial%20Analysis/27.%20The%20Matrix-Tree%20Theorem/The%20Matrix-Tree%20Theorem.pdf",
+        "isbn": null,
+        "path": null
+      },
+      "accessed": "2026-11-23",
+      "access_status": "partial",
+      "credibility": "primary",
+      "found_by": "research-agent",
+      "notes": "Opened; pages 1 and 2 read for Proposition 2 (walk counting, p. 1, graphs on [n], directed or undirected) and Proposition 3 (p. 2, the (I_n + A)^(n-1) form of the connectivity test for simple graphs). No date on the file. Proposition 3 is not the sum form A + ... + A^(n-1); its proof asserts the bound 'length at most n - 1' without proving it and uses a binomial identity. A footnote says Proposition 3 was not covered in class. Matrix-Tree part (pp. 2-4) not used. Math in quotes as flattened by text extraction."
+    },
+    {
+      "id": "grinberg_graph_theory",
+      "type": "preprint",
+      "title": "An introduction to graph theory (version June 7, 2025)",
+      "authors": [
+        "Darij Grinberg"
+      ],
+      "year": 2025,
+      "venue": "arXiv:2308.04512 (Text for Math 530, Drexel University)",
+      "identifier": {
+        "doi": null,
+        "url": "https://arxiv.org/abs/2308.04512",
+        "isbn": null,
+        "path": null
+      },
+      "accessed": "2026-11-23",
+      "access_status": "partial",
+      "credibility": "primary",
+      "found_by": "research-agent",
+      "notes": "Downloaded the full PDF (454 pages) and read Section 2.9 (pp. 36-42) for simple graphs. Page numbers are the version's own (header 'page N'), which in this version equal the PDF page numbers. Original lecture text with numbered statements. Section 2.9 states the results for simple graphs; the multidigraph version of walk counting (Theorem 4.5.10, pp. 120-121) exists but was not needed. Rest of the book not read. Earlier runs recorded multidigraph-style statements for these results; in this version Section 2.9 is for simple graphs, and the page locators agree with graph-sources.md."
+    },
+    {
+      "id": "bai_bimsa_adjacency",
+      "type": "web",
+      "title": "Important Properties and Applications of the Adjacency Matrix (20250310)",
+      "authors": [
+        "Shuliang Bai"
+      ],
+      "year": 2025,
+      "venue": "BIMSA lecture notes",
+      "identifier": {
+        "doi": null,
+        "url": "https://bimsa.net/doc/notes/48535.pdf",
+        "isbn": null,
+        "path": null
+      },
+      "accessed": "2026-11-23",
+      "access_status": "partial",
+      "credibility": "secondary",
+      "found_by": "research-agent",
+      "notes": "Opened; Section 1 (pp. 1-2) read. Short lecture notes dated 2025-03-10 in the title. Defines walk and path (no repeated vertex), states walk counting as Theorem 1 for simple graphs and the (I + A)^(n-1) test as Theorem 2 with a proof sketch only. No sum form A + ... + A^(n-1). The proof sketch says '(I + A)^(n-1) aggregates all paths of length <= n - 1', which counts walks under the notes' own definition of path. Not peer reviewed. Eigenvalue sections not read."
+    },
+    {
+      "id": "paramadevan2021adjacency",
+      "type": "peer-reviewed",
+      "title": "Properties of Adjacency Matrix of a Graph and It's Construction",
+      "authors": [
+        "P. Paramadevan",
+        "S. Sotheeswaran"
+      ],
+      "year": 2021,
+      "venue": "JSc EUSL 12(1), pp. 13-21",
+      "identifier": {
+        "doi": "10.4038/jsc.v12i1.29",
+        "url": "https://www.fsc.esn.ac.lk/jsc/archive/12.1.2.pdf",
+        "isbn": null,
+        "path": null
+      },
+      "accessed": "2026-11-23",
+      "access_status": "partial",
+      "credibility": "primary",
+      "found_by": "research-agent",
+      "notes": "Opened the full PDF (9 pages) and viewed page 17 as an image; pp. 13-17 read as text. Original research article in a faculty journal. The paper never defines 'path'. Theorem 1 (p. 16) says the entry of A^l counts 'different paths of length l'; Theorem 2 (p. 17) is the sum form of the test, B = A + ... + A^(n-1), and its proof moves from a non-zero entry to a path without a walk-to-path lemma; Theorem 3 (p. 17) is the distance statement. Quotes keep the printed wording; subscripts and superscripts are flattened to plain text."
+    },
+    {
+      "id": "whiteboard1",
+      "type": "local-file",
+      "title": "Lecture whiteboard photo 1",
+      "authors": [],
+      "year": null,
+      "venue": "Photo of the lecture board",
+      "identifier": {
+        "doi": null,
+        "url": null,
+        "isbn": null,
+        "path": "sources/whiteboard-1.jpg"
+      },
+      "accessed": "2026-11-23",
+      "access_status": "full",
+      "credibility": "primary",
+      "found_by": "research-agent",
+      "notes": "Viewed in this run. Same board as photo 2; handwriting, partly smudged. The reading of the board in brief.md section 5 agrees with what was seen. Board quotes are my transcription of handwriting."
+    },
+    {
+      "id": "whiteboard2",
+      "type": "local-file",
+      "title": "Lecture whiteboard photo 2",
+      "authors": [],
+      "year": null,
+      "venue": "Photo of the lecture board",
+      "identifier": {
+        "doi": null,
+        "url": null,
+        "isbn": null,
+        "path": "sources/whiteboard-2.jpg"
+      },
+      "accessed": "2026-11-23",
+      "access_status": "full",
+      "credibility": "primary",
+      "found_by": "research-agent",
+      "notes": "Viewed in this run. Second photo of the same board as photo 1, different angle."
+    },
+    {
+      "id": "user_statements",
+      "type": "local-file",
+      "title": "User statements (orchestrator summary and verbatim request of 2026-11-23)",
+      "authors": [],
+      "year": null,
+      "venue": "Orchestrator record",
+      "identifier": {
+        "doi": null,
+        "url": null,
+        "isbn": null,
+        "path": "sources/user-statements.md"
+      },
+      "accessed": "2026-11-23",
+      "access_status": "full",
+      "credibility": "secondary",
+      "found_by": "research-agent",
+      "notes": "Read in this run. Items 1 to 4 under 'Summary of what the user stated' are a summary, not the user's words, and nobody may quote them as the user's words. Only the request of 2026-11-23 is verbatim."
+    }
+  ],
+  "claims": [
+    {
+      "id": "C1",
+      "text": "N1. The course textbook defines a graph as the ordered pair G = (V, E) with vertices and edges, and writes an edge as e = uv (Definition 1.1.1, printed p. 9).",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "Definition 1.1.1, printed p. 9",
+          "quote": "(V, E) կարգավոր զույգին կանվանենք գրաֆ, և այն կնշանակենք G-ով:"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C2",
+      "text": "N1. A simple undirected graph is a pair of a non-empty vertex set and a set of unordered pairs of distinct vertices (Galway Definition 1.1.1).",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "galway_adjacency_notes",
+          "locator": "Definition 1.1.1, printed p. 2",
+          "quote": "A simple undirected graph G = (V, E) consists of a non-empty set V of vertices and a set E of unordered pairs of distinct elements of V, called edges."
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C3",
+      "text": "N1. The textbook defines adjacent vertices: u and v are adjacent if uv is an edge (Definition 1.1.4, printed p. 11).",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "Definition 1.1.4, printed p. 11",
+          "quote": "Սահմանում 1.1.4: u և v գագաթները կանվանենք հարևան, եթե uv ∈ E:"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C4",
+      "text": "N1. The textbook's adjacency matrix A(G) of an n-vertex graph has a_ij = 1 if v_i and v_j are adjacent and 0 otherwise, with a_ii = 0 and a_ij = a_ji. The definition carries no number of its own; it follows Definition 1.1.6 on printed p. 11.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "printed p. 11, after Definition 1.1.6",
+          "quote": "A(G) մատրիցը կանվանենք G գրաֆի հարևանության մատրից: Նկատենք, որ ցանկացած i-ի համար (1 ≤ i ≤ n) a_ii = 0, և ցանկացած i, j-ի համար (1 ≤ i, j ≤ n) a_ij = a_ji:"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C5",
+      "text": "N1. For an undirected graph the adjacency matrix is symmetric, and it has zeros on the diagonal unless there are loops (Galway, Notes 1 and 2 after Definition 1.1.2).",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "galway_adjacency_notes",
+          "locator": "Note 1 on the adjacency matrix, printed p. 3",
+          "quote": "1. The adjacency matrix is symmetric (i.e. equal to its transpose) if the graph is undirected."
+        },
+        {
+          "source": "galway_adjacency_notes",
+          "locator": "Note 2 on the adjacency matrix, printed p. 3",
+          "quote": "2. The adjacency matrix has zeros on its main diagonal (unless the graph has loops)."
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "C6",
+      "text": "N1. The board writes the matrix rule as A_ij = 1 if e_ij is in V, 0 if not, and the problem as 'Given graph (G, V) with N nodes i.e. |G| = N' with the graph 'represented through it's adj. matrix'. The textbook never writes e_ij; the board's rule is the board's own.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "whiteboard1",
+          "locator": "whole board, top and 'Problem' lines",
+          "quote": "Given graph (G, V) with N nodes i.e. |G| = N and the graph is represented through it's adj. matrix. So you have \"A\" matrix."
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": [
+        "sections/notes.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C7",
+      "text": "N2. The textbook defines a walk (shrjantsum) of length k from u0 to uk as a sequence u0, e1, u1, ..., ek, uk with e_i = u_(i-1)u_i, and its Definition 1.2.10 is on printed p. 21. The note after it says vertices and edges in a walk may repeat and the length counts edges with multiplicity.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "Definition 1.2.10, printed p. 21",
+          "quote": "Սահմանում 1.2.10: G գրաֆի u0, u1, …, uk-1, uk գագաթներից և e1, …, ek կողերից կազմված u0, e1, u1, …, uk-1, ek, uk հաջորդականությունը կանվանենք k երկարությամբ u0-ից uk շրջանցում կամ k երկարությամբ (u0, uk)-շրջանցում, եթե ei = ui-1ui, երբ 1 ≤ i ≤ k:"
+        },
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "note after Definition 1.2.10, printed pp. 21-22",
+          "quote": "Նշենք, որ շրջանցման մեջ գագաթները և կողերը կարող են կրկնվել, իսկ (u0, uk)-շրջանցման երկարությունը ցույց է տալիս այդ շրջանցման մեջ առկա կողերի քանակը:"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C8",
+      "text": "N2. In simple graphs a walk is a finite sequence (v0, ..., vk) of vertices with k >= 0 such that consecutive vertices are joined by edges; its length is the nonnegative integer k (Grinberg Definition 2.9.1(a),(b)).",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Definition 2.9.1(a), p. 36",
+          "quote": "A walk (in G) means a finite sequence (v0 , v1 , . . . , vk ) of vertices of G (with k ≥ 0) such that all of v0 v1 , v1 v2 , v2 v3 , . . . , vk−1 vk are edges of G."
+        },
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Definition 2.9.1(b), p. 36",
+          "quote": "The nonnegative integer k is called the length of w."
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C9",
+      "text": "N2. Bai defines a walk as a sequence of vertices with consecutive pairs joined by an edge, with vertices and edges allowed to repeat.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "bai_bimsa_adjacency",
+          "locator": "Section 1, definitions after Theorem 1, p. 1",
+          "quote": "Walk: A sequence of vertices where each consecutive pair is connected by an edge. Vertices and edges can be repeated."
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "C10",
+      "text": "N3. The textbook's Definition 1.2.13 calls a (u0, uk)-path of the book (which is a trail) a simple (u0, uk)-path if all vertices in it are pairwise distinct. Printed p. 22. This is the course's path, per the user's summary.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "Definition 1.2.13, printed p. 22",
+          "quote": "Սահմանում 1.2.13: G գրաֆի (u0, uk)-ճանապարհը կանվանենք պարզ (u0, uk)-ճանապարհ, եթե նրա մեջ մտնող բոլոր գագաթները զույգ առ զույգ տարբեր են:"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C11",
+      "text": "N3. In the textbook the word chanaparh (path) in Definition 1.2.12 means a walk whose edges are pairwise distinct (a trail in English); the length |P| is the number of edges. Printed p. 22.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "Definition 1.2.12, printed p. 22",
+          "quote": "Սահմանում 1.2.12: G գրաֆի (u0, uk)-շրջանցումը կանվանենք u0-ից uk ճանապարհ կամ (u0, uk)-ճանապարհ, եթե u0u1-ը,…, uk-1uk-ն G գրաֆի զույգ առ զույգ տարբեր կողեր են:"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C12",
+      "text": "N3. In Grinberg's notes a path is a walk whose vertices are distinct, and a path from p to q is a path that starts at p and ends at q (Definition 2.9.1(c),(d)).",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Definition 2.9.1(c), p. 36",
+          "quote": "A path (in G) means a walk (in G) whose vertices are distinct."
+        },
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Definition 2.9.1(d), p. 36",
+          "quote": "A path from p to q means a path that starts at p and ends at q."
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C13",
+      "text": "N3. Bai defines a path as a walk with no repeated vertex (the exception for cycles in his wording is about closed walks).",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "bai_bimsa_adjacency",
+          "locator": "Section 1, definitions after Theorem 1, p. 1",
+          "quote": "Path: A walk where no vertex is repeated (except possibly the first and last vertex if it’s a cycle)."
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C14",
+      "text": "N3. The source summary states that in the course 'path' means a walk with no repeated vertices, the textbook's Definition 1.2.13. This is a summary by the orchestrator, not the user's words.",
+      "kind": "interpretation",
+      "module": "m1",
+      "support": [
+        {
+          "source": "user_statements",
+          "locator": "item 4 under 'Summary of what the user stated'",
+          "quote": "In the course, \"path\" means a walk with no repeated vertices, which is the course textbook's Definition 1.2.13 (simple path)."
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [
+        "sections/notes.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C15",
+      "text": "N3. A length-0 walk (v) is a path in Grinberg's convention (Example 2.9.2). The textbook's distance property d(u, v) = 0 exactly when u = v (printed p. 23) agrees with a length-0 walk, but the textbook does not say in words that a walk of length 0 is allowed.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Example 2.9.2, p. 37",
+          "quote": "The sequence (5) is a walk from 5 to 5. It has length 0. It is a path."
+        },
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "distance property 1, printed p. 23",
+          "quote": "1. G գրաֆի ցանկացած u և v գագաթների համար d_G(u, v) ≥ 0, և d_G(u, v) = 0 այն և միայն այն դեպքում, երբ u = v;"
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C16",
+      "text": "N4. The textbook defines a graph as connected if for any two vertices u and v there is a (u, v)-path of the book, Definition 2.1.1 (printed p. 48). The book's path is a trail (Definition 1.2.12).",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "Definition 2.1.1, printed p. 48",
+          "quote": "Սահմանում 2.1.1: G գրաֆը կանվանենք կապակցված, եթե նրա ցանկացած երկու u և v գագաթների համար G գրաֆում գոյություն ունի (u, v)-ճանապարհ:"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C17",
+      "text": "N4. The board defines connected as: for any n_i, n_j there exists a path between nodes. It does not define path.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "whiteboard1",
+          "locator": "bottom of the board, 'Def.' line",
+          "quote": "Def. Graph is called connected if for any n_i n_j ∃ path between nodes"
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": [
+        "sections/notes.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C18",
+      "text": "N4. Grinberg defines u and v as connected via the existence of a walk (Definition 2.9.8) and a graph as connected if it has exactly one component (Definition 2.9.12); Proposition 2.9.10 shows that a walk from u to v exists exactly when a path from u to v exists.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Definition 2.9.8, p. 41",
+          "quote": "For two vertices u and v of G, we shall have u ≃G v if and only if there exists a walk from u to v in G."
+        },
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Definition 2.9.12, p. 42",
+          "quote": "We say that G is connected if G has exactly one component."
+        },
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Proposition 2.9.10, p. 42",
+          "quote": "Then, u ≃G v if and only if there exists a path from u to v."
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "C19",
+      "text": "N5. Walk counting: for the adjacency matrix A of a simple graph on v1, ..., vn and a positive integer k, the (i, j) entry of A^k is the number of walks of length k from vi to vj (Galway Theorem 1.1.3, printed p. 4). The proof is by induction on k.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "galway_adjacency_notes",
+          "locator": "Theorem 1.1.3, printed p. 4",
+          "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
+        },
+        {
+          "source": "galway_adjacency_notes",
+          "locator": "proof of Theorem 1.1.3, printed p. 4",
+          "quote": "Thus the total number of walks of length k from vi to vj is the sum of the expressions (Ak−1 )ir Arj over all vertices vr of G, which is exactly (Ak )ij ."
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/walks.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C20",
+      "text": "N5. Gotti states the same result for directed or undirected graphs and proves it by induction on the length by concatenating a walk of length l with an edge (Proposition 2, p. 1).",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "gotti_18211_lecture27",
+          "locator": "Proposition 2, p. 1",
+          "quote": "Let G be a graph (directed or undirected) on [n] with adjacency matrix A. For any j, k ∈ [n] and ℓ ∈ N, there are Aℓjk walks of length ℓ from j to k."
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": [
+        "sections/walks.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C21",
+      "text": "N5. Bai states walk counting for simple graphs (Theorem 1, p. 1) and says explicitly that (A^k)_ij counts walks, not paths, because matrix multiplication does not remember visited vertices.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "bai_bimsa_adjacency",
+          "locator": "Theorem 1 and the text after it, p. 1",
+          "quote": "Then for any two vertices i and j, the entry (Ak )ij counts the number of walks of length k from vertex i to vertex j."
+        },
+        {
+          "source": "bai_bimsa_adjacency",
+          "locator": "text after the definitions of walk and path, p. 1",
+          "quote": "counts walks — not paths."
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/walks.tex",
+        "sections/limits.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C22",
+      "text": "N5. On the board's graph (edges n1n2 and n2n3, matrix rows 0 1 0 / 1 0 1 / 0 1 0) the entry (A^2)_11 equals 1 and counts the walk n1, n2, n1, which is not a path.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "whiteboard1",
+          "locator": "3 by 3 grid labelled 'adj.'",
+          "quote": "adj."
+        },
+        {
+          "source": "whiteboard2",
+          "locator": "3 by 3 grid labelled 'adj.'",
+          "quote": "adj."
+        }
+      ],
+      "derivation": "modules/m1.md section 3, 'Worked entry', and claim m1-5; recomputed by scripts/m1_walks.py (output scripts/m1_walks_output.txt). Premises C19 and C12 plus the board matrix.",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/walks.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C23",
+      "text": "N6. In Grinberg's notes, a walk from u to v that is not a path can be shortened: it has a repeated vertex, and cutting out the part between the two equal vertices gives a walk of smaller length (Proposition 2.9.5).",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Proposition 2.9.5, p. 38",
+          "quote": "Assume that a is not a path. Then, there exists a walk from u to v whose length is smaller than k."
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "C24",
+      "text": "N6. Corollary 2.9.7 (Grinberg): if there is a walk from u to v of length k, there is a path from u to v of length at most k. The proof applies Proposition 2.9.5 repeatedly. Stated for u = v as well.",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Corollary 2.9.7, p. 39",
+          "quote": "Assume that there is a walk from u to v of length k for some k ∈ N. Then, there is a path from u to v of length ≤ k."
+        },
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "proof of Corollary 2.9.7, p. 39",
+          "quote": "Apply this repeatedly, until you get a path."
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C25",
+      "text": "N6. A path in a graph with n vertices has length at most n - 1, because a path of length k has k + 1 distinct vertices (Grinberg, p. 40).",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Section 2.9.4, p. 40",
+          "quote": "However, any path from u to v must have length ≤ n − 1, where n is the number of vertices of G (since a path of length k has k + 1 distinct vertices, but G has only n vertices to spare)."
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C26",
+      "text": "N6. The textbook's Lemma 1.2.1 (printed p. 23) says that for different vertices u and v any (u, v)-walk contains a simple (u, v)-path; its proof is by induction on the walk's length. It has no length bound and is stated for u different from v.",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "Lemma 1.2.1, printed p. 23",
+          "quote": "Լեմմա 1.2.1: Ենթադրենք, որ G գրաֆում u-ն և v-ն իրարից տարբեր երկու գագաթներ են: Այդ դեպքում ցանկացած (u, v)-շրջանցումից կարելի է առանձնացնել պարզ (u, v)-ճանապարհ:"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C27",
+      "text": "N7. Paramadevan and Sotheeswaran state the sum test: with B = A + A^2 + ... + A^(n-1), the graph is connected if and only if b_ij is not zero for i different from j (Theorem 2, p. 17). Their proof treats a non-zero entry as a path without a walk-to-path lemma.",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "paramadevan2021adjacency",
+          "locator": "Theorem 2, p. 17",
+          "quote": "Then, A_G is connected if and only if b_ij ≠ 0, when i ≠ j."
+        },
+        {
+          "source": "paramadevan2021adjacency",
+          "locator": "proof of Theorem 2, p. 17",
+          "quote": "Since G is connected, then there is a path from any vertex i to any other the vertex j."
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C28",
+      "text": "N7. The exact sum test of the brief (entries off the diagonal of A + ... + A^(N-1) positive iff connected) follows from walk counting (C19), the walk-to-path lemma (C24) and the bound N - 1 (C25), because the entries are non-negative integers. The proof is in module m2 (claim M2-3).",
+      "kind": "derived",
+      "module": "m2",
+      "support": [
+        {
+          "source": "galway_adjacency_notes",
+          "locator": "Theorem 1.1.3, printed p. 4",
+          "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
+        },
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Corollary 2.9.7, p. 39",
+          "quote": "Then, there is a path from u to v of length ≤ k."
+        }
+      ],
+      "derivation": "modules/m2.md section 3, Theorem 2.2 with Lemma 2.1, and claims M2-1, M2-2, M2-3. Premises C19, C24, C25 and C18.",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C29",
+      "text": "O1. Gotti Proposition 3 (p. 2) and Bai Theorem 2 (p. 1) state the (I + A)^(n-1) form of the test: G is connected if and only if all entries are positive. Gotti's proof uses the binomial identity; Bai gives a proof sketch only.",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "gotti_18211_lecture27",
+          "locator": "Proposition 3, p. 2",
+          "quote": "Then G is connected if and only if all the entries of (In + A)n−1 are positive."
+        },
+        {
+          "source": "bai_bimsa_adjacency",
+          "locator": "Theorem 2, p. 1",
+          "quote": "Then G is connected if and only if the matrix power (I + A)n−1 has all entries strictly positive."
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C30",
+      "text": "N6/N7. Gotti asserts that connectivity means any two vertices are joined by a path of length at most n - 1, without proving the bound.",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "gotti_18211_lecture27",
+          "locator": "proof of Proposition 3, p. 2",
+          "quote": "We know that G is connected if and only if any two distinct vertices j and k of G are connected by a path (of length at most n − 1)"
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "C31",
+      "text": "O2. Paramadevan and Sotheeswaran state that the distance between v_i and v_j is the smallest l with a non-zero (i, j) entry of A^l (Section 2.2 item 7, p. 16; Theorem 3, p. 17). The proof reads a non-zero entry as a path.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "paramadevan2021adjacency",
+          "locator": "Theorem 3, p. 17",
+          "quote": "The distance between two vertices vi and vj is equal to l if and only if l is the smallest integer such that (A_G^l)_ij ≠ 0."
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "C32",
+      "text": "O3 and N9. Paramadevan and Sotheeswaran's Theorem 1 says the (i, j) entry of A^l is the number of 'different paths' of length l. The paper never defines path. Read as walks it is walk counting; read as vertex-distinct paths it is false (board graph: (A^2)_11 = 1 but no path of length 2 joins n1 to itself).",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "paramadevan2021adjacency",
+          "locator": "Theorem 1, p. 16",
+          "quote": "then the number of different paths of length l between the ith and jth vertices of G is equal to the (i, j)th entry of A_G^l."
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": [
+        "sections/limits.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C33",
+      "text": "O3 and N9. Bai's proof sketch says '(I + A)^(n-1) aggregates all paths of length <= n - 1', while Theorem 1 of the same notes says matrix powers count walks and not paths.",
+      "kind": "fact",
+      "module": "m2",
+      "support": [
+        {
+          "source": "bai_bimsa_adjacency",
+          "locator": "Theorem 2 proof sketch, point 4, p. 2",
+          "quote": "(I + A)n−1 aggregates all paths of length ≤ n − 1."
+        },
+        {
+          "source": "bai_bimsa_adjacency",
+          "locator": "after the definitions, p. 1",
+          "quote": "counts walks — not paths."
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": [
+        "sections/limits.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "C34",
+      "text": "The textbook gives the adjacency matrix in a definition on printed p. 11 and in the notation list; the pages viewed (11, 12, 34, 61) contain no walk-counting theorem and no matrix test for connectivity. This is the result of a text-layer search of the whole book for the adjacency-matrix phrase (hits on printed pp. 7, 11, 12, 34, 61) plus viewing four of those pages; p. 7 was not viewed.",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "text-layer search of the whole book; pp. 11, 12, 34, 61 viewed",
+          "quote": "A(G) մատրիցը կանվանենք G գրաֆի հարևանության մատրից:"
+        }
+      ],
+      "derivation": null,
+      "confidence": "medium",
+      "status": "qualified",
+      "used_in": [
+        "sections/notes.tex"
+      ],
+      "contradicted_by": []
+    }
+  ],
+  "contradictions": [
+    {
+      "claims": [
+        "C10",
+        "C11",
+        "C16"
+      ],
+      "sources": [
+        "petrosyan_graph_theory"
+      ],
+      "summary": "The textbook's word 'path' (chanaparh, Definition 1.2.12) means a walk with distinct edges (a trail), and its Definition 2.1.1 of connected uses that word. The course's path (user's summary) and the paper's path is the textbook's simple path, Definition 1.2.13, a walk with no repeated vertex.",
+      "resolution": "The paper says in one clause where it defines path that it means Definition 1.2.13 and defines connected with that path. Trail-connected and path-connected agree because a walk contains a path (C24) and a path has distinct edges; the trail reading must be proved in the paper, Grinberg Proposition 2.9.10 covers walks and paths only."
+    },
+    {
+      "claims": [
+        "C32",
+        "C19",
+        "C21"
+      ],
+      "sources": [
+        "paramadevan2021adjacency",
+        "galway_adjacency_notes",
+        "bai_bimsa_adjacency"
+      ],
+      "summary": "Paramadevan and Sotheeswaran say A^l entries count 'different paths of length l'; the Galway notes, Gotti and Bai say walks, and Bai says explicitly not paths. The two agree only if 'path' in Paramadevan means walk, which the paper never says.",
+      "resolution": "The paper proves the walk statement and gives the board counterexample for the vertex-distinct reading; it records both readings of Paramadevan's undefined word (optional item O3)."
+    },
+    {
+      "claims": [
+        "C33",
+        "C21"
+      ],
+      "sources": [
+        "bai_bimsa_adjacency"
+      ],
+      "summary": "Bai's Theorem 1 says matrix powers count walks and not paths, while the proof sketch of Theorem 2 says (I + A)^(n-1) aggregates all paths of length at most n - 1.",
+      "resolution": "Under Bai's own definition (no repeated vertex) the sketch is wrong as written for R_11 on the board graph; the paper proves the test through walks and does not use the sketch."
+    },
+    {
+      "claims": [
+        "C26",
+        "C24"
+      ],
+      "sources": [
+        "petrosyan_graph_theory",
+        "grinberg_graph_theory"
+      ],
+      "summary": "The textbook's Lemma 1.2.1 is stated for different vertices and has no length bound; Grinberg's Corollary 2.9.7 covers u = v and gives length at most k, with the bound n - 1 on p. 40.",
+      "resolution": "Not a disagreement about truth; the paper takes the lemma with the case u = v and the bound from Grinberg and proves them in the text."
+    }
+  ]
+}

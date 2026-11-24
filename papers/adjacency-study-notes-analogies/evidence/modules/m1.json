@@ -1,0 +1,218 @@
+{
+  "sources": [
+    {
+      "id": "m1_walks_script",
+      "type": "code",
+      "title": "m1_walks.py: brute-force walk enumeration against matrix powers",
+      "authors": [],
+      "year": null,
+      "venue": "Script written by module m1 in this run",
+      "identifier": {
+        "doi": null,
+        "url": null,
+        "isbn": null,
+        "path": "scripts/m1_walks.py"
+      },
+      "accessed": "2026-11-23",
+      "access_status": "full",
+      "credibility": "primary",
+      "found_by": "module:m1",
+      "notes": "Run with python3 -I; output saved in scripts/m1_walks_output.txt. Enumerates every vertex sequence of length k+1 and compares the count with the matrix power for the board matrix (k = 0..4) and for 200 random simple graphs on 2..6 vertices (k = 0..4). A check, not a proof."
+    }
+  ],
+  "claims": [
+    {
+      "id": "m1-1",
+      "text": "N1. Setting: a finite simple undirected graph G = (V, E) with V = {n_1, ..., n_N}; its adjacency matrix A has A_ij = 1 if n_i n_j is an edge and 0 otherwise, so A is symmetric with zero diagonal. The textbook writes v_i and a_ij; the board writes n_i and A_ij. The choice of n_i, and of E for the edge set the board calls V, is the paper's convention.",
+      "kind": "interpretation",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "printed p. 11, after Definition 1.1.6 (viewed as page image)",
+          "quote": "A(G) մատրիցը կանվանենք G գրաֆի հարևանության մատրից: Նկատենք, որ ցանկացած i-ի համար (1 ≤ i ≤ n) a_ii = 0, և ցանկացած i, j-ի համար (1 ≤ i, j ≤ n) a_ij = a_ji:"
+        },
+        {
+          "source": "galway_adjacency_notes",
+          "locator": "Definition 1.1.1, printed p. 2",
+          "quote": "A simple undirected graph G = (V, E) consists of a non-empty set V of vertices and a set E of unordered pairs of distinct elements of V, called edges."
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-2",
+      "text": "N2/N3. In a simple graph there is at most one edge between two vertices, so a walk is determined by its vertex sequence (v_0, ..., v_k) with consecutive vertices adjacent; this is the textbook's Definition 1.2.10 restated, and it is Grinberg's Definition 2.9.1(a). The reversal of a walk is a walk (adjacency is symmetric), and the reversal of a path is a path, so a path from n_i to n_j gives one from n_j to n_i.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "Definition 1.2.10, printed p. 21 (viewed as page image)",
+          "quote": "Սահմանում 1.2.10: G գրաֆի u0, u1, …, uk-1, uk գագաթներից և e1, …, ek կողերից կազմված u0, e1, u1, …, uk-1, ek, uk հաջորդականությունը կանվանենք k երկարությամբ u0-ից uk շրջանցում կամ k երկարությամբ (u0, uk)-շրջանցում, եթե ei = ui-1ui, երբ 1 ≤ i ≤ k:"
+        },
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Definition 2.9.1(a), p. 36",
+          "quote": "A walk (in G) means a finite sequence (v0 , v1 , . . . , vk ) of vertices of G (with k ≥ 0) such that all of v0 v1 , v1 v2 , v2 v3 , . . . , vk−1 vk are edges of G."
+        }
+      ],
+      "derivation": "modules/m1.md section 3, remark after Definition 2 and section 3 on N3",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-3",
+      "text": "N5. For every integer k >= 0 the entry (A^k)_ij equals the number of walks of length k from n_i to n_j (A^0 = I). Proof by induction on k, with the walks of length k+1 sorted by their last-but-one vertex. Stated for k >= 1 in Galway Theorem 1.1.3; the case k = 0 is added here.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "galway_adjacency_notes",
+          "locator": "Theorem 1.1.3, printed p. 4 (re-opened and text-checked by m1)",
+          "quote": "Then the entry in the (i, j)-position of the matrix Ak is the number of walks of length k from vi to vj in G."
+        },
+        {
+          "source": "m1_walks_script",
+          "locator": "scripts/m1_walks_output.txt, last block",
+          "quote": "Random graphs: theorem verified in 1000 (graph, k) cases, no failure"
+        }
+      ],
+      "derivation": "modules/m1.md section 3 (Theorem 1 and its proof); numerical check in scripts/m1_walks.py",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/walks.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-4",
+      "text": "N4. Connected in the paper's sense (for all n_i, n_j there is a path, no repeated vertex, from n_i to n_j) is equivalent to the textbook's Definition 2.1.1 read with the textbook's own path of Definition 1.2.12 (a walk with pairwise distinct edges). Direction 1: in a simple graph a walk with distinct vertices has distinct edges. Direction 2: a textbook path is a walk, and a walk from n_i to n_j contains a path from n_i to n_j (statement N6, proved by module m2).",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "Definition 2.1.1, printed p. 48 (viewed as page image)",
+          "quote": "Սահմանում 2.1.1: G գրաֆը կանվանենք կապակցված, եթե նրա ցանկացած երկու u և v գագաթների համար G գրաֆում գոյություն ունի (u, v)-ճանապարհ:"
+        },
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "Definition 1.2.12, printed p. 22 (viewed as page image)",
+          "quote": "Սահմանում 1.2.12: G գրաֆի (u0, uk)-շրջանցումը կանվանենք u0-ից uk ճանապարհ կամ (u0, uk)-ճանապարհ, եթե u0u1-ը,…, uk-1uk-ն G գրաֆի զույգ առ զույգ տարբեր կողեր են:"
+        },
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "Definition 1.2.13, printed p. 22 (viewed as page image)",
+          "quote": "Սահմանում 1.2.13: G գրաֆի (u0, uk)-ճանապարհը կանվանենք պարզ (u0, uk)-ճանապարհ, եթե նրա մեջ մտնող բոլոր գագաթները զույգ առ զույգ տարբեր են:"
+        },
+        {
+          "source": "grinberg_graph_theory",
+          "locator": "Corollary 2.9.7, p. 39 (premise N6, taken from the evidence file, not re-opened by m1)",
+          "quote": "Then, there is a path from u to v of length ≤ k."
+        }
+      ],
+      "derivation": "modules/m1.md section 3, Proposition 1; script check of direction 1 in scripts/m1_walks.py (last line of output)",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/connectivity.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-5",
+      "text": "N5. On the board's graph (A with rows 0 1 0 / 1 0 1 / 0 1 0, edges n_1n_2 and n_2n_3) A^2 has rows 1 0 1 / 0 2 0 / 1 0 1. The entry (A^2)_11 = 1 counts the single walk n_1, n_2, n_1, which repeats n_1 and so is not a path; (A^2)_22 = 2 counts n_2, n_1, n_2 and n_2, n_3, n_2, neither a path; (A^2)_13 = 1 counts n_1, n_2, n_3, which is a path. This is the derivation that claim C22 awaited.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "whiteboard1",
+          "locator": "3 by 3 grid labelled 'adj.' (viewed as image: rows 0 1 0 / 1 0 1 / 0 1 0)",
+          "quote": "adj."
+        },
+        {
+          "source": "m1_walks_script",
+          "locator": "scripts/m1_walks_output.txt, walks of length 2 from n1 to n1",
+          "quote": "n1,n2,n1 path? False"
+        }
+      ],
+      "derivation": "scripts/m1_walks.py and scripts/m1_walks_output.txt; premise m1-3",
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/walks.tex"
+      ],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-6",
+      "text": "O2 (optional). For i different from j in a graph where n_j is reachable from n_i, the least k >= 1 with (A^k)_ij > 0 is the least length of a walk from n_i to n_j, which by N6 is the least length of a path, and equals the textbook's distance (Definition 1.2.16, which uses shortest textbook paths, i.e. shortest trails, of the same least length). Paramadevan and Sotheeswaran state it as their Theorem 3.",
+      "kind": "derived",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "Definition 1.2.16, printed p. 22 (viewed as page image)",
+          "quote": "Սահմանում 1.2.16: G գրաֆում u և v գագաթների միջև հեռավորությունը կսահմանենք որպես կարճագույն (u, v)-ճանապարհի երկարություն, եթե G գրաֆում գոյություն ունի առնվազն մեկ (u, v)-ճանապարհ"
+        },
+        {
+          "source": "paramadevan2021adjacency",
+          "locator": "Theorem 3, p. 17",
+          "quote": "The distance between two vertices vi and vj is equal to l if and only if l is the smallest integer such that (A_G^l)_ij ≠ 0."
+        }
+      ],
+      "derivation": "modules/m1.md section 10 (optional); premises m1-3, m1-4",
+      "confidence": "medium",
+      "status": "supported",
+      "used_in": [],
+      "contradicted_by": []
+    },
+    {
+      "id": "m1-7",
+      "text": "N2. The textbook, in the sentence that follows Definition 1.2.10 on printed p. 21 (it is a separate sentence after the definition, not part of its numbered statement), says a walk is abbreviated by the sequence of its vertices u_0, u_1, ..., u_(k-1), u_k, on the understanding that each next vertex is adjacent to the previous one. English rendering: 'We will write a defined (u_0, u_k)-walk briefly as the sequence of its vertices u_0, ..., u_k, assuming that each subsequent vertex is adjacent to the preceding one.'",
+      "kind": "fact",
+      "module": "m1",
+      "support": [
+        {
+          "source": "petrosyan_graph_theory",
+          "locator": "printed p. 21, sentence immediately after Definition 1.2.10 (viewed as page image, PDF p. 22)",
+          "quote": "Սահմանված (u0, uk)-շրջանցումը կրճատ կնշանակենք նրա գագաթների u0, u1, …, uk-1, uk հաջորդականությամբ, ենթադրելով, որ յուրաքանչյուր հաջորդ գագաթ հարևան է նախորդին:"
+        }
+      ],
+      "derivation": null,
+      "confidence": "high",
+      "status": "supported",
+      "used_in": [
+        "sections/definitions.tex"
+      ],
+      "contradicted_by": []
+    }
+  ],
+  "contradictions": [
+    {
+      "claims": [
+        "C10",
+        "C11",
+        "C16",
+        "m1-4"
+      ],
+      "sources": [
+        "petrosyan_graph_theory"
+      ],
+      "summary": "Textbook Definition 2.1.1 uses the textbook's path (trail, Definition 1.2.12); the paper's path is Definition 1.2.13 (no repeated vertex).",
+      "resolution": "Settled in m1-4: the two readings of connected agree, by Proposition 1 in modules/m1.md. Direction 2 uses N6 from module m2."
+    }
+  ]
+}

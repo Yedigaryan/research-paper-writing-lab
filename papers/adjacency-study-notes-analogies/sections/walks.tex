@@ -1,0 +1,36 @@
+\section{Walk counting: the answer to question 1}\label{sec:walks}
+
+\begin{theorem}[Walk counting]\label{thm:walks}
+Let $W_k(i,j)$ be the number of walks of length $k$ from $n_i$ to $n_j$. For every integer $k \ge 0$ and all $i, j$ in $\{1, \dots, N\}$, $(A^k)_{ij} = W_k(i,j)$.
+\end{theorem}
+
+The University of Galway notes and the lecture notes by Gotti and by Bai state this result \cite[Theorem 1.1.3, p.~4]{galway_adjacency_notes} \cite[Proposition 2, p.~1]{gotti_18211_lecture27} \cite[Theorem 1, p.~1]{bai_bimsa_adjacency}, and their proofs start at $k = 1$; the case $k = 0$ is added here, and the proof below is this paper's own.
+
+\begin{proof}
+By induction on $k$.
+
+\emph{Base case} $k = 0$. A walk of length $0$ from $n_i$ to $n_j$ is a single vertex $v_0$ with $v_0 = n_i$ and $v_0 = n_j$. It exists, and is then unique, exactly when $i = j$. So $W_0(i,j) = 1$ if $i = j$ and $0$ otherwise, which is the $(i,j)$ entry of $I = A^0$.
+
+\emph{Induction hypothesis.} For some $k \ge 0$, $(A^k)_{ir} = W_k(i,r)$ for all $i, r$.
+
+\emph{Step.} Fix $i, j$. A walk $(v_0, \dots, v_{k+1})$ of length $k+1$ from $n_i$ to $n_j$ has exactly one last-but-one vertex $v_k = n_r$, for one $r$ in $1, \dots, N$. Group the walks by their last-but-one vertex $n_r$, and fix one $r$ at a time. Dropping the last vertex gives a walk $(v_0, \dots, v_k)$ of length $k$ from $n_i$ to $n_r$, and the original walk is recovered by appending $n_j$. Conversely, appending $n_j$ to a walk of length $k$ from $n_i$ to $n_r$ gives a walk exactly when $n_r$ and $n_j$ are adjacent, that is when $A_{rj} = 1$. So the number of walks of length $k+1$ with last-but-one vertex $n_r$ is $W_k(i,r)$ if $A_{rj} = 1$ and $0$ if $A_{rj} = 0$; in both cases it is $W_k(i,r)\,A_{rj}$. Every walk has exactly one $r$, so no walk is missed or counted twice, and
+\[
+W_{k+1}(i,j) = \sum_{r=1}^{N} W_k(i,r)\,A_{rj} = \sum_{r=1}^{N} (A^k)_{ir} A_{rj} = (A^{k+1})_{ij},
+\]
+by the hypothesis and the definition of the product. This completes the induction.
+\end{proof}
+
+Nothing in the proof asks the vertices of the walk to be distinct, which is why the entries count walks and not paths.
+
+\begin{example}[The example graph $G_1$]\label{ex:board}
+Let $G_1$ have $N = 3$ vertices and the edges $n_1n_2$ and $n_2n_3$. Its adjacency matrix and the square of it are
+\[
+A = \begin{pmatrix} 0&1&0\\ 1&0&1\\ 0&1&0 \end{pmatrix}, \qquad
+A^2 = \begin{pmatrix} 1&0&1\\ 0&2&0\\ 1&0&1 \end{pmatrix}
+\]
+(checked against a brute-force count of walks \cite{m1_walks_script}). By \Cref{thm:walks} the entries of $A^2$ count walks of length $2$.
+$(A^2)_{11} = 1$ counts the single walk $n_1, n_2, n_1$. It repeats $n_1$, so it is not a path; the only path from $n_1$ to $n_1$ is $(n_1)$, of length $0$. So this entry counts a walk that is not a path.
+$(A^2)_{22} = 2$ counts $n_2, n_1, n_2$ and $n_2, n_3, n_2$, neither a path.
+$(A^2)_{13} = 1$ counts $n_1, n_2, n_3$, a path.
+Hence the statement ``$(A^k)_{ij}$ is the number of paths of length $k$'' is wrong for this graph.
+\end{example}

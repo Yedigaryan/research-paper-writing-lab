@@ -1,0 +1,23 @@
+\section{Worked examples}\label{sec:examples}
+
+All matrices below are computed by a script \cite{m2_connectivity_script}, which also checks each $S_{ij}$ against a brute-force count of walks and each answer (connected or not) against a brute-force search for paths; the Notes on sources say how to rerun it.
+
+\begin{example}[The test on the example graph $G_1$]\label{ex:test1}
+$G_1$ is the graph of \Cref{ex:board}, $N = 3$, so $S = A + A^2$:
+\[
+A = \begin{pmatrix} 0&1&0\\ 1&0&1\\ 0&1&0 \end{pmatrix},\quad
+A^2 = \begin{pmatrix} 1&0&1\\ 0&2&0\\ 1&0&1 \end{pmatrix},\quad
+S = \begin{pmatrix} 1&1&1\\ 1&2&1\\ 1&1&1 \end{pmatrix}.
+\]
+The off-diagonal entries are $S_{12} = 1 + 0$ (the walk $n_1, n_2$), $S_{13} = 0 + 1$ (the walk $n_1, n_2, n_3$), and $S_{23} = 1 + 0$ (the walk $n_2, n_3$); $S$ is symmetric, so $S_{21}, S_{31}, S_{32}$ equal them. All six are positive, so \Cref{thm:test} says $G_1$ is connected, as the matrix suggests: $n_2$ is adjacent to $n_1$ and to $n_3$.
+\end{example}
+
+\begin{example}[The test on a disconnected graph $G_2$]\label{ex:test2}
+Let $G_2$ have $N = 3$ vertices and the single edge $n_1n_2$, so $n_3$ has no edge at all:
+\[
+A = \begin{pmatrix} 0&1&0\\ 1&0&0\\ 0&0&0 \end{pmatrix},\quad
+A^2 = \begin{pmatrix} 1&0&0\\ 0&1&0\\ 0&0&0 \end{pmatrix},\quad
+S = \begin{pmatrix} 1&1&0\\ 1&1&0\\ 0&0&0 \end{pmatrix}.
+\]
+Here $S_{13} = S_{23} = S_{31} = S_{32} = 0$: no walk of length $1$ or $2$ joins $n_3$ to another vertex, and indeed $n_3$ has no neighbour, so no walk of any length leaves it. By \Cref{thm:test} the graph is not connected. The positive entry $S_{11} = 1$ does not help reach $n_3$.
+\end{example}

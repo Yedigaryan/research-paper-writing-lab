@@ -1,0 +1,5 @@
+compared with the snapshot of round 1
+new: M2-11, m1-7
+changed: C12, C15, C20, C5, M2-5
+removed: none
+unchanged: 45

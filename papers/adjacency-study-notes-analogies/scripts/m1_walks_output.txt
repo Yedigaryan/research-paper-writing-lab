@@ -1,0 +1,35 @@
+A =
+ [[0 1 0]
+ [1 0 1]
+ [0 1 0]]
+A^0 =
+ [[1 0 0]
+ [0 1 0]
+ [0 0 1]]  (equals brute-force walk count)
+A^1 =
+ [[0 1 0]
+ [1 0 1]
+ [0 1 0]]  (equals brute-force walk count)
+A^2 =
+ [[1 0 1]
+ [0 2 0]
+ [1 0 1]]  (equals brute-force walk count)
+A^3 =
+ [[0 2 0]
+ [2 0 2]
+ [0 2 0]]  (equals brute-force walk count)
+A^4 =
+ [[2 0 2]
+ [0 4 0]
+ [2 0 2]]  (equals brute-force walk count)
+
+Walks of length 2 from n1 to n1:
+   n1,n2,n1 path? False
+Walks of length 2 from n1 to n3:
+   n1,n2,n3 path? True
+Walks of length 2 from n2 to n2:
+   n2,n1,n2 path? False
+   n2,n3,n2 path? False
+
+Random graphs: theorem verified in 1000 (graph, k) cases, no failure
+Paths with a repeated edge found: 0
