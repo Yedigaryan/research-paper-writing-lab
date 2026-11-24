@@ -2,6 +2,8 @@
 
 A positive $(A^k)_{ij}$ says by \Cref{thm:walks} only that a walk of length $k$ exists, and a walk may revisit vertices, while \Cref{def:connected} asks for paths. The next lemma closes that gap and also bounds the lengths to be checked.
 
+\medskip
+\noindent\textbf{In plain words.} Any stroll between two houses can be cut down to a no-return stroll between them. Whenever the stroll visits a house twice, cut out the part in between. A no-return stroll takes fewer steps than the village has houses.
 \begin{lemma}[Walk contains path]\label{lem:walkpath}
 Let $G$ have $N$ vertices.
 (a) If there is a walk of length $k$ from $n_i$ to $n_j$ ($i = j$ allowed), there is a path from $n_i$ to $n_j$ of length at most $k$ whose vertices all occur in the walk.
@@ -16,6 +18,8 @@ Grinberg proves (a) without its last clause and states (b) \cite[Corollary 2.9.7
 (b) A path of length $k$ has $k + 1$ terms $w_0, \dots, w_k$, pairwise distinct vertices of $G$. $G$ has $N$ vertices, so $k + 1 \le N$.
 \end{proof}
 
+\medskip
+\noindent\textbf{In plain words.} The textbook calls a village joined-up using a weaker kind of stroll, one that never reuses a lane. A no-return stroll never reuses a lane. Any stroll that never reuses a lane can be cut down to a no-return stroll.
 \begin{proposition}[Connectedness agrees with the textbook's definition]\label{prop:same}
 For all $n_i, n_j$ in a simple graph, there is a path from $n_i$ to $n_j$ (\Cref{def:path}) if and only if there is a trail from $n_i$ to $n_j$. Hence the graphs that are connected by \Cref{def:connected} are the graphs that are connected by the textbook's Definition 2.1.1, which uses its own ``path'', the trail of \Cref{rem:trap}.
 \end{proposition}
@@ -24,6 +28,8 @@ For all $n_i, n_j$ in a simple graph, there is a path from $n_i$ to $n_j$ (\Cref
 \emph{Path implies trail.} Let $(v_0, \dots, v_k)$ be a path and suppose two of its edges are equal, $\{v_{s-1}, v_s\} = \{v_{t-1}, v_t\}$ with $s < t$. Then $v_{s-1} = v_{t-1}$ or $v_{s-1} = v_t$. In the first case positions $s-1$ and $t-1$ hold the same vertex, in the second positions $s-1$ and $t$ do; these positions differ because $s - 1 < t - 1 < t$. Either way a vertex of the path repeats, a contradiction. So the edges are pairwise distinct and the path is a trail. \emph{Trail implies path.} A trail from $n_i$ to $n_j$ is a walk from $n_i$ to $n_j$, so by \Cref{lem:walkpath}(a) it contains a path from $n_i$ to $n_j$. The two directions give the equivalence for each pair, hence for the quantified definitions.
 \end{proof}
 
+\medskip
+\noindent\textbf{In plain words.} Add up the neighbour chart used once, twice, and so on, up to one less than the number of houses. The village is joined-up exactly when every box for two different houses is above zero. The boxes for a house with itself are not looked at.
 \begin{theorem}[Sum test]\label{thm:test}
 Let $N \ge 2$ and $S = A + A^2 + \dots + A^{N-1}$. The graph is connected if and only if $S_{ij} > 0$ for all $i \ne j$.
 \end{theorem}

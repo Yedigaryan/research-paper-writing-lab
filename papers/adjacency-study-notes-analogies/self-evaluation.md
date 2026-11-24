@@ -112,3 +112,24 @@ Reader passages (changed unless marked stays)
 - F1 changed (abstract names Theorems 3.1 and 4.3). F2 changed (gloss of walk in the introduction). F3 stays: the course is not named in any input. F4 changed. F5 changed. F6 stays: would add a sentence and the distance clause carries its citation. F7 changed.
 - F8, F9, F11, F12, F13, F14 stay: they rewrite proof steps or the wording of a proof; F9 "penultimate" would also change the proof's terms.
 - F10 changed (roles named; "their proofs start at k = 1"). F15 stays: proof step of the remark. F16 stays: would add a citation. F17 stays: no room and it alters the example's working. F18 changed (clause added). F19 stays: no cost source beyond M2-9. F20 stays: the marks cannot be shown without a figure. F21 changed (matrix is the object both questions are about; arrowhead and third line ignored). F22 stays: the convention is already pointed to the Notes. F23 stays: C34 limits the viewed pages to what the notes list; listing the others adds length. F24 changed ("unnumbered"). F25 changed ("isolated mode"). F26 changed ("where I is the identity matrix"). F27 changed (textbook's order; pages sentence kept).
+
+## Plain words layer (added in this folder; Analogies: yes)
+Formal text: unchanged. The diff against the released folder shows only added lines (twelve plain-words paragraphs with `\medskip`, and one added block at the end of the introduction: the story, the dictionary, and the sentence saying what the paragraphs are). No formal sentence was changed; `main.tex` and `references.bib` are identical to the released ones. Pages 7 of 8. Checks: build ok; citations 0/0; claims 0/0; inspect_pdf 0/0; check_plain_words: 12 paragraphs, 9 statements checked, 0 errors, 0 warnings.
+
+Story dictionary (technical term, story word): vertex, house; edge, lane; adjacent, neighbours; adjacency matrix, neighbour chart; entry, box; walk, stroll; length, steps; path, no-return stroll; connected, joined-up; matrix power A^k, the chart used that many times over; sum of powers, the charts added up; the sum test, "the rule".
+
+The twelve paragraphs (statement; why it is true of it)
+- Def 2.1 graph and adjacency: a village of houses and lanes, lanes two-way between different houses, at most one per pair; this is the simple undirected setting.
+- Def 2.2 adjacency matrix: a yes/no box per pair of houses; symmetric and no house its own neighbour, which are the symmetry and zero diagonal.
+- Def 2.3 walk: moves along lanes, repeats of houses or lanes allowed, steps counted with repeats, standing still is length 0.
+- Def 2.4 path: never visits a house twice; standing still counts; "between" start and end.
+- Def 2.6 connected: any two houses linked by a no-return stroll; own house covered by standing still.
+- Thm 3.1: the chart "used as many times over as you want steps" is A^k (k = 0 included: not at all); each box counts strolls of that many steps, repeats allowed, "not only no-return strolls".
+- Ex 3.2: three houses in a row; the out-and-back stroll is the one two-step stroll from an end house to itself ((A^2)_11 = 1) and it is not a no-return stroll.
+- Lemma 4.1: shortening by cutting out the part between two visits of a house; a no-return stroll has fewer steps than houses (at most N - 1).
+- Prop 4.2: the textbook's weaker stroll (no lane reused); no-return implies no lane reused, and any such stroll cuts down to a no-return one (Lemma 4.1).
+- Thm 4.3: chart used once up to N - 1 times, added; joined-up exactly when every box for two different houses is above zero; boxes of a house with itself not looked at.
+- Ex 5.1: row of three houses, every off-diagonal box above zero, rule says joined-up.
+- Ex 5.2: one lane between two houses, third house without a lane; boxes to it are zero; rule says not joined-up, which is correct.
+
+What the story cannot express exactly: the exact count in Theorem 3.1 and in Example 3.2 (the numbers appear only in the formal text); "the chart used that many times over" stands for a matrix power, which is a product and not a repetition of a lookup; the sum in Theorem 4.3 is "added up" without saying entry by entry; the requirement N >= 2 is not mentioned; the finite size of the village is not stated. Mirror caveat: a village with a house and no lane is allowed, as the story's "some pairs" says.

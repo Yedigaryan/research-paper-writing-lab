@@ -1,5 +1,7 @@
 \section{Walk counting: the answer to question 1}\label{sec:walks}
 
+\medskip
+\noindent\textbf{In plain words.} Use the neighbour chart as many times over as you want steps. Then each box counts the strolls with that many steps from one house to another. It counts every stroll, repeats allowed, and not only no-return strolls.
 \begin{theorem}[Walk counting]\label{thm:walks}
 Let $W_k(i,j)$ be the number of walks of length $k$ from $n_i$ to $n_j$. For every integer $k \ge 0$ and all $i, j$ in $\{1, \dots, N\}$, $(A^k)_{ij} = W_k(i,j)$.
 \end{theorem}
@@ -22,6 +24,8 @@ by the hypothesis and the definition of the product. This completes the inductio
 
 Nothing in the proof asks the vertices of the walk to be distinct, which is why the entries count walks and not paths.
 
+\medskip
+\noindent\textbf{In plain words.} Three houses stand in a row, and the middle house has a lane to each end house. Walking from an end house to the middle and back takes two steps and ends where it began. It is the only two-step stroll from that end house to itself, and it is not a no-return stroll.
 \begin{example}[The example graph $G_1$]\label{ex:board}
 Let $G_1$ have $N = 3$ vertices and the edges $n_1n_2$ and $n_2n_3$. Its adjacency matrix and the square of it are
 \[
