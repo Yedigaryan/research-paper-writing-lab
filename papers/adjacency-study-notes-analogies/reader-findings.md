@@ -174,3 +174,31 @@ PLAIN-WORDS PARAGRAPHS (listed where they did not help or did not match the stat
 
 READER SUMMARY
 The paper asks three questions about the adjacency matrix A of a finite, simple, undirected graph: what the entries of its powers count, how to tell from A alone whether the graph is connected, and what a path is. It answers that the (i, j) entry of A^k is the number of walks of length k from house i to house j, and that walks are not paths. It then answers that the graph is connected exactly when every off-diagonal entry of A + A^2 + ... + A^{N-1} is positive. The reason is that any stroll between two houses can be shortened to a path, which has at most N - 1 steps. A path is defined as a walk with no repeated vertex, and the paper shows this gives the same connectedness as the textbook's trail-based definition. The paper checks the test on two three-vertex graphs, one connected and one not, and says the test does not count paths and is not the cheapest method. The sources are two lecture boards and a summary of an assignment, and the paper says its path convention rests on that unchecked summary. I could write this paragraph from the pages alone, though the Abstract's "first two results" and the Section 6 / Notes disagreement about Bai's "path" made the exact scope of the answer harder to pin down.
+
+### Author's response after round 3 (final edits)
+
+Changed (12):
+
+- F1: the story block has the heading "Story and dictionary"; the dictionary stays in sentences.
+- F2: the abstract says "The answers to the first two questions are proved in full".
+- F3: "Standing still at one house is also a no-return stroll, with no steps."
+- F4: "a less restricted notion".
+- F6: rewritten with the evaluator's F23.
+- F7: the missing clause is named ("without the clause that the path's vertices occur in the walk").
+- F9, in part: "box by box" and "stop at one less than the number of houses" were added; the suggested wording was not used because a plain-words paragraph may not contain notation.
+- F10: Remark 4.4 names the graphs as G_1 of Example 3.2 and G_2 of Example 5.2.
+- F14: Section 6 and the notes on sources were reworded so that they cannot be read as disagreeing about Bai.
+- F16: the sentence on the textbook search is split into two.
+- F19: the sentence ends "as shown below".
+- F20: the sentence on the textbook's order gives its reason.
+
+Stay (8):
+
+- F5: the sentence carries the textbook's definition and its citation, which a round 1 finding asked for.
+- F8: it is a proof step, and a final edit may not change one.
+- F11: names such as G_1 and S are not allowed in a plain-words paragraph; the example names them directly below.
+- F12: it would need a citation at a new place, which a final edit may not add.
+- F13: the clause is inside Definition 2.4, a numbered statement.
+- F15: the introduction already points to the notes on sources for the example graph.
+- F17: `latex-structure.md` requires these entries for local files, and the notes on sources say the files are not public.
+- F18: "Step 0" is a label inside a proof.

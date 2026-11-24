@@ -157,6 +157,6 @@ Reader passages
 - F19 changed: "as shown below". F20 changed: "so that its definition numbers can be checked".
 
 Corrections to three sentences (after the coordinator's diff review)
-- walks.tex, paragraph before Example 3.2: "Three houses stand in a row; only the middle house has lanes, one to each end house." is now "Three houses stand in a row, with a lane from the middle house to each end house and no other lane." (a lane has two ends, so the old wording was false).
+- walks.tex, paragraph before Example 3.2: "Three houses stand in a row; only the middle house has lanes, one to each end house." is now "Three houses in a row have two lanes only: the middle house to each end house." (a lane has two ends, so the old wording was false).
 - definitions.tex, paragraph before Definition 2.2: "Swapping the two houses gives the same box," is now "Swapping the two houses gives the same number,".
 - introduction.tex, story: "a neighbour chart has a box for each pair of houses, holding one for neighbours and zero otherwise" is now "a neighbour chart has a row and a column for each house, and the box in one house's row and another's column holds one for neighbours and zero otherwise", in agreement with the Definition 2.2 paragraph; still four sentences.

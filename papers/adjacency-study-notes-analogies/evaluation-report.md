@@ -200,3 +200,25 @@ As in round 1. The evaluator found every plain-words paragraph true of the state
 ### Release conditions
 
 Conditions 1 to 9 hold as the evaluator reported them: every score is at least 4, no critical finding, no unverified claim, complete proofs, no essential concept unexplained, hierarchy met, mechanical checks pass, `self-evaluation.md` present. No critical or major finding is open. Five minor findings (F23 to F27), all on the plain words layer and its layout, remain and go to final edits; no further evaluation round is run for them.
+
+### Final edits after round 3
+
+Findings closed after the evaluation, all by the author:
+
+- F23: the paragraph before Theorem 3.1 now reads "Chain the neighbour chart with itself, once for each step. Then each box, even a house's box with itself, counts the strolls of that many steps." The story, the dictionary, and the paragraphs before Definition 2.2, Theorem 4.3, and Examples 5.1 and 5.2 now say that a box holds one for neighbours and zero otherwise, so a box is a number throughout.
+- F24: the paragraph before Example 3.2 now reads "Three houses in a row have two lanes only: the middle house to each end house. Going from an end house to the middle and back takes two steps and ends where it began."
+- F25: the dictionary now names the village (graph), chaining the chart with itself (power of the matrix), adding the charts box by box (sum of powers), and the adding rule (sum test); the two example paragraphs say "the adding rule".
+- F26: the paragraph before Definition 2.2 now speaks of a row and a column for each house, the box in one house's row and another's column, the same number when the two houses are swapped, and zero in a house's box with itself. The story uses the same row-and-column wording.
+- F27: `main.tex` loads `needspace` and defines `\plainstart` and `\plainend`; each plain-words paragraph has a larger space above it than below it and starts on the same page as its statement. Font size, margins, and line spacing are unchanged.
+
+Reader passages of round 3: the author changed twelve (reader F1, F2, F3, F4, F6, F7, F9 in part, F10, F14, F16, F19, F20) and left eight, each with its reason in `reader-findings.md`.
+
+The orchestrator read the word-level diff and sent three sentences back once, because they were not exact as written: "only the middle house has lanes" (each end house has a lane too), "swapping the two houses gives the same box" (it gives the other box with the same number), and the story's "a box for each pair of houses" (which no longer agreed with the row-and-column wording that closed F26). The author corrected all three; the texts quoted above are the corrected ones.
+
+Diff confined to the named passages: yes. The orchestrator read the word-level diff of `main.tex`, `sections/`, and `references.bib` against the files the round 3 evaluator read. No statement of a definition, theorem, lemma, or proposition changed, no line inside a proof changed, no citation key was added, and `references.bib` is unchanged. Outside the plain words layer the changes are wording only: the abstract ("The answers to the first two questions are proved in full"), Remark 2.5 ("a less restricted notion"), the attribution after Lemma 4.1 (the missing clause is named), Remark 4.4 (the two graphs are named by their examples), the introduction's sentence on the textbook's order (its reason is given), Section 6 and the notes on sources on Bai (the notes now say that Grinberg and Bai define "path" as the paper does and that Bai's proof sketch still uses "paths" for walks, which is what claims C13 and C33 record), and the notes on the textbook search (one sentence split into two, same content as claim C34, still qualified).
+
+Mechanical checks re-run on the final files: build pass, citations pass (12 keys, 12 entries, 12 sources), claims pass (49 supported, 3 qualified, 0 unverified), pdf pass, 7 pages of a budget of 8, plain words pass (12 paragraphs, 0 errors, 0 warnings). `claims_changed.py` against the round 3 snapshot lists no new, changed, or removed claim. The orchestrator viewed all seven PDF pages: every plain-words paragraph stands on the same page as the start of its statement.
+
+Not re-read by an evaluator.
+
+Decision: PASS -- conditions 1 to 9 held in round 3 with no critical or major finding open, the five minor findings were closed by final edits, and the mechanical checks pass on the final files.

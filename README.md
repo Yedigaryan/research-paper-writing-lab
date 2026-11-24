@@ -43,4 +43,5 @@ never editable by the loop.
 - `papers/adjacency-matrix-connectivity/`: adjacency matrix, meaning of the entries of its powers, path definition, and the connectivity test for an undirected graph.
 - `papers/adjacency-walks-public/`: the same three questions for readers outside the course, five pages, references only to publicly accessible sources. Passed evaluation in two rounds.
 - `papers/adjacency-study-notes/`: the same three questions as study notes for the course reader, in the board's notation with the textbook's numbering, six pages, no analogies. Passed evaluation in two rounds.
+- `papers/adjacency-study-notes-analogies/`: the same study notes with the plain words layer: a village story fixed in the introduction and an "In plain words" paragraph before each definition, theorem, lemma, proposition, and example. Seven pages. The formal text is the same; passed evaluation in a third round.
 - `papers/adjacency-short-plain/` and `papers/adjacency-short-analogies/`: the short version without and with analogies, written to compare the two. Not evaluated.
